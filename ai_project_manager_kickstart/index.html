@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Project Manager Kickstart</title>
+<style>
+  :root {
+    --bg: #1a1b23;
+    --bg-surface: #22232e;
+    --bg-raised: #2a2b38;
+    --bg-input: #1e1f2a;
+    --border: #353647;
+    --border-focus: #6c72cb;
+    --text: #e0e0e8;
+    --text-dim: #9194a8;
+    --text-bright: #ffffff;
+    --accent: #6c72cb;
+    --accent-hover: #8288e0;
+    --accent-dim: rgba(108,114,203,0.15);
+    --green: #4ade80;
+    --green-dim: rgba(74,222,128,0.15);
+    --yellow: #facc15;
+    --yellow-dim: rgba(250,204,21,0.15);
+    --red: #f87171;
+    --orange: #fb923c;
+    --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --radius: 8px;
+    --radius-sm: 5px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; overflow: hidden; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 220px;
+    min-width: 220px;
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .sidebar-header {
+    padding: 20px 16px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-header h1 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .sidebar-header .subtitle {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .nav { padding: 12px 8px; flex: 1; }
+
+  .nav-section {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 12px 12px 4px;
+  }
+
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 12px;
+    background: none;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-dim);
+    font-size: 13px;
+    font-family: var(--sans);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s;
+  }
+
+  .nav-btn:hover { background: var(--bg-raised); color: var(--text); }
+  .nav-btn.active { background: var(--accent-dim); color: var(--accent); }
+  .nav-btn .icon { font-size: 16px; width: 20px; text-align: center; }
+
+  /* Main */
+  .main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 40px;
+    height: 100vh;
+  }
+
+  .main::-webkit-scrollbar { width: 6px; }
+  .main::-webkit-scrollbar-track { background: transparent; }
+  .main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .panel-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 4px;
+  }
+
+  .panel-desc {
+    color: var(--text-dim);
+    margin-bottom: 28px;
+    font-size: 14px;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-bright);
+  }
+
+  .card p { color: var(--text-dim); font-size: 13px; margin-bottom: 10px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-raised);
+    color: var(--text);
+    font-size: 12px;
+    font-family: var(--sans);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn:hover { border-color: var(--accent); color: var(--text-bright); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+  .btn.sm { padding: 4px 10px; font-size: 11px; }
+
+  .btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+
+  /* Form elements */
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  input[type="text"], textarea, select {
+    width: 100%;
+    padding: 8px 12px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-size: 13px;
+    font-family: var(--sans);
+    transition: border-color 0.15s;
+    resize: vertical;
+  }
+
+  input[type="text"]:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--border-focus);
+  }
+
+  textarea { font-family: var(--mono); font-size: 12px; line-height: 1.5; min-height: 80px; }
+
+  .form-group { margin-bottom: 16px; }
+
+  /* Code / prompt blocks */
+  .prompt-block {
+    position: relative;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 10px 0;
+  }
+
+  .prompt-block .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 3px 8px;
+    font-size: 10px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: all 0.15s;
+  }
+
+  .prompt-block .copy-btn:hover { color: var(--text-bright); border-color: var(--accent); }
+  .prompt-block .copy-btn.copied { color: var(--green); border-color: var(--green); }
+
+  /* Steps */
+  .step {
+    border-left: 2px solid var(--border);
+    padding-left: 24px;
+    margin-left: 8px;
+    padding-bottom: 28px;
+    position: relative;
+  }
+
+  .step:last-child { border-left-color: transparent; padding-bottom: 0; }
+
+  .step::before {
+    content: attr(data-step);
+    position: absolute;
+    left: -14px;
+    top: 0;
+    width: 26px;
+    height: 26px;
+    background: var(--bg-raised);
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-dim);
+  }
+
+  .step.complete::before {
+    background: var(--green-dim);
+    border-color: var(--green);
+    color: var(--green);
+    content: '✓';
+  }
+
+  .step.active-step::before {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .step-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 6px;
+  }
+
+  .step-desc { color: var(--text-dim); font-size: 13px; margin-bottom: 12px; }
+
+  /* Memory cards */
+  .memory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+  }
+
+  .memory-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .memory-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .memory-card-title { font-weight: 600; font-size: 13px; color: var(--text-bright); }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  .status-dot.loaded { background: var(--green); }
+
+  .memory-card-content {
+    flex: 1;
+    font-size: 12px;
+    color: var(--text-dim);
+    overflow: hidden;
+  }
+
+  .drop-zone {
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .drop-zone:hover, .drop-zone.dragover {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+    color: var(--text);
+  }
+
+  .md-preview {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    overflow-y: auto;
+    max-height: 200px;
+    padding: 8px 0;
+  }
+
+  .md-preview h1 { font-size: 16px; color: var(--text-bright); margin: 12px 0 6px; font-weight: 700; }
+  .md-preview h2 { font-size: 14px; color: var(--text-bright); margin: 10px 0 4px; font-weight: 600; }
+  .md-preview h3 { font-size: 13px; color: var(--text-bright); margin: 8px 0 4px; font-weight: 600; }
+  .md-preview p { margin: 4px 0; }
+  .md-preview ul, .md-preview ol { padding-left: 20px; margin: 4px 0; }
+  .md-preview li { margin: 2px 0; }
+  .md-preview code { font-family: var(--mono); background: var(--bg-input); padding: 1px 4px; border-radius: 3px; font-size: 11px; }
+  .md-preview pre { background: var(--bg-input); padding: 10px; border-radius: var(--radius-sm); margin: 6px 0; overflow-x: auto; }
+  .md-preview pre code { background: none; padding: 0; }
+  .md-preview hr { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+  .md-preview strong { color: var(--text-bright); }
+  .md-preview em { font-style: italic; color: var(--text); }
+
+  .md-preview .task-done { text-decoration: line-through; color: var(--text-dim); }
+  .md-preview .task-progress { color: var(--yellow); }
+
+  /* Prompt library */
+  .prompt-category { margin-bottom: 24px; }
+  .prompt-category-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .prompt-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .prompt-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .prompt-item-header:hover { background: var(--bg-raised); }
+
+  .prompt-item-title { font-size: 13px; font-weight: 600; color: var(--text-bright); }
+  .prompt-item-expand { color: var(--text-dim); font-size: 12px; transition: transform 0.2s; }
+  .prompt-item.open .prompt-item-expand { transform: rotate(180deg); }
+
+  .prompt-item-body {
+    display: none;
+    padding: 0 14px 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  .prompt-item.open .prompt-item-body { display: block; }
+
+  /* Task workflow */
+  .mode-toggle {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .mode-toggle button {
+    padding: 7px 16px;
+    background: var(--bg-surface);
+    border: none;
+    color: var(--text-dim);
+    font-size: 12px;
+    font-family: var(--sans);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .mode-toggle button:not(:last-child) { border-right: 1px solid var(--border); }
+  .mode-toggle button.active { background: var(--accent-dim); color: var(--accent); }
+  .mode-toggle button:hover:not(.active) { background: var(--bg-raised); color: var(--text); }
+
+  .stage-flow { margin-top: 16px; }
+
+  .stage {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .stage-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .stage-header:hover { background: var(--bg-raised); }
+
+  .stage-number {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .stage-title { font-size: 13px; font-weight: 600; color: var(--text-bright); flex: 1; }
+  .stage-chevron { color: var(--text-dim); font-size: 12px; transition: transform 0.2s; }
+  .stage.open .stage-chevron { transform: rotate(180deg); }
+
+  .stage-body {
+    display: none;
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .stage.open .stage-body { display: block; }
+
+  /* Toast notification */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--bg-raised);
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 10px 18px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-family: var(--sans);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .sidebar { width: 56px; min-width: 56px; }
+    .sidebar-header h1, .sidebar-header .subtitle, .nav-section, .nav-btn span { display: none; }
+    .nav-btn { justify-content: center; padding: 10px; }
+    .nav-btn .icon { font-size: 18px; }
+    .main { padding: 20px 16px; }
+    .memory-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <h1>AI PM Kickstart</h1>
+    <div class="subtitle">Project Control Panel</div>
+  </div>
+  <div class="nav">
+    <div class="nav-section">Setup</div>
+    <button class="nav-btn active" data-panel="init">
+      <span class="icon">◆</span><span>Initialize</span>
+    </button>
+    <div class="nav-section">Workflow</div>
+    <button class="nav-btn" data-panel="tasks">
+      <span class="icon">▶</span><span>Tasks</span>
+    </button>
+    <button class="nav-btn" data-panel="memory">
+      <span class="icon">◉</span><span>Memory</span>
+    </button>
+    <button class="nav-btn" data-panel="prompts">
+      <span class="icon">≡</span><span>Prompts</span>
+    </button>
+  </div>
+</nav>
+
+<main class="main">
+
+  <!-- ============ INIT PANEL ============ -->
+  <div class="panel active" id="panel-init">
+    <div class="panel-title">Initialize Project</div>
+    <div class="panel-desc">Go from blank project to first task in ~15 minutes.</div>
+
+    <div class="step active-step" data-step="1" id="init-step-1">
+      <div class="step-title">Fill in the project brief</div>
+      <div class="step-desc">Answer these questions to define what you're building. This is the seed for everything else.</div>
+      <div class="card" style="border:none;padding:0;">
+        <div class="form-group">
+          <label>Project name</label>
+          <input type="text" id="brief-name" placeholder="e.g. Recipe Book">
+        </div>
+        <div class="form-group">
+          <label>What are we building?</label>
+          <textarea id="brief-what" rows="3" placeholder="One paragraph. What is this thing? What does it do?"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Who is it for?</label>
+          <textarea id="brief-who" rows="2" placeholder="Target users or audience."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Platform and deployment</label>
+          <input type="text" id="brief-platform" placeholder="e.g. Web app, CLI, Mobile, Desktop, API">
+        </div>
+        <div class="form-group">
+          <label>Core features (v1)</label>
+          <textarea id="brief-features" rows="4" placeholder="3–5 bullet points. One feature per line."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Constraints</label>
+          <textarea id="brief-constraints" rows="3" placeholder="Timeline, tech preferences, accessibility needs, team size, etc."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Out of scope (for now)</label>
+          <textarea id="brief-outofscope" rows="2" placeholder="Things you're explicitly deferring."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Open questions</label>
+          <textarea id="brief-questions" rows="2" placeholder="Anything you're unsure about."></textarea>
+        </div>
+        <div class="btn-row">
+          <button class="btn primary" onclick="copyBriefMd()">Copy as Markdown</button>
+          <button class="btn" onclick="downloadBriefMd()">Download brief.md</button>
+          <button class="btn" onclick="completeStep(1)">Mark complete →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="2" id="init-step-2">
+      <div class="step-title">Generate the architecture</div>
+      <div class="step-desc">Copy this prompt, paste it into your AI tool, then paste the result back below.</div>
+      <div class="prompt-block" id="arch-prompt">Read ai_project_manager_kickstart/project/brief.md.
+
+Based on this brief, propose:
+1. A recommended tech stack with a one-line justification per choice.
+2. A folder and file structure for the project.
+3. Key modules or components, with a one-sentence responsibility for each.
+4. Communication patterns — how modules should interact.
+5. A dependency policy — what's allowed without approval.
+
+Keep it practical and minimal. This is a starting point, not a final architecture.
+Output in markdown format matching the template in ai_project_manager_kickstart/project/architecture.md.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <div class="form-group" style="margin-top:12px;">
+        <label>Paste AI result here</label>
+        <textarea id="arch-result" rows="10" placeholder="Paste the AI's architecture proposal here..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" onclick="copyContent('arch-result')">Copy content</button>
+        <button class="btn" onclick="downloadTextarea('arch-result', 'architecture.md')">Download architecture.md</button>
+        <button class="btn" onclick="completeStep(2)">Mark complete →</button>
+      </div>
+    </div>
+
+    <div class="step" data-step="3" id="init-step-3">
+      <div class="step-title">Generate the initial backlog</div>
+      <div class="step-desc">Copy this prompt, paste it into your AI tool, then paste the result back below.</div>
+      <div class="prompt-block" id="backlog-prompt">Read:
+- ai_project_manager_kickstart/project/brief.md
+- ai_project_manager_kickstart/project/architecture.md
+
+Based on the brief and architecture, propose an initial backlog of
+8–12 tasks that would take this project from zero to a working first
+milestone.
+
+Format each task as:
+- [ ] Task title — one-sentence description
+
+Group tasks under milestone headings.
+Order by dependency — what must come first.
+Keep tasks small enough to complete in a single focused session.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <div class="form-group" style="margin-top:12px;">
+        <label>Paste AI result here</label>
+        <textarea id="backlog-result" rows="10" placeholder="Paste the AI's backlog proposal here..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" onclick="copyContent('backlog-result')">Copy content</button>
+        <button class="btn" onclick="downloadTextarea('backlog-result', 'backlog.md')">Download backlog.md</button>
+        <button class="btn" onclick="completeStep(3)">Mark complete →</button>
+      </div>
+    </div>
+
+    <div class="step" data-step="4" id="init-step-4">
+      <div class="step-title">Set conventions (optional)</div>
+      <div class="step-desc">Skip if unsure — fill this in when conventions emerge during your first implementation tasks.</div>
+      <div class="form-group">
+        <label>Code style</label>
+        <textarea id="conv-style" rows="2" placeholder="e.g. Prettier defaults, 2-space indent, single quotes"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Naming</label>
+        <textarea id="conv-naming" rows="2" placeholder="e.g. Files: kebab-case. Components: PascalCase."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Commit messages</label>
+        <input type="text" id="conv-commits" placeholder="e.g. type: short description (feat, fix, refactor, docs)">
+      </div>
+      <div class="form-group">
+        <label>Testing</label>
+        <textarea id="conv-testing" rows="2" placeholder="e.g. Vitest for unit tests. Focus on data layer."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Patterns to follow</label>
+        <textarea id="conv-follow" rows="2" placeholder="e.g. All DB access through db/ module."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Patterns to avoid</label>
+        <textarea id="conv-avoid" rows="2" placeholder="e.g. No inline styles. No prop drilling beyond 2 levels."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" onclick="copyConventionsMd()">Copy as Markdown</button>
+        <button class="btn" onclick="downloadConventionsMd()">Download conventions.md</button>
+        <button class="btn" onclick="completeStep(4)">Mark complete ✓</button>
+      </div>
+    </div>
+
+    <div class="step" data-step="5" id="init-step-5">
+      <div class="step-title">Start your first task</div>
+      <div class="step-desc">Open your backlog, pick the first task, and head to the Tasks tab.</div>
+      <div class="btn-row">
+        <button class="btn primary" onclick="navigateTo('tasks')">Go to Tasks →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TASKS PANEL ============ -->
+  <div class="panel" id="panel-tasks">
+    <div class="panel-title">Task Workflow</div>
+    <div class="panel-desc">Run the design-before-code workflow for your current task.</div>
+
+    <div class="card">
+      <div class="form-group" style="margin-bottom:8px;">
+        <label>Current task</label>
+        <input type="text" id="task-input" placeholder="Paste one task from your backlog" oninput="updateSessionPrompt()">
+      </div>
+    </div>
+
+    <div class="mode-toggle">
+      <button class="active" onclick="setMode('full', this)">4-Stage Workflow</button>
+      <button onclick="setMode('quick', this)">Quick Task</button>
+    </div>
+
+    <!-- Full workflow -->
+    <div id="mode-full" class="stage-flow">
+      <div class="stage open" id="stage-session">
+        <div class="stage-header" onclick="toggleStage(this)">
+          <div class="stage-number">0</div>
+          <div class="stage-title">Session Start</div>
+          <div class="stage-chevron">▾</div>
+        </div>
+        <div class="stage-body">
+          <p style="color:var(--text-dim);font-size:13px;margin-bottom:8px;">Paste this at the start of a new chat to load project context.</p>
+          <div class="prompt-block" id="session-prompt">Read the project memory in ai_project_manager_kickstart/project/:
+- brief.md
+- architecture.md
+- backlog.md
+- file-map.md
+- conventions.md (if it exists)
+- decision-log.md
+
+Also read ai_project_manager_kickstart/prompts/operating-rules.md.
+
+My task: <span class="task-placeholder">[enter task above]</span>
+
+Start with scoping only. No code.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="stage" id="stage-scope">
+        <div class="stage-header" onclick="toggleStage(this)">
+          <div class="stage-number">1</div>
+          <div class="stage-title">Scoping</div>
+          <div class="stage-chevron">▾</div>
+        </div>
+        <div class="stage-body">
+          <div class="prompt-block">Using the project context, do the scoping step only for the current task.
+
+Output:
+1. Problem framing — what needs to change and why.
+2. Affected areas — which modules, files, or layers are involved.
+3. Key design decisions — what choices need to be made.
+4. Risks and dependencies — what could go wrong or block progress.
+5. Smallest useful scope — the minimum that delivers value.
+6. Out of scope — what we're explicitly not doing.
+7. Target file list — files to create or modify, with one-line reason each.
+8. Open questions — only if genuinely blocking.
+
+Rules:
+- Search the codebase before drawing conclusions.
+- Prefer existing patterns over new abstractions.
+- Flag any efficiency, persistence, or architectural concerns.
+- If this is a new project with little or no code yet, focus on folder structure and module responsibilities instead of file-level detail.
+- No code or pseudocode.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="stage" id="stage-design">
+        <div class="stage-header" onclick="toggleStage(this)">
+          <div class="stage-number">2</div>
+          <div class="stage-title">Design Options</div>
+          <div class="stage-chevron">▾</div>
+        </div>
+        <div class="stage-body">
+          <div class="prompt-block">Using the project context and the approved scope, produce 2–3 design options.
+
+For each option:
+- Summary
+- Files and modules affected
+- How it fits (or extends) the current architecture
+- Data flow or state changes
+- Benefits
+- Risks or trade-offs
+
+Then:
+- Recommend one option.
+- Explain why it fits this project better than the others.
+- Note anything that should stay unchanged.
+
+Rules:
+- Don't reopen scope.
+- Don't propose speculative refactors.
+- If this is early in the project, options may be about foundational choices (folder structure, patterns, libraries) rather than modifications to existing code.
+- Explain trade-offs in plain language.
+- No code or pseudocode.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="stage" id="stage-plan">
+        <div class="stage-header" onclick="toggleStage(this)">
+          <div class="stage-number">3</div>
+          <div class="stage-title">Implementation Plan</div>
+          <div class="stage-chevron">▾</div>
+        </div>
+        <div class="stage-body">
+          <div class="prompt-block">Using the project context, approved scope, and chosen design option, produce an implementation plan only.
+
+Output:
+1. Ordered list of files to create or modify, with purpose.
+2. Data flow or architectural changes needed.
+3. Any new abstractions, with justification — or explicitly: none.
+4. Tests to write or update.
+5. Step-by-step implementation sequence.
+6. Acceptance criteria — how we know it's done.
+7. Watchouts — likely failure modes or common mistakes.
+8. Files that should not be touched.
+
+Rules:
+- Stay inside the approved scope.
+- Prefer minimal changes over broad cleanup.
+- Call out architectural, efficiency, or regression risks.
+- No code or pseudocode.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="stage" id="stage-validate">
+        <div class="stage-header" onclick="toggleStage(this)">
+          <div class="stage-number">4</div>
+          <div class="stage-title">Validation</div>
+          <div class="stage-chevron">▾</div>
+        </div>
+        <div class="stage-body">
+          <div class="prompt-block">Using the project context, chosen design, and implementation plan, do a pre-code validation pass.
+
+Output:
+1. Design sanity checks — does this actually solve the problem?
+2. Architecture checks — does this respect module boundaries?
+3. Regression risks — what existing behavior could break?
+4. Test coverage — are we testing the right things?
+5. Edge cases — what might we miss?
+6. Signs the scope is too large or the design is wrong.
+
+Rules:
+- Say "not applicable" for irrelevant checks.
+- Separate pre-existing issues from task-induced risks.
+- Keep it concrete and actionable.
+- No code.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+          <div style="margin-top:12px;padding:12px;background:var(--green-dim);border-radius:var(--radius-sm);font-size:13px;color:var(--green);">
+            After validation is approved → tell the AI: <strong>"Go ahead and implement."</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage" id="stage-close">
+        <div class="stage-header" onclick="toggleStage(this)">
+          <div class="stage-number">✓</div>
+          <div class="stage-title">Close Task — Update Memory</div>
+          <div class="stage-chevron">▾</div>
+        </div>
+        <div class="stage-body">
+          <p style="color:var(--text-dim);font-size:13px;margin-bottom:8px;">Paste this at the end of every task to keep project memory current.</p>
+          <div class="prompt-block">Before we close this task, update:
+- ai_project_manager_kickstart/project/backlog.md — mark this task done and note any follow-up tasks.
+- ai_project_manager_kickstart/project/file-map.md — add or update entries for files we created or changed.
+- ai_project_manager_kickstart/project/decision-log.md — record the key design decision from this task.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick workflow -->
+    <div id="mode-quick" class="stage-flow" style="display:none;">
+      <div class="stage open">
+        <div class="stage-header" onclick="toggleStage(this)">
+          <div class="stage-number">0</div>
+          <div class="stage-title">Quick Session Start</div>
+          <div class="stage-chevron">▾</div>
+        </div>
+        <div class="stage-body">
+          <div class="prompt-block" id="quick-session-prompt">Read the project memory in ai_project_manager_kickstart/project/:
+- brief.md
+- architecture.md
+- file-map.md
+- conventions.md (if it exists)
+
+Also read ai_project_manager_kickstart/prompts/operating-rules.md.
+
+My task: <span class="task-placeholder">[enter task above]</span>
+
+This is a small task. Scope it, plan it, and present the plan for approval. No code yet.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-header" onclick="toggleStage(this)">
+          <div class="stage-number">1</div>
+          <div class="stage-title">Quick Scope + Plan</div>
+          <div class="stage-chevron">▾</div>
+        </div>
+        <div class="stage-body">
+          <div class="prompt-block">This is a small task. Do a combined scope-and-plan in one pass.
+
+Output:
+1. What needs to change and why (one paragraph).
+2. Files to create or modify, with one-line purpose each.
+3. Step-by-step implementation sequence.
+4. Anything to watch out for.
+5. Acceptance criteria.
+
+Rules:
+- Search the codebase first.
+- Keep scope minimal.
+- Prefer existing patterns.
+- Flag any architectural or efficiency risk.
+- No code or pseudocode.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+          <div style="margin-top:12px;padding:12px;background:var(--green-dim);border-radius:var(--radius-sm);font-size:13px;color:var(--green);">
+            After the plan is approved → tell the AI: <strong>"Go ahead and implement."</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-header" onclick="toggleStage(this)">
+          <div class="stage-number">✓</div>
+          <div class="stage-title">Close Task — Update Memory</div>
+          <div class="stage-chevron">▾</div>
+        </div>
+        <div class="stage-body">
+          <div class="prompt-block">Before we close this task, update:
+- ai_project_manager_kickstart/project/backlog.md — mark this task done and note any follow-up tasks.
+- ai_project_manager_kickstart/project/file-map.md — add or update entries for files we created or changed.
+- ai_project_manager_kickstart/project/decision-log.md — record the key design decision from this task.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drift corrections -->
+    <div style="margin-top:24px;">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Drift Corrections</div>
+        </div>
+        <p>Quick-paste snippets when the AI wanders off track.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+          <button class="btn sm" onclick="copyText('Pause. Stay in design mode only. No code yet.')">Stay in design mode</button>
+          <button class="btn sm" onclick="copyText('Tighten scope to the smallest useful change. No speculative refactors.')">Tighten scope</button>
+          <button class="btn sm" onclick="copyText('Re-ground in the actual codebase. Search the project files and cite what you find.')">Re-ground in codebase</button>
+          <button class="btn sm" onclick="copyText('Preserve the existing architecture. Don\'t move responsibilities between modules without strong evidence.')">Respect architecture</button>
+          <button class="btn sm" onclick="copyText('Return to the approved implementation plan. Don\'t add steps we didn\'t agree on.')">Reset to plan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MEMORY PANEL ============ -->
+  <div class="panel" id="panel-memory">
+    <div class="panel-title">Project Memory</div>
+    <div class="panel-desc">Load your project/ files to see their current state. Drop a file onto a card or click to browse.</div>
+
+    <div class="memory-grid" id="memory-grid"></div>
+  </div>
+
+  <!-- ============ PROMPTS PANEL ============ -->
+  <div class="panel" id="panel-prompts">
+    <div class="panel-title">Prompt Library</div>
+    <div class="panel-desc">All prompts from the pack, organized and ready to copy.</div>
+    <div id="prompt-library"></div>
+  </div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ——— Navigation ———
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => navigateTo(btn.dataset.panel));
+});
+
+function navigateTo(panelId) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.nav-btn[data-panel="${panelId}"]`).classList.add('active');
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + panelId).classList.add('active');
+}
+
+// ——— Toast ———
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ——— Copy helpers ———
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => showToast('Copied to clipboard'));
+}
+
+function copyBlock(btn) {
+  const block = btn.closest('.prompt-block');
+  const clone = block.cloneNode(true);
+  clone.querySelectorAll('.copy-btn').forEach(b => b.remove());
+  const text = clone.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied';
+    btn.classList.add('copied');
+    showToast('Copied to clipboard');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyContent(id) {
+  const el = document.getElementById(id);
+  const text = el.value || el.textContent;
+  navigator.clipboard.writeText(text).then(() => showToast('Copied to clipboard'));
+}
+
+// ——— Download helper ———
+function downloadFile(filename, content) {
+  const blob = new Blob([content], { type: 'text/markdown' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('Downloaded ' + filename);
+}
+
+function downloadTextarea(id, filename) {
+  downloadFile(filename, document.getElementById(id).value);
+}
+
+// ——— Brief generation ———
+function generateBriefMd() {
+  const g = id => document.getElementById(id).value.trim();
+  const bullets = text => text.split('\n').filter(l => l.trim()).map(l => '- ' + l.trim().replace(/^[-•*]\s*/, '')).join('\n');
+
+  let md = '# Project Brief\n\n';
+  md += '## What are we building?\n\n' + (g('brief-what') || '<!-- TODO -->') + '\n\n';
+  md += '## Who is it for?\n\n' + (g('brief-who') || '<!-- TODO -->') + '\n\n';
+  md += '## Platform and deployment\n\n' + (g('brief-platform') || '<!-- TODO -->') + '\n\n';
+  md += '## Core features (v1)\n\n' + (g('brief-features') ? bullets(g('brief-features')) : '<!-- TODO -->') + '\n\n';
+  md += '## Constraints\n\n' + (g('brief-constraints') || '<!-- TODO -->') + '\n\n';
+  md += '## Out of scope (for now)\n\n' + (g('brief-outofscope') || '<!-- TODO -->') + '\n\n';
+  md += '## Open questions\n\n' + (g('brief-questions') || '<!-- TODO -->') + '\n';
+  return md;
+}
+
+function copyBriefMd() { copyText(generateBriefMd()); }
+function downloadBriefMd() { downloadFile('brief.md', generateBriefMd()); }
+
+// ——— Conventions generation ———
+function generateConventionsMd() {
+  const g = id => document.getElementById(id).value.trim();
+  let md = '# Conventions\n\n';
+  md += '## Code style\n\n' + (g('conv-style') || '<!-- TODO -->') + '\n\n';
+  md += '## Naming\n\n' + (g('conv-naming') || '<!-- TODO -->') + '\n\n';
+  md += '## Commit messages\n\n' + (g('conv-commits') || '<!-- TODO -->') + '\n\n';
+  md += '## Testing\n\n' + (g('conv-testing') || '<!-- TODO -->') + '\n\n';
+  md += '## Patterns to follow\n\n' + (g('conv-follow') || '<!-- TODO -->') + '\n\n';
+  md += '## Patterns to avoid\n\n' + (g('conv-avoid') || '<!-- TODO -->') + '\n';
+  return md;
+}
+
+function copyConventionsMd() { copyText(generateConventionsMd()); }
+function downloadConventionsMd() { downloadFile('conventions.md', generateConventionsMd()); }
+
+// ——— Init steps ———
+function completeStep(n) {
+  const step = document.getElementById('init-step-' + n);
+  step.classList.remove('active-step');
+  step.classList.add('complete');
+  const next = document.getElementById('init-step-' + (n + 1));
+  if (next) next.classList.add('active-step');
+}
+
+// ——— Task mode ———
+function setMode(mode, btn) {
+  btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('mode-full').style.display = mode === 'full' ? 'block' : 'none';
+  document.getElementById('mode-quick').style.display = mode === 'quick' ? 'block' : 'none';
+}
+
+function updateSessionPrompt() {
+  const task = document.getElementById('task-input').value.trim() || '[enter task above]';
+  document.querySelectorAll('.task-placeholder').forEach(el => el.textContent = task);
+}
+
+function toggleStage(header) {
+  header.closest('.stage, .prompt-item').classList.toggle('open');
+}
+
+// ——— Markdown renderer ———
+function renderMarkdown(md) {
+  let html = '';
+  const lines = md.split('\n');
+  let inCode = false, inList = false, listType = '';
+
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i];
+
+    if (line.startsWith('```')) {
+      if (inCode) { html += '</code></pre>'; inCode = false; }
+      else { html += '<pre><code>'; inCode = true; }
+      continue;
+    }
+    if (inCode) { html += escapeHtml(line) + '\n'; continue; }
+
+    if (line.startsWith('<!--') && line.includes('-->')) continue;
+    if (line.trim() === '') {
+      if (inList) { html += listType === 'ul' ? '</ul>' : '</ol>'; inList = false; }
+      continue;
+    }
+
+    if (line.startsWith('---') && line.trim().match(/^-{3,}$/)) { html += '<hr>'; continue; }
+
+    const hMatch = line.match(/^(#{1,6})\s+(.*)/);
+    if (hMatch) {
+      if (inList) { html += listType === 'ul' ? '</ul>' : '</ol>'; inList = false; }
+      const level = hMatch[1].length;
+      html += '<h' + level + '>' + inlineFormat(hMatch[2]) + '</h' + level + '>';
+      continue;
+    }
+
+    const ulMatch = line.match(/^(\s*)[-*]\s+(\[[ x~-]\]\s+)?(.*)/);
+    if (ulMatch) {
+      if (!inList) { html += '<ul>'; inList = true; listType = 'ul'; }
+      let content = inlineFormat(ulMatch[3]);
+      if (ulMatch[2]) {
+        const marker = ulMatch[2].trim();
+        if (marker === '[x]') content = '<span class="task-done">' + content + '</span>';
+        else if (marker === '[~]') content = '<span class="task-progress">' + content + '</span>';
+      }
+      html += '<li>' + content + '</li>';
+      continue;
+    }
+
+    const olMatch = line.match(/^\s*(\d+)\.\s+(.*)/);
+    if (olMatch) {
+      if (!inList) { html += '<ol>'; inList = true; listType = 'ol'; }
+      html += '<li>' + inlineFormat(olMatch[2]) + '</li>';
+      continue;
+    }
+
+    if (inList) { html += listType === 'ul' ? '</ul>' : '</ol>'; inList = false; }
+    html += '<p>' + inlineFormat(line) + '</p>';
+  }
+
+  if (inList) html += listType === 'ul' ? '</ul>' : '</ol>';
+  if (inCode) html += '</code></pre>';
+  return html;
+}
+
+function inlineFormat(text) {
+  text = escapeHtml(text);
+  text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+  text = text.replace(/`(.+?)`/g, '<code>$1</code>');
+  return text;
+}
+
+function escapeHtml(text) {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// ——— Memory panel ———
+const memoryFiles = [
+  { key: 'brief', name: 'brief.md', desc: 'What we\'re building' },
+  { key: 'architecture', name: 'architecture.md', desc: 'Stack, structure, modules' },
+  { key: 'conventions', name: 'conventions.md', desc: 'Style, naming, rules' },
+  { key: 'backlog', name: 'backlog.md', desc: 'Living task list' },
+  { key: 'filemap', name: 'file-map.md', desc: 'Key files and roles' },
+  { key: 'decisions', name: 'decision-log.md', desc: 'Design decisions' },
+];
+
+const memoryState = {};
+
+function buildMemoryGrid() {
+  const grid = document.getElementById('memory-grid');
+  grid.innerHTML = '';
+  memoryFiles.forEach(f => {
+    const card = document.createElement('div');
+    card.className = 'memory-card';
+    card.id = 'mem-' + f.key;
+    card.innerHTML = `
+      <div class="memory-card-header">
+        <div class="status-dot" id="dot-${f.key}"></div>
+        <div class="memory-card-title">${f.name}</div>
+      </div>
+      <div style="font-size:11px;color:var(--text-dim);margin-bottom:8px;">${f.desc}</div>
+      <div class="memory-card-content" id="content-${f.key}">
+        <div class="drop-zone" id="drop-${f.key}">
+          Drop ${f.name} here or click to browse
+          <input type="file" accept=".md" style="display:none" id="input-${f.key}">
+        </div>
+      </div>
+      <div class="btn-row" id="actions-${f.key}" style="display:none;">
+        <button class="btn sm" onclick="copyContent('raw-${f.key}')">Copy</button>
+        <button class="btn sm" onclick="clearMemory('${f.key}')">Clear</button>
+      </div>
+      <textarea id="raw-${f.key}" style="display:none;"></textarea>
+    `;
+    grid.appendChild(card);
+
+    const dropZone = card.querySelector('.drop-zone');
+    const input = card.querySelector('input[type="file"]');
+
+    dropZone.addEventListener('click', () => input.click());
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+    dropZone.addEventListener('drop', e => {
+      e.preventDefault();
+      dropZone.classList.remove('dragover');
+      if (e.dataTransfer.files.length) loadMemoryFile(f.key, e.dataTransfer.files[0]);
+    });
+    input.addEventListener('change', () => { if (input.files.length) loadMemoryFile(f.key, input.files[0]); });
+  });
+}
+
+function loadMemoryFile(key, file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    const text = e.target.result;
+    memoryState[key] = text;
+    document.getElementById('raw-' + key).value = text;
+    document.getElementById('dot-' + key).classList.add('loaded');
+    document.getElementById('actions-' + key).style.display = 'flex';
+    const contentEl = document.getElementById('content-' + key);
+    contentEl.innerHTML = '<div class="md-preview">' + renderMarkdown(text) + '</div>';
+    showToast('Loaded ' + file.name);
+  };
+  reader.readAsText(file);
+}
+
+function clearMemory(key) {
+  delete memoryState[key];
+  document.getElementById('dot-' + key).classList.remove('loaded');
+  document.getElementById('actions-' + key).style.display = 'none';
+  const f = memoryFiles.find(m => m.key === key);
+  document.getElementById('content-' + key).innerHTML = `
+    <div class="drop-zone" id="drop-${key}">
+      Drop ${f.name} here or click to browse
+      <input type="file" accept=".md" style="display:none" id="input-${key}">
+    </div>
+  `;
+  const dropZone = document.getElementById('drop-' + key);
+  const input = document.getElementById('input-' + key);
+  dropZone.addEventListener('click', () => input.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    if (e.dataTransfer.files.length) loadMemoryFile(key, e.dataTransfer.files[0]);
+  });
+  input.addEventListener('change', () => { if (input.files.length) loadMemoryFile(key, input.files[0]); });
+}
+
+// ——— Prompt library ———
+const promptLibrary = [
+  { category: 'Session', items: [
+    { title: 'Standard Start', text: 'Read the project memory in ai_project_manager_kickstart/project/:\n- brief.md\n- architecture.md\n- backlog.md\n- file-map.md\n- conventions.md (if it exists)\n- decision-log.md\n\nAlso read ai_project_manager_kickstart/prompts/operating-rules.md.\n\nMy task: [state your task here]\n\nStart with scoping only. No code.' },
+    { title: 'Quick Start', text: 'Read the project memory in ai_project_manager_kickstart/project/:\n- brief.md\n- architecture.md\n- file-map.md\n- conventions.md (if it exists)\n\nAlso read ai_project_manager_kickstart/prompts/operating-rules.md.\n\nMy task: [state your task here]\n\nThis is a small task. Scope it, plan it, and present the plan for approval. No code yet.' },
+    { title: 'Continue Previous', text: 'Read the project memory in ai_project_manager_kickstart/project/.\n\nI\'m continuing work on: [task description]\nHere\'s where I left off: [brief status]' },
+  ]},
+  { category: 'Operating Rules', items: [
+    { title: 'Full Operating Rules', text: 'Use these rules for this chat:\n\n- Design before code. Do not write or suggest code until explicitly asked.\n- One task at a time. Stay focused on the current task.\n- Read the project memory first. Start by reading the files in ai_project_manager_kickstart/project/ to understand context.\n- Search the codebase before reasoning from assumptions. Cite file paths.\n- Keep scope minimal. Do the smallest useful thing.\n- Preserve existing architecture. Don\'t restructure without evidence and approval.\n- Prefer existing patterns over new abstractions. Only introduce a new abstraction if it clearly reduces duplication or isolates fragile logic — and justify it concretely.\n- Explain decisions in plain English. Separate facts from inference.\n- Flag risks early. Call out efficiency, regression, and architectural concerns before they become problems.\n- Respect project conventions. Check ai_project_manager_kickstart/project/conventions.md if it exists.' },
+  ]},
+  { category: 'Task Stages', items: [
+    { title: 'Scoping', text: 'Using the project context, do the scoping step only for the current task.\n\nOutput:\n1. Problem framing — what needs to change and why.\n2. Affected areas — which modules, files, or layers are involved.\n3. Key design decisions — what choices need to be made.\n4. Risks and dependencies — what could go wrong or block progress.\n5. Smallest useful scope — the minimum that delivers value.\n6. Out of scope — what we\'re explicitly not doing.\n7. Target file list — files to create or modify, with one-line reason each.\n8. Open questions — only if genuinely blocking.\n\nRules:\n- Search the codebase before drawing conclusions.\n- Prefer existing patterns over new abstractions.\n- Flag any efficiency, persistence, or architectural concerns.\n- If this is a new project with little or no code yet, focus on folder structure and module responsibilities instead of file-level detail.\n- No code or pseudocode.' },
+    { title: 'Design Options', text: 'Using the project context and the approved scope, produce 2–3 design options.\n\nFor each option:\n- Summary\n- Files and modules affected\n- How it fits (or extends) the current architecture\n- Data flow or state changes\n- Benefits\n- Risks or trade-offs\n\nThen:\n- Recommend one option.\n- Explain why it fits this project better than the others.\n- Note anything that should stay unchanged.\n\nRules:\n- Don\'t reopen scope.\n- Don\'t propose speculative refactors.\n- If this is early in the project, options may be about foundational choices (folder structure, patterns, libraries) rather than modifications to existing code.\n- Explain trade-offs in plain language.\n- No code or pseudocode.' },
+    { title: 'Implementation Plan', text: 'Using the project context, approved scope, and chosen design option, produce an implementation plan only.\n\nOutput:\n1. Ordered list of files to create or modify, with purpose.\n2. Data flow or architectural changes needed.\n3. Any new abstractions, with justification — or explicitly: none.\n4. Tests to write or update.\n5. Step-by-step implementation sequence.\n6. Acceptance criteria — how we know it\'s done.\n7. Watchouts — likely failure modes or common mistakes.\n8. Files that should not be touched.\n\nRules:\n- Stay inside the approved scope.\n- Prefer minimal changes over broad cleanup.\n- Call out architectural, efficiency, or regression risks.\n- No code or pseudocode.' },
+    { title: 'Validation', text: 'Using the project context, chosen design, and implementation plan, do a pre-code validation pass.\n\nOutput:\n1. Design sanity checks — does this actually solve the problem?\n2. Architecture checks — does this respect module boundaries?\n3. Regression risks — what existing behavior could break?\n4. Test coverage — are we testing the right things?\n5. Edge cases — what might we miss?\n6. Signs the scope is too large or the design is wrong.\n\nRules:\n- Say "not applicable" for irrelevant checks.\n- Separate pre-existing issues from task-induced risks.\n- Keep it concrete and actionable.\n- No code.' },
+    { title: 'Quick Task (combined)', text: 'This is a small task. Do a combined scope-and-plan in one pass.\n\nOutput:\n1. What needs to change and why (one paragraph).\n2. Files to create or modify, with one-line purpose each.\n3. Step-by-step implementation sequence.\n4. Anything to watch out for.\n5. Acceptance criteria.\n\nRules:\n- Search the codebase first.\n- Keep scope minimal.\n- Prefer existing patterns.\n- Flag any architectural or efficiency risk.\n- No code or pseudocode.' },
+  ]},
+  { category: 'Task Close', items: [
+    { title: 'Update Project Memory', text: 'Before we close this task, update:\n- ai_project_manager_kickstart/project/backlog.md — mark this task done and note any follow-up tasks.\n- ai_project_manager_kickstart/project/file-map.md — add or update entries for files we created or changed.\n- ai_project_manager_kickstart/project/decision-log.md — record the key design decision from this task.' },
+  ]},
+  { category: 'Drift Corrections', items: [
+    { title: 'Stay in design mode', text: 'Pause. Stay in design mode only. No code yet.' },
+    { title: 'Tighten scope', text: 'Tighten scope to the smallest useful change. No speculative refactors.' },
+    { title: 'Re-ground in codebase', text: 'Re-ground in the actual codebase. Search the project files and cite what you find.' },
+    { title: 'Respect architecture', text: 'Preserve the existing architecture. Don\'t move responsibilities between modules without strong evidence.' },
+    { title: 'Reset to plan', text: 'Return to the approved implementation plan. Don\'t add steps we didn\'t agree on.' },
+  ]},
+  { category: 'Initialization', items: [
+    { title: 'Architecture Seed', text: 'Read ai_project_manager_kickstart/project/brief.md.\n\nBased on this brief, propose:\n1. A recommended tech stack with a one-line justification per choice.\n2. A folder and file structure for the project.\n3. Key modules or components, with a one-sentence responsibility for each.\n4. Communication patterns — how modules should interact.\n5. A dependency policy — what\'s allowed without approval.\n\nKeep it practical and minimal. This is a starting point, not a final architecture.\nOutput in markdown format matching the template in ai_project_manager_kickstart/project/architecture.md.' },
+    { title: 'Backlog Seed', text: 'Read:\n- ai_project_manager_kickstart/project/brief.md\n- ai_project_manager_kickstart/project/architecture.md\n\nBased on the brief and architecture, propose an initial backlog of\n8–12 tasks that would take this project from zero to a working first\nmilestone.\n\nFormat each task as:\n- [ ] Task title — one-sentence description\n\nGroup tasks under milestone headings.\nOrder by dependency — what must come first.\nKeep tasks small enough to complete in a single focused session.' },
+  ]},
+];
+
+function buildPromptLibrary() {
+  const container = document.getElementById('prompt-library');
+  promptLibrary.forEach(cat => {
+    const section = document.createElement('div');
+    section.className = 'prompt-category';
+    section.innerHTML = '<div class="prompt-category-title">' + cat.category + '</div>';
+    cat.items.forEach(item => {
+      const el = document.createElement('div');
+      el.className = 'prompt-item';
+      el.innerHTML = `
+        <div class="prompt-item-header" onclick="toggleStage(this)">
+          <div class="prompt-item-title">${item.title}</div>
+          <div class="prompt-item-expand">▾</div>
+        </div>
+        <div class="prompt-item-body">
+          <div class="prompt-block">${escapeHtml(item.text)}<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+        </div>
+      `;
+      section.appendChild(el);
+    });
+    container.appendChild(section);
+  });
+}
+
+// ——— Init ———
+buildMemoryGrid();
+buildPromptLibrary();
+</script>
+
+</body>
+</html>
