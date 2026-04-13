@@ -19,11 +19,12 @@ This framework uses two kinds of project memory:
 
 - **`project/`** — living project memory. Updated every session.
   Contains the brief, backlog, file map, conventions, and decision log.
-- **`AGENTS.md` + `UI-STANDARDS.md`** (in the project root) —
-  permanent behavioral contracts. Contain hard rules, invariants,
-  accessibility standards, and design system conventions. Populated
-  during the kickoff process (Steps 6–7 of `init.md`) and updated
-  when major architectural or UI decisions change.
+- **`AGENTS.md` + `UI-STANDARDS.md` + `DEV-INFRASTRUCTURE.md`** (in
+  the project root) — permanent behavioral contracts. Contain hard
+  rules, invariants, accessibility standards, design system
+  conventions, and dev infrastructure rules. Populated during the
+  kickoff process (Steps 6–8 of `init.md`) and updated when major
+  architectural, UI, or build decisions change.
 
 Tools that support global rules (e.g. Windsurf Cascade) load
 `AGENTS.md` automatically. For other tools, the session-start prompts
@@ -51,6 +52,10 @@ prompts/         Reusable per-task prompts.
   corrections.md          Drift correction snippets.
 
 integrations/    Optional tool-specific configs.
+
+scaffold/        Template files to copy into your project root.
+  .editorconfig    Editor style enforcement (indent, encoding, etc.).
+  .gitignore       Common ignores for JS/npm projects.
 ```
 
 ## Per-task quick reference
@@ -82,8 +87,10 @@ integrations/    Optional tool-specific configs.
 | `backlog.md` | End of every task — mark done, add follow-ups. |
 | `file-map.md` | When files are created, renamed, or deleted. |
 | `decision-log.md` | During the design phase of each task. |
+| `README.md` (root) | When architecture, dev workflow, or key infrastructure changes. |
 | `AGENTS.md` (root) | When new invariants, data model changes, protected modules, event namespaces, or anti-patterns are established. |
 | `UI-STANDARDS.md` (root) | When new token systems or UI conventions are established. |
+| `DEV-INFRASTRUCTURE.md` (root) | When build, dev server, versioning, or script conventions change. |
 
 Use the "Update project memory" prompt in `prompts/corrections.md`
 at the end of every task session to stay current.

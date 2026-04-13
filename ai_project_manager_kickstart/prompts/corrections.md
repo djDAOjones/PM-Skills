@@ -39,6 +39,9 @@ Before we close this task, update:
 - ai_project_manager_kickstart/project/backlog.md — mark this task done and note any follow-up tasks.
 - ai_project_manager_kickstart/project/file-map.md — add or update entries for files we created or changed.
 - ai_project_manager_kickstart/project/decision-log.md — record the key design decision from this task.
+- ai_project_manager_kickstart/project/conventions.md — if new conventions were established or existing ones changed, update this file.
+- README.md — if architecture, dev workflow, or key infrastructure changed significantly, update the root README.
 - AGENTS.md — if this task established new invariants, data model changes, protected modules, event namespaces, or anti-patterns, update the relevant sections. Also check whether AGENTS.md still reflects current architecture and conventions.
 - UI-STANDARDS.md — if this task established new token systems or UI conventions, update the relevant sections.
+- DEV-INFRASTRUCTURE.md — if this task changed build, dev server, versioning, or script conventions, update the relevant sections.
 ```

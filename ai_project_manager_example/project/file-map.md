@@ -21,6 +21,11 @@
 - src/components/RecipeForm.tsx — shared form for add and edit
 - src/components/TagFilter.tsx — tag selection bar
 
+## Styles and tokens
+
+- tailwind.config.js — Tailwind theme: colours, spacing, font overrides
+- src/index.css — global Tailwind imports and custom utility classes
+
 ## Config and constants
 
 - tailwind.config.js — Tailwind theme and customization

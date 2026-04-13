@@ -19,7 +19,9 @@
 ## Constraints
 
 <!-- Anything that shapes decisions: timeline, budget, tech preferences,
-     accessibility requirements, performance needs, team size, etc. -->
+     accessibility requirements, performance needs, team size, etc.
+     Include tooling preferences if known, e.g. pure JS / no frameworks,
+     npm + esbuild for bundling, Vitest for testing. -->
 
 ## Out of scope (for now)
 

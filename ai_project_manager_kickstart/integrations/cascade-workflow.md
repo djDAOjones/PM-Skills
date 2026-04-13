@@ -12,6 +12,7 @@ present the result to the user for approval.
    Read:
    - `AGENTS.md`
    - `UI-STANDARDS.md` (if the task touches UI)
+   - `DEV-INFRASTRUCTURE.md` (if it exists)
    - `ai_project_manager_kickstart/project/brief.md`
    - `ai_project_manager_kickstart/project/architecture.md`
    - `ai_project_manager_kickstart/project/conventions.md` (if it exists)

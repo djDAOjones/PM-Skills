@@ -15,7 +15,7 @@ until `AGENTS.md` is completed (see `init.md` Step 6).
 ```text
 Use these rules for this chat:
 
-- Read the behavioral contracts first. Read AGENTS.md and UI-STANDARDS.md (if they exist) as the authoritative rules for this project.
+- Read the behavioral contracts first. Read AGENTS.md, UI-STANDARDS.md (if the task touches UI), and DEV-INFRASTRUCTURE.md (if it exists) as the authoritative rules for this project.
 - Read the project memory. Read the files in ai_project_manager_kickstart/project/ to understand context.
 - Design before code. Do not write or suggest code until explicitly asked.
 - One task at a time. Stay focused on the current task.

@@ -3,8 +3,9 @@
 Use one of these to begin a new chat.
 
 If your AI tool loads `AGENTS.md` automatically (e.g. Windsurf
-Cascade), you can omit the explicit read of `AGENTS.md` and
-`UI-STANDARDS.md` — they're already in context.
+Cascade), you can omit the explicit read of `AGENTS.md` — it's
+already in context. You still need to read the other contracts
+and project memory files explicitly.
 
 ## Standard start (full task workflow)
 
@@ -12,6 +13,7 @@ Cascade), you can omit the explicit read of `AGENTS.md` and
 Read the behavioral contracts:
 - AGENTS.md
 - UI-STANDARDS.md (if the task touches UI)
+- DEV-INFRASTRUCTURE.md (if it exists)
 
 Read the project memory in ai_project_manager_kickstart/project/:
 - brief.md
@@ -34,6 +36,7 @@ Start with scoping only. No code.
 Read the behavioral contracts:
 - AGENTS.md
 - UI-STANDARDS.md (if the task touches UI)
+- DEV-INFRASTRUCTURE.md (if it exists)
 
 Read the project memory in ai_project_manager_kickstart/project/:
 - brief.md
@@ -51,7 +54,18 @@ This is a small task. Scope it, plan it, and present the plan for approval. No c
 ## Continuing a task from a previous session
 
 ```text
-Read AGENTS.md and the project memory in ai_project_manager_kickstart/project/.
+Read the behavioral contracts:
+- AGENTS.md
+- UI-STANDARDS.md (if the task touches UI)
+- DEV-INFRASTRUCTURE.md (if it exists)
+
+Read the project memory in ai_project_manager_kickstart/project/:
+- brief.md
+- architecture.md
+- file-map.md
+- conventions.md (if it exists)
+
+Also read ai_project_manager_kickstart/prompts/operating-rules.md.
 
 I'm continuing work on: [task description]
 Here's where I left off: [brief status]

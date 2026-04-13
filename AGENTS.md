@@ -1,6 +1,6 @@
 # AI Agent Rules
 
-<!-- NOTE: This file is a template. It contains <!-- CUSTOMISE --> placeholders
+<!-- NOTE: This file is a template. It contains CUSTOMISE placeholders
      that must be populated before it can serve as an authoritative behavioral
      contract. Complete the kickstart process (init.md Step 6) to fill them
      in. Until then, the operating rules in prompts/operating-rules.md and
@@ -37,12 +37,14 @@ explain concepts back unless asked.
    `file-map.md`, and `backlog.md`.
 3. Read `UI-STANDARDS.md` for any task that touches UI, controls,
    layout, text, states, accessibility, or user-facing behaviour.
-4. For non-trivial work, run the `/feature-scoping` workflow (or
+4. Read `DEV-INFRASTRUCTURE.md` (if it exists) for build, dev server,
+   versioning, and script conventions.
+5. For non-trivial work, run the `/feature-scoping` workflow (or
    follow the 4-stage prompt sequence in `prompts/`:
    `scoping.md` → `design-options.md` → `implementation-plan.md` →
    `validation.md`). Get user sign-off on scope before writing code.
    For small tasks, use `prompts/quick-task.md` instead.
-5. Search the full source tree before proposing changes. Check for
+6. Search the full source tree before proposing changes. Check for
    existing tuneable values and UI controls before adding new ones.
 
 ---
@@ -132,6 +134,9 @@ Use colon-separated namespaces for all events. Group by domain:
 Keep namespaces consistent. Do not create synonyms for existing event
 names.
 
+Replace these defaults with your project's actual event namespaces
+once established.
+
 ---
 
 ## UI, usability, and accessibility (summary)
@@ -157,11 +162,30 @@ touches UI. The key principles are:
 ## Minimal change discipline
 
 - Don't reorganise code you weren't asked to touch.
-- Don't add or remove comments unless instructed.
+- Don't add or remove comments in code you weren't asked to touch.
+  New code should follow the documentation rules below.
 - Don't introduce new abstractions for a single use case.
 - Match existing style (indent size, quote style, semicolons, etc.).
 - Avoid speculative abstractions unless there is duplication, unstable
   logic, or a clear reuse case.
+
+---
+
+## Code documentation
+
+<!-- CUSTOMISE: Define the documentation standard for this project.
+     For JavaScript, JSDoc is the default. For TypeScript, use TSDoc.
+     For Python, use docstrings. Adjust to match your language. -->
+
+- New and modified functions, classes, and modules should have
+  meaningful comments explaining **why**, not restating **what**.
+- Use JSDoc (or the project's chosen documentation standard) for
+  exported functions, classes, and modules. Document purpose,
+  parameters, return values, and side effects.
+- Comments are for future humans and AI agents. Write them to provide
+  context that is not obvious from the code alone.
+- Do not add boilerplate or redundant comments that restate the code.
+  Every comment should earn its place.
 
 ---
 
@@ -188,13 +212,23 @@ touches UI. The key principles are:
 ## Files to never edit
 
 <!-- CUSTOMISE: List build output dirs, personal notes, or any other
-     paths that agents must never touch. -->
+     paths that agents must never touch. Examples:
+     - docs/ or dist/ — build output, overwritten on every build.
+     - version.json — managed by the build script.
+     - node_modules/ — managed by npm.
+     - package-lock.json — managed by npm (commit but do not edit). -->
 
 - Build output directories.
+
+See `DEV-INFRASTRUCTURE.md` for the concrete list of protected paths.
 
 ---
 
 ## Persistence checklist
+
+<!-- CUSTOMISE: This checklist applies to apps with stateful models
+     that persist to localStorage, files, or a database. If the project
+     has no persistence layer, this section can be removed. -->
 
 When adding any property that should survive reload:
 
@@ -209,7 +243,7 @@ When adding any property that should survive reload:
 
 ## Document ownership
 
-Project knowledge is split across three layers:
+Project knowledge is split across these layers:
 
 - **`AGENTS.md`** — permanent hard rules, invariants, data model
   contracts, protected modules, event namespaces, and anti-patterns.
@@ -217,13 +251,18 @@ Project knowledge is split across three layers:
 - **`UI-STANDARDS.md`** — permanent UI, accessibility, and usability
   rules. Updated when new token systems or UI conventions are
   established.
+- **`DEV-INFRASTRUCTURE.md`** — permanent build, dev server,
+  versioning, and script conventions. Updated when build or deployment
+  decisions change.
 - **`project/` memory files** — living project context: brief,
   architecture, backlog, file map, conventions, and decision log.
   Updated at the end of every task session.
 
 When in doubt about where a rule belongs: if it is an unconditional
 invariant, it goes in `AGENTS.md`. If it is a UI convention, it goes
-in `UI-STANDARDS.md`. If it is evolving context, it goes in `project/`.
+in `UI-STANDARDS.md`. If it is a build or dev workflow rule, it goes
+in `DEV-INFRASTRUCTURE.md`. If it is evolving context, it goes in
+`project/`.
 
 ---
 

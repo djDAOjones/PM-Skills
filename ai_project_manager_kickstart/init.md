@@ -1,15 +1,16 @@
 # Initialize Your Project
 
 Follow these steps to go from a blank project to "ready for first task."
-Total time: ~25 minutes.
+Total time: ~30 minutes.
 
 This process populates two kinds of project memory:
 
 - **`project/`** — living project memory (brief, backlog, file map,
   decisions). Read at the start of every task session.
-- **`AGENTS.md` + `UI-STANDARDS.md`** — permanent behavioral contracts.
-  Loaded automatically by AI tools that support global rules (e.g.
-  Windsurf Cascade), or read manually at session start for other tools.
+- **`AGENTS.md` + `UI-STANDARDS.md` + `DEV-INFRASTRUCTURE.md`** —
+  permanent behavioral contracts. Loaded automatically by AI tools that
+  support global rules (e.g. Windsurf Cascade), or read manually at
+  session start for other tools.
 
 Both are kept in sync. The kickoff process gathers information once and
 writes it to the right places.
@@ -37,8 +38,13 @@ Based on this brief, propose:
 1. A recommended tech stack with a one-line justification per choice.
 2. A folder and file structure for the project.
 3. Key modules or components, with a one-sentence responsibility for each.
-4. Communication patterns — how modules should interact.
+4. Communication patterns — how modules should interact (e.g. pub-sub
+   event bus, direct imports, state store). Name the preferred pattern.
 5. A dependency policy — what's allowed without approval.
+6. A dev workflow — how to install, run in development, build for
+   production, and run tests. Include the expected dev URL and port.
+7. A configuration strategy — where tuneable values, constants, and
+   design tokens should live.
 
 Keep it practical and minimal. This is a starting point, not a final architecture.
 Output in markdown format matching the template in ai_project_manager_kickstart/project/architecture.md.
@@ -169,6 +175,16 @@ architecture, and conventions, populate every applicable placeholder:
 9. **Anti-patterns** — Add project-specific anti-patterns below the
    universal ones.
 
+10. **Testing** — Define what testing means for this project today.
+    Replace the default with the actual policy.
+
+11. **Persistence checklist** — If the project has stateful models
+    that persist to localStorage or files, fill in the checklist.
+    If not applicable, remove the section.
+
+12. **Code documentation** — Confirm or adjust the documentation
+    standard (e.g. JSDoc for JavaScript).
+
 Only fill in sections where the brief and architecture provide enough
 information. Leave remaining placeholders for later. Do not invent
 information.
@@ -215,7 +231,54 @@ removed from the boilerplate.
 
 ---
 
-## Step 8: Readiness check
+## Step 8: Populate DEV-INFRASTRUCTURE.md (if the project has a build step)
+
+If this project uses a package manager, bundler, dev server, or build
+step, populate `DEV-INFRASTRUCTURE.md` now. If the project is pure
+static files with no build tooling, skip this step — the file can be
+removed from the boilerplate.
+
+In the same chat (or a new one), paste this:
+
+```text
+Read:
+- ai_project_manager_kickstart/project/brief.md
+- ai_project_manager_kickstart/project/architecture.md
+- DEV-INFRASTRUCTURE.md
+
+DEV-INFRASTRUCTURE.md has <!-- CUSTOMISE --> placeholder sections.
+Using the brief and architecture, populate every applicable placeholder:
+
+1. **Package management** — package manager, dependency policy.
+2. **Canonical scripts** — table of every script in package.json.
+3. **Dev server** — canonical URL, port, how to start, what it serves.
+4. **Build system** — bundler, entry point, output directory, source
+   maps, minification, static file handling.
+5. **Version management** — numbering scheme, sources, auto-increment
+   rules, when to bump manually.
+6. **Deployment** — target, pipeline, post-deploy verification.
+7. **Utility scripts** — any helper scripts beyond dev/build/test.
+8. **Configuration strategy** — where constants, design tokens, and
+   user-facing config live.
+9. **Editor config** — describe the .editorconfig if one exists.
+10. **Files agents must not hand-edit** — concrete paths.
+
+Only fill in sections where the architecture provides enough
+information. Leave remaining placeholders for later. Do not invent
+information.
+
+Output the updated DEV-INFRASTRUCTURE.md in full.
+```
+
+Review the output. Save the result to `DEV-INFRASTRUCTURE.md`,
+replacing the template version.
+
+Also copy `ai_project_manager_kickstart/scaffold/.editorconfig` to
+your project root and customise if needed.
+
+---
+
+## Step 9: Readiness check
 
 Before starting your first task, confirm:
 
@@ -227,12 +290,15 @@ Before starting your first task, confirm:
   placeholder, and applicable `<!-- CUSTOMISE -->` sections are filled.
 - [ ] `UI-STANDARDS.md` token systems section is populated (if the
   project has UI).
+- [ ] `DEV-INFRASTRUCTURE.md` is populated (if the project has a build
+  step or dev server).
+- [ ] `.editorconfig` is in the project root (if applicable).
 
 If any of these are incomplete, finish them before proceeding.
 
 ---
 
-## Step 9: Start your first task
+## Step 10: Start your first task
 
 Open `project/backlog.md` and pick the first task.
 
@@ -264,6 +330,7 @@ Then follow the task workflow:
 From here, the cycle is: pick a task → scope/plan → implement → update
 project memory → pick the next task.
 
-The files in `project/` are your living memory. `AGENTS.md` and
-`UI-STANDARDS.md` are your permanent behavioral contracts. Keep them
-all current and every new chat can pick up where the last one left off.
+The files in `project/` are your living memory. `README.md`,
+`AGENTS.md`, `UI-STANDARDS.md`, and `DEV-INFRASTRUCTURE.md` are your
+permanent project references. Keep them all current and every new
+chat can pick up where the last one left off.

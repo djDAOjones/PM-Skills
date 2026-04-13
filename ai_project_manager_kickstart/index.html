@@ -566,7 +566,7 @@
   <!-- ============ INIT PANEL ============ -->
   <div class="panel active" id="panel-init">
     <div class="panel-title">Initialize Project</div>
-    <div class="panel-desc">Go from blank project to first task in ~15 minutes.</div>
+    <div class="panel-desc">Go from blank project to first task in ~30 minutes.</div>
 
     <div class="step active-step" data-step="1" id="init-step-1">
       <div class="step-title">Fill in the project brief</div>
@@ -621,8 +621,10 @@ Based on this brief, propose:
 1. A recommended tech stack with a one-line justification per choice.
 2. A folder and file structure for the project.
 3. Key modules or components, with a one-sentence responsibility for each.
-4. Communication patterns — how modules should interact.
+4. Communication patterns — how modules should interact (e.g. pub-sub event bus, direct imports, state store). Name the preferred pattern.
 5. A dependency policy — what's allowed without approval.
+6. A dev workflow — how to install, run in development, build for production, and run tests. Include the expected dev URL and port.
+7. A configuration strategy — where tuneable values, constants, and design tokens should live.
 
 Keep it practical and minimal. This is a starting point, not a final architecture.
 Output in markdown format matching the template in ai_project_manager_kickstart/project/architecture.md.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
@@ -689,8 +691,16 @@ Keep tasks small enough to complete in a single focused session.<button class="c
         <textarea id="conv-follow" rows="2" placeholder="e.g. All DB access through db/ module."></textarea>
       </div>
       <div class="form-group">
+        <label>Documentation</label>
+        <textarea id="conv-docs" rows="2" placeholder="e.g. JSDoc for all exported functions. Explain why, not what."></textarea>
+      </div>
+      <div class="form-group">
         <label>Patterns to avoid</label>
         <textarea id="conv-avoid" rows="2" placeholder="e.g. No inline styles. No prop drilling beyond 2 levels."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Tooling</label>
+        <textarea id="conv-tooling" rows="2" placeholder="e.g. esbuild bundler, Vitest test runner, .editorconfig for formatting"></textarea>
       </div>
       <div class="btn-row">
         <button class="btn primary" onclick="copyConventionsMd()">Copy as Markdown</button>
@@ -700,6 +710,149 @@ Keep tasks small enough to complete in a single focused session.<button class="c
     </div>
 
     <div class="step" data-step="5" id="init-step-5">
+      <div class="step-title">Create a root README.md</div>
+      <div class="step-desc">Copy this prompt, paste it into your AI tool, then paste the result back below.</div>
+      <div class="prompt-block" id="readme-prompt">Read:
+- ai_project_manager_kickstart/project/brief.md
+- ai_project_manager_kickstart/project/architecture.md
+
+Draft a concise root README.md for this project. Include:
+1. One-paragraph description of the project.
+2. How to run or build it (commands, prerequisites).
+3. Key modules and entry points.
+4. Any invariants or gotchas a contributor should know.
+
+Keep it short — this is a working reference, not marketing copy.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <div class="form-group" style="margin-top:12px;">
+        <label>Paste AI result here</label>
+        <textarea id="readme-result" rows="10" placeholder="Paste the AI's README draft here..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" onclick="copyContent('readme-result')">Copy content</button>
+        <button class="btn" onclick="downloadTextarea('readme-result', 'README.md')">Download README.md</button>
+        <button class="btn" onclick="completeStep(5)">Mark complete →</button>
+      </div>
+    </div>
+
+    <div class="step" data-step="6" id="init-step-6">
+      <div class="step-title">Populate AGENTS.md</div>
+      <div class="step-desc">Copy this prompt to populate the behavioral contract. Review and save the result as AGENTS.md in your project root.</div>
+      <div class="prompt-block" id="agents-prompt">Read:
+- ai_project_manager_kickstart/project/brief.md
+- ai_project_manager_kickstart/project/architecture.md
+- ai_project_manager_kickstart/project/conventions.md (if it exists)
+- AGENTS.md
+
+AGENTS.md has CUSTOMISE placeholder sections. Using the brief, architecture, and conventions, populate every applicable placeholder:
+
+1. Product identity — name and description.
+2. Hard rules — project-specific invariants.
+3. Core data model — canonical entities if any.
+4. Domain subsystems — design contracts if any.
+5. Relationship to prior work — if applicable.
+6. Protected infrastructure — modules not to restructure.
+7. Event naming — actual namespaces if known.
+8. Files to never edit — concrete paths.
+9. Anti-patterns — project-specific additions.
+10. Testing — what testing means for this project.
+11. Persistence checklist — fill or remove.
+12. Code documentation — confirm or adjust standard.
+
+Only fill in sections where the brief and architecture provide enough information. Leave remaining placeholders for later. Do not invent information.
+
+Output the updated AGENTS.md in full.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <div class="form-group" style="margin-top:12px;">
+        <label>Paste AI result here</label>
+        <textarea id="agents-result" rows="10" placeholder="Paste the AI's populated AGENTS.md here..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" onclick="copyContent('agents-result')">Copy content</button>
+        <button class="btn" onclick="downloadTextarea('agents-result', 'AGENTS.md')">Download AGENTS.md</button>
+        <button class="btn" onclick="completeStep(6)">Mark complete →</button>
+      </div>
+    </div>
+
+    <div class="step" data-step="7" id="init-step-7">
+      <div class="step-title">Populate UI-STANDARDS.md (if the project has UI)</div>
+      <div class="step-desc">Skip if the project has no user interface. Otherwise, populate the token systems section.</div>
+      <div class="prompt-block" id="ui-standards-prompt">Read:
+- ai_project_manager_kickstart/project/brief.md
+- ai_project_manager_kickstart/project/architecture.md
+- UI-STANDARDS.md
+
+UI-STANDARDS.md has a CUSTOMISE placeholder for the token systems section. Using the brief and architecture:
+
+1. Define the token systems used by this project.
+2. If the project uses a brand palette alongside Carbon structural tokens, describe both systems and state they must not be collapsed.
+3. If the project has a single token system, describe it.
+
+Output only the updated "Token systems" section.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <div class="form-group" style="margin-top:12px;">
+        <label>Paste AI result here</label>
+        <textarea id="ui-standards-result" rows="8" placeholder="Paste the AI's token systems section here..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" onclick="copyContent('ui-standards-result')">Copy content</button>
+        <button class="btn" onclick="completeStep(7)">Mark complete →</button>
+      </div>
+    </div>
+
+    <div class="step" data-step="8" id="init-step-8">
+      <div class="step-title">Populate DEV-INFRASTRUCTURE.md (if the project has a build step)</div>
+      <div class="step-desc">Skip if the project has no build tooling. Otherwise, populate the dev infrastructure contract.</div>
+      <div class="prompt-block" id="dev-infra-prompt">Read:
+- ai_project_manager_kickstart/project/brief.md
+- ai_project_manager_kickstart/project/architecture.md
+- DEV-INFRASTRUCTURE.md
+
+DEV-INFRASTRUCTURE.md has CUSTOMISE placeholder sections. Using the brief and architecture, populate every applicable placeholder:
+
+1. Package management — package manager, dependency policy.
+2. Canonical scripts — table of every script in package.json.
+3. Dev server — canonical URL, port, how to start, what it serves.
+4. Build system — bundler, entry point, output directory.
+5. Version management — numbering scheme, auto-increment rules.
+6. Deployment — target, pipeline.
+7. Utility scripts — any helper scripts.
+8. Configuration strategy — where constants and tokens live.
+9. Editor config — describe the .editorconfig if one exists.
+10. Files agents must not hand-edit — concrete paths.
+
+Only fill in sections where the architecture provides enough information. Leave remaining placeholders for later.
+
+Output the updated DEV-INFRASTRUCTURE.md in full.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <div class="form-group" style="margin-top:12px;">
+        <label>Paste AI result here</label>
+        <textarea id="dev-infra-result" rows="10" placeholder="Paste the AI's populated DEV-INFRASTRUCTURE.md here..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" onclick="copyContent('dev-infra-result')">Copy content</button>
+        <button class="btn" onclick="downloadTextarea('dev-infra-result', 'DEV-INFRASTRUCTURE.md')">Download DEV-INFRASTRUCTURE.md</button>
+        <button class="btn" onclick="completeStep(8)">Mark complete →</button>
+      </div>
+    </div>
+
+    <div class="step" data-step="9" id="init-step-9">
+      <div class="step-title">Readiness check</div>
+      <div class="step-desc">Confirm everything is in place before starting your first task.</div>
+      <div class="card" style="border:none;padding:0;">
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.8;">
+          <label style="display:block;cursor:pointer;"><input type="checkbox"> project/brief.md is filled in</label>
+          <label style="display:block;cursor:pointer;"><input type="checkbox"> project/architecture.md is filled in</label>
+          <label style="display:block;cursor:pointer;"><input type="checkbox"> project/backlog.md has an initial task list</label>
+          <label style="display:block;cursor:pointer;"><input type="checkbox"> Root README.md exists</label>
+          <label style="display:block;cursor:pointer;"><input type="checkbox"> AGENTS.md has been populated</label>
+          <label style="display:block;cursor:pointer;"><input type="checkbox"> UI-STANDARDS.md token systems section populated (if applicable)</label>
+          <label style="display:block;cursor:pointer;"><input type="checkbox"> DEV-INFRASTRUCTURE.md populated (if applicable)</label>
+          <label style="display:block;cursor:pointer;"><input type="checkbox"> .editorconfig in project root (if applicable)</label>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top:12px;">
+        <button class="btn" onclick="completeStep(9)">Mark complete →</button>
+      </div>
+    </div>
+
+    <div class="step" data-step="10" id="init-step-10">
       <div class="step-title">Start your first task</div>
       <div class="step-desc">Open your backlog, pick the first task, and head to the Tasks tab.</div>
       <div class="btn-row">
@@ -735,7 +888,12 @@ Keep tasks small enough to complete in a single focused session.<button class="c
         </div>
         <div class="stage-body">
           <p style="color:var(--text-dim);font-size:13px;margin-bottom:8px;">Paste this at the start of a new chat to load project context.</p>
-          <div class="prompt-block" id="session-prompt">Read the project memory in ai_project_manager_kickstart/project/:
+          <div class="prompt-block" id="session-prompt">Read the behavioral contracts:
+- AGENTS.md
+- UI-STANDARDS.md (if the task touches UI)
+- DEV-INFRASTRUCTURE.md (if it exists)
+
+Read the project memory in ai_project_manager_kickstart/project/:
 - brief.md
 - architecture.md
 - backlog.md
@@ -876,7 +1034,12 @@ Rules:
           <div class="prompt-block">Before we close this task, update:
 - ai_project_manager_kickstart/project/backlog.md — mark this task done and note any follow-up tasks.
 - ai_project_manager_kickstart/project/file-map.md — add or update entries for files we created or changed.
-- ai_project_manager_kickstart/project/decision-log.md — record the key design decision from this task.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+- ai_project_manager_kickstart/project/decision-log.md — record the key design decision from this task.
+- ai_project_manager_kickstart/project/conventions.md — if new conventions were established or existing ones changed.
+- README.md — if architecture, dev workflow, or key infrastructure changed significantly.
+- AGENTS.md — if this task established new invariants, data model changes, protected modules, event namespaces, or anti-patterns.
+- UI-STANDARDS.md — if this task established new token systems or UI conventions.
+- DEV-INFRASTRUCTURE.md — if this task changed build, dev server, versioning, or script conventions.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
         </div>
       </div>
     </div>
@@ -890,7 +1053,12 @@ Rules:
           <div class="stage-chevron">▾</div>
         </div>
         <div class="stage-body">
-          <div class="prompt-block" id="quick-session-prompt">Read the project memory in ai_project_manager_kickstart/project/:
+          <div class="prompt-block" id="quick-session-prompt">Read the behavioral contracts:
+- AGENTS.md
+- UI-STANDARDS.md (if the task touches UI)
+- DEV-INFRASTRUCTURE.md (if it exists)
+
+Read the project memory in ai_project_manager_kickstart/project/:
 - brief.md
 - architecture.md
 - file-map.md
@@ -942,7 +1110,12 @@ Rules:
           <div class="prompt-block">Before we close this task, update:
 - ai_project_manager_kickstart/project/backlog.md — mark this task done and note any follow-up tasks.
 - ai_project_manager_kickstart/project/file-map.md — add or update entries for files we created or changed.
-- ai_project_manager_kickstart/project/decision-log.md — record the key design decision from this task.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+- ai_project_manager_kickstart/project/decision-log.md — record the key design decision from this task.
+- ai_project_manager_kickstart/project/conventions.md — if new conventions were established or existing ones changed.
+- README.md — if architecture, dev workflow, or key infrastructure changed significantly.
+- AGENTS.md — if this task established new invariants, data model changes, protected modules, event namespaces, or anti-patterns.
+- UI-STANDARDS.md — if this task established new token systems or UI conventions.
+- DEV-INFRASTRUCTURE.md — if this task changed build, dev server, versioning, or script conventions.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
         </div>
       </div>
     </div>
@@ -1070,9 +1243,11 @@ function generateConventionsMd() {
   md += '## Code style\n\n' + (g('conv-style') || '<!-- TODO -->') + '\n\n';
   md += '## Naming\n\n' + (g('conv-naming') || '<!-- TODO -->') + '\n\n';
   md += '## Commit messages\n\n' + (g('conv-commits') || '<!-- TODO -->') + '\n\n';
+  md += '## Documentation\n\n' + (g('conv-docs') || '<!-- TODO -->') + '\n\n';
   md += '## Testing\n\n' + (g('conv-testing') || '<!-- TODO -->') + '\n\n';
   md += '## Patterns to follow\n\n' + (g('conv-follow') || '<!-- TODO -->') + '\n\n';
-  md += '## Patterns to avoid\n\n' + (g('conv-avoid') || '<!-- TODO -->') + '\n';
+  md += '## Patterns to avoid\n\n' + (g('conv-avoid') || '<!-- TODO -->') + '\n\n';
+  md += '## Tooling\n\n' + (g('conv-tooling') || '<!-- TODO -->') + '\n';
   return md;
 }
 
@@ -1274,12 +1449,12 @@ function clearMemory(key) {
 // ——— Prompt library ———
 const promptLibrary = [
   { category: 'Session', items: [
-    { title: 'Standard Start', text: 'Read the project memory in ai_project_manager_kickstart/project/:\n- brief.md\n- architecture.md\n- backlog.md\n- file-map.md\n- conventions.md (if it exists)\n- decision-log.md\n\nAlso read ai_project_manager_kickstart/prompts/operating-rules.md.\n\nMy task: [state your task here]\n\nStart with scoping only. No code.' },
-    { title: 'Quick Start', text: 'Read the project memory in ai_project_manager_kickstart/project/:\n- brief.md\n- architecture.md\n- file-map.md\n- conventions.md (if it exists)\n\nAlso read ai_project_manager_kickstart/prompts/operating-rules.md.\n\nMy task: [state your task here]\n\nThis is a small task. Scope it, plan it, and present the plan for approval. No code yet.' },
-    { title: 'Continue Previous', text: 'Read the project memory in ai_project_manager_kickstart/project/.\n\nI\'m continuing work on: [task description]\nHere\'s where I left off: [brief status]' },
+    { title: 'Standard Start', text: 'Read the behavioral contracts:\n- AGENTS.md\n- UI-STANDARDS.md (if the task touches UI)\n- DEV-INFRASTRUCTURE.md (if it exists)\n\nRead the project memory in ai_project_manager_kickstart/project/:\n- brief.md\n- architecture.md\n- backlog.md\n- file-map.md\n- conventions.md (if it exists)\n- decision-log.md\n\nAlso read ai_project_manager_kickstart/prompts/operating-rules.md.\n\nMy task: [state your task here]\n\nStart with scoping only. No code.' },
+    { title: 'Quick Start', text: 'Read the behavioral contracts:\n- AGENTS.md\n- UI-STANDARDS.md (if the task touches UI)\n- DEV-INFRASTRUCTURE.md (if it exists)\n\nRead the project memory in ai_project_manager_kickstart/project/:\n- brief.md\n- architecture.md\n- file-map.md\n- conventions.md (if it exists)\n\nAlso read ai_project_manager_kickstart/prompts/operating-rules.md.\n\nMy task: [state your task here]\n\nThis is a small task. Scope it, plan it, and present the plan for approval. No code yet.' },
+    { title: 'Continue Previous', text: 'Read the behavioral contracts:\n- AGENTS.md\n- UI-STANDARDS.md (if the task touches UI)\n- DEV-INFRASTRUCTURE.md (if it exists)\n\nRead the project memory in ai_project_manager_kickstart/project/:\n- brief.md\n- architecture.md\n- file-map.md\n- conventions.md (if it exists)\n\nAlso read ai_project_manager_kickstart/prompts/operating-rules.md.\n\nI\'m continuing work on: [task description]\nHere\'s where I left off: [brief status]' },
   ]},
   { category: 'Operating Rules', items: [
-    { title: 'Full Operating Rules', text: 'Use these rules for this chat:\n\n- Design before code. Do not write or suggest code until explicitly asked.\n- One task at a time. Stay focused on the current task.\n- Read the project memory first. Start by reading the files in ai_project_manager_kickstart/project/ to understand context.\n- Search the codebase before reasoning from assumptions. Cite file paths.\n- Keep scope minimal. Do the smallest useful thing.\n- Preserve existing architecture. Don\'t restructure without evidence and approval.\n- Prefer existing patterns over new abstractions. Only introduce a new abstraction if it clearly reduces duplication or isolates fragile logic — and justify it concretely.\n- Explain decisions in plain English. Separate facts from inference.\n- Flag risks early. Call out efficiency, regression, and architectural concerns before they become problems.\n- Respect project conventions. Check ai_project_manager_kickstart/project/conventions.md if it exists.' },
+    { title: 'Full Operating Rules', text: 'Use these rules for this chat:\n\n- Read the behavioral contracts first. Read AGENTS.md, UI-STANDARDS.md (if the task touches UI), and DEV-INFRASTRUCTURE.md (if it exists) as the authoritative rules for this project.\n- Read the project memory. Read the files in ai_project_manager_kickstart/project/ to understand context.\n- Design before code. Do not write or suggest code until explicitly asked.\n- One task at a time. Stay focused on the current task.\n- Search the codebase before reasoning from assumptions. Cite file paths.\n- Keep scope minimal. Do the smallest useful thing.\n- Preserve existing architecture. Don\'t restructure without evidence and approval.\n- Prefer existing patterns over new abstractions. Only introduce a new abstraction if it clearly reduces duplication or isolates fragile logic — and justify it concretely.\n- Explain decisions in plain English. Separate facts from inference.\n- Flag risks early. Call out efficiency, regression, and architectural concerns before they become problems.\n- Respect project conventions. Check ai_project_manager_kickstart/project/conventions.md if it exists.' },
   ]},
   { category: 'Task Stages', items: [
     { title: 'Scoping', text: 'Using the project context, do the scoping step only for the current task.\n\nOutput:\n1. Problem framing — what needs to change and why.\n2. Affected areas — which modules, files, or layers are involved.\n3. Key design decisions — what choices need to be made.\n4. Risks and dependencies — what could go wrong or block progress.\n5. Smallest useful scope — the minimum that delivers value.\n6. Out of scope — what we\'re explicitly not doing.\n7. Target file list — files to create or modify, with one-line reason each.\n8. Open questions — only if genuinely blocking.\n\nRules:\n- Search the codebase before drawing conclusions.\n- Prefer existing patterns over new abstractions.\n- Flag any efficiency, persistence, or architectural concerns.\n- If this is a new project with little or no code yet, focus on folder structure and module responsibilities instead of file-level detail.\n- No code or pseudocode.' },
@@ -1289,7 +1464,7 @@ const promptLibrary = [
     { title: 'Quick Task (combined)', text: 'This is a small task. Do a combined scope-and-plan in one pass.\n\nOutput:\n1. What needs to change and why (one paragraph).\n2. Files to create or modify, with one-line purpose each.\n3. Step-by-step implementation sequence.\n4. Anything to watch out for.\n5. Acceptance criteria.\n\nRules:\n- Search the codebase first.\n- Keep scope minimal.\n- Prefer existing patterns.\n- Flag any architectural or efficiency risk.\n- No code or pseudocode.' },
   ]},
   { category: 'Task Close', items: [
-    { title: 'Update Project Memory', text: 'Before we close this task, update:\n- ai_project_manager_kickstart/project/backlog.md — mark this task done and note any follow-up tasks.\n- ai_project_manager_kickstart/project/file-map.md — add or update entries for files we created or changed.\n- ai_project_manager_kickstart/project/decision-log.md — record the key design decision from this task.' },
+    { title: 'Update Project Memory', text: 'Before we close this task, update:\n- ai_project_manager_kickstart/project/backlog.md — mark this task done and note any follow-up tasks.\n- ai_project_manager_kickstart/project/file-map.md — add or update entries for files we created or changed.\n- ai_project_manager_kickstart/project/decision-log.md — record the key design decision from this task.\n- ai_project_manager_kickstart/project/conventions.md — if new conventions were established or existing ones changed.\n- README.md — if architecture, dev workflow, or key infrastructure changed significantly.\n- AGENTS.md — if this task established new invariants, data model changes, protected modules, event namespaces, or anti-patterns.\n- UI-STANDARDS.md — if this task established new token systems or UI conventions.\n- DEV-INFRASTRUCTURE.md — if this task changed build, dev server, versioning, or script conventions.' },
   ]},
   { category: 'Drift Corrections', items: [
     { title: 'Stay in design mode', text: 'Pause. Stay in design mode only. No code yet.' },
@@ -1299,7 +1474,7 @@ const promptLibrary = [
     { title: 'Reset to plan', text: 'Return to the approved implementation plan. Don\'t add steps we didn\'t agree on.' },
   ]},
   { category: 'Initialization', items: [
-    { title: 'Architecture Seed', text: 'Read ai_project_manager_kickstart/project/brief.md.\n\nBased on this brief, propose:\n1. A recommended tech stack with a one-line justification per choice.\n2. A folder and file structure for the project.\n3. Key modules or components, with a one-sentence responsibility for each.\n4. Communication patterns — how modules should interact.\n5. A dependency policy — what\'s allowed without approval.\n\nKeep it practical and minimal. This is a starting point, not a final architecture.\nOutput in markdown format matching the template in ai_project_manager_kickstart/project/architecture.md.' },
+    { title: 'Architecture Seed', text: 'Read ai_project_manager_kickstart/project/brief.md.\n\nBased on this brief, propose:\n1. A recommended tech stack with a one-line justification per choice.\n2. A folder and file structure for the project.\n3. Key modules or components, with a one-sentence responsibility for each.\n4. Communication patterns — how modules should interact (e.g. pub-sub event bus, direct imports, state store). Name the preferred pattern.\n5. A dependency policy — what\'s allowed without approval.\n6. A dev workflow — how to install, run in development, build for production, and run tests. Include the expected dev URL and port.\n7. A configuration strategy — where tuneable values, constants, and design tokens should live.\n\nKeep it practical and minimal. This is a starting point, not a final architecture.\nOutput in markdown format matching the template in ai_project_manager_kickstart/project/architecture.md.' },
     { title: 'Backlog Seed', text: 'Read:\n- ai_project_manager_kickstart/project/brief.md\n- ai_project_manager_kickstart/project/architecture.md\n\nBased on the brief and architecture, propose an initial backlog of\n8–12 tasks that would take this project from zero to a working first\nmilestone.\n\nFormat each task as:\n- [ ] Task title — one-sentence description\n\nGroup tasks under milestone headings.\nOrder by dependency — what must come first.\nKeep tasks small enough to complete in a single focused session.' },
   ]},
 ];

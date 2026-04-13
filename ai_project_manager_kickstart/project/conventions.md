@@ -15,6 +15,16 @@
 
 <!-- Format, scope, conventions. -->
 
+## Documentation
+
+<!-- Documentation standard for code comments.
+     Example:
+     - Standard: JSDoc for all exported functions, classes, and modules.
+     - What to document: purpose, parameters, return values, side effects.
+     - Comment style: explain why, not what. No boilerplate.
+     AGENTS.md contains the permanent rules; this section captures
+     project-specific conventions as they emerge. -->
+
 ## Testing
 
 <!-- What gets tested? What framework? What's the bar for coverage? -->
@@ -26,3 +36,14 @@
 ## Patterns to avoid
 
 <!-- Anti-patterns the team has agreed to reject. -->
+
+## Tooling
+
+<!-- Bundler, test runner, formatter/linter, editor config.
+     Example:
+     - Bundler: esbuild (via custom build.js)
+     - Test runner: Vitest
+     - Formatter: .editorconfig (mechanical), no additional formatter yet
+     - Linter: none yet
+     This section captures tool choices. For detailed build/dev/deploy
+     rules, see DEV-INFRASTRUCTURE.md. -->

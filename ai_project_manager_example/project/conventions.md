@@ -20,6 +20,12 @@
 - Types: `feat`, `fix`, `refactor`, `docs`, `chore`, `test`.
 - Keep commits small and focused on one change.
 
+## Documentation
+
+- JSDoc for all exported functions, hooks, and db/ methods.
+- Document purpose, parameters, return values, and side effects.
+- Explain why, not what. No boilerplate comments.
+
 ## Testing
 
 - Vitest for unit tests.
@@ -37,3 +43,11 @@
 - No `useEffect` for data fetching — use Dexie's live queries via `useLiveQuery` instead.
 - No prop drilling beyond two levels — extract a hook instead.
 - No inline styles — use Tailwind classes.
+
+## Tooling
+
+- Bundler: Vite
+- Test runner: Vitest
+- Formatter: Prettier (config in `.prettierrc`)
+- Linter: ESLint with TypeScript config
+- Editor: `.editorconfig` for baseline formatting

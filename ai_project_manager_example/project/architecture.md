@@ -43,3 +43,10 @@ public/
 - Prefer zero or small dependencies. Justify anything beyond React, Vite, Tailwind, and Dexie.
 - No UI component library for v1 — hand-build with Tailwind.
 - No state management library — hooks are sufficient at this scale.
+
+## Dev workflow
+
+- Install: `npm install`
+- Dev: `npm run dev` → http://localhost:5173
+- Build: `npm run build` → output in `dist/`
+- Test: `npm test` (Vitest)
