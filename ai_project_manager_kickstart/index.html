@@ -416,6 +416,12 @@
     padding: 10px 14px;
     cursor: pointer;
     transition: background 0.15s;
+    width: 100%;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
   }
 
   .prompt-item-header:hover { background: var(--bg-raised); }
@@ -473,6 +479,12 @@
     padding: 12px 16px;
     cursor: pointer;
     transition: background 0.15s;
+    width: 100%;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
   }
 
   .stage-header:hover { background: var(--bg-raised); }
@@ -573,35 +585,35 @@
       <div class="step-desc">Answer these questions to define what you're building. This is the seed for everything else.</div>
       <div class="card" style="border:none;padding:0;">
         <div class="form-group">
-          <label>Project name</label>
+          <label for="brief-name">Project name</label>
           <input type="text" id="brief-name" placeholder="e.g. Recipe Book">
         </div>
         <div class="form-group">
-          <label>What are we building?</label>
+          <label for="brief-what">What are we building?</label>
           <textarea id="brief-what" rows="3" placeholder="One paragraph. What is this thing? What does it do?"></textarea>
         </div>
         <div class="form-group">
-          <label>Who is it for?</label>
+          <label for="brief-who">Who is it for?</label>
           <textarea id="brief-who" rows="2" placeholder="Target users or audience."></textarea>
         </div>
         <div class="form-group">
-          <label>Platform and deployment</label>
+          <label for="brief-platform">Platform and deployment</label>
           <input type="text" id="brief-platform" placeholder="e.g. Web app, CLI, Mobile, Desktop, API">
         </div>
         <div class="form-group">
-          <label>Core features (v1)</label>
+          <label for="brief-features">Core features (v1)</label>
           <textarea id="brief-features" rows="4" placeholder="3–5 bullet points. One feature per line."></textarea>
         </div>
         <div class="form-group">
-          <label>Constraints</label>
+          <label for="brief-constraints">Constraints</label>
           <textarea id="brief-constraints" rows="3" placeholder="Timeline, tech preferences, accessibility needs, team size, etc."></textarea>
         </div>
         <div class="form-group">
-          <label>Out of scope (for now)</label>
+          <label for="brief-outofscope">Out of scope (for now)</label>
           <textarea id="brief-outofscope" rows="2" placeholder="Things you're explicitly deferring."></textarea>
         </div>
         <div class="form-group">
-          <label>Open questions</label>
+          <label for="brief-questions">Open questions</label>
           <textarea id="brief-questions" rows="2" placeholder="Anything you're unsure about."></textarea>
         </div>
         <div class="btn-row">
@@ -629,7 +641,7 @@ Based on this brief, propose:
 Keep it practical and minimal. This is a starting point, not a final architecture.
 Output in markdown format matching the template in ai_project_manager_kickstart/project/architecture.md.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
       <div class="form-group" style="margin-top:12px;">
-        <label>Paste AI result here</label>
+        <label for="arch-result">Paste AI result here</label>
         <textarea id="arch-result" rows="10" placeholder="Paste the AI's architecture proposal here..."></textarea>
       </div>
       <div class="btn-row">
@@ -657,7 +669,7 @@ Group tasks under milestone headings.
 Order by dependency — what must come first.
 Keep tasks small enough to complete in a single focused session.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
       <div class="form-group" style="margin-top:12px;">
-        <label>Paste AI result here</label>
+        <label for="backlog-result">Paste AI result here</label>
         <textarea id="backlog-result" rows="10" placeholder="Paste the AI's backlog proposal here..."></textarea>
       </div>
       <div class="btn-row">
@@ -671,35 +683,35 @@ Keep tasks small enough to complete in a single focused session.<button class="c
       <div class="step-title">Set conventions (optional)</div>
       <div class="step-desc">Skip if unsure — fill this in when conventions emerge during your first implementation tasks.</div>
       <div class="form-group">
-        <label>Code style</label>
+        <label for="conv-style">Code style</label>
         <textarea id="conv-style" rows="2" placeholder="e.g. Prettier defaults, 2-space indent, single quotes"></textarea>
       </div>
       <div class="form-group">
-        <label>Naming</label>
+        <label for="conv-naming">Naming</label>
         <textarea id="conv-naming" rows="2" placeholder="e.g. Files: kebab-case. Components: PascalCase."></textarea>
       </div>
       <div class="form-group">
-        <label>Commit messages</label>
+        <label for="conv-commits">Commit messages</label>
         <input type="text" id="conv-commits" placeholder="e.g. type: short description (feat, fix, refactor, docs)">
       </div>
       <div class="form-group">
-        <label>Testing</label>
+        <label for="conv-testing">Testing</label>
         <textarea id="conv-testing" rows="2" placeholder="e.g. Vitest for unit tests. Focus on data layer."></textarea>
       </div>
       <div class="form-group">
-        <label>Patterns to follow</label>
+        <label for="conv-follow">Patterns to follow</label>
         <textarea id="conv-follow" rows="2" placeholder="e.g. All DB access through db/ module."></textarea>
       </div>
       <div class="form-group">
-        <label>Documentation</label>
+        <label for="conv-docs">Documentation</label>
         <textarea id="conv-docs" rows="2" placeholder="e.g. JSDoc for all exported functions. Explain why, not what."></textarea>
       </div>
       <div class="form-group">
-        <label>Patterns to avoid</label>
+        <label for="conv-avoid">Patterns to avoid</label>
         <textarea id="conv-avoid" rows="2" placeholder="e.g. No inline styles. No prop drilling beyond 2 levels."></textarea>
       </div>
       <div class="form-group">
-        <label>Tooling</label>
+        <label for="conv-tooling">Tooling</label>
         <textarea id="conv-tooling" rows="2" placeholder="e.g. esbuild bundler, Vitest test runner, .editorconfig for formatting"></textarea>
       </div>
       <div class="btn-row">
@@ -724,7 +736,7 @@ Draft a concise root README.md for this project. Include:
 
 Keep it short — this is a working reference, not marketing copy.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
       <div class="form-group" style="margin-top:12px;">
-        <label>Paste AI result here</label>
+        <label for="readme-result">Paste AI result here</label>
         <textarea id="readme-result" rows="10" placeholder="Paste the AI's README draft here..."></textarea>
       </div>
       <div class="btn-row">
@@ -762,7 +774,7 @@ Only fill in sections where the brief and architecture provide enough informatio
 
 Output the updated AGENTS.md in full.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
       <div class="form-group" style="margin-top:12px;">
-        <label>Paste AI result here</label>
+        <label for="agents-result">Paste AI result here</label>
         <textarea id="agents-result" rows="10" placeholder="Paste the AI's populated AGENTS.md here..."></textarea>
       </div>
       <div class="btn-row">
@@ -788,7 +800,7 @@ UI-STANDARDS.md has a CUSTOMISE placeholder for the token systems section. Using
 
 Output only the updated "Token systems" section.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
       <div class="form-group" style="margin-top:12px;">
-        <label>Paste AI result here</label>
+        <label for="ui-standards-result">Paste AI result here</label>
         <textarea id="ui-standards-result" rows="8" placeholder="Paste the AI's token systems section here..."></textarea>
       </div>
       <div class="btn-row">
@@ -822,7 +834,7 @@ Only fill in sections where the architecture provides enough information. Leave 
 
 Output the updated DEV-INFRASTRUCTURE.md in full.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
       <div class="form-group" style="margin-top:12px;">
-        <label>Paste AI result here</label>
+        <label for="dev-infra-result">Paste AI result here</label>
         <textarea id="dev-infra-result" rows="10" placeholder="Paste the AI's populated DEV-INFRASTRUCTURE.md here..."></textarea>
       </div>
       <div class="btn-row">
@@ -868,7 +880,7 @@ Output the updated DEV-INFRASTRUCTURE.md in full.<button class="copy-btn" onclic
 
     <div class="card">
       <div class="form-group" style="margin-bottom:8px;">
-        <label>Current task</label>
+        <label for="task-input">Current task</label>
         <input type="text" id="task-input" placeholder="Paste one task from your backlog" oninput="updateSessionPrompt()">
       </div>
     </div>
@@ -881,11 +893,11 @@ Output the updated DEV-INFRASTRUCTURE.md in full.<button class="copy-btn" onclic
     <!-- Full workflow -->
     <div id="mode-full" class="stage-flow">
       <div class="stage open" id="stage-session">
-        <div class="stage-header" onclick="toggleStage(this)">
+        <button class="stage-header" onclick="toggleStage(this)" aria-expanded="false">
           <div class="stage-number">0</div>
           <div class="stage-title">Session Start</div>
           <div class="stage-chevron">▾</div>
-        </div>
+        </button>
         <div class="stage-body">
           <p style="color:var(--text-dim);font-size:13px;margin-bottom:8px;">Paste this at the start of a new chat to load project context.</p>
           <div class="prompt-block" id="session-prompt">Read the behavioral contracts:
@@ -910,11 +922,11 @@ Start with scoping only. No code.<button class="copy-btn" onclick="copyBlock(thi
       </div>
 
       <div class="stage" id="stage-scope">
-        <div class="stage-header" onclick="toggleStage(this)">
+        <button class="stage-header" onclick="toggleStage(this)" aria-expanded="false">
           <div class="stage-number">1</div>
           <div class="stage-title">Scoping</div>
           <div class="stage-chevron">▾</div>
-        </div>
+        </button>
         <div class="stage-body">
           <div class="prompt-block">Using the project context, do the scoping step only for the current task.
 
@@ -938,11 +950,11 @@ Rules:
       </div>
 
       <div class="stage" id="stage-design">
-        <div class="stage-header" onclick="toggleStage(this)">
+        <button class="stage-header" onclick="toggleStage(this)" aria-expanded="false">
           <div class="stage-number">2</div>
           <div class="stage-title">Design Options</div>
           <div class="stage-chevron">▾</div>
-        </div>
+        </button>
         <div class="stage-body">
           <div class="prompt-block">Using the project context and the approved scope, produce 2–3 design options.
 
@@ -969,11 +981,11 @@ Rules:
       </div>
 
       <div class="stage" id="stage-plan">
-        <div class="stage-header" onclick="toggleStage(this)">
+        <button class="stage-header" onclick="toggleStage(this)" aria-expanded="false">
           <div class="stage-number">3</div>
           <div class="stage-title">Implementation Plan</div>
           <div class="stage-chevron">▾</div>
-        </div>
+        </button>
         <div class="stage-body">
           <div class="prompt-block">Using the project context, approved scope, and chosen design option, produce an implementation plan only.
 
@@ -996,11 +1008,11 @@ Rules:
       </div>
 
       <div class="stage" id="stage-validate">
-        <div class="stage-header" onclick="toggleStage(this)">
+        <button class="stage-header" onclick="toggleStage(this)" aria-expanded="false">
           <div class="stage-number">4</div>
           <div class="stage-title">Validation</div>
           <div class="stage-chevron">▾</div>
-        </div>
+        </button>
         <div class="stage-body">
           <div class="prompt-block">Using the project context, chosen design, and implementation plan, do a pre-code validation pass.
 
@@ -1024,11 +1036,11 @@ Rules:
       </div>
 
       <div class="stage" id="stage-close">
-        <div class="stage-header" onclick="toggleStage(this)">
+        <button class="stage-header" onclick="toggleStage(this)" aria-expanded="false">
           <div class="stage-number">✓</div>
           <div class="stage-title">Close Task — Update Memory</div>
           <div class="stage-chevron">▾</div>
-        </div>
+        </button>
         <div class="stage-body">
           <p style="color:var(--text-dim);font-size:13px;margin-bottom:8px;">Paste this at the end of every task to keep project memory current.</p>
           <div class="prompt-block">Before we close this task, update:
@@ -1047,11 +1059,11 @@ Rules:
     <!-- Quick workflow -->
     <div id="mode-quick" class="stage-flow" style="display:none;">
       <div class="stage open">
-        <div class="stage-header" onclick="toggleStage(this)">
+        <button class="stage-header" onclick="toggleStage(this)" aria-expanded="false">
           <div class="stage-number">0</div>
           <div class="stage-title">Quick Session Start</div>
           <div class="stage-chevron">▾</div>
-        </div>
+        </button>
         <div class="stage-body">
           <div class="prompt-block" id="quick-session-prompt">Read the behavioral contracts:
 - AGENTS.md
@@ -1073,11 +1085,11 @@ This is a small task. Scope it, plan it, and present the plan for approval. No c
       </div>
 
       <div class="stage">
-        <div class="stage-header" onclick="toggleStage(this)">
+        <button class="stage-header" onclick="toggleStage(this)" aria-expanded="false">
           <div class="stage-number">1</div>
           <div class="stage-title">Quick Scope + Plan</div>
           <div class="stage-chevron">▾</div>
-        </div>
+        </button>
         <div class="stage-body">
           <div class="prompt-block">This is a small task. Do a combined scope-and-plan in one pass.
 
@@ -1101,11 +1113,11 @@ Rules:
       </div>
 
       <div class="stage">
-        <div class="stage-header" onclick="toggleStage(this)">
+        <button class="stage-header" onclick="toggleStage(this)" aria-expanded="false">
           <div class="stage-number">✓</div>
           <div class="stage-title">Close Task — Update Memory</div>
           <div class="stage-chevron">▾</div>
-        </div>
+        </button>
         <div class="stage-body">
           <div class="prompt-block">Before we close this task, update:
 - ai_project_manager_kickstart/project/backlog.md — mark this task done and note any follow-up tasks.
@@ -1180,7 +1192,9 @@ function showToast(msg) {
 
 // ——— Copy helpers ———
 function copyText(text) {
-  navigator.clipboard.writeText(text).then(() => showToast('Copied to clipboard'));
+  navigator.clipboard.writeText(text)
+    .then(() => showToast('Copied to clipboard'))
+    .catch(() => showToast('Copy failed — check clipboard permissions'));
 }
 
 function copyBlock(btn) {
@@ -1193,13 +1207,15 @@ function copyBlock(btn) {
     btn.classList.add('copied');
     showToast('Copied to clipboard');
     setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-  });
+  }).catch(() => showToast('Copy failed — check clipboard permissions'));
 }
 
 function copyContent(id) {
   const el = document.getElementById(id);
   const text = el.value || el.textContent;
-  navigator.clipboard.writeText(text).then(() => showToast('Copied to clipboard'));
+  navigator.clipboard.writeText(text)
+    .then(() => showToast('Copied to clipboard'))
+    .catch(() => showToast('Copy failed — check clipboard permissions'));
 }
 
 // ——— Download helper ———
@@ -1277,14 +1293,19 @@ function updateSessionPrompt() {
 }
 
 function toggleStage(header) {
-  header.closest('.stage, .prompt-item').classList.toggle('open');
+  const target = header.closest('.stage, .prompt-item');
+  target.classList.toggle('open');
+  const isOpen = target.classList.contains('open');
+  if (header.hasAttribute('aria-expanded')) {
+    header.setAttribute('aria-expanded', isOpen);
+  }
 }
 
 // ——— Markdown renderer ———
 function renderMarkdown(md) {
   let html = '';
   const lines = md.split('\n');
-  let inCode = false, inList = false, listType = '';
+  let inCode = false, inList = false, listType = '', inComment = false;
 
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i];
@@ -1296,7 +1317,15 @@ function renderMarkdown(md) {
     }
     if (inCode) { html += escapeHtml(line) + '\n'; continue; }
 
-    if (line.startsWith('<!--') && line.includes('-->')) continue;
+    if (inComment) {
+      if (line.includes('-->')) { inComment = false; }
+      continue;
+    }
+    if (line.includes('<!--')) {
+      if (line.includes('-->')) continue;
+      inComment = true;
+      continue;
+    }
     if (line.trim() === '') {
       if (inList) { html += listType === 'ul' ? '</ul>' : '</ol>'; inList = false; }
       continue;
@@ -1379,7 +1408,7 @@ function buildMemoryGrid() {
       </div>
       <div style="font-size:11px;color:var(--text-dim);margin-bottom:8px;">${f.desc}</div>
       <div class="memory-card-content" id="content-${f.key}">
-        <div class="drop-zone" id="drop-${f.key}">
+        <div class="drop-zone" id="drop-${f.key}" role="button" tabindex="0" aria-label="Upload ${f.name}">
           Drop ${f.name} here or click to browse
           <input type="file" accept=".md" style="display:none" id="input-${f.key}">
         </div>
@@ -1396,6 +1425,7 @@ function buildMemoryGrid() {
     const input = card.querySelector('input[type="file"]');
 
     dropZone.addEventListener('click', () => input.click());
+    dropZone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
     dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
     dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
     dropZone.addEventListener('drop', e => {
@@ -1428,7 +1458,7 @@ function clearMemory(key) {
   document.getElementById('actions-' + key).style.display = 'none';
   const f = memoryFiles.find(m => m.key === key);
   document.getElementById('content-' + key).innerHTML = `
-    <div class="drop-zone" id="drop-${key}">
+    <div class="drop-zone" id="drop-${key}" role="button" tabindex="0" aria-label="Upload ${f.name}">
       Drop ${f.name} here or click to browse
       <input type="file" accept=".md" style="display:none" id="input-${key}">
     </div>
@@ -1436,6 +1466,7 @@ function clearMemory(key) {
   const dropZone = document.getElementById('drop-' + key);
   const input = document.getElementById('input-' + key);
   dropZone.addEventListener('click', () => input.click());
+  dropZone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
   dropZone.addEventListener('drop', e => {
@@ -1489,10 +1520,10 @@ function buildPromptLibrary() {
       const el = document.createElement('div');
       el.className = 'prompt-item';
       el.innerHTML = `
-        <div class="prompt-item-header" onclick="toggleStage(this)">
+        <button class="prompt-item-header" onclick="toggleStage(this)" aria-expanded="false">
           <div class="prompt-item-title">${item.title}</div>
           <div class="prompt-item-expand">▾</div>
-        </div>
+        </button>
         <div class="prompt-item-body">
           <div class="prompt-block">${escapeHtml(item.text)}<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
         </div>
