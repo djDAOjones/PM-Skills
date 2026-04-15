@@ -28,20 +28,27 @@ explain concepts back unless asked.
 
 <!-- CUSTOMISE: Update the paths below to match your project layout.
      The defaults assume the kickstart pack lives at
-     ai_project_manager_kickstart/ relative to the project root. -->
+     ai_project_manager_kickstart/ relative to the project root.
+     README.md here refers to the project's own root README — the one
+     created during init Step 5 that documents architecture, key
+     infrastructure, invariants, and gotchas. It is NOT the framework's
+     distribution README. If init has not been completed yet, skip
+     this step. -->
 
 1. Read `README.md` (architecture, key infrastructure, invariants,
    gotchas).
 2. Read the project memory files in `ai_project_manager_kickstart/project/`:
    `brief.md`, `architecture.md`, `conventions.md` (if it exists),
    `file-map.md`, and `backlog.md`.
+   Also read `decision-log.md` if the task involves design decisions
+   or you need context on prior choices.
 3. Read `UI-STANDARDS.md` for any task that touches UI, controls,
    layout, text, states, accessibility, or user-facing behaviour.
 4. Read `DEV-INFRASTRUCTURE.md` (if it exists) for build, dev server,
    versioning, and script conventions.
-5. For non-trivial work, run the `/feature-scoping` workflow (or
-   follow the 4-stage prompt sequence in `prompts/`:
-   `scoping.md` → `design-options.md` → `implementation-plan.md` →
+5. For non-trivial work, run the `/feature` workflow (or follow the
+   4-stage prompt sequence in `prompts/`: `scoping.md` →
+   `design-options.md` → `implementation-plan.md` →
    `validation.md`). Get user sign-off on scope before writing code.
    For small tasks, use `prompts/quick-task.md` instead.
 6. Search the full source tree before proposing changes. Check for
@@ -54,7 +61,7 @@ explain concepts back unless asked.
 These apply unconditionally to every change.
 
 - **All imports at the top of the file.** Mid-file imports break
-  bundlers.
+  bundlers and make dependency chains harder to trace.
 - **Build output directories are read-only.** Never hand-edit files
   that are overwritten by the build step.
 - **Minimal runtime dependencies.** Do not add packages without
@@ -122,8 +129,9 @@ explicit approval. -->
 
 ## Event naming convention
 
-<!-- CUSTOMISE: Define your event namespaces. Keep them consistent.
-     Example: -->
+<!-- CUSTOMISE: Define event namespaces for your project, or remove
+     this section if not applicable. Keep namespaces consistent and
+     do not create synonyms for existing event names. Example:
 
 Use colon-separated namespaces for all events. Group by domain:
 
@@ -131,11 +139,9 @@ Use colon-separated namespaces for all events. Group by domain:
 - `ui:component:action` for UI events.
 - `app:lifecycle:action` for application-level events.
 
-Keep namespaces consistent. Do not create synonyms for existing event
-names.
-
-Replace these defaults with your project's actual event namespaces
-once established.
+     If the project uses hooks, direct imports, or another pattern
+     instead of events, state that here and remove the namespace
+     guidance. -->
 
 ---
 
@@ -173,19 +179,21 @@ touches UI. The key principles are:
 
 ## Code documentation
 
-<!-- CUSTOMISE: Define the documentation standard for this project.
-     For JavaScript, JSDoc is the default. For TypeScript, use TSDoc.
+<!-- CUSTOMISE: Confirm or adjust the documentation standard.
+     JSDoc is the default for JavaScript and TypeScript projects.
      For Python, use docstrings. Adjust to match your language. -->
 
 - New and modified functions, classes, and modules should have
   meaningful comments explaining **why**, not restating **what**.
-- Use JSDoc (or the project's chosen documentation standard) for
-  exported functions, classes, and modules. Document purpose,
-  parameters, return values, and side effects.
-- Comments are for future humans and AI agents. Write them to provide
-  context that is not obvious from the code alone.
+- Use **JSDoc** for exported functions, classes, and modules. Document
+  purpose, parameters, return values, and side effects.
+- Comments are for AI agents first and future humans second. Write
+  them to provide context that is not obvious from the code alone.
 - Do not add boilerplate or redundant comments that restate the code.
   Every comment should earn its place.
+
+Project-specific documentation conventions (what to document, depth,
+exceptions) are in `project/conventions.md`.
 
 ---
 
@@ -206,6 +214,9 @@ touches UI. The key principles are:
 - Never delete or weaken existing tests.
 - Add a test for any new model method or utility function when a
   test runner is available.
+
+Project-specific testing policy (framework, coverage bar, what to
+test) is in `project/conventions.md`.
 
 ---
 
@@ -228,16 +239,24 @@ See `DEV-INFRASTRUCTURE.md` for the concrete list of protected paths.
 
 <!-- CUSTOMISE: This checklist applies to apps with stateful models
      that persist to localStorage, files, or a database. If the project
-     has no persistence layer, this section can be removed. -->
+     has no persistence layer, remove this section. Define the concrete
+     steps for your project's persistence pattern. Example for a
+     JS app with manual serialisation:
 
-When adding any property that should survive reload:
+     When adding any property that should survive reload:
+     1. Default in constructor (relevant model class).
+     2. Include in serialisation (`toJSON()` or equivalent).
+     3. Handle in deserialisation (`fromJSON()` or equivalent) with
+        fallback default.
+     4. Serialise in auto-save.
+     5. Restore in load/auto-load.
 
-1. Default in constructor (relevant model class).
-2. Include in serialisation (`toJSON()` or equivalent).
-3. Handle in deserialisation (`fromJSON()` or equivalent) with fallback
-   default.
-4. Serialise in auto-save.
-5. Restore in load/auto-load.
+     Example for an ORM-based app:
+     1. Add the field to the model definition.
+     2. Create and run a migration.
+     3. Handle the field in any import/export functions with a fallback
+        default.
+     4. Verify it persists correctly via the ORM layer. -->
 
 ---
 
@@ -270,8 +289,8 @@ in `DEV-INFRASTRUCTURE.md`. If it is evolving context, it goes in
 
 If you find yourself doing any of these, stop and reconsider:
 
-- Communicating between components by direct method calls instead of
-  the project's established messaging pattern.
+- Bypassing the project's established communication pattern (e.g.
+  direct method calls when the project uses events or hooks).
 - Inventing a custom UI control when Carbon provides a suitable pattern.
 - Installing Carbon packages instead of implementing to Carbon's spec.
 - Using AA contrast thresholds when AAA (7:1) is required.
@@ -280,7 +299,10 @@ If you find yourself doing any of these, stop and reconsider:
 - Hard-coding values that should be tokenised or configurable.
 - Adding runtime dependencies without explicit approval.
 
-<!-- CUSTOMISE: Add project-specific anti-patterns. Examples:
+Project-specific anti-patterns are in `project/conventions.md` under
+"Patterns to avoid".
+
+<!-- CUSTOMISE: Add project-specific anti-patterns below. Examples:
      - Iterating data as if it has an implicit order when it doesn't.
      - Using a legacy abstraction as a design reference.
      - Collapsing parallel token systems into one. -->

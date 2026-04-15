@@ -1,0 +1,122 @@
+---
+description: Run the design-before-code workflow for a task
+---
+
+Before implementing anything, complete the design workflow and get
+user approval at each gate. Do not write code until all gates pass.
+
+1. State the goal.
+   One sentence: what the user asked for.
+
+2. Read project context.
+   Read:
+   - `AGENTS.md`
+   - `UI-STANDARDS.md` (if the task touches UI)
+   - `DEV-INFRASTRUCTURE.md` (if it exists)
+   - `ai_project_manager_kickstart/project/brief.md`
+   - `ai_project_manager_kickstart/project/architecture.md`
+   - `ai_project_manager_kickstart/project/conventions.md` (if it exists)
+   - `ai_project_manager_kickstart/project/file-map.md`
+   - `ai_project_manager_kickstart/project/backlog.md`
+   - `ai_project_manager_kickstart/project/decision-log.md` (if the
+     task involves design decisions or you need context on prior choices)
+   Also read `ai_project_manager_kickstart/prompts/operating-rules.md`
+   and follow its rules for this session.
+
+3. Determine task size.
+   Ask the user: "Is this a full 4-stage task or a quick task?"
+   - If quick → go to step 8.
+   - If full → continue to step 4.
+   - If the user already indicated the size, don't ask again.
+
+--- FULL 4-STAGE WORKFLOW ---
+
+4. Scoping (stage 1).
+   Read `ai_project_manager_kickstart/prompts/scoping.md` and follow
+   its instructions. Output the scoping deliverables:
+   - Problem framing
+   - Affected areas
+   - Key design decisions
+   - Risks and dependencies
+   - Smallest useful scope
+   - Out of scope
+   - Target file list
+   - Open questions (only if genuinely blocking)
+
+   Search the source tree to confirm affected files.
+   Present scope to the user. Wait for approval before continuing.
+
+5. Design options (stage 2).
+   Read `ai_project_manager_kickstart/prompts/design-options.md` and
+   follow its instructions. Produce 2–3 design options with:
+   - Summary, affected files, architectural fit, data flow, benefits,
+     risks
+   - A recommended option with rationale
+
+   Present to the user. Wait for the user to pick an option.
+
+6. Implementation plan (stage 3).
+   Read `ai_project_manager_kickstart/prompts/implementation-plan.md`
+   and follow its instructions. Output:
+   - Ordered file list with purpose
+   - Data flow or architectural changes
+   - New abstractions (with justification) or explicitly none
+   - Tests to write or update
+   - Step-by-step implementation sequence
+   - Acceptance criteria
+   - Watchouts
+   - Files not to touch
+
+   Present to the user. Wait for approval before continuing.
+
+7. Validation (stage 4).
+   Read `ai_project_manager_kickstart/prompts/validation.md` and
+   follow its instructions. Output:
+   - Design sanity checks
+   - Architecture checks
+   - Regression risks
+   - Test coverage assessment
+   - Edge cases
+   - Signs the scope is too large
+
+   Present to the user. After approval, tell the user the design
+   phase is complete and ask: "Ready to implement?"
+   Wait for confirmation, then implement.
+   Go to step 9.
+
+--- QUICK TASK WORKFLOW ---
+
+8. Quick scope and plan.
+   Read `ai_project_manager_kickstart/prompts/quick-task.md` and
+   follow its instructions. Output:
+   - What needs to change and why
+   - Files to create or modify
+   - Implementation sequence
+   - Watchouts
+   - Acceptance criteria
+
+   Present to the user. After approval, implement.
+   Go to step 9.
+
+--- CLOSE TASK ---
+
+9. Update project memory.
+   After implementation is complete, update:
+   - `ai_project_manager_kickstart/project/backlog.md` — mark this
+     task done and note any follow-up tasks.
+   - `ai_project_manager_kickstart/project/file-map.md` — add or
+     update entries for files created or changed.
+   - `ai_project_manager_kickstart/project/decision-log.md` — record
+     the key design decision from this task.
+   - `ai_project_manager_kickstart/project/conventions.md` — if new
+     conventions were established or existing ones changed.
+   - `README.md` — if architecture, dev workflow, or key
+     infrastructure changed significantly.
+   - `AGENTS.md` — if this task established new invariants, data model
+     changes, protected modules, event namespaces, or anti-patterns.
+   - `UI-STANDARDS.md` — if this task established new token systems or
+     UI conventions.
+   - `DEV-INFRASTRUCTURE.md` — if this task changed build, dev server,
+     versioning, or script conventions.
+
+   Present the memory updates to the user for review.

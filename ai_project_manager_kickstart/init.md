@@ -195,11 +195,15 @@ Output the updated AGENTS.md in full.
 Review the output. Save the result to `AGENTS.md`, replacing the
 template version.
 
-**Windsurf Cascade users:** If you want the `/feature-scoping` slash
-command to work, copy `integrations/cascade-workflow.md` to
-`.windsurf/workflows/feature-scoping.md` in your project root. This is
-optional — the prompt files in `prompts/` serve the same purpose for
-manual use.
+**Windsurf Cascade users:** Copy the workflow files from
+`integrations/` to `.windsurf/workflows/` in your project root:
+
+- `integrations/init-project.md` → `.windsurf/workflows/init-project.md`
+- `integrations/feature.md` → `.windsurf/workflows/feature.md`
+
+This enables the `/init-project` and `/feature` slash commands.
+The prompt files in `prompts/` serve the same purpose for manual use
+with other AI tools.
 
 ---
 

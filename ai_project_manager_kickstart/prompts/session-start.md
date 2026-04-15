@@ -21,7 +21,7 @@ Read the project memory in ai_project_manager_kickstart/project/:
 - backlog.md
 - file-map.md
 - conventions.md (if it exists)
-- decision-log.md
+- decision-log.md (if the task involves design decisions)
 
 Also read ai_project_manager_kickstart/prompts/operating-rules.md.
 

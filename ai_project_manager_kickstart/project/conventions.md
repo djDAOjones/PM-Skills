@@ -17,17 +17,19 @@
 
 ## Documentation
 
-<!-- Documentation standard for code comments.
-     Example:
-     - Standard: JSDoc for all exported functions, classes, and modules.
-     - What to document: purpose, parameters, return values, side effects.
-     - Comment style: explain why, not what. No boilerplate.
-     AGENTS.md contains the permanent rules; this section captures
-     project-specific conventions as they emerge. -->
+<!-- Project-specific documentation conventions. The permanent rules
+     (JSDoc, explain why not what, no boilerplate) are in AGENTS.md.
+     This section captures how they apply to this project as
+     conventions emerge. Example:
+     - What to document: all exported functions, hooks, db/ methods.
+     - Depth: purpose, parameters, return values, side effects.
+     - Exceptions: trivial getters don't need JSDoc. -->
 
 ## Testing
 
-<!-- What gets tested? What framework? What's the bar for coverage? -->
+<!-- Project-specific testing policy. The permanent rules (run tests
+     after every change, never weaken tests) are in AGENTS.md. This
+     section captures framework, coverage bar, and what to test. -->
 
 ## Patterns to follow
 
@@ -35,7 +37,9 @@
 
 ## Patterns to avoid
 
-<!-- Anti-patterns the team has agreed to reject. -->
+<!-- Project-specific anti-patterns. The permanent anti-patterns
+     (Carbon, accessibility, dependencies) are in AGENTS.md. This
+     section captures patterns specific to this project's codebase. -->
 
 ## Tooling
 

@@ -1,17 +1,20 @@
 # AI Project Manager Kickstart
 
-A reusable, model-agnostic starter pack for projects that want an
-"AI project manager" approach to vibe coding.
+An opinionated starter pack for AI-assisted coding projects.
+Structured markdown files, design-before-code discipline, and
+persistent project memory — the way Joe likes to work in 2026.
 
-Works with any AI coding tool. No scripts, no dependencies — just
-markdown files with a clear structure and workflow.
+Optimised for Windsurf Cascade. Works with other AI tools via manual
+prompt pasting. Defaults to Carbon Design System, WCAG 2.2 AAA,
+Nielsen heuristics, and JSDoc. All customisable, none apologised for.
 
 ## Start here
 
-**New project?** Open [init.md](./init.md) and follow the steps.
+**New project?** Follow [init.md](./init.md) step by step.
 
-**Looking for examples?** See `../ai_project_manager_example/` for
-filled-in versions of the project files.
+**Windsurf Cascade?** Run the `/init-project` workflow instead.
+For ongoing tasks, use `/feature` to run the design-before-code
+pipeline.
 
 ## Two-tier memory system
 
@@ -51,7 +54,9 @@ prompts/         Reusable per-task prompts.
   quick-task.md           Single-stage alternative for small tasks.
   corrections.md          Drift correction snippets.
 
-integrations/    Optional tool-specific configs.
+integrations/    Tool-specific workflows.
+  init-project.md    Windsurf Cascade: guided project initialization.
+  feature.md         Windsurf Cascade: full task workflow with gates.
 
 scaffold/        Template files to copy into your project root.
   .editorconfig    Editor style enforcement (indent, encoding, etc.).
@@ -60,7 +65,16 @@ scaffold/        Template files to copy into your project root.
 
 ## Per-task quick reference
 
-### Non-trivial tasks (4-stage)
+### Windsurf Cascade
+
+Run `/feature` at the start of any task. The workflow reads project
+memory, asks whether the task is full (4-stage) or quick (1-stage),
+runs the appropriate pipeline with approval gates, and reminds you
+to update project memory at the end.
+
+### Other AI tools (manual prompt workflow)
+
+**Non-trivial tasks (4-stage):**
 
 1. New chat → paste `prompts/session-start.md` (standard start).
 2. Paste `prompts/scoping.md` → approve scope.
@@ -70,7 +84,7 @@ scaffold/        Template files to copy into your project root.
 6. "Go ahead and implement."
 7. End of task → paste "Update project memory" from `prompts/corrections.md`.
 
-### Small tasks (single-stage)
+**Small tasks (single-stage):**
 
 1. New chat → paste `prompts/session-start.md` (quick start).
 2. Paste `prompts/quick-task.md` → approve plan.
