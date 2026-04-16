@@ -65,13 +65,10 @@ step before proceeding to the next.
    `DEV-INFRASTRUCTURE.md`.
    If no build tooling, tell the user this file can be removed.
 
-9. Copy Cascade workflow files.
-   Copy `ai_project_manager_kickstart/integrations/init-project.md`
-   to `.windsurf/workflows/init-project.md`.
-   Copy `ai_project_manager_kickstart/integrations/feature.md`
-   to `.windsurf/workflows/feature.md`.
-   Copy `ai_project_manager_kickstart/scaffold/.editorconfig`
-   to the project root (if applicable).
+9. Copy scaffold files.
+   Copy `ai_project_manager_kickstart/scaffold/.editorconfig` and
+   `ai_project_manager_kickstart/scaffold/.gitignore` to the project
+   root if they don't already exist.
 
 10. Readiness check.
     Confirm all required files are populated:
@@ -82,6 +79,8 @@ step before proceeding to the next.
     - `AGENTS.md` (no remaining `[Project Name]` placeholder)
     - `UI-STANDARDS.md` (if applicable)
     - `DEV-INFRASTRUCTURE.md` (if applicable)
+    - `.editorconfig`
+    - `.gitignore`
     Report what is complete and what is missing.
     If everything is ready, tell the user to pick their first task
-    from the backlog and run `/feature` to start.
+    from the backlog.

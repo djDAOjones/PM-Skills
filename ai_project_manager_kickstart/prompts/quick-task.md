@@ -1,9 +1,5 @@
-# Quick Task Prompt
+# Quick Task
 
-Use this instead of the 4-stage workflow for small or straightforward tasks.
-Use the "quick start" session-start variant, then paste this.
-
-```text
 This is a small task. Do a combined scope-and-plan in one pass.
 
 Output:
@@ -19,6 +15,5 @@ Rules:
 - Prefer existing patterns.
 - Flag any architectural or efficiency risk.
 - No code or pseudocode.
-```
 
-After reviewing the plan, say "go ahead" to start implementation.
+After the user approves the plan, implement.

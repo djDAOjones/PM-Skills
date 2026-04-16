@@ -4,9 +4,9 @@ An opinionated, markdown-based framework for managing AI-assisted
 coding projects. Provides project memory, behavioral contracts for AI
 agents, and a design-before-code prompt workflow.
 
-Optimised for Windsurf Cascade and web development with Carbon Design
-System, WCAG 2.2 AAA accessibility, and JSDoc documentation. Adapts
-to other stacks and tools but makes no apology for its defaults.
+Defaults to Carbon Design System, WCAG 2.2 AAA accessibility, Nielsen
+heuristics, and JSDoc documentation. Adapts to other stacks but makes
+no apology for its defaults.
 
 ## Quick start
 
@@ -14,7 +14,6 @@ to other stacks and tools but makes no apology for its defaults.
 2. Copy `AGENTS.md`, `UI-STANDARDS.md`, and `DEV-INFRASTRUCTURE.md` to
    your project root.
 3. Follow `ai_project_manager_kickstart/init.md` to populate everything.
-   Windsurf Cascade users can run the `/init-project` workflow instead.
 
 See [`ai_project_manager_kickstart/README.md`](ai_project_manager_kickstart/README.md)
 for the full guide: folder contents, two-tier memory system, per-task

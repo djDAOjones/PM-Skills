@@ -1,8 +1,5 @@
-# Design Options Prompt
+# Design Options — Stage 2 of 4
 
-Use this after scoping is approved. This is stage 2 of 4.
-
-```text
 Using the project context and the approved scope, produce 2–3 design options.
 
 Approved scope:
@@ -27,4 +24,3 @@ Rules:
 - If this is early in the project, options may be about foundational choices (folder structure, patterns, libraries) rather than modifications to existing code.
 - Explain trade-offs in plain language.
 - No code or pseudocode.
-```

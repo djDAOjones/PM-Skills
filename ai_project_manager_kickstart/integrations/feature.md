@@ -20,8 +20,6 @@ user approval at each gate. Do not write code until all gates pass.
    - `ai_project_manager_kickstart/project/backlog.md`
    - `ai_project_manager_kickstart/project/decision-log.md` (if the
      task involves design decisions or you need context on prior choices)
-   Also read `ai_project_manager_kickstart/prompts/operating-rules.md`
-   and follow its rules for this session.
 
 3. Determine task size.
    Ask the user: "Is this a full 4-stage task or a quick task?"

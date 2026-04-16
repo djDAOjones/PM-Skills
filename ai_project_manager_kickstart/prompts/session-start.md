@@ -1,72 +1,37 @@
 # Session Start
 
-Use one of these to begin a new chat.
+Read these files at the start of each task session. `AGENTS.md`
+may already be loaded as a global rule; the other files must be
+read explicitly.
 
-If your AI tool loads `AGENTS.md` automatically (e.g. Windsurf
-Cascade), you can omit the explicit read of `AGENTS.md` — it's
-already in context. You still need to read the other contracts
-and project memory files explicitly.
+## Context to load
 
-## Standard start (full task workflow)
+Behavioral contracts:
+- `AGENTS.md`
+- `UI-STANDARDS.md` (if the task touches UI)
+- `DEV-INFRASTRUCTURE.md` (if it exists)
 
-```text
-Read the behavioral contracts:
-- AGENTS.md
-- UI-STANDARDS.md (if the task touches UI)
-- DEV-INFRASTRUCTURE.md (if it exists)
+Project memory in `ai_project_manager_kickstart/project/`:
+- `brief.md`
+- `architecture.md`
+- `backlog.md`
+- `file-map.md`
+- `conventions.md` (if it exists)
+- `decision-log.md` (if the task involves design decisions)
 
-Read the project memory in ai_project_manager_kickstart/project/:
-- brief.md
-- architecture.md
-- backlog.md
-- file-map.md
-- conventions.md (if it exists)
-- decision-log.md (if the task involves design decisions)
+## Then state the task
 
-Also read ai_project_manager_kickstart/prompts/operating-rules.md.
+For a full 4-stage task:
 
-My task: [one sentence from the backlog]
+> My task: [one sentence from the backlog]
+> Start with scoping only. No code.
 
-Start with scoping only. No code.
-```
+For a small task:
 
-## Quick start (simple or small tasks)
+> My task: [one sentence]
+> This is a small task. Scope it, plan it, and present the plan for approval. No code yet.
 
-```text
-Read the behavioral contracts:
-- AGENTS.md
-- UI-STANDARDS.md (if the task touches UI)
-- DEV-INFRASTRUCTURE.md (if it exists)
+For continuing a previous task:
 
-Read the project memory in ai_project_manager_kickstart/project/:
-- brief.md
-- architecture.md
-- file-map.md
-- conventions.md (if it exists)
-
-Also read ai_project_manager_kickstart/prompts/operating-rules.md.
-
-My task: [one sentence]
-
-This is a small task. Scope it, plan it, and present the plan for approval. No code yet.
-```
-
-## Continuing a task from a previous session
-
-```text
-Read the behavioral contracts:
-- AGENTS.md
-- UI-STANDARDS.md (if the task touches UI)
-- DEV-INFRASTRUCTURE.md (if it exists)
-
-Read the project memory in ai_project_manager_kickstart/project/:
-- brief.md
-- architecture.md
-- file-map.md
-- conventions.md (if it exists)
-
-Also read ai_project_manager_kickstart/prompts/operating-rules.md.
-
-I'm continuing work on: [task description]
-Here's where I left off: [brief status]
-```
+> I'm continuing work on: [task description]
+> Here's where I left off: [brief status]

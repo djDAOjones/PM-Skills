@@ -9,8 +9,8 @@ This process populates two kinds of project memory:
   decisions). Read at the start of every task session.
 - **`AGENTS.md` + `UI-STANDARDS.md` + `DEV-INFRASTRUCTURE.md`** —
   permanent behavioral contracts. Loaded automatically by AI tools that
-  support global rules (e.g. Windsurf Cascade), or read manually at
-  session start for other tools.
+  support global rules, or read manually at session start for other
+  tools.
 
 Both are kept in sync. The kickoff process gathers information once and
 writes it to the right places.
@@ -28,8 +28,7 @@ expand later. This is the seed that everything else grows from.
 
 ## Step 2: Generate the architecture
 
-Start a chat with your AI tool. Paste the operating rules from
-`prompts/operating-rules.md`, then paste this:
+Start a chat with your AI tool and paste this:
 
 ```text
 Read ai_project_manager_kickstart/project/brief.md.
@@ -166,8 +165,9 @@ architecture, and conventions, populate every applicable placeholder:
 6. **Protected infrastructure** — If there are modules that must not be
    deleted or restructured without approval, list them.
 
-7. **Event naming convention** — Replace the generic example namespaces
-   with the project's actual event namespaces if known.
+7. **Event naming convention** — Fill in the event naming section
+   with the project's actual namespaces, or remove the section if
+   the project doesn't use events.
 
 8. **Files to never edit** — List build output dirs, personal notes, or
    other paths agents must never touch.
@@ -195,15 +195,11 @@ Output the updated AGENTS.md in full.
 Review the output. Save the result to `AGENTS.md`, replacing the
 template version.
 
-**Windsurf Cascade users:** Copy the workflow files from
-`integrations/` to `.windsurf/workflows/` in your project root:
-
-- `integrations/init-project.md` → `.windsurf/workflows/init-project.md`
-- `integrations/feature.md` → `.windsurf/workflows/feature.md`
-
-This enables the `/init-project` and `/feature` slash commands.
-The prompt files in `prompts/` serve the same purpose for manual use
-with other AI tools.
+**Optional — tool-specific workflows:** If your AI tool supports
+workflows, copy the files from `integrations/` to your tool's workflow
+directory. For example, Windsurf Cascade users can copy them to
+`.windsurf/workflows/`. The prompt files in `prompts/` serve the same
+purpose for tools without workflow support.
 
 ---
 
@@ -277,12 +273,22 @@ Output the updated DEV-INFRASTRUCTURE.md in full.
 Review the output. Save the result to `DEV-INFRASTRUCTURE.md`,
 replacing the template version.
 
-Also copy `ai_project_manager_kickstart/scaffold/.editorconfig` to
-your project root and customise if needed.
+---
+
+## Step 9: Copy scaffold files
+
+Copy the following from `ai_project_manager_kickstart/scaffold/` to
+your project root, if they don't already exist:
+
+- **`.editorconfig`** — editor style enforcement (indent, encoding,
+  line endings). Useful for any project, not just those with a build
+  step. Customise to match your preferences.
+- **`.gitignore`** — common ignores for JS/npm projects. Adapt for
+  your stack if needed.
 
 ---
 
-## Step 9: Readiness check
+## Step 10: Readiness check
 
 Before starting your first task, confirm:
 
@@ -296,19 +302,22 @@ Before starting your first task, confirm:
   project has UI).
 - [ ] `DEV-INFRASTRUCTURE.md` is populated (if the project has a build
   step or dev server).
-- [ ] `.editorconfig` is in the project root (if applicable).
+- [ ] `.editorconfig` is in the project root.
+- [ ] `.gitignore` is in the project root.
 
 If any of these are incomplete, finish them before proceeding.
 
 ---
 
-## Step 10: Start your first task
+## Step 11: Start your first task
 
 Open `project/backlog.md` and pick the first task.
 
-Then follow the task workflow:
+If your AI tool supports workflows and you copied `integrations/`
+in Step 6, run the task workflow and state your task.
+Otherwise, follow the manual prompt workflow below.
 
-**For non-trivial tasks (4-stage workflow):**
+For non-trivial tasks (4-stage):
 
 1. Open a new chat.
 2. Paste the "Standard start" from `prompts/session-start.md`.
@@ -319,7 +328,7 @@ Then follow the task workflow:
 7. Say "go ahead and implement."
 8. When done, use the "Update project memory" prompt from `prompts/corrections.md`.
 
-**For small or simple tasks (single-stage workflow):**
+For small or simple tasks (single-stage):
 
 1. Open a new chat.
 2. Paste the "Quick start" from `prompts/session-start.md`.

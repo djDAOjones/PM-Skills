@@ -4,17 +4,12 @@ An opinionated starter pack for AI-assisted coding projects.
 Structured markdown files, design-before-code discipline, and
 persistent project memory — the way Joe likes to work in 2026.
 
-Optimised for Windsurf Cascade. Works with other AI tools via manual
-prompt pasting. Defaults to Carbon Design System, WCAG 2.2 AAA,
-Nielsen heuristics, and JSDoc. All customisable, none apologised for.
+Defaults to Carbon Design System, WCAG 2.2 AAA, Nielsen heuristics,
+and JSDoc. All customisable, none apologised for.
 
 ## Start here
 
 **New project?** Follow [init.md](./init.md) step by step.
-
-**Windsurf Cascade?** Run the `/init-project` workflow instead.
-For ongoing tasks, use `/feature` to run the design-before-code
-pipeline.
 
 ## Two-tier memory system
 
@@ -29,9 +24,9 @@ This framework uses two kinds of project memory:
   kickoff process (Steps 6–8 of `init.md`) and updated when major
   architectural, UI, or build decisions change.
 
-Tools that support global rules (e.g. Windsurf Cascade) load
-`AGENTS.md` automatically. For other tools, the session-start prompts
-include explicit read instructions.
+AI tools that support global rules load `AGENTS.md` automatically.
+For other tools, the session-start prompts include explicit read
+instructions.
 
 ## What's in this folder
 
@@ -45,7 +40,6 @@ project/         Durable project memory. Fill once, maintain ongoing.
   decision-log.md  Append-only record of design decisions.
 
 prompts/         Reusable per-task prompts.
-  operating-rules.md      Agent behavioral contract (supplements AGENTS.md).
   session-start.md        How to begin a new chat.
   scoping.md              Stage 1: scope the task.
   design-options.md       Stage 2: explore options.
@@ -54,9 +48,9 @@ prompts/         Reusable per-task prompts.
   quick-task.md           Single-stage alternative for small tasks.
   corrections.md          Drift correction snippets.
 
-integrations/    Tool-specific workflows.
-  init-project.md    Windsurf Cascade: guided project initialization.
-  feature.md         Windsurf Cascade: full task workflow with gates.
+integrations/    Optional tool-specific workflows.
+  init-project.md    Guided project initialization.
+  feature.md         Full task workflow with approval gates.
 
 scaffold/        Template files to copy into your project root.
   .editorconfig    Editor style enforcement (indent, encoding, etc.).
@@ -65,14 +59,15 @@ scaffold/        Template files to copy into your project root.
 
 ## Per-task quick reference
 
-### Windsurf Cascade
+### AI tools with workflow support
 
-Run `/feature` at the start of any task. The workflow reads project
-memory, asks whether the task is full (4-stage) or quick (1-stage),
-runs the appropriate pipeline with approval gates, and reminds you
-to update project memory at the end.
+If your AI tool supports workflows (e.g. Windsurf Cascade), copy the
+files from `integrations/` to your tool's workflow directory. Then run
+the task workflow at the start of any task — it reads project memory,
+asks full vs quick, runs the pipeline with approval gates, and reminds
+you to update project memory at the end.
 
-### Other AI tools (manual prompt workflow)
+### Manual prompt workflow
 
 **Non-trivial tasks (4-stage):**
 

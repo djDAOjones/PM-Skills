@@ -1,8 +1,5 @@
-# Implementation Plan Prompt
+# Implementation Plan — Stage 3 of 4
 
-Use this after a design option is chosen. This is stage 3 of 4.
-
-```text
 Using the project context, approved scope, and chosen design option, produce an implementation plan only.
 
 Approved scope:
@@ -26,4 +23,3 @@ Rules:
 - Prefer minimal changes over broad cleanup.
 - Call out architectural, efficiency, or regression risks.
 - No code or pseudocode.
-```

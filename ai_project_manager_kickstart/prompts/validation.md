@@ -1,8 +1,5 @@
-# Validation Prompt
+# Validation — Stage 4 of 4
 
-Use this after the implementation plan is approved. This is stage 4 of 4.
-
-```text
 Using the project context, chosen design, and implementation plan, do a pre-code validation pass.
 
 Chosen option:
@@ -24,4 +21,3 @@ Rules:
 - Separate pre-existing issues from task-induced risks.
 - Keep it concrete and actionable.
 - No code.
-```

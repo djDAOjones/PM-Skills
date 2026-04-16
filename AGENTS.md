@@ -3,8 +3,8 @@
 <!-- NOTE: This file is a template. It contains CUSTOMISE placeholders
      that must be populated before it can serve as an authoritative behavioral
      contract. Complete the kickstart process (init.md Step 6) to fill them
-     in. Until then, the operating rules in prompts/operating-rules.md and
-     the project memory files in project/ are the primary references. -->
+     in. Until then, the project memory files in
+     ai_project_manager_kickstart/project/ are the primary references. -->
 
 <!-- CUSTOMISE: Replace [Project Name] and write a 2–4 sentence product
      description. State what the app IS and what mental model is canonical.
@@ -46,11 +46,12 @@ explain concepts back unless asked.
    layout, text, states, accessibility, or user-facing behaviour.
 4. Read `DEV-INFRASTRUCTURE.md` (if it exists) for build, dev server,
    versioning, and script conventions.
-5. For non-trivial work, run the `/feature` workflow (or follow the
-   4-stage prompt sequence in `prompts/`: `scoping.md` →
+5. For non-trivial work, follow the 4-stage prompt sequence in
+   `ai_project_manager_kickstart/prompts/`: `scoping.md` →
    `design-options.md` → `implementation-plan.md` →
-   `validation.md`). Get user sign-off on scope before writing code.
-   For small tasks, use `prompts/quick-task.md` instead.
+   `validation.md`. Get user sign-off on scope before writing code.
+   For small tasks, use
+   `ai_project_manager_kickstart/prompts/quick-task.md` instead.
 6. Search the full source tree before proposing changes. Check for
    existing tuneable values and UI controls before adding new ones.
 
@@ -127,11 +128,11 @@ explicit approval. -->
 
 ---
 
-## Event naming convention
-
 <!-- CUSTOMISE: Define event namespaces for your project, or remove
      this section if not applicable. Keep namespaces consistent and
      do not create synonyms for existing event names. Example:
+
+## Event naming convention
 
 Use colon-separated namespaces for all events. Group by domain:
 
@@ -193,7 +194,7 @@ touches UI. The key principles are:
   Every comment should earn its place.
 
 Project-specific documentation conventions (what to document, depth,
-exceptions) are in `project/conventions.md`.
+exceptions) are in `ai_project_manager_kickstart/project/conventions.md`.
 
 ---
 
@@ -216,7 +217,7 @@ exceptions) are in `project/conventions.md`.
   test runner is available.
 
 Project-specific testing policy (framework, coverage bar, what to
-test) is in `project/conventions.md`.
+test) is in `ai_project_manager_kickstart/project/conventions.md`.
 
 ---
 
@@ -235,13 +236,13 @@ See `DEV-INFRASTRUCTURE.md` for the concrete list of protected paths.
 
 ---
 
-## Persistence checklist
-
 <!-- CUSTOMISE: This checklist applies to apps with stateful models
      that persist to localStorage, files, or a database. If the project
      has no persistence layer, remove this section. Define the concrete
      steps for your project's persistence pattern. Example for a
      JS app with manual serialisation:
+
+## Persistence checklist
 
      When adding any property that should survive reload:
      1. Default in constructor (relevant model class).
@@ -299,7 +300,8 @@ If you find yourself doing any of these, stop and reconsider:
 - Hard-coding values that should be tokenised or configurable.
 - Adding runtime dependencies without explicit approval.
 
-Project-specific anti-patterns are in `project/conventions.md` under
+Project-specific anti-patterns are in
+`ai_project_manager_kickstart/project/conventions.md` under
 "Patterns to avoid".
 
 <!-- CUSTOMISE: Add project-specific anti-patterns below. Examples:

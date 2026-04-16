@@ -1,8 +1,5 @@
-# Scoping Prompt
+# Scoping — Stage 1 of 4
 
-Use this after the session-start prompt. This is stage 1 of 4.
-
-```text
 Using the project context, do the scoping step only for the current task.
 
 Output:
@@ -21,4 +18,3 @@ Rules:
 - Flag any efficiency, persistence, or architectural concerns.
 - If this is a new project with little or no code yet, focus on folder structure and module responsibilities instead of file-level detail.
 - No code or pseudocode.
-```
