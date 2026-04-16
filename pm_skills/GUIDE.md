@@ -1,4 +1,4 @@
-# Joe's PM Skills
+# PM Skills — Guide
 
 An opinionated starter pack for AI-assisted coding projects.
 Structured markdown files, design-before-code discipline, and

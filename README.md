@@ -1,12 +1,11 @@
-# Joe's PM Skills
+# PM Skills
 
-An opinionated session context system for AI-assisted coding.
-Project memory, behavioral contracts, and a design-before-code
-prompt workflow — the way Joe likes to work in 2026.
+An opinionated session context system for AI-assisted coding where above-default project management is needed.
+Includes project memory, behavioral contracts, and a design-before-code
+prompt workflow.
 
 Defaults to Carbon Design System, WCAG 2.2 AAA accessibility, Nielsen
-heuristics, and JSDoc documentation. Adapts to other stacks but makes
-no apology for its defaults.
+heuristics, and JSDoc documentation.
 
 ## Quick start
 
@@ -15,7 +14,7 @@ no apology for its defaults.
    your project root.
 3. Follow `pm_skills/init.md` to populate everything.
 
-See [`pm_skills/README.md`](pm_skills/README.md) for the full guide:
+See [`pm_skills/GUIDE.md`](pm_skills/GUIDE.md) for the full guide:
 folder contents, two-tier memory system, per-task workflow, and how to
 keep project memory fresh.
 

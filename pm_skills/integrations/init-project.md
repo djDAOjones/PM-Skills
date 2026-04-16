@@ -1,5 +1,5 @@
 ---
-description: Initialize a new project using Joe's PM Skills
+description: Initialize a new project using PM Skills
 ---
 
 Guide the user through project initialization. Follow these steps in
