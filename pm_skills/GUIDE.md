@@ -46,11 +46,13 @@ prompts/         Reusable per-task prompts.
   implementation-plan.md  Stage 3: plan the build.
   validation.md           Stage 4: pre-code checks.
   quick-task.md           Single-stage alternative for small tasks.
+  bug-scoping.md          Bug-specific scoping: reproduce, diagnose, fix.
   corrections.md          Drift correction snippets.
 
 integrations/    Optional tool-specific workflows.
   init-project.md    Guided project initialization.
   feature.md         Full task workflow with approval gates.
+  bugfix.md          Diagnosis-before-fix workflow for bugs.
 
 scaffold/        Template files to copy into your project root.
   .editorconfig    Editor style enforcement (indent, encoding, etc.).
@@ -85,6 +87,14 @@ to update project memory at the end.
 2. Paste `prompts/quick-task.md` → approve plan.
 3. "Go ahead and implement."
 4. End of task → paste "Update project memory" from `prompts/corrections.md`.
+
+**Bug tasks:**
+
+1. New chat → paste `prompts/session-start.md` (bug start).
+2. Paste `prompts/bug-scoping.md` → approve diagnosis and fix plan.
+3. "Go ahead and fix."
+4. Verify the fix.
+5. End of task → paste "Update project memory" from `prompts/corrections.md`.
 
 ## Keeping project memory fresh
 

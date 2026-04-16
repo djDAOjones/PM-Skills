@@ -31,6 +31,11 @@ For a small task:
 > My task: [one sentence]
 > This is a small task. Scope it, plan it, and present the plan for approval. No code yet.
 
+For a bug:
+
+> My task: [bug description — what's expected vs what's happening]
+> This is a bug. Start with diagnosis. No code.
+
 For continuing a previous task:
 
 > I'm continuing work on: [task description]
