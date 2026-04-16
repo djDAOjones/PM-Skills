@@ -1,4 +1,4 @@
-# AI Project Manager Kickstart
+# Joe's PM Skills
 
 An opinionated starter pack for AI-assisted coding projects.
 Structured markdown files, design-before-code discipline, and
@@ -61,11 +61,11 @@ scaffold/        Template files to copy into your project root.
 
 ### AI tools with workflow support
 
-If your AI tool supports workflows (e.g. Windsurf Cascade), copy the
-files from `integrations/` to your tool's workflow directory. Then run
-the task workflow at the start of any task — it reads project memory,
-asks full vs quick, runs the pipeline with approval gates, and reminds
-you to update project memory at the end.
+If your AI tool supports workflows, copy the files from
+`integrations/` to your tool's workflow directory. Then run the task
+workflow at the start of any task — it reads project memory, asks
+full vs quick, runs the pipeline with approval gates, and reminds you
+to update project memory at the end.
 
 ### Manual prompt workflow
 

@@ -153,12 +153,11 @@ enforcement. It defines:
 - Trailing whitespace trimmed (except in markdown)
 - Single quotes in JavaScript
 
-Editors that support EditorConfig (VS Code, Windsurf, Sublime,
-IntelliJ, vim) apply these rules automatically on save. This is the
+Editors that support EditorConfig (VS Code, Sublime, IntelliJ, vim) apply these rules automatically on save. This is the
 first line of defence for consistent formatting — before any linter
 or formatter runs.
 
-Copy `ai_project_manager_kickstart/scaffold/.editorconfig` to the
+Copy `pm_skills/scaffold/.editorconfig` to the
 project root if one does not already exist. -->
 
 ---

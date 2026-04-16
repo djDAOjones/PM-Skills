@@ -13,12 +13,12 @@ user approval at each gate. Do not write code until all gates pass.
    - `AGENTS.md`
    - `UI-STANDARDS.md` (if the task touches UI)
    - `DEV-INFRASTRUCTURE.md` (if it exists)
-   - `ai_project_manager_kickstart/project/brief.md`
-   - `ai_project_manager_kickstart/project/architecture.md`
-   - `ai_project_manager_kickstart/project/conventions.md` (if it exists)
-   - `ai_project_manager_kickstart/project/file-map.md`
-   - `ai_project_manager_kickstart/project/backlog.md`
-   - `ai_project_manager_kickstart/project/decision-log.md` (if the
+   - `pm_skills/project/brief.md`
+   - `pm_skills/project/architecture.md`
+   - `pm_skills/project/conventions.md` (if it exists)
+   - `pm_skills/project/file-map.md`
+   - `pm_skills/project/backlog.md`
+   - `pm_skills/project/decision-log.md` (if the
      task involves design decisions or you need context on prior choices)
 
 3. Determine task size.
@@ -30,7 +30,7 @@ user approval at each gate. Do not write code until all gates pass.
 --- FULL 4-STAGE WORKFLOW ---
 
 4. Scoping (stage 1).
-   Read `ai_project_manager_kickstart/prompts/scoping.md` and follow
+   Read `pm_skills/prompts/scoping.md` and follow
    its instructions. Output the scoping deliverables:
    - Problem framing
    - Affected areas
@@ -45,7 +45,7 @@ user approval at each gate. Do not write code until all gates pass.
    Present scope to the user. Wait for approval before continuing.
 
 5. Design options (stage 2).
-   Read `ai_project_manager_kickstart/prompts/design-options.md` and
+   Read `pm_skills/prompts/design-options.md` and
    follow its instructions. Produce 2–3 design options with:
    - Summary, affected files, architectural fit, data flow, benefits,
      risks
@@ -54,7 +54,7 @@ user approval at each gate. Do not write code until all gates pass.
    Present to the user. Wait for the user to pick an option.
 
 6. Implementation plan (stage 3).
-   Read `ai_project_manager_kickstart/prompts/implementation-plan.md`
+   Read `pm_skills/prompts/implementation-plan.md`
    and follow its instructions. Output:
    - Ordered file list with purpose
    - Data flow or architectural changes
@@ -68,7 +68,7 @@ user approval at each gate. Do not write code until all gates pass.
    Present to the user. Wait for approval before continuing.
 
 7. Validation (stage 4).
-   Read `ai_project_manager_kickstart/prompts/validation.md` and
+   Read `pm_skills/prompts/validation.md` and
    follow its instructions. Output:
    - Design sanity checks
    - Architecture checks
@@ -85,7 +85,7 @@ user approval at each gate. Do not write code until all gates pass.
 --- QUICK TASK WORKFLOW ---
 
 8. Quick scope and plan.
-   Read `ai_project_manager_kickstart/prompts/quick-task.md` and
+   Read `pm_skills/prompts/quick-task.md` and
    follow its instructions. Output:
    - What needs to change and why
    - Files to create or modify
@@ -100,13 +100,13 @@ user approval at each gate. Do not write code until all gates pass.
 
 9. Update project memory.
    After implementation is complete, update:
-   - `ai_project_manager_kickstart/project/backlog.md` — mark this
-     task done and note any follow-up tasks.
-   - `ai_project_manager_kickstart/project/file-map.md` — add or
+   - `pm_skills/project/backlog.md` — move this task to the
+     Completed section, note any follow-up tasks in Active.
+   - `pm_skills/project/file-map.md` — add or
      update entries for files created or changed.
-   - `ai_project_manager_kickstart/project/decision-log.md` — record
+   - `pm_skills/project/decision-log.md` — record
      the key design decision from this task.
-   - `ai_project_manager_kickstart/project/conventions.md` — if new
+   - `pm_skills/project/conventions.md` — if new
      conventions were established or existing ones changed.
    - `README.md` — if architecture, dev workflow, or key
      infrastructure changed significantly.

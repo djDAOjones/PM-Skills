@@ -11,7 +11,7 @@ Behavioral contracts:
 - `UI-STANDARDS.md` (if the task touches UI)
 - `DEV-INFRASTRUCTURE.md` (if it exists)
 
-Project memory in `ai_project_manager_kickstart/project/`:
+Project memory in `pm_skills/project/`:
 - `brief.md`
 - `architecture.md`
 - `backlog.md`

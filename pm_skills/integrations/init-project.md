@@ -1,5 +1,5 @@
 ---
-description: Initialize a new project using the AI Project Manager framework
+description: Initialize a new project using Joe's PM Skills
 ---
 
 Guide the user through project initialization. Follow these steps in
@@ -8,32 +8,32 @@ step before proceeding to the next.
 
 1. Fill in the project brief.
    Ask the user the questions from
-   `ai_project_manager_kickstart/project/brief.md` (what are we
+   `pm_skills/project/brief.md` (what are we
    building, who is it for, platform, core features, constraints,
    out of scope, open questions).
-   Write the answers to `ai_project_manager_kickstart/project/brief.md`.
+   Write the answers to `pm_skills/project/brief.md`.
 
 2. Generate the architecture.
-   Read `ai_project_manager_kickstart/project/brief.md`.
+   Read `pm_skills/project/brief.md`.
    Propose a tech stack, folder structure, key modules, communication
    patterns, dependency policy, dev workflow, and configuration
    strategy. Follow the template in
-   `ai_project_manager_kickstart/project/architecture.md`.
+   `pm_skills/project/architecture.md`.
    Present the proposal for review. After approval, write it to
-   `ai_project_manager_kickstart/project/architecture.md`.
+   `pm_skills/project/architecture.md`.
 
 3. Generate the initial backlog.
    Read the brief and architecture.
    Propose 8–12 tasks grouped by milestone, ordered by dependency,
    small enough for a single session. Follow the template in
-   `ai_project_manager_kickstart/project/backlog.md`.
+   `pm_skills/project/backlog.md`.
    Present for review. After approval, write to
-   `ai_project_manager_kickstart/project/backlog.md`.
+   `pm_skills/project/backlog.md`.
 
 4. Set initial conventions (optional).
    Ask the user if they have preferred code style, naming, commit
    format, testing, or documentation conventions. If yes, write to
-   `ai_project_manager_kickstart/project/conventions.md`.
+   `pm_skills/project/conventions.md`.
    If unsure, skip — conventions will emerge during implementation.
 
 5. Create a root README.md.
@@ -47,7 +47,7 @@ step before proceeding to the next.
    Read the brief, architecture, conventions (if exists), and
    `AGENTS.md`. Fill in every applicable `<!-- CUSTOMISE -->`
    placeholder using the information gathered so far. Follow the
-   detailed instructions in `ai_project_manager_kickstart/init.md`
+   detailed instructions in `pm_skills/init.md`
    Step 6 for what each section needs.
    Present the populated version for review. After approval, write
    to `AGENTS.md`.
@@ -66,15 +66,15 @@ step before proceeding to the next.
    If no build tooling, tell the user this file can be removed.
 
 9. Copy scaffold files.
-   Copy `ai_project_manager_kickstart/scaffold/.editorconfig` and
-   `ai_project_manager_kickstart/scaffold/.gitignore` to the project
+   Copy `pm_skills/scaffold/.editorconfig` and
+   `pm_skills/scaffold/.gitignore` to the project
    root if they don't already exist.
 
 10. Readiness check.
     Confirm all required files are populated:
-    - `ai_project_manager_kickstart/project/brief.md`
-    - `ai_project_manager_kickstart/project/architecture.md`
-    - `ai_project_manager_kickstart/project/backlog.md`
+    - `pm_skills/project/brief.md`
+    - `pm_skills/project/architecture.md`
+    - `pm_skills/project/backlog.md`
     - `README.md`
     - `AGENTS.md` (no remaining `[Project Name]` placeholder)
     - `UI-STANDARDS.md` (if applicable)

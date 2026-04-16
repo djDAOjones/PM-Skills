@@ -1,10 +1,8 @@
 # AI Agent Rules
 
-<!-- NOTE: This file is a template. It contains CUSTOMISE placeholders
-     that must be populated before it can serve as an authoritative behavioral
-     contract. Complete the kickstart process (init.md Step 6) to fill them
-     in. Until then, the project memory files in
-     ai_project_manager_kickstart/project/ are the primary references. -->
+<!-- NOTE: This file is a template. Complete init.md Step 6 to populate
+     the CUSTOMISE placeholders. Until then, the project memory files
+     in pm_skills/project/ are the primary references. -->
 
 <!-- CUSTOMISE: Replace [Project Name] and write a 2–4 sentence product
      description. State what the app IS and what mental model is canonical.
@@ -28,7 +26,7 @@ explain concepts back unless asked.
 
 <!-- CUSTOMISE: Update the paths below to match your project layout.
      The defaults assume the kickstart pack lives at
-     ai_project_manager_kickstart/ relative to the project root.
+     pm_skills/ relative to the project root.
      README.md here refers to the project's own root README — the one
      created during init Step 5 that documents architecture, key
      infrastructure, invariants, and gotchas. It is NOT the framework's
@@ -37,9 +35,9 @@ explain concepts back unless asked.
 
 1. Read `README.md` (architecture, key infrastructure, invariants,
    gotchas).
-2. Read the project memory files in `ai_project_manager_kickstart/project/`:
+2. Read the project memory files in `pm_skills/project/`:
    `brief.md`, `architecture.md`, `conventions.md` (if it exists),
-   `file-map.md`, and `backlog.md`.
+   `file-map.md`, and the Active section of `backlog.md`.
    Also read `decision-log.md` if the task involves design decisions
    or you need context on prior choices.
 3. Read `UI-STANDARDS.md` for any task that touches UI, controls,
@@ -47,19 +45,17 @@ explain concepts back unless asked.
 4. Read `DEV-INFRASTRUCTURE.md` (if it exists) for build, dev server,
    versioning, and script conventions.
 5. For non-trivial work, follow the 4-stage prompt sequence in
-   `ai_project_manager_kickstart/prompts/`: `scoping.md` →
+   `pm_skills/prompts/`: `scoping.md` →
    `design-options.md` → `implementation-plan.md` →
    `validation.md`. Get user sign-off on scope before writing code.
    For small tasks, use
-   `ai_project_manager_kickstart/prompts/quick-task.md` instead.
+   `pm_skills/prompts/quick-task.md` instead.
 6. Search the full source tree before proposing changes. Check for
    existing tuneable values and UI controls before adding new ones.
 
 ---
 
 ## Hard rules (invariants)
-
-These apply unconditionally to every change.
 
 - **All imports at the top of the file.** Mid-file imports break
   bundlers and make dependency chains harder to trace.
@@ -146,26 +142,6 @@ Use colon-separated namespaces for all events. Group by domain:
 
 ---
 
-## UI, usability, and accessibility (summary)
-
-Full rules are in `UI-STANDARDS.md`. Read that file for any task that
-touches UI. The key principles are:
-
-- **Carbon is the reference standard.** Follow Carbon's productive
-  design language for all controls, layout, spacing, and interaction.
-  Implement to Carbon's spec, not via Carbon packages.
-- **WCAG 2.2 AAA by default, exceptions documented.** 7:1 contrast,
-  44 px targets, keyboard operability, no colour-only meaning, visible
-  focus, semantic HTML first.
-- **Nielsen heuristics are hard rules, not aspirations.** Visibility of
-  status, user control and freedom, consistency, error prevention,
-  recognition over recall, flexibility, minimalist design, error
-  recovery, and contextual help all apply to every UI change.
-- **Design review gate.** Every UI-affecting change must pass the
-  checklist in `UI-STANDARDS.md` before sign-off.
-
----
-
 ## Minimal change discipline
 
 - Don't reorganise code you weren't asked to touch.
@@ -194,7 +170,7 @@ touches UI. The key principles are:
   Every comment should earn its place.
 
 Project-specific documentation conventions (what to document, depth,
-exceptions) are in `ai_project_manager_kickstart/project/conventions.md`.
+exceptions) are in `pm_skills/project/conventions.md`.
 
 ---
 
@@ -217,7 +193,7 @@ exceptions) are in `ai_project_manager_kickstart/project/conventions.md`.
   test runner is available.
 
 Project-specific testing policy (framework, coverage bar, what to
-test) is in `ai_project_manager_kickstart/project/conventions.md`.
+test) is in `pm_skills/project/conventions.md`.
 
 ---
 
@@ -263,45 +239,32 @@ See `DEV-INFRASTRUCTURE.md` for the concrete list of protected paths.
 
 ## Document ownership
 
-Project knowledge is split across these layers:
+| Layer | Owns | Update when |
+| --- | --- | --- |
+| `AGENTS.md` | Hard rules, invariants, data model, anti-patterns | Major architectural or design decisions change |
+| `UI-STANDARDS.md` | UI, accessibility, usability rules | New token systems or UI conventions established |
+| `DEV-INFRASTRUCTURE.md` | Build, dev server, versioning, scripts | Build or deployment decisions change |
+| `project/` memory files | Brief, architecture, backlog, file map, conventions, decision log | End of every task session |
 
-- **`AGENTS.md`** — permanent hard rules, invariants, data model
-  contracts, protected modules, event namespaces, and anti-patterns.
-  Updated when major architectural or design decisions change.
-- **`UI-STANDARDS.md`** — permanent UI, accessibility, and usability
-  rules. Updated when new token systems or UI conventions are
-  established.
-- **`DEV-INFRASTRUCTURE.md`** — permanent build, dev server,
-  versioning, and script conventions. Updated when build or deployment
-  decisions change.
-- **`project/` memory files** — living project context: brief,
-  architecture, backlog, file map, conventions, and decision log.
-  Updated at the end of every task session.
-
-When in doubt about where a rule belongs: if it is an unconditional
-invariant, it goes in `AGENTS.md`. If it is a UI convention, it goes
-in `UI-STANDARDS.md`. If it is a build or dev workflow rule, it goes
-in `DEV-INFRASTRUCTURE.md`. If it is evolving context, it goes in
-`project/`.
+When in doubt: unconditional invariant → `AGENTS.md`. UI convention →
+`UI-STANDARDS.md`. Build/dev rule → `DEV-INFRASTRUCTURE.md`. Evolving
+context → `project/`.
 
 ---
 
 ## Anti-patterns to reject
 
-If you find yourself doing any of these, stop and reconsider:
-
 - Bypassing the project's established communication pattern (e.g.
   direct method calls when the project uses events or hooks).
 - Inventing a custom UI control when Carbon provides a suitable pattern.
 - Installing Carbon packages instead of implementing to Carbon's spec.
-- Using AA contrast thresholds when AAA (7:1) is required.
 - Leaving a panel, state, or error condition without an intentional,
   visible, accessible treatment.
 - Hard-coding values that should be tokenised or configurable.
 - Adding runtime dependencies without explicit approval.
 
 Project-specific anti-patterns are in
-`ai_project_manager_kickstart/project/conventions.md` under
+`pm_skills/project/conventions.md` under
 "Patterns to avoid".
 
 <!-- CUSTOMISE: Add project-specific anti-patterns below. Examples:

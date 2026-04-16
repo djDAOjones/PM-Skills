@@ -31,7 +31,7 @@ expand later. This is the seed that everything else grows from.
 Start a chat with your AI tool and paste this:
 
 ```text
-Read ai_project_manager_kickstart/project/brief.md.
+Read pm_skills/project/brief.md.
 
 Based on this brief, propose:
 1. A recommended tech stack with a one-line justification per choice.
@@ -46,7 +46,7 @@ Based on this brief, propose:
    design tokens should live.
 
 Keep it practical and minimal. This is a starting point, not a final architecture.
-Output in markdown format matching the template in ai_project_manager_kickstart/project/architecture.md.
+Output in markdown format matching the template in pm_skills/project/architecture.md.
 ```
 
 Review the output. Edit until you agree with it. Save the result to
@@ -60,8 +60,8 @@ In the same chat (or a new one), paste this:
 
 ```text
 Read:
-- ai_project_manager_kickstart/project/brief.md
-- ai_project_manager_kickstart/project/architecture.md
+- pm_skills/project/brief.md
+- pm_skills/project/architecture.md
 
 Based on the brief and architecture, propose an initial backlog of
 8–12 tasks that would take this project from zero to a working first
@@ -73,7 +73,7 @@ Format each task as:
 Group tasks under milestone headings.
 Order by dependency — what must come first.
 Keep tasks small enough to complete in a single focused session.
-Output in markdown format matching the template in ai_project_manager_kickstart/project/backlog.md.
+Output in markdown format matching the template in pm_skills/project/backlog.md.
 ```
 
 Review the output. Reorder, add, or remove tasks. Save to
@@ -108,8 +108,8 @@ You can generate a first draft from your brief and architecture:
 
 ```text
 Read:
-- ai_project_manager_kickstart/project/brief.md
-- ai_project_manager_kickstart/project/architecture.md
+- pm_skills/project/brief.md
+- pm_skills/project/architecture.md
 
 Draft a concise root README.md for this project. Include:
 1. One-paragraph description of the project.
@@ -134,9 +134,9 @@ In the same chat (or a new one), paste this:
 
 ```text
 Read:
-- ai_project_manager_kickstart/project/brief.md
-- ai_project_manager_kickstart/project/architecture.md
-- ai_project_manager_kickstart/project/conventions.md (if it exists)
+- pm_skills/project/brief.md
+- pm_skills/project/architecture.md
+- pm_skills/project/conventions.md (if it exists)
 - AGENTS.md
 
 AGENTS.md has <!-- CUSTOMISE --> placeholder sections. Using the brief,
@@ -197,9 +197,8 @@ template version.
 
 **Optional — tool-specific workflows:** If your AI tool supports
 workflows, copy the files from `integrations/` to your tool's workflow
-directory. For example, Windsurf Cascade users can copy them to
-`.windsurf/workflows/`. The prompt files in `prompts/` serve the same
-purpose for tools without workflow support.
+directory. The prompt files in `prompts/` serve the same purpose for
+tools without workflow support.
 
 ---
 
@@ -209,8 +208,8 @@ If this project has a user interface, paste this:
 
 ```text
 Read:
-- ai_project_manager_kickstart/project/brief.md
-- ai_project_manager_kickstart/project/architecture.md
+- pm_skills/project/brief.md
+- pm_skills/project/architecture.md
 - UI-STANDARDS.md
 
 UI-STANDARDS.md has a <!-- CUSTOMISE --> placeholder for the token
@@ -242,8 +241,8 @@ In the same chat (or a new one), paste this:
 
 ```text
 Read:
-- ai_project_manager_kickstart/project/brief.md
-- ai_project_manager_kickstart/project/architecture.md
+- pm_skills/project/brief.md
+- pm_skills/project/architecture.md
 - DEV-INFRASTRUCTURE.md
 
 DEV-INFRASTRUCTURE.md has <!-- CUSTOMISE --> placeholder sections.
@@ -277,7 +276,7 @@ replacing the template version.
 
 ## Step 9: Copy scaffold files
 
-Copy the following from `ai_project_manager_kickstart/scaffold/` to
+Copy the following from `pm_skills/scaffold/` to
 your project root, if they don't already exist:
 
 - **`.editorconfig`** — editor style enforcement (indent, encoding,
