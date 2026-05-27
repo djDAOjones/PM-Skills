@@ -117,4 +117,11 @@ user approval at each gate. Do not write code until all gates pass.
    - `DEV-INFRASTRUCTURE.md` — if this task changed build, dev server,
      versioning, or script conventions.
 
+   Then run the memory size check (see AGENTS.md → "Memory size budgets"):
+   word-count each hot whole-read file, count Completed items in
+   `backlog.md`, count entries and check oldest date in
+   `decision-log.md`. If any budget is exceeded, output one line per
+   overrun and propose running `pm_skills/prompts/prune-memory.md`.
+   Do not auto-prune.
+
    Present the memory updates to the user for review.

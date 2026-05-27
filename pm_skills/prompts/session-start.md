@@ -6,18 +6,27 @@ read explicitly.
 
 ## Context to load
 
-Behavioral contracts:
-- `AGENTS.md`
-- `UI-STANDARDS.md` (if the task touches UI)
-- `DEV-INFRASTRUCTURE.md` (if it exists)
+Read by tier (full policy and budgets in AGENTS.md → "Before every task").
 
-Project memory in `pm_skills/project/`:
-- `brief.md`
-- `architecture.md`
-- `backlog.md`
-- `file-map.md`
-- `conventions.md` (if it exists)
-- `decision-log.md` (if the task involves design decisions)
+**Hot whole-file** (read every task):
+
+- `AGENTS.md` (skip if already loaded as a global rule)
+- `pm_skills/project/brief.md`
+- `pm_skills/project/architecture.md`
+- `pm_skills/project/conventions.md` (if it exists)
+- `pm_skills/project/file-map.md`
+- `UI-STANDARDS.md` — only if the task touches UI
+- `DEV-INFRASTRUCTURE.md` (if it exists) — only if the task touches build/dev
+
+**Hot sectional** (read by section, not whole):
+
+- `pm_skills/project/backlog.md` — Active section only.
+- `pm_skills/project/decision-log.md` — latest 10 entries only.
+  Search older entries on demand if the task requires prior-decision context.
+
+**Cold** (do not auto-load):
+
+- `pm_skills/project/archive/*.md` — search via grep only when explicitly relevant.
 
 ## Then state the task
 

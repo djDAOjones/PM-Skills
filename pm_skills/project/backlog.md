@@ -2,7 +2,9 @@
 
 <!-- Generated during project initialization. Edit freely. -->
 <!-- Status: [ ] todo  [~] in progress  [x] done  [-] cut -->
-<!-- Agents: read Active tasks only. Completed section is for reference. -->
+<!-- Hot sectional. Agents read the Active section only by default. -->
+<!-- Completed lives here up to 40 items. Beyond that, the end-of-task -->
+<!-- check proposes archiving the oldest items to archive/backlog-shipped.md. -->
 
 ## Active
 

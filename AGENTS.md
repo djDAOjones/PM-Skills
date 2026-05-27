@@ -33,24 +33,59 @@ explain concepts back unless asked.
      distribution README. If init has not been completed yet, skip
      this step. -->
 
-1. Read `README.md` (architecture, key infrastructure, invariants,
-   gotchas).
-2. Read the project memory files in `pm_skills/project/`:
-   `brief.md`, `architecture.md`, `conventions.md` (if it exists),
-   `file-map.md`, and the Active section of `backlog.md`.
-   Also read `decision-log.md` if the task involves design decisions
-   or you need context on prior choices.
-3. Read `UI-STANDARDS.md` for any task that touches UI, controls,
-   layout, text, states, accessibility, or user-facing behaviour.
-4. Read `DEV-INFRASTRUCTURE.md` (if it exists) for build, dev server,
-   versioning, and script conventions.
-5. For non-trivial work, follow the 4-stage prompt sequence in
-   `pm_skills/prompts/`: `scoping.md` →
-   `design-options.md` → `implementation-plan.md` →
-   `validation.md`. Get user sign-off on scope before writing code.
-   For small tasks, use
+### Read tiers
+
+Project memory has three read tiers. Load only what each tier
+prescribes — this keeps session context bounded.
+
+**Hot whole-file** — read every task:
+
+- `README.md`
+- `pm_skills/project/brief.md`
+- `pm_skills/project/architecture.md`
+- `pm_skills/project/conventions.md` (if it exists)
+- `pm_skills/project/file-map.md`
+- `UI-STANDARDS.md` — only when the task touches UI, controls, text,
+  states, accessibility, or user-facing behaviour.
+- `DEV-INFRASTRUCTURE.md` (if it exists) — only when the task touches
+  build, dev server, versioning, or scripts.
+
+**Hot sectional** — read by section only:
+
+- `pm_skills/project/backlog.md` — read only the **Active** section.
+  Read **Completed** only when verifying shipped behaviour.
+- `pm_skills/project/decision-log.md` — read only the **latest 10
+  entries**. Search older entries on demand when prior-decision
+  context is needed.
+
+**Cold** — never auto-read:
+
+- `pm_skills/project/archive/*.md` — historical content moved out of
+  hot files. Search via grep when explicitly relevant; never auto-load.
+
+### Memory size budgets
+
+Whole-read files have soft word budgets. The end-of-task update
+check flags overruns and proposes running
+`pm_skills/prompts/prune-memory.md`. Do not auto-prune — always
+propose first.
+
+| Scope | Soft limit | Action when exceeded |
+| --- | --- | --- |
+| Any single hot whole-read file | 2,000 words | Propose summarising or splitting. |
+| Total hot whole-read set | 8,000 words | Propose memory-wide review. |
+| `backlog.md` Completed items | 40 entries | Propose archiving oldest to `archive/backlog-shipped.md`. |
+| `decision-log.md` total entries | 20 entries | Propose monthly archive split to `archive/decision-log-YYYY-MM.md`. |
+| `decision-log.md` oldest entry age | 90 days | Propose monthly archive split. |
+
+### Workflow
+
+1. For non-trivial work, follow the 4-stage prompt sequence in
+   `pm_skills/prompts/`: `scoping.md` → `design-options.md` →
+   `implementation-plan.md` → `validation.md`. Get user sign-off on
+   scope before writing code. For small tasks, use
    `pm_skills/prompts/quick-task.md` instead.
-6. Search the full source tree before proposing changes. Check for
+2. Search the full source tree before proposing changes. Check for
    existing tuneable values and UI controls before adding new ones.
 
 ---
@@ -245,10 +280,11 @@ See `DEV-INFRASTRUCTURE.md` for the concrete list of protected paths.
 | `UI-STANDARDS.md` | UI, accessibility, usability rules | New token systems or UI conventions established |
 | `DEV-INFRASTRUCTURE.md` | Build, dev server, versioning, scripts | Build or deployment decisions change |
 | `project/` memory files | Brief, architecture, backlog, file map, conventions, decision log | End of every task session |
+| `project/archive/` | Historical content moved out of hot files | Only via `pm_skills/prompts/prune-memory.md` |
 
 When in doubt: unconditional invariant → `AGENTS.md`. UI convention →
 `UI-STANDARDS.md`. Build/dev rule → `DEV-INFRASTRUCTURE.md`. Evolving
-context → `project/`.
+context → `project/`. Historical content → `project/archive/`.
 
 ---
 

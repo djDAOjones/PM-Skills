@@ -113,3 +113,26 @@ to update project memory at the end.
 
 Use the "Update project memory" prompt in `prompts/corrections.md`
 at the end of every task session to stay current.
+
+## Keeping memory lean
+
+Project memory is read in tiers so context stays bounded as the
+project grows. The full policy and budgets live in `AGENTS.md` →
+"Before every task". Summary:
+
+- **Hot whole-file** — `brief.md`, `architecture.md`, `conventions.md`,
+  `file-map.md`, `README.md`. Read every task. Soft budget: 2,000
+  words each, 8,000 across the set.
+- **Hot sectional** — `backlog.md` Active section only;
+  `decision-log.md` latest 10 entries only.
+- **Cold** — `pm_skills/project/archive/*`. Never auto-read. Search
+  via grep when explicitly relevant.
+
+The end-of-task update runs a size check. When any file crosses its
+budget, the agent proposes running `prompts/prune-memory.md` — never
+auto-prunes. The prune workflow archives older content whole
+(append-only entries are never rewritten) and leaves a one-line index
+in the live file pointing at each archive.
+
+A fresh project has no `archive/` folder. It is created lazily on
+the first prune.

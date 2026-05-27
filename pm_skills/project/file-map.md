@@ -3,6 +3,8 @@
 <!-- Add entries as files are created. One line per file. -->
 <!-- Format: path — role or responsibility -->
 <!-- Update when files are created, renamed, or deleted. -->
+<!-- Hot whole-read file. Keep terse — target under 2,000 words. -->
+<!-- Map roles, not history. Move batch notes and change history to decision-log.md. -->
 
 ## Entry point
 

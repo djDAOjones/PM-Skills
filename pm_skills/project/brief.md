@@ -1,5 +1,7 @@
 # Project Brief
 
+<!-- Hot whole-read file. Keep terse — target under 2,000 words. -->
+
 ## What are we building?
 
 <!-- One paragraph. What is this thing? What does it do? -->

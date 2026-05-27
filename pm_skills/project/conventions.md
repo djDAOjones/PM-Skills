@@ -2,6 +2,7 @@
 
 <!-- Fill this in before or during your first implementation task. -->
 <!-- Skip at init if you're not sure yet — capture conventions as they emerge. -->
+<!-- Hot whole-read file. Keep terse — target under 2,000 words. -->
 
 ## Code style
 

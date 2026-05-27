@@ -346,3 +346,20 @@ The files in `project/` are your living memory. `README.md`,
 `AGENTS.md`, `UI-STANDARDS.md`, and `DEV-INFRASTRUCTURE.md` are your
 permanent project references. Keep them all current and every new
 chat can pick up where the last one left off.
+
+## Memory hygiene
+
+Project memory uses tiered reads (see AGENTS.md → "Before every task")
+and soft word budgets so context stays bounded as the project grows.
+
+- Every end-of-task update runs a size check. If a budget is
+  exceeded, the agent proposes running
+  `pm_skills/prompts/prune-memory.md` — it does not auto-prune.
+- `pm_skills/project/archive/` is created lazily on the first prune.
+  A fresh project has no archive folder.
+- Archives are cold (never auto-read). Search via grep when
+  explicitly relevant.
+
+You should not need to touch any of this manually until a budget
+trips. When that happens, approve the prune proposal and let the
+workflow do the rest.

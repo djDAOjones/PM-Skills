@@ -81,6 +81,10 @@ step before proceeding to the next.
     - `DEV-INFRASTRUCTURE.md` (if applicable)
     - `.editorconfig`
     - `.gitignore`
+
+    Note: `pm_skills/project/archive/` should NOT exist yet — it is
+    created lazily on the first run of `pm_skills/prompts/prune-memory.md`.
+
     Report what is complete and what is missing.
     If everything is ready, tell the user to pick their first task
     from the backlog.

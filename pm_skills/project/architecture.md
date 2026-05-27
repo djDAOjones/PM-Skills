@@ -2,6 +2,8 @@
 
 <!-- Generated during project initialization. Review and edit as needed. -->
 <!-- Update this file when major structural decisions change. -->
+<!-- Hot whole-read file. Keep terse — target under 2,000 words. -->
+<!-- Describe current structure only. Move historical batch notes to decision-log.md. -->
 
 ## Tech stack
 

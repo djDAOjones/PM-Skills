@@ -22,3 +22,12 @@ After implementation, update the following files:
 - `AGENTS.md` — if this task established new invariants, data model changes, protected modules, event namespaces, or anti-patterns. Check whether AGENTS.md still reflects current architecture and conventions.
 - `UI-STANDARDS.md` — if this task established new token systems or UI conventions.
 - `DEV-INFRASTRUCTURE.md` — if this task changed build, dev server, versioning, or script conventions.
+
+Then run a memory size check (see budgets in AGENTS.md → "Memory size budgets"):
+
+- Word-count each hot whole-read file in `pm_skills/project/` plus `README.md`.
+- Count Completed items in `backlog.md`.
+- Count entries in `decision-log.md` and check the oldest entry's date.
+- If any budget is exceeded, do not auto-prune. Output one line per
+  overrun: which file, which budget, current value. Then propose
+  running `pm_skills/prompts/prune-memory.md` and wait for user approval.
