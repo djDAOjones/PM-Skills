@@ -87,6 +87,14 @@ propose first.
    `pm_skills/prompts/quick-task.md` instead.
 2. Search the full source tree before proposing changes. Check for
    existing tuneable values and UI controls before adding new ones.
+3. Exception: if the user explicitly invokes `auto-jazz` or
+   `auto-jazz-lite` (see `pm_skills/integrations/`), run those
+   workflows without waiting for scope or plan approval. Make the
+   best conservative decision at each gate, state the assumption in
+   one line, and continue. Only ask the user a question if there is
+   a genuinely blocking ambiguity. All other rules in this file
+   (source-tree search, project-memory housekeeping, memory size
+   check, minimal-change discipline, hard rules) still apply.
 
 ---
 

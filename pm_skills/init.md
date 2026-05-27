@@ -313,7 +313,17 @@ If any of these are incomplete, finish them before proceeding.
 Open `project/backlog.md` and pick the first task.
 
 If your AI tool supports workflows and you copied `integrations/`
-in Step 6, run the task workflow and state your task.
+in Step 6, run one of the task workflows and state your task:
+
+- `feature.md` — full 4-stage workflow with approval gates (default).
+- `bugfix.md` — diagnosis-before-fix workflow with approval gates.
+- `auto-jazz.md` — same 4 stages as `feature.md` but no approval
+  gates. The agent picks the recommended option, states each
+  assumption, and only asks if something is genuinely blocking.
+- `auto-jazz-lite.md` — fast 2-stage flow (scope+plan, then
+  implement+verify+housekeep) with no approval gates. Use for small
+  or low-risk tasks.
+
 Otherwise, follow the manual prompt workflow below.
 
 For non-trivial tasks (4-stage):

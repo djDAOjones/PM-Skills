@@ -53,6 +53,8 @@ integrations/    Optional tool-specific workflows.
   init-project.md    Guided project initialization.
   feature.md         Full task workflow with approval gates.
   bugfix.md          Diagnosis-before-fix workflow for bugs.
+  auto-jazz.md       Full 4-stage workflow, no approval gates.
+  auto-jazz-lite.md  Fast 2-stage workflow, no approval gates.
 
 scaffold/        Template files to copy into your project root.
   .editorconfig    Editor style enforcement (indent, encoding, etc.).
@@ -68,6 +70,27 @@ If your AI tool supports workflows, copy the files from
 workflow at the start of any task — it reads project memory, asks
 full vs quick, runs the pipeline with approval gates, and reminds you
 to update project memory at the end.
+
+Choose the workflow that fits the task:
+
+- **`feature.md`** — full task workflow with approval gates between
+  scoping, design, plan, and validation. Use by default.
+- **`bugfix.md`** — diagnosis-before-fix workflow with approval gates.
+  Use for bugs.
+- **`auto-jazz.md`** — same internal stages as `feature.md` (scoping,
+  design options, implementation plan, validation, implementation,
+  verification, housekeeping) but no approval gates. The agent picks
+  the recommended option, states each assumption in one line, and
+  continues. Use when you trust the agent to drive end-to-end and
+  only want to be asked about genuinely blocking ambiguities.
+- **`auto-jazz-lite.md`** — fast two-stage flow with no approval
+  gates. Stage 1 is a combined scope-and-plan; stage 2 covers
+  implementation, validation against acceptance criteria,
+  verification, and housekeeping. Use for small or low-risk tasks.
+
+All four workflows search the source tree before changing code, run
+the same project-memory housekeeping at the end, and run the memory
+size check.
 
 ### Manual prompt workflow
 
