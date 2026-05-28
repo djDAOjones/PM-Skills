@@ -15,6 +15,12 @@ and JSDoc. All customisable, none apologised for.
 
 **New project?** Follow [init.md](./init.md) step by step.
 
+**Already using an older version of pm-skills?** Run
+[`integrations/upgrade.md`](./integrations/upgrade.md), or paste
+[`prompts/upgrade.md`](./prompts/upgrade.md) into your AI tool. The
+workflow audits the differences, preserves your project memory and
+populated root templates, and updates framework files in place.
+
 ## Memory layers and read tiers
 
 The framework uses **two memory layers** and **three read tiers**.
@@ -64,6 +70,7 @@ prompts/         Reusable per-task prompts.
   end-of-task.md          Canonical end-of-task housekeeping.
   corrections.md          Drift correction snippets.
   prune-memory.md         Memory-pruning procedure (canonical).
+  upgrade.md              Framework upgrade procedure (canonical).
 
 integrations/    Optional tool-specific workflows.
   init-project.md    Guided project initialization.
@@ -71,6 +78,7 @@ integrations/    Optional tool-specific workflows.
   bugfix.md          Diagnosis-before-fix workflow for bugs.
   auto-jazz.md       Full 4-stage workflow, no approval gates.
   auto-jazz-lite.md  Fast 2-stage workflow, no approval gates.
+  upgrade.md         Upgrade an existing project to the latest version.
 
 scaffold/        Template files to copy into your project root.
   .editorconfig    Editor style enforcement (indent, encoding, etc.).

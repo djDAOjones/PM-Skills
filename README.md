@@ -24,6 +24,17 @@ See [`pm_skills/GUIDE.md`](pm_skills/GUIDE.md) for the full guide:
 folder contents, two-tier memory system, per-task workflow, and how to
 keep project memory fresh.
 
+## Upgrading from an older version
+
+Already using pm-skills and want the latest? Make the new version
+visible to your AI agent (a sibling clone, a Git URL, or pasted
+files), then run
+[`pm_skills/integrations/upgrade.md`](pm_skills/integrations/upgrade.md)
+or paste
+[`pm_skills/prompts/upgrade.md`](pm_skills/prompts/upgrade.md). The
+workflow audits the differences, preserves your project memory and
+populated root templates, and updates framework files in place.
+
 ## What's in this repo
 
 - **`pm_skills/`** — the framework. Templates, prompts, workflows,
