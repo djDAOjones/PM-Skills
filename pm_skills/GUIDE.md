@@ -61,6 +61,7 @@ project/         Durable project memory. Fill once, maintain ongoing.
 
 prompts/         Reusable per-task prompts.
   session-start.md        How to begin a new chat.
+  next-batch.md           Begin a chat by auto-picking the next backlog item.
   scoping.md              Stage 1: scope the task.
   design-options.md       Stage 2: explore options.
   implementation-plan.md  Stage 3: plan the build.
@@ -115,6 +116,13 @@ run the same end-of-task housekeeping: memory updates, size check,
 and a closing report.
 
 ### Manual prompt workflow
+
+**Starting from the backlog (any task type):**
+
+Instead of naming the task yourself, paste `prompts/next-batch.md`. It
+loads context, picks the next logical batch from the backlog, and
+presents it with a recommended workflow — then stops for your
+go-ahead. Confirm, then continue with the matching workflow below.
 
 **Non-trivial tasks (4-stage):**
 

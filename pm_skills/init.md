@@ -391,7 +391,9 @@ For small or simple tasks (single-stage):
 ## You're set up
 
 From here, the cycle is: pick a task → scope/plan → implement → update
-project memory → pick the next task.
+project memory → pick the next task. To let the agent pick for you,
+start a chat with `prompts/next-batch.md` — it selects the next logical
+backlog batch and presents it for your go-ahead.
 
 The files in `project/` are your living memory. `README.md`,
 `AGENTS.md`, `UI-STANDARDS.md`, and `DEV-INFRASTRUCTURE.md` are your
