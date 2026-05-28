@@ -24,14 +24,8 @@ explain concepts back unless asked.
 
 ## Before every task
 
-<!-- CUSTOMISE: Update the paths below to match your project layout.
-     The defaults assume the kickstart pack lives at
-     pm_skills/ relative to the project root.
-     README.md here refers to the project's own root README — the one
-     created during init Step 5 that documents architecture, key
-     infrastructure, invariants, and gotchas. It is NOT the framework's
-     distribution README. If init has not been completed yet, skip
-     this step. -->
+<!-- CUSTOMISE: README.md below refers to the project's own root README
+     (created at init Step 5). If init is incomplete, skip this section. -->
 
 ### Read tiers
 
@@ -72,8 +66,8 @@ propose first.
 
 | Scope | Soft limit | Action when exceeded |
 | --- | --- | --- |
-| Any single hot whole-read file | 2,000 words | Propose summarising or splitting. |
-| Total hot whole-read set | 8,000 words | Propose memory-wide review. |
+| Any single hot whole-file read | 2,000 words | Propose summarising or splitting. |
+| Total hot whole-file set | 8,000 words | Propose memory-wide review. |
 | `backlog.md` Completed items | 40 entries | Propose archiving oldest to `archive/backlog-shipped.md`. |
 | `decision-log.md` total entries | 20 entries | Propose monthly archive split to `archive/decision-log-YYYY-MM.md`. |
 | `decision-log.md` oldest entry age | 90 days | Propose monthly archive split. |
@@ -117,71 +111,34 @@ propose first.
   colour-only meaning. Where Carbon defaults meet AA but not AAA,
   adapt them. See `UI-STANDARDS.md` for full accessibility rules.
 
-<!-- CUSTOMISE: Add project-specific invariants below. Examples:
-     - Canonical data formats (e.g. normalised coordinates, UTC timestamps).
-     - Cross-component communication rules (e.g. EventBus-only, no direct calls).
-     - Specific token systems and how they coexist.
-     - Programmatic update patterns to avoid feedback loops. -->
+<!-- CUSTOMISE: Add project-specific invariants below. See init.md Step 6 for example shapes. -->
 
 ---
 
-<!-- CUSTOMISE: Add a "Core data model" section describing the canonical
-     entities, their properties, and the mental model that MUST be followed.
-     State what patterns are explicitly forbidden. Example:
-
-## Core data model
-
-The canonical model is:
-- **`EntityA`** — id, properties…
-- **`EntityB`** — id, relationships…
-
-Do **not** introduce [anti-pattern X] or [legacy pattern Y]. -->
+<!-- CUSTOMISE: Add a "Core data model" section if the project has canonical
+     entities. See init.md Step 6 for example shape. -->
 
 ---
 
-<!-- CUSTOMISE: If the project has domain-specific subsystems (simulation,
-     rendering pipeline, data pipeline, etc.), add a section for each one
-     describing the design contract agents must follow. -->
+<!-- CUSTOMISE: Add a section per domain-specific subsystem (simulation,
+     rendering pipeline, data pipeline, etc.) if the project has any. -->
 
 ---
 
-<!-- CUSTOMISE: If this project was forked from or shares history with
-     another codebase, add a "Relationship to [Original]" section.
-     State what to keep, what to reject, and which legacy mental models
-     are NOT canonical. -->
+<!-- CUSTOMISE: Add a "Relationship to [Original]" section if this project
+     was forked from or shares history with another codebase. -->
 
 ---
 
-<!-- CUSTOMISE: If there are modules that must not be deleted, renamed,
-     or restructured without approval, list them in a
-     "Protected infrastructure" table:
-
-## Protected infrastructure
-
-| Module | Role | Notes |
-| --- | --- | --- |
-| `example.js` | Description | Migration plan or n/a |
-
-Do not delete, rename, or restructure protected modules without
-explicit approval. -->
+<!-- CUSTOMISE: Add a "Protected infrastructure" table for modules that
+     must not be deleted, renamed, or restructured without approval.
+     See init.md Step 6 for example shape. -->
 
 ---
 
-<!-- CUSTOMISE: Define event namespaces for your project, or remove
-     this section if not applicable. Keep namespaces consistent and
-     do not create synonyms for existing event names. Example:
-
-## Event naming convention
-
-Use colon-separated namespaces for all events. Group by domain:
-
-- `domain:entity:action` for model events.
-- `ui:component:action` for UI events.
-- `app:lifecycle:action` for application-level events.
-
-     If the project uses hooks, direct imports, or another pattern
-     instead of events, state that here and remove the namespace
-     guidance. -->
+<!-- CUSTOMISE: If the project uses an event bus, define event namespaces here.
+     If it uses hooks, direct imports, or another pattern, state that instead.
+     See init.md Step 6 for example shape. -->
 
 ---
 
@@ -199,9 +156,8 @@ Use colon-separated namespaces for all events. Group by domain:
 
 ## Code documentation
 
-<!-- CUSTOMISE: Confirm or adjust the documentation standard.
-     JSDoc is the default for JavaScript and TypeScript projects.
-     For Python, use docstrings. Adjust to match your language. -->
+<!-- CUSTOMISE: JSDoc is the default for JS/TS. Adjust for other languages
+     (e.g. docstrings for Python). -->
 
 - New and modified functions, classes, and modules should have
   meaningful comments explaining **why**, not restating **what**.
@@ -219,14 +175,8 @@ exceptions) are in `pm_skills/project/conventions.md`.
 
 ## Testing
 
-<!-- CUSTOMISE: Define what testing means for this project today.
-     If there is no test runner yet, say so and describe the expected
-     manual verification steps. Update this section as the testing
-     infrastructure matures. Example stages:
-     1. Manual browser/CLI verification for UI and integration.
-     2. Unit tests for model, state, and utility code.
-     3. Automated integration or end-to-end tests.
-     Replace the defaults below with your project's actual policy. -->
+<!-- CUSTOMISE: Replace the defaults below with this project's actual
+     testing policy. See init.md Step 6 for stage examples. -->
 
 - Run the project's build and test steps after every change. If no
   automated test runner exists yet, verify the change manually and
@@ -242,12 +192,8 @@ test) is in `pm_skills/project/conventions.md`.
 
 ## Files to never edit
 
-<!-- CUSTOMISE: List build output dirs, personal notes, or any other
-     paths that agents must never touch. Examples:
-     - docs/ or dist/ — build output, overwritten on every build.
-     - version.json — managed by the build script.
-     - node_modules/ — managed by npm.
-     - package-lock.json — managed by npm (commit but do not edit). -->
+<!-- CUSTOMISE: List paths agents must never hand-edit. See
+     DEV-INFRASTRUCTURE.md for the concrete project list. -->
 
 - Build output directories.
 
@@ -255,28 +201,9 @@ See `DEV-INFRASTRUCTURE.md` for the concrete list of protected paths.
 
 ---
 
-<!-- CUSTOMISE: This checklist applies to apps with stateful models
-     that persist to localStorage, files, or a database. If the project
-     has no persistence layer, remove this section. Define the concrete
-     steps for your project's persistence pattern. Example for a
-     JS app with manual serialisation:
-
-## Persistence checklist
-
-     When adding any property that should survive reload:
-     1. Default in constructor (relevant model class).
-     2. Include in serialisation (`toJSON()` or equivalent).
-     3. Handle in deserialisation (`fromJSON()` or equivalent) with
-        fallback default.
-     4. Serialise in auto-save.
-     5. Restore in load/auto-load.
-
-     Example for an ORM-based app:
-     1. Add the field to the model definition.
-     2. Create and run a migration.
-     3. Handle the field in any import/export functions with a fallback
-        default.
-     4. Verify it persists correctly via the ORM layer. -->
+<!-- CUSTOMISE: If the project has a persistence layer, add a checklist
+     covering every step needed for a new property to survive reload.
+     See init.md Step 6 for example shapes (manual serialisation, ORM). -->
 
 ---
 
@@ -311,7 +238,4 @@ Project-specific anti-patterns are in
 `pm_skills/project/conventions.md` under
 "Patterns to avoid".
 
-<!-- CUSTOMISE: Add project-specific anti-patterns below. Examples:
-     - Iterating data as if it has an implicit order when it doesn't.
-     - Using a legacy abstraction as a design reference.
-     - Collapsing parallel token systems into one. -->
+<!-- CUSTOMISE: Add project-specific anti-patterns below. -->

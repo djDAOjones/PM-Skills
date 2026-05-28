@@ -2,7 +2,7 @@
 
 <!-- Fill this in before or during your first implementation task. -->
 <!-- Skip at init if you're not sure yet — capture conventions as they emerge. -->
-<!-- Hot whole-read file. Keep terse — target under 2,000 words. -->
+<!-- Hot whole-file read. See AGENTS.md → "Memory size budgets" for limits. -->
 
 ## Code style
 

@@ -13,7 +13,7 @@ stop and report.
 
 ## 1. Detect
 
-Word-count each hot whole-read file in `pm_skills/project/` plus
+Word-count each hot whole-file read in `pm_skills/project/` plus
 `README.md`. Count Completed items in `backlog.md`. Count entries
 and the oldest entry date in `decision-log.md`.
 
@@ -96,5 +96,5 @@ prompts.
 - If unsure whether to archive a piece of content, leave it in the
   live file. False positives are worse than false negatives —
   content can always be archived next session.
-- Tier names ("hot whole-read", "hot sectional", "cold") and
+- Tier names ("hot whole-file", "hot sectional", "cold") and
   budget numbers come from AGENTS.md only. Do not redefine here.

@@ -4,6 +4,10 @@ An opinionated starter pack for AI-assisted coding projects.
 Structured markdown files, design-before-code discipline, and
 persistent project memory — the way Joe likes to work in 2026.
 
+For solo and small-team builders who own product direction and
+macro structure but want AI agents to handle implementation
+without losing context, drifting, or wasting tokens.
+
 Defaults to Carbon Design System, WCAG 2.2 AAA, Nielsen heuristics,
 and JSDoc. All customisable, none apologised for.
 
@@ -11,9 +15,11 @@ and JSDoc. All customisable, none apologised for.
 
 **New project?** Follow [init.md](./init.md) step by step.
 
-## Two-tier memory system
+## Memory layers and read tiers
 
-This framework uses two kinds of project memory:
+The framework uses **two memory layers** and **three read tiers**.
+
+**Two memory layers:**
 
 - **`project/`** — living project memory. Updated every session.
   Contains the brief, backlog, file map, conventions, and decision log.
@@ -23,6 +29,14 @@ This framework uses two kinds of project memory:
   conventions, and dev infrastructure rules. Populated during the
   kickoff process (Steps 6–8 of `init.md`) and updated when major
   architectural, UI, or build decisions change.
+
+**Three read tiers** (canonical policy in `AGENTS.md` → "Before
+every task"):
+
+- **Hot whole-file** — read every task.
+- **Hot sectional** — read by section only (`backlog.md` Active;
+  `decision-log.md` latest 10).
+- **Cold** — `pm_skills/project/archive/*` is never auto-read.
 
 AI tools that support global rules load `AGENTS.md` automatically.
 For other tools, the session-start prompts include explicit read
@@ -47,7 +61,9 @@ prompts/         Reusable per-task prompts.
   validation.md           Stage 4: pre-code checks.
   quick-task.md           Single-stage alternative for small tasks.
   bug-scoping.md          Bug-specific scoping: reproduce, diagnose, fix.
+  end-of-task.md          Canonical end-of-task housekeeping.
   corrections.md          Drift correction snippets.
+  prune-memory.md         Memory-pruning procedure (canonical).
 
 integrations/    Optional tool-specific workflows.
   init-project.md    Guided project initialization.
@@ -68,8 +84,8 @@ scaffold/        Template files to copy into your project root.
 If your AI tool supports workflows, copy the files from
 `integrations/` to your tool's workflow directory. Then run the task
 workflow at the start of any task — it reads project memory, asks
-full vs quick, runs the pipeline with approval gates, and reminds you
-to update project memory at the end.
+full vs quick, runs the pipeline, and triggers the canonical
+end-of-task housekeeping (`prompts/end-of-task.md`).
 
 Choose the workflow that fits the task:
 
@@ -77,47 +93,45 @@ Choose the workflow that fits the task:
   scoping, design, plan, and validation. Use by default.
 - **`bugfix.md`** — diagnosis-before-fix workflow with approval gates.
   Use for bugs.
-- **`auto-jazz.md`** — same internal stages as `feature.md` (scoping,
-  design options, implementation plan, validation, implementation,
-  verification, housekeeping) but no approval gates. The agent picks
-  the recommended option, states each assumption in one line, and
-  continues. Use when you trust the agent to drive end-to-end and
-  only want to be asked about genuinely blocking ambiguities.
+- **`auto-jazz.md`** — same internal stages as `feature.md` but no
+  approval gates. The agent picks the recommended option, states
+  each assumption in one line, and continues. Hard prohibitions
+  still apply (see the file). Use when you trust the agent end-to-end.
 - **`auto-jazz-lite.md`** — fast two-stage flow with no approval
   gates. Stage 1 is a combined scope-and-plan; stage 2 covers
-  implementation, validation against acceptance criteria,
-  verification, and housekeeping. Use for small or low-risk tasks.
+  implementation, validation, verification, and housekeeping. Hard
+  prohibitions still apply. Use for small or low-risk tasks.
 
-All four workflows search the source tree before changing code, run
-the same project-memory housekeeping at the end, and run the memory
-size check.
+All four workflows search the source tree before changing code and
+run the same end-of-task housekeeping: memory updates, size check,
+and a closing report.
 
 ### Manual prompt workflow
 
 **Non-trivial tasks (4-stage):**
 
-1. New chat → paste `prompts/session-start.md` (standard start).
+1. New chat → paste `prompts/session-start.md` (Standard start).
 2. Paste `prompts/scoping.md` → approve scope.
 3. Paste `prompts/design-options.md` → pick an option.
 4. Paste `prompts/implementation-plan.md` → approve plan.
 5. Paste `prompts/validation.md` → confirm readiness.
 6. "Go ahead and implement."
-7. End of task → paste "Update project memory" from `prompts/corrections.md`.
+7. End of task → paste `prompts/end-of-task.md`.
 
 **Small tasks (single-stage):**
 
-1. New chat → paste `prompts/session-start.md` (quick start).
+1. New chat → paste `prompts/session-start.md` (Quick start).
 2. Paste `prompts/quick-task.md` → approve plan.
 3. "Go ahead and implement."
-4. End of task → paste "Update project memory" from `prompts/corrections.md`.
+4. End of task → paste `prompts/end-of-task.md`.
 
 **Bug tasks:**
 
-1. New chat → paste `prompts/session-start.md` (bug start).
+1. New chat → paste `prompts/session-start.md` (Bug start).
 2. Paste `prompts/bug-scoping.md` → approve diagnosis and fix plan.
 3. "Go ahead and fix."
 4. Verify the fix.
-5. End of task → paste "Update project memory" from `prompts/corrections.md`.
+5. End of task → paste `prompts/end-of-task.md`.
 
 ## Keeping project memory fresh
 
@@ -134,22 +148,16 @@ size check.
 | `UI-STANDARDS.md` (root) | When new token systems or UI conventions are established. |
 | `DEV-INFRASTRUCTURE.md` (root) | When build, dev server, versioning, or script conventions change. |
 
-Use the "Update project memory" prompt in `prompts/corrections.md`
-at the end of every task session to stay current.
+Use `prompts/end-of-task.md` at the end of every task session to
+stay current.
 
 ## Keeping memory lean
 
 Project memory is read in tiers so context stays bounded as the
-project grows. The full policy and budgets live in `AGENTS.md` →
-"Before every task". Summary:
-
-- **Hot whole-file** — `brief.md`, `architecture.md`, `conventions.md`,
-  `file-map.md`, `README.md`. Read every task. Soft budget: 2,000
-  words each, 8,000 across the set.
-- **Hot sectional** — `backlog.md` Active section only;
-  `decision-log.md` latest 10 entries only.
-- **Cold** — `pm_skills/project/archive/*`. Never auto-read. Search
-  via grep when explicitly relevant.
+project grows. The full policy, tier definitions, and budget numbers
+live in `AGENTS.md` → "Before every task". This guide does not
+restate them — read them from `AGENTS.md` so there is one source of
+truth.
 
 The end-of-task update runs a size check. When any file crosses its
 budget, the agent proposes running `prompts/prune-memory.md` — never

@@ -1,6 +1,6 @@
 # Project Brief
 
-<!-- Hot whole-read file. Keep terse — target under 2,000 words. -->
+<!-- Hot whole-file read. See AGENTS.md → "Memory size budgets" for limits. -->
 
 ## What are we building?
 

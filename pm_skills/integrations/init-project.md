@@ -47,8 +47,10 @@ step before proceeding to the next.
    Read the brief, architecture, conventions (if exists), and
    `AGENTS.md`. Fill in every applicable `<!-- CUSTOMISE -->`
    placeholder using the information gathered so far. Follow the
-   detailed instructions in `pm_skills/init.md`
-   Step 6 for what each section needs.
+   detailed instructions in `pm_skills/init.md` Step 6 for what
+   each section needs. For shape examples (data model, protected
+   infrastructure, event naming, persistence checklist, etc.),
+   read `pm_skills/init.md` Appendix A.
    Present the populated version for review. After approval, write
    to `AGENTS.md`.
 
@@ -60,7 +62,8 @@ step before proceeding to the next.
 
 8. Populate DEV-INFRASTRUCTURE.md (if the project has a build step).
    Read the brief, architecture, and `DEV-INFRASTRUCTURE.md`.
-   Fill in every applicable `<!-- CUSTOMISE -->` placeholder.
+   Fill in every applicable `<!-- CUSTOMISE -->` placeholder. For
+   shape examples per section, read `pm_skills/init.md` Appendix B.
    Present for review. After approval, write to
    `DEV-INFRASTRUCTURE.md`.
    If no build tooling, tell the user this file can be removed.
@@ -76,14 +79,28 @@ step before proceeding to the next.
     - `pm_skills/project/architecture.md`
     - `pm_skills/project/backlog.md`
     - `README.md`
-    - `AGENTS.md` (no remaining `[Project Name]` placeholder)
+    - `AGENTS.md` (no remaining `[Project Name]` or
+      `[short product description]` placeholder)
     - `UI-STANDARDS.md` (if applicable)
     - `DEV-INFRASTRUCTURE.md` (if applicable)
     - `.editorconfig`
     - `.gitignore`
 
+    Run the placeholder lint:
+
+    ```sh
+    grep -nE '\[Project Name\]|\[short product description\]|<!-- CUSTOMISE' \
+      AGENTS.md UI-STANDARDS.md DEV-INFRASTRUCTURE.md 2>/dev/null
+    ```
+
+    Review each hit with the user. Each remaining `<!-- CUSTOMISE -->`
+    marker should either be populated or left as a deliberate
+    "not applicable" stub. Bracketed `[placeholder]` strings should
+    not remain in populated sections.
+
     Note: `pm_skills/project/archive/` should NOT exist yet — it is
-    created lazily on the first run of `pm_skills/prompts/prune-memory.md`.
+    created lazily on the first run of
+    `pm_skills/prompts/prune-memory.md`.
 
     Report what is complete and what is missing.
     If everything is ready, tell the user to pick their first task

@@ -4,6 +4,12 @@ An opinionated session context system for AI-assisted coding where above-default
 Includes project memory, behavioral contracts, and a design-before-code
 prompt workflow.
 
+Built for solo and small-team builders who own product direction
+and macro structure but want AI agents to handle implementation
+without losing context, drifting, or wasting tokens. "PM" here means
+project memory and project-management discipline for AI coding
+sessions — not generic project-management training.
+
 Defaults to Carbon Design System, WCAG 2.2 AAA accessibility, Nielsen
 heuristics, and JSDoc documentation.
 

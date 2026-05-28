@@ -10,17 +10,11 @@ Do not write code until diagnosis is confirmed and a fix plan is approved.
    Include reproduction steps if the user provided them.
 
 2. Read project context.
-   Read:
-   - `AGENTS.md`
-   - `UI-STANDARDS.md` (if the bug touches UI)
-   - `DEV-INFRASTRUCTURE.md` (if it exists)
-   - `pm_skills/project/brief.md`
-   - `pm_skills/project/architecture.md`
-   - `pm_skills/project/conventions.md` (if it exists)
-   - `pm_skills/project/file-map.md`
-   - `pm_skills/project/backlog.md`
-   - `pm_skills/project/decision-log.md` (if you need context
-     on prior choices that may relate to the bug)
+   Load the standard project context per `AGENTS.md` → "Before every
+   task". If `AGENTS.md` is not loaded as a global rule, read it now.
+   Also read `pm_skills/project/backlog.md` (Active section) and
+   `pm_skills/project/decision-log.md` (latest 10 entries). Read
+   older entries on demand if the bug touches prior design decisions.
 
 3. Triage complexity.
    Ask the user: "Is this a quick fix or does it need full diagnosis?"
@@ -95,30 +89,7 @@ Do not write code until diagnosis is confirmed and a fix plan is approved.
 
 --- CLOSE ---
 
-9. Update project memory.
-   After the fix is verified, update:
-   - `pm_skills/project/backlog.md` — move this task to the
-     Completed section, note any follow-up tasks in Active.
-   - `pm_skills/project/file-map.md` — add or
-     update entries for files created or changed.
-   - `pm_skills/project/decision-log.md` — record
-     the key design decision from this task.
-   - `pm_skills/project/conventions.md` — if new
-     conventions were established or existing ones changed.
-   - `README.md` — if architecture, dev workflow, or key
-     infrastructure changed significantly.
-   - `AGENTS.md` — if this task established new invariants, data model
-     changes, protected modules, event namespaces, or anti-patterns.
-   - `UI-STANDARDS.md` — if this task established new token systems or
-     UI conventions.
-   - `DEV-INFRASTRUCTURE.md` — if this task changed build, dev server,
-     versioning, or script conventions.
-
-   Then run the memory size check (see AGENTS.md → "Memory size budgets"):
-   word-count each hot whole-read file, count Completed items in
-   `backlog.md`, count entries and check oldest date in
-   `decision-log.md`. If any budget is exceeded, output one line per
-   overrun and propose running `pm_skills/prompts/prune-memory.md`.
-   Do not auto-prune.
-
-   Present the memory updates to the user for review.
+9. End-of-task housekeeping.
+   Run the procedure in `pm_skills/prompts/end-of-task.md`: update
+   project memory, run the size check, and present the closing
+   report to the user.

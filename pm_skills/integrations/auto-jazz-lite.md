@@ -23,21 +23,32 @@ Conservative defaults to use when no user input is available:
   stop and recommend switching to `auto-jazz` (or `feature.md` if the
   user wants approval gates).
 
+Hard prohibitions (stop and ask before doing any of these, even in
+auto-jazz-lite mode):
+
+- Adding a runtime dependency.
+- Modifying a file listed in `AGENTS.md` → "Files to never edit" or
+  `DEV-INFRASTRUCTURE.md` → "Files agents must not hand-edit".
+- Modifying a module listed in `AGENTS.md` → "Protected
+  infrastructure" (if that section is populated).
+- Destructive migrations, schema-altering operations, or data
+  deletion.
+- Refactors touching more than 5 files that were not explicitly in
+  the stated scope.
+- Disabling, weakening, or deleting an existing test.
+
+If any of these is needed, stop and ask one concise question. Do
+not proceed on assumption.
+
 1. State the goal.
    One sentence: what the user asked for.
 
 2. Read project context.
-   Read:
-   - `AGENTS.md`
-   - `UI-STANDARDS.md` (if the task touches UI)
-   - `DEV-INFRASTRUCTURE.md` (if it exists)
-   - `pm_skills/project/brief.md`
-   - `pm_skills/project/architecture.md`
-   - `pm_skills/project/conventions.md` (if it exists)
-   - `pm_skills/project/file-map.md`
-   - `pm_skills/project/backlog.md`
-   - `pm_skills/project/decision-log.md` (if the
-     task involves design decisions or you need context on prior choices)
+   Load the standard project context per `AGENTS.md` → "Before every
+   task". If `AGENTS.md` is not loaded as a global rule, read it now.
+   Also read `pm_skills/project/backlog.md` (Active section) and
+   `pm_skills/project/decision-log.md` (latest 10 entries) for the
+   current task context.
 
 --- STAGE 1: SCOPE + PLAN (no approval gate) ---
 
@@ -75,32 +86,8 @@ Conservative defaults to use when no user input is available:
 
 --- CLOSE TASK ---
 
-7. Update project memory.
-   After implementation is verified, update:
-   - `pm_skills/project/backlog.md` — move this task to the
-     Completed section, note any follow-up tasks in Active.
-   - `pm_skills/project/file-map.md` — add or
-     update entries for files created or changed.
-   - `pm_skills/project/decision-log.md` — record
-     the key design decision from this task (including the
-     assumption made in step 3) if the task involved any design
-     choice worth remembering.
-   - `pm_skills/project/conventions.md` — if new
-     conventions were established or existing ones changed.
-   - `README.md` — if architecture, dev workflow, or key
-     infrastructure changed significantly.
-   - `AGENTS.md` — if this task established new invariants, data model
-     changes, protected modules, event namespaces, or anti-patterns.
-   - `UI-STANDARDS.md` — if this task established new token systems or
-     UI conventions.
-   - `DEV-INFRASTRUCTURE.md` — if this task changed build, dev server,
-     versioning, or script conventions.
-
-   Then run the memory size check (see AGENTS.md → "Memory size budgets"):
-   word-count each hot whole-read file, count Completed items in
-   `backlog.md`, count entries and check oldest date in
-   `decision-log.md`. If any budget is exceeded, output one line per
-   overrun and propose running `pm_skills/prompts/prune-memory.md`.
-   Do not auto-prune.
-
-   Report the memory updates and the size-check result to the user.
+7. End-of-task housekeeping.
+   Run the procedure in `pm_skills/prompts/end-of-task.md`. When
+   recording any decision-log entry, include the assumption made in
+   step 3 (combined scope-and-plan). Present the closing report to
+   the user.

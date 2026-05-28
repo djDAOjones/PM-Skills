@@ -6,10 +6,13 @@ read explicitly.
 
 ## Context to load
 
-Read by tier (full policy and budgets in AGENTS.md → "Before every task").
+Load the standard project context per `AGENTS.md` → "Before every
+task". The canonical hot-read list and tier policy live there. The
+list below is a quick reference — `AGENTS.md` is authoritative.
 
 **Hot whole-file** (read every task):
 
+- `README.md`
 - `AGENTS.md` (skip if already loaded as a global rule)
 - `pm_skills/project/brief.md`
 - `pm_skills/project/architecture.md`
@@ -30,22 +33,22 @@ Read by tier (full policy and budgets in AGENTS.md → "Before every task").
 
 ## Then state the task
 
-For a full 4-stage task:
+### Standard start (full 4-stage task)
 
 > My task: [one sentence from the backlog]
 > Start with scoping only. No code.
 
-For a small task:
+### Quick start (small task)
 
 > My task: [one sentence]
 > This is a small task. Scope it, plan it, and present the plan for approval. No code yet.
 
-For a bug:
+### Bug start
 
 > My task: [bug description — what's expected vs what's happening]
 > This is a bug. Start with diagnosis. No code.
 
-For continuing a previous task:
+### Continuing a previous task
 
 > I'm continuing work on: [task description]
 > Here's where I left off: [brief status]

@@ -3,8 +3,7 @@
 <!-- Append new decisions at the top. Don't edit old entries. -->
 <!-- Use this during the design phase of each task to record what you chose and why. -->
 <!-- Hot sectional. Agents read the latest 10 entries by default. -->
-<!-- Beyond 20 entries, OR oldest entry older than 90 days, the end-of-task -->
-<!-- check proposes archiving older months whole to archive/decision-log-YYYY-MM.md. -->
+<!-- See AGENTS.md → "Memory size budgets" for archiving thresholds. -->
 <!-- Append-only: when archiving, move entries verbatim. Never rewrite. -->
 
 <!--

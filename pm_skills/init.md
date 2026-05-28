@@ -15,6 +15,22 @@ This process populates two kinds of project memory:
 Both are kept in sync. The kickoff process gathers information once and
 writes it to the right places.
 
+## Minimum viable setup
+
+If you want to start fast, complete only these now:
+
+- Step 1 (`brief.md`)
+- Step 2 (`architecture.md`)
+- Step 3 (`backlog.md`)
+- Step 5 (`README.md`)
+- Step 6 — at minimum, populate the **Product identity** section of
+  `AGENTS.md`
+
+Everything else (conventions, UI standards, dev infrastructure,
+scaffold, full readiness check) can be deferred to first use. Picking
+up deferred items as you encounter them produces no rework: each step
+only adds content, it does not rewrite earlier choices.
+
 ---
 
 ## Step 1: Fill in the project brief
@@ -130,6 +146,10 @@ Review and save to the project root as `README.md`.
 contains `<!-- CUSTOMISE -->` placeholder sections that should be filled
 in using the information gathered in Steps 1–5.
 
+For shape examples (core data model, protected infrastructure,
+event naming, persistence checklist, etc.), see **Appendix A** at the
+bottom of this file.
+
 In the same chat (or a new one), paste this:
 
 ```text
@@ -237,6 +257,10 @@ step, populate `DEV-INFRASTRUCTURE.md` now. If the project is pure
 static files with no build tooling, skip this step — the file can be
 removed from the boilerplate.
 
+For shape examples per section (package management, scripts table,
+dev server, build, version, deploy, configuration, etc.), see
+**Appendix B** at the bottom of this file.
+
 In the same chat (or a new one), paste this:
 
 ```text
@@ -296,7 +320,7 @@ Before starting your first task, confirm:
 - [ ] `project/backlog.md` has an initial task list.
 - [ ] Root `README.md` exists.
 - [ ] `AGENTS.md` has been populated — no remaining `[Project Name]`
-  placeholder, and applicable `<!-- CUSTOMISE -->` sections are filled.
+  or `[short product description]` placeholder.
 - [ ] `UI-STANDARDS.md` token systems section is populated (if the
   project has UI).
 - [ ] `DEV-INFRASTRUCTURE.md` is populated (if the project has a build
@@ -304,7 +328,22 @@ Before starting your first task, confirm:
 - [ ] `.editorconfig` is in the project root.
 - [ ] `.gitignore` is in the project root.
 
-If any of these are incomplete, finish them before proceeding.
+Then run a placeholder lint:
+
+```sh
+grep -nE '\[Project Name\]|\[short product description\]|<!-- CUSTOMISE' \
+  AGENTS.md UI-STANDARDS.md DEV-INFRASTRUCTURE.md 2>/dev/null
+```
+
+Review each hit. For each remaining `<!-- CUSTOMISE -->` marker,
+either populate the section or leave it as a deliberate "not
+applicable" stub. Bracketed `[placeholder]` strings should not
+remain in populated sections.
+
+If any of the boxes above are unchecked, finish them before
+proceeding — unless you are following the **Minimum viable setup**
+path, in which case the deferred items can be completed on first
+use.
 
 ---
 
@@ -320,30 +359,32 @@ in Step 6, run one of the task workflows and state your task:
 - `auto-jazz.md` — same 4 stages as `feature.md` but no approval
   gates. The agent picks the recommended option, states each
   assumption, and only asks if something is genuinely blocking.
+  Hard prohibitions (dependency adds, protected files, destructive
+  migrations, large refactors, weakening tests) still apply.
 - `auto-jazz-lite.md` — fast 2-stage flow (scope+plan, then
-  implement+verify+housekeep) with no approval gates. Use for small
-  or low-risk tasks.
+  implement+verify+housekeep) with no approval gates. Hard
+  prohibitions still apply. Use for small or low-risk tasks.
 
 Otherwise, follow the manual prompt workflow below.
 
 For non-trivial tasks (4-stage):
 
 1. Open a new chat.
-2. Paste the "Standard start" from `prompts/session-start.md`.
+2. Paste the **Standard start** section from `prompts/session-start.md`.
 3. Use `prompts/scoping.md` — approve the scope.
 4. Use `prompts/design-options.md` — pick an option.
 5. Use `prompts/implementation-plan.md` — approve the plan.
 6. Use `prompts/validation.md` — confirm readiness.
 7. Say "go ahead and implement."
-8. When done, use the "Update project memory" prompt from `prompts/corrections.md`.
+8. When done, paste `prompts/end-of-task.md`.
 
 For small or simple tasks (single-stage):
 
 1. Open a new chat.
-2. Paste the "Quick start" from `prompts/session-start.md`.
+2. Paste the **Quick start** section from `prompts/session-start.md`.
 3. Use `prompts/quick-task.md` — approve the plan.
 4. Say "go ahead and implement."
-5. When done, use the "Update project memory" prompt from `prompts/corrections.md`.
+5. When done, paste `prompts/end-of-task.md`.
 
 ---
 
@@ -373,3 +414,250 @@ and soft word budgets so context stays bounded as the project grows.
 You should not need to touch any of this manually until a budget
 trips. When that happens, approve the prune proposal and let the
 workflow do the rest.
+
+---
+
+## Appendix A — Step 6 reference: AGENTS.md section examples
+
+Use these examples as shape references when populating `AGENTS.md`
+in Step 6. The stub markers in `AGENTS.md` point here. None of
+these are mandatory — adapt or omit per project.
+
+### Hard rules (project-specific invariants) examples
+
+Add bullets below the universal hard rules. Examples:
+
+- Canonical data formats (e.g. normalised coordinates, UTC timestamps).
+- Cross-component communication rules (e.g. EventBus-only, no direct calls).
+- Specific token systems and how they coexist.
+- Programmatic update patterns to avoid feedback loops.
+
+### Core data model example
+
+```markdown
+## Core data model
+
+The canonical model is:
+
+- **`EntityA`** — id, properties…
+- **`EntityB`** — id, relationships…
+
+Do **not** introduce [anti-pattern X] or [legacy pattern Y].
+```
+
+### Protected infrastructure example
+
+```markdown
+## Protected infrastructure
+
+| Module | Role | Notes |
+| --- | --- | --- |
+| `example.js` | Description | Migration plan or n/a |
+
+Do not delete, rename, or restructure protected modules without
+explicit approval.
+```
+
+### Event naming convention example
+
+```markdown
+## Event naming convention
+
+Use colon-separated namespaces for all events. Group by domain:
+
+- `domain:entity:action` for model events.
+- `ui:component:action` for UI events.
+- `app:lifecycle:action` for application-level events.
+```
+
+If the project uses hooks, direct imports, or another pattern
+instead of events, state that here and remove the namespace
+guidance.
+
+### Testing policy stages
+
+Replace the default testing rules with what is true for the project
+today. Common stages:
+
+1. Manual browser/CLI verification for UI and integration.
+2. Unit tests for model, state, and utility code.
+3. Automated integration or end-to-end tests.
+
+Update this section as the testing infrastructure matures.
+
+### Persistence checklist examples
+
+JS app with manual serialisation:
+
+```markdown
+## Persistence checklist
+
+When adding any property that should survive reload:
+
+1. Default in constructor (relevant model class).
+2. Include in serialisation (`toJSON()` or equivalent).
+3. Handle in deserialisation (`fromJSON()` or equivalent) with
+   fallback default.
+4. Serialise in auto-save.
+5. Restore in load/auto-load.
+```
+
+ORM-based app:
+
+```markdown
+## Persistence checklist
+
+When adding any field that should survive reload:
+
+1. Add the field to the model definition.
+2. Create and run a migration.
+3. Handle the field in any import/export functions with a fallback
+   default.
+4. Verify it persists correctly via the ORM layer.
+```
+
+If the project has no persistence layer, remove this section.
+
+### Files to never edit examples
+
+```markdown
+- docs/ or dist/ — build output, overwritten on every build.
+- version.json — managed by the build script.
+- node_modules/ — managed by npm.
+- package-lock.json — managed by npm (commit but do not edit).
+```
+
+### Anti-pattern examples (project-specific)
+
+```markdown
+- Iterating data as if it has an implicit order when it doesn't.
+- Using a legacy abstraction as a design reference.
+- Collapsing parallel token systems into one.
+```
+
+---
+
+## Appendix B — Step 8 reference: DEV-INFRASTRUCTURE.md section examples
+
+Use these examples as shape references when populating
+`DEV-INFRASTRUCTURE.md` in Step 8. Adapt to your stack.
+
+### Package management example
+
+```markdown
+Package manager: **npm**
+
+- `package.json` lives in the project root.
+- **Runtime dependencies** require explicit approval. The default is
+  zero runtime dependencies.
+- **Dev dependencies** (bundler, test runner, linter) can be added
+  when justified by the architecture.
+- Run `npm install` after cloning. Do not commit `node_modules/`.
+```
+
+### Canonical scripts example
+
+```markdown
+| Script | Command | Purpose | When to use |
+| --- | --- | --- | --- |
+| `dev` | `node build.js --watch --serve` | Dev server with hot reload | Day-to-day development |
+| `build` | `NODE_ENV=production node build.js` | Production build | Before deploy |
+| `test` | `vitest run` | Run tests once | After every change |
+| `test:watch` | `vitest watch` | Tests in watch mode | During development |
+| `push` | `node push.js` | Build + commit + push | When ready to ship |
+
+Do not add scripts without updating this table.
+```
+
+### Dev server example
+
+```markdown
+- **URL:** `http://localhost:3000`
+- **Start:** `npm run dev`
+- **Serves:** Build output from `docs/` (esbuild rebuilds on change)
+- **Hot reload:** JS changes trigger esbuild rebuild automatically.
+  CSS and HTML changes are watched and copied to the output directory.
+
+All development and testing should use this URL. Do not hard-code
+alternative ports or URLs.
+```
+
+### Build system example
+
+```markdown
+- **Bundler:** esbuild (via custom `build.js`)
+- **Entry point:** `src/main.js`
+- **Output directory:** `docs/` (also serves as GitHub Pages root)
+- **Format:** ESM, target ES2020
+- **Source maps:** Enabled in both dev and production
+- **Minification:** Production builds only
+- **Static files:** `index.html`, `styles/*.css`, and `images/` are
+  copied to the output directory by the build script.
+
+The output directory is **read-only** — never hand-edit files in it.
+They are overwritten on every build.
+```
+
+### Version management example
+
+```markdown
+Format: `major.minor.build` (e.g. `3.1.76`)
+
+| Component | Source | Updated | Example |
+| --- | --- | --- | --- |
+| `major.minor` | `package.json` version field | Manually, for features or breaking changes | 3.0 → 3.1 |
+| `build` | `version.json` build field | Automatically, once per dev session | 3.1.75 → 3.1.76 |
+
+The combined version is injected at build time. Do not edit
+`version.json` manually — the build script manages it.
+```
+
+### Deployment example
+
+```markdown
+- **Target:** GitHub Pages (served from `docs/` on `main` branch)
+- **Pipeline:** `npm run build:deploy` → builds to `dist/`, copies to
+  `docs/`, ready to commit and push.
+- **Post-deploy:** Verify the live URL matches the latest build
+  version.
+```
+
+### Utility scripts example
+
+```markdown
+- **`push.js`** — Runs a production build, stages all changes, commits
+  with a version-stamped message, and pushes to the remote. Safe to
+  run without review for routine commits. Does not force-push.
+```
+
+### Configuration strategy example
+
+```markdown
+- **Constants:** `src/config/constants.js` — all tuneable values
+  grouped by domain.
+- **Design tokens:** `styles/tokens.css` — CSS custom properties for
+  colours, spacing, and theming.
+- **Keybindings:** `src/config/keybindings.js` — all mouse and
+  keyboard shortcuts.
+
+Do not scatter configuration across service files.
+```
+
+### Editor config example
+
+```markdown
+The project root contains `.editorconfig` for mechanical style
+enforcement: UTF-8, LF, 2-space indentation, trailing whitespace
+trimmed (except in markdown), single quotes in JavaScript.
+```
+
+### Files agents must not hand-edit example
+
+```markdown
+- `docs/` — build output, overwritten on every build.
+- `dist/` — intermediate build output.
+- `version.json` — managed by the build script.
+- `node_modules/` — managed by npm.
+- `package-lock.json` — managed by npm. Do not edit manually, but
+  do commit it.
+```
