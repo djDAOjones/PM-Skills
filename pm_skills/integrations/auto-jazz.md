@@ -14,6 +14,7 @@ ambiguity that cannot be safely assumed (and then ask one concise
 question, not a list).
 
 Conservative defaults to use when no user input is available:
+
 - Prefer the smallest useful scope over the broader one.
 - Prefer the recommended option from `design-options.md`.
 - Prefer existing patterns and existing files over new abstractions.

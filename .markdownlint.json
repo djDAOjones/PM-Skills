@@ -1,0 +1,9 @@
+{
+  "$comment": "PM Skills lint config. MD041 is relaxed because integration workflow files use YAML frontmatter with a 'description' field (not 'title') as their de facto heading; MD029 is disabled because workflow files deliberately use continuous step numbering across '--- SECTION ---' dividers; MD013 is disabled because the framework wraps prose for readability but does not enforce a fixed line length, and tables/citations/code blocks routinely exceed 80 chars. All other defaults stand.",
+  "default": true,
+  "MD041": {
+    "front_matter_title": "^\\s*description\\s*[:=]"
+  },
+  "MD029": false,
+  "MD013": false
+}

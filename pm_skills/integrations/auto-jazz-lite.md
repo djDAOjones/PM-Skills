@@ -16,6 +16,7 @@ question if there is a genuinely blocking ambiguity that cannot be
 safely assumed.
 
 Conservative defaults to use when no user input is available:
+
 - Prefer the smallest useful scope.
 - Prefer existing patterns and existing files over new abstractions.
 - Prefer reversible changes; flag irreversible ones explicitly.
