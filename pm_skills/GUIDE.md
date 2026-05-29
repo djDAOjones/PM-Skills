@@ -18,8 +18,10 @@ and JSDoc. All customisable, none apologised for.
 **Already using an older version of pm-skills?** Run
 [`integrations/upgrade.md`](./integrations/upgrade.md), or paste
 [`prompts/upgrade.md`](./prompts/upgrade.md) into your AI tool. The
-workflow audits the differences, preserves your project memory and
-populated root templates, and updates framework files in place.
+workflow compares your project's `VERSION` against the latest, applies
+only the deltas the `CHANGELOG.md` documents (stopping early if you
+are already current), preserves your project memory and populated root
+templates, and never silently overwrites a customised framework file.
 
 ## Memory layers and read tiers
 
@@ -51,6 +53,10 @@ instructions.
 ## What's in this folder
 
 ```text
+VERSION          Current framework version (semver). The upgrade check.
+CHANGELOG.md     Append-only release log; each entry is an upgrade plan.
+MANIFEST.md      Path classes: framework / template / memory / scaffold.
+
 project/         Durable project memory. Fill once, maintain ongoing.
   brief.md         What we're building.
   architecture.md  Tech stack, structure, key decisions.
@@ -72,6 +78,7 @@ prompts/         Reusable per-task prompts.
   corrections.md          Drift correction snippets.
   prune-memory.md         Memory-pruning procedure (canonical).
   upgrade.md              Framework upgrade procedure (canonical).
+  release.md              Maintainer release checklist (source repo only).
 
 integrations/    Optional tool-specific workflows.
   init-project.md    Guided project initialization.

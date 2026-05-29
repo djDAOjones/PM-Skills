@@ -1,14 +1,17 @@
 # Upgrade
 
-Run this when an existing project is on an older version of pm-skills
-and needs to adopt the latest framework files (prompts, integrations,
-init, GUIDE, scaffold) plus any new sections in the root templates
+Run this when a project is on an older version of pm-skills and needs
+the latest framework files (prompts, integrations, init, GUIDE,
+scaffold, and the metadata files `VERSION`, `CHANGELOG.md`,
+`MANIFEST.md`) plus any new sections in the root templates
 (`AGENTS.md`, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`).
 
-This procedure is destructive in places. Always propose before
-executing. Never silently overwrite user-populated content. Never
-delete anything in `pm_skills/project/` or
-`pm_skills/project/archive/`.
+This procedure is version-aware. It reads the framework's own
+metadata first and only does real work when there is a version gap —
+no full-tree diff unless the project predates versioning. It is
+destructive in places: always propose before executing, never
+silently overwrite user-populated content, and never delete anything
+in `pm_skills/project/` or `pm_skills/project/archive/`.
 
 ## 0. Locate the latest version
 
@@ -19,44 +22,78 @@ already provided one. Acceptable sources:
 - A Git URL the agent can clone or fetch.
 - The user pasting individual files into the chat.
 
-If pasting, request files in this order to minimise round-trips:
-`pm_skills/init.md`, `pm_skills/GUIDE.md`, then everything under
-`pm_skills/prompts/`, `pm_skills/integrations/`, `pm_skills/scaffold/`,
-then `AGENTS.md`, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`, then the
-files under `pm_skills/project/` (the distributed templates, not the
-user's populated copies).
+From the source, read `pm_skills/VERSION`, `pm_skills/CHANGELOG.md`,
+and `pm_skills/MANIFEST.md` first — these three drive the whole
+procedure. If pasting, request them in that order, then only the
+specific files the changelog later names.
 
-Treat the latest `pm_skills/init.md` and `pm_skills/GUIDE.md` as
-authoritative for the new structure.
+## 1. Version check (fast path)
 
-## 1. Audit
+Read the project's own `pm_skills/VERSION`.
 
-Produce a diff report grouped as:
+- **Equal to the source version** → the project is already current.
+  Report "already on X.Y.Z, nothing to do" and STOP. No diff, no
+  clone of the rest, no further steps.
+- **Behind the source** → note the gap (e.g. `1.0.0 → 1.3.0`) and
+  continue to Step 2.
+- **Missing** → the project predates versioning (pre-1.0.0). Skip to
+  the **Legacy path** at the bottom of this file.
+- **Ahead of the source** → the source is stale or the two have
+  diverged. Do not downgrade. Surface this and ask the user which is
+  canonical before doing anything.
 
-a. **Framework files to replace wholesale** — `pm_skills/init.md`,
-   `pm_skills/GUIDE.md`, `pm_skills/prompts/*`,
-   `pm_skills/integrations/*`, `pm_skills/scaffold/*`. List which
-   files differ, are new upstream, or no longer exist upstream.
+## 2. Build the work list from the changelog
 
-b. **Root templates to 3-way merge** — `AGENTS.md`,
-   `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`. For each, identify
-   which sections this repo has populated (no `<!-- CUSTOMISE -->`
-   markers, real content) versus which are still on template
-   defaults.
+Read every `CHANGELOG.md` entry **newer than the project's version**,
+up to and including the source version. Concatenate their **Upgrade
+actions** blocks in order, oldest first. That ordered list is the
+entire plan — there is no need to diff the trees.
 
-c. **Project memory to preserve** — `pm_skills/project/*`. Compare
-   headings/sections against the latest distributed templates. Note
-   any new sections to add empty, any renamed headings, any sections
-   removed upstream.
+Present the work list as a short table:
 
-d. **New files upstream that don't exist here.**
+| Version | Path | Action | Class |
+| --- | --- | --- | --- |
 
-e. **Files here that no longer exist upstream.**
+STOP. Wait for approval before changing anything.
 
-Output a short table per group. STOP. Wait for approval before
-changing anything.
+## 3. Classify each path with the manifest
 
-## 2. Backup (conditional)
+For every path in the work list, look up its class in the source
+`pm_skills/MANIFEST.md`:
+
+- `framework` → overwrite wholesale (subject to the Step 4 check).
+- `root-template` → 3-way merge, preserving populated sections
+  (Step 6).
+- `project-memory` → never overwrite; additive section reconcile
+  only (Step 7).
+- `scaffold` → never touched on upgrade; skip.
+
+If a path in the work list is not covered by the manifest, treat it
+as the directory default (`prompts/` and `integrations/` are
+`framework`; `project/` is `project-memory`) and note the gap so the
+maintainer can add a row upstream.
+
+## 4. Customisation check (before overwriting framework files)
+
+For each `framework`-class file the work list will overwrite, diff
+the project's current copy against the source version of that file.
+Every difference must fall into one of:
+
+- **Explained by the changelog** — the Upgrade actions account for
+  it. Safe to overwrite.
+- **Unexplained** — the project has a *local customisation* to a
+  framework file (for example, a "Shell safety" section added to
+  `upgrade.md` or `end-of-task.md`). STOP. Surface each unexplained
+  file and ask: re-apply the local change on top of the new version,
+  or discard it?
+
+Never silently overwrite an unexplained difference. Framework files
+are not meant to be edited in place — recommend the user move any
+durable local rule into a `root-template` (`AGENTS.md`,
+`UI-STANDARDS.md`, or `DEV-INFRASTRUCTURE.md`), which survives every
+future upgrade. Record the decision in Step 10.
+
+## 5. Backup (conditional)
 
 Run `git status --porcelain` on the project root.
 
@@ -67,54 +104,51 @@ Run `git status --porcelain` on the project root.
   `pm_skills/project/archive/upgrade-backup-YYYY-MM-DD-HHMM/`
   before continuing.
 
-## 3. Replace framework files
+## 6. Apply framework changes
 
-For approved items in audit group (a):
+For approved `framework`-class items:
 
-- Overwrite each existing framework file with the latest version.
-- Add new framework files from upstream.
-- Delete files that no longer exist upstream **only with per-file
-  confirmation**. Do not batch-delete.
+- Overwrite each changed file with the source version.
+- Add each new file from the source.
+- Re-apply any local customisation approved for carry-over in Step 4.
+- Delete files removed upstream **only with per-file confirmation**.
+  Do not batch-delete.
 
-The audit was already approved — do not pause for confirmation
-between individual overwrites. Batch the operations.
+The work list was already approved — do not pause between individual
+overwrites. Batch them. `pm_skills/VERSION` is itself a framework
+file: overwriting it stamps the project at the new version.
 
-## 4. Merge root templates
+## 7. Merge root templates
 
-For each of `AGENTS.md`, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`:
+Only if the work list touches `AGENTS.md`, `UI-STANDARDS.md`, or
+`DEV-INFRASTRUCTURE.md`:
 
 - Use the latest template as the base structure.
-- Port every populated section from this repo into the matching
+- Port every populated section from this project into the matching
   section of the new template. **Preserve wording exactly.** Do not
   paraphrase, summarise, or "improve" the user's content.
-- New sections this repo never populated keep their
-  `<!-- CUSTOMISE -->` markers from the new template.
-- If a section the user had populated no longer exists upstream, do
-  not delete it — surface it in the report and ask where (if
-  anywhere) the content should move.
-- Show a unified diff per file before writing.
+- New sections this project never populated keep their
+  `<!-- CUSTOMISE -->` markers.
+- If a section the user populated no longer exists upstream, do not
+  delete it — surface it and ask where the content should move.
+- Show a unified diff per file before writing. Write after approval.
 
-After approval, write each merged file.
+## 8. Reconcile project memory templates
 
-## 5. Reconcile project memory templates
+Only if the work list flags new/renamed/removed sections in the
+distributed `pm_skills/project/` templates. For each affected file:
 
-For each file in `pm_skills/project/`:
-
-- Compare its headings against the latest distributed template.
-- For new sections upstream: add the heading with no body content.
-- For renamed headings: leave the user's content under the existing
+- New sections upstream → add the heading with no body content.
+- Renamed headings → leave the user's content under the existing
   heading and surface the rename for the user to apply manually. Do
-  not auto-rename — content beneath the old heading may not fit the
-  new heading's intent.
-- For removed sections upstream: do nothing. Never delete user
-  content.
+  not auto-rename.
+- Removed sections upstream → do nothing. Never delete user content.
 
 Show the proposed migration before applying.
 
-## 6. Readiness check
+## 9. Readiness check
 
-Run the placeholder lint from the latest `pm_skills/init.md`
-Step 10:
+Run the placeholder lint from the latest `pm_skills/init.md` Step 10:
 
 ```sh
 grep -nE '\[Project Name\]|\[short product description\]|<!-- CUSTOMISE' \
@@ -127,39 +161,57 @@ Classify every remaining hit as:
 - **(ii) New in this version, needs population** — point the user at
   the matching `init.md` step (Steps 6–8) for a follow-up session.
 
-## 7. Record
+## 10. Record
 
-Append a one-line entry to the top of
-`pm_skills/project/decision-log.md` (append-only): the date,
-"Upgraded pm-skills framework", and a brief summary of what changed
-(e.g. "added 2 new prompts, merged AGENTS.md, no project memory
-migrations").
+Append one entry to the top of `pm_skills/project/decision-log.md`
+(append-only). Include, on one line each:
 
-If new framework files were added that the user should know about
-(new prompts, new integrations, new sections in `init.md`), name
-them in the entry.
+- Date and "Upgraded pm-skills framework".
+- **Version:** `OLD → NEW`.
+- **Source:** where the upgrade came from (Git URL or local path) —
+  this is the provenance that makes future source divergence visible.
+- A brief summary of what changed (new prompts, merges, migrations).
+- Any local framework customisation decision from Step 4 (carried
+  over, discarded, or moved to a root template).
 
-## 8. Report
+## 11. Report
 
 Output a final upgrade report:
 
-- Framework files replaced (count + names of any notable additions).
-- Root templates merged (one line per file, e.g.
-  `AGENTS.md: 4 sections ported, 1 new section needs input`).
+- Version moved `OLD → NEW`.
+- Framework files replaced/added (count + notable additions).
+- Root templates merged (one line per file).
 - Project memory migrations applied (or "none").
+- Local customisations handled (or "none").
 - Outstanding placeholders by category.
-- Backup location (if a backup was taken).
+- Backup location (if taken).
+
+## Legacy path (project has no `VERSION` file)
+
+A pre-1.0.0 project carries no metadata, so reconstruct it once:
+
+1. Diff the project's `pm_skills/` against the source tree
+   (`diff -rq` on `prompts/`, `integrations/`, `scaffold/`,
+   `project/`, plus the top-level files).
+2. Classify every differing, new, or removed path using the source
+   `MANIFEST.md` (Step 3), then run Steps 4–9 as normal.
+3. In Step 6, also copy in the new metadata files (`VERSION`,
+   `CHANGELOG.md`, `MANIFEST.md`) so this project is versioned from
+   now on and never needs the legacy path again.
+4. Record the upgrade (Step 10) and report (Step 11).
 
 ## Rules
 
+- Treat the source `VERSION`, `CHANGELOG.md`, and `MANIFEST.md` as
+  authoritative. The changelog's Upgrade actions are the plan; the
+  manifest is how each path is handled.
 - Never silently overwrite user-populated content in root templates
-  or `pm_skills/project/`.
+  or `pm_skills/project/`, and never overwrite an unexplained local
+  change to a framework file without asking (Step 4).
 - Never delete files in `pm_skills/project/` or
   `pm_skills/project/archive/`.
-- Append-only files (`decision-log.md`) are never rewritten — only
-  appended to.
-- Treat the latest `init.md` and `GUIDE.md` as authoritative for
-  structure and process.
+- Append-only files (`decision-log.md`, `CHANGELOG.md`) are never
+  rewritten — only appended to.
 - All non-trivial changes batched and shown before write.
-- If an upstream change is ambiguous (e.g. a section was both
-  renamed and restructured), ask the user. Do not guess.
+- If a changelog entry's Upgrade actions are ambiguous or a section
+  was both renamed and restructured, ask the user. Do not guess.

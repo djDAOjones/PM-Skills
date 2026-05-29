@@ -33,8 +33,11 @@ Update each of the following if relevant to this task:
 Budgets are defined in `AGENTS.md` → "Memory size budgets". Do not
 duplicate the numbers here.
 
-- Word-count each hot whole-file read in `pm_skills/project/` plus
-  `README.md`.
+- Word-count every hot whole-file read listed in `AGENTS.md` →
+  "Read tiers" (`README.md`, the `pm_skills/project/` whole-file
+  reads, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`, and any
+  project-added hot reads), and sum them for the total-hot-set
+  budget.
 - Count Completed items in `backlog.md`.
 - Count entries in `decision-log.md` and check the oldest entry's
   date.
@@ -42,7 +45,13 @@ duplicate the numbers here.
 If any budget is exceeded:
 
 - Do not auto-prune.
-- Output one line per overrun: which file, which budget, current value.
+- Output one line per overrun: which file (or the total hot set),
+  which budget, current value.
+- Exception: if only the `decision-log.md` age budget is exceeded
+  and fewer than ~5 entries lie beyond the latest-10 floor, just
+  note it — don't propose a prune. On low-velocity / sporadic
+  projects the age budget trips repeatedly with little to archive;
+  the entry-count and word budgets are the meaningful triggers.
 - Propose running `pm_skills/prompts/prune-memory.md` and wait for
   user approval.
 

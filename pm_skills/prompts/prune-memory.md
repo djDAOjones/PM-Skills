@@ -13,9 +13,12 @@ stop and report.
 
 ## 1. Detect
 
-Word-count each hot whole-file read in `pm_skills/project/` plus
-`README.md`. Count Completed items in `backlog.md`. Count entries
-and the oldest entry date in `decision-log.md`.
+Word-count every hot whole-file read listed in `AGENTS.md` →
+"Read tiers" — `README.md`, the `pm_skills/project/` whole-file
+reads, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`, and any
+project-added hot reads — and sum them for the total-hot-set
+budget. Count Completed items in `backlog.md`. Count entries and
+the oldest entry date in `decision-log.md`.
 
 Output a short table:
 
@@ -36,10 +39,23 @@ For each over-budget file, propose one specific action:
 - `brief.md` over budget → propose tightening (rare).
 - `backlog.md` Completed > budget → move all but the most recent 30
   items to `archive/backlog-shipped.md`. Keep Active untouched.
-- `decision-log.md` > entry budget OR oldest > age budget → split
-  older months whole into `archive/decision-log-YYYY-MM.md`. Leave
-  a one-line index at the bottom of the live file pointing at
-  each archived month.
+- `decision-log.md` > entry budget OR oldest > age budget → archive
+  the oldest entries, keeping the latest live (at least the
+  read-tier latest 10, ideally a generous margin above it). Default
+  split is by whole month into `archive/decision-log-YYYY-MM.md`.
+  If a single month alone exceeds the entry budget, split that
+  month by date-range instead, into
+  `archive/decision-log-YYYY-MM-DD-to-YYYY-MM-DD.md`, oldest
+  entries first. Leave a one-line index at the bottom of the live
+  file pointing at each archive file. If only the age budget is
+  tripped (not the entry budget) and fewer than ~5 entries lie
+  beyond the latest-10 floor, note the overrun and skip — the
+  archive gain doesn't justify the prune (common on low-velocity /
+  sporadic projects).
+- Total hot whole-file set over budget → propose a memory-wide
+  review: archive or tighten the largest hot files using the
+  per-file actions above. Do not blanket-trim files already under
+  their own budget.
 
 Present the proposal to the user. Wait for approval. Do not skip.
 
@@ -54,25 +70,45 @@ Run `git status --porcelain` on the project root.
 
 ## 4. Execute
 
-For each approved prune:
+For each approved prune, work non-destructively first — build the
+new files alongside the original, verify, then swap:
 
 - Create `pm_skills/project/archive/` if it does not exist.
-- Move content to its archive file. Preserve append-only entries
-  verbatim — never rewrite.
-- Rewrite the live file with kept content.
-- For `decision-log.md`, append a one-line index entry at the
-  bottom of the live file for each archived month, in the form:
-  `## Archived: 2026-04 — see archive/decision-log-2026-04.md`.
+- Build the archive file from the original's verbatim slice (e.g.
+  `tail -n +N "$SRC" > "$ARCHIVE"`) plus a short archive header.
+  Preserve append-only entries verbatim — never rewrite.
+- Build the trimmed live file into a temp (e.g. `"$SRC.tmp"`): the
+  kept content plus, for `decision-log.md`, a one-line index entry
+  at the bottom for each archive file, in the form
+  `## Archived: 2026-04 — see archive/decision-log-2026-04.md` (or
+  `## Archived: 2026-05-02 → 2026-05-20 — see archive/…` for a
+  date-range split).
+- Run the step 5 `diff` checks against the still-intact original
+  BEFORE swapping. Only swap once they prove the split is lossless:
+  `mv "$SRC.tmp" "$SRC"`.
 
-Batch the operations. Do not iterate file-by-file with confirmation
+Keep each shell command simple and single-purpose — large compound
+`{ … }` blocks with inline comments get mangled in the terminal.
+Batch the prunes, but do not iterate file-by-file with confirmation
 prompts.
 
 ## 5. Verify
 
-- Re-run word counts. Confirm all files now under budget.
-- Confirm archive files exist with the moved content.
-- Confirm append-only entries are unchanged byte-for-byte.
+- Re-run word and entry counts. Confirm all files are now under
+  budget (or at the agreed generous target).
+- Prove append-only entries are unchanged byte-for-byte with
+  `diff`, run against the still-intact original before the step 4
+  swap: `diff <(tail -n +N "$SRC") <(tail -n +M "$ARCHIVE")` for the
+  archived slice and `diff <(head -n K "$SRC") "$SRC.tmp"` for the
+  kept slice — both must report no differences.
+- Reconcile counts: archived + kept must equal the original total.
+  Nothing is lost.
+- Confirm archive files exist with the moved content, and the live
+  file's index pointer(s) resolve to them.
 - Confirm `backlog.md` Active section is untouched.
+- If counts don't reconcile, or a file you did not prune shows as
+  modified, suspect a concurrent edit from a parallel task — stop,
+  report it, and do not "fix" it. It is not part of the prune.
 - Output a before / after table.
 
 ## 6. Record
@@ -84,6 +120,9 @@ prompts.
 - If new archive files were created, add them to
   `pm_skills/project/file-map.md` under a new "Archive" section
   if one does not already exist.
+- Stage any new archive files with `git add <archive-file>` so the
+  moved history isn't left untracked and lost. Leave committing to
+  the user.
 
 ## Rules
 

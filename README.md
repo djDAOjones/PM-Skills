@@ -32,13 +32,18 @@ files), then run
 [`pm_skills/integrations/upgrade.md`](pm_skills/integrations/upgrade.md)
 or paste
 [`pm_skills/prompts/upgrade.md`](pm_skills/prompts/upgrade.md). The
-workflow audits the differences, preserves your project memory and
-populated root templates, and updates framework files in place.
+workflow compares your project's `pm_skills/VERSION` against the
+latest and stops early if you are already current. Otherwise it
+applies only the deltas the `CHANGELOG.md` documents, preserves your
+project memory and populated root templates, and never silently
+overwrites a framework file you have customised locally.
 
 ## What's in this repo
 
 - **`pm_skills/`** — the framework. Templates, prompts, workflows,
-  and documentation.
+  and documentation. Versioned via `pm_skills/VERSION`,
+  `pm_skills/CHANGELOG.md`, and `pm_skills/MANIFEST.md`, which make
+  upgrades a declarative read rather than a full-tree diff.
 - **`AGENTS.md`**, **`UI-STANDARDS.md`**, **`DEV-INFRASTRUCTURE.md`** —
   distribution templates with `<!-- CUSTOMISE -->` placeholders.
   Copied to the project root and populated during initialization.

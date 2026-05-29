@@ -68,9 +68,9 @@ propose first.
 | --- | --- | --- |
 | Any single hot whole-file read | 2,000 words | Propose summarising or splitting. |
 | Total hot whole-file set | 8,000 words | Propose memory-wide review. |
-| `backlog.md` Completed items | 40 entries | Propose archiving oldest to `archive/backlog-shipped.md`. |
-| `decision-log.md` total entries | 20 entries | Propose monthly archive split to `archive/decision-log-YYYY-MM.md`. |
-| `decision-log.md` oldest entry age | 90 days | Propose monthly archive split. |
+| `backlog.md` Completed items | 40 entries | Propose archiving oldest, keeping the most recent 30, to `archive/backlog-shipped.md`. |
+| `decision-log.md` total entries | 20 entries | Propose an archive split to `archive/decision-log-*.md` (by whole month; by date-range when one month alone exceeds the budget). Keep at least the read-tier latest 10 live. |
+| `decision-log.md` oldest entry age | 90 days | Propose an archive split, oldest months first — but only when ≥ 5 entries lie beyond the latest-10 read-tier floor (live log ≥ 15). Below that, note the overrun and skip: on low-velocity / sporadic projects the age budget keeps tripping with little to move, so entry-count and word budgets are the meaningful triggers. |
 
 ### Workflow
 
