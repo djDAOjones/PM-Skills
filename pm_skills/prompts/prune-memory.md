@@ -18,7 +18,8 @@ Word-count every hot whole-file read listed in `AGENTS.md` →
 reads, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`, and any
 project-added hot reads — and sum them for the total-hot-set
 budget. Count Completed items in `backlog.md`. Count entries and
-the oldest entry date in `decision-log.md`.
+the oldest entry date in `decision-log.md`. Count open items in
+`wish-list.md`.
 
 Output a short table:
 
@@ -52,6 +53,11 @@ For each over-budget file, propose one specific action:
   beyond the latest-10 floor, note the overrun and skip — the
   archive gain doesn't justify the prune (common on low-velocity /
   sporadic projects).
+- `wish-list.md` over budget → do **not** archive. Propose a triage
+  pass: for each open item, promote it into `backlog.md` (Current,
+  Next, or Icebox) or cut it. Survivors move to the backlog; cuts are
+  deleted. The file shrinks by triage, not by moving content to
+  `archive/`.
 - Total hot whole-file set over budget → propose a memory-wide
   review: archive or tighten the largest hot files using the
   per-file actions above. Do not blanket-trim files already under

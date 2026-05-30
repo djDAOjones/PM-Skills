@@ -95,6 +95,10 @@ Output in markdown format matching the template in pm_skills/project/backlog.md.
 Review the output. Reorder, add, or remove tasks. Save to
 `project/backlog.md`.
 
+`project/wish-list.md` ships empty — it is the capture inbox for
+unscoped ideas that surface later. Leave it as-is; no population is
+needed at init.
+
 ---
 
 ## Step 4: Set initial conventions (optional)

@@ -19,7 +19,26 @@ list and tier policy live in `AGENTS.md` → "Before every task").
 **Active** section (Current milestone, Next milestone, and Icebox all
 live there, per the standard tier policy).
 
-## 2. Pick the next batch
+Also read `pm_skills/project/wish-list.md` here. It is Cold tier
+(never auto-loaded), and `next-batch` is its triage point — the one
+prompt that always opens it.
+
+## 2. Triage the wish-list (quick)
+
+If `wish-list.md` has open items, drain it before picking work — this
+is the forcing function that stops the inbox becoming a graveyard:
+
+- List the open items, one line each.
+- For each, recommend **promote** (move it into `backlog.md` under
+  Current, Next, or Icebox) or **cut** (delete the line).
+- Apply only what the user confirms. Never auto-promote. Promoting
+  moves the item out of the wish-list; cutting deletes it.
+- If the wish-list is empty, say so in one line and move on.
+
+Keep this quick — a triage glance, not scoping. Real scoping happens
+in the chosen workflow after the pick.
+
+## 3. Pick the next batch
 
 From the backlog Active section, choose the next logical unit:
 
@@ -31,7 +50,7 @@ From the backlog Active section, choose the next logical unit:
 - Do not pull from **Icebox** unless Active has nothing committed.
 - Skip blocked items and say why they're blocked.
 
-## 3. Present the pick
+## 4. Present the pick
 
 Output, concisely:
 
@@ -47,7 +66,7 @@ Output, concisely:
 6. **Runner-up** — in one line, the next item you'd pick if this one
    is wrong.
 
-## 4. Stop
+## 5. Stop
 
 Wait for the user to confirm or redirect. Do not begin scoping,
 planning, or writing code until they do.

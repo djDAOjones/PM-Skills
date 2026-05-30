@@ -98,6 +98,10 @@ step before proceeding to the next.
     "not applicable" stub. Bracketed `[placeholder]` strings should
     not remain in populated sections.
 
+    Note: `pm_skills/project/wish-list.md` ships empty (just its
+    template header) — it needs no population at init. Don't flag it
+    as missing or incomplete.
+
     Note: `pm_skills/project/archive/` should NOT exist yet — it is
     created lazily on the first run of
     `pm_skills/prompts/prune-memory.md`.

@@ -54,6 +54,9 @@ prescribes — this keeps session context bounded.
 
 **Cold** — never auto-read:
 
+- `pm_skills/project/wish-list.md` — capture inbox for unscoped ideas.
+  Read only during an explicit triage pass (see "Capturing deferred
+  ideas" below); never auto-load.
 - `pm_skills/project/archive/*.md` — historical content moved out of
   hot files. Search via grep when explicitly relevant; never auto-load.
 
@@ -71,6 +74,7 @@ propose first.
 | `backlog.md` Completed items | 40 entries | Propose archiving oldest, keeping the most recent 30, to `archive/backlog-shipped.md`. |
 | `decision-log.md` total entries | 20 entries | Propose an archive split to `archive/decision-log-*.md` (by whole month; by date-range when one month alone exceeds the budget). Keep at least the read-tier latest 10 live. |
 | `decision-log.md` oldest entry age | 90 days | Propose an archive split, oldest months first — but only when ≥ 5 entries lie beyond the latest-10 read-tier floor (live log ≥ 15). Below that, note the overrun and skip: on low-velocity / sporadic projects the age budget keeps tripping with little to move, so entry-count and word budgets are the meaningful triggers. |
+| `wish-list.md` open items | 25 items | Propose a triage pass (promote each into `backlog.md`, or cut). Never archive — the wish-list shrinks by triage, not by moving content to `archive/`. |
 
 ### Workflow
 
@@ -89,6 +93,27 @@ propose first.
    a genuinely blocking ambiguity. All other rules in this file
    (source-tree search, project-memory housekeeping, memory size
    check, minimal-change discipline, hard rules) still apply.
+
+---
+
+## Capturing deferred ideas (wish-list)
+
+When an out-of-scope idea surfaces mid-task, append it to
+`pm_skills/project/wish-list.md` as a single line and keep working. Do
+not act on it, scope it, estimate it, or discuss it unless the user
+asks — capturing the one line is the whole interaction.
+
+- **User trigger.** "Park it" (or similar) means: append the idea to
+  the wish-list and move on. See `pm_skills/prompts/corrections.md`.
+- **Boundary.** The wish-list is the **pre-triage** inbox — raw,
+  unjudged ideas. The backlog **Icebox** is **post-triage** — ideas
+  already judged worth keeping. Promote items from the wish-list
+  _into_ `backlog.md`; never treat the wish-list as a second backlog.
+- **Triage, not hoarding.** Drain the wish-list during
+  `pm_skills/prompts/next-batch.md` (and when the `end-of-task.md`
+  size check flags it): promote each item into the backlog, or cut
+  it. Promoting moves the line out; cutting deletes it. No history is
+  kept in the wish-list.
 
 ---
 
@@ -214,7 +239,7 @@ See `DEV-INFRASTRUCTURE.md` for the concrete list of protected paths.
 | `AGENTS.md` | Hard rules, invariants, data model, anti-patterns | Major architectural or design decisions change |
 | `UI-STANDARDS.md` | UI, accessibility, usability rules | New token systems or UI conventions established |
 | `DEV-INFRASTRUCTURE.md` | Build, dev server, versioning, scripts | Build or deployment decisions change |
-| `project/` memory files | Brief, architecture, backlog, file map, conventions, decision log | End of every task session |
+| `project/` memory files | Brief, architecture, backlog, wish-list, file map, conventions, decision log | End of every task session |
 | `project/archive/` | Historical content moved out of hot files | Only via `pm_skills/prompts/prune-memory.md` |
 
 When in doubt: unconditional invariant → `AGENTS.md`. UI convention →
@@ -233,6 +258,9 @@ context → `project/`. Historical content → `project/archive/`.
   visible, accessible treatment.
 - Hard-coding values that should be tokenised or configurable.
 - Adding runtime dependencies without explicit approval.
+- Letting the `wish-list.md` inbox become a write-only graveyard, or
+  scoping or estimating its items at capture time. Capture is one
+  line; judgement happens at triage.
 
 Project-specific anti-patterns are in
 `pm_skills/project/conventions.md` under

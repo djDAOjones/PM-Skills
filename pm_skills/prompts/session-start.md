@@ -29,6 +29,7 @@ list below is a quick reference — `AGENTS.md` is authoritative.
 
 **Cold** (do not auto-load):
 
+- `pm_skills/project/wish-list.md` — capture inbox; read only during triage (see `next-batch.md`).
 - `pm_skills/project/archive/*.md` — search via grep only when explicitly relevant.
 
 ## Then state the task

@@ -135,9 +135,14 @@ Only if the work list touches `AGENTS.md`, `UI-STANDARDS.md`, or
 
 ## 8. Reconcile project memory templates
 
-Only if the work list flags new/renamed/removed sections in the
-distributed `pm_skills/project/` templates. For each affected file:
+Only if the work list flags a new `project-memory` file, or
+new/renamed/removed sections in the distributed `pm_skills/project/`
+templates. For each affected file:
 
+- New `project-memory` file upstream (the changelog names it, e.g. a
+  new `pm_skills/project/wish-list.md`) → create it in the project
+  from the source template. There is nothing to preserve; it starts
+  at the template. Skip if it already exists — never overwrite.
 - New sections upstream → add the heading with no body content.
 - Renamed headings → leave the user's content under the existing
   heading and surface the rename for the user to apply manually. Do

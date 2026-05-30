@@ -11,6 +11,8 @@ Update each of the following if relevant to this task:
 
 - `pm_skills/project/backlog.md` — move this task to the Completed
   section, note any follow-up tasks in Active.
+- `pm_skills/project/wish-list.md` — append any out-of-scope ideas
+  surfaced this task, one line each.
 - `pm_skills/project/file-map.md` — add or update entries for files
   created or changed.
 - `pm_skills/project/decision-log.md` — record the key design
@@ -39,6 +41,7 @@ duplicate the numbers here.
   project-added hot reads), and sum them for the total-hot-set
   budget.
 - Count Completed items in `backlog.md`.
+- Count open items in `wish-list.md`.
 - Count entries in `decision-log.md` and check the oldest entry's
   date.
 
@@ -52,6 +55,9 @@ If any budget is exceeded:
   note it — don't propose a prune. On low-velocity / sporadic
   projects the age budget trips repeatedly with little to archive;
   the entry-count and word budgets are the meaningful triggers.
+- An over-budget `wish-list.md` is drained by triage, not archiving.
+  Propose a triage pass (promote or cut) — via `next-batch.md` or
+  `prune-memory.md` — rather than an archive split.
 - Propose running `pm_skills/prompts/prune-memory.md` and wait for
   user approval.
 

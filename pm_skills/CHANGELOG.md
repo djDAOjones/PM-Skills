@@ -25,6 +25,63 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 1.1.0 — 2026-05-30
+
+Adds the wish-list: a cold-tier capture inbox for parking unscoped
+ideas mid-task, with capture and triage rules plus the upgrade
+handling needed to ship a brand-new project-memory file.
+
+### Added
+
+- `pm_skills/project/wish-list.md` (`project-memory`) — capture inbox
+  for unscoped ideas. Cold tier (never auto-read); drained by triage
+  into `backlog.md`. One line per idea; promote or cut at triage;
+  soft cap ~25 open items.
+
+### Changed
+
+- `AGENTS.md` (`root-template`) — adds a "Capturing deferred ideas
+  (wish-list)" section, a Cold read-tier entry, a memory-budget row,
+  a Document-ownership update, and an anti-pattern.
+- `pm_skills/prompts/next-batch.md` — adds a quick wish-list triage
+  step (promote or cut) before picking the batch.
+- `pm_skills/prompts/corrections.md` — adds a "Park it" capture
+  trigger.
+- `pm_skills/prompts/scoping.md` — routes worth-keeping out-of-scope
+  items into the wish-list.
+- `pm_skills/prompts/end-of-task.md` — counts open wish-list items in
+  the size check and proposes triage (not archiving) when over budget.
+- `pm_skills/prompts/prune-memory.md` — adds a wish-list action: drain
+  by triage, never archive.
+- `pm_skills/prompts/session-start.md` — lists the wish-list under
+  Cold (do not auto-load).
+- `pm_skills/prompts/upgrade.md` — Step 8 now creates a brand-new
+  `project-memory` file from the template (never overwrites).
+- `pm_skills/MANIFEST.md` — adds the `wish-list.md` → `project-memory`
+  row.
+- `pm_skills/GUIDE.md`, `pm_skills/init.md`,
+  `pm_skills/integrations/init-project.md` — document the wish-list in
+  the file tree, read tiers, memory-fresh table, and init notes.
+
+### Upgrade actions
+
+- Create `pm_skills/project/wish-list.md` from the source template. It
+  is a new `project-memory` file — nothing to preserve. **Skip if it
+  already exists; never overwrite.**
+- Overwrite these `framework` files with the source versions, after
+  the Step 4 customisation check: `pm_skills/prompts/next-batch.md`,
+  `corrections.md`, `scoping.md`, `end-of-task.md`, `prune-memory.md`,
+  `session-start.md`, `upgrade.md`, `pm_skills/GUIDE.md`,
+  `pm_skills/init.md`, `pm_skills/integrations/init-project.md`,
+  `pm_skills/MANIFEST.md`.
+- 3-way merge `AGENTS.md` (`root-template`): add the "Capturing
+  deferred ideas (wish-list)" section, the Cold read-tier bullet, the
+  `wish-list.md` budget row, the Document-ownership update, and the
+  anti-pattern. Preserve every populated section verbatim.
+- Bump `pm_skills/VERSION` to `1.1.0` (stamped by overwriting the
+  framework `VERSION` file).
+- Result: project is at **1.1.0**.
+
 ## 1.0.0 — 2026-05-28
 
 First versioned release. Establishes self-describing metadata so

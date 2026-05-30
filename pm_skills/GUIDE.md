@@ -30,7 +30,8 @@ The framework uses **two memory layers** and **three read tiers**.
 **Two memory layers:**
 
 - **`project/`** — living project memory. Updated every session.
-  Contains the brief, backlog, file map, conventions, and decision log.
+  Contains the brief, backlog, wish-list, file map, conventions, and
+  decision log.
 - **`AGENTS.md` + `UI-STANDARDS.md` + `DEV-INFRASTRUCTURE.md`** (in
   the project root) — permanent behavioral contracts. Contain hard
   rules, invariants, accessibility standards, design system
@@ -44,7 +45,8 @@ every task"):
 - **Hot whole-file** — read every task.
 - **Hot sectional** — read by section only (`backlog.md` Active;
   `decision-log.md` latest 10).
-- **Cold** — `pm_skills/project/archive/*` is never auto-read.
+- **Cold** — `pm_skills/project/wish-list.md` (capture inbox) and
+  `pm_skills/project/archive/*` are never auto-read.
 
 AI tools that support global rules load `AGENTS.md` automatically.
 For other tools, the session-start prompts include explicit read
@@ -62,6 +64,7 @@ project/         Durable project memory. Fill once, maintain ongoing.
   architecture.md  Tech stack, structure, key decisions.
   conventions.md   Style, naming, patterns, rules.
   backlog.md       Living task list with status.
+  wish-list.md     Capture inbox for unscoped ideas (cold; triaged later).
   file-map.md      Key files and their roles.
   decision-log.md  Append-only record of design decisions.
 
@@ -164,6 +167,7 @@ go-ahead. Confirm, then continue with the matching workflow below.
 | `architecture.md` | When adding major modules or changing the tech stack. |
 | `conventions.md` | When a new convention is established or changed. |
 | `backlog.md` | End of every task — mark done, add follow-ups. |
+| `wish-list.md` | When an out-of-scope idea surfaces — append one line. Drained by triage at `next-batch.md`. |
 | `file-map.md` | When files are created, renamed, or deleted. |
 | `decision-log.md` | During the design phase of each task. |
 | `README.md` (root) | When architecture, dev workflow, or key infrastructure changes. |
