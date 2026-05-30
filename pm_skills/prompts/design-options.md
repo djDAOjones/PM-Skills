@@ -6,6 +6,7 @@ Approved scope:
 <paste approved scope here, or say "use the scope from above">
 
 For each option:
+
 - Summary
 - Files and modules affected
 - How it fits (or extends) the current architecture
@@ -14,11 +15,13 @@ For each option:
 - Risks or trade-offs
 
 Then:
+
 - Recommend one option.
 - Explain why it fits this project better than the others.
 - Note anything that should stay unchanged.
 
 Rules:
+
 - Don't reopen scope.
 - Don't propose speculative refactors.
 - If this is early in the project, options may be about foundational choices (folder structure, patterns, libraries) rather than modifications to existing code.

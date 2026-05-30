@@ -72,6 +72,7 @@ Wait for the user to confirm or redirect. Do not begin scoping,
 planning, or writing code until they do.
 
 Rules:
+
 - Search the source tree only enough to ground the "what it touches"
   line. Save real scoping for the chosen workflow.
 - If two or three candidates are genuinely equal, present them and ask

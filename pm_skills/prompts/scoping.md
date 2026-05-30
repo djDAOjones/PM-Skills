@@ -3,6 +3,7 @@
 Using the project context, do the scoping step only for the current task.
 
 Output:
+
 1. Problem framing — what needs to change and why.
 2. Affected areas — which modules, files, or layers are involved.
 3. Key design decisions — what choices need to be made.
@@ -13,6 +14,7 @@ Output:
 8. Open questions — only if genuinely blocking.
 
 Rules:
+
 - Search the codebase before drawing conclusions.
 - Prefer existing patterns over new abstractions.
 - Flag any efficiency, persistence, or architectural concerns.

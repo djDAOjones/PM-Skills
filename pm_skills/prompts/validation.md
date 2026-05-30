@@ -9,6 +9,7 @@ Implementation plan:
 <paste plan, or say "use the plan from above">
 
 Output:
+
 1. Design sanity checks — does this actually solve the problem?
 2. Architecture checks — does this respect module boundaries?
 3. Regression risks — what existing behavior could break?
@@ -17,6 +18,7 @@ Output:
 6. Signs the scope is too large or the design is wrong.
 
 Rules:
+
 - Say "not applicable" for irrelevant checks.
 - Separate pre-existing issues from task-induced risks.
 - Keep it concrete and actionable.
