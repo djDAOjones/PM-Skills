@@ -25,6 +25,24 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 1.2.1 — 2026-05-31
+
+Strengthen the wish-list promote step in `next-batch` so promoted items
+are ranked relative to existing backlog items instead of appended
+blindly, keeping the next-batch pick reading off a current order.
+
+### Changed
+
+- `pm_skills/prompts/next-batch.md` — promote step now requires placing a
+  promoted item relative to existing Current/Next/Icebox items with a
+  one-line above/below rationale. Makes `next-batch` the explicit (lazy,
+  just-in-time) re-ranking point.
+
+### Upgrade actions
+
+- Replace `pm_skills/prompts/next-batch.md` with the new version. No
+  memory migration; behavioural clarification only.
+
 ## 1.2.0 — 2026-05-31
 
 Adds `init-mvp`: a guided-then-autonomous workflow that turns wants or
