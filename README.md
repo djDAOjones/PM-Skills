@@ -20,6 +20,12 @@ heuristics, and JSDoc documentation.
    your project root.
 3. Follow `pm_skills/init.md` to populate everything.
 
+Prefer to let the agent build it? Run
+[`pm_skills/integrations/init-mvp.md`](pm_skills/integrations/init-mvp.md) —
+you sign off the foundation (product read, stack, and MVP backlog), then it
+builds the first-milestone MVP to completion without further gates,
+de-risked by staged rollback checkpoints.
+
 See [`pm_skills/GUIDE.md`](pm_skills/GUIDE.md) for the full guide:
 folder contents, two-tier memory system, per-task workflow, and how to
 keep project memory fresh.

@@ -15,6 +15,13 @@ and JSDoc. All customisable, none apologised for.
 
 **New project?** Follow [init.md](./init.md) step by step.
 
+**New project, and you want the agent to build it?** Run
+[`integrations/init-mvp.md`](./integrations/init-mvp.md). It is the
+guided-then-autonomous path: you sign off the foundation (the product
+read, the stack, and the MVP backlog), then it builds the first-milestone
+MVP to completion without further gates — de-risked by staged rollback
+checkpoints. Same rigour as the gated path.
+
 **Already using an older version of pm-skills?** Run
 [`integrations/upgrade.md`](./integrations/upgrade.md), or paste
 [`prompts/upgrade.md`](./prompts/upgrade.md) into your AI tool. The
@@ -85,10 +92,12 @@ prompts/         Reusable per-task prompts.
 
 integrations/    Optional tool-specific workflows.
   init-project.md    Guided project initialization.
+  init-mvp.md        Sign off the foundation, then autonomous MVP build.
   feature.md         Full task workflow with approval gates.
   bugfix.md          Diagnosis-before-fix workflow for bugs.
   auto-jazz.md       Full 4-stage workflow, no approval gates.
   auto-jazz-lite.md  Fast 2-stage workflow, no approval gates.
+  prune-memory.md    Prune project memory when files exceed budgets.
   upgrade.md         Upgrade an existing project to the latest version.
 
 scaffold/        Template files to copy into your project root.

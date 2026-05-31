@@ -6,6 +6,9 @@ Guide the user through project initialization. Follow these steps in
 order, writing files as you go. Present results for review at each
 step before proceeding to the next.
 
+To gate only the foundation and then autonomously build the first-milestone
+MVP, use `pm_skills/integrations/init-mvp.md` instead.
+
 1. Fill in the project brief.
    Ask the user the questions from
    `pm_skills/project/brief.md` (what are we

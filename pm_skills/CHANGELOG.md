@@ -25,6 +25,57 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 1.2.0 — 2026-05-31
+
+Adds `init-mvp`: a guided-then-autonomous workflow that turns wants or
+specs into a runnable first-milestone MVP. It marries the gated initializer
+(`init-project.md`) with gateless execution (`auto-jazz.md`) — you sign off
+the foundation, then it builds to completion — across the whole initial
+development phase, with staged rollback checkpoints and a stop-and-narrow
+rule for safety.
+
+### Added
+
+- `pm_skills/integrations/init-mvp.md` (`framework`) — gated foundation,
+  then gateless build. Phase A is gated like `init-project.md`: it reads
+  the interpretation back, then builds the foundation (brief, architecture,
+  backlog, contracts, scaffold) and fixes the stack + dependency policy,
+  ending at a foundation sign-off gate. Phase B then runs without gates:
+  stands up a runnable skeleton and burns down the first milestone via the
+  `auto-jazz` loop. Runs the standard four-stage approach at two altitudes
+  (project-altitude gated, item-altitude gateless) — no extra design
+  stages. Inherits the auto-jazz hard prohibitions plus two of its own: no
+  building past the first milestone in one run, and a greenfield dependency
+  rule (only deps the recorded architecture names are authorised).
+
+### Changed
+
+- `pm_skills/GUIDE.md` — adds a "New project, and you want the agent to
+  build it?" pointer under Start here, the `init-mvp.md` entry in the
+  integrations file tree, and the previously-missing `prune-memory.md`
+  integration row alongside it.
+- `pm_skills/init.md` — adds a "Prefer to let the agent build it?" callout
+  pointing at the guided-then-autonomous path.
+- `pm_skills/integrations/init-project.md` — cross-references the
+  guided-then-autonomous variant.
+- `README.md` — notes the guided-then-autonomous path in Quick start.
+
+### Upgrade actions
+
+- Create `pm_skills/integrations/init-mvp.md` from the source. It is a new
+  `framework` file — nothing to preserve; copy it in.
+- Overwrite these `framework` files with the source versions, after the
+  Step 4 customisation check: `pm_skills/GUIDE.md`, `pm_skills/init.md`,
+  `pm_skills/integrations/init-project.md`.
+- `README.md`: most consuming projects keep their own root README — skip
+  unless the project intentionally tracks the framework README.
+- No `pm_skills/MANIFEST.md` change — `pm_skills/integrations/*` already
+  classifies the new file as `framework`.
+- No `project/` memory migrations.
+- Bump `pm_skills/VERSION` to `1.2.0` (stamped by overwriting the framework
+  `VERSION` file).
+- Result: project is at **1.2.0**.
+
 ## 1.1.0 — 2026-05-30
 
 Adds the wish-list: a cold-tier capture inbox for parking unscoped

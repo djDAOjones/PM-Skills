@@ -15,6 +15,17 @@ This process populates two kinds of project memory:
 Both are kept in sync. The kickoff process gathers information once and
 writes it to the right places.
 
+## Prefer to let the agent build it?
+
+This guide is the fully manual path — you drive every step. If instead you
+have wants or specs and want the agent to do the work, use
+`integrations/init-mvp.md`. You review and **sign off the foundation** (the
+product read, the stack, and the MVP backlog), and then it builds the
+first-milestone MVP to completion without further gates — de-risked by
+staged rollback checkpoints. It applies the same rigour (design-before-code,
+Carbon, WCAG 2.2 AAA, minimal dependencies, live project memory). Come back
+to this guide whenever you want to drive the setup yourself.
+
 ## Minimum viable setup
 
 If you want to start fast, complete only these now:
