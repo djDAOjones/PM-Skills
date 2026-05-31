@@ -200,18 +200,41 @@ exceptions) are in `pm_skills/project/conventions.md`.
 
 ## Testing
 
-<!-- CUSTOMISE: Replace the defaults below with this project's actual
-     testing policy. See init.md Step 6 for stage examples. -->
+Tests protect invariants — behaviours that would do real damage if they
+silently broke. Write a test to prove an invariant, not to chase a
+coverage number; coverage is a warning light, never a target.
 
-- Run the project's build and test steps after every change. If no
-  automated test runner exists yet, verify the change manually and
-  note what was checked.
-- Never delete or weaken existing tests.
-- Add a test for any new model method or utility function when a
-  test runner is available.
+**Named categories, never "add tests" in the abstract.** When a change
+warrants tests, cover the categories that apply: happy path, empty,
+error, boundary, permission/gating, regression (one per fixed bug), and
+a persistence round-trip (write → reload) for stateful changes.
+**"Not applicable" is a valid outcome** — if no meaningful invariant is
+at risk, say so rather than manufacture tests.
 
-Project-specific testing policy (framework, coverage bar, what to
-test) is in `pm_skills/project/conventions.md`.
+**Fast and hermetic.** Prefer in-process injection, fakes, and temp
+directories over live servers and real I/O — fast enough to run on
+every change.
+
+**Two layers.** The automated safety net never replaces the manual gate
+(real browsers, devices, permissions, rehearsal). Name what only a
+human can verify.
+
+**Hard rules.**
+
+- Run build and tests after every change; if no runner exists yet,
+  verify manually and note what was checked.
+- Never silently delete, skip, or weaken a test to make a change pass.
+  If a test is genuinely obsolete because the intended behaviour
+  changed, say so and update or remove it as part of the approved
+  change.
+- Never write hollow tests (assertion-free, snapshot-everything, or
+  mocking the unit under test). A test that cannot fail protects
+  nothing.
+- Rigour ramps with maturity; before invariants stabilise (e.g. the
+  first MVP build), deferring tests and saying so is correct.
+
+Tooling and project-specific policy (runner, config, what to test) live
+in `pm_skills/project/conventions.md`.
 
 ---
 

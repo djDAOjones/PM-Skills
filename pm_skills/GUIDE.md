@@ -9,7 +9,8 @@ macro structure but want AI agents to handle implementation
 without losing context, drifting, or wasting tokens.
 
 Defaults to Carbon Design System, WCAG 2.2 AAA, Nielsen heuristics,
-and JSDoc. All customisable, none apologised for.
+JSDoc, and a lean invariant-led testing doctrine. All customisable,
+none apologised for.
 
 ## Start here
 

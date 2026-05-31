@@ -28,9 +28,14 @@
 
 ## Testing
 
-<!-- Project-specific testing policy. The permanent rules (run tests
-     after every change, never weaken tests) are in AGENTS.md. This
-     section captures framework, coverage bar, and what to test. -->
+<!-- Project-specific testing policy. The permanent doctrine (invariants
+     over coverage, named categories, fast-and-hermetic, two layers,
+     never silently weaken a test) is in AGENTS.md. Capture here: the
+     runner and its config — with non-obvious reasons, e.g. sequential
+     execution when tests mutate env or reset module singletons — the
+     coverage bar if any, and the specific invariants this project must
+     protect. Default for JS/Node: Vitest (safety net) + Playwright
+     (critical journeys); swap per stack. -->
 
 ## Patterns to follow
 

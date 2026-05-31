@@ -210,8 +210,9 @@ architecture, and conventions, populate every applicable placeholder:
 9. **Anti-patterns** — Add project-specific anti-patterns below the
    universal ones.
 
-10. **Testing** — Define what testing means for this project today.
-    Replace the default with the actual policy.
+10. **Testing** — Keep the testing doctrine as the default. Add any
+    project-specific invariants or anti-patterns; record the runner,
+    config, and what-to-test in `project/conventions.md`.
 
 11. **Persistence checklist** — If the project has stateful models
     that persist to localStorage or files, fill in the checklist.
@@ -493,14 +494,21 @@ guidance.
 
 ### Testing policy stages
 
-Replace the default testing rules with what is true for the project
-today. Common stages:
+The permanent doctrine (invariants over coverage, named categories,
+fast-and-hermetic, two layers, never silently weaken a test) lives in
+`AGENTS.md`. This section records where *this* project sits on the
+ramp today:
 
-1. Manual browser/CLI verification for UI and integration.
-2. Unit tests for model, state, and utility code.
-3. Automated integration or end-to-end tests.
+1. **Pre-invariant (MVP/greenfield).** Manual verification only.
+   Correct to defer tests until invariants stabilise — say so.
+2. **Safety net.** Vitest (or stack equivalent) for logic, validation,
+   and boundary/API tests via in-process injection; a regression test
+   per fixed bug; round-trip tests for persisted state.
+3. **Journeys.** Playwright (or equivalent) for the few real-environment
+   flows that would break trust if they failed.
 
-Update this section as the testing infrastructure matures.
+Record the runner config and this project's specific invariants in
+`conventions.md`. Update as the suite matures.
 
 ### Persistence checklist examples
 

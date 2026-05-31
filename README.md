@@ -11,7 +11,8 @@ project memory and project-management discipline for AI coding
 sessions — not generic project-management training.
 
 Defaults to Carbon Design System, WCAG 2.2 AAA accessibility, Nielsen
-heuristics, and JSDoc documentation.
+heuristics, JSDoc documentation, and a lean invariant-led testing
+doctrine.
 
 ## Quick start
 

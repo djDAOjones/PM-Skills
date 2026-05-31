@@ -25,6 +25,52 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 1.3.0 — 2026-05-31
+
+Bakes in a lean, opinionated testing doctrine — invariant-led, with
+named test categories — so testing is a first-class default alongside
+Carbon, WCAG 2.2 AAA, Nielsen, and JSDoc. No new standard file, no
+coverage threshold, no default security or performance tooling. Tool
+names (Vitest, Playwright) live in the project layer, not the
+always-read contract.
+
+### Changed
+
+- `AGENTS.md` (`root-template`) — rewrote the **Testing** section:
+  tests protect invariants (not coverage); named categories with
+  "not applicable" as a valid outcome; fast and hermetic; two layers;
+  a softened anti-gaming rule (obsolete tests are updated through the
+  approval gate, not silently weakened); no hollow tests; rigour ramps
+  with maturity.
+- `pm_skills/prompts/validation.md` — Stage 4 "test coverage" became a
+  concrete test-plan gate over the named categories, with "not
+  applicable" allowed per category.
+- `pm_skills/init.md` — replaced the generic testing-policy ladder with
+  the opinionated ramp (pre-invariant → safety net → journeys); names
+  Vitest and Playwright as the JS/Node default. Step 6's testing item
+  now keeps the doctrine and points project specifics to
+  `conventions.md`.
+- `pm_skills/project/conventions.md` — sharpened the Testing and Tooling
+  template guidance (runner config and its reasons, e.g. sequential
+  execution when tests mutate env or reset singletons; project
+  invariants; default tools).
+- `README.md`, `pm_skills/GUIDE.md` — added the testing doctrine to the
+  stated defaults.
+
+### Upgrade actions
+
+- Replace `pm_skills/prompts/validation.md` and `pm_skills/init.md` with
+  the new versions (`framework` — wholesale).
+- In `AGENTS.md` (`root-template`, 3-way merge): if the project still
+  has the default Testing section, replace it with the new doctrine; if
+  the project customised its Testing section, leave it and offer the new
+  doctrine for the user to adopt.
+- `pm_skills/project/conventions.md` (`project-memory`): apply the
+  improved template guidance only where the Testing/Tooling sections are
+  still the unedited placeholders; never overwrite a project's filled-in
+  policy.
+- No memory migration required.
+
 ## 1.2.1 — 2026-05-31
 
 Strengthen the wish-list promote step in `next-batch` so promoted items
