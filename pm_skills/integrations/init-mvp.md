@@ -157,9 +157,9 @@ build. Keep project memory live as you go.
      `AGENTS.md`; imports at the top; match the conventions just recorded;
      stay within the recorded dependency set.
    - Verify: run build/tests; confirm the whole thing still runs.
-   - Update project memory as you go: tick the item in `backlog.md`, add
-     new files to `file-map.md`, and note any genuinely notable decision
-     for the consolidated decision-log entry in step 10.
+   - Update project memory as you go: update the item's status in
+     `backlog.md`, add new files to `file-map.md`, and note any genuinely
+     notable decision for the consolidated decision-log entry in step 10.
 
 9. Stop-and-narrow rule.
    If an item reveals the architecture is wrong, the build stops running,
@@ -182,8 +182,9 @@ build. Keep project memory live as you go.
 11. End-of-task housekeeping.
     Run `pm_skills/prompts/end-of-task.md` once for the whole run. Record a
     single consolidated decision-log entry covering the stack choice, the
-    MVP scope, and every assumption made in Phases A and B. Confirm
-    `backlog.md` reflects what shipped versus what was descoped. Run the
+    MVP scope, and every assumption made in Phases A and B. Record the
+    shipped milestone as a phase in `trajectory.md`; confirm `backlog.md`
+    holds only open or descoped work (shipped items moved out). Run the
     memory size check. Present a closing report that names the rollback
     checkpoints (foundation, skeleton) and recommends the next step
     (`next-batch.md` for the second milestone).

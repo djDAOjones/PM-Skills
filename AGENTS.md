@@ -29,7 +29,7 @@ explain concepts back unless asked.
 
 ### Read tiers
 
-Project memory has three read tiers. Load only what each tier
+Project memory has four read tiers. Load only what each tier
 prescribes — this keeps session context bounded.
 
 **Hot whole-file** — read every task:
@@ -46,11 +46,18 @@ prescribes — this keeps session context bounded.
 
 **Hot sectional** — read by section only:
 
-- `pm_skills/project/backlog.md` — read only the **Active** section.
-  Read **Completed** only when verifying shipped behaviour.
+- `pm_skills/project/backlog.md` — read only the **Active** section
+  (open work: Current, Next, Icebox). Shipped work is not here — see
+  `trajectory.md`.
 - `pm_skills/project/decision-log.md` — read only the **latest 10
   entries**. Search older entries on demand when prior-decision
   context is needed.
+
+**Warm** — read on demand, not auto-read every task:
+
+- `pm_skills/project/trajectory.md` — the shipped-work narrative. Read
+  during `roadmap-refactor.md`, release work, or when reconstructing
+  what already shipped.
 
 **Cold** — never auto-read:
 
@@ -71,10 +78,13 @@ propose first.
 | --- | --- | --- |
 | Any single hot whole-file read | 2,000 words | Propose summarising or splitting. |
 | Total hot whole-file set | 8,000 words | Propose memory-wide review. |
-| `backlog.md` Completed items | 40 entries | Propose archiving oldest, keeping the most recent 30, to `archive/backlog-shipped.md`. |
-| `decision-log.md` total entries | 20 entries | Propose an archive split to `archive/decision-log-*.md` (by whole month; by date-range when one month alone exceeds the budget). Keep at least the read-tier latest 10 live. |
-| `decision-log.md` oldest entry age | 90 days | Propose an archive split, oldest months first — but only when ≥ 5 entries lie beyond the latest-10 read-tier floor (live log ≥ 15). Below that, note the overrun and skip: on low-velocity / sporadic projects the age budget keeps tripping with little to move, so entry-count and word budgets are the meaningful triggers. |
+| `backlog.md` Active | 1,500 words **and** ~40 open items | Propose `roadmap-refactor.md`: restructure by lifecycle, evict done-work, dedupe stale rounds. |
+| `backlog.md` shipped work | 0 — done `[x]` items do not live here | Move each to `trajectory.md` (one line) + `decision-log.md` (the why). Flagged by `end-of-task.md` and `doctor-memory.md`. |
+| `trajectory.md` | 2,000 words | Propose archiving the oldest phases to `archive/trajectory/`, keeping `archive/INDEX.md` current. |
+| `decision-log.md` live log | 20 entries **or** 4,000 words | Propose an archive split to `archive/decision-log-*.md` (by whole month; by date-range when one month alone exceeds a budget). Keep at least the read-tier latest 10 live. |
+| `decision-log.md` oldest entry age | 90 days | Propose an archive split, oldest first — but only when ≥ 5 entries lie beyond the latest-10 read-tier floor (live log ≥ 15). Below that, note the overrun and skip: on low-velocity / sporadic projects the age budget keeps tripping with little to move, so the entry-count and word budgets are the meaningful triggers. |
 | `wish-list.md` open items | 25 items | Propose a triage pass (promote each into `backlog.md`, or cut). Never archive — the wish-list shrinks by triage, not by moving content to `archive/`. |
+| `archive/` chunk | 8,000 words **or** 20 entries per file | Split larger chunks by sequence/date so each loads in one read. Maintain `archive/INDEX.md`. |
 
 ### Workflow
 
@@ -262,8 +272,8 @@ See `DEV-INFRASTRUCTURE.md` for the concrete list of protected paths.
 | `AGENTS.md` | Hard rules, invariants, data model, anti-patterns | Major architectural or design decisions change |
 | `UI-STANDARDS.md` | UI, accessibility, usability rules | New token systems or UI conventions established |
 | `DEV-INFRASTRUCTURE.md` | Build, dev server, versioning, scripts | Build or deployment decisions change |
-| `project/` memory files | Brief, architecture, backlog, wish-list, file map, conventions, decision log | End of every task session |
-| `project/archive/` | Historical content moved out of hot files | Only via `pm_skills/prompts/prune-memory.md` |
+| `project/` memory files | Brief, architecture, backlog, wish-list, trajectory, file map, conventions, decision log | End of every task session |
+| `project/archive/` | Historical content moved out of hot files, indexed in `archive/INDEX.md` | Only via `pm_skills/prompts/prune-memory.md` or `roadmap-refactor.md` |
 
 When in doubt: unconditional invariant → `AGENTS.md`. UI convention →
 `UI-STANDARDS.md`. Build/dev rule → `DEV-INFRASTRUCTURE.md`. Evolving
@@ -284,6 +294,13 @@ context → `project/`. Historical content → `project/archive/`.
 - Letting the `wish-list.md` inbox become a write-only graveyard, or
   scoping or estimating its items at capture time. Capture is one
   line; judgement happens at triage.
+- Leaving shipped (`[x]`) work in the backlog. Completed work moves to
+  `trajectory.md` (one line) plus `decision-log.md` (the why); the
+  backlog holds open work only.
+- Letting the backlog become an audit trail of dated rounds, or
+  narrating a shipped item in full in both the backlog and the
+  decision-log. Compress on ship; run `roadmap-refactor.md` to repair
+  drift.
 
 Project-specific anti-patterns are in
 `pm_skills/project/conventions.md` under

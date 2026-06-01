@@ -9,14 +9,20 @@ duplicating its contents.
 
 Update each of the following if relevant to this task:
 
-- `pm_skills/project/backlog.md` — move this task to the Completed
-  section, note any follow-up tasks in Active.
+- `pm_skills/project/decision-log.md` — record the key design decision
+  from this task (the WHY). This is the canonical home for the
+  reasoning; other files point here, they never restate it.
+- `pm_skills/project/backlog.md` — when this task ships, **remove** its
+  item (there is no Completed section); add any follow-ups to Active as
+  open items. If the task isn't finished, update its status in place.
+- `pm_skills/project/trajectory.md` — when this task ships, add ONE
+  line under the current phase: `ITEM-ID — outcome (date) — see
+  decision-log`. Compress on ship: outcome here, why in the log, file
+  roles in file-map. Never paste the decision-log prose.
 - `pm_skills/project/wish-list.md` — append any out-of-scope ideas
   surfaced this task, one line each.
 - `pm_skills/project/file-map.md` — add or update entries for files
-  created or changed.
-- `pm_skills/project/decision-log.md` — record the key design
-  decision from this task.
+  created or changed. Map roles, not change history.
 - `pm_skills/project/conventions.md` — if new conventions were
   established or existing ones changed.
 - `README.md` — if architecture, dev workflow, or key infrastructure
@@ -40,10 +46,13 @@ duplicate the numbers here.
   reads, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`, and any
   project-added hot reads), and sum them for the total-hot-set
   budget.
-- Count Completed items in `backlog.md`.
+- Count the backlog **Active** section's words and open items, and
+  confirm **no `[x]` items remain** anywhere in `backlog.md` — shipped
+  work belongs in `trajectory.md`.
+- Word-count `trajectory.md`.
+- Count both entries **and** words in `decision-log.md`, and check the
+  oldest entry's date.
 - Count open items in `wish-list.md`.
-- Count entries in `decision-log.md` and check the oldest entry's
-  date.
 
 If any budget is exceeded:
 
@@ -58,6 +67,10 @@ If any budget is exceeded:
 - An over-budget `wish-list.md` is drained by triage, not archiving.
   Propose a triage pass (promote or cut) — via `next-batch.md` or
   `prune-memory.md` — rather than an archive split.
+- `[x]` items left in the backlog, or a backlog Active over budget, are
+  a structural issue, not a size one: propose `roadmap-refactor.md`
+  (move shipped work to `trajectory.md`, restructure the queue) rather
+  than a generic prune.
 - Propose running `pm_skills/prompts/prune-memory.md` and wait for
   user approval.
 

@@ -25,6 +25,132 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.0.0 — 2026-06-01
+
+Gives project memory a metabolism. Earlier versions could *capture*
+work (backlog, decision-log, wish-list) and *archive* history (prune),
+but nothing bounded the **active, forward-looking** layer — and the
+budgets keyed off a section name (`## Completed`) that real projects
+stopped feeding, recording shipped work as `[x]` items under Active
+milestones instead. The result, observed on a mature project: a
+~22,000-word backlog that was ~90% shipped work narrated in full, each
+item duplicating its decision-log entry, while the prune found almost
+nothing to do.
+
+This release re-points the metabolism at the layer that actually grows.
+The hot/active layer now holds **open work only**. The moment a task
+ships, its record leaves the backlog: a one-line outcome goes to the new
+`trajectory.md`, and the *why* stays in `decision-log.md` — written
+once, never twice. New budgets measure the right axis (backlog Active
+words and open-item count, zero `[x]`, decision-log words, an archive
+chunk cap), two new workflows repair and diagnose drift the size check
+can't see, and the archive gets a browsable `INDEX.md`.
+
+Breaking because it changes the memory contract: the backlog
+`## Completed` section is removed and a new `project-memory` file
+(`trajectory.md`) is introduced. The upgrade is a one-time, approved,
+non-destructive migration — no history is lost.
+
+### Added
+
+- `pm_skills/project/trajectory.md` (`project-memory`) — the
+  shipped-work narrative. **Warm** read tier: read on demand (roadmap
+  refactor, release, reconstructing what shipped), not every task.
+  One line per item + a decision-log pointer; archives by size to
+  `archive/trajectory/`.
+- `pm_skills/prompts/roadmap-refactor.md` (`framework`) — repair a
+  drifted backlog: regroup by lifecycle and dependency, dedupe stale
+  rounds, evict shipped work to `trajectory.md`. Distinct from
+  `next-batch` (which picks) and `prune-memory` (which archives by size).
+- `pm_skills/prompts/doctor-memory.md` (`framework`) — a read-only
+  memory health check for structural drift the size check misses:
+  `[x]` in the backlog, stale `file-map` paths, cross-file duplication,
+  oversized/un-indexed archives, and framework version lag. Proposes the
+  workflow that fixes each finding; never edits.
+- A new **Warm** read tier and an `archive/INDEX.md` convention (the
+  browsable map of cold storage).
+
+### Changed
+
+- `AGENTS.md` (`root-template`) — four read tiers (added Warm for
+  `trajectory.md`); backlog is open-work-only (no Completed); rebuilt
+  the **Memory size budgets** table to bound the active layer (backlog
+  Active 1,500 words / ~40 open items, zero `[x]`; `trajectory.md`
+  2,000 words; decision-log 20 entries **or** 4,000 words; archive chunk
+  cap 8,000 words / 20 entries); added anti-patterns for
+  shipped-work-in-backlog and audit-trail drift; document-ownership row
+  for `trajectory.md`.
+- `pm_skills/prompts/end-of-task.md` — decision-log is the canonical
+  *why*; on ship, **remove** the backlog item (no Completed section) and
+  add one line to `trajectory.md`; the size check counts backlog Active
+  words/open/`[x]`, trajectory words, and decision-log words; structural
+  backlog issues route to `roadmap-refactor.md`.
+- `pm_skills/prompts/prune-memory.md` — relocate stray `[x]` work to
+  `trajectory.md`; archive oldest trajectory phases; split the
+  decision-log by **words** as well as entries; enforce the archive
+  chunk cap; maintain `archive/INDEX.md`.
+- `pm_skills/prompts/session-start.md`, `pm_skills/GUIDE.md` — document
+  the four tiers, `trajectory.md`, and the two new prompts.
+- `pm_skills/project/backlog.md` (`project-memory` template) — removed
+  the `## Completed` section; open-work-only with a tiny optional ticket
+  grammar (Intent / Done-when) so intent survives compression.
+- `pm_skills/project/decision-log.md` (`project-memory` template) —
+  noted the word budget and that it is the single home of the *why*.
+- `pm_skills/MANIFEST.md` — added the `trajectory.md` path row.
+- `pm_skills/prompts/upgrade.md` — Step 8 gains a concrete, repeatable,
+  lossless memory-migration routine (snapshot → propose → execute →
+  reconcile by ID) — the mechanics behind the migration below.
+- `pm_skills/init.md` + `pm_skills/integrations/init-project.md` — the
+  backlog-generation step now produces open-work-only tickets in the
+  2.0.0 grammar (Intent / Done-when + flags) so a project is born lean,
+  with a compress-on-ship note added to "Memory hygiene".
+
+### Upgrade actions
+
+- Add `pm_skills/prompts/roadmap-refactor.md` and
+  `pm_skills/prompts/doctor-memory.md` (`framework` — new files).
+- Replace `pm_skills/prompts/end-of-task.md`, `prune-memory.md`,
+  `session-start.md`, `upgrade.md`, and `pm_skills/GUIDE.md` with the new
+  versions (`framework` — wholesale, subject to the Step 4 customisation
+  check).
+- Create `pm_skills/project/trajectory.md` from the source template
+  (`project-memory` — new file; skip if it already exists, never
+  overwrite).
+- `AGENTS.md` (`root-template`, 3-way merge): the **Read tiers**,
+  **Memory size budgets**, document-ownership, and anti-pattern blocks
+  are framework-authored — if the project left them at the defaults,
+  replace with the new versions; if the project customised the numbers or
+  tiers, surface a diff and let the user adopt. Preserve every
+  project-populated section verbatim.
+- `pm_skills/project/backlog.md` and `decision-log.md`
+  (`project-memory`): apply the new template comments/structure only
+  where still the unedited placeholders; never rewrite a project's real
+  content. The Completed-section removal is handled by the memory
+  migration below, not by overwriting.
+- **Memory migration (one-time, approved, non-destructive).** A
+  major-version data move; `pm_skills/prompts/upgrade.md` Step 8 runs the
+  snapshot → propose → execute → reconcile mechanics. Lose nothing:
+  1. **Snapshot** `backlog.md` verbatim to
+     `archive/trajectory/backlog-pre-v2-YYYY-MM-DD.md` (byte-identical
+     safety net).
+  2. Create `trajectory.md` (above).
+  3. Run `pm_skills/prompts/roadmap-refactor.md`: relocate every `[x]`
+     item and any `## Completed` section out of `backlog.md` into
+     `trajectory.md` (one compressed line each, grouped into phases;
+     split into sequential `archive/trajectory/` chunks when the live
+     file would exceed its 2,000-word budget), confirming each item's
+     *why* already lives in `decision-log.md`. Remove `## Completed`
+     once empty.
+  4. Create or refresh `archive/INDEX.md`.
+  5. **Reconcile (lossless proof):** every shipped ID from the snapshot
+     appears in `trajectory.md` (live + chunks); zero `[x]` remain in
+     `backlog.md`; the snapshot is still byte-identical. Then run
+     `pm_skills/prompts/doctor-memory.md` to confirm budgets, and
+     `pm_skills/prompts/prune-memory.md` if the decision-log or any
+     chunk is over budget.
+- A project already past these (no `## Completed`, has `trajectory.md`)
+  needs only the file/prompt replacements — the migration is a no-op.
+
 ## 1.3.0 — 2026-05-31
 
 Bakes in a lean, opinionated testing doctrine — invariant-led, with

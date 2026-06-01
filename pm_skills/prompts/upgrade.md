@@ -149,7 +149,34 @@ templates. For each affected file:
   not auto-rename.
 - Removed sections upstream → do nothing. Never delete user content.
 
-Show the proposed migration before applying.
+**Major-version memory migrations.** When a changelog entry calls for
+*relocating* project-memory content — not just adding a file or section,
+but moving content (e.g. shipped work out of `backlog.md` into a new
+`trajectory.md`) — treat it as a one-time, approved, lossless data
+migration. The changelog entry names the *specific* moves; the mechanics
+below make them safe and are the same every time:
+
+1. **Snapshot first.** Copy each file being restructured, verbatim, to
+   `archive/<dir>/<file>-pre-vNEW-YYYY-MM-DD.md`, and `diff -q` the copy
+   against the original to confirm it is byte-identical. This snapshot is
+   the safety net — no later step can lose anything it holds.
+2. **Propose the whole move.** Show a from → to table (what content
+   leaves which file and where each piece lands) alongside the changelog
+   entry's specific steps. STOP for sign-off.
+3. **Execute.** Apply the moves: relocate each item as one compressed
+   line, confirming its detail already lives in its canonical home (e.g.
+   the *why* in `decision-log.md`). When a destination would exceed its
+   budget, split into sequential `-NNNN-` chunks. Create or refresh
+   `archive/INDEX.md`.
+4. **Reconcile (the lossless proof).** Extract the IDs/headings from the
+   snapshot and confirm every one appears in its new home (the set
+   difference must be empty); confirm zero stragglers remain in the
+   source (e.g. zero `[x]` left in `backlog.md`); confirm the snapshot is
+   still byte-identical. Report before/after word and item counts.
+
+Never delete content not yet confirmed in its new home. This is the one
+exception to "never overwrite project memory": it restructures with
+approval, losslessly. Record the reconciliation result in Steps 10–11.
 
 ## 9. Readiness check
 

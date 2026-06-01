@@ -91,24 +91,33 @@ Read:
 - pm_skills/project/architecture.md
 
 Based on the brief and architecture, propose an initial backlog of
-8–12 tasks that would take this project from zero to a working first
-milestone.
+8–12 OPEN tasks that would take this project from zero to a working
+first milestone. The backlog holds open work only — there is no
+Completed section; shipped work will later move to trajectory.md.
 
-Format each task as:
-- [ ] Task title — one-sentence description
+Use the ticket grammar from pm_skills/project/backlog.md:
+- Quick items stay one line:  - [ ] Short title — one-sentence outcome.
+- Non-trivial or sign-off items add two lines so intent survives
+  compression:
+    - [ ] **ID Short title** [flags]
+      Intent: the outcome wanted.
+      Done when: the acceptance condition.
+  Optional flags: [sign-off] (scope sign-off first), [blocked: X],
+  [spike] (timeboxed investigation).
 
-Group tasks under milestone headings.
-Order by dependency — what must come first.
+Group tasks under milestone headings (Current milestone / Next
+milestone), with an Icebox for anything deferred. Order by dependency.
 Keep tasks small enough to complete in a single focused session.
-Output in markdown format matching the template in pm_skills/project/backlog.md.
+Output in markdown matching the template in pm_skills/project/backlog.md.
 ```
 
 Review the output. Reorder, add, or remove tasks. Save to
 `project/backlog.md`.
 
-`project/wish-list.md` ships empty — it is the capture inbox for
-unscoped ideas that surface later. Leave it as-is; no population is
-needed at init.
+`project/wish-list.md` and `project/trajectory.md` ship empty — the
+capture inbox for unscoped ideas, and the shipped-work narrative that
+fills as you complete tasks. Leave both as-is; no population is needed
+at init.
 
 ---
 
@@ -421,9 +430,19 @@ chat can pick up where the last one left off.
 Project memory uses tiered reads (see AGENTS.md → "Before every task")
 and soft word budgets so context stays bounded as the project grows.
 
+The core habit that keeps it lean is **compress-on-ship**: the backlog
+holds open work only; the moment a task ships, `end-of-task.md` removes
+its backlog item, adds one line to `trajectory.md` (the outcome), and
+records the *why* once in `decision-log.md`. Nothing accumulates in the
+hot/active layer — that is what stops the backlog becoming an audit
+trail of shipped work.
+
 - Every end-of-task update runs a size check. If a budget is
   exceeded, the agent proposes running
   `pm_skills/prompts/prune-memory.md` — it does not auto-prune.
+- Structural drift the size check can't see (stray `[x]` work, dated
+  rounds, stale paths) is repaired by `roadmap-refactor.md` and
+  surfaced by the read-only `doctor-memory.md`.
 - `pm_skills/project/archive/` is created lazily on the first prune.
   A fresh project has no archive folder.
 - Archives are cold (never auto-read). Search via grep when

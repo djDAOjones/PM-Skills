@@ -33,13 +33,13 @@ templates, and never silently overwrites a customised framework file.
 
 ## Memory layers and read tiers
 
-The framework uses **two memory layers** and **three read tiers**.
+The framework uses **two memory layers** and **four read tiers**.
 
 **Two memory layers:**
 
 - **`project/`** — living project memory. Updated every session.
-  Contains the brief, backlog, wish-list, file map, conventions, and
-  decision log.
+  Contains the brief, backlog, trajectory, wish-list, file map,
+  conventions, and decision log.
 - **`AGENTS.md` + `UI-STANDARDS.md` + `DEV-INFRASTRUCTURE.md`** (in
   the project root) — permanent behavioral contracts. Contain hard
   rules, invariants, accessibility standards, design system
@@ -47,12 +47,14 @@ The framework uses **two memory layers** and **three read tiers**.
   kickoff process (Steps 6–8 of `init.md`) and updated when major
   architectural, UI, or build decisions change.
 
-**Three read tiers** (canonical policy in `AGENTS.md` → "Before
+**Four read tiers** (canonical policy in `AGENTS.md` → "Before
 every task"):
 
 - **Hot whole-file** — read every task.
 - **Hot sectional** — read by section only (`backlog.md` Active;
   `decision-log.md` latest 10).
+- **Warm** — `pm_skills/project/trajectory.md` (shipped-work
+  narrative) is read on demand, not every task.
 - **Cold** — `pm_skills/project/wish-list.md` (capture inbox) and
   `pm_skills/project/archive/*` are never auto-read.
 
@@ -71,10 +73,11 @@ project/         Durable project memory. Fill once, maintain ongoing.
   brief.md         What we're building.
   architecture.md  Tech stack, structure, key decisions.
   conventions.md   Style, naming, patterns, rules.
-  backlog.md       Living task list with status.
+  backlog.md       Open work only (Current, Next, Icebox).
+  trajectory.md    Shipped-work narrative, in milestones (warm tier).
   wish-list.md     Capture inbox for unscoped ideas (cold; triaged later).
   file-map.md      Key files and their roles.
-  decision-log.md  Append-only record of design decisions.
+  decision-log.md  Append-only record of design decisions (the why).
 
 prompts/         Reusable per-task prompts.
   session-start.md        How to begin a new chat.
@@ -87,7 +90,9 @@ prompts/         Reusable per-task prompts.
   bug-scoping.md          Bug-specific scoping: reproduce, diagnose, fix.
   end-of-task.md          Canonical end-of-task housekeeping.
   corrections.md          Drift correction snippets.
+  roadmap-refactor.md     Repair a drifted backlog: regroup, dedupe, evict done-work.
   prune-memory.md         Memory-pruning procedure (canonical).
+  doctor-memory.md        Read-only memory health check (drift, paths, versions).
   upgrade.md              Framework upgrade procedure (canonical).
   release.md              Maintainer release checklist (source repo only).
 
@@ -176,7 +181,8 @@ go-ahead. Confirm, then continue with the matching workflow below.
 | `brief.md` | Rarely. Only if the project's direction fundamentally changes. |
 | `architecture.md` | When adding major modules or changing the tech stack. |
 | `conventions.md` | When a new convention is established or changed. |
-| `backlog.md` | End of every task — mark done, add follow-ups. |
+| `backlog.md` | End of every task — remove shipped items, add follow-ups (open work only). |
+| `trajectory.md` | End of every task that ships — one line per shipped item, grouped by phase. |
 | `wish-list.md` | When an out-of-scope idea surfaces — append one line. Drained by triage at `next-batch.md`. |
 | `file-map.md` | When files are created, renamed, or deleted. |
 | `decision-log.md` | During the design phase of each task. |
