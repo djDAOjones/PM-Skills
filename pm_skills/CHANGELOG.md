@@ -98,8 +98,10 @@ non-destructive migration — no history is lost.
   noted the word budget and that it is the single home of the *why*.
 - `pm_skills/MANIFEST.md` — added the `trajectory.md` path row.
 - `pm_skills/prompts/upgrade.md` — Step 8 gains a concrete, repeatable,
-  lossless memory-migration routine (snapshot → propose → execute →
-  reconcile by ID) — the mechanics behind the migration below.
+  lossless memory-migration routine: snapshot → propose → execute (align
+  with any pre-existing archive) → **binary line-anchored ID reconcile**,
+  with `VERSION` stamped only after the reconcile passes. The mechanics
+  behind the migration below.
 - `pm_skills/init.md` + `pm_skills/integrations/init-project.md` — the
   backlog-generation step now produces open-work-only tickets in the
   2.0.0 grammar (Intent / Done-when + flags) so a project is born lean,
@@ -136,18 +138,22 @@ non-destructive migration — no history is lost.
   2. Create `trajectory.md` (above).
   3. Run `pm_skills/prompts/roadmap-refactor.md`: relocate every `[x]`
      item and any `## Completed` section out of `backlog.md` into
-     `trajectory.md` (one compressed line each, grouped into phases;
-     split into sequential `archive/trajectory/` chunks when the live
-     file would exceed its 2,000-word budget), confirming each item's
-     *why* already lives in `decision-log.md`. Remove `## Completed`
-     once empty.
+     `trajectory.md` (one compressed line each, starting with the ID,
+     grouped into phases; split into sequential `archive/trajectory/`
+     chunks when the live file would exceed its 2,000-word budget),
+     confirming each item's *why* already lives in `decision-log.md`.
+     Align with any pre-existing shipped archive (e.g. `backlog-shipped.md`)
+     rather than duplicating it. Remove `## Completed` once empty.
   4. Create or refresh `archive/INDEX.md`.
-  5. **Reconcile (lossless proof):** every shipped ID from the snapshot
-     appears in `trajectory.md` (live + chunks); zero `[x]` remain in
+  5. **Reconcile (lossless proof):** compare leading item IDs (snapshot
+     `- [x] **ID**` lines vs. trajectory `- ID —` lines, anchored to line
+     starts) — the set difference must be **empty**; zero `[x]` remain in
      `backlog.md`; the snapshot is still byte-identical. Then run
      `pm_skills/prompts/doctor-memory.md` to confirm budgets, and
      `pm_skills/prompts/prune-memory.md` if the decision-log or any
      chunk is over budget.
+  6. Stamp `pm_skills/VERSION` to 2.0.0 **only after** the reconcile
+     passes (held at 1.x through the framework sync).
 - A project already past these (no `## Completed`, has `trajectory.md`)
   needs only the file/prompt replacements — the migration is a no-op.
 

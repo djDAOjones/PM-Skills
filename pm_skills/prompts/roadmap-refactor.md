@@ -63,7 +63,10 @@ sign-off. Never rewrite the roadmap silently.
 - Rewrite the backlog Active section to the cleaned queue. Keep open
   items' wording; only restructure, reorder, and regroup.
 - Move done-work to `trajectory.md`, compressed: `ITEM-ID — outcome
-  (date) — see decision-log`. Never paste the implementation prose.
+  (date) — see decision-log`. Start the line with the ID; never paste the
+  implementation prose. When one line covers a group of sub-items, spell
+  out each ID (`WL-19a, WL-19b, … WL-19h`) rather than a range, so every
+  shipped ID stays individually greppable for a reconcile.
 - Drop stale history sections only once their content is confirmed to
   live in the decision-log / trajectory. If unsure, leave it.
 - Apply only the promotions and cuts the user confirmed.
