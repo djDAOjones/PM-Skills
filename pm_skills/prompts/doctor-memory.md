@@ -19,11 +19,14 @@ Use plain shell (`wc`, `grep`, `ls`, `sed`). No scripts, no edits.
 Run each check and record a row: **Check | Status (OK / WARN / FAIL) |
 Detail | Proposed action**.
 
-1. **Budgets** — word-count every hot whole-file read; count backlog
-   Active words and open items; count decision-log entries and live
-   words and oldest-entry age; count trajectory words; count wish-list
-   open items. Compare against AGENTS.md budgets.
-   FAIL on any overrun. Action: `prune-memory.md`.
+1. **Budgets** — word-count `file-map.md` (hard accreting budget) and
+   each reference doc (soft per-doc guideline); count backlog Active
+   words and open items; count decision-log entries and live words and
+   oldest-entry age; count trajectory words; count wish-list open items.
+   Compare against AGENTS.md budgets — there is no aggregate hot-set cap.
+   FAIL on an accreting or sectional overrun (action: `prune-memory.md`);
+   a reference doc over its soft guideline is a WARN, not a FAIL (not a
+   prune target — tighten or split only if genuinely bloated).
 
 2. **Done-work in the backlog** — `grep -cE '^\s*- \[x\]'
    pm_skills/project/backlog.md`. In v2 the backlog holds open work

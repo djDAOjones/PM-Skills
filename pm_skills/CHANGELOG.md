@@ -25,6 +25,76 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.1.0 — 2026-06-03
+
+Recalibrates the memory size budgets. Dogfooding `prune-memory.md` on a
+mature project surfaced two budgets that were *permanently* over — alarms
+no legal prune could ever clear, which trains both agent and maintainer
+to ignore the size check entirely.
+
+Root cause: the budgets treated two different file classes identically.
+**Accreting** files (`file-map.md`, `decision-log.md`, `backlog.md`,
+`trajectory.md`) genuinely grow and need tight, prunable budgets.
+**Reference** docs (`README`, `brief.md`, `architecture.md`,
+`conventions.md`, and any project standards/process/infra docs) are
+written once to a natural size, never accrete, and have no prune action —
+yet the fixed 8,000-word "total hot whole-file set" cap summed them in,
+so it fired on every mature project before any work even started (5
+default hot files × the 2,000 single-file budget = 10,000 > 8,000). The
+two conditional reads (`UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`) were
+also counted into the every-task total despite being read only when a
+task touches their domain.
+
+The fix splits the hot whole-file tier into **reference** (soft per-doc
+guideline, not a prune target), **accreting** `file-map.md` (hard
+prunable budget), and **conditional** (excluded from the every-task
+load); replaces the fixed hot-set sum with a structural review; and
+aligns the decision-log word budget with its entry budget at a realistic
+density.
+
+Backward compatible: no files renamed or removed, no data migration. A
+project adopts the recalibrated budgets when it next merges the
+`AGENTS.md` root template.
+
+### Changed
+
+- `AGENTS.md` (`root-template`) — "Read tiers" Hot whole-file split into
+  *reference* / *accreting* (`file-map.md`) / *conditional*
+  (`UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`). "Memory size budgets":
+  the fixed `Total hot whole-file set | 8,000` row becomes a structural
+  *every-task read load* review (no aggregate word cap); reference docs
+  get a soft ~3,500-word per-doc guideline (not a prune target);
+  `file-map.md` keeps its 2,000 hard budget with an irreducible-roles
+  floor note; the `decision-log.md` word budget moves 4,000 → ~6,000
+  (consistent with 20 entries × ~300 words), entry count primary.
+- `pm_skills/prompts/prune-memory.md` — detect step drops the aggregate
+  hot-set sum and anchors the `[x]` count to list items
+  (`^\s*[-*] \[x\]`); propose step adds a reference-docs-are-not-prune-
+  targets rule and a structural every-task-load review, and notes the
+  file-map irreducible-roles floor.
+- `pm_skills/prompts/doctor-memory.md` — budget check distinguishes hard
+  (accreting / sectional) overruns (FAIL) from soft reference-doc
+  overruns (WARN); no aggregate hot-set cap.
+- `pm_skills/prompts/end-of-task.md` — size check matches the two-class
+  model; anchors the `[x]` grep; adds a decision-log entry-tightness
+  note (~150–300 words/entry).
+- `pm_skills/GUIDE.md` — Hot whole-file tier summary notes the
+  reference / accreting / conditional split.
+
+### Upgrade actions
+
+- Re-merge the `AGENTS.md` "Read tiers" and "Memory size budgets"
+  sections from the new root template (`prompts/upgrade.md` Step 7),
+  preserving any project-added hot reads (file them under *reference* or
+  *conditional*) and any project-specific budget rows.
+- Replace `pm_skills/prompts/prune-memory.md`,
+  `pm_skills/prompts/doctor-memory.md`,
+  `pm_skills/prompts/end-of-task.md`, and `pm_skills/GUIDE.md`
+  (`framework` files).
+- No data migration: existing memory files are untouched.
+
+---
+
 ## 2.0.0 — 2026-06-01
 
 Gives project memory a metabolism. Earlier versions could *capture*

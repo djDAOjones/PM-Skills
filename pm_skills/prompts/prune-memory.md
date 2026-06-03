@@ -13,15 +13,19 @@ stop and report.
 
 ## 1. Detect
 
-Word-count every hot whole-file read listed in `AGENTS.md` →
-"Read tiers" — `README.md`, the `pm_skills/project/` whole-file
-reads, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`, and any
-project-added hot reads — and sum them for the total-hot-set
-budget. Count the backlog **Active** words and open items, and any
-`[x]` items still in `backlog.md`. Word-count `trajectory.md`. Count
-both entries and words in `decision-log.md`, plus the oldest entry
-date. Count open items in `wish-list.md`. Word-count each file in
-`archive/` against the chunk cap.
+Word-count each hot whole-file read listed in `AGENTS.md` →
+"Read tiers": the reference docs (`README.md`, `brief.md`,
+`architecture.md`, `conventions.md`, + any project-added standards /
+process / infra docs) against their soft per-doc guideline, and
+`file-map.md` against its hard accreting budget. Do **not** sum them
+into a single hot-set cap — there is no aggregate word budget (see
+AGENTS.md). Count the backlog **Active** words and open items, and any
+shipped `[x]` items still in `backlog.md` — anchor the count to list
+items (`grep -cE '^\s*[-*] \[x\]'`) so the status-legend line is not a
+false positive. Word-count `trajectory.md`. Count both entries and
+words in `decision-log.md`, plus the oldest entry date. Count open
+items in `wish-list.md`. Word-count each file in `archive/` against the
+chunk cap.
 
 Output a short table:
 
@@ -33,9 +37,13 @@ This is the **before** snapshot.
 
 For each over-budget file, propose one specific action:
 
-- `file-map.md` over budget → strip historical and batch notes,
-  keep current roles only. Move stripped content to
-  `pm_skills/project/archive/file-map-YYYY-MM-DD-historical.md`.
+- `file-map.md` over budget → strip historical and batch notes (task
+  tags, dates, test counts), keep current roles only. Move stripped
+  content to
+  `pm_skills/project/archive/file-map-YYYY-MM-DD-historical.md`. The
+  floor is the irreducible current-role list; on a large codebase that
+  may still exceed 2,000 words — strip noise, not signal, and stop there
+  rather than gutting real roles to hit the number.
 - `architecture.md` or `conventions.md` over budget → propose
   tightening or splitting; usually content belongs in
   `decision-log.md` or in a new permanent contract file.
@@ -74,10 +82,17 @@ For each over-budget file, propose one specific action:
 - `archive/` chunk over the chunk cap → split it by sequence/date into
   smaller chunks so each loads in one read. Never rewrite the entries
   themselves; only divide the file. Update `archive/INDEX.md`.
-- Total hot whole-file set over budget → propose a memory-wide
-  review: archive or tighten the largest hot files using the
-  per-file actions above. Do not blanket-trim files already under
-  their own budget.
+- A **reference doc** (`README`, `brief.md`, `architecture.md`,
+  `conventions.md`, project standards/process/infra) over its soft
+  guideline → reference docs are **not** prune targets; they don't
+  accrete. Leave it unless genuinely bloated, in which case propose
+  tightening it or splitting detail into a permanent contract file —
+  never strip it to hit a number.
+- Every-task read load feels heavy → there is no aggregate word cap to
+  "fix". Propose a structural review: is a reference doc bloated (tighten
+  per above), should a hot read move to **conditional** or **warm**, or
+  is `file-map.md` carrying accreted history (strip per above)? Do not
+  blanket-trim files already within their own budget/guideline.
 
 Present the proposal to the user. Wait for approval. Do not skip.
 
@@ -167,5 +182,6 @@ prompts.
 - If unsure whether to archive a piece of content, leave it in the
   live file. False positives are worse than false negatives —
   content can always be archived next session.
-- Tier names ("hot whole-file", "hot sectional", "warm", "cold") and
-  budget numbers come from AGENTS.md only. Do not redefine here.
+- Tier names ("hot whole-file" — reference / accreting / conditional —
+  "hot sectional", "warm", "cold") and budget numbers come from
+  AGENTS.md only. Do not redefine here.

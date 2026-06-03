@@ -32,17 +32,29 @@ explain concepts back unless asked.
 Project memory has four read tiers. Load only what each tier
 prescribes — this keeps session context bounded.
 
-**Hot whole-file** — read every task:
+**Hot whole-file** — read every task. Three groups, budgeted differently:
+
+_Reference docs_ — written once to a natural size; they do not accrete,
+so each carries only a soft size guideline, **not** a prune target:
 
 - `README.md`
 - `pm_skills/project/brief.md`
 - `pm_skills/project/architecture.md`
 - `pm_skills/project/conventions.md` (if it exists)
+
+_Accreting_ — read every task, but grows as agents append per-task
+roles/notes, so it carries a hard, prunable budget:
+
 - `pm_skills/project/file-map.md`
-- `UI-STANDARDS.md` — only when the task touches UI, controls, text,
-  states, accessibility, or user-facing behaviour.
-- `DEV-INFRASTRUCTURE.md` (if it exists) — only when the task touches
-  build, dev server, versioning, or scripts.
+
+_Conditional_ — read **only** when the task touches the domain (a task
+usually touches one, rarely both), so **not** counted in the every-task
+read-load review:
+
+- `UI-STANDARDS.md` — UI, controls, text, states, accessibility, or
+  user-facing behaviour.
+- `DEV-INFRASTRUCTURE.md` (if it exists) — build, dev server,
+  versioning, or scripts.
 
 **Hot sectional** — read by section only:
 
@@ -69,19 +81,22 @@ prescribes — this keeps session context bounded.
 
 ### Memory size budgets
 
-Whole-read files have soft word budgets. The end-of-task update
-check flags overruns and proposes running
-`pm_skills/prompts/prune-memory.md`. Do not auto-prune — always
-propose first.
+Memory files have word/entry budgets: **hard, prunable** limits on
+accreting files (`file-map.md`, the sectional `backlog.md` /
+`decision-log.md`, `trajectory.md`) and **soft** size guidelines on
+reference docs (see the table). The end-of-task update check flags
+overruns and proposes running `pm_skills/prompts/prune-memory.md`. Do
+not auto-prune — always propose first.
 
 | Scope | Soft limit | Action when exceeded |
 | --- | --- | --- |
-| Any single hot whole-file read | 2,000 words | Propose summarising or splitting. |
-| Total hot whole-file set | 8,000 words | Propose memory-wide review. |
+| Reference doc (`README`, `brief.md`, `architecture.md`, `conventions.md`, + project standards/process/infra docs) | soft ~3,500 words each | Not a prune target — reference docs don't accrete. If one is genuinely bloated, tighten it or split detail into a permanent contract file; never strip to hit a number. |
+| `file-map.md` (accreting) | 2,000 words | Propose `prune-memory.md`: strip accreted history (task tags, dates, test counts) to `archive/file-map-*-historical.md`, keep current roles. Floor = the irreducible current-role list; on a large codebase that may exceed 2,000, which is fine — strip noise, not signal. |
+| Every-task read load | structural (no aggregate word cap) | A fixed sum fires permanently on a mature project (≥ 5 hot files × the 2,000 file budget > any flat cap), so there is none. Healthy = each file within its own row above. If the always-read set keeps growing, review whether a hot read should move to _conditional_ or _warm_, or whether a reference doc has bloated. |
 | `backlog.md` Active | 1,500 words **and** ~40 open items | Propose `roadmap-refactor.md`: restructure by lifecycle, evict done-work, dedupe stale rounds. |
 | `backlog.md` shipped work | 0 — done `[x]` items do not live here | Move each to `trajectory.md` (one line) + `decision-log.md` (the why). Flagged by `end-of-task.md` and `doctor-memory.md`. |
 | `trajectory.md` | 2,000 words | Propose archiving the oldest phases to `archive/trajectory/`, keeping `archive/INDEX.md` current. |
-| `decision-log.md` live log | 20 entries **or** 4,000 words | Propose an archive split to `archive/decision-log-*.md` (by whole month; by date-range when one month alone exceeds a budget). Keep at least the read-tier latest 10 live. |
+| `decision-log.md` live log | 20 entries (primary) **or** ~6,000 words | Propose an archive split to `archive/decision-log-*.md` (by whole month; by date-range when one month alone exceeds a budget). Entry count is the primary trigger; the word budget is a secondary guard against runaway entries — a healthy entry is ~150–300 words (Decision, Rationale, Alternatives, Link), not an essay. Keep at least the read-tier latest 10 live. |
 | `decision-log.md` oldest entry age | 90 days | Propose an archive split, oldest first — but only when ≥ 5 entries lie beyond the latest-10 read-tier floor (live log ≥ 15). Below that, note the overrun and skip: on low-velocity / sporadic projects the age budget keeps tripping with little to move, so the entry-count and word budgets are the meaningful triggers. |
 | `wish-list.md` open items | 25 items | Propose a triage pass (promote each into `backlog.md`, or cut). Never archive — the wish-list shrinks by triage, not by moving content to `archive/`. |
 | `archive/` chunk | 8,000 words **or** 20 entries per file | Split larger chunks by sequence/date so each loads in one read. Maintain `archive/INDEX.md`. |

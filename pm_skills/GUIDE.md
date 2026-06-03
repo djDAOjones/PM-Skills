@@ -50,7 +50,10 @@ The framework uses **two memory layers** and **four read tiers**.
 **Four read tiers** (canonical policy in `AGENTS.md` → "Before
 every task"):
 
-- **Hot whole-file** — read every task.
+- **Hot whole-file** — read every task: reference docs (soft size
+  guideline, not prune targets), the accreting `file-map.md` (hard
+  prunable budget), and conditional `UI-STANDARDS.md` /
+  `DEV-INFRASTRUCTURE.md` (read only when the task touches that domain).
 - **Hot sectional** — read by section only (`backlog.md` Active;
   `decision-log.md` latest 10).
 - **Warm** — `pm_skills/project/trajectory.md` (shipped-work

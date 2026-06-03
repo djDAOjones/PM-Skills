@@ -41,24 +41,28 @@ Update each of the following if relevant to this task:
 Budgets are defined in `AGENTS.md` → "Memory size budgets". Do not
 duplicate the numbers here.
 
-- Word-count every hot whole-file read listed in `AGENTS.md` →
-  "Read tiers" (`README.md`, the `pm_skills/project/` whole-file
-  reads, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`, and any
-  project-added hot reads), and sum them for the total-hot-set
-  budget.
+- Word-count `file-map.md` against its hard accreting budget and each
+  reference doc (`README.md`, `brief.md`, `architecture.md`,
+  `conventions.md`, + any project-added standards/process/infra docs)
+  against its soft guideline. Do not sum them into an aggregate hot-set
+  cap — there isn't one. The conditional reads (`UI-STANDARDS.md`,
+  `DEV-INFRASTRUCTURE.md`) are not part of the every-task check.
 - Count the backlog **Active** section's words and open items, and
-  confirm **no `[x]` items remain** anywhere in `backlog.md` — shipped
-  work belongs in `trajectory.md`.
+  confirm **no `[x]` list items remain** in `backlog.md`
+  (`grep -cE '^\s*[-*] \[x\]'`, so the status-legend line is not a false
+  positive) — shipped work belongs in `trajectory.md`.
 - Word-count `trajectory.md`.
 - Count both entries **and** words in `decision-log.md`, and check the
-  oldest entry's date.
+  oldest entry's date. The entry count is the primary trigger; keep
+  entries tight (~150–300 words) so the word budget flags runaway
+  entries, not normal density.
 - Count open items in `wish-list.md`.
 
 If any budget is exceeded:
 
 - Do not auto-prune.
-- Output one line per overrun: which file (or the total hot set),
-  which budget, current value.
+- Output one line per overrun: which file, which budget, current
+  value.
 - Exception: if only the `decision-log.md` age budget is exceeded
   and fewer than ~5 entries lie beyond the latest-10 floor, just
   note it — don't propose a prune. On low-velocity / sporadic
