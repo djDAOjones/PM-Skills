@@ -23,6 +23,13 @@ read, the stack, and the MVP backlog), then it builds the first-milestone
 MVP to completion without further gates — de-risked by staged rollback
 checkpoints. Same rigour as the gated path.
 
+**New project, and you want it built *and shipped*?** Run
+[`integrations/spec-to-prod.md`](./integrations/spec-to-prod.md). It
+wraps `init-mvp.md` and carries on — within a scope band you sign off
+(deployed MVP, deployed current milestone, or the full backlog) — to a
+production deploy via [`prompts/deploy.md`](./prompts/deploy.md). Two
+gates only: the foundation, and how far to go.
+
 **Already using an older version of pm-skills?** Run
 [`integrations/upgrade.md`](./integrations/upgrade.md), or paste
 [`prompts/upgrade.md`](./prompts/upgrade.md) into your AI tool. The
@@ -98,10 +105,12 @@ prompts/         Reusable per-task prompts.
   doctor-memory.md        Read-only memory health check (drift, paths, versions).
   upgrade.md              Framework upgrade procedure (canonical).
   release.md              Maintainer release checklist (source repo only).
+  deploy.md               Production deploy + live verification (consuming project).
 
 integrations/    Optional tool-specific workflows.
   init-project.md    Guided project initialization.
   init-mvp.md        Sign off the foundation, then autonomous MVP build.
+  spec-to-prod.md    Spec to deployed product, in signed-off scope bands.
   feature.md         Full task workflow with approval gates.
   bugfix.md          Diagnosis-before-fix workflow for bugs.
   auto-jazz.md       Full 4-stage workflow, no approval gates.
@@ -176,6 +185,12 @@ go-ahead. Confirm, then continue with the matching workflow below.
 3. "Go ahead and fix."
 4. Verify the fix.
 5. End of task → paste `prompts/end-of-task.md`.
+
+**Shipping to production:**
+
+When work is merged and green, paste `prompts/deploy.md`. It reads
+`DEV-INFRASTRUCTURE.md` → Deployment, runs the pre-flight checks,
+executes the documented pipeline, and verifies the live result.
 
 ## Keeping project memory fresh
 

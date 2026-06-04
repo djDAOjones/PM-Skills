@@ -27,6 +27,12 @@ you sign off the foundation (product read, stack, and MVP backlog), then it
 builds the first-milestone MVP to completion without further gates,
 de-risked by staged rollback checkpoints.
 
+Want it built *and shipped*? Run
+[`pm_skills/integrations/spec-to-prod.md`](pm_skills/integrations/spec-to-prod.md) —
+it wraps `init-mvp.md` and carries on to a production deploy, within a
+scope band you sign off (deployed MVP, current milestone, or the full
+backlog).
+
 See [`pm_skills/GUIDE.md`](pm_skills/GUIDE.md) for the full guide:
 folder contents, two-tier memory system, per-task workflow, and how to
 keep project memory fresh.

@@ -25,6 +25,120 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.2.1 — 2026-06-04
+
+Fixes a smaller sibling of the 2.1.0 bug, surfaced by dogfooding a prune
+on the same mature project. Two cold decision-log archive chunks sat ~3×
+over the 8,000-word `archive/` chunk cap and had been flagged-and-deferred
+across two prune sessions — the same "always-red, always-ignored" dynamic
+2.1.0 removed from the hot-set.
+
+Root cause: the chunk cap measured the wrong thing. Its rationale —
+"split so each loads in one read" — is obsolete: cold archives are never
+auto-read; they're grepped, then a line-range is read, so file size is
+irrelevant. The cap's only effect was to force navigationally-useless
+splits (the project literally had a `decision-log-2026-06-01.md` and a
+`decision-log-2026-06-01-b.md` — the same day split in two purely to
+satisfy the cap). The real value of chunking is INDEX browsability, which
+is a *boundary* concern (month / migration epoch), not a *size* one.
+
+The fix replaces the word/entry chunk cap with boundary-based chunking:
+one epoch per file, split only for browsability, never for size. An epoch
+bounds its own growth, so nothing accretes unbounded even without a cap.
+Also folds two minor consistency fixes found in the same review.
+
+Backward compatible: no files renamed or removed, no data migration.
+Existing oversized cold chunks are harmless and need no action.
+
+### Changed
+
+- `AGENTS.md` (`root-template`) — the `archive/` chunk budget changes
+  from `8,000 words or 20 entries per file` (action: "split so each loads
+  in one read") to `one epoch per file (whole month / migration
+  boundary)` — chunk by sequence boundary for INDEX browsability, not
+  size; sub-split an epoch only if genuinely unwieldy to grep. The
+  `backlog.md` Active row's `1,500 words and ~40 open items` is clarified
+  to `or … (whichever trips first)`, with a note that a low item count at
+  high words means items are too verbose.
+- `pm_skills/prompts/prune-memory.md` — detect no longer word-counts
+  archive chunks against a cap (notes multi-epoch spans only); the
+  propose / decision-log / rules steps reframe splitting as
+  epoch-boundary, browsability-driven; adds an INDEX caveat to put
+  entry/word counts only on frozen archive rows, never the live-file row
+  (it goes stale the moment the prune appends its own record — an
+  off-by-one seen in the live project's INDEX).
+- `pm_skills/prompts/doctor-memory.md` — archive-hygiene check drops the
+  per-chunk word-count; a multi-epoch chunk is INFO, not a WARN; a
+  missing/stale INDEX stays a WARN.
+- `pm_skills/prompts/upgrade.md` — the major-version migration routine
+  splits archive destinations on epoch boundaries for browsability, not
+  when they "exceed a budget".
+
+### Upgrade actions
+
+- Re-merge the `AGENTS.md` "Memory size budgets" table from the new root
+  template (`prompts/upgrade.md` Step 7) — specifically the `archive/`
+  chunk and `backlog.md` Active rows.
+- Replace `pm_skills/prompts/prune-memory.md`,
+  `pm_skills/prompts/doctor-memory.md`, and `pm_skills/prompts/upgrade.md`
+  (`framework` files).
+- No data migration: existing archive chunks are left as-is.
+
+---
+
+## 2.2.0 — 2026-06-03
+
+Adds an end-to-end path from spec to a deployed product, and the
+production-deploy primitive it was missing.
+
+Until now the framework took a spec as far as a locally-running
+first-milestone MVP (`init-mvp.md`) and then handed back to the
+per-milestone loop. Nothing drove a production deploy of a consuming
+project — `release.md` versions the framework itself, not your app —
+and no single workflow chained foundation → milestones → deploy.
+
+Two new framework files close that gap by composing existing workflows
+rather than duplicating them. Backward compatible: no files renamed or
+removed, no data migration, no changed memory contracts.
+
+### Added
+
+- `pm_skills/prompts/deploy.md` — canonical production deploy + live-
+  verification primitive for a consuming project. Reads
+  `DEV-INFRASTRUCTURE.md` → Deployment, runs pre-flight (clean tree,
+  green build, version stamped, secrets external), executes the
+  documented pipeline, verifies the live result, and rolls back on
+  failure. The app-deploy counterpart to `release.md`.
+- `pm_skills/integrations/spec-to-prod.md` — orchestrator that chains
+  `init-mvp.md` (foundation + MVP) → the `next-batch.md`/`auto-jazz.md`
+  milestone loop → `deploy.md`, bounded by a signed-off **scope band**
+  (Deployed MVP / Deployed Current milestone / Full backlog to
+  production). Adds two gates (foundation, scope band) and an
+  opinionated Git-with-remote expectation; delegates all build rigour
+  to the workflows it wraps.
+
+### Changed
+
+- `pm_skills/GUIDE.md` — "Start here" gains a spec-to-prod entry; file
+  tree and manual-workflow sections list the two new files.
+- `README.md` — quick start notes the build-and-ship path.
+
+### Upgrade actions
+
+- Copy the two new `framework` files into your project:
+  `pm_skills/prompts/deploy.md` and
+  `pm_skills/integrations/spec-to-prod.md`. Both inherit the
+  `framework` class from the existing `pm_skills/prompts/*` and
+  `pm_skills/integrations/*` manifest wildcards — no `MANIFEST.md`
+  change is needed.
+- Replace `pm_skills/GUIDE.md` (`framework` file).
+- No data migration: existing project memory and populated root
+  templates are untouched. To use the new path, ensure
+  `DEV-INFRASTRUCTURE.md` → Deployment is populated; `deploy.md` will
+  prompt for it if not.
+
+---
+
 ## 2.1.0 — 2026-06-03
 
 Recalibrates the memory size budgets. Dogfooding `prune-memory.md` on a

@@ -179,8 +179,9 @@ below make them safe and are the same every time:
    duplicate their content into a new chunk. Then relocate each item as
    one compressed line that **starts with its ID**, confirming its detail
    already lives in its canonical home (e.g. the *why* in
-   `decision-log.md`). When a destination would exceed its budget, split
-   into sequential `-NNNN-` chunks. Create or refresh `archive/INDEX.md`.
+   `decision-log.md`). When a destination spans multiple epochs, split it
+   into sequential `-NNNN-` chunks on the epoch boundary (browsability,
+   not size). Create or refresh `archive/INDEX.md`.
 4. **Reconcile (the lossless proof).** Build the ID set from the snapshot
    by taking the **leading item ID of each shipped line** (the first
    token of every `- [x] **ID** …` line), and the ID set of the new homes

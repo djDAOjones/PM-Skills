@@ -24,8 +24,9 @@ shipped `[x]` items still in `backlog.md` — anchor the count to list
 items (`grep -cE '^\s*[-*] \[x\]'`) so the status-legend line is not a
 false positive. Word-count `trajectory.md`. Count both entries and
 words in `decision-log.md`, plus the oldest entry date. Count open
-items in `wish-list.md`. Word-count each file in `archive/` against the
-chunk cap.
+items in `wish-list.md`. For `archive/` files, note only whether a chunk spans more than one
+epoch (multiple months, or across a migration boundary) — size is not a
+trigger; cold archives are never auto-read (grep + line-range only).
 
 Output a short table:
 
@@ -65,10 +66,10 @@ For each over-budget file, propose one specific action:
   budget → archive the oldest entries, keeping the latest live (at
   least the read-tier latest 10, ideally a generous margin above it).
   Default split is by whole month into `archive/decision-log-YYYY-MM.md`.
-  If a single month alone exceeds a budget, split that month by
-  date-range instead, into
-  `archive/decision-log-YYYY-MM-DD-to-YYYY-MM-DD.md`, oldest entries
-  first, each chunk under the archive chunk cap. Leave a one-line index
+  If a single month is genuinely unwieldy to grep, sub-split it by
+  date-range into `archive/decision-log-YYYY-MM-DD-to-YYYY-MM-DD.md`,
+  oldest entries first — but size alone isn't a reason to split; an
+  epoch stays one file unless browsability demands otherwise. Leave a one-line index
   at the bottom of the live file pointing at each archive file. If only
   the age budget is tripped (not the entry or word budget) and fewer
   than ~5 entries lie beyond the latest-10 floor, note the overrun and
@@ -79,9 +80,12 @@ For each over-budget file, propose one specific action:
   Next, or Icebox) or cut it. Survivors move to the backlog; cuts are
   deleted. The file shrinks by triage, not by moving content to
   `archive/`.
-- `archive/` chunk over the chunk cap → split it by sequence/date into
-  smaller chunks so each loads in one read. Never rewrite the entries
-  themselves; only divide the file. Update `archive/INDEX.md`.
+- `archive/` chunk spanning multiple epochs → optionally split on the
+  epoch boundary (month / migration) for INDEX browsability, oldest
+  first. Size is not a trigger — a single epoch stays one file however
+  large, since cold archives are grepped, not loaded whole. Never
+  rewrite the entries themselves; only divide the file. Update
+  `archive/INDEX.md`.
 - A **reference doc** (`README`, `brief.md`, `architecture.md`,
   `conventions.md`, project standards/process/infra) over its soft
   guideline → reference docs are **not** prune targets; they don't
@@ -158,9 +162,12 @@ prompts.
 - Maintain `pm_skills/project/archive/INDEX.md` (create it if missing):
   add a row per new or split archive file — filename, type
   (decision-log / trajectory / file-map / backup), date range or
-  sequence number, entry/word count, and a one-line description. The
-  INDEX is the browsable map of cold storage; keep it current so a
-  reader never has to open a chunk to know what it holds.
+  sequence number, entry/word count, and a one-line description. Put an
+  entry/word count only on **frozen archive rows**, never on a live-file
+  row (e.g. `../decision-log.md (live)`) — the count goes stale the
+  moment this prune appends its own record entry. The INDEX is the
+  browsable map of cold storage; keep it current so a reader never has
+  to open a chunk to know what it holds.
 - If new archive files were created, add them to
   `pm_skills/project/file-map.md` under a new "Archive" section
   if one does not already exist.
@@ -174,9 +181,9 @@ prompts.
   Never rewrite. Never collapse. Never summarise on archive.
 - Live files keep the latest content; archives keep history.
 - Archives are append-only too — never rewrite an existing archive's
-  entries. Splitting an oversized chunk into smaller sequential chunks
-  is allowed (it divides the file, it does not rewrite entries) and
-  must update `archive/INDEX.md`.
+  entries. Splitting a chunk on an epoch boundary into smaller
+  sequential chunks is allowed (it divides the file, it does not rewrite
+  entries) and must update `archive/INDEX.md`.
 - If multiple files exceed budget, prune them all in one pass to
   avoid multiple sessions of meta-cost.
 - If unsure whether to archive a piece of content, leave it in the

@@ -50,10 +50,11 @@ Detail | Proposed action**.
    WARN. Action: compress the backlog/trajectory side to a pointer.
 
 6. **Archive hygiene** — confirm `archive/INDEX.md` exists and lists
-   every file in `archive/`; word-count each archive chunk against the
-   chunk cap; confirm INDEX rows resolve to real files.
-   WARN on a missing/stale INDEX or an oversized chunk.
-   Action: `prune-memory.md` (rebuild INDEX / re-split chunks).
+   every file in `archive/`; confirm INDEX rows resolve to real files;
+   note any chunk that spans more than one epoch (a browsability nicety,
+   not a size check — cold archives are never auto-read).
+   WARN on a missing/stale INDEX; a multi-epoch chunk is INFO only.
+   Action: `prune-memory.md` (rebuild INDEX / split on epoch boundary).
 
 7. **Version drift** — read `pm_skills/VERSION`. If a framework source
    is available, compare to its `VERSION`. If behind, note the gap.
