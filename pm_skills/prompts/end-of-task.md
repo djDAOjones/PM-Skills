@@ -5,7 +5,24 @@ and verification are complete. This is the canonical housekeeping
 ritual. The integration workflows reference this file rather than
 duplicating its contents.
 
-## 1. Update project memory
+## 1. Verify the runtime still boots (if this task touched it)
+
+If this task changed the runtime — a server, worker, port, env var,
+generated output, build step, dependency, or a boot/reboot/status
+script — confirm the app still recovers cleanly before closing:
+
+- Boot from cold via the canonical command in `DEV-INFRASTRUCTURE.md`
+  → "Runtime lifecycle" (`reboot` / `dev` for most projects).
+- Confirm it reaches a verified-ready state (health endpoint or
+  expected output), not merely that a process launched.
+- Report the dev URL, the log location, and any manual step that is
+  not yet automated.
+- If the runtime surface changed, update `DEV-INFRASTRUCTURE.md` →
+  "Runtime lifecycle" (see step 2) to match.
+
+If the task did not touch the runtime, say "not applicable" and move on.
+
+## 2. Update project memory
 
 Update each of the following if relevant to this task:
 
@@ -34,9 +51,10 @@ Update each of the following if relevant to this task:
 - `UI-STANDARDS.md` — if this task established new token systems or
   UI conventions.
 - `DEV-INFRASTRUCTURE.md` — if this task changed build, dev server,
-  versioning, or script conventions.
+  versioning, script conventions, or the runtime lifecycle (boot/reboot/
+  status commands, process ownership, health checks, protected paths).
 
-## 2. Run the memory size check
+## 3. Run the memory size check
 
 Budgets are defined in `AGENTS.md` → "Memory size budgets". Do not
 duplicate the numbers here.
@@ -78,10 +96,11 @@ If any budget is exceeded:
 - Propose running `pm_skills/prompts/prune-memory.md` and wait for
   user approval.
 
-## 3. Report
+## 4. Report
 
 Output a one-line summary:
 
+- Whether the runtime was verified to boot to a ready state (or n/a).
 - Which memory files were updated.
 - Which budgets were checked.
 - Whether any tripped (and the proposal made if so).

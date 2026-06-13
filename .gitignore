@@ -6,3 +6,6 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Internal dev scratch (not distributed)
+user_crud/

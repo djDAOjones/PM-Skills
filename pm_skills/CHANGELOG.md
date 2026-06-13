@@ -25,6 +25,93 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.3.0 — 2026-06-13
+
+Makes the framework opinionated about **runtime recoverability**: reaching
+a known-good running state — and getting back there after it drifts — is
+one documented, safe command, never a remembered ritual.
+
+The framework was already opinionated about product quality (Carbon, WCAG
+2.2 AAA, project memory, testing, minimal-change) and about _production_
+deploy recoverability (`deploy.md`: pre-flight, live health, rollback). It
+had no _local_ equivalent: a solo maintainer had to hold ports, stale
+processes, env composition, generated outputs, tunnels, and startup order
+in their head just to get a local app running again. This release adds the
+dev-side sibling of `deploy.md`.
+
+The opinion follows the framework's existing shape — a one-line hard rule
+in the contract, a populated section in the dev-infra doc, init wiring to
+create it, and verification wiring to check it — and **scales with
+complexity**: pure-static projects document one command ("serve this
+directory"); single dev-server apps get `dev` + `reboot`; multi-process
+and operator-facing apps add `boot` / `stop` / `status` / `logs` /
+`reset`. The capability and its documentation are required at every tier;
+only the implementation heft scales.
+
+Backward compatible: no files renamed or removed, no data migration, no
+changed memory contracts. The two `root-template` edits are additive
+sections that 3-way merge cleanly.
+
+### Changed
+
+- `AGENTS.md` (`root-template`) — adds the **One-command runtime
+  recovery** hard rule (boot/reboot to a verified-ready state via one
+  safe command; kill only owned processes; allowlist cleanup; no
+  destructive reset without an explicit flag; scales by tier), an
+  ad-hoc-startup anti-pattern, and extends the Document-ownership row so
+  `DEV-INFRASTRUCTURE.md` owns "runtime lifecycle".
+- `DEV-INFRASTRUCTURE.md` (`root-template`) — adds a **Runtime
+  lifecycle** section (after Dev server): command surface, dev URL/port,
+  components and startup order, process ownership / PID & log locations,
+  env and `.env` workflow, allowlisted generated-output cleanup, health /
+  readiness checks, recovery playbook, exposure controls, and protected
+  paths. Collapses to one line for pure-static projects.
+- `pm_skills/init.md` — Step 8 population prompt gains a Runtime lifecycle
+  item; Step 10 readiness gains a "documented and boots to a ready state"
+  check; Appendix B gains a tiered Runtime lifecycle example (single dev
+  server → operator-facing).
+- `pm_skills/integrations/init-project.md` — mirrors the Step 8 and
+  Step 10 additions.
+- `pm_skills/integrations/init-mvp.md` — the runnable-skeleton step
+  records the canonical boot/reboot command and verifies a ready state;
+  integration verification boots to a ready state, not just a launched
+  process.
+- `pm_skills/prompts/end-of-task.md` — adds a conditional runtime-boot
+  verification step (boot via the canonical command; verify readiness,
+  not launch), extends the `DEV-INFRASTRUCTURE.md` update trigger to the
+  runtime lifecycle, and adds a runtime line to the report. Sections
+  renumbered (1 → 4).
+- `pm_skills/prompts/scoping.md` — flags the runtime-lifecycle impact
+  when a task adds or changes a runtime component.
+- `pm_skills/prompts/validation.md` — adds a "Runtime impact" pre-code
+  check (preserves one-command boot/reboot and a readiness check).
+- `pm_skills/prompts/implementation-plan.md` — folds the runtime command
+  surface and the `DEV-INFRASTRUCTURE.md` doc into the files to modify,
+  with a "boots to a ready state" acceptance criterion.
+
+### Upgrade actions
+
+- Re-merge `AGENTS.md` from the new root template (`prompts/upgrade.md`
+  Step 7): add the "One-command runtime recovery" hard rule, the
+  ad-hoc-startup anti-pattern, and the updated Document-ownership row for
+  `DEV-INFRASTRUCTURE.md`. Preserve all populated project-specific content.
+- Re-merge `DEV-INFRASTRUCTURE.md` from the new root template: add the new
+  "Runtime lifecycle" section (after "Dev server"). Populate it for your
+  project, or collapse it to one line / mark it n/a for a pure-static
+  project. Preserve every already-populated section verbatim.
+- Replace the `framework` files: `pm_skills/init.md`,
+  `pm_skills/integrations/init-project.md`,
+  `pm_skills/integrations/init-mvp.md`,
+  `pm_skills/prompts/end-of-task.md`, `pm_skills/prompts/scoping.md`,
+  `pm_skills/prompts/validation.md`,
+  `pm_skills/prompts/implementation-plan.md`.
+- No data migration; `MANIFEST.md` is unchanged (no new paths).
+- Optional follow-up: on the next task that touches the runtime, populate
+  the new `DEV-INFRASTRUCTURE.md` → "Runtime lifecycle" section so the
+  boot/reboot command is documented.
+
+---
+
 ## 2.2.1 — 2026-06-04
 
 Fixes a smaller sibling of the 2.1.0 bug, surfaced by dogfooding a prune

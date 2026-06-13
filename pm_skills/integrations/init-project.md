@@ -68,11 +68,15 @@ MVP, use `pm_skills/integrations/init-mvp.md` instead.
 
 8. Populate DEV-INFRASTRUCTURE.md (if the project has a build step).
    Read the brief, architecture, and `DEV-INFRASTRUCTURE.md`.
-   Fill in every applicable `<!-- CUSTOMISE -->` placeholder. For
-   shape examples per section, read `pm_skills/init.md` Appendix B.
+   Fill in every applicable `<!-- CUSTOMISE -->` placeholder, including
+   the **Runtime lifecycle** section (the boot/reboot/recovery command
+   surface, process ownership, health checks, and protected paths),
+   scaled to the project. For shape examples per section, read
+   `pm_skills/init.md` Appendix B.
    Present for review. After approval, write to
    `DEV-INFRASTRUCTURE.md`.
-   If no build tooling, tell the user this file can be removed.
+   If no build tooling, tell the user this file can be removed — but
+   even a static site still documents how to run it in `README.md`.
 
 9. Copy scaffold files.
    Copy `pm_skills/scaffold/.editorconfig` and
@@ -89,6 +93,8 @@ MVP, use `pm_skills/integrations/init-mvp.md` instead.
       `[short product description]` placeholder)
     - `UI-STANDARDS.md` (if applicable)
     - `DEV-INFRASTRUCTURE.md` (if applicable)
+    - Runtime lifecycle documented and the app boots to a verified-ready
+      state via the canonical command (not just a launched process)
     - `.editorconfig`
     - `.gitignore`
 

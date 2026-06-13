@@ -18,6 +18,7 @@ Rules:
 - Search the codebase before drawing conclusions.
 - Prefer existing patterns over new abstractions.
 - Flag any efficiency, persistence, or architectural concerns.
+- If the task adds or changes a runtime component (server, worker, port, env var, generated output, external service), flag the runtime-lifecycle impact: the boot/reboot/recovery command surface and the `DEV-INFRASTRUCTURE.md` → "Runtime lifecycle" update it will need.
 - Out-of-scope items worth revisiting → append each to `pm_skills/project/wish-list.md` as a one-line idea (don't expand this task to do them).
 - If this is a new project with little or no code yet, focus on folder structure and module responsibilities instead of file-level detail.
 - No code or pseudocode.

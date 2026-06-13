@@ -160,6 +160,17 @@ asks — capturing the one line is the whole interaction.
   ≥ 44 × 44 CSS px pointer targets, visible focus rings, no
   colour-only meaning. Where Carbon defaults meet AA but not AAA,
   adapt them. See `UI-STANDARDS.md` for full accessibility rules.
+- **One-command runtime recovery.** Reaching a known-good running
+  state — and getting back there after it drifts — is a single
+  documented, safe command, never a remembered ritual. Verify
+  _readiness_ (health/output), not just that a process launched.
+  Lifecycle scripts kill only what they own, delete only documented
+  generated output, and never touch source or persistent data without
+  an explicit hard-reset flag. Implementation scales with complexity
+  (from "serve this directory" to a full operator boot script), but the
+  documented capability is required at every tier. See
+  `DEV-INFRASTRUCTURE.md` → "Runtime lifecycle" for the command surface
+  and safety rules.
 
 <!-- CUSTOMISE: Add project-specific invariants below. See init.md Step 6 for example shapes. -->
 
@@ -286,7 +297,7 @@ See `DEV-INFRASTRUCTURE.md` for the concrete list of protected paths.
 | --- | --- | --- |
 | `AGENTS.md` | Hard rules, invariants, data model, anti-patterns | Major architectural or design decisions change |
 | `UI-STANDARDS.md` | UI, accessibility, usability rules | New token systems or UI conventions established |
-| `DEV-INFRASTRUCTURE.md` | Build, dev server, versioning, scripts | Build or deployment decisions change |
+| `DEV-INFRASTRUCTURE.md` | Build, dev server, versioning, scripts, runtime lifecycle | Build, runtime, or deployment decisions change |
 | `project/` memory files | Brief, architecture, backlog, wish-list, trajectory, file map, conventions, decision log | End of every task session |
 | `project/archive/` | Historical content moved out of hot files, indexed in `archive/INDEX.md` | Only via `pm_skills/prompts/prune-memory.md` or `roadmap-refactor.md` |
 
@@ -306,6 +317,10 @@ context → `project/`. Historical content → `project/archive/`.
   visible, accessible treatment.
 - Hard-coding values that should be tokenised or configurable.
 - Adding runtime dependencies without explicit approval.
+- Ad hoc or undocumented startup: a boot/reboot ritual the maintainer
+  must hold in their head, a script that kills processes or deletes
+  paths it does not own, or a "started" report that never checked
+  readiness.
 - Letting the `wish-list.md` inbox become a write-only graveyard, or
   scoping or estimating its items at capture time. Capture is one
   line; judgement happens at triage.

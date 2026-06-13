@@ -142,9 +142,13 @@ build. Keep project memory live as you go.
 7. Stand up a runnable skeleton + Checkpoint 2.
    Before any feature work, create the smallest thing that **runs**: build
    tooling, dev server, entry point, and a trivial "it loads" view or
-   output, consistent with the recorded architecture. Verify it actually
-   runs (build/serve/test as defined in `DEV-INFRASTRUCTURE.md`). State
-   **Checkpoint 2: runnable skeleton** and recommend a commit. If the
+   output, consistent with the recorded architecture. Record the canonical
+   boot/reboot command and its readiness check in `DEV-INFRASTRUCTURE.md`
+   → "Runtime lifecycle" as you stand this up — the skeleton is the
+   cheapest moment to establish one-command recovery. Verify it actually
+   runs to a verified-ready state (health/output, not just a launched
+   process) via build/serve/test as defined in `DEV-INFRASTRUCTURE.md`.
+   State **Checkpoint 2: runnable skeleton** and recommend a commit. If the
    skeleton will not run, stop and fix it before going further — never
    build features on a base that does not run.
 
@@ -172,7 +176,9 @@ build. Keep project memory live as you go.
 --- VERIFY + CLOSE ---
 
 10. Integration verification.
-    - The whole MVP builds and runs via the canonical dev/build commands.
+    - The whole MVP boots to a verified-ready state (health or expected
+      output, not just a launched process) via the canonical command in
+      `DEV-INFRASTRUCTURE.md` → "Runtime lifecycle".
     - Every locked milestone item is implemented and ticked, or explicitly
       descoped with a one-line reason.
     - Re-run the placeholder lint from `init-project.md` step 10.

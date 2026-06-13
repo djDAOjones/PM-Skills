@@ -300,16 +300,21 @@ Using the brief and architecture, populate every applicable placeholder:
 1. **Package management** — package manager, dependency policy.
 2. **Canonical scripts** — table of every script in package.json.
 3. **Dev server** — canonical URL, port, how to start, what it serves.
-4. **Build system** — bundler, entry point, output directory, source
+4. **Runtime lifecycle** — the boot/reboot/status/recovery command
+   surface, process ownership, env workflow, generated-output cleanup,
+   health/readiness checks, exposure flags, and protected paths. Scale
+   it to the project (see Appendix B); even a static site documents how
+   to run it.
+5. **Build system** — bundler, entry point, output directory, source
    maps, minification, static file handling.
-5. **Version management** — numbering scheme, sources, auto-increment
+6. **Version management** — numbering scheme, sources, auto-increment
    rules, when to bump manually.
-6. **Deployment** — target, pipeline, post-deploy verification.
-7. **Utility scripts** — any helper scripts beyond dev/build/test.
-8. **Configuration strategy** — where constants, design tokens, and
+7. **Deployment** — target, pipeline, post-deploy verification.
+8. **Utility scripts** — any helper scripts beyond dev/build/test.
+9. **Configuration strategy** — where constants, design tokens, and
    user-facing config live.
-9. **Editor config** — describe the .editorconfig if one exists.
-10. **Files agents must not hand-edit** — concrete paths.
+10. **Editor config** — describe the .editorconfig if one exists.
+11. **Files agents must not hand-edit** — concrete paths.
 
 Only fill in sections where the architecture provides enough
 information. Leave remaining placeholders for later. Do not invent
@@ -350,6 +355,10 @@ Before starting your first task, confirm:
   project has UI).
 - [ ] `DEV-INFRASTRUCTURE.md` is populated (if the project has a build
   step or dev server).
+- [ ] Runtime lifecycle is documented and the app boots: the canonical
+  command in `DEV-INFRASTRUCTURE.md` → "Runtime lifecycle" runs, and a
+  cold boot reaches a verified-ready state (health/output), not just a
+  launched process.
 - [ ] `.editorconfig` is in the project root.
 - [ ] `.gitignore` is in the project root.
 
@@ -625,6 +634,50 @@ Do not add scripts without updating this table.
 All development and testing should use this URL. Do not hard-code
 alternative ports or URLs.
 ```
+
+### Runtime lifecycle example
+
+The capability is required at every tier; the implementation scales.
+Document only the verbs this project actually implements.
+
+Single dev server (most common) — `dev` + `reboot`:
+
+```markdown
+| Verb | Command | Does |
+| --- | --- | --- |
+| `dev` | `npm run dev` | Foreground dev server at http://localhost:3000 |
+| `reboot` | `npm run dev:restart` | Clears owned port 3000, removes `dist/`, restarts dev |
+
+- **Owns:** port 3000 only. `reboot` kills just the PID on that port.
+- **Cleans:** `dist/` only (generated). Never source, never `.env`.
+- **Ready when:** the dev URL serves HTTP 200 — not merely that the
+  process started.
+```
+
+Multi-process / operator-facing — add `boot`, `stop`, `status`,
+`logs`, and `reset` / `reset:hard`:
+
+```markdown
+| Verb | Command | Does |
+| --- | --- | --- |
+| `boot` | `./scripts/boot.sh` | Starts all components; prints URLs; writes PIDs/logs |
+| `stop` | `./scripts/stop.sh` | Graceful stop of owned PIDs (SIGTERM, then SIGKILL) |
+| `status` | `./scripts/status.sh` | Components, ports, PIDs, health |
+| `logs` | `tail -f sessions/hub.log` | Tail the runtime log |
+| `reset` | `./scripts/reset.sh` | Safe reset of generated state only |
+| `reset:hard` | `./scripts/reset.sh --hard` | Destructive; may wipe local data. Explicit flag required |
+
+- **Ownership:** PIDs in `sessions/.pids`; logs in `sessions/*.log`.
+- **Env:** `.env` composed from `.env.example` + gitignored
+  `.env.secrets`; regenerated when missing or stale.
+- **Health:** boot polls `/api/health` and fails loudly (non-zero exit,
+  log tail) if readiness never returns.
+- **Exposure:** public tunnel / LAN / operator modes are OFF by default
+  and require an explicit flag plus a printed warning.
+```
+
+For a pure-static project this whole section collapses to one line —
+e.g. "Open `index.html`" or "`npx serve .` → `http://localhost:3000`".
 
 ### Build system example
 

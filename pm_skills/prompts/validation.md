@@ -13,12 +13,17 @@ Output:
 1. Design sanity checks — does this actually solve the problem?
 2. Architecture checks — does this respect module boundaries?
 3. Regression risks — what existing behavior could break?
-4. Test plan — name the invariants at risk, then the categories that
+4. Runtime impact — if this adds or changes a runtime component
+   (server, worker, port, env var, generated output, dependency),
+   confirm the design preserves one-command boot/reboot and a readiness
+   check, and that `DEV-INFRASTRUCTURE.md` → "Runtime lifecycle" will be
+   updated. "Not applicable" if the task does not touch the runtime.
+5. Test plan — name the invariants at risk, then the categories that
    apply (happy path, empty, error, boundary, permission/gating,
    regression, persistence round-trip). "Not applicable" is a valid
    answer per category. Flag anything only a manual check can cover.
-5. Edge cases — what might we miss?
-6. Signs the scope is too large or the design is wrong.
+6. Edge cases — what might we miss?
+7. Signs the scope is too large or the design is wrong.
 
 Rules:
 

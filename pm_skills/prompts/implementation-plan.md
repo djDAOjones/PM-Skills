@@ -24,4 +24,5 @@ Rules:
 - Stay inside the approved scope.
 - Prefer minimal changes over broad cleanup.
 - Call out architectural, efficiency, or regression risks.
+- If the task adds or changes a runtime component, include the runtime command surface (boot/reboot/status scripts) and the `DEV-INFRASTRUCTURE.md` → "Runtime lifecycle" doc among the files to modify, and make "boots to a ready state via the canonical command" an acceptance criterion.
 - No code or pseudocode.
