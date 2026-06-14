@@ -13,10 +13,19 @@ on:
 permissions:
   contents: read
 
+# Cancel superseded runs on the same ref: rapid pushes (or PR updates)
+# should not queue redundant lint runs — only the latest commit matters.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   markdown:
     name: Markdown lint and link check
     runs-on: ubuntu-latest
+    # Lint + link check finish in seconds; cap the job so a hung runner
+    # fails fast instead of consuming the default 6-hour budget.
+    timeout-minutes: 10
     steps:
       - name: Check out
         uses: actions/checkout@v4
