@@ -199,5 +199,6 @@ build. Keep project memory live as you go.
     shipped milestone as a phase in `trajectory.md`; confirm `backlog.md`
     holds only open or descoped work (shipped items moved out). Run the
     memory size check. Present a closing report that names the rollback
-    checkpoints (foundation, skeleton) and recommends the next step
-    (`next-batch.md` for the second milestone).
+    checkpoints (foundation, skeleton) and recommends the next steps
+    (`pm_skills/prompts/review.md` to review this autonomous build,
+    then `next-batch.md` for the second milestone).

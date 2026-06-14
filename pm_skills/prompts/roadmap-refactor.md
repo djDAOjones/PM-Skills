@@ -11,7 +11,7 @@ and it does not archive history by size (`prune-memory.md`). It
 reorganises open work by lifecycle and dependency, and evicts anything
 that is no longer open work.
 
-Budgets and tier names come from `AGENTS.md` -> "Memory size budgets" and
+Budgets and tier names come from `AGENTS.md` → "Memory size budgets" and
 "Read tiers". Do not restate the numbers here.
 
 ## 1. Load
@@ -55,7 +55,7 @@ Present a single proposal the user can approve in one read:
    existing items with a one-line above/below rationale.
 5. **Open decisions** — anything that needs a maintainer call.
 
-Show it as a before -> after for the backlog structure. STOP. Wait for
+Show it as a before → after for the backlog structure. STOP. Wait for
 sign-off. Never rewrite the roadmap silently.
 
 ## 4. Apply (after sign-off)

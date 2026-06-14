@@ -163,5 +163,6 @@ memory live throughout.
    `trajectory.md`; confirm `backlog.md` holds only open or descoped
    work. Run the memory size check. Present a closing report naming the
    rollback checkpoints (foundation, skeleton, per-milestone commits),
-   the live deploy result, and the next step (`next-batch.md` for the
-   first milestone beyond the band).
+   the live deploy result, and the next steps (`pm_skills/prompts/review.md`
+   to review this run, then `next-batch.md` for the first milestone
+   beyond the band).

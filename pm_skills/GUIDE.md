@@ -101,6 +101,7 @@ prompts/         Reusable per-task prompts.
   quick-task.md           Single-stage alternative for small tasks.
   bug-scoping.md          Bug-specific scoping: reproduce, diagnose, fix.
   end-of-task.md          Canonical end-of-task housekeeping.
+  review.md               Read-only review of a run (esp. autonomous): scope, risk, verdict.
   corrections.md          Drift correction snippets.
   roadmap-refactor.md     Repair a drifted backlog: regroup, dedupe, evict done-work.
   prune-memory.md         Memory-pruning procedure (canonical).
@@ -153,6 +154,12 @@ Choose the workflow that fits the task:
 All four workflows search the source tree before changing code and
 run the same end-of-task housekeeping: memory updates, size check,
 and a closing report.
+
+After a gateless run (`auto-jazz`, `auto-jazz-lite`, `init-mvp`,
+`spec-to-prod`), paste `prompts/review.md` to review what landed before
+you accept it — scope adherence, stated assumptions, risk, and a punch
+list. It is read-only: it proposes a verdict and follow-ups, it does not
+silently rewrite the work.
 
 ### Manual prompt workflow
 

@@ -25,6 +25,78 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.5.0 — 2026-06-14
+
+Adds the **review** capability — the missing mirror of the design
+pipeline. The framework front-loads discipline going *in* (scoping →
+design → plan → validation, and the gateless `auto-jazz` / `init-mvp` /
+`spec-to-prod` runs that compress it), but gave the human nothing
+structured for the way *out*. With gateless modes the review burden just
+moves to after the run — and "I'll review later" had no tool. This
+release closes that loop.
+
+`prompts/review.md` is a read-only pass over a change set (typically an
+autonomous run): it maps the diff to intent, checks scope adherence and
+every stated assumption, audits against the hard-rule / UI / dev
+contracts, names the regression surface and what only a human can
+verify, confirms project-memory housekeeping happened, and ends with a
+verdict (accept / accept-with-follow-ups / needs-changes) plus a
+prioritised punch list. It proposes; it never silently rewrites the
+work — approved fixes run as their own task. Durable findings feed back
+into memory (an anti-pattern into `AGENTS.md`, a convention into
+`conventions.md`, an idea into `wish-list.md`).
+
+It is wired where the review need is created: the closing reports of
+`auto-jazz`, `auto-jazz-lite`, `init-mvp`, and `spec-to-prod` now point
+at it, and `GUIDE.md` lists it.
+
+This release also hardens `release.md` so the framework self-catches the
+two drift classes 2.4.1 had to fix by hand: a GUIDE file-tree check in
+the verify snippet, and a step-5 reminder to re-sync the `feature.md` /
+`auto-jazz.md` validation echoes when a stage prompt's outputs change.
+
+Backward compatible: one new `framework` prompt (covered by the
+`pm_skills/prompts/*` manifest wildcard — no `MANIFEST.md` change) and
+additive wiring lines. No files renamed or removed, no migration.
+
+### Added
+
+- `pm_skills/prompts/review.md` (`framework`) — read-only review of a
+  run: intent map, scope-and-assumption check, contract audit, risk and
+  manual-check list, memory-hygiene check, verdict + punch list, and
+  propose-don't-apply feedback into memory.
+
+### Changed
+
+- `pm_skills/integrations/auto-jazz.md`, `auto-jazz-lite.md`,
+  `init-mvp.md`, `spec-to-prod.md` — closing reports now suggest running
+  `prompts/review.md` to review the gateless run before accepting it.
+- `pm_skills/GUIDE.md` — lists `review.md` in the prompts tree and adds
+  a per-task-reference note on reviewing any gateless run.
+- `pm_skills/prompts/release.md` — verify snippet gains a GUIDE
+  file-tree check; step 5 gains a reminder to re-sync the workflow
+  validation echoes when a stage prompt's outputs change, and to
+  re-sync the `quick-task.md` echo in `feature.md` / `auto-jazz-lite.md`.
+- `pm_skills/prompts/doctor-memory.md`,
+  `pm_skills/prompts/roadmap-refactor.md` — consistency sweep: normalised
+  stray ASCII `->` to the Unicode `→` used in rendered prose
+  framework-wide. Cosmetic; no behaviour change.
+
+### Upgrade actions
+
+- Add the new `framework` file `pm_skills/prompts/review.md`.
+- Replace the `framework` files: `pm_skills/integrations/auto-jazz.md`,
+  `pm_skills/integrations/auto-jazz-lite.md`,
+  `pm_skills/integrations/init-mvp.md`,
+  `pm_skills/integrations/spec-to-prod.md`, `pm_skills/GUIDE.md`,
+  `pm_skills/prompts/release.md`, `pm_skills/prompts/doctor-memory.md`,
+  `pm_skills/prompts/roadmap-refactor.md`.
+- `MANIFEST.md` unchanged — `review.md` inherits `framework` from the
+  `pm_skills/prompts/*` wildcard. No data migration; no `root-template`
+  changes.
+
+---
+
 ## 2.4.1 — 2026-06-14
 
 Consistency fixes only — no new files, no migration. Re-syncs two

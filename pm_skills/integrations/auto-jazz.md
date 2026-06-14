@@ -131,4 +131,5 @@ not proceed on assumption.
    Run the procedure in `pm_skills/prompts/end-of-task.md`. When
    recording the decision-log entry, include the assumptions made in
    steps 3–5 (scope, chosen option). Present the closing report to
-   the user.
+   the user, and suggest they run `pm_skills/prompts/review.md` to
+   review this gateless run before accepting it.

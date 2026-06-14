@@ -91,4 +91,5 @@ not proceed on assumption.
    Run the procedure in `pm_skills/prompts/end-of-task.md`. When
    recording any decision-log entry, include the assumption made in
    step 3 (combined scope-and-plan). Present the closing report to
-   the user.
+   the user, and suggest they run `pm_skills/prompts/review.md` to
+   review this gateless run before accepting it.

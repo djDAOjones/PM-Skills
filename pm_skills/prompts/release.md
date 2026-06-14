@@ -74,6 +74,13 @@ update `pm_skills/MANIFEST.md`:
   and any per-task lists if files were added or removed.
 - `README.md` — update only if the change affects quick start,
   upgrading, or "what's in this repo".
+- `pm_skills/integrations/feature.md` and `auto-jazz.md` — if a stage
+  prompt's **output list** changed (`scoping.md`, `design-options.md`,
+  `implementation-plan.md`, `validation.md`), re-sync the inline echo in
+  each workflow's matching step. The echoes duplicate the stage outputs
+  for in-flow readability and drift silently otherwise. Likewise, if
+  `quick-task.md`'s output list changed, re-sync its echo in
+  `feature.md` (quick-task step) and `auto-jazz-lite.md` (stage 1).
 
 ## 6. Verify
 
@@ -92,6 +99,10 @@ echo "Files not in MANIFEST:"
 for f in pm_skills/prompts/* pm_skills/integrations/*; do
   grep -q "$(basename "$f")" pm_skills/MANIFEST.md || \
   echo "  (ok if covered by a /* wildcard) $f"
+done
+echo "Top-level files missing from the GUIDE tree:"
+for f in pm_skills/VERSION pm_skills/*.md; do
+  grep -q "$(basename "$f")" pm_skills/GUIDE.md || echo "  MISSING: $f"
 done
 ```
 
