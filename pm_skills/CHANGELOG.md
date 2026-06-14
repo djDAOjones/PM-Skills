@@ -146,9 +146,9 @@ a known-good running state — and getting back there after it drifts — is
 one documented, safe command, never a remembered ritual.
 
 The framework was already opinionated about product quality (Carbon, WCAG
-2.2 AAA, project memory, testing, minimal-change) and about _production_
+2.2 AAA, project memory, testing, minimal-change) and about *production*
 deploy recoverability (`deploy.md`: pre-flight, live health, rollback). It
-had no _local_ equivalent: a solo maintainer had to hold ports, stale
+had no *local* equivalent: a solo maintainer had to hold ports, stale
 processes, env composition, generated outputs, tunnels, and startup order
 in their head just to get a local app running again. This release adds the
 dev-side sibling of `deploy.md`.

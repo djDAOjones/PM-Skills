@@ -7,5 +7,10 @@ Thumbs.db
 *.swo
 *~
 
+# Node tooling (dev-only; never committed, never distributed).
+# package-lock.json IS committed for reproducible CI installs.
+node_modules/
+npm-debug.log*
+
 # Internal dev scratch (not distributed)
 user_crud/
