@@ -28,7 +28,7 @@ Detail | Proposed action**.
    a reference doc over its soft guideline is a WARN, not a FAIL (not a
    prune target — tighten or split only if genuinely bloated).
 
-2. **Done-work in the backlog** — `grep -cE '^\s*- \[x\]'
+2. **Done-work in the backlog** — `grep -cE '^\s*[-*] \[x\]'
    pm_skills/project/backlog.md`. In v2 the backlog holds open work
    only; shipped items belong in `trajectory.md`.
    WARN/FAIL if any `[x]` present, or if a `## Completed` section

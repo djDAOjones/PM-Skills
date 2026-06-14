@@ -67,7 +67,9 @@ user approval at each gate. Do not write code until all gates pass.
    - Design sanity checks
    - Architecture checks
    - Regression risks
-   - Test coverage assessment
+   - Runtime impact
+   - Diagnostics & redaction
+   - Test plan
    - Edge cases
    - Signs the scope is too large
 

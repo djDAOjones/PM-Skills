@@ -97,7 +97,9 @@ not proceed on assumption.
    - Design sanity checks
    - Architecture checks
    - Regression risks
-   - Test coverage assessment
+   - Runtime impact
+   - Diagnostics & redaction
+   - Test plan
    - Edge cases
    - Signs the scope is too large
 

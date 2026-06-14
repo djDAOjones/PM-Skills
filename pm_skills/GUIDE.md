@@ -78,6 +78,8 @@ instructions.
 VERSION          Current framework version (semver). The upgrade check.
 CHANGELOG.md     Append-only release log; each entry is an upgrade plan.
 MANIFEST.md      Path classes: framework / template / memory / scaffold.
+GUIDE.md         This guide — folder contents, memory tiers, workflows.
+init.md          Step-by-step project initialization (the manual path).
 
 project/         Durable project memory. Fill once, maintain ongoing.
   brief.md         What we're building.

@@ -25,6 +25,47 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.4.1 — 2026-06-14
+
+Consistency fixes only — no new files, no migration. Re-syncs two
+workflow files with the canonical stage prompts after the 2.3.0 and
+2.4.0 additions, unifies one diagnostic grep, and completes the GUIDE
+folder map.
+
+The load-bearing fix: `feature.md` and `auto-jazz.md` echo
+`validation.md`'s output list inline, and that echo had gone stale — it
+still listed the pre-2.3.0 six items ("Test coverage assessment", no
+runtime, no diagnostics). An agent running validation through either
+workflow could therefore skip the **Runtime impact** (2.3.0) and
+**Diagnostics & redaction** (2.4.0) checks the canonical prompt now
+requires — silently dropping the two newest opinions at their point of
+use. The echo is brought back in step with `validation.md`'s current
+eight outputs. The scoping, design-options, and implementation-plan
+echoes in both files were checked and are already faithful.
+
+### Changed
+
+- `pm_skills/integrations/feature.md` — validation step output echo
+  synced to `validation.md`'s current eight items (adds Runtime impact,
+  Diagnostics & redaction; "Test coverage assessment" → "Test plan").
+- `pm_skills/integrations/auto-jazz.md` — same validation echo sync.
+- `pm_skills/prompts/doctor-memory.md` — done-work grep anchored to
+  `^\s*[-*] \[x\]`, matching `end-of-task.md` and `prune-memory.md` (now
+  catches `*`-bulleted lists, not only `-`).
+- `pm_skills/GUIDE.md` — "What's in this folder" tree now lists `GUIDE.md`
+  and `init.md`, so it matches the actual `pm_skills/` contents (per
+  `release.md` steps 5–6).
+
+### Upgrade actions
+
+- Replace the `framework` files: `pm_skills/integrations/feature.md`,
+  `pm_skills/integrations/auto-jazz.md`,
+  `pm_skills/prompts/doctor-memory.md`, `pm_skills/GUIDE.md`.
+- No data migration; no `root-template` changes; `MANIFEST.md` unchanged
+  (no new or moved paths).
+
+---
+
 ## 2.4.0 — 2026-06-14
 
 Makes the framework opinionated about **maintainer diagnostics**: the app
