@@ -18,12 +18,18 @@ Output:
    confirm the design preserves one-command boot/reboot and a readiness
    check, and that `DEV-INFRASTRUCTURE.md` → "Runtime lifecycle" will be
    updated. "Not applicable" if the task does not touch the runtime.
-5. Test plan — name the invariants at risk, then the categories that
+5. Diagnostics & redaction — if this adds runtime behaviour or a
+   user-facing surface, confirm notable events route through the
+   structured logger (not ad-hoc console.log) and that nothing sensitive
+   (tokens, cookies, raw bodies, full storage, PII) can reach the
+   copy-diagnostics bundle. "Not applicable" if the task adds no
+   instrumentable behaviour.
+6. Test plan — name the invariants at risk, then the categories that
    apply (happy path, empty, error, boundary, permission/gating,
    regression, persistence round-trip). "Not applicable" is a valid
    answer per category. Flag anything only a manual check can cover.
-6. Edge cases — what might we miss?
-7. Signs the scope is too large or the design is wrong.
+7. Edge cases — what might we miss?
+8. Signs the scope is too large or the design is wrong.
 
 Rules:
 

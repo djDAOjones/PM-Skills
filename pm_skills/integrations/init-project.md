@@ -70,8 +70,10 @@ MVP, use `pm_skills/integrations/init-mvp.md` instead.
    Read the brief, architecture, and `DEV-INFRASTRUCTURE.md`.
    Fill in every applicable `<!-- CUSTOMISE -->` placeholder, including
    the **Runtime lifecycle** section (the boot/reboot/recovery command
-   surface, process ownership, health checks, and protected paths),
-   scaled to the project. For shape examples per section, read
+   surface, process ownership, health checks, and protected paths) and
+   the **Maintainer diagnostics** section (structured logger, bounded
+   buffer, global error capture, redacted copy bundle, dev-only gating),
+   both scaled to the project. For shape examples per section, read
    `pm_skills/init.md` Appendix B.
    Present for review. After approval, write to
    `DEV-INFRASTRUCTURE.md`.
@@ -95,6 +97,9 @@ MVP, use `pm_skills/integrations/init-mvp.md` instead.
     - `DEV-INFRASTRUCTURE.md` (if applicable)
     - Runtime lifecycle documented and the app boots to a verified-ready
       state via the canonical command (not just a launched process)
+    - Maintainer diagnostics documented: uncaught errors are legible
+      (a global error hook at minimum); if there is UI, a dev-only
+      redacted copy-diagnostics affordance is planned
     - `.editorconfig`
     - `.gitignore`
 

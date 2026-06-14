@@ -171,6 +171,20 @@ asks — capturing the one line is the whole interaction.
   documented capability is required at every tier. See
   `DEV-INFRASTRUCTURE.md` → "Runtime lifecycle" for the command surface
   and safety rules.
+- **Self-explaining runtime.** The app makes its own behaviour legible
+  while it is being built. Route notable runtime behaviour through one
+  small structured logger that writes to the console **and** a bounded
+  in-memory buffer — never scattered ad-hoc `console.log`. Where there
+  is meaningful UI, expose a **dev-only** "copy diagnostics" affordance
+  that copies a **redacted** snapshot (recent logs, uncaught errors,
+  app version, route/view, environment hints) for pasting to an AI
+  agent. Redact by default: never log or copy secrets, tokens, cookies,
+  raw request bodies, full storage, or sensitive PII. Implementation
+  scales with complexity (from a console helper + a global error hook
+  to interaction-correlated tracing), but the capability is required at
+  every tier — even the smallest project makes uncaught errors legible.
+  See `DEV-INFRASTRUCTURE.md` → "Maintainer diagnostics" and
+  `UI-STANDARDS.md` → "Diagnostics affordance".
 
 <!-- CUSTOMISE: Add project-specific invariants below. See init.md Step 6 for example shapes. -->
 
@@ -296,8 +310,8 @@ See `DEV-INFRASTRUCTURE.md` for the concrete list of protected paths.
 | Layer | Owns | Update when |
 | --- | --- | --- |
 | `AGENTS.md` | Hard rules, invariants, data model, anti-patterns | Major architectural or design decisions change |
-| `UI-STANDARDS.md` | UI, accessibility, usability rules | New token systems or UI conventions established |
-| `DEV-INFRASTRUCTURE.md` | Build, dev server, versioning, scripts, runtime lifecycle | Build, runtime, or deployment decisions change |
+| `UI-STANDARDS.md` | UI, accessibility, usability rules, diagnostics affordance | New token systems or UI conventions established |
+| `DEV-INFRASTRUCTURE.md` | Build, dev server, versioning, scripts, runtime lifecycle, maintainer diagnostics | Build, runtime, or deployment decisions change |
 | `project/` memory files | Brief, architecture, backlog, wish-list, trajectory, file map, conventions, decision log | End of every task session |
 | `project/archive/` | Historical content moved out of hot files, indexed in `archive/INDEX.md` | Only via `pm_skills/prompts/prune-memory.md` or `roadmap-refactor.md` |
 
@@ -321,6 +335,11 @@ context → `project/`. Historical content → `project/archive/`.
   must hold in their head, a script that kills processes or deletes
   paths it does not own, or a "started" report that never checked
   readiness.
+- Debugging by scattered `console.log` instead of one structured
+  diagnostic logger; or a "copy diagnostics" control that ships
+  secrets, tokens, cookies, raw request bodies, full storage, or
+  sensitive PII (it must redact by default), or that is reachable in
+  production without an explicit opt-in and a redaction review.
 - Letting the `wish-list.md` inbox become a write-only graveyard, or
   scoping or estimating its items at capture time. Capture is one
   line; judgement happens at triage.

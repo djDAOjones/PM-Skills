@@ -25,6 +25,120 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.4.0 — 2026-06-14
+
+Makes the framework opinionated about **maintainer diagnostics**: the app
+should make its own behaviour legible while it is being built, so a
+maintainer can hand an AI agent a useful diagnostic snapshot with one
+click — instead of reproducing a bug, opening DevTools, preserving logs,
+and copying the right lines by hand.
+
+This is the diagnostic sibling of 2.3.0's runtime-recovery opinion (and the
+second half of the same dogfooding note that motivated it). Where 2.3.0
+made *getting the app running* a one-command, verified-ready capability,
+2.4.0 makes *understanding what the app did* a one-click, redacted,
+paste-ready one. The two share a shape and a discipline: a documented
+contract, init wiring, verification wiring, and scaling by complexity —
+never a shipped library.
+
+A page cannot read the browser's native DevTools console, so the opinion is
+built on an app-owned path: a small structured logger writes to the console
+**and** a bounded in-memory buffer; global `error` / `unhandledrejection`
+hooks funnel into it; and a dev-only "copy diagnostics" affordance copies a
+**redacted** bundle for pasting to an agent. It is structured diagnostics
+with the console as one sink — explicitly **not** scattered `console.log`.
+Redaction is a safety invariant following OWASP logging guidance: never
+tokens, cookies, raw bodies, full storage, or PII.
+
+The opinion spans two contracts along the framework's own ownership lines:
+the instrumentation (logger, buffer, schema, capture, redaction, bundle)
+lives in `DEV-INFRASTRUCTURE.md`; the affordance (placement, Carbon
+styling, 44px, focus, copy feedback, dev-only) lives in `UI-STANDARDS.md`;
+a one-line invariant in `AGENTS.md` points at both. Its highest-leverage
+hook is the **bug workflow**: `bug-scoping.md` now asks for the diagnostic
+bundle first and treats a missing diagnostics path as the first finding.
+
+It **scales with complexity**: Tier 0 (static / no-UI) makes uncaught
+errors legible via a console helper + a global error hook; Tier 1 (typical
+dev-server app) adds the ring buffer and the copy affordance; Tier 2
+(operator-facing) adds interaction-id correlation, network-failure capture,
+User Timing marks, and optional forward-to-server (e.g. Vite
+`server.forwardConsole`). The capability and its documentation are required
+at every tier; only the implementation heft scales.
+
+Backward compatible: no files renamed or removed, no data migration, no
+changed memory contracts. The three `root-template` edits are additive
+sections that 3-way merge cleanly.
+
+### Changed
+
+- `AGENTS.md` (`root-template`) — adds the **Self-explaining runtime** hard
+  rule (structured logger → console + bounded buffer; dev-only redacted
+  copy-diagnostics affordance where there is UI; redact by default; scales
+  by tier), a diagnostics anti-pattern (console.log spam / a leaky or
+  prod-exposed copy control), and extends the Document-ownership rows so
+  `DEV-INFRASTRUCTURE.md` owns "maintainer diagnostics" and
+  `UI-STANDARDS.md` owns the "diagnostics affordance".
+- `DEV-INFRASTRUCTURE.md` (`root-template`) — adds a **Maintainer
+  diagnostics** section (after Runtime lifecycle): the structured logger,
+  log-record shape, bounded ring buffer, global error/rejection capture,
+  the redacted copy bundle (include/exclude lists), redaction, dev-only
+  gating, optional forward-to-server, and the tiered shape. Collapses to
+  one line for pure-static projects.
+- `UI-STANDARDS.md` (`root-template`) — adds a **Diagnostics affordance**
+  section (placement hierarchy, Carbon icon-button styling, 44px, focus,
+  copy feedback, dev-only) and a Design-review-gate item.
+- `pm_skills/init.md` — Step 8 population prompt gains a Maintainer
+  diagnostics item; Step 10 readiness gains a diagnostics check; Appendix B
+  gains a tiered Maintainer diagnostics example.
+- `pm_skills/integrations/init-project.md` — mirrors the Step 8 and Step 10
+  additions.
+- `pm_skills/integrations/init-mvp.md` — the runnable-skeleton step wires
+  the minimal diagnostics path (logger + global error hook) as the skeleton
+  goes up; integration verification checks diagnostics work and the bundle
+  redacts.
+- `pm_skills/prompts/bug-scoping.md` — adds a diagnostic-bundle input and a
+  rule to use it as primary evidence, and to flag a missing diagnostics
+  path as the first finding.
+- `pm_skills/prompts/scoping.md` — flags the diagnostics impact when a task
+  adds instrumentable behaviour or a user-facing surface.
+- `pm_skills/prompts/validation.md` — adds a "Diagnostics & redaction"
+  pre-code check (output items renumbered 5 → 8).
+- `pm_skills/prompts/implementation-plan.md` — folds the structured logger
+  and the diagnostics contract docs into the files to modify, with a
+  "notable events logged, bundle stays redacted" acceptance criterion.
+- `pm_skills/prompts/end-of-task.md` — extends the `UI-STANDARDS.md` and
+  `DEV-INFRASTRUCTURE.md` update triggers to the diagnostics affordance and
+  maintainer diagnostics.
+
+### Upgrade actions
+
+- Re-merge `AGENTS.md` from the new root template (`prompts/upgrade.md`
+  Step 7): add the "Self-explaining runtime" hard rule, the diagnostics
+  anti-pattern, and the updated Document-ownership rows. Preserve all
+  populated project-specific content.
+- Re-merge `DEV-INFRASTRUCTURE.md` from the new root template: add the new
+  "Maintainer diagnostics" section (after "Runtime lifecycle"). Populate it
+  for your project, or collapse it to one line / mark it n/a for a
+  pure-static project. Preserve every already-populated section verbatim.
+- Re-merge `UI-STANDARDS.md` from the new root template: add the
+  "Diagnostics affordance" section and the Design-review-gate item.
+  Preserve every populated section verbatim.
+- Replace the `framework` files: `pm_skills/init.md`,
+  `pm_skills/integrations/init-project.md`,
+  `pm_skills/integrations/init-mvp.md`,
+  `pm_skills/prompts/bug-scoping.md`, `pm_skills/prompts/scoping.md`,
+  `pm_skills/prompts/validation.md`,
+  `pm_skills/prompts/implementation-plan.md`,
+  `pm_skills/prompts/end-of-task.md`.
+- No data migration; `MANIFEST.md` is unchanged (no new paths).
+- Optional follow-up: on the next task that touches the runtime or UI,
+  populate the new `DEV-INFRASTRUCTURE.md` → "Maintainer diagnostics" and
+  `UI-STANDARDS.md` → "Diagnostics affordance" sections so the diagnostics
+  path is documented.
+
+---
+
 ## 2.3.0 — 2026-06-13
 
 Makes the framework opinionated about **runtime recoverability**: reaching

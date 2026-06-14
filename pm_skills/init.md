@@ -305,16 +305,20 @@ Using the brief and architecture, populate every applicable placeholder:
    health/readiness checks, exposure flags, and protected paths. Scale
    it to the project (see Appendix B); even a static site documents how
    to run it.
-5. **Build system** — bundler, entry point, output directory, source
+5. **Maintainer diagnostics** — the structured logger, log record
+   shape, bounded buffer, global error/rejection capture, the redacted
+   copy-diagnostics bundle, and dev-only gating. Scale it to the project
+   (see Appendix B); even a static page makes uncaught errors legible.
+6. **Build system** — bundler, entry point, output directory, source
    maps, minification, static file handling.
-6. **Version management** — numbering scheme, sources, auto-increment
+7. **Version management** — numbering scheme, sources, auto-increment
    rules, when to bump manually.
-7. **Deployment** — target, pipeline, post-deploy verification.
-8. **Utility scripts** — any helper scripts beyond dev/build/test.
-9. **Configuration strategy** — where constants, design tokens, and
-   user-facing config live.
-10. **Editor config** — describe the .editorconfig if one exists.
-11. **Files agents must not hand-edit** — concrete paths.
+8. **Deployment** — target, pipeline, post-deploy verification.
+9. **Utility scripts** — any helper scripts beyond dev/build/test.
+10. **Configuration strategy** — where constants, design tokens, and
+    user-facing config live.
+11. **Editor config** — describe the .editorconfig if one exists.
+12. **Files agents must not hand-edit** — concrete paths.
 
 Only fill in sections where the architecture provides enough
 information. Leave remaining placeholders for later. Do not invent
@@ -359,6 +363,11 @@ Before starting your first task, confirm:
   command in `DEV-INFRASTRUCTURE.md` → "Runtime lifecycle" runs, and a
   cold boot reaches a verified-ready state (health/output), not just a
   launched process.
+- [ ] Maintainer diagnostics are documented: uncaught errors are made
+  legible (a global error hook at minimum), and — if the project has UI —
+  a dev-only, redacted copy-diagnostics affordance is planned per
+  `UI-STANDARDS.md` → "Diagnostics affordance" and
+  `DEV-INFRASTRUCTURE.md` → "Maintainer diagnostics".
 - [ ] `.editorconfig` is in the project root.
 - [ ] `.gitignore` is in the project root.
 
@@ -678,6 +687,38 @@ Multi-process / operator-facing — add `boot`, `stop`, `status`,
 
 For a pure-static project this whole section collapses to one line —
 e.g. "Open `index.html`" or "`npx serve .` → `http://localhost:3000`".
+
+### Maintainer diagnostics example
+
+The capability is required at every tier; the implementation scales.
+Document only the tier this project is at. The console is one output
+sink — the copy affordance reads an app-owned buffer, never the native
+DevTools console.
+
+Tier 1 (typical dev-server app):
+
+```markdown
+- **Logger:** `src/diagnostics/log.js` — one structured entry point
+  (`log.debug/info/warn/error`). Writes to the console AND a bounded
+  ring buffer (last 200 entries). No ad-hoc console.log elsewhere.
+- **Record shape:** `{ time, level, scope, event, message, data, error }`.
+- **Global capture:** `window` `error` + `unhandledrejection` funnel
+  into the logger, so nothing fails silently.
+- **Copy affordance:** dev-only icon button (see UI-STANDARDS.md →
+  "Diagnostics affordance"). Copies app version, route, UA + viewport,
+  the last N redacted log entries, uncaught errors, and a redaction
+  notice.
+- **Redaction:** default-on; never tokens, cookies, raw bodies, full
+  storage, or PII. Fail closed when unsure.
+- **Gating:** affordance + debug level are dev-only; production needs an
+  explicit opt-in flag (`DIAG=1`) and a redaction review.
+```
+
+Tier 0 collapses to one line — e.g. "errors logged via a console helper
+with levels + a global error hook; no buffer, no copy affordance."
+Tier 2 adds an `interactionId` per user action, recent network-failure
+capture, User Timing marks/measures, and optional forward-to-server
+(e.g. Vite `server.forwardConsole`).
 
 ### Build system example
 

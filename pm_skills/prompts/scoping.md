@@ -19,6 +19,7 @@ Rules:
 - Prefer existing patterns over new abstractions.
 - Flag any efficiency, persistence, or architectural concerns.
 - If the task adds or changes a runtime component (server, worker, port, env var, generated output, external service), flag the runtime-lifecycle impact: the boot/reboot/recovery command surface and the `DEV-INFRASTRUCTURE.md` → "Runtime lifecycle" update it will need.
+- If the task adds notable runtime behaviour or a user-facing surface worth instrumenting, flag the diagnostics impact: what should route through the structured logger, and whether the copy-diagnostics bundle or its redaction is affected (`DEV-INFRASTRUCTURE.md` → "Maintainer diagnostics", `UI-STANDARDS.md` → "Diagnostics affordance").
 - Out-of-scope items worth revisiting → append each to `pm_skills/project/wish-list.md` as a one-line idea (don't expand this task to do them).
 - If this is a new project with little or no code yet, focus on folder structure and module responsibilities instead of file-level detail.
 - No code or pseudocode.

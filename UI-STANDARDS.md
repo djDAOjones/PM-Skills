@@ -173,6 +173,45 @@ implementation notes.
 
 ---
 
+## Diagnostics affordance
+
+The "copy diagnostics" control is how a maintainer hands the app's own
+diagnostic snapshot to an AI agent. The underlying logger, the bundle
+contents, and the redaction rules live in `DEV-INFRASTRUCTURE.md` →
+"Maintainer diagnostics"; this section governs how the control looks and
+behaves. It applies to any project with meaningful UI. A Tier 0 project
+with no UI has no affordance — it still logs errors legibly.
+
+### Placement
+
+Do not drop a floating debug wart over the working UI. Prefer, in order:
+
+- An existing dev or status toolbar, if the app has one.
+- An app-shell utility menu, if there is a permanent header or sidebar.
+- A small floating debug button only if no suitable permanent surface
+  exists. Allow a position token: `bottom-right` (default),
+  `bottom-left`, `top-right`, or `relative`.
+
+Never let it cover primary navigation, submit buttons, chat inputs,
+toasts, or critical status.
+
+### Behaviour and styling
+
+- **Dev-only by default.** Hidden in production unless an explicit
+  opt-in is set (gated per `DEV-INFRASTRUCTURE.md` → "Maintainer
+  diagnostics"); production exposure requires a redaction review.
+- **Carbon icon button** with a tooltip naming the action in sentence
+  case (e.g. "Copy diagnostics"). Visible label and accessible name
+  must match.
+- **≥ 44 × 44 CSS px** target, visible focus ring, fully keyboard
+  operable.
+- **Feedback after copy.** Announce success or failure programmatically,
+  not by colour alone (e.g. an inline status or toast) — never a silent
+  copy. Say what was copied (a redacted bundle) so expectations are set.
+- Honour `prefers-reduced-motion` for any reveal or animation.
+
+---
+
 ## Design review gate
 
 Before sign-off on any UI-affecting change, verify:
@@ -194,3 +233,7 @@ Before sign-off on any UI-affecting change, verify:
 12. Critical submissions or destructive actions support validation,
     confirmation, undo, or reversal as appropriate.
 13. Any exception to the AAA-by-default rule is documented explicitly.
+14. If a diagnostics affordance is present: it is dev-only by default,
+    Carbon-styled, ≥ 44 × 44 CSS px, keyboard operable, gives copy
+    feedback, and sits on a permanent surface without covering primary
+    controls.

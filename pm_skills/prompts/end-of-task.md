@@ -48,11 +48,13 @@ Update each of the following if relevant to this task:
   changes, protected modules, event namespaces, or anti-patterns.
   Check whether `AGENTS.md` still reflects current architecture and
   conventions.
-- `UI-STANDARDS.md` — if this task established new token systems or
-  UI conventions.
+- `UI-STANDARDS.md` — if this task established new token systems, UI
+  conventions, or the diagnostics affordance.
 - `DEV-INFRASTRUCTURE.md` — if this task changed build, dev server,
-  versioning, script conventions, or the runtime lifecycle (boot/reboot/
-  status commands, process ownership, health checks, protected paths).
+  versioning, script conventions, the runtime lifecycle (boot/reboot/
+  status commands, process ownership, health checks, protected paths),
+  or maintainer diagnostics (the logger, buffer, redaction, or copy
+  bundle).
 
 ## 3. Run the memory size check
 
