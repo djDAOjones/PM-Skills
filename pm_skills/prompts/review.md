@@ -59,6 +59,9 @@ should understand the whole run from this map without opening the diff.
 - Tests: were the right categories covered; any hollow or weakened
   test; was "not applicable" claimed where an invariant was actually
   at risk?
+- The quality gate: confirm `check` was run and is green for the change
+  set (`DEV-INFRASTRUCTURE.md` → "Quality gate"); flag any check skipped,
+  weakened, or made to pass by mutation rather than fix.
 
 ## 6. Memory hygiene
 

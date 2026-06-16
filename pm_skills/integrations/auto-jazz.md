@@ -119,8 +119,9 @@ not proceed on assumption.
 --- VERIFY ---
 
 8. Verify.
-   - Run the project's build and test steps if available. If not,
-     verify manually and note what was checked.
+   - Run the project's quality gate (`check`) if available — or its
+     build and test steps. If neither exists, verify manually and note
+     what was checked.
    - Confirm each acceptance criterion from step 5 is met.
    - Check the regression surface identified in step 6.
    - Report what was run, what passed, and any open issues.

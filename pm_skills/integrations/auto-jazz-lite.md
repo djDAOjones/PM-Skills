@@ -79,9 +79,10 @@ not proceed on assumption.
    is met by the changes. If a criterion cannot be met, stop and
    report which one and why before continuing.
 
-6. Verify with build and tests.
-   - Run the project's build and test steps if available. If not,
-     verify manually and note what was checked.
+6. Verify with the quality gate.
+   - Run the project's quality gate (`check`) if available — or its
+     build and test steps. If neither exists, verify manually and note
+     what was checked.
    - Check the watchouts from step 3 — confirm none have triggered.
    - Report what was run, what passed, and any open issues.
 

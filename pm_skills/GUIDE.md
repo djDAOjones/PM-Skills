@@ -152,8 +152,8 @@ Choose the workflow that fits the task:
   prohibitions still apply. Use for small or low-risk tasks.
 
 All four workflows search the source tree before changing code and
-run the same end-of-task housekeeping: memory updates, size check,
-and a closing report.
+run the same end-of-task housekeeping: the quality gate (`check`),
+memory updates, size check, and a closing report.
 
 After a gateless run (`auto-jazz`, `auto-jazz-lite`, `init-mvp`,
 `spec-to-prod`), paste `prompts/review.md` to review what landed before

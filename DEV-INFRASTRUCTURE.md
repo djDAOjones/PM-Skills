@@ -151,6 +151,45 @@ scripts, configuration, or deployment.
 
 ---
 
+## Quality gate
+
+<!-- CUSTOMISE: Define the project's one-command quality gate — the
+     `check` command an agent runs to answer "did I break anything?"
+     before calling a task done (see AGENTS.md → "One-command quality
+     gate"). Reference the Canonical scripts table above; don't duplicate
+     it. Populate:
+     1. The command — the single canonical verb (e.g. `npm run check`).
+        NON-MUTATING and CI-safe: it reports, never reformats or writes.
+        Auto-fix lives in a separate verb (lint:fix / format), never the
+        gate.
+     2. What it runs, in order — format/lint check, type check, unit
+        tests, build, and doc/link integrity where relevant. Fast enough
+        to run on every change; prefer the hermetic, no-network subset.
+     3. What it deliberately omits — slow or non-deterministic checks
+        (e2e, visual regression) and where they run instead.
+     4. CI parity — CI runs the same `check`, so local green = CI green.
+
+     Choose rules that protect trust, not taste: prefer catching broken
+     imports, dead code, unused exports, malformed config or docs, broken
+     links, accessibility hazards, edits to generated files, and
+     dependency drift, over style-only rules — unless auto-fix makes the
+     style rule invisible. A lint failure is design feedback. Tool choices
+     (which linter, type checker, runner) belong in conventions.md.
+
+     Tiered shape (populate only the tier this project is at):
+     - Tier 0 (docs / static / scripts): a placeholder/CUSTOMISE scan +
+       Markdown lint + relative-link check, or "n/a — no build step".
+     - Tier 1 (typical app): format/lint + type check + unit tests +
+       build, all non-mutating, mirrored in CI.
+     - Tier 2 (mature / multi-surface): add a coverage threshold,
+       automated accessibility checks, and a dependency/security audit;
+       keep slow suites out of `check` and name where they run.
+
+     If there is nothing to verify mechanically, collapse to one line or
+     state "n/a". -->
+
+---
+
 ## Build system
 
 <!-- CUSTOMISE: Define bundler, entry point, output directory, source

@@ -309,16 +309,19 @@ Using the brief and architecture, populate every applicable placeholder:
    shape, bounded buffer, global error/rejection capture, the redacted
    copy-diagnostics bundle, and dev-only gating. Scale it to the project
    (see Appendix B); even a static page makes uncaught errors legible.
-6. **Build system** — bundler, entry point, output directory, source
+6. **Quality gate** — the one-command `check` (non-mutating, CI-safe),
+   what it runs, and what it omits. Scale it to the project (see
+   Appendix B); even a docs project runs a placeholder scan + link check.
+7. **Build system** — bundler, entry point, output directory, source
    maps, minification, static file handling.
-7. **Version management** — numbering scheme, sources, auto-increment
+8. **Version management** — numbering scheme, sources, auto-increment
    rules, when to bump manually.
-8. **Deployment** — target, pipeline, post-deploy verification.
-9. **Utility scripts** — any helper scripts beyond dev/build/test.
-10. **Configuration strategy** — where constants, design tokens, and
+9. **Deployment** — target, pipeline, post-deploy verification.
+10. **Utility scripts** — any helper scripts beyond dev/build/test.
+11. **Configuration strategy** — where constants, design tokens, and
     user-facing config live.
-11. **Editor config** — describe the .editorconfig if one exists.
-12. **Files agents must not hand-edit** — concrete paths.
+12. **Editor config** — describe the .editorconfig if one exists.
+13. **Files agents must not hand-edit** — concrete paths.
 
 Only fill in sections where the architecture provides enough
 information. Leave remaining placeholders for later. Do not invent
@@ -370,6 +373,9 @@ Before starting your first task, confirm:
   `DEV-INFRASTRUCTURE.md` → "Maintainer diagnostics".
 - [ ] `.editorconfig` is in the project root.
 - [ ] `.gitignore` is in the project root.
+- [ ] The quality gate runs: `check` is documented in
+  `DEV-INFRASTRUCTURE.md` → "Quality gate" and runs green — or the gate
+  is deliberately deferred for an early MVP.
 
 Then run a placeholder lint:
 
@@ -382,6 +388,10 @@ Review each hit. For each remaining `<!-- CUSTOMISE -->` marker,
 either populate the section or leave it as a deliberate "not
 applicable" stub. Bracketed `[placeholder]` strings should not
 remain in populated sections.
+
+Once the project has a `check` command, fold this placeholder scan into
+it (the Tier 0 baseline in `DEV-INFRASTRUCTURE.md` → "Quality gate") so
+stray markers are caught on every task, not just at init.
 
 If any of the boxes above are unchecked, finish them before
 proceeding — unless you are following the **Minimum viable setup**
@@ -719,6 +729,32 @@ with levels + a global error hook; no buffer, no copy affordance."
 Tier 2 adds an `interactionId` per user action, recent network-failure
 capture, User Timing marks/measures, and optional forward-to-server
 (e.g. Vite `server.forwardConsole`).
+
+### Quality gate example
+
+The capability is required at every tier; the implementation scales.
+`check` is non-mutating and CI-safe — auto-fix is a separate verb.
+
+Tier 1 (typical dev-server app):
+
+```markdown
+| Script | Command | Purpose |
+| --- | --- | --- |
+| `check` | `npm run lint && npm run typecheck && npm test && npm run build` | The quality gate — run before calling a task done |
+| `lint:fix` | `eslint . --fix` | Auto-fix (separate from the gate; never the CI pass/fail) |
+
+- **Runs:** ESLint, `tsc --noEmit`, Vitest, and a production build.
+- **Non-mutating:** `check` only reports; fixes live in `lint:fix` /
+  `format`.
+- **CI parity:** the CI workflow runs `npm run check`, so local green
+  means CI green.
+- **Omits:** Playwright e2e (slow) — runs pre-release, not in `check`.
+```
+
+Tier 0 collapses to a docs/static gate — e.g. "`check` = a CUSTOMISE /
+placeholder scan + Markdown lint + a relative-link check." Tier 2 adds a
+coverage threshold, automated accessibility checks (e.g. axe), and a
+dependency/security audit, keeping slow suites out of `check`.
 
 ### Build system example
 

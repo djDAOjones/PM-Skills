@@ -5,7 +5,23 @@ and verification are complete. This is the canonical housekeeping
 ritual. The integration workflows reference this file rather than
 duplicating its contents.
 
-## 1. Verify the runtime still boots (if this task touched it)
+## 1. Run the quality gate
+
+Run the project's one-command quality gate before closing — the `check`
+command in `DEV-INFRASTRUCTURE.md` → "Quality gate" (see `AGENTS.md` →
+"One-command quality gate").
+
+- Run `check` and confirm it is green: format/lint, type check, tests,
+  build, and doc/link integrity as the stack provides.
+- `check` is non-mutating. If it reports fixable issues, run the separate
+  auto-fix verb, then re-run `check`; never skip or weaken a check to pass.
+- A red gate means the task is not done. Fix the cause, or — if a rule is
+  genuinely wrong for this project — record why and adjust the rule as
+  part of the change.
+- If the project has no gate yet (early MVP), say so and verify manually,
+  noting what was checked.
+
+## 2. Verify the runtime still boots (if this task touched it)
 
 If this task changed the runtime — a server, worker, port, env var,
 generated output, build step, dependency, or a boot/reboot/status
@@ -18,11 +34,11 @@ script — confirm the app still recovers cleanly before closing:
 - Report the dev URL, the log location, and any manual step that is
   not yet automated.
 - If the runtime surface changed, update `DEV-INFRASTRUCTURE.md` →
-  "Runtime lifecycle" (see step 2) to match.
+  "Runtime lifecycle" (see step 3) to match.
 
 If the task did not touch the runtime, say "not applicable" and move on.
 
-## 2. Update project memory
+## 3. Update project memory
 
 Update each of the following if relevant to this task:
 
@@ -56,7 +72,7 @@ Update each of the following if relevant to this task:
   or maintainer diagnostics (the logger, buffer, redaction, or copy
   bundle).
 
-## 3. Run the memory size check
+## 4. Run the memory size check
 
 Budgets are defined in `AGENTS.md` → "Memory size budgets". Do not
 duplicate the numbers here.
@@ -98,10 +114,11 @@ If any budget is exceeded:
 - Propose running `pm_skills/prompts/prune-memory.md` and wait for
   user approval.
 
-## 4. Report
+## 5. Report
 
 Output a one-line summary:
 
+- Whether the quality gate (`check`) passed (or n/a).
 - Whether the runtime was verified to boot to a ready state (or n/a).
 - Which memory files were updated.
 - Which budgets were checked.

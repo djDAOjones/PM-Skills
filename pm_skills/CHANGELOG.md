@@ -25,6 +25,85 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.6.0 — 2026-06-16
+
+Adds the **One-command quality gate** — the third runtime guardrail,
+completing the build/run/verify triad alongside *One-command runtime
+recovery* (2.3.0) and *Self-explaining runtime* (2.4.0). The framework
+front-loads design discipline and is opinionated about getting a project
+running and making it legible, but it had no invariant for *verifying a
+change is sound*. "Run build and tests" lived only as scattered,
+inconsistent instructions; there was no single, named, non-mutating
+command an agent could always run to answer "did I break anything?".
+
+This release makes that opinion explicit: every project exposes one
+`check` command — non-mutating, CI-safe, focused on invariants — and the
+framework defines it (`DEV-INFRASTRUCTURE.md`), sets it up (`init.md`),
+and enforces it at the end of every task (`end-of-task.md`) and in
+`review.md`. It is stack-agnostic and tiered (Tier 0 docs/static → Tier 2
+mature app), so it scales from a placeholder + link scan to a full lint,
+type, test, and build pipeline. Tool choices stay in `conventions.md`.
+
+Backward compatible: additive sections to two root templates (3-way
+merged on upgrade) and additive wiring to framework prompts. No files
+renamed or removed, no `MANIFEST.md` change, and no stage-prompt output
+list changed — so the `feature.md` / `auto-jazz.md` validation echoes do
+not need re-syncing.
+
+### Added
+
+- `AGENTS.md` (`root-template`) — hard rule **One-command quality gate**
+  (non-mutating, CI-safe, tiered) plus a matching anti-pattern rejecting
+  a missing gate, a mutating `check`, or green-washing.
+- `DEV-INFRASTRUCTURE.md` (`root-template`) — new **Quality gate**
+  section (after *Maintainer diagnostics*): the `check` command, what it
+  runs and omits, CI parity, the "trust not taste" rule selection, and
+  the Tier 0–2 shape.
+- `pm_skills/init.md` — Step 8 gains a **Quality gate** populate-item;
+  Appendix B gains a **Quality gate example**.
+
+### Changed
+
+- `pm_skills/prompts/end-of-task.md` — new step 1 *Run the quality gate*
+  (`check`); existing steps renumbered and the report gains a gate line.
+- `pm_skills/prompts/review.md` — step 5 confirms `check` was run and is
+  green for the change set.
+- `pm_skills/prompts/scoping.md`, `implementation-plan.md` — a
+  *check-surface* flag in their Rules sections (output lists unchanged).
+- `pm_skills/integrations/auto-jazz.md`, `auto-jazz-lite.md` — the verify
+  step now names the quality gate (`check`).
+- `pm_skills/GUIDE.md` — the end-of-task housekeeping summary lists the
+  quality gate.
+- `pm_skills/init.md` — Step 10 adds a `check` readiness checkbox and
+  folds the placeholder scan into `check`.
+- `pm_skills/project/conventions.md` (`project-memory` template) — the
+  Tooling section points tool choices at the gate. Existing projects'
+  populated files are unaffected.
+
+### Upgrade actions
+
+- `AGENTS.md` (`root-template`, 3-way merge — preserve your populated
+  content): add the **One-command quality gate** hard rule after
+  *Self-explaining runtime*, and the matching bullet in *Anti-patterns to
+  reject*.
+- `DEV-INFRASTRUCTURE.md` (`root-template`, 3-way merge): add the new
+  **Quality gate** section after *Maintainer diagnostics*. If the project
+  has a build step, populate it (define your `check`); otherwise mark it
+  Tier 0 / "n/a".
+- Replace these `framework` files wholesale:
+  `pm_skills/prompts/end-of-task.md`, `pm_skills/prompts/review.md`,
+  `pm_skills/prompts/scoping.md`,
+  `pm_skills/prompts/implementation-plan.md`,
+  `pm_skills/integrations/auto-jazz.md`,
+  `pm_skills/integrations/auto-jazz-lite.md`, `pm_skills/GUIDE.md`,
+  `pm_skills/init.md`.
+- `pm_skills/project/conventions.md` is `project-memory`: no action if you
+  have populated it; if you still carry the template comments, you may
+  adopt the refreshed Tooling note.
+- Adopt the invariant in practice: ensure the project exposes a single
+  non-mutating `check` command (or record that the gate is deliberately
+  deferred for an early MVP).
+
 ## 2.5.0 — 2026-06-14
 
 Adds the **review** capability — the missing mirror of the design

@@ -185,6 +185,19 @@ asks — capturing the one line is the whole interaction.
   every tier — even the smallest project makes uncaught errors legible.
   See `DEV-INFRASTRUCTURE.md` → "Maintainer diagnostics" and
   `UI-STANDARDS.md` → "Diagnostics affordance".
+- **One-command quality gate.** Verifying a change is sound — and
+  re-verifying after it drifts — is a single documented `check` command,
+  never a remembered sequence of steps. `check` is **non-mutating** and
+  CI-safe: it reports, it never reformats or writes; auto-fix is a
+  separate verb that is never the gate. It runs the safety checks the
+  stack actually has — format/lint, type check, tests, build, doc/link
+  integrity — and a green result is the precondition for calling a task
+  done. A failure is signal, not friction: fix the cause, or record why
+  the rule is wrong and adjust it; never skip, weaken, or green-wash a
+  check to pass. Implementation scales with complexity (from a
+  placeholder and link scan on a docs project to a full lint, type, test,
+  and build pipeline), but the documented one-command capability is
+  required at every tier. See `DEV-INFRASTRUCTURE.md` → "Quality gate".
 
 <!-- CUSTOMISE: Add project-specific invariants below. See init.md Step 6 for example shapes. -->
 
@@ -340,6 +353,11 @@ context → `project/`. Historical content → `project/archive/`.
   secrets, tokens, cookies, raw request bodies, full storage, or
   sensitive PII (it must redact by default), or that is reachable in
   production without an explicit opt-in and a redaction review.
+- No single quality gate: verification scattered across remembered
+  steps instead of one `check` command; a `check` that mutates files
+  (reformats or writes) rather than reporting; or green-washing the gate
+  — skipping, weakening, or `|| true`-ing a failing check to call a task
+  done.
 - Letting the `wish-list.md` inbox become a write-only graveyard, or
   scoping or estimating its items at capture time. Capture is one
   line; judgement happens at triage.

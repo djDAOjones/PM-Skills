@@ -55,5 +55,7 @@
      - Test runner: Vitest
      - Formatter: .editorconfig (mechanical), no additional formatter yet
      - Linter: none yet
-     This section captures tool choices. For detailed build/dev/deploy
-     rules, see DEV-INFRASTRUCTURE.md. -->
+     This section captures tool choices. The specific tools the quality
+     gate runs are named here; the `check` command that composes them and
+     the build/dev/deploy rules live in DEV-INFRASTRUCTURE.md → "Quality
+     gate". -->

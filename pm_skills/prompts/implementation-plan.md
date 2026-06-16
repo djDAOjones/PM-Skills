@@ -26,4 +26,5 @@ Rules:
 - Call out architectural, efficiency, or regression risks.
 - If the task adds or changes a runtime component, include the runtime command surface (boot/reboot/status scripts) and the `DEV-INFRASTRUCTURE.md` → "Runtime lifecycle" doc among the files to modify, and make "boots to a ready state via the canonical command" an acceptance criterion.
 - If the task adds instrumentable runtime behaviour or a diagnostics affordance, include the structured logger and the relevant contract docs (`DEV-INFRASTRUCTURE.md` → "Maintainer diagnostics", `UI-STANDARDS.md` → "Diagnostics affordance") among the files to modify, and make "notable events are logged and the diagnostic bundle stays redacted" an acceptance criterion.
+- If the task changes the quality-gate surface (a lint rule, test category, type-check setting, or build step), include the `check` definition and `DEV-INFRASTRUCTURE.md` → "Quality gate" among the files to modify, and make "`check` passes and reflects the new surface" an acceptance criterion.
 - No code or pseudocode.
