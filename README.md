@@ -1,5 +1,7 @@
 # PM Skills
 
+[![Lint](https://github.com/djDAOjones/PM-Skills/actions/workflows/lint.yml/badge.svg)](https://github.com/djDAOjones/PM-Skills/actions/workflows/lint.yml)
+
 An opinionated session context system for AI-assisted coding where above-default project management is needed.
 Includes project memory, behavioral contracts, and a design-before-code
 prompt workflow.
