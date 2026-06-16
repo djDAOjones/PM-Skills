@@ -1,5 +1,0 @@
-# Paths markdownlint-cli2 must skip (gitignore-style syntax).
-# Mirrors .gitignore intent: installed deps and internal scratch are not
-# framework content and must not be linted or gate CI.
-node_modules/
-user_crud/

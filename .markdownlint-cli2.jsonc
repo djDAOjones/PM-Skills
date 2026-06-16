@@ -1,0 +1,11 @@
+{
+  // markdownlint-cli2 options. This is separate from the rule config in
+  // .markdownlint.json, which markdownlint-cli2 still reads and merges.
+  //
+  // gitignore:true makes the linter skip everything .gitignore skips —
+  // node_modules/ (installed deps) and user_crud/ (internal scratch) —
+  // so the "**/*.md" glob never descends into them. This is the single
+  // source of ignore truth: markdownlint-cli2 does NOT honour a
+  // .markdownlintignore file, so relying on one silently lints node_modules.
+  "gitignore": true
+}

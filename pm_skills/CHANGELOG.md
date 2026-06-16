@@ -25,6 +25,63 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.7.1 — 2026-06-16
+
+Removes the **stage-output echo drift class** at its source. The
+orchestration workflows (`feature.md`, `auto-jazz.md`,
+`auto-jazz-lite.md`) inline-echoed each stage prompt's output list in
+their matching steps, purely for in-flow readability. Those echoes
+duplicated the canonical lists in `scoping.md`, `design-options.md`,
+`implementation-plan.md`, `validation.md`, and `quick-task.md`, and
+drifted silently — the validation echo went stale in 2.4.1 (dropping the
+Runtime and Diagnostics checks), and 2.5.0 could only *guard* it with a
+manual `release.md` re-sync reminder.
+
+Each echo step already instructs the agent to read the canonical prompt,
+so the inline list was redundant for execution and only a skim aid for a
+human — and it was already lossy (the `design-options` echo silently
+dropped that prompt's "note anything that should stay unchanged"
+output). This release deletes the inline lists and replaces each with a
+pointer to the prompt, making each stage prompt the single source of
+truth for its own outputs. Drift is now impossible: changing a prompt's
+output list requires no workflow edit.
+
+`release.md` step 5 is updated to match — it no longer asks to re-sync
+echoes (there are none); it now guards only against a stage prompt being
+renamed, added, or removed, which would invalidate a workflow's "Read
+`pm_skills/prompts/X.md`" reference.
+
+Patch-level: wording and structure of existing `framework` files only.
+No new files, no migration, no `MANIFEST.md` change, no memory-contract
+change. All control flow (gates, assumptions, search/present/wait lines)
+is unchanged.
+
+### Changed
+
+- `pm_skills/integrations/feature.md` — steps 4–8: the inline
+  scoping / design-options / implementation-plan / validation /
+  quick-task output lists are replaced with a pointer to the named stage
+  prompt. Gate and control-flow lines unchanged.
+- `pm_skills/integrations/auto-jazz.md` — steps 3–6: same replacement
+  for the four design-stage echoes. Assumption/continue lines unchanged.
+- `pm_skills/integrations/auto-jazz-lite.md` — step 3: same replacement
+  for the quick-task echo.
+- `pm_skills/prompts/release.md` — step 5 reframed from "re-sync the
+  inline echoes" to "the workflows reference the prompts; update only on
+  a prompt rename/add/remove".
+
+### Upgrade actions
+
+- Replace these `framework` files wholesale:
+  `pm_skills/integrations/feature.md`,
+  `pm_skills/integrations/auto-jazz.md`,
+  `pm_skills/integrations/auto-jazz-lite.md`,
+  `pm_skills/prompts/release.md`.
+- No data migration; no `root-template` or `project-memory` changes;
+  `MANIFEST.md` unchanged (no paths added, removed, or reclassified).
+
+---
+
 ## 2.7.0 — 2026-06-16
 
 Ships a **lint baseline** to consuming projects, completing the

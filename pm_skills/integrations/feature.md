@@ -24,54 +24,27 @@ user approval at each gate. Do not write code until all gates pass.
 --- FULL 4-STAGE WORKFLOW ---
 
 4. Scoping (stage 1).
-   Read `pm_skills/prompts/scoping.md` and follow
-   its instructions. Output the scoping deliverables:
-   - Problem framing
-   - Affected areas
-   - Key design decisions
-   - Risks and dependencies
-   - Smallest useful scope
-   - Out of scope
-   - Target file list
-   - Open questions (only if genuinely blocking)
+   Read `pm_skills/prompts/scoping.md`, follow its instructions, and
+   produce the deliverables it lists.
 
    Search the source tree to confirm affected files.
    Present scope to the user. Wait for approval before continuing.
 
 5. Design options (stage 2).
-   Read `pm_skills/prompts/design-options.md` and
-   follow its instructions. Produce 2–3 design options with:
-   - Summary, affected files, architectural fit, data flow, benefits,
-     risks
-   - A recommended option with rationale
+   Read `pm_skills/prompts/design-options.md`, follow its instructions,
+   and produce the deliverables it lists.
 
    Present to the user. Wait for the user to pick an option.
 
 6. Implementation plan (stage 3).
-   Read `pm_skills/prompts/implementation-plan.md`
-   and follow its instructions. Output:
-   - Ordered file list with purpose
-   - Data flow or architectural changes
-   - New abstractions (with justification) or explicitly none
-   - Tests to write or update
-   - Step-by-step implementation sequence
-   - Acceptance criteria
-   - Watchouts
-   - Files not to touch
+   Read `pm_skills/prompts/implementation-plan.md`, follow its
+   instructions, and produce the deliverables it lists.
 
    Present to the user. Wait for approval before continuing.
 
 7. Validation (stage 4).
-   Read `pm_skills/prompts/validation.md` and
-   follow its instructions. Output:
-   - Design sanity checks
-   - Architecture checks
-   - Regression risks
-   - Runtime impact
-   - Diagnostics & redaction
-   - Test plan
-   - Edge cases
-   - Signs the scope is too large
+   Read `pm_skills/prompts/validation.md`, follow its instructions, and
+   produce the deliverables it lists.
 
    Present to the user. After approval, tell the user the design
    phase is complete and ask: "Ready to implement?"
@@ -81,13 +54,8 @@ user approval at each gate. Do not write code until all gates pass.
 --- QUICK TASK WORKFLOW ---
 
 8. Quick scope and plan.
-   Read `pm_skills/prompts/quick-task.md` and
-   follow its instructions. Output:
-   - What needs to change and why
-   - Files to create or modify
-   - Implementation sequence
-   - Watchouts
-   - Acceptance criteria
+   Read `pm_skills/prompts/quick-task.md`, follow its instructions, and
+   produce the deliverables it lists.
 
    Present to the user. After approval, implement.
    Go to step 9.

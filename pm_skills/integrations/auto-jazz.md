@@ -52,56 +52,29 @@ not proceed on assumption.
 --- FULL 4-STAGE WORKFLOW (no approval gates) ---
 
 3. Scoping (stage 1).
-   Read `pm_skills/prompts/scoping.md` and follow
-   its instructions. Search the source tree to confirm affected files.
-   Output the scoping deliverables:
-   - Problem framing
-   - Affected areas
-   - Key design decisions
-   - Risks and dependencies
-   - Smallest useful scope
-   - Out of scope
-   - Target file list
-   - Open questions — only if genuinely blocking
+   Read `pm_skills/prompts/scoping.md`, follow its instructions, and
+   produce the deliverables it lists. Search the source tree to confirm
+   affected files.
 
    State the chosen scope in one line as an assumption and continue.
    Do not wait for approval.
 
 4. Design options (stage 2).
-   Read `pm_skills/prompts/design-options.md` and
-   follow its instructions. Produce 2–3 design options with:
-   - Summary, affected files, architectural fit, data flow, benefits,
-     risks
-   - A recommended option with rationale
+   Read `pm_skills/prompts/design-options.md`, follow its instructions,
+   and produce the deliverables it lists.
 
    Pick the recommended option. State the choice in one line as an
    assumption and continue. Do not wait for the user.
 
 5. Implementation plan (stage 3).
-   Read `pm_skills/prompts/implementation-plan.md`
-   and follow its instructions. Output:
-   - Ordered file list with purpose
-   - Data flow or architectural changes
-   - New abstractions (with justification) or explicitly none
-   - Tests to write or update
-   - Step-by-step implementation sequence
-   - Acceptance criteria
-   - Watchouts
-   - Files not to touch
+   Read `pm_skills/prompts/implementation-plan.md`, follow its
+   instructions, and produce the deliverables it lists.
 
    Continue without waiting for approval.
 
 6. Validation (stage 4).
-   Read `pm_skills/prompts/validation.md` and
-   follow its instructions. Output:
-   - Design sanity checks
-   - Architecture checks
-   - Regression risks
-   - Runtime impact
-   - Diagnostics & redaction
-   - Test plan
-   - Edge cases
-   - Signs the scope is too large
+   Read `pm_skills/prompts/validation.md`, follow its instructions, and
+   produce the deliverables it lists.
 
    If a check surfaces a blocking concern (likely regression, broken
    invariant, or scope obviously too large), stop and ask one concise

@@ -74,13 +74,13 @@ update `pm_skills/MANIFEST.md`:
   and any per-task lists if files were added or removed.
 - `README.md` — update only if the change affects quick start,
   upgrading, or "what's in this repo".
-- `pm_skills/integrations/feature.md` and `auto-jazz.md` — if a stage
-  prompt's **output list** changed (`scoping.md`, `design-options.md`,
-  `implementation-plan.md`, `validation.md`), re-sync the inline echo in
-  each workflow's matching step. The echoes duplicate the stage outputs
-  for in-flow readability and drift silently otherwise. Likewise, if
-  `quick-task.md`'s output list changed, re-sync its echo in
-  `feature.md` (quick-task step) and `auto-jazz-lite.md` (stage 1).
+- `pm_skills/integrations/feature.md`, `auto-jazz.md`, and
+  `auto-jazz-lite.md` — these point to the stage prompts (`scoping.md`,
+  `design-options.md`, `implementation-plan.md`, `validation.md`,
+  `quick-task.md`) rather than echoing their output lists, so a change
+  to a prompt's **output list** needs no workflow edit. Update a
+  workflow only if a stage prompt is **renamed, added, or removed**, so
+  its "Read `pm_skills/prompts/X.md`" reference stays valid.
 
 ## 6. Verify
 

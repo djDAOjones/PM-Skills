@@ -54,14 +54,9 @@ not proceed on assumption.
 --- STAGE 1: SCOPE + PLAN (no approval gate) ---
 
 3. Combined scope and plan.
-   Read `pm_skills/prompts/quick-task.md` and follow
-   its instructions. Search the source tree to confirm affected files
-   before writing the plan. Output:
-   - What needs to change and why
-   - Files to create or modify, with one-line purpose each
-   - Step-by-step implementation sequence
-   - Watchouts
-   - Acceptance criteria
+   Read `pm_skills/prompts/quick-task.md`, follow its instructions, and
+   produce the deliverables it lists. Search the source tree to confirm
+   affected files before writing the plan.
 
    State the chosen scope in one line as an assumption and continue
    to Stage 2. Do not wait for approval.

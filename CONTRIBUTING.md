@@ -16,7 +16,7 @@ The framework is overwhelmingly Markdown. Two classes of file live here:
   [`pm_skills/MANIFEST.md`](./pm_skills/MANIFEST.md).
 - **Source-repo-only** — never distributed, never copied into a consuming
   project: `package.json`, `package-lock.json`, `.github/`, `scripts/`,
-  the root `.editorconfig`, `.markdownlint.json`, `.markdownlintignore`,
+  the root `.editorconfig`, `.markdownlint.json`, `.markdownlint-cli2.jsonc`,
   the root `.gitignore`, `CONTRIBUTING.md`, and `README.md`.
 
 Rule: do **not** add a source-only tooling path to `MANIFEST.md`, and the
@@ -46,7 +46,10 @@ Configuration:
 
 - markdownlint rules: `.markdownlint.json`. Each rule customisation has a
   rationale in that file's `$comment` field.
-- markdownlint ignore list: `.markdownlintignore`.
+- markdownlint-cli2 options: `.markdownlint-cli2.jsonc`. Sets
+  `gitignore: true` so the linter skips whatever `.gitignore` skips
+  (`node_modules/`, `user_crud/`) — one ignore source, no separate ignore
+  list to drift. (markdownlint-cli2 does not honour `.markdownlintignore`.)
 
 ### Running without a local install
 
