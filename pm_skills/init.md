@@ -311,7 +311,10 @@ Using the brief and architecture, populate every applicable placeholder:
    (see Appendix B); even a static page makes uncaught errors legible.
 6. **Quality gate** — the one-command `check` (non-mutating, CI-safe),
    what it runs, and what it omits. Scale it to the project (see
-   Appendix B); even a docs project runs a placeholder scan + link check.
+   Appendix B); even a docs project runs a placeholder scan + link
+   check. For tool choices use the per-stack defaults in
+   `project/conventions.md` → Tooling; the Markdown lint + link-check
+   baseline ships in `pm_skills/scaffold/` (copied in Step 9).
 7. **Build system** — bundler, entry point, output directory, source
    maps, minification, static file handling.
 8. **Version management** — numbering scheme, sources, auto-increment
@@ -345,6 +348,13 @@ your project root, if they don't already exist:
   step. Customise to match your preferences.
 - **`.gitignore`** — common ignores for JS/npm projects. Adapt for
   your stack if needed.
+- **`.markdownlint.json`** — Markdown lint baseline: strict on what
+  breaks rendering, relaxed on style noise. The one lint config every
+  pm-skills project can use, since project memory is Markdown. Tune to
+  taste; runs via the Node markdownlint family.
+- **`check-links.mjs`** — dependency-free internal Markdown link checker
+  (Node only). Catches broken cross-references in your docs and memory
+  files. Delete it if your project link-checks another way.
 
 ---
 
@@ -373,6 +383,9 @@ Before starting your first task, confirm:
   `DEV-INFRASTRUCTURE.md` → "Maintainer diagnostics".
 - [ ] `.editorconfig` is in the project root.
 - [ ] `.gitignore` is in the project root.
+- [ ] The Markdown lint baseline (`.markdownlint.json` +
+  `check-links.mjs`) is in the project root — or deliberately removed
+  for a non-Markdown / non-Node project.
 - [ ] The quality gate runs: `check` is documented in
   `DEV-INFRASTRUCTURE.md` → "Quality gate" and runs green — or the gate
   is deliberately deferred for an early MVP.

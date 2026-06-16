@@ -175,6 +175,11 @@ scripts, configuration, or deployment.
      dependency drift, over style-only rules — unless auto-fix makes the
      style rule invisible. A lint failure is design feedback. Tool choices
      (which linter, type checker, runner) belong in conventions.md.
+     The framework ships a stack-agnostic Markdown lint + link-check
+     baseline (`pm_skills/scaffold/.markdownlint.json` +
+     `check-links.mjs`) — the Tier 0 floor for any project, since project
+     memory is Markdown. Keep formatting out of the gate's pass/fail: run
+     it as auto-fix-on-save, not a `check` failure.
 
      Tiered shape (populate only the tier this project is at):
      - Tier 0 (docs / static / scripts): a placeholder/CUSTOMISE scan +

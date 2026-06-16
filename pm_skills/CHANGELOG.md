@@ -25,6 +25,80 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.7.0 — 2026-06-16
+
+Ships a **lint baseline** to consuming projects, completing the
+*One-command quality gate* (2.6.0): the gate is no longer "bring your own
+from zero". The framework was opinionated about the gate's policy but
+shipped no config. It now ships the one lint baseline every pm-skills
+project can use regardless of stack — Markdown — because project memory
+itself is Markdown.
+
+Hybrid by design: the universal, stack-agnostic layer ships as scaffold
+(a relaxed-but-strict markdownlint config + a dependency-free internal
+link checker); the stack-specific layer (code linters, type checkers,
+formatters) stays documented as per-stack recommended defaults in
+`conventions.md`, not mandated — honouring the stack-agnostic "slots, not
+a mandated linter" stance of the quality gate.
+
+Opinionation, stated once: be strict (error, in `check`) on correctness —
+broken/unused imports, dead code, type errors, broken links,
+accessibility violations; make formatting invisible (auto-fix, never the
+gate); keep taste/complexity rules opt-in and off by default; defer
+spell-check until a domain dictionary exists.
+
+Backward compatible: two new `scaffold`-class files (covered by the
+existing `pm_skills/scaffold/*` manifest glob) plus additive wiring to
+`init.md`, `init-project.md`, `GUIDE.md`, and two root-template sections.
+No files renamed or removed; no stage-prompt output list changed, so the
+`feature.md` / `auto-jazz.md` validation echoes need no re-sync.
+
+### Added
+
+- `pm_skills/scaffold/.markdownlint.json` (`scaffold`) — Markdown lint
+  baseline: `default: true` with `MD013` off (line-length noise) and
+  `MD024: siblings_only` (repeated changelog headings). Strict on what
+  breaks rendering, relaxed on style. A starting point each project owns.
+- `pm_skills/scaffold/check-links.mjs` (`scaffold`) — dependency-free
+  (Node-only) internal Markdown link-integrity checker; catches broken
+  cross-references in docs and project memory. Deletable for non-Node
+  stacks.
+
+### Changed
+
+- `pm_skills/init.md` — Step 9 copies the two new scaffold files; the
+  Step 8 quality-gate item points at the per-stack defaults and the
+  shipped baseline; Step 10 readiness gains a baseline checkbox.
+- `pm_skills/integrations/init-project.md` — scaffold-copy step and
+  readiness list include the two new files.
+- `pm_skills/project/conventions.md` (`project-memory` template) — the
+  Tooling guidance gains the per-stack recommended-defaults and the
+  opinionation dial. Existing populated files are unaffected.
+- `DEV-INFRASTRUCTURE.md` (`root-template`) — the Quality gate section
+  names the shipped Markdown baseline as the Tier 0 floor and the
+  formatting-is-auto-fix-not-gate rule.
+- `pm_skills/GUIDE.md` — the "What's in this folder" tree lists the two
+  new scaffold files.
+
+### Upgrade actions
+
+- Replace these `framework` files wholesale: `pm_skills/init.md`,
+  `pm_skills/integrations/init-project.md`, `pm_skills/GUIDE.md`.
+- `DEV-INFRASTRUCTURE.md` (`root-template`, 3-way merge — preserve your
+  populated content): add the shipped-baseline + formatting note to the
+  **Quality gate** section guidance.
+- `pm_skills/project/conventions.md` is `project-memory`: no action if
+  you have populated it; otherwise the template now carries the per-stack
+  tooling defaults.
+- `scaffold` (copied once, never force-upgraded): optionally copy
+  `pm_skills/scaffold/.markdownlint.json` and
+  `pm_skills/scaffold/check-links.mjs` into your project root to adopt the
+  baseline. Existing scaffold files are never overwritten.
+- `pm_skills/MANIFEST.md`: no change — the new files are covered by the
+  existing `pm_skills/scaffold/*` glob.
+
+---
+
 ## 2.6.0 — 2026-06-16
 
 Adds the **One-command quality gate** — the third runtime guardrail,

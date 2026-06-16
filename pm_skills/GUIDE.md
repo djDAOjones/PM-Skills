@@ -122,8 +122,10 @@ integrations/    Optional tool-specific workflows.
   upgrade.md         Upgrade an existing project to the latest version.
 
 scaffold/        Template files to copy into your project root.
-  .editorconfig    Editor style enforcement (indent, encoding, etc.).
-  .gitignore       Common ignores for JS/npm projects.
+  .editorconfig       Editor style enforcement (indent, encoding, etc.).
+  .gitignore          Common ignores for JS/npm projects.
+  .markdownlint.json  Markdown lint baseline: strict on breakage, relaxed on style.
+  check-links.mjs     Dependency-free internal Markdown link checker (Node).
 ```
 
 ## Per-task quick reference

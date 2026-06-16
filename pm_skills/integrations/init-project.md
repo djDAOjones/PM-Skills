@@ -81,9 +81,12 @@ MVP, use `pm_skills/integrations/init-mvp.md` instead.
    even a static site still documents how to run it in `README.md`.
 
 9. Copy scaffold files.
-   Copy `pm_skills/scaffold/.editorconfig` and
-   `pm_skills/scaffold/.gitignore` to the project
-   root if they don't already exist.
+   Copy `pm_skills/scaffold/.editorconfig`,
+   `pm_skills/scaffold/.gitignore`,
+   `pm_skills/scaffold/.markdownlint.json`, and
+   `pm_skills/scaffold/check-links.mjs` to the project root if they
+   don't already exist. The last two are the Markdown lint baseline
+   (Node-based); drop them for a non-Markdown or non-Node project.
 
 10. Readiness check.
     Confirm all required files are populated:
@@ -102,6 +105,8 @@ MVP, use `pm_skills/integrations/init-mvp.md` instead.
       redacted copy-diagnostics affordance is planned
     - `.editorconfig`
     - `.gitignore`
+    - `.markdownlint.json` + `check-links.mjs` (Markdown lint baseline,
+      if the project keeps docs in Markdown)
 
     Run the placeholder lint:
 

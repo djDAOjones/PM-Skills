@@ -55,6 +55,23 @@
      - Test runner: Vitest
      - Formatter: .editorconfig (mechanical), no additional formatter yet
      - Linter: none yet
+     Recommended defaults by stack (the framework's opinion — adopt,
+     swap, or drop per project):
+     - JS/TS: Prettier (format) + ESLint with typescript-eslint
+       (correctness) + tsc --noEmit (types).
+     - Python: ruff format (format) + ruff (correctness) + mypy or
+       pyright (types).
+     - Go: gofmt (format) + go vet and staticcheck (correctness).
+     - Rust: rustfmt (format) + clippy (correctness).
+     - Any stack (docs): EditorConfig + the scaffolded markdownlint
+       baseline + check-links.mjs.
+     Opinionation dial: be strict (error, in `check`) on correctness —
+     broken/unused imports, dead code, type errors, broken links,
+     accessibility violations. Make formatting invisible (auto-fix on
+     save, never a gate failure). Keep taste/complexity rules opt-in and
+     off by default — a noisy rule that gets inline-disabled erodes
+     trust in the whole gate. Defer spell-check until you have a domain
+     dictionary.
      This section captures tool choices. The specific tools the quality
      gate runs are named here; the `check` command that composes them and
      the build/dev/deploy rules live in DEV-INFRASTRUCTURE.md → "Quality
