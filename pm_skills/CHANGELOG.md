@@ -25,6 +25,48 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.7.2 — 2026-06-16
+
+Closes the **quick-path impact-awareness gap**. `quick-task.md` — the
+lean single-stage scope-and-plan for small tasks — was the only
+scope/plan path with no awareness of the build/run/verify triad
+surfaces. A small task that touched a runtime component, an
+instrumentable surface, or the quality-gate surface could pass through
+the quick path without the contract-doc update that `scoping.md`,
+`implementation-plan.md`, and `validation.md` enforce for the full
+sequence.
+
+`quick-task.md` now carries one escalation-guard rule: if such an impact
+surfaces, stop and escalate to the full `scoping.md` sequence, where the
+impact flags and their `DEV-INFRASTRUCTURE.md` / `UI-STANDARDS.md`
+obligations live. It escalates rather than echoing those flags inline —
+preserving single-source-of-truth and not reopening the duplication
+drift class that 2.7.1 just closed.
+
+Resolves the `quick-task.md` impact-flags decision (the QT roadmap
+item); the decision predated the quality-gate flag, so the guard covers
+all three triad surfaces, not just runtime and diagnostics.
+
+Patch-level: one rule added to an existing `framework` file. No new
+files, no migration, no `MANIFEST.md` change, no memory-contract change.
+
+### Changed
+
+- `pm_skills/prompts/quick-task.md` — added an escalation-guard rule:
+  if a small task turns out to touch a runtime component, an
+  instrumentable surface, or the quality-gate surface, stop and escalate
+  to the full `scoping.md` sequence. Output list and other rules
+  unchanged.
+
+### Upgrade actions
+
+- Replace this `framework` file wholesale:
+  `pm_skills/prompts/quick-task.md`.
+- No data migration; no `root-template` or `project-memory` changes;
+  `MANIFEST.md` unchanged (no paths added, removed, or reclassified).
+
+---
+
 ## 2.7.1 — 2026-06-16
 
 Removes the **stage-output echo drift class** at its source. The
