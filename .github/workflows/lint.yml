@@ -1,9 +1,10 @@
 name: Lint
 
-# Enforces the framework's own Markdown standard and internal-link
-# integrity on every push to the default branch and every pull request.
-# Runs in a clean Ubuntu runner, so the OneDrive / on-demand filesystem
-# constraints of a local checkout never apply here.
+# Runs the framework's full quality gate -- Markdown standard, internal
+# link integrity, inline path references, spelling, and EditorConfig
+# conformance -- on every push to the default branch and every pull
+# request. Runs in a clean Ubuntu runner, so the OneDrive / on-demand
+# filesystem constraints of a local checkout never apply here.
 
 on:
   push:
@@ -21,7 +22,7 @@ concurrency:
 
 jobs:
   markdown:
-    name: Markdown lint and link check
+    name: Lint, links, paths, spelling and EditorConfig
     runs-on: ubuntu-latest
     # Lint + link check finish in seconds; cap the job so a hung runner
     # fails fast instead of consuming the default 6-hour budget.
@@ -44,3 +45,12 @@ jobs:
 
       - name: Internal link check
         run: npm run lint:links
+
+      - name: Inline path-reference check
+        run: npm run lint:paths
+
+      - name: Spell check (cspell)
+        run: npm run lint:spell
+
+      - name: EditorConfig check
+        run: npm run lint:editorconfig

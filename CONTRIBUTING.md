@@ -41,6 +41,12 @@ Individual checks:
 - `npm run lint:fix` — auto-fix the markdownlint issues that are fixable.
 - `npm run lint:links` — internal relative-link integrity, via the
   dependency-free `scripts/check-links.mjs`.
+- `npm run lint:paths` — inline backticked path-reference integrity, via
+  the dependency-free `scripts/check-paths.mjs`.
+- `npm run lint:spell` — spelling, via `cspell` against the curated
+  dictionary in `cspell.json`.
+- `npm run lint:editorconfig` — `.editorconfig` conformance on
+  non-Markdown files, via `editorconfig-checker`.
 
 Configuration:
 
@@ -50,15 +56,24 @@ Configuration:
   `gitignore: true` so the linter skips whatever `.gitignore` skips
   (`node_modules/`, `user_crud/`) — one ignore source, no separate ignore
   list to drift. (markdownlint-cli2 does not honour `.markdownlintignore`.)
+- cspell: `cspell.json`. `language` accepts `en,en-GB`; `useGitignore`
+  skips ignored paths; the `words` array is the curated domain
+  vocabulary (coined terms and jargon the bundled dictionaries miss).
+- editorconfig-checker: `.editorconfig-checker.json`. Excludes `*.md`
+  (markdownlint owns Markdown indentation), the generated lockfile, and
+  the `user_crud/` scratch dir.
 
 ### Running without a local install
 
-Both checks run straight from the npx cache or Node, with no project
+Each check runs straight from the npx cache or Node, with no project
 install:
 
 ```text
 npx markdownlint-cli2 "**/*.md"
 node scripts/check-links.mjs
+node scripts/check-paths.mjs
+npx cspell "**/*.md"
+npx editorconfig-checker
 ```
 
 ### OneDrive / cloud-synced checkout
@@ -71,15 +86,18 @@ exclude `node_modules` from cloud sync first.
 
 ## Continuous integration
 
-`.github/workflows/lint.yml` runs `npm ci`, then `npm run lint:md` and
-`npm run lint:links`, on every push to the default branch and every pull
-request. It runs in a clean Ubuntu runner, so the cloud-sync constraints
-above never apply to CI.
+`.github/workflows/lint.yml` runs `npm ci`, then `npm run lint:md`,
+`lint:links`, `lint:paths`, `lint:spell`, and `lint:editorconfig`, on
+every push to the default branch and every pull request. It runs in a
+clean Ubuntu runner, so the cloud-sync constraints above never apply to
+CI.
 
 ## Dependencies
 
-Keep dev dependencies minimal (an `AGENTS.md` hard rule). There is
-currently exactly one: `markdownlint-cli2`. The link checker is
+Keep dev dependencies minimal (an `AGENTS.md` hard rule). There are
+currently three: `cspell`, `editorconfig-checker`, and
+`markdownlint-cli2`. The link and path checkers
+(`scripts/check-links.mjs`, `scripts/check-paths.mjs`) are
 dependency-free by design. When you add any dependency, regenerate and
 commit the lockfile:
 
@@ -111,11 +129,6 @@ npm install --package-lock-only
 
 ## Optional future tooling
 
-Deliberately not enabled yet, to avoid noise or maintenance cost without
-a clear owner:
-
-- Spell check (e.g. `cspell`) with a curated dictionary for the domain
-  vocabulary (Carbon, WCAG, esbuild, Vitest, and so on).
-- `editorconfig-checker` to enforce `.editorconfig` on non-Markdown files
-  in CI.
-- Validation of backticked inline path references (beyond Markdown links).
+None pending. The previous candidates — spell check (`cspell`),
+`editorconfig-checker`, and inline path-reference validation — are now
+part of the gate above.

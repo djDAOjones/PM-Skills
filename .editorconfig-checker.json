@@ -1,0 +1,8 @@
+{
+  "Exclude": [
+    "\\.md$",
+    "package-lock\\.json",
+    "user_crud",
+    "node_modules"
+  ]
+}
