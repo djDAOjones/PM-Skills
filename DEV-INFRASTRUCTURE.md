@@ -82,9 +82,9 @@ scripts, configuration, or deployment.
 
 <!-- CUSTOMISE: Define how the app makes its own behaviour legible while
      it is being built, and how a maintainer hands a diagnostic snapshot
-     to an AI agent. The goal is to collapse "reproduce -> open DevTools
-     -> preserve logs -> copy the right messages -> paste" into "click ->
-     copy -> paste". A page cannot read the browser's native DevTools
+     to an AI agent. The goal is to collapse "reproduce → open DevTools
+     → preserve logs → copy the right messages → paste" into "click →
+     copy → paste". A page cannot read the browser's native DevTools
      console history, so diagnostics must flow through an app-owned logger
      and buffer, not the native console. Implementation scales with
      complexity (see init.md Appendix B) -- but the documented capability
@@ -106,7 +106,7 @@ scripts, configuration, or deployment.
      4. Global capture -- window 'error' and 'unhandledrejection' hooks
         that funnel into the logger, so nothing fails silently.
      5. Copy-diagnostics bundle -- what the dev-only affordance copies
-        (the control itself lives in UI-STANDARDS.md -> "Diagnostics
+        (the control itself lives in UI-STANDARDS.md → "Diagnostics
         affordance"). INCLUDE: app name / version / build, timestamp +
         timezone, current URL / route / view, user agent + viewport,
         dev-mode / feature flags, the last N redacted log entries,
@@ -117,7 +117,7 @@ scripts, configuration, or deployment.
         unless explicitly safe.
      6. Redaction -- the default-on filter applied before anything is
         logged or copied. Redaction is a safety invariant, not a
-        nice-to-have (see AGENTS.md -> "Self-explaining runtime" and the
+        nice-to-have (see AGENTS.md → "Self-explaining runtime" and the
         OWASP logging guidance it follows).
      7. Environment gating -- the diagnostics affordance and verbose
         levels are DEV-ONLY by default. Production requires an explicit
@@ -138,7 +138,7 @@ scripts, configuration, or deployment.
      - Tier 0 (static / no-UI / scripts): a console log helper with
        consistent levels + a global error / unhandledrejection hook. No
        buffer, no panel. Floor: uncaught errors are legible.
-     - Tier 1 (typical dev-server app): logger -> console + bounded ring
+     - Tier 1 (typical dev-server app): logger → console + bounded ring
        buffer + global capture + a dev-only copy-diagnostics affordance
        that copies the redacted bundle above.
      - Tier 2 (operator-facing / multi-surface): add interactionId

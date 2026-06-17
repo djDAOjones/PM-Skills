@@ -25,6 +25,44 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.7.3 — 2026-06-16
+
+Arrow-glyph consistency in distributed-template comments. Three shipped
+templates carried ASCII `->` arrows inside their HTML author-guidance
+comments, where the framework's house style (set by the 2.5.0 arrow
+sweep) is the Unicode `→`. These arrows live only inside `<!-- … -->`
+comments, so they never appear in rendered output — this is a pure
+source-consistency fix with no behavioural or rendered change.
+
+Only prose `->` is normalised; the `-->` comment terminators that share
+those characters are deliberately left intact.
+
+Patch-level: comment wording in existing distributed files. No new
+files, no migration, no `MANIFEST.md` change, no memory-contract change.
+
+### Changed
+
+- `DEV-INFRASTRUCTURE.md` (`root-template`) — prose `->` arrows in the
+  "Maintainer diagnostics" CUSTOMISE comment normalised to `→`.
+- `pm_skills/project/trajectory.md` (`project-memory`) — prose `->`
+  arrows in the guidance comments and the example-phase block normalised
+  to `→`.
+- `pm_skills/project/wish-list.md` (`project-memory`) — prose `->` arrows
+  in the guidance comments normalised to `→`.
+
+### Upgrade actions
+
+- `DEV-INFRASTRUCTURE.md` (`root-template`): on the standard 3-way merge,
+  take the new comment text. A populated project will have replaced the
+  CUSTOMISE comment with real content, so there is typically nothing to
+  merge — no action needed.
+- `trajectory.md` / `wish-list.md` (`project-memory`): never overwritten
+  on upgrade, so existing projects are unaffected; only newly-initialised
+  projects pick up the normalised comments. No action needed.
+- No `MANIFEST.md` change (no paths added, removed, or reclassified).
+
+---
+
 ## 2.7.2 — 2026-06-16
 
 Closes the **quick-path impact-awareness gap**. `quick-task.md` — the
