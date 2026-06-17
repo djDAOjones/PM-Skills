@@ -105,6 +105,23 @@ commit the lockfile:
 npm install --package-lock-only
 ```
 
+### Security overrides
+
+`package.json` `overrides` pins two transitive dependencies of
+`markdownlint-cli2` to patched releases:
+
+- `js-yaml` → `^4.2.0` (CVE-2026-53550: quadratic-complexity DoS in YAML
+  merge-key handling).
+- `markdown-it` → `^14.2.0` (CVE-2026-48988: quadratic-complexity DoS in
+  the smartquotes rule).
+
+Both are dev-only, lint-time DoS issues over trusted repo docs, not a
+runtime exposure — but the pins keep `npm audit` clean at no cost (both
+are backward-compatible minor bumps). `markdownlint-cli2` still pins the
+unpatched versions exactly, so its own auto-fix would downgrade it;
+remove an override only once `markdownlint-cli2` depends on the patched
+version (or later) directly.
+
 ## Versioning and releases
 
 - The canonical framework version is
