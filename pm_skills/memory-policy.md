@@ -46,6 +46,7 @@ The end-of-task size check scales with what the task actually touched
 - **Full sweep** — run the whole table when the task did real memory
   work (a prune, a refactor, a shipped milestone), when several files
   were touched, or if no full sweep has happened in the last ~5 tasks.
+  If you cannot tell when the last full sweep ran, run one.
 - The Diagnose verb of `memory-maintenance.md` remains the periodic
   deep check for structural drift the size check cannot see.
 

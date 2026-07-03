@@ -4,6 +4,10 @@ Read these files at the start of each task session. `AGENTS.md`
 may already be loaded as a global rule; the other files must be
 read explicitly.
 
+If pasting manually, paste only what you need: the context list plus
+one Start block (A or B). The drift corrections are one-liners to
+paste individually, mid-session, as needed.
+
 ## Context to load
 
 Load the standard project context per `AGENTS.md` → "Before every

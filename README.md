@@ -32,8 +32,8 @@ to that ceiling without further gates, de-risked by staged rollback
 checkpoints.
 
 See [`pm_skills/GUIDE.md`](pm_skills/GUIDE.md) for the full guide:
-folder contents, two-tier memory system, per-task workflow, and how to
-keep project memory fresh.
+folder contents, memory layers and read tiers, per-task workflow, and
+how to keep project memory fresh.
 
 ## Upgrading from an older version
 

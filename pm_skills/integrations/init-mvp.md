@@ -216,7 +216,7 @@ memory live as you go.
    - Verify: run build/tests; confirm the whole thing still runs.
    - Update project memory as you go: item status in `backlog.md`, new
      files in `file-map.md`, notable decisions noted for the
-     consolidated decision-log entry in step 12.
+     consolidated decision-log entry in step 13.
 
    For Bands 2–3, continue milestone by milestone up to the band
    ceiling: pick the next batch as `session-start.md` → Start B

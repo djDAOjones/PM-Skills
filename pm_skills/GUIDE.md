@@ -14,7 +14,9 @@ none apologised for.
 
 ## Start here
 
-**New project?** Follow [init.md](./init.md) step by step.
+**New project?** Follow [init.md](./init.md) step by step — or tell
+the agent to run it: the file doubles as the agent workflow (see its
+"Agent mode" note), gated at every step.
 
 **New project, and you want the agent to build it?** Run
 [`integrations/init-mvp.md`](./integrations/init-mvp.md). It is the
