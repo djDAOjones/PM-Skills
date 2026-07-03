@@ -25,6 +25,158 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.0.0 — 2026-07-03
+
+The **token-efficiency release**: cuts the fixed per-task meta-cost on
+three axes — fewer approval round-trips, a lighter always-loaded
+contract, and less over-fetching — without weakening any guardrail. It
+lands the conclusions of an external review of the framework repo, plus
+the maintainer's own observation that the plan/validation approvals
+were rubber stamps costing a full context re-send each.
+
+**1. Checkpoint gating (new default).** A new
+`integrations/checkpoint.md` runs the same four stages but gates only
+where human judgement adds value: scope approval and the design-option
+pick. Plan and validation run gateless with one-line stated
+assumptions, per the existing `auto-jazz` mechanics. The ladder is now
+`feature.md` (4 gates, for `[sign-off]`/high-risk) → **`checkpoint.md`
+(2 gates, default)** → `auto-jazz.md` (0) → `auto-jazz-lite.md`
+(0, compressed).
+
+**2. `memory-policy.md` (new framework file).** The memory size budget
+table and overrun actions move out of the always-loaded `AGENTS.md`
+into `pm_skills/memory-policy.md`, read only at task close (size check,
+prune, roadmap refactor, health check). `AGENTS.md` keeps the read
+tiers and a summary pointer — the per-turn constant drops by roughly a
+third. Budget numbers now live in exactly one place.
+
+**3. Leaner reads and outputs.** The decision-log hot-sectional read
+becomes headings-first (scan the latest 10 `##` headings, open only
+relevant bodies — most tasks need 0–2). The `DEV-INFRASTRUCTURE.md`
+tier docs now state the truth that its Quality gate section is a
+sectional read at every task close. The end-of-task size check gains a
+fast path (task touched ≤ 2 memory files → count only those; full
+sweep otherwise or every ~5 tasks). Every stage prompt gains a
+be-terse output rule ("n/a" where empty; spend words on findings).
+
+**4. Drift-surface cleanup.** The gateless hard-prohibition list now
+has one canonical copy (`auto-jazz.md`); `auto-jazz-lite.md`,
+`checkpoint.md`, and `init-mvp.md` reference it. The backlog ticket
+grammar has one canonical copy (the `backlog.md` template comments,
+now with the full flag list); `roadmap-refactor.md`, `init.md`, and
+`init-project.md` point at it. `session-start.md`'s tier quick-ref is
+re-grouped to match `AGENTS.md` (conditional docs are no longer listed
+under "read every task").
+
+Major because the `AGENTS.md` root template is restructured (its
+budget table is replaced by a pointer) and a new framework file is
+introduced — but there is **no project-memory data migration**.
+
+### Added
+
+- `pm_skills/memory-policy.md` (`framework`) — the canonical memory
+  size budgets + overrun actions + the size-check fast path. Declared
+  in `MANIFEST.md`.
+- `pm_skills/integrations/checkpoint.md` (`framework`) — the 2-gate
+  default workflow (covered by the `pm_skills/integrations/*`
+  wildcard).
+
+### Changed
+
+- `AGENTS.md` (`root-template`) — "Memory size budgets" collapses to a
+  pointer at `pm_skills/memory-policy.md`; decision-log tier read is
+  headings-first; the `DEV-INFRASTRUCTURE.md` conditional bullet notes
+  the Quality-gate sectional read at task close; Workflow rule 1 names
+  checkpoint gating as the default and reserves the fully gated flow
+  for `[sign-off]` items.
+- `pm_skills/prompts/end-of-task.md` — size check gains the fast path;
+  budgets referenced from `memory-policy.md`; report line notes fast
+  path vs full sweep.
+- `pm_skills/prompts/prune-memory.md`, `doctor-memory.md`,
+  `roadmap-refactor.md` — budgets referenced from `memory-policy.md`
+  (tier names stay in `AGENTS.md`); `roadmap-refactor.md` points at the
+  canonical ticket grammar instead of restating it.
+- `pm_skills/prompts/scoping.md`, `design-options.md`,
+  `implementation-plan.md`, `validation.md`, `quick-task.md` — be-terse
+  output rules.
+- `pm_skills/prompts/session-start.md` — tier quick-ref re-grouped
+  (conditional split out; headings-first decision-log; Quality-gate
+  sectional note).
+- `pm_skills/prompts/next-batch.md` — recommends checkpoint by default;
+  fully gated flow only for `[sign-off]`/high-risk items.
+- `pm_skills/prompts/upgrade.md` — intro names `memory-policy.md` among
+  the framework files an upgrade carries.
+- `pm_skills/integrations/feature.md` — positioned as the fully gated
+  flow for `[sign-off]`/high-risk work, pointing everyday tasks at
+  `checkpoint.md`.
+- `pm_skills/integrations/feature.md`, `auto-jazz.md`,
+  `auto-jazz-lite.md`, `bugfix.md` — context-load step adopts the
+  headings-first decision-log read.
+- `pm_skills/prompts/release.md` — step 5 lists `checkpoint.md` among
+  the workflows that reference the stage prompts; step 6 gains a
+  changed-vs-named **coverage check** (every changed distributed file
+  must be named in the top changelog entry) with a matching snippet in
+  the verify script.
+- `pm_skills/integrations/auto-jazz.md` — its hard-prohibition list is
+  marked as the canonical copy.
+- `pm_skills/integrations/auto-jazz-lite.md`, `init-mvp.md` — reference
+  the canonical prohibition list instead of restating it (`init-mvp.md`
+  keeps its two mode-specific prohibitions and the greenfield
+  dependency adaptation).
+- `pm_skills/integrations/init-project.md`, `pm_skills/init.md` — the
+  backlog-generation step reads the canonical ticket grammar from the
+  template; `init.md` Step 11 lists `checkpoint.md` as the default
+  workflow.
+- `pm_skills/project/*` templates (`project-memory`) — comment-only:
+  `brief.md`, `architecture.md`, `conventions.md`, `file-map.md`,
+  `trajectory.md`, `wish-list.md` point budget references at
+  `pm_skills/memory-policy.md`; `backlog.md`'s ticket-grammar comment
+  is marked canonical and gains the full flag list; `decision-log.md`'s
+  comment notes the headings-first read. Existing populated files are
+  unaffected.
+- `pm_skills/GUIDE.md` — file tree lists `memory-policy.md` and
+  `checkpoint.md`; workflow guidance names checkpoint the default; the
+  manual 4-stage path gains the checkpoint variant; "Keeping memory
+  lean" points budgets at `memory-policy.md`.
+
+### Upgrade actions
+
+- Add the new `framework` files: `pm_skills/memory-policy.md` and
+  `pm_skills/integrations/checkpoint.md`.
+- Replace these `framework` files wholesale (after the Step 4
+  customisation check): `pm_skills/GUIDE.md`, `pm_skills/init.md`,
+  `pm_skills/MANIFEST.md`, `pm_skills/prompts/end-of-task.md`,
+  `pm_skills/prompts/prune-memory.md`,
+  `pm_skills/prompts/doctor-memory.md`,
+  `pm_skills/prompts/roadmap-refactor.md`,
+  `pm_skills/prompts/scoping.md`, `pm_skills/prompts/design-options.md`,
+  `pm_skills/prompts/implementation-plan.md`,
+  `pm_skills/prompts/validation.md`, `pm_skills/prompts/quick-task.md`,
+  `pm_skills/prompts/session-start.md`, `pm_skills/prompts/next-batch.md`,
+  `pm_skills/prompts/upgrade.md`, `pm_skills/prompts/release.md`,
+  `pm_skills/integrations/feature.md`,
+  `pm_skills/integrations/auto-jazz.md`,
+  `pm_skills/integrations/auto-jazz-lite.md`,
+  `pm_skills/integrations/bugfix.md`,
+  `pm_skills/integrations/init-mvp.md`,
+  `pm_skills/integrations/init-project.md`.
+- `AGENTS.md` (`root-template`, 3-way merge — preserve every populated
+  section verbatim): replace the "Memory size budgets" table with the
+  new pointer paragraph **only if the project kept the default table**;
+  if the project customised budget numbers, move the customised rows
+  into its `pm_skills/memory-policy.md` copy instead and then apply the
+  pointer. Take the new decision-log and `DEV-INFRASTRUCTURE.md` tier
+  bullets and the checkpoint Workflow rule.
+- `pm_skills/project/*` templates are `project-memory`: no action for
+  populated files. The comment-only re-pointing applies to fresh
+  projects; optionally update the guidance comments in place (they are
+  comments, not content).
+- No data migration: no memory content moves. `MANIFEST.md` gains the
+  `pm_skills/memory-policy.md` row (included in the wholesale replace
+  above).
+
+---
+
 ## 2.8.0 — 2026-06-28
 
 Adds **optional per-item detail files** for backlog items. A non-trivial

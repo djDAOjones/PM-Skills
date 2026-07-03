@@ -12,6 +12,8 @@ Output:
 
 Rules:
 
+- Be terse: the whole output should fit one screen; write "n/a" where
+  an output is empty.
 - If this task is a backlog item carrying the `[detail]` flag, read its
   `pm_skills/project/tickets/<ITEM-ID>.md` first for prior context.
 - Search the codebase first.

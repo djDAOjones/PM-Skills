@@ -22,6 +22,13 @@ The framework is overwhelmingly Markdown. Two classes of file live here:
 Rule: do **not** add a source-only tooling path to `MANIFEST.md`, and the
 upgrade workflow must never carry these files into a consuming project.
 
+Note on deliberate forks: `pm_skills/scaffold/check-links.mjs` /
+`pm_skills/scaffold/.markdownlint.json` and their source-only siblings
+(`scripts/check-links.mjs`, root `.markdownlint.json`) are **separate
+copies by design** — the scaffold ships generic, the source-repo copy is
+tuned for this repo. A bug fixed in one must be considered for the
+other; there is no sync mechanism, only this reminder.
+
 ## Prerequisites
 
 - Node.js `>= 18` (only for the lint tooling).
@@ -65,8 +72,12 @@ Configuration:
 
 ### Running without a local install
 
-Each check runs straight from the npx cache or Node, with no project
-install:
+`npm run lint` works with **or without** `node_modules`: the
+dependency-based checks are invoked via `npx --yes`, which uses the
+local install when present and falls back to the npx cache (fetching
+on first run) when not. This keeps the gate one command on
+cloud-synced checkouts where `node_modules` is deliberately absent or
+stale. The equivalent direct commands:
 
 ```text
 npx markdownlint-cli2 "**/*.md"

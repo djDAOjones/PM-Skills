@@ -42,19 +42,18 @@ further user input is solicited:
 - If a check trips a real risk, narrow scope rather than push through.
 
 Hard prohibitions (stop and ask one concise question before doing any of
-these, even in this mode):
+these, even in this mode). The canonical gateless list in
+`pm_skills/integrations/auto-jazz.md` applies in full; this mode adds
+two of its own and one greenfield adaptation:
 
 - **Building beyond the first milestone in one run.** Later milestones are
   out of scope — finish the MVP, then hand back to `next-batch.md` /
   `feature.md`. Do not improvise a v2.
 - **Adding a runtime dependency the recorded architecture does not name.**
-  See the greenfield exception below.
+  This is the greenfield form of the canonical no-new-dependency rule —
+  see the exception below.
 - Destructive operations against anything that pre-exists the run
   (existing files, git history, external state, schemas, data).
-- Disabling, weakening, or deleting a test once one exists.
-- Touching a file the project later marks under `AGENTS.md` → "Files to
-  never edit" or `DEV-INFRASTRUCTURE.md` → "Files agents must not
-  hand-edit".
 
 Greenfield exception to the dependency rule: a greenfield build must choose
 a stack. Phase A step 4 **fixes and records** the tech stack and dependency

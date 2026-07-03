@@ -66,8 +66,9 @@ Output, concisely:
    the `[detail]` flag, skim its `pm_skills/project/tickets/<ITEM-ID>.md`
    just enough to ground this line; the full read happens in the chosen
    workflow, not here.
-4. **Recommended workflow** — full 4-stage / quick / bug — with one
-   line of rationale.
+4. **Recommended workflow** — checkpoint (default) / fully gated
+   4-stage / quick / bug — with one line of rationale. Recommend the
+   fully gated flow only for `[sign-off]` or high-risk items.
 5. **Ready-to-paste task statement** — in the matching
    `session-start` form (Standard / Quick / Bug start).
 6. **Runner-up** — in one line, the next item you'd pick if this one

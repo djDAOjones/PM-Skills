@@ -18,13 +18,21 @@ list below is a quick reference — `AGENTS.md` is authoritative.
 - `pm_skills/project/architecture.md`
 - `pm_skills/project/conventions.md` (if it exists)
 - `pm_skills/project/file-map.md`
-- `UI-STANDARDS.md` — only if the task touches UI
-- `DEV-INFRASTRUCTURE.md` (if it exists) — only if the task touches build/dev
+
+**Conditional** (read only when the task touches the domain — not part
+of the every-task load):
+
+- `UI-STANDARDS.md` — if the task touches UI.
+- `DEV-INFRASTRUCTURE.md` (if it exists) — if the task touches
+  build/dev. Its "Quality gate" section is read at task close
+  regardless (end-of-task needs the `check` command) — that section
+  only, not the file.
 
 **Hot sectional** (read by section, not whole):
 
 - `pm_skills/project/backlog.md` — Active section only (open work).
-- `pm_skills/project/decision-log.md` — latest 10 entries only.
+- `pm_skills/project/decision-log.md` — scan the latest 10 headings
+  (`grep '^## '`), open only the bodies relevant to the task.
   Search older entries on demand if the task requires prior-decision context.
 
 **Warm** (read on demand, not every task):

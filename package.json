@@ -4,12 +4,12 @@
   "description": "Tooling and CI for the PM Skills framework repository. Source-repo-only: this package is NOT part of the distributed framework and is never copied into consuming projects. The canonical framework version is pm_skills/VERSION.",
   "scripts": {
     "lint": "npm run lint:md && npm run lint:links && npm run lint:paths && npm run lint:spell && npm run lint:editorconfig",
-    "lint:md": "markdownlint-cli2 \"**/*.md\"",
-    "lint:fix": "markdownlint-cli2 --fix \"**/*.md\"",
+    "lint:md": "npx --yes markdownlint-cli2 \"**/*.md\"",
+    "lint:fix": "npx --yes markdownlint-cli2 --fix \"**/*.md\"",
     "lint:links": "node scripts/check-links.mjs",
     "lint:paths": "node scripts/check-paths.mjs",
-    "lint:spell": "cspell \"**/*.md\"",
-    "lint:editorconfig": "editorconfig-checker",
+    "lint:spell": "npx --yes cspell \"**/*.md\"",
+    "lint:editorconfig": "npx --yes editorconfig-checker",
     "check": "npm run lint"
   },
   "devDependencies": {

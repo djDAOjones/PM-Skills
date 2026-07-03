@@ -2,8 +2,8 @@
 
 Run this when a project is on an older version of pm-skills and needs
 the latest framework files (prompts, integrations, init, GUIDE,
-scaffold, and the metadata files `VERSION`, `CHANGELOG.md`,
-`MANIFEST.md`) plus any new sections in the root templates
+memory-policy, scaffold, and the metadata files `VERSION`,
+`CHANGELOG.md`, `MANIFEST.md`) plus any new sections in the root templates
 (`AGENTS.md`, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`).
 
 This procedure is version-aware. It reads the framework's own

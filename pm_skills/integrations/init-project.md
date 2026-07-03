@@ -30,9 +30,10 @@ MVP, use `pm_skills/integrations/init-mvp.md` instead.
    Propose 8–12 OPEN tasks grouped by milestone (Current / Next, plus
    an Icebox for deferred), ordered by dependency, small enough for a
    single session. Open work only — no Completed section. Use the
-   ticket grammar in `pm_skills/project/backlog.md` (one line for quick
-   items; an Intent / Done-when pair plus any [sign-off] / [blocked]
-   flags for non-trivial ones) so intent survives later compression.
+   canonical ticket grammar from the `pm_skills/project/backlog.md`
+   template comments (one line for quick items; an Intent / Done-when
+   pair plus optional flags for non-trivial ones) so intent survives
+   later compression.
    Present for review. After approval, write to
    `pm_skills/project/backlog.md`.
 

@@ -6,7 +6,7 @@
      trajectory.md (the outcome) + an entry to decision-log.md (the why),
      then remove the item from this file. There is no Completed section. -->
 <!-- Hot sectional. Agents read the Active section only by default. -->
-<!-- See AGENTS.md → "Memory size budgets" for limits; run
+<!-- See pm_skills/memory-policy.md for limits; run
      roadmap-refactor.md when the queue drifts into dated rounds. -->
 
 ## Active
@@ -24,11 +24,14 @@
 <!-- Deferred but worth keeping (post-triage). Needs a decision to
      reactivate. Promote into Current/Next when committed. -->
 
-<!-- Ticket grammar: quick items stay one line. Non-trivial or sign-off
-     items add two lines so intent survives compression:
+<!-- Ticket grammar (CANONICAL COPY — prompts and workflows point here,
+     they do not restate it): quick items stay one line. Non-trivial or
+     sign-off items add two lines so intent survives compression:
        - **ID Short title** [flags]
          Intent: the outcome wanted.
          Done when: the acceptance condition.
+     Flags: [sign-off] (scope sign-off first), [blocked: X],
+     [spike] (timeboxed investigation), [detail] (has a ticket file).
      Add optional Scope:/Risks: lines only for sign-off items. -->
 
 <!-- Optional detail file: when an item needs more context than its line

@@ -11,8 +11,8 @@ and it does not archive history by size (`prune-memory.md`). It
 reorganises open work by lifecycle and dependency, and evicts anything
 that is no longer open work.
 
-Budgets and tier names come from `AGENTS.md` → "Memory size budgets" and
-"Read tiers". Do not restate the numbers here.
+Budgets come from `pm_skills/memory-policy.md`; tier names from
+`AGENTS.md` → "Read tiers". Do not restate the numbers here.
 
 ## 1. Load
 
@@ -79,17 +79,11 @@ sign-off. Never rewrite the roadmap silently.
   whose file is missing.
 - Apply only the promotions and cuts the user confirmed.
 
-Non-trivial open items use a tiny ticket grammar — enough to survive
-future compression, never an essay:
-
-```md
-- **ITEM-ID Short title** `[flags]`
-  Intent: the outcome wanted.
-  Done when: the acceptance condition.
-```
-
-`Scope:` and `Risks:` lines are optional — add them only for sign-off or
-invariant-changing items. Quick one-line items stay one line.
+Non-trivial open items use the tiny ticket grammar defined in the
+`pm_skills/project/backlog.md` template comments (the canonical copy):
+one line for quick items; an Intent / Done-when pair (+ optional
+flags, and `Scope:`/`Risks:` only for sign-off items) for non-trivial
+ones — enough to survive future compression, never an essay.
 
 ## 5. Record
 

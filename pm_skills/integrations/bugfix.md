@@ -12,9 +12,10 @@ Do not write code until diagnosis is confirmed and a fix plan is approved.
 2. Read project context.
    Load the standard project context per `AGENTS.md` → "Before every
    task". If `AGENTS.md` is not loaded as a global rule, read it now.
-   Also read `pm_skills/project/backlog.md` (Active section) and
-   `pm_skills/project/decision-log.md` (latest 10 entries). Read
-   older entries on demand if the bug touches prior design decisions.
+   Also read `pm_skills/project/backlog.md` (Active section) and scan
+   `pm_skills/project/decision-log.md` (latest 10 headings; open only
+   relevant bodies). Read older entries on demand if the bug touches
+   prior design decisions.
 
 3. Triage complexity.
    Ask the user: "Is this a quick fix or does it need full diagnosis?"

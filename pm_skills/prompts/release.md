@@ -74,8 +74,8 @@ update `pm_skills/MANIFEST.md`:
   and any per-task lists if files were added or removed.
 - `README.md` — update only if the change affects quick start,
   upgrading, or "what's in this repo".
-- `pm_skills/integrations/feature.md`, `auto-jazz.md`, and
-  `auto-jazz-lite.md` — these point to the stage prompts (`scoping.md`,
+- `pm_skills/integrations/feature.md`, `checkpoint.md`, `auto-jazz.md`,
+  and `auto-jazz-lite.md` — these point to the stage prompts (`scoping.md`,
   `design-options.md`, `implementation-plan.md`, `validation.md`,
   `quick-task.md`) rather than echoing their output lists, so a change
   to a prompt's **output list** needs no workflow edit. Update a
@@ -86,6 +86,11 @@ update `pm_skills/MANIFEST.md`:
 
 - `pm_skills/VERSION` matches the new top changelog entry.
 - The changelog entry has an **Upgrade actions** block.
+- **Coverage:** every changed distributed file is named in the entry.
+  List the uncommitted/staged changes and check each `pm_skills/**` or
+  root-template path appears in the top changelog entry — a changed
+  framework file the entry does not name will silently downgrade on a
+  consuming project's next upgrade.
 - `MANIFEST.md` lists every shipped path (no orphans, no missing new
   files).
 - `GUIDE.md` file tree matches the actual `pm_skills/` contents.
@@ -95,6 +100,13 @@ Run a quick consistency check:
 ```sh
 echo "VERSION: $(cat pm_skills/VERSION)"
 echo "Top changelog heading:"; grep -m1 '^## ' pm_skills/CHANGELOG.md
+echo "Changed distributed files not named in the top entry:"
+TOP=$(awk '/^## /{n++} n==1' pm_skills/CHANGELOG.md)
+git status --porcelain | awk '{print $2}' | \
+  grep -E '^(pm_skills/|AGENTS\.md|UI-STANDARDS\.md|DEV-INFRASTRUCTURE\.md)' | \
+  grep -v 'CHANGELOG.md\|VERSION' | while read -r f; do
+  echo "$TOP" | grep -q "$(basename "$f")" || echo "  MISSING: $f"
+done
 echo "Files not in MANIFEST:"
 for f in pm_skills/prompts/* pm_skills/integrations/*; do
   grep -q "$(basename "$f")" pm_skills/MANIFEST.md || \

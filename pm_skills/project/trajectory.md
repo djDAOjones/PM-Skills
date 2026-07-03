@@ -13,7 +13,7 @@
      ID-level reconcile can find them all. -->
 <!-- Structure: newest phase/milestone at the top. Group items by the phase or
      milestone they belong to, with a one-line Outcome per phase. -->
-<!-- Budget: see AGENTS.md → "Memory size budgets". Over budget → prune-memory.md
+<!-- Budget: see pm_skills/memory-policy.md. Over budget → prune-memory.md
      moves the oldest phases to archive/trajectory/trajectory-NNNN-<range>.md and
      adds a row to archive/INDEX.md. Archives are append-only; never rewrite. -->
 

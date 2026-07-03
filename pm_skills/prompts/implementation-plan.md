@@ -21,6 +21,8 @@ Output:
 
 Rules:
 
+- Be terse: each output ≤ ~5 lines unless risk genuinely demands more;
+  write "none" / "n/a" where an output is empty.
 - Stay inside the approved scope.
 - Prefer minimal changes over broad cleanup.
 - Call out architectural, efficiency, or regression risks.

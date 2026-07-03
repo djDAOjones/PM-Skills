@@ -5,15 +5,20 @@ description: Run the design-before-code workflow for a task
 Before implementing anything, complete the design workflow and get
 user approval at each gate. Do not write code until all gates pass.
 
+This is the fully gated flow — use it for `[sign-off]` items and
+high-risk work. For everyday non-trivial tasks, prefer
+`pm_skills/integrations/checkpoint.md` (gates only at scope and
+design pick).
+
 1. State the goal.
    One sentence: what the user asked for.
 
 2. Read project context.
    Load the standard project context per `AGENTS.md` → "Before every
    task". If `AGENTS.md` is not loaded as a global rule, read it now.
-   Also read `pm_skills/project/backlog.md` (Active section) and
-   `pm_skills/project/decision-log.md` (latest 10 entries) for the
-   current task context.
+   Also read `pm_skills/project/backlog.md` (Active section) and scan
+   `pm_skills/project/decision-log.md` (latest 10 headings; open only
+   relevant bodies) for the current task context.
 
 3. Determine task size.
    Ask the user: "Is this a full 4-stage task or a quick task?"

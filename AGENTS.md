@@ -54,16 +54,19 @@ read-load review:
 - `UI-STANDARDS.md` — UI, controls, text, states, accessibility, or
   user-facing behaviour.
 - `DEV-INFRASTRUCTURE.md` (if it exists) — build, dev server,
-  versioning, or scripts.
+  versioning, or scripts. Exception: its **Quality gate** section is a
+  hot _sectional_ read at task close — `end-of-task.md` needs the
+  `check` command every task. Read that section only; not the file.
 
 **Hot sectional** — read by section only:
 
 - `pm_skills/project/backlog.md` — read only the **Active** section
   (open work: Current, Next, Icebox). Shipped work is not here — see
   `trajectory.md`.
-- `pm_skills/project/decision-log.md` — read only the **latest 10
-  entries**. Search older entries on demand when prior-decision
-  context is needed.
+- `pm_skills/project/decision-log.md` — scan the **headings of the
+  latest 10 entries** (`grep '^## '`), then open only the bodies
+  relevant to the task. Most tasks need 0–2. Search older entries on
+  demand when prior-decision context is needed.
 
 **Warm** — read on demand, not auto-read every task:
 
@@ -87,34 +90,26 @@ read-load review:
 
 ### Memory size budgets
 
-Memory files have word/entry budgets: **hard, prunable** limits on
-accreting files (`file-map.md`, the sectional `backlog.md` /
-`decision-log.md`, `trajectory.md`) and **soft** size guidelines on
-reference docs (see the table). The end-of-task update check flags
-overruns and proposes running `pm_skills/prompts/prune-memory.md`. Do
-not auto-prune — always propose first.
-
-| Scope | Soft limit | Action when exceeded |
-| --- | --- | --- |
-| Reference doc (`README`, `brief.md`, `architecture.md`, `conventions.md`, + project standards/process/infra docs) | soft ~3,500 words each | Not a prune target — reference docs don't accrete. If one is genuinely bloated, tighten it or split detail into a permanent contract file; never strip to hit a number. |
-| `file-map.md` (accreting) | 2,000 words | Propose `prune-memory.md`: strip accreted history (task tags, dates, test counts) to `archive/file-map-*-historical.md`, keep current roles. Floor = the irreducible current-role list; on a large codebase that may exceed 2,000, which is fine — strip noise, not signal. |
-| Every-task read load | structural (no aggregate word cap) | A fixed sum fires permanently on a mature project (≥ 5 hot files × the 2,000 file budget > any flat cap), so there is none. Healthy = each file within its own row above. If the always-read set keeps growing, review whether a hot read should move to _conditional_ or _warm_, or whether a reference doc has bloated. |
-| `backlog.md` Active | 1,500 words **or** ~40 open items (whichever trips first) | Propose `roadmap-refactor.md`: restructure by lifecycle, evict done-work, dedupe stale rounds. A low item count with high words means items are too verbose — tighten them. |
-| `backlog.md` shipped work | 0 — done `[x]` items do not live here | Move each to `trajectory.md` (one line) + `decision-log.md` (the why). Flagged by `end-of-task.md` and `doctor-memory.md`. |
-| `trajectory.md` | 2,000 words | Propose archiving the oldest phases to `archive/trajectory/`, keeping `archive/INDEX.md` current. |
-| `decision-log.md` live log | 20 entries (primary) **or** ~6,000 words | Propose an archive split to `archive/decision-log-*.md` (by whole month; by date-range when one month alone exceeds a budget). Entry count is the primary trigger; the word budget is a secondary guard against runaway entries — a healthy entry is ~150–300 words (Decision, Rationale, Alternatives, Link), not an essay. Keep at least the read-tier latest 10 live. |
-| `decision-log.md` oldest entry age | 90 days | Propose an archive split, oldest first — but only when ≥ 5 entries lie beyond the latest-10 read-tier floor (live log ≥ 15). Below that, note the overrun and skip: on low-velocity / sporadic projects the age budget keeps tripping with little to move, so the entry-count and word budgets are the meaningful triggers. |
-| `wish-list.md` open items | 25 items | Propose a triage pass (promote each into `backlog.md`, or cut). Never archive — the wish-list shrinks by triage, not by moving content to `archive/`. |
-| `tickets/<ITEM-ID>.md` (per-item, cold) | soft ~600 words each | Working detail for one open item; not counted in the every-task read load. Shrinks by lifecycle eviction, not archiving — deleted when the item ships or is cut. An orphan file (no matching open item) is structural, not a size issue: `roadmap-refactor.md` evicts it, `doctor-memory.md` flags it. |
-| `archive/` chunk | one epoch per file (whole month / migration boundary) | Chunk cold archives by **sequence boundary for INDEX browsability**, not size — they're never auto-read (grep + line-range only), so word count barely matters and an epoch bounds its own growth. Sub-split a single epoch only if it's genuinely unwieldy to grep; never split or merge epochs just to hit a number. Maintain `archive/INDEX.md`. |
+The budget table and overrun actions live in
+`pm_skills/memory-policy.md` — read it **only** during the end-of-task
+size check, a prune, a roadmap refactor, or a memory health check. It
+is not part of the every-task read load. Summary: accreting files
+(`file-map.md`, backlog Active, `decision-log.md`, `trajectory.md`)
+carry hard prunable budgets; reference docs carry soft guidelines
+only. When a budget trips, propose `pm_skills/prompts/prune-memory.md`
+— never auto-prune.
 
 ### Workflow
 
 1. For non-trivial work, follow the 4-stage prompt sequence in
    `pm_skills/prompts/`: `scoping.md` → `design-options.md` →
-   `implementation-plan.md` → `validation.md`. Get user sign-off on
-   scope before writing code. For small tasks, use
-   `pm_skills/prompts/quick-task.md` instead.
+   `implementation-plan.md` → `validation.md`. The default gating is
+   **checkpoint** (see `pm_skills/integrations/checkpoint.md`): stop
+   for user sign-off on the scope and the design-option pick — the two
+   gates where human judgement adds value — then run plan and
+   validation gateless, stating each assumption in one line. Use the
+   fully gated `feature.md` flow for `[sign-off]` items or when asked.
+   For small tasks, use `pm_skills/prompts/quick-task.md` instead.
 2. Search the full source tree before proposing changes. Check for
    existing tuneable values and UI controls before adding new ones.
 3. Exception: if the user explicitly invokes `auto-jazz` or

@@ -26,6 +26,7 @@ project**, not inside this source repo.
 | `pm_skills/MANIFEST.md` | `framework` |
 | `pm_skills/GUIDE.md` | `framework` |
 | `pm_skills/init.md` | `framework` |
+| `pm_skills/memory-policy.md` | `framework` |
 | `pm_skills/prompts/*` | `framework` |
 | `pm_skills/integrations/*` | `framework` |
 | `AGENTS.md` (project root) | `root-template` |

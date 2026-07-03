@@ -2,7 +2,7 @@
 
 <!-- Fill this in before or during your first implementation task. -->
 <!-- Skip at init if you're not sure yet — capture conventions as they emerge. -->
-<!-- Hot whole-file read. See AGENTS.md → "Memory size budgets" for limits. -->
+<!-- Hot whole-file read. See pm_skills/memory-policy.md for limits. -->
 
 ## Code style
 

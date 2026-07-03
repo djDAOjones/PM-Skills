@@ -33,6 +33,8 @@ Output:
 
 Rules:
 
+- Be terse: one line per passing check is enough; spend words only on
+  findings and risks.
 - Say "not applicable" for irrelevant checks.
 - Separate pre-existing issues from task-induced risks.
 - Keep it concrete and actionable.

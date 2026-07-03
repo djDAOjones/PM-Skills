@@ -22,6 +22,9 @@ Then:
 
 Rules:
 
+- Be terse: each per-option field ≤ ~3 lines; skip a field that adds
+  nothing for an option. The recommendation and its why deserve the
+  most words, not the option boilerplate.
 - Don't reopen scope.
 - Don't propose speculative refactors.
 - If this is early in the project, options may be about foundational choices (folder structure, patterns, libraries) rather than modifications to existing code.

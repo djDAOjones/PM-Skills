@@ -14,7 +14,7 @@
      - Idea in one line — (from: 2026-05-30 task) -->
 <!-- Soft cap ~25 open items. Over budget → end-of-task flags it and
      prune-memory.md runs a forced triage pass (not an archive). See
-     AGENTS.md → "Memory size budgets". -->
+     pm_skills/memory-policy.md. -->
 
 ## Open
 

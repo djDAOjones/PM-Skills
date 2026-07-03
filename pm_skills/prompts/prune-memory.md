@@ -3,8 +3,9 @@
 Run this when the end-of-task size check flags any project memory
 file over budget, or when the user requests a memory prune.
 
-Budgets are defined in AGENTS.md → "Memory size budgets". Do not
-duplicate the numbers here — read them from AGENTS.md.
+Budgets are defined in `pm_skills/memory-policy.md`. Do not duplicate
+the numbers here — read them from that file. Tier names come from
+AGENTS.md → "Read tiers".
 
 This procedure is single-pass and minimises its own meta-cost. Use
 plain shell (`wc`, `head`, `tail`, `grep`, `cp`, `mv`, output
@@ -14,12 +15,13 @@ stop and report.
 ## 1. Detect
 
 Word-count each hot whole-file read listed in `AGENTS.md` →
-"Read tiers": the reference docs (`README.md`, `brief.md`,
+"Read tiers" against the budgets in `pm_skills/memory-policy.md`: the
+reference docs (`README.md`, `brief.md`,
 `architecture.md`, `conventions.md`, + any project-added standards /
 process / infra docs) against their soft per-doc guideline, and
 `file-map.md` against its hard accreting budget. Do **not** sum them
 into a single hot-set cap — there is no aggregate word budget (see
-AGENTS.md). Count the backlog **Active** words and open items, and any
+`memory-policy.md`). Count the backlog **Active** words and open items, and any
 shipped `[x]` items still in `backlog.md` — anchor the count to list
 items (`grep -cE '^\s*[-*] \[x\]'`) so the status-legend line is not a
 false positive. Word-count `trajectory.md`. Count both entries and
@@ -190,5 +192,5 @@ prompts.
   live file. False positives are worse than false negatives —
   content can always be archived next session.
 - Tier names ("hot whole-file" — reference / accreting / conditional —
-  "hot sectional", "warm", "cold") and budget numbers come from
-  AGENTS.md only. Do not redefine here.
+  "hot sectional", "warm", "cold") come from AGENTS.md; budget numbers
+  come from `pm_skills/memory-policy.md` only. Do not redefine here.

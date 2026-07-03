@@ -2,7 +2,7 @@
 
 <!-- Generated during project initialization. Review and edit as needed. -->
 <!-- Update this file when major structural decisions change. -->
-<!-- Hot whole-file read. See AGENTS.md → "Memory size budgets" for limits. -->
+<!-- Hot whole-file read. See pm_skills/memory-policy.md for limits. -->
 <!-- Describe current structure only. Move historical batch notes to decision-log.md. -->
 
 ## Tech stack

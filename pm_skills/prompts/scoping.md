@@ -15,6 +15,9 @@ Output:
 
 Rules:
 
+- Be terse: each output ≤ ~5 lines unless risk genuinely demands more;
+  write "n/a" for an output with nothing to say. Output tokens are the
+  expensive ones — spend them on substance, not restatement.
 - If the current backlog item carries the `[detail]` flag, read its
   `pm_skills/project/tickets/<ITEM-ID>.md` first — it holds prior context,
   research, and acceptance detail for this item.

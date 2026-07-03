@@ -22,8 +22,10 @@ Conservative defaults to use when no user input is available:
 - If a check in stage 4 trips a real risk, narrow scope rather than
   push through.
 
-Hard prohibitions (stop and ask before doing any of these, even in
-auto-jazz mode):
+Hard prohibitions — this list is the **canonical copy**; the other
+gateless workflows (`auto-jazz-lite.md`, `checkpoint.md`,
+`init-mvp.md`) reference it rather than restating it. Stop and ask
+before doing any of these, even in auto-jazz mode:
 
 - Adding a runtime dependency.
 - Modifying a file listed in `AGENTS.md` → "Files to never edit" or
@@ -45,9 +47,9 @@ not proceed on assumption.
 2. Read project context.
    Load the standard project context per `AGENTS.md` → "Before every
    task". If `AGENTS.md` is not loaded as a global rule, read it now.
-   Also read `pm_skills/project/backlog.md` (Active section) and
-   `pm_skills/project/decision-log.md` (latest 10 entries) for the
-   current task context.
+   Also read `pm_skills/project/backlog.md` (Active section) and scan
+   `pm_skills/project/decision-log.md` (latest 10 headings; open only
+   relevant bodies) for the current task context.
 
 --- FULL 4-STAGE WORKFLOW (no approval gates) ---
 

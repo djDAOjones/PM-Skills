@@ -89,21 +89,18 @@ In the same chat (or a new one), paste this:
 Read:
 - pm_skills/project/brief.md
 - pm_skills/project/architecture.md
+- pm_skills/project/backlog.md (the template — its comments define
+  the canonical ticket grammar and flags)
 
 Based on the brief and architecture, propose an initial backlog of
 8–12 OPEN tasks that would take this project from zero to a working
 first milestone. The backlog holds open work only — there is no
 Completed section; shipped work will later move to trajectory.md.
 
-Use the ticket grammar from pm_skills/project/backlog.md:
-- Quick items stay one line:  - [ ] Short title — one-sentence outcome.
-- Non-trivial or sign-off items add two lines so intent survives
-  compression:
-    - [ ] **ID Short title** [flags]
-      Intent: the outcome wanted.
-      Done when: the acceptance condition.
-  Optional flags: [sign-off] (scope sign-off first), [blocked: X],
-  [spike] (timeboxed investigation).
+Use the ticket grammar exactly as the backlog.md template comments
+define it: quick items one line; non-trivial or sign-off items an
+Intent / Done-when pair plus optional flags ([sign-off], [blocked: X],
+[spike]).
 
 Group tasks under milestone headings (Current milestone / Next
 milestone), with an Icebox for anything deferred. Order by dependency.
@@ -420,7 +417,11 @@ Open `project/backlog.md` and pick the first task.
 If your AI tool supports workflows and you copied `integrations/`
 in Step 6, run one of the task workflows and state your task:
 
-- `feature.md` — full 4-stage workflow with approval gates (default).
+- `checkpoint.md` — 4-stage workflow gated only at scope and design
+  pick; plan and validation run gateless with stated assumptions
+  (default).
+- `feature.md` — full 4-stage workflow with approval gates at every
+  stage. Use for `[sign-off]` items and high-risk work.
 - `bugfix.md` — diagnosis-before-fix workflow with approval gates.
 - `auto-jazz.md` — same 4 stages as `feature.md` but no approval
   gates. The agent picks the recommended option, states each

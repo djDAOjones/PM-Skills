@@ -81,15 +81,26 @@ Update each of the following if relevant to this task:
 
 ## 4. Run the memory size check
 
-Budgets are defined in `AGENTS.md` → "Memory size budgets". Do not
-duplicate the numbers here.
+Budgets are defined in `pm_skills/memory-policy.md`. Do not duplicate
+the numbers here.
+
+**Fast path (most tasks).** If this task touched ≤ 2 memory files and
+added no material content to an accreting file, count only the files
+touched and skip the rest of this section — note "size check: fast
+path" in the report. Run the **full sweep** below when the task did
+real memory work (a prune, refactor, or shipped milestone), touched
+several memory files, or if no full sweep has run in the last ~5
+tasks (`doctor-memory.md` also covers this periodically).
+
+Full sweep:
 
 - Word-count `file-map.md` against its hard accreting budget and each
   reference doc (`README.md`, `brief.md`, `architecture.md`,
   `conventions.md`, + any project-added standards/process/infra docs)
   against its soft guideline. Do not sum them into an aggregate hot-set
   cap — there isn't one. The conditional reads (`UI-STANDARDS.md`,
-  `DEV-INFRASTRUCTURE.md`) are not part of the every-task check.
+  `DEV-INFRASTRUCTURE.md`) are not part of the every-task check (step 1
+  reads only the Quality gate section, not the whole file).
 - Count the backlog **Active** section's words and open items, and
   confirm **no `[x]` list items remain** in `backlog.md`
   (`grep -cE '^\s*[-*] \[x\]'`, so the status-legend line is not a false
@@ -135,7 +146,7 @@ Output a one-line summary:
 - Whether the quality gate (`check`) passed (or n/a).
 - Whether the runtime was verified to boot to a ready state (or n/a).
 - Which memory files were updated.
-- Which budgets were checked.
+- Which budgets were checked (or "size check: fast path").
 - Whether any tripped (and the proposal made if so).
 
 Present the report to the user before closing the task.

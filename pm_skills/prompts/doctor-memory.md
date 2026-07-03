@@ -9,8 +9,9 @@ The end-of-task size check catches *word and entry budgets*. This catches
 *structural* drift: done-work in the wrong place, stale paths, duplication,
 version lag, and oversized archives.
 
-Budgets and tier names come from `AGENTS.md` → "Memory size budgets" and
-"Read tiers". Read them from there; do not restate the numbers.
+Budgets come from `pm_skills/memory-policy.md`; tier names from
+`AGENTS.md` → "Read tiers". Read them from there; do not restate the
+numbers.
 
 Use plain shell (`wc`, `grep`, `ls`, `sed`). No scripts, no edits.
 

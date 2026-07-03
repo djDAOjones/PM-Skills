@@ -1,6 +1,6 @@
 # Project Brief
 
-<!-- Hot whole-file read. See AGENTS.md → "Memory size budgets" for limits. -->
+<!-- Hot whole-file read. See pm_skills/memory-policy.md for limits. -->
 
 ## What are we building?
 

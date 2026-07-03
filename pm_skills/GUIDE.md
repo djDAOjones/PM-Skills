@@ -83,6 +83,7 @@ CHANGELOG.md     Append-only release log; each entry is an upgrade plan.
 MANIFEST.md      Path classes: framework / template / memory / scaffold.
 GUIDE.md         This guide — folder contents, memory tiers, workflows.
 init.md          Step-by-step project initialization (the manual path).
+memory-policy.md Memory size budgets + overrun actions (read at task close only).
 
 project/         Durable project memory. Fill once, maintain ongoing.
   brief.md         What we're building.
@@ -118,6 +119,7 @@ integrations/    Optional tool-specific workflows.
   init-mvp.md        Sign off the foundation, then autonomous MVP build.
   spec-to-prod.md    Spec to deployed product, in signed-off scope bands.
   feature.md         Full task workflow with approval gates.
+  checkpoint.md      4-stage workflow, gates only at scope + design pick (default).
   bugfix.md          Diagnosis-before-fix workflow for bugs.
   auto-jazz.md       Full 4-stage workflow, no approval gates.
   auto-jazz-lite.md  Fast 2-stage workflow, no approval gates.
@@ -143,20 +145,24 @@ end-of-task housekeeping (`prompts/end-of-task.md`).
 
 Choose the workflow that fits the task:
 
-- **`feature.md`** — full task workflow with approval gates between
-  scoping, design, plan, and validation. Use by default.
+- **`checkpoint.md`** — the recommended default. Same four stages,
+  but gates only where human judgement adds value: you approve the
+  scope and pick the design option; plan and validation run gateless
+  with stated assumptions. Two round-trips instead of four.
+- **`feature.md`** — fully gated: approval between scoping, design,
+  plan, and validation. Use for `[sign-off]` items and high-risk work.
 - **`bugfix.md`** — diagnosis-before-fix workflow with approval gates.
   Use for bugs.
-- **`auto-jazz.md`** — same internal stages as `feature.md` but no
-  approval gates. The agent picks the recommended option, states
-  each assumption in one line, and continues. Hard prohibitions
-  still apply (see the file). Use when you trust the agent end-to-end.
+- **`auto-jazz.md`** — same internal stages but no approval gates. The
+  agent picks the recommended option, states each assumption in one
+  line, and continues. Hard prohibitions still apply (see the file).
+  Use when you trust the agent end-to-end.
 - **`auto-jazz-lite.md`** — fast two-stage flow with no approval
   gates. Stage 1 is a combined scope-and-plan; stage 2 covers
   implementation, validation, verification, and housekeeping. Hard
   prohibitions still apply. Use for small or low-risk tasks.
 
-All four workflows search the source tree before changing code and
+All five workflows search the source tree before changing code and
 run the same end-of-task housekeeping: the quality gate (`check`),
 memory updates, size check, and a closing report.
 
@@ -184,6 +190,10 @@ go-ahead. Confirm, then continue with the matching workflow below.
 5. Paste `prompts/validation.md` → confirm readiness.
 6. "Go ahead and implement."
 7. End of task → paste `prompts/end-of-task.md`.
+
+Checkpoint variant (recommended): after step 3, say "run plan and
+validation without stopping, state assumptions, then implement" —
+steps 4–5 then run gateless, saving two round-trips.
 
 **Small tasks (single-stage):**
 
@@ -230,10 +240,11 @@ stay current.
 ## Keeping memory lean
 
 Project memory is read in tiers so context stays bounded as the
-project grows. The full policy, tier definitions, and budget numbers
-live in `AGENTS.md` → "Before every task". This guide does not
-restate them — read them from `AGENTS.md` so there is one source of
-truth.
+project grows. Tier definitions live in `AGENTS.md` → "Before every
+task"; the budget numbers and overrun actions live in
+`pm_skills/memory-policy.md`, read only at task close (size check,
+prune, refactor, health check) — not part of the every-task load.
+This guide does not restate either — one source of truth each.
 
 The end-of-task update runs a size check. When any file crosses its
 budget, the agent proposes running `prompts/prune-memory.md` — never

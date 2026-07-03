@@ -24,22 +24,11 @@ Conservative defaults to use when no user input is available:
   stop and recommend switching to `auto-jazz` (or `feature.md` if the
   user wants approval gates).
 
-Hard prohibitions (stop and ask before doing any of these, even in
-auto-jazz-lite mode):
-
-- Adding a runtime dependency.
-- Modifying a file listed in `AGENTS.md` → "Files to never edit" or
-  `DEV-INFRASTRUCTURE.md` → "Files agents must not hand-edit".
-- Modifying a module listed in `AGENTS.md` → "Protected
-  infrastructure" (if that section is populated).
-- Destructive migrations, schema-altering operations, or data
-  deletion.
-- Refactors touching more than 5 files that were not explicitly in
-  the stated scope.
-- Disabling, weakening, or deleting an existing test.
-
-If any of these is needed, stop and ask one concise question. Do
-not proceed on assumption.
+Hard prohibitions: exactly the canonical list in
+`pm_skills/integrations/auto-jazz.md` — read it there (dependency
+adds, never-edit/protected files, destructive migrations, >5-file
+refactors outside scope, weakening tests). If any of these is needed,
+stop and ask one concise question. Do not proceed on assumption.
 
 1. State the goal.
    One sentence: what the user asked for.
@@ -47,9 +36,9 @@ not proceed on assumption.
 2. Read project context.
    Load the standard project context per `AGENTS.md` → "Before every
    task". If `AGENTS.md` is not loaded as a global rule, read it now.
-   Also read `pm_skills/project/backlog.md` (Active section) and
-   `pm_skills/project/decision-log.md` (latest 10 entries) for the
-   current task context.
+   Also read `pm_skills/project/backlog.md` (Active section) and scan
+   `pm_skills/project/decision-log.md` (latest 10 headings; open only
+   relevant bodies) for the current task context.
 
 --- STAGE 1: SCOPE + PLAN (no approval gate) ---
 
