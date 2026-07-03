@@ -43,10 +43,12 @@ const SAFE_PATH_RE = /^[\w./-]+$/;
 
 /**
  * Path patterns that are documented templates/examples, not real files
- * in this repo: the on-demand memory archives (created only when a
- * project prunes). Matched against an `archive` segment anywhere.
+ * in this repo: on-demand memory stores that ship blank — archives
+ * (created when a project prunes) and per-item ticket detail files
+ * (created on demand). Matched against an `archive` or `tickets` segment
+ * anywhere.
  */
-const IGNORE = [/(^|\/)archive(\/|$)/];
+const IGNORE = [/(^|\/)archive(\/|$)/, /(^|\/)tickets(\/|$)/];
 
 /**
  * Bases a repo path may be written relative to. Framework docs reference

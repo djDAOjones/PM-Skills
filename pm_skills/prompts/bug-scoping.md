@@ -21,6 +21,7 @@ Output:
 Rules:
 
 - If the project has a diagnostics path (`AGENTS.md` → "Self-explaining runtime"), use the redacted diagnostic bundle as primary evidence and ask for it before diagnosing if it wasn't provided. If the project has no diagnostics path, note that absence as the first finding — a bug is the cheapest moment to add the minimal structured logger + global error/unhandledrejection hook (`DEV-INFRASTRUCTURE.md` → "Maintainer diagnostics").
+- If this bug is tracked as a backlog item carrying the `[detail]` flag, read its `pm_skills/project/tickets/<ITEM-ID>.md` for prior context before diagnosing.
 - Search the codebase before diagnosing. Cite file paths and line ranges as evidence.
 - Prefer upstream fixes over downstream workarounds.
 - If the root cause is uncertain, state competing hypotheses and what evidence would distinguish them.

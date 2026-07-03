@@ -62,7 +62,10 @@ Output, concisely:
 2. **Why it's next** — one or two lines (milestone order, dependency,
    or in-progress continuation).
 3. **What it touches** — likely files or areas, grounded in a quick
-   source-tree check. A pointer, not full scoping.
+   source-tree check. A pointer, not full scoping. If the item carries
+   the `[detail]` flag, skim its `pm_skills/project/tickets/<ITEM-ID>.md`
+   just enough to ground this line; the full read happens in the chosen
+   workflow, not here.
 4. **Recommended workflow** — full 4-stage / quick / bug — with one
    line of rationale.
 5. **Ready-to-paste task statement** — in the matching

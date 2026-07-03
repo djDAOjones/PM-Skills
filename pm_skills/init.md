@@ -488,6 +488,9 @@ trail of shipped work.
   A fresh project has no archive folder.
 - Archives are cold (never auto-read). Search via grep when
   explicitly relevant.
+- `pm_skills/project/tickets/` is created lazily the first time an
+  item needs a `[detail]` detail file. A fresh project has none, and
+  ticket files are cold too — read only for the active `[detail]` item.
 
 You should not need to touch any of this manually until a budget
 trips. When that happens, approve the prune proposal and let the

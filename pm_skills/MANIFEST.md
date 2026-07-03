@@ -39,6 +39,7 @@ project**, not inside this source repo.
 | `pm_skills/project/wish-list.md` | `project-memory` |
 | `pm_skills/project/file-map.md` | `project-memory` |
 | `pm_skills/project/decision-log.md` | `project-memory` |
+| `pm_skills/project/tickets/*` | `project-memory` |
 | `pm_skills/project/archive/*` | `project-memory` |
 | `pm_skills/scaffold/*` | `scaffold` |
 

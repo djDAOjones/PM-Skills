@@ -41,6 +41,9 @@ Produce a short findings list. Look for:
   decision-log or with shipped reality.
 - **Intent gaps** — non-trivial open items with no statement of intent
   or acceptance condition (see the ticket grammar in step 4).
+- **Orphan ticket files** — any `pm_skills/project/tickets/<ITEM-ID>.md`
+  with no matching open backlog item (its item shipped or was cut but the
+  detail file lingered), and any `[detail]` flag whose file is missing.
 
 ## 3. Propose (diff-style, before write)
 
@@ -48,8 +51,9 @@ Present a single proposal the user can approve in one read:
 
 1. **Cleaned queue** — the open items, regrouped into the backlog
    Active lifecycle (Current / Next / Icebox) and ordered by dependency.
-2. **Evictions** — done-work to move to `trajectory.md` (one line each)
-   and stale history sections to drop (already captured in the log).
+2. **Evictions** — done-work to move to `trajectory.md` (one line each),
+   stale history sections to drop (already captured in the log), and
+   orphan ticket files to delete (with the item gone, the file goes too).
 3. **Merges / cuts** — duplicates folded; dead items cut, with reason.
 4. **Promotions** — wish-list items worth pulling in, placed relative to
    existing items with a one-line above/below rationale.
@@ -69,6 +73,10 @@ sign-off. Never rewrite the roadmap silently.
   shipped ID stays individually greppable for a reconcile.
 - Drop stale history sections only once their content is confirmed to
   live in the decision-log / trajectory. If unsure, leave it.
+- For any item leaving the backlog, delete its
+  `pm_skills/project/tickets/<ITEM-ID>.md` once its durable conclusions
+  are in the decision-log / trajectory; and clear any `[detail]` flag
+  whose file is missing.
 - Apply only the promotions and cuts the user confirmed.
 
 Non-trivial open items use a tiny ticket grammar — enough to survive

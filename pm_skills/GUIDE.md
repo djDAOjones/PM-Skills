@@ -65,8 +65,11 @@ every task"):
   `decision-log.md` latest 10).
 - **Warm** — `pm_skills/project/trajectory.md` (shipped-work
   narrative) is read on demand, not every task.
-- **Cold** — `pm_skills/project/wish-list.md` (capture inbox) and
-  `pm_skills/project/archive/*` are never auto-read.
+- **Cold** — `pm_skills/project/wish-list.md` (capture inbox),
+  `pm_skills/project/archive/*`, and the optional per-item
+  `pm_skills/project/tickets/<ITEM-ID>.md` detail files are never
+  auto-read (the active item's ticket file is read only when its backlog
+  line carries `[detail]`).
 
 AI tools that support global rules load `AGENTS.md` automatically.
 For other tools, the session-start prompts include explicit read
@@ -211,6 +214,7 @@ executes the documented pipeline, and verifies the live result.
 | `architecture.md` | When adding major modules or changing the tech stack. |
 | `conventions.md` | When a new convention is established or changed. |
 | `backlog.md` | End of every task — remove shipped items, add follow-ups (open work only). |
+| `tickets/<ITEM-ID>.md` | Optional, per non-trivial item. Created when an item needs detail beyond its line (set the `[detail]` flag); deleted when it ships or is cut. |
 | `trajectory.md` | End of every task that ships — one line per shipped item, grouped by phase. |
 | `wish-list.md` | When an out-of-scope idea surfaces — append one line. Drained by triage at `next-batch.md`. |
 | `file-map.md` | When files are created, renamed, or deleted. |

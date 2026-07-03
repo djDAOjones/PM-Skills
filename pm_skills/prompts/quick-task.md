@@ -12,6 +12,8 @@ Output:
 
 Rules:
 
+- If this task is a backlog item carrying the `[detail]` flag, read its
+  `pm_skills/project/tickets/<ITEM-ID>.md` first for prior context.
 - Search the codebase first.
 - Keep scope minimal.
 - Prefer existing patterns.

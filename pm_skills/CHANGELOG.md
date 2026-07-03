@@ -25,6 +25,68 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 2.8.0 — 2026-06-28
+
+Adds **optional per-item detail files** for backlog items. A non-trivial
+item can now carry a cold-tier `pm_skills/project/tickets/<ITEM-ID>.md`
+holding its research, options explored, acceptance detail, and links —
+read **only** when that item is the active task, so the backlog Active
+section stays terse and the every-task read load is unchanged. The item's
+backlog line marks the file with a new `[detail]` flag.
+
+Working context only: the decision rationale (the "why") still lives only
+in `decision-log.md`. The file is deleted when the item ships or is cut,
+so the folder never becomes a graveyard — `end-of-task.md` and
+`roadmap-refactor.md` evict, `doctor-memory.md` flags orphans.
+
+Minor: new optional capability and a new (lazily-created) memory folder,
+backward compatible. Existing projects are unaffected until they opt in.
+
+### Added
+
+- `pm_skills/project/tickets/*` (`project-memory`) — optional per-item
+  detail files, created lazily on first use (like `archive/`). Declared
+  in `MANIFEST.md`.
+- `AGENTS.md` (`root-template`) — a Cold-tier read rule, a budget row
+  (soft ~600 words each), and a document-ownership row for ticket files.
+- `[detail]` backlog flag — documented in `pm_skills/project/backlog.md`'s
+  ticket-grammar comment.
+
+### Changed
+
+- `pm_skills/prompts/scoping.md`, `next-batch.md`, `quick-task.md`,
+  `bug-scoping.md` — read the active item's ticket file when it carries
+  `[detail]`; scoping persists overflow context into it.
+- `pm_skills/prompts/end-of-task.md` — ticket-file lifecycle (fold into
+  the log/trajectory, then delete on ship/cut) and an orphan sweep in the
+  size check.
+- `pm_skills/prompts/roadmap-refactor.md`, `doctor-memory.md` — detect and
+  evict orphan ticket files and dangling `[detail]` flags.
+- `pm_skills/GUIDE.md`, `pm_skills/prompts/session-start.md` — wire the
+  new path into the Cold tier and the keeping-memory-fresh table.
+- `pm_skills/init.md`, `pm_skills/integrations/init-project.md` — note
+  that `pm_skills/project/tickets/` is lazily created and cold, parallel
+  to the existing `archive/` note.
+
+### Upgrade actions
+
+- `AGENTS.md` (`root-template`): on the 3-way merge, take the new
+  Cold-tier ticket bullet, the `tickets/<ITEM-ID>.md` budget row, and the
+  `project/tickets/` document-ownership row; preserve every populated
+  section verbatim.
+- `pm_skills/prompts/*`, `pm_skills/init.md`,
+  `pm_skills/integrations/init-project.md`, `pm_skills/GUIDE.md`,
+  `pm_skills/MANIFEST.md` (`framework`): overwritten wholesale after the
+  Step 4 customisation check. No project action.
+- `pm_skills/project/backlog.md` (`project-memory`): additive only — the
+  `[detail]` flag and detail-file convention are added to the
+  ticket-grammar comment. No migration; existing items are unaffected;
+  adopt the flag when an item needs detail.
+- No paths removed. `pm_skills/project/tickets/` is created lazily on
+  first use; nothing to create at upgrade.
+
+---
+
 ## 2.7.3 — 2026-06-16
 
 Arrow-glyph consistency in distributed-template comments. Three shipped

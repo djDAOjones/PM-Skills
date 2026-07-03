@@ -127,7 +127,9 @@ MVP, use `pm_skills/integrations/init-mvp.md` instead.
 
     Note: `pm_skills/project/archive/` should NOT exist yet — it is
     created lazily on the first run of
-    `pm_skills/prompts/prune-memory.md`.
+    `pm_skills/prompts/prune-memory.md`. Likewise
+    `pm_skills/project/tickets/` should NOT exist yet — it is created
+    lazily the first time an item needs a `[detail]` detail file.
 
     Report what is complete and what is missing.
     If everything is ready, tell the user to pick their first task

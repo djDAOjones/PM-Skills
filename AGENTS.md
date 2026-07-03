@@ -78,6 +78,12 @@ read-load review:
   ideas" below); never auto-load.
 - `pm_skills/project/archive/*.md` — historical content moved out of
   hot files. Search via grep when explicitly relevant; never auto-load.
+- `pm_skills/project/tickets/<ITEM-ID>.md` — optional per-item detail
+  files for non-trivial backlog items (research, exploration, acceptance
+  detail, links). Read **only** the file for the item that is the current
+  task, and only when its backlog line carries the `[detail]` flag; never
+  auto-load the folder. Working context only — the decision rationale
+  (the "why") still lives only in `decision-log.md`.
 
 ### Memory size budgets
 
@@ -99,6 +105,7 @@ not auto-prune — always propose first.
 | `decision-log.md` live log | 20 entries (primary) **or** ~6,000 words | Propose an archive split to `archive/decision-log-*.md` (by whole month; by date-range when one month alone exceeds a budget). Entry count is the primary trigger; the word budget is a secondary guard against runaway entries — a healthy entry is ~150–300 words (Decision, Rationale, Alternatives, Link), not an essay. Keep at least the read-tier latest 10 live. |
 | `decision-log.md` oldest entry age | 90 days | Propose an archive split, oldest first — but only when ≥ 5 entries lie beyond the latest-10 read-tier floor (live log ≥ 15). Below that, note the overrun and skip: on low-velocity / sporadic projects the age budget keeps tripping with little to move, so the entry-count and word budgets are the meaningful triggers. |
 | `wish-list.md` open items | 25 items | Propose a triage pass (promote each into `backlog.md`, or cut). Never archive — the wish-list shrinks by triage, not by moving content to `archive/`. |
+| `tickets/<ITEM-ID>.md` (per-item, cold) | soft ~600 words each | Working detail for one open item; not counted in the every-task read load. Shrinks by lifecycle eviction, not archiving — deleted when the item ships or is cut. An orphan file (no matching open item) is structural, not a size issue: `roadmap-refactor.md` evicts it, `doctor-memory.md` flags it. |
 | `archive/` chunk | one epoch per file (whole month / migration boundary) | Chunk cold archives by **sequence boundary for INDEX browsability**, not size — they're never auto-read (grep + line-range only), so word count barely matters and an epoch bounds its own growth. Sub-split a single epoch only if it's genuinely unwieldy to grep; never split or merge epochs just to hit a number. Maintain `archive/INDEX.md`. |
 
 ### Workflow
@@ -326,6 +333,7 @@ See `DEV-INFRASTRUCTURE.md` for the concrete list of protected paths.
 | `UI-STANDARDS.md` | UI, accessibility, usability rules, diagnostics affordance | New token systems or UI conventions established |
 | `DEV-INFRASTRUCTURE.md` | Build, dev server, versioning, scripts, runtime lifecycle, maintainer diagnostics | Build, runtime, or deployment decisions change |
 | `project/` memory files | Brief, architecture, backlog, wish-list, trajectory, file map, conventions, decision log | End of every task session |
+| `project/tickets/` | Optional per-item detail for open backlog items (cold; read only for the active item) | Created when an item needs detail beyond its backlog line; deleted when it ships or is cut |
 | `project/archive/` | Historical content moved out of hot files, indexed in `archive/INDEX.md` | Only via `pm_skills/prompts/prune-memory.md` or `roadmap-refactor.md` |
 
 When in doubt: unconditional invariant → `AGENTS.md`. UI convention →

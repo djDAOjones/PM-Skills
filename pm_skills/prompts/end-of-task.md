@@ -48,6 +48,13 @@ Update each of the following if relevant to this task:
 - `pm_skills/project/backlog.md` — when this task ships, **remove** its
   item (there is no Completed section); add any follow-ups to Active as
   open items. If the task isn't finished, update its status in place.
+- `pm_skills/project/tickets/<ITEM-ID>.md` — if the active item carries
+  the `[detail]` flag: when it ships or is cut, fold any durable
+  conclusions into `decision-log.md` (the why) + `trajectory.md` (the
+  outcome), then **delete** the ticket file — it does not outlive the
+  item. If the item continues, update it with new context (soft ~600
+  words). If scoping created one this task, confirm the `[detail]` flag
+  is on the item.
 - `pm_skills/project/trajectory.md` — when this task ships, add ONE
   line under the current phase: `ITEM-ID — outcome (date) — see
   decision-log`. Compress on ship: outcome here, why in the log, file
@@ -93,6 +100,10 @@ duplicate the numbers here.
   entries tight (~150–300 words) so the word budget flags runaway
   entries, not normal density.
 - Count open items in `wish-list.md`.
+- If `pm_skills/project/tickets/` exists: word-count each file against its
+  soft ~600-word guideline, and confirm every ticket file maps to an open
+  backlog item that carries `[detail]` (`ls` the folder, grep the backlog)
+  — an orphan left by a shipped or cut item must go.
 
 If any budget is exceeded:
 
@@ -111,6 +122,9 @@ If any budget is exceeded:
   a structural issue, not a size one: propose `roadmap-refactor.md`
   (move shipped work to `trajectory.md`, restructure the queue) rather
   than a generic prune.
+- An orphan ticket file (no matching open `[detail]` item) is structural
+  too: delete it here if its item shipped/was cut this task, else propose
+  `roadmap-refactor.md` to sweep orphans.
 - Propose running `pm_skills/prompts/prune-memory.md` and wait for
   user approval.
 

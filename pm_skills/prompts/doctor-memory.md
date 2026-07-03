@@ -66,6 +66,13 @@ Detail | Proposed action**.
    resolve them.
    WARN. Action: maintainer review.
 
+9. **Orphan ticket files** (only if `pm_skills/project/tickets/` exists) —
+   for each `tickets/*.md`, confirm a matching open backlog item exists
+   and carries `[detail]`; and for each `[detail]` flag in the backlog,
+   confirm its file exists.
+   WARN on an orphan file (item shipped/cut, file lingered) or a dangling
+   flag (file missing). Action: `roadmap-refactor.md`.
+
 ## Report
 
 - Output the health table, FAILs first.

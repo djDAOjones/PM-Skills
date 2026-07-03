@@ -35,6 +35,7 @@ list below is a quick reference — `AGENTS.md` is authoritative.
 
 - `pm_skills/project/wish-list.md` — capture inbox; read only during triage (see `next-batch.md`).
 - `pm_skills/project/archive/*.md` — search via grep only when explicitly relevant.
+- `pm_skills/project/tickets/<ITEM-ID>.md` — optional per-item detail; read only the active item's file, and only when its backlog line carries `[detail]`.
 
 ## Then state the task
 

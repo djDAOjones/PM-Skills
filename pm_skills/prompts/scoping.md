@@ -15,6 +15,15 @@ Output:
 
 Rules:
 
+- If the current backlog item carries the `[detail]` flag, read its
+  `pm_skills/project/tickets/<ITEM-ID>.md` first — it holds prior context,
+  research, and acceptance detail for this item.
+- If scoping produces context worth keeping beyond the backlog line
+  (research, options explored, acceptance detail, links), persist it to
+  `pm_skills/project/tickets/<ITEM-ID>.md` and add the `[detail]` flag to
+  the item. Keep it to working detail (soft ~600 words); the decision
+  rationale still goes to `decision-log.md` at end-of-task. Don't create a
+  file for an item that fits its line.
 - Search the codebase before drawing conclusions.
 - Prefer existing patterns over new abstractions.
 - Flag any efficiency, persistence, or architectural concerns.
