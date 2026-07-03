@@ -9,7 +9,8 @@
     "lint:docs": "node scripts/check-docs.mjs",
     "lint:spell": "npx --yes cspell \"**/*.md\"",
     "lint:editorconfig": "npx --yes editorconfig-checker",
-    "check": "npm run lint"
+    "check": "npm run lint",
+    "prepare": "git config core.hooksPath .githooks"
   },
   "devDependencies": {
     "cspell": "^10.0.1",

@@ -15,9 +15,10 @@ The framework is overwhelmingly Markdown. Two classes of file live here:
   and its upgrade class is declared in
   [`pm_skills/MANIFEST.md`](./pm_skills/MANIFEST.md).
 - **Source-repo-only** — never distributed, never copied into a consuming
-  project: `package.json`, `package-lock.json`, `.github/`, `scripts/`,
-  the root `.editorconfig`, `.markdownlint.json`, `.markdownlint-cli2.jsonc`,
-  the root `.gitignore`, `CONTRIBUTING.md`, and `README.md`.
+  project: `package.json`, `package-lock.json`, `.github/`, `.githooks/`,
+  `scripts/`, the root `.editorconfig`, `.markdownlint.json`,
+  `.markdownlint-cli2.jsonc`, `.markdownlintignore`, the root
+  `.gitignore`, `CONTRIBUTING.md`, and `README.md`.
 
 Rule: do **not** add a source-only tooling path to `MANIFEST.md`, and the
 upgrade workflow must never carry these files into a consuming project.
@@ -64,6 +65,11 @@ Configuration:
   `gitignore: true` so the linter skips whatever `.gitignore` skips
   (`node_modules/`, `user_crud/`) — one ignore source, no separate ignore
   list to drift. (markdownlint-cli2 does not honour `.markdownlintignore`.)
+- `.markdownlintignore` exists **for the editor extension only**
+  (vscode-markdownlint honours it; the CLI does not). It mirrors the
+  gitignored paths so the IDE Problems panel matches the CLI gate —
+  without it the extension flags scratch files the gate deliberately
+  skips. Keep its two lists in step with `.gitignore`.
 - cspell: `cspell.json`. `language` accepts `en,en-GB`; `useGitignore`
   skips ignored paths; the `words` array is the curated domain
   vocabulary (coined terms and jargon the bundled dictionaries miss).
@@ -102,6 +108,21 @@ exclude `node_modules` from cloud sync first.
 every push to the default branch and every pull request. It runs in a
 clean Ubuntu runner, so the cloud-sync constraints above never apply to
 CI.
+
+## Pre-commit hook
+
+A tracked hook at `.githooks/pre-commit` runs `npm run check` before
+every commit, so a red tree cannot be committed by accident. Wire it
+once with:
+
+```text
+git config core.hooksPath .githooks
+```
+
+(The `prepare` script in `package.json` does this automatically on any
+`npm install`/`npm ci`.) Bypass a single commit in an emergency with
+`git commit --no-verify` — CI still runs the same gate, so a bypassed
+red commit fails on push.
 
 ## Dependencies
 

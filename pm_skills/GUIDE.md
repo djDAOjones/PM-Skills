@@ -1,80 +1,49 @@
 # PM Skills — Guide
 
-An opinionated starter pack for AI-assisted coding projects.
-Structured markdown files, design-before-code discipline, and
-persistent project memory — the way Joe likes to work in 2026.
+The full manual for the framework. You don't need to memorise it —
+your AI agent reads the rules for you. Read this once to understand
+the moving parts; come back when you want the "why" behind something.
 
-For solo and small-team builders who own product direction and
-macro structure but want AI agents to handle implementation
-without losing context, drifting, or wasting tokens.
+For solo and small-team builders who own product direction and macro
+structure but want AI agents to handle implementation without losing
+context, drifting, or wasting tokens.
 
 Defaults to Carbon Design System, WCAG 2.2 AAA, Nielsen heuristics,
 JSDoc, and a lean invariant-led testing doctrine. All customisable,
 none apologised for.
 
-## Start here
+## How it works — the mental model
 
-**New project?** Follow [init.md](./init.md) step by step — or tell
-the agent to run it: the file doubles as the agent workflow (see its
-"Agent mode" note), gated at every step.
+An AI chat session has no memory: close the window and everything it
+learned about your project is gone. This framework fixes that with
+**files the agent reads at the start of every session and updates at
+the end of every task**:
 
-**New project, and you want the agent to build it?** Run
-[`integrations/init-mvp.md`](./integrations/init-mvp.md). It is the
-guided-then-autonomous path: you sign off the foundation (the product
-read, the stack, and the MVP backlog), then it builds the first-milestone
-MVP to completion without further gates — de-risked by staged rollback
-checkpoints. Same rigour as the gated path.
+- **Project memory** (`project/`) — the living state: what you're
+  building, what's next, what shipped, and why choices were made.
+- **Rulebooks** (`AGENTS.md`, `UI-STANDARDS.md`,
+  `DEV-INFRASTRUCTURE.md` in your project root) — the permanent rules:
+  invariants, UI and accessibility standards, build and deploy facts.
+  Populated once during setup; updated only when big decisions change.
+- **Workflows** (`integrations/` and `prompts/`) — the procedures:
+  how to scope, design, plan, validate, implement, and close a task.
 
-**New project, and you want it built *and shipped*?** Same workflow —
-`init-mvp.md` — with a deploy band: sign off the foundation, pick Band
-1–3 (deployed MVP / deployed Current milestone / full backlog), and it
-carries on to a production deploy via
-[`prompts/deploy.md`](./prompts/deploy.md). Two gates only: the
-foundation, and how far to go.
+Two habits make the memory work:
 
-**Already using an older version of pm-skills?** Run or paste
-[`prompts/upgrade.md`](./prompts/upgrade.md) into your AI tool. The
-workflow compares your project's `VERSION` against the latest, applies
-only the deltas the `CHANGELOG.md` documents (stopping early if you
-are already current), preserves your project memory and populated root
-templates, and never silently overwrites a customised framework file.
-
-## Memory layers and read tiers
-
-The framework uses **two memory layers** and **four read tiers**.
-
-**Two memory layers:**
-
-- **`project/`** — living project memory. Updated every session.
-  Contains the brief, backlog, trajectory, wish-list, file map,
-  conventions, and decision log.
-- **`AGENTS.md` + `UI-STANDARDS.md` + `DEV-INFRASTRUCTURE.md`** (in
-  the project root) — permanent behavioral contracts. Contain hard
-  rules, invariants, accessibility standards, design system
-  conventions, and dev infrastructure rules. Populated during the
-  kickoff process (Steps 6–8 of `init.md`) and updated when major
-  architectural, UI, or build decisions change.
-
-**Four read tiers** (canonical policy in `AGENTS.md` → "Before
-every task"):
-
-- **Hot whole-file** — read every task: reference docs (soft size
-  guideline, not prune targets), the accreting `file-map.md` (hard
-  prunable budget), and conditional `UI-STANDARDS.md` /
-  `DEV-INFRASTRUCTURE.md` (read only when the task touches that domain).
-- **Hot sectional** — read by section only (`backlog.md` Active;
-  `decision-log.md` latest 10).
-- **Warm** — `pm_skills/project/trajectory.md` (shipped-work
-  narrative) is read on demand, not every task.
-- **Cold** — `pm_skills/project/wish-list.md` (capture inbox),
-  `pm_skills/project/archive/*`, and the optional per-item
-  `pm_skills/project/tickets/<ITEM-ID>.md` detail files are never
-  auto-read (the active item's ticket file is read only when its backlog
-  line carries `[detail]`).
+- **Compress on ship.** When a task finishes, its backlog item is
+  removed, one line goes to `trajectory.md` (what happened), and the
+  reasoning goes to `decision-log.md` (why). Nothing is written twice,
+  so the files the agent reads every day stay small.
+- **Read tiers.** Not every file is read every time. Hot files (the
+  brief, the architecture, the file map) are read every task;
+  `backlog.md` is read by section; `trajectory.md` only on demand; the
+  wish-list and archives never load automatically. This keeps each
+  session's context — and token bill — bounded as the project grows.
+  The canonical tier policy lives in `AGENTS.md` → "Before every
+  task"; the size budgets live in `memory-policy.md`.
 
 AI tools that support global rules load `AGENTS.md` automatically.
-For other tools, the session-start prompts include explicit read
-instructions.
+For other tools, `prompts/session-start.md` lists what to read.
 
 ## What's in this folder
 
@@ -82,168 +51,237 @@ instructions.
 VERSION          Current framework version (semver). The upgrade check.
 CHANGELOG.md     Append-only release log; each entry is an upgrade plan.
 MANIFEST.md      Path classes: framework / template / memory / scaffold.
-GUIDE.md         This guide — folder contents, memory tiers, workflows.
-init.md          Step-by-step project initialization (the manual path).
+GUIDE.md         This guide.
+init.md          Project setup, step by step (manual or agent-run).
 memory-policy.md Memory size budgets + overrun actions (read at task close only).
 
-project/         Durable project memory. Fill once, maintain ongoing.
-  brief.md         What we're building.
-  architecture.md  Tech stack, structure, key decisions.
-  conventions.md   Style, naming, patterns, rules.
+project/         Your living project memory. Fill once, maintain ongoing.
+  brief.md         What we're building, for whom, what's out of scope.
+  architecture.md  Tech stack, structure, key modules.
+  conventions.md   Style, naming, patterns, tooling.
   backlog.md       Open work only (Current, Next, Icebox).
-  trajectory.md    Shipped-work narrative, in milestones (warm tier).
-  wish-list.md     Capture inbox for unscoped ideas (cold; triaged later).
-  file-map.md      Key files and their roles.
-  decision-log.md  Append-only record of design decisions (the why).
+  trajectory.md    Shipped-work history, one line per item.
+  wish-list.md     Parked ideas, waiting for triage.
+  file-map.md      One line per source file: its role.
+  decision-log.md  Append-only record of the WHY behind decisions.
 
-prompts/         Reusable per-task prompts.
-  session-start.md        Begin a chat: context load, task starts, next-batch pick, drift corrections.
-  scoping.md              Stage 1: scope the task.
-  design-options.md       Stage 2: explore options.
-  implementation-plan.md  Stage 3: plan the build.
-  validation.md           Stage 4: pre-code checks.
-  quick-task.md           Single-stage alternative for small tasks.
-  bug-scoping.md          Bug-specific scoping: reproduce, diagnose, fix.
-  end-of-task.md          Canonical end-of-task housekeeping.
-  review.md               Read-only review of a run (esp. autonomous): scope, risk, verdict.
+prompts/         Reusable per-task prompts (paste, or run as commands).
+  session-start.md        Begin a chat: context, task starts, next-batch pick, drift corrections.
+  scoping.md              Stage 1: what needs to change and why.
+  design-options.md       Stage 2: 2–3 ways to do it, with a recommendation.
+  implementation-plan.md  Stage 3: files, sequence, acceptance criteria.
+  validation.md           Stage 4: pre-code sanity and risk checks.
+  quick-task.md           Single-stage scope-and-plan for small tasks.
+  bug-scoping.md          Bug diagnosis: reproduce, root cause, minimal fix.
+  end-of-task.md          The closing ritual: quality gate + memory updates.
+  review.md               Read-only audit of an autonomous run.
   memory-maintenance.md   Diagnose / Prune / Refactor project memory.
-  upgrade.md              Framework upgrade procedure (canonical).
+  upgrade.md              Move a project to a newer framework version.
   release.md              Maintainer release checklist (source repo only).
-  deploy.md               Production deploy + live verification (consuming project).
+  deploy.md               Production deploy + live verification.
 
-integrations/    Tool-workflow files (copy to your tool's workflow dir).
+integrations/    Tool-workflow files (copy to your AI tool's workflow dir).
   task.md      The task workflow — modes: full / checkpoint (default) / auto-jazz / auto-jazz-lite.
   bugfix.md    Diagnosis-before-fix workflow for bugs.
   init-mvp.md  Sign off foundation + scope band, then autonomous build (and optional deploy).
 
-scaffold/        Template files to copy into your project root.
+scaffold/        Starter config to copy into your project root once.
   .editorconfig       Editor style enforcement (indent, encoding, etc.).
   .gitignore          Common ignores for JS/npm projects.
   .markdownlint.json  Markdown lint baseline: strict on breakage, relaxed on style.
   check-links.mjs     Dependency-free internal Markdown link checker (Node).
 ```
 
-## Per-task quick reference
+## Two ways to drive it
 
-### AI tools with workflow support
+- **Workflow-capable AI tools** (slash commands or similar): copy the
+  files from `integrations/` into your tool's workflow directory —
+  plus `prompts/upgrade.md` and `prompts/memory-maintenance.md` if you
+  want those as commands too (they carry workflow frontmatter). Then
+  you just invoke a workflow and talk.
+- **Any other AI tool**: paste the prompt files into chat at the right
+  moments. The "Manual paste flow" section below gives the exact
+  sequences. Same rigour, more copy-paste.
 
-If your AI tool supports workflows, copy the files from
-`integrations/` to your tool's workflow directory (plus
-`prompts/upgrade.md` and `prompts/memory-maintenance.md` if you want
-those as commands — they carry workflow frontmatter too). Then run
-`task.md` at the start of any task — it reads project memory, runs
-the staged pipeline in the chosen **gating mode**, and triggers the
-canonical end-of-task housekeeping (`prompts/end-of-task.md`).
+## Starting a project
 
-The modes (say the mode when you invoke, or take the default):
+**New project, you drive the setup:** follow [init.md](./init.md) step
+by step (~30 minutes) — or tell the agent "Run pm_skills/init.md in
+agent mode" and approve each artifact as it drafts them. Either way
+you end with populated memory, populated rulebooks, and a first
+backlog.
 
-- **`checkpoint`** — the recommended default. Gates only where human
-  judgement adds value: you approve the scope and pick the design
-  option; plan and validation run gateless with stated assumptions.
-  Two round-trips instead of four.
-- **`full`** — fully gated: approval between scoping, design, plan,
-  and validation. Use for `[sign-off]` items and high-risk work.
-- **`auto-jazz`** — no approval gates. The agent picks the recommended
-  option, states each assumption in one line, and continues. Hard
-  prohibitions still apply (see `task.md`). Use when you trust the
-  agent end-to-end.
-- **`auto-jazz-lite`** — no gates and compressed stages (quick-task
-  scope-and-plan, then implement + verify + housekeep). Use for small
-  or low-risk tasks.
+**New project, the agent builds it too:** run
+[`integrations/init-mvp.md`](./integrations/init-mvp.md), e.g.
 
-For bugs, run **`bugfix.md`** — the diagnosis-before-fix workflow.
+> Run init-mvp: I want a web app that tracks my houseplants'
+> watering schedules.
 
-Both workflows search the source tree before changing code and run
-the same end-of-task housekeeping: the quality gate (`check`), memory
-updates, size check, and a closing report.
+You approve the **foundation** (its reading of what you want, the
+stack, the task list) and a **scope band** — how far this run may go:
 
-After a gateless run (`auto-jazz`, `auto-jazz-lite`, an `init-mvp`
-build), paste `prompts/review.md` to review what landed before you
-accept it — scope adherence, stated assumptions, risk, and a punch
-list. It is read-only: it proposes a verdict and follow-ups, it does
-not silently rewrite the work.
+| Band | It builds… | Then |
+| --- | --- | --- |
+| 0 (default) | the first milestone (an MVP) | hands back, running locally |
+| 1 | the MVP | deploys it to production |
+| 2 | everything in the Current milestone | deploys |
+| 3 | the full committed backlog | deploys |
 
-### Manual prompt workflow
+After sign-off it runs to that ceiling without further questions,
+committing rollback checkpoints as it goes, and stopping early only if
+the plan proves wrong (or a hard limit is hit).
 
-**Starting from the backlog (any task type):**
+**Existing project on an older pm-skills:** point the agent at the
+newer version (sibling clone, Git URL, or pasted files) and run
+[`prompts/upgrade.md`](./prompts/upgrade.md). It reads the version
+gap, applies only the documented deltas, and never overwrites your
+memory or customisations.
 
-Instead of naming the task yourself, use `prompts/session-start.md` →
-**Start B**: the agent picks the next logical batch from the backlog
-and presents it with a recommended mode — then stops for your
-go-ahead. Confirm, then continue with the matching flow below.
+## The daily loop: pick → build → close
 
-**Non-trivial tasks (4-stage):**
+### Pick
 
-1. New chat → paste `prompts/session-start.md` (Standard start).
-2. Paste `prompts/scoping.md` → approve scope.
-3. Paste `prompts/design-options.md` → pick an option.
-4. Paste `prompts/implementation-plan.md` → approve plan.
-5. Paste `prompts/validation.md` → confirm readiness.
-6. "Go ahead and implement."
-7. End of task → paste `prompts/end-of-task.md`.
+Open a fresh chat. Name the task ("My task: add CSV export to the
+reports page") or say **"pick the next batch"** — the agent triages
+any parked wish-list ideas, proposes the next logical backlog item
+with a recommended mode, and waits for your go-ahead.
 
-Checkpoint variant (recommended): after step 3, say "run plan and
+### Build
+
+Run `task.md`. Its **modes** set how often it stops for you:
+
+| Mode | Stops for you at… | Use for |
+| --- | --- | --- |
+| `checkpoint` (default) | scope approval + design pick | everyday non-trivial tasks |
+| `full` | every stage (scope, options, plan, validation) | `[sign-off]` items, high-risk work |
+| `auto-jazz` | nothing — states assumptions and continues | work you'd accept sight-unseen |
+| `auto-jazz-lite` | nothing, and compresses the stages | small, low-risk tasks |
+
+Why checkpoint is the default: scope and design choice are where your
+judgement genuinely changes the outcome; plan and validation approvals
+are usually rubber stamps that cost a whole round-trip each. You keep
+the two decisions that matter and skip the ceremony.
+
+In every mode the same hard limits apply (see `task.md`): no new
+runtime dependencies, no touching protected or never-edit files, no
+destructive migrations or data deletion, no refactors sprawling past
+the agreed scope, no weakening tests. The agent stops and asks rather
+than crossing one.
+
+**Small tasks** take the quick path (one combined scope-and-plan)
+instead of four stages — say "this is a quick task", or let the size
+triage in `task.md` spot it. **Bugs** go through `bugfix.md`:
+reproduce, diagnose the root cause with evidence, and only fix after
+you confirm the diagnosis.
+
+### Close
+
+Say "run end-of-task" (`prompts/end-of-task.md`). The agent:
+
+1. Runs the project's one-command quality gate (`check`).
+2. Verifies the app still boots, if the task touched the runtime.
+3. Updates project memory — removes the shipped backlog item, records
+   the why in `decision-log.md`, adds the trajectory line, refreshes
+   the file map and any rulebook that changed.
+4. Size-checks the memory files (a fast path skips the full audit on
+   most tasks) and proposes maintenance if a budget tripped.
+5. Reports what it did.
+
+This ritual is what makes the *next* session start smart. Don't skip
+it.
+
+### After an autonomous run
+
+If the work ran gateless (`auto-jazz`, `auto-jazz-lite`, an `init-mvp`
+build), paste `prompts/review.md` before accepting it: a read-only
+audit that maps the changes to intent, checks every stated assumption
+and hard rule, names what only a human can verify, and ends with a
+verdict and punch list. It proposes; it never silently rewrites.
+
+## Manual paste flow
+
+For AI tools without workflow support. Start every session by pasting
+the relevant parts of `prompts/session-start.md` (context list + one
+Start block), then:
+
+**Non-trivial task (4-stage):**
+
+1. Paste `prompts/scoping.md` → approve the scope.
+2. Paste `prompts/design-options.md` → pick an option.
+3. Paste `prompts/implementation-plan.md` → approve the plan.
+4. Paste `prompts/validation.md` → confirm readiness.
+5. "Go ahead and implement."
+6. Paste `prompts/end-of-task.md`.
+
+Checkpoint variant (recommended): after step 2, say "run plan and
 validation without stopping, state assumptions, then implement" —
-steps 4–5 then run gateless, saving two round-trips.
+saving two round-trips.
 
-**Small tasks (single-stage):**
+**Small task:** paste `prompts/quick-task.md` → approve the plan →
+"go ahead" → `prompts/end-of-task.md`.
 
-1. New chat → paste `prompts/session-start.md` (Quick start).
-2. Paste `prompts/quick-task.md` → approve plan.
-3. "Go ahead and implement."
-4. End of task → paste `prompts/end-of-task.md`.
+**Bug:** paste `prompts/bug-scoping.md` → approve the diagnosis and
+fix plan → "go ahead and fix" → verify → `prompts/end-of-task.md`.
 
-**Bug tasks:**
+**Ship to production:** when work is merged and green, paste
+`prompts/deploy.md` — it runs the pipeline documented in
+`DEV-INFRASTRUCTURE.md` → Deployment and verifies the live result.
 
-1. New chat → paste `prompts/session-start.md` (Bug start).
-2. Paste `prompts/bug-scoping.md` → approve diagnosis and fix plan.
-3. "Go ahead and fix."
-4. Verify the fix.
-5. End of task → paste `prompts/end-of-task.md`.
+## Looking after project memory
 
-**Shipping to production:**
+Mostly automatic: `end-of-task.md` keeps the files current, and you
+approve a maintenance pass when the agent proposes one. For reference,
+what changes when:
 
-When work is merged and green, paste `prompts/deploy.md`. It reads
-`DEV-INFRASTRUCTURE.md` → Deployment, runs the pre-flight checks,
-executes the documented pipeline, and verifies the live result.
-
-## Keeping project memory fresh
-
-| File | When to update |
+| File | When it updates |
 | --- | --- |
-| `brief.md` | Rarely. Only if the project's direction fundamentally changes. |
-| `architecture.md` | When adding major modules or changing the tech stack. |
-| `conventions.md` | When a new convention is established or changed. |
-| `backlog.md` | End of every task — remove shipped items, add follow-ups (open work only). |
-| `tickets/<ITEM-ID>.md` | Optional, per non-trivial item. Created when an item needs detail beyond its line (set the `[detail]` flag); deleted when it ships or is cut. |
-| `trajectory.md` | End of every task that ships — one line per shipped item, grouped by phase. |
-| `wish-list.md` | When an out-of-scope idea surfaces — append one line. Drained by triage at the next-batch pick (Start B). |
+| `brief.md` | Rarely — only if the project's direction fundamentally changes. |
+| `architecture.md` | When major modules or the stack change. |
+| `conventions.md` | When a convention is established or changed. |
+| `backlog.md` | Every task — shipped items leave, follow-ups join. |
+| `tickets/<ITEM-ID>.md` | Optional, for one big item's working detail; deleted when it ships. |
+| `trajectory.md` | Every task that ships — one line per item. |
+| `wish-list.md` | Whenever an idea is parked; drained at the next-batch pick. |
 | `file-map.md` | When files are created, renamed, or deleted. |
-| `decision-log.md` | During the design phase of each task. |
-| `README.md` (root) | When architecture, dev workflow, or key infrastructure changes. |
-| `AGENTS.md` (root) | When new invariants, data model changes, protected modules, event namespaces, or anti-patterns are established. |
-| `UI-STANDARDS.md` (root) | When new token systems or UI conventions are established. |
-| `DEV-INFRASTRUCTURE.md` (root) | When build, dev server, versioning, or script conventions change. |
+| `decision-log.md` | During each task's design phase. |
+| Root `README.md` + rulebooks | When architecture, UI conventions, or build/deploy facts change. |
 
-Use `prompts/end-of-task.md` at the end of every task session to
-stay current.
+**When a size budget trips** (the end-of-task check tells you), the
+agent proposes `prompts/memory-maintenance.md` and waits for your
+approval. Its three verbs:
 
-## Keeping memory lean
+- **Diagnose** — read-only health check; finds structural drift and
+  points at the right fix. Also worth running after a long gap.
+- **Prune** — archives the oldest content whole (never rewritten,
+  never summarised) and leaves an index pointer in the live file.
+- **Refactor** — tidies a drifted backlog: evicts shipped work,
+  merges duplicates, regroups by milestone.
 
-Project memory is read in tiers so context stays bounded as the
-project grows. Tier definitions live in `AGENTS.md` → "Before every
-task"; the budget numbers and overrun actions live in
-`pm_skills/memory-policy.md`, read only at task close (size check,
-prune, refactor, health check) — not part of the every-task load.
-This guide does not restate either — one source of truth each.
+Budgets and the actions per file live in
+[`memory-policy.md`](./memory-policy.md) — the agent reads it at task
+close; you never need to.
 
-The end-of-task update runs a size check (fast path on most tasks).
-When any file crosses its budget, the agent proposes the **Prune**
-verb of `prompts/memory-maintenance.md` — never auto-prunes. Prune
-archives older content whole (append-only entries are never
-rewritten) and leaves a one-line index in the live file pointing at
-each archive. The same file's **Diagnose** verb is the periodic
-read-only health check, and **Refactor** repairs a drifted backlog.
+Two folders are created lazily, so don't be surprised they're missing
+on a fresh project: `project/archive/` (first prune) and
+`project/tickets/` (first item that needs a detail file).
 
-A fresh project has no `archive/` folder. It is created lazily on
-the first prune.
+## Quick answers
+
+- **Do I have to read the memory files?** No — the agent does. Skim
+  `backlog.md` when you want to see what's queued; everything else is
+  primarily for the agent.
+- **The agent is going off-track mid-task.** Use the one-line drift
+  corrections in `session-start.md`: "Tighten scope", "Reset to plan",
+  "Re-ground in codebase", "Stay in design mode".
+- **I had an idea mid-task.** Say **"park it"** — one line goes to the
+  wish-list and work resumes. It gets triaged at the next batch pick.
+- **A chat died mid-task.** Start a new one with the "Continuing a
+  previous task" block in `session-start.md`. For long tasks the
+  workflow saves the approved scope and chosen design to the item's
+  ticket file, so nothing needs re-deriving.
+- **Will upgrading break my memory?** No. `MANIFEST.md` classes every
+  file; project memory is never overwritten on upgrade, and populated
+  rulebook sections are preserved verbatim.
+- **What does a task cost me in attention?** Checkpoint mode: two
+  decisions (scope, design pick) plus reading the closing report.
+  Everything else is the agent's job.

@@ -163,8 +163,12 @@ restructured — but there is **no project-memory data migration**; all
   comment is marked canonical and gains the full flag list;
   `decision-log.md` notes the headings-first read. Existing populated
   files are unaffected.
-- `pm_skills/GUIDE.md` — file tree, Start-here, per-task reference,
-  and memory-lean sections rewritten for the consolidated shape.
+- `pm_skills/GUIDE.md` — rewritten novice-first for the consolidated
+  shape: plain-language mental model (memory / rulebooks / workflows,
+  compress-on-ship, read tiers), the file tree with one-liners, both
+  driving styles, starting paths with the scope-band table, the daily
+  loop with a mode table and rationale, the manual paste flow, memory
+  upkeep, and a quick-answers FAQ.
 - `pm_skills/MANIFEST.md` — adds the `pm_skills/memory-policy.md` row.
 
 ### Upgrade actions
