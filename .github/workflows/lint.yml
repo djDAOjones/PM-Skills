@@ -43,11 +43,8 @@ jobs:
       - name: Markdown lint (markdownlint-cli2)
         run: npm run lint:md
 
-      - name: Internal link check
-        run: npm run lint:links
-
-      - name: Inline path-reference check
-        run: npm run lint:paths
+      - name: Docs integrity (links + inline paths)
+        run: npm run lint:docs
 
       - name: Spell check (cspell)
         run: npm run lint:spell

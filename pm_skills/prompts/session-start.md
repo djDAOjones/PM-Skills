@@ -37,15 +37,15 @@ of the every-task load):
 
 **Warm** (read on demand, not every task):
 
-- `pm_skills/project/trajectory.md` — shipped-work narrative; read during roadmap-refactor, release, or when reconstructing what shipped.
+- `pm_skills/project/trajectory.md` — shipped-work narrative; read during memory maintenance (Refactor), release, or when reconstructing what shipped.
 
 **Cold** (do not auto-load):
 
-- `pm_skills/project/wish-list.md` — capture inbox; read only during triage (see `next-batch.md`).
+- `pm_skills/project/wish-list.md` — capture inbox; read only during triage (Start B below).
 - `pm_skills/project/archive/*.md` — search via grep only when explicitly relevant.
 - `pm_skills/project/tickets/<ITEM-ID>.md` — optional per-item detail; read only the active item's file, and only when its backlog line carries `[detail]`.
 
-## Then state the task
+## Then state the task — Start A (you name it)
 
 ### Standard start (full 4-stage task)
 
@@ -66,3 +66,82 @@ of the every-task load):
 
 > I'm continuing work on: [task description]
 > Here's where I left off: [brief status]
+
+If the item carries the `[detail]` flag, its
+`pm_skills/project/tickets/<ITEM-ID>.md` may already hold the approved
+scope and picked option — read it before re-deriving anything.
+
+## Start B — let the agent pick the next batch
+
+Instead of naming the task, say "pick the next batch". The agent then
+loads the context above, picks the next logical batch from the
+backlog, and stops for your go-ahead. No scoping, no code until you
+confirm.
+
+A "batch" is the smallest shippable unit of work: a single backlog
+item, or a tight cluster of items that share the same files or feature
+and clearly belong together.
+
+### 1. Triage the wish-list (quick)
+
+Also read `pm_skills/project/wish-list.md` — it is Cold tier (never
+auto-loaded) and this is its triage point, the one flow that always
+opens it. If it has open items, drain it before picking work — the
+forcing function that stops the inbox becoming a graveyard:
+
+- List the open items, one line each.
+- For each, recommend **promote** (into `backlog.md` under Current,
+  Next, or Icebox) or **cut** (delete the line). When promoting, place
+  it *relative to* the items already in that section with a one-line
+  above/below rationale, so the pick reads off a current order.
+- Apply only what the user confirms. Never auto-promote. Promoting
+  moves the line out; cutting deletes it.
+- If the wish-list is empty, say so in one line and move on.
+
+Keep this a triage glance, not scoping.
+
+### 2. Pick the next batch
+
+From the backlog Active section, choose the next logical unit:
+
+- Prefer continuing an in-progress item (`[~]`) over starting new.
+- Otherwise take the first unstarted item (`[ ]`) under **Current
+  milestone**.
+- Fall back to **Next milestone** only if Current is empty or done.
+- Do not pull from **Icebox** unless Active has nothing committed.
+- Skip blocked items and say why they're blocked.
+
+### 3. Present the pick, then stop
+
+Output, concisely:
+
+1. **The batch** — the backlog item(s), quoted verbatim.
+2. **Why it's next** — one or two lines (milestone order, dependency,
+   or in-progress continuation).
+3. **What it touches** — likely files or areas, grounded in a quick
+   source-tree check. A pointer, not full scoping. If the item carries
+   `[detail]`, skim its ticket file just enough to ground this line.
+4. **Recommended mode** — checkpoint (default) / full / quick / bug —
+   one line of rationale. Recommend `full` only for `[sign-off]` or
+   high-risk items.
+5. **Ready-to-paste task statement** — in the matching Start A form.
+6. **Runner-up** — one line: the next item if this one is wrong.
+
+Then **wait** for the user to confirm or redirect. Do not begin
+scoping, planning, or code until they do. If two or three candidates
+are genuinely equal, present them and ask. If the backlog Active
+section is empty or unclear, say so and ask what to work on.
+
+## Drift corrections
+
+Paste any of these to redirect the agent mid-session:
+
+- **Stay in design mode** — Pause. Stay in design mode only. No code yet.
+- **Tighten scope** — Tighten scope to the smallest useful change. No speculative refactors.
+- **Park it** — Append this idea to `pm_skills/project/wish-list.md` as a single line and move on. Don't act on it or scope it now.
+- **Re-ground in codebase** — Re-ground in the actual codebase. Search the project files and cite what you find.
+- **Respect architecture** — Preserve the existing architecture. Don't move responsibilities between modules without strong evidence.
+- **Reset to plan** — Return to the approved implementation plan. Don't add steps we didn't agree on.
+
+For end-of-task housekeeping (memory updates and size check), see
+`pm_skills/prompts/end-of-task.md`.

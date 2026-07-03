@@ -24,10 +24,12 @@ upgrade workflow must never carry these files into a consuming project.
 
 Note on deliberate forks: `pm_skills/scaffold/check-links.mjs` /
 `pm_skills/scaffold/.markdownlint.json` and their source-only siblings
-(`scripts/check-links.mjs`, root `.markdownlint.json`) are **separate
+(`scripts/check-docs.mjs`, root `.markdownlint.json`) are **separate
 copies by design** — the scaffold ships generic, the source-repo copy is
-tuned for this repo. A bug fixed in one must be considered for the
-other; there is no sync mechanism, only this reminder.
+tuned for this repo (check-docs also validates inline path references
+and skips the append-only changelog as a path source). A bug fixed in
+one must be considered for the other; there is no sync mechanism, only
+this reminder.
 
 ## Prerequisites
 
@@ -46,10 +48,9 @@ Individual checks:
 
 - `npm run lint:md` — markdownlint over every tracked Markdown file.
 - `npm run lint:fix` — auto-fix the markdownlint issues that are fixable.
-- `npm run lint:links` — internal relative-link integrity, via the
-  dependency-free `scripts/check-links.mjs`.
-- `npm run lint:paths` — inline backticked path-reference integrity, via
-  the dependency-free `scripts/check-paths.mjs`.
+- `npm run lint:docs` — internal relative-link **and** inline backticked
+  path-reference integrity, via the dependency-free
+  `scripts/check-docs.mjs`.
 - `npm run lint:spell` — spelling, via `cspell` against the curated
   dictionary in `cspell.json`.
 - `npm run lint:editorconfig` — `.editorconfig` conformance on
@@ -81,8 +82,7 @@ stale. The equivalent direct commands:
 
 ```text
 npx markdownlint-cli2 "**/*.md"
-node scripts/check-links.mjs
-node scripts/check-paths.mjs
+node scripts/check-docs.mjs
 npx cspell "**/*.md"
 npx editorconfig-checker
 ```
@@ -98,7 +98,7 @@ exclude `node_modules` from cloud sync first.
 ## Continuous integration
 
 `.github/workflows/lint.yml` runs `npm ci`, then `npm run lint:md`,
-`lint:links`, `lint:paths`, `lint:spell`, and `lint:editorconfig`, on
+`lint:docs`, `lint:spell`, and `lint:editorconfig`, on
 every push to the default branch and every pull request. It runs in a
 clean Ubuntu runner, so the cloud-sync constraints above never apply to
 CI.
@@ -107,9 +107,8 @@ CI.
 
 Keep dev dependencies minimal (an `AGENTS.md` hard rule). There are
 currently three: `cspell`, `editorconfig-checker`, and
-`markdownlint-cli2`. The link and path checkers
-(`scripts/check-links.mjs`, `scripts/check-paths.mjs`) are
-dependency-free by design. When you add any dependency, regenerate and
+`markdownlint-cli2`. The docs-integrity checker
+(`scripts/check-docs.mjs`) is dependency-free by design. When you add any dependency, regenerate and
 commit the lockfile:
 
 ```text

@@ -23,15 +23,14 @@ read, the stack, and the MVP backlog), then it builds the first-milestone
 MVP to completion without further gates — de-risked by staged rollback
 checkpoints. Same rigour as the gated path.
 
-**New project, and you want it built *and shipped*?** Run
-[`integrations/spec-to-prod.md`](./integrations/spec-to-prod.md). It
-wraps `init-mvp.md` and carries on — within a scope band you sign off
-(deployed MVP, deployed current milestone, or the full backlog) — to a
-production deploy via [`prompts/deploy.md`](./prompts/deploy.md). Two
-gates only: the foundation, and how far to go.
+**New project, and you want it built *and shipped*?** Same workflow —
+`init-mvp.md` — with a deploy band: sign off the foundation, pick Band
+1–3 (deployed MVP / deployed Current milestone / full backlog), and it
+carries on to a production deploy via
+[`prompts/deploy.md`](./prompts/deploy.md). Two gates only: the
+foundation, and how far to go.
 
-**Already using an older version of pm-skills?** Run
-[`integrations/upgrade.md`](./integrations/upgrade.md), or paste
+**Already using an older version of pm-skills?** Run or paste
 [`prompts/upgrade.md`](./prompts/upgrade.md) into your AI tool. The
 workflow compares your project's `VERSION` against the latest, applies
 only the deltas the `CHANGELOG.md` documents (stopping early if you
@@ -96,8 +95,7 @@ project/         Durable project memory. Fill once, maintain ongoing.
   decision-log.md  Append-only record of design decisions (the why).
 
 prompts/         Reusable per-task prompts.
-  session-start.md        How to begin a new chat.
-  next-batch.md           Begin a chat by auto-picking the next backlog item.
+  session-start.md        Begin a chat: context load, task starts, next-batch pick, drift corrections.
   scoping.md              Stage 1: scope the task.
   design-options.md       Stage 2: explore options.
   implementation-plan.md  Stage 3: plan the build.
@@ -106,25 +104,15 @@ prompts/         Reusable per-task prompts.
   bug-scoping.md          Bug-specific scoping: reproduce, diagnose, fix.
   end-of-task.md          Canonical end-of-task housekeeping.
   review.md               Read-only review of a run (esp. autonomous): scope, risk, verdict.
-  corrections.md          Drift correction snippets.
-  roadmap-refactor.md     Repair a drifted backlog: regroup, dedupe, evict done-work.
-  prune-memory.md         Memory-pruning procedure (canonical).
-  doctor-memory.md        Read-only memory health check (drift, paths, versions).
+  memory-maintenance.md   Diagnose / Prune / Refactor project memory.
   upgrade.md              Framework upgrade procedure (canonical).
   release.md              Maintainer release checklist (source repo only).
   deploy.md               Production deploy + live verification (consuming project).
 
-integrations/    Optional tool-specific workflows.
-  init-project.md    Guided project initialization.
-  init-mvp.md        Sign off the foundation, then autonomous MVP build.
-  spec-to-prod.md    Spec to deployed product, in signed-off scope bands.
-  feature.md         Full task workflow with approval gates.
-  checkpoint.md      4-stage workflow, gates only at scope + design pick (default).
-  bugfix.md          Diagnosis-before-fix workflow for bugs.
-  auto-jazz.md       Full 4-stage workflow, no approval gates.
-  auto-jazz-lite.md  Fast 2-stage workflow, no approval gates.
-  prune-memory.md    Prune project memory when files exceed budgets.
-  upgrade.md         Upgrade an existing project to the latest version.
+integrations/    Tool-workflow files (copy to your tool's workflow dir).
+  task.md      The task workflow — modes: full / checkpoint (default) / auto-jazz / auto-jazz-lite.
+  bugfix.md    Diagnosis-before-fix workflow for bugs.
+  init-mvp.md  Sign off foundation + scope band, then autonomous build (and optional deploy).
 
 scaffold/        Template files to copy into your project root.
   .editorconfig       Editor style enforcement (indent, encoding, etc.).
@@ -138,48 +126,49 @@ scaffold/        Template files to copy into your project root.
 ### AI tools with workflow support
 
 If your AI tool supports workflows, copy the files from
-`integrations/` to your tool's workflow directory. Then run the task
-workflow at the start of any task — it reads project memory, asks
-full vs quick, runs the pipeline, and triggers the canonical
-end-of-task housekeeping (`prompts/end-of-task.md`).
+`integrations/` to your tool's workflow directory (plus
+`prompts/upgrade.md` and `prompts/memory-maintenance.md` if you want
+those as commands — they carry workflow frontmatter too). Then run
+`task.md` at the start of any task — it reads project memory, runs
+the staged pipeline in the chosen **gating mode**, and triggers the
+canonical end-of-task housekeeping (`prompts/end-of-task.md`).
 
-Choose the workflow that fits the task:
+The modes (say the mode when you invoke, or take the default):
 
-- **`checkpoint.md`** — the recommended default. Same four stages,
-  but gates only where human judgement adds value: you approve the
-  scope and pick the design option; plan and validation run gateless
-  with stated assumptions. Two round-trips instead of four.
-- **`feature.md`** — fully gated: approval between scoping, design,
-  plan, and validation. Use for `[sign-off]` items and high-risk work.
-- **`bugfix.md`** — diagnosis-before-fix workflow with approval gates.
-  Use for bugs.
-- **`auto-jazz.md`** — same internal stages but no approval gates. The
-  agent picks the recommended option, states each assumption in one
-  line, and continues. Hard prohibitions still apply (see the file).
-  Use when you trust the agent end-to-end.
-- **`auto-jazz-lite.md`** — fast two-stage flow with no approval
-  gates. Stage 1 is a combined scope-and-plan; stage 2 covers
-  implementation, validation, verification, and housekeeping. Hard
-  prohibitions still apply. Use for small or low-risk tasks.
+- **`checkpoint`** — the recommended default. Gates only where human
+  judgement adds value: you approve the scope and pick the design
+  option; plan and validation run gateless with stated assumptions.
+  Two round-trips instead of four.
+- **`full`** — fully gated: approval between scoping, design, plan,
+  and validation. Use for `[sign-off]` items and high-risk work.
+- **`auto-jazz`** — no approval gates. The agent picks the recommended
+  option, states each assumption in one line, and continues. Hard
+  prohibitions still apply (see `task.md`). Use when you trust the
+  agent end-to-end.
+- **`auto-jazz-lite`** — no gates and compressed stages (quick-task
+  scope-and-plan, then implement + verify + housekeep). Use for small
+  or low-risk tasks.
 
-All five workflows search the source tree before changing code and
-run the same end-of-task housekeeping: the quality gate (`check`),
-memory updates, size check, and a closing report.
+For bugs, run **`bugfix.md`** — the diagnosis-before-fix workflow.
 
-After a gateless run (`auto-jazz`, `auto-jazz-lite`, `init-mvp`,
-`spec-to-prod`), paste `prompts/review.md` to review what landed before
-you accept it — scope adherence, stated assumptions, risk, and a punch
-list. It is read-only: it proposes a verdict and follow-ups, it does not
-silently rewrite the work.
+Both workflows search the source tree before changing code and run
+the same end-of-task housekeeping: the quality gate (`check`), memory
+updates, size check, and a closing report.
+
+After a gateless run (`auto-jazz`, `auto-jazz-lite`, an `init-mvp`
+build), paste `prompts/review.md` to review what landed before you
+accept it — scope adherence, stated assumptions, risk, and a punch
+list. It is read-only: it proposes a verdict and follow-ups, it does
+not silently rewrite the work.
 
 ### Manual prompt workflow
 
 **Starting from the backlog (any task type):**
 
-Instead of naming the task yourself, paste `prompts/next-batch.md`. It
-loads context, picks the next logical batch from the backlog, and
-presents it with a recommended workflow — then stops for your
-go-ahead. Confirm, then continue with the matching workflow below.
+Instead of naming the task yourself, use `prompts/session-start.md` →
+**Start B**: the agent picks the next logical batch from the backlog
+and presents it with a recommended mode — then stops for your
+go-ahead. Confirm, then continue with the matching flow below.
 
 **Non-trivial tasks (4-stage):**
 
@@ -226,7 +215,7 @@ executes the documented pipeline, and verifies the live result.
 | `backlog.md` | End of every task — remove shipped items, add follow-ups (open work only). |
 | `tickets/<ITEM-ID>.md` | Optional, per non-trivial item. Created when an item needs detail beyond its line (set the `[detail]` flag); deleted when it ships or is cut. |
 | `trajectory.md` | End of every task that ships — one line per shipped item, grouped by phase. |
-| `wish-list.md` | When an out-of-scope idea surfaces — append one line. Drained by triage at `next-batch.md`. |
+| `wish-list.md` | When an out-of-scope idea surfaces — append one line. Drained by triage at the next-batch pick (Start B). |
 | `file-map.md` | When files are created, renamed, or deleted. |
 | `decision-log.md` | During the design phase of each task. |
 | `README.md` (root) | When architecture, dev workflow, or key infrastructure changes. |
@@ -246,11 +235,13 @@ task"; the budget numbers and overrun actions live in
 prune, refactor, health check) — not part of the every-task load.
 This guide does not restate either — one source of truth each.
 
-The end-of-task update runs a size check. When any file crosses its
-budget, the agent proposes running `prompts/prune-memory.md` — never
-auto-prunes. The prune workflow archives older content whole
-(append-only entries are never rewritten) and leaves a one-line index
-in the live file pointing at each archive.
+The end-of-task update runs a size check (fast path on most tasks).
+When any file crosses its budget, the agent proposes the **Prune**
+verb of `prompts/memory-maintenance.md` — never auto-prunes. Prune
+archives older content whole (append-only entries are never
+rewritten) and leaves a one-line index in the live file pointing at
+each archive. The same file's **Diagnose** verb is the periodic
+read-only health check, and **Refactor** repairs a drifted backlog.
 
 A fresh project has no `archive/` folder. It is created lazily on
 the first prune.

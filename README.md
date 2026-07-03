@@ -25,15 +25,11 @@ doctrine.
 
 Prefer to let the agent build it? Run
 [`pm_skills/integrations/init-mvp.md`](pm_skills/integrations/init-mvp.md) —
-you sign off the foundation (product read, stack, and MVP backlog), then it
-builds the first-milestone MVP to completion without further gates,
-de-risked by staged rollback checkpoints.
-
-Want it built *and shipped*? Run
-[`pm_skills/integrations/spec-to-prod.md`](pm_skills/integrations/spec-to-prod.md) —
-it wraps `init-mvp.md` and carries on to a production deploy, within a
-scope band you sign off (deployed MVP, current milestone, or the full
-backlog).
+you sign off the foundation (product read, stack, and MVP backlog) and a
+**scope band** (local MVP, deployed MVP, current milestone, or the full
+backlog to production), then it builds — and, for deploy bands, ships —
+to that ceiling without further gates, de-risked by staged rollback
+checkpoints.
 
 See [`pm_skills/GUIDE.md`](pm_skills/GUIDE.md) for the full guide:
 folder contents, two-tier memory system, per-task workflow, and how to
@@ -43,9 +39,7 @@ keep project memory fresh.
 
 Already using pm-skills and want the latest? Make the new version
 visible to your AI agent (a sibling clone, a Git URL, or pasted
-files), then run
-[`pm_skills/integrations/upgrade.md`](pm_skills/integrations/upgrade.md)
-or paste
+files), then run or paste
 [`pm_skills/prompts/upgrade.md`](pm_skills/prompts/upgrade.md). The
 workflow compares your project's `pm_skills/VERSION` against the
 latest and stops early if you are already current. Otherwise it

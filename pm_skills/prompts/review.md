@@ -1,7 +1,7 @@
 # Review
 
-Review a chunk of work — typically an autonomous run (`auto-jazz`,
-`auto-jazz-lite`, `init-mvp`, `spec-to-prod`) — before you accept it.
+Review a chunk of work — typically an autonomous run (`task.md` in an
+auto-jazz mode, or an `init-mvp` build) — before you accept it.
 The forward pipeline (scoping → design → plan → validation) front-loads
 discipline; this is its mirror on the way out: a structured, skimmable
 read of what actually landed, so "review later" is a ten-minute pass,
@@ -69,7 +69,7 @@ Confirm the run did its end-of-task housekeeping: a tight
 `decision-log.md` entry; the `backlog.md` item removed or updated; a
 `trajectory.md` line if it shipped; `file-map.md` current; no size
 budget tripped. Flag anything stale. Cross-reference `end-of-task.md`
-and `doctor-memory.md`; don't re-run them here.
+and `memory-maintenance.md` → Diagnose; don't re-run them here.
 
 ## 7. Verdict and punch list
 
@@ -87,8 +87,8 @@ convention → `conventions.md`; an out-of-scope idea → one line in
 ## Rules
 
 - Read-only. Review diagnoses and proposes; it does not rewrite the
-  work. Approved fixes run as their own task (`feature.md` /
-  `auto-jazz.md` / `bugfix.md`).
+  work. Approved fixes run as their own task (`task.md` in the
+  appropriate mode, or `bugfix.md`).
 - Review the execution, not the mandate — don't re-litigate decisions
   already approved upstream. Unless the execution reveals the mandate
   was wrong; then say so plainly.

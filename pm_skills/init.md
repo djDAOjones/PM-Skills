@@ -1,7 +1,24 @@
+---
+description: Initialize a new project using PM Skills (manual or agent-driven)
+---
+
 # Initialize Your Project
 
 Follow these steps to go from a blank project to "ready for first task."
 Total time: ~30 minutes.
+
+## Agent mode
+
+This file doubles as the agent workflow (it replaces the former
+init-project integration). If you are an AI agent running this:
+execute Steps 1–10 in order yourself — gather the Step 1 answers
+conversationally instead of having the user paste prompts, generate
+each artifact, and **present it for review before writing it**. Write
+files only after approval, step by step. Everything else in this file
+(the population prompts, the appendix shape examples, the readiness
+check) applies unchanged. To gate only the foundation and then
+autonomously build the first-milestone MVP, use
+`pm_skills/integrations/init-mvp.md` instead.
 
 This process populates two kinds of project memory:
 
@@ -417,20 +434,13 @@ Open `project/backlog.md` and pick the first task.
 If your AI tool supports workflows and you copied `integrations/`
 in Step 6, run one of the task workflows and state your task:
 
-- `checkpoint.md` — 4-stage workflow gated only at scope and design
-  pick; plan and validation run gateless with stated assumptions
-  (default).
-- `feature.md` — full 4-stage workflow with approval gates at every
-  stage. Use for `[sign-off]` items and high-risk work.
-- `bugfix.md` — diagnosis-before-fix workflow with approval gates.
-- `auto-jazz.md` — same 4 stages as `feature.md` but no approval
-  gates. The agent picks the recommended option, states each
-  assumption, and only asks if something is genuinely blocking.
+- `task.md` — the task workflow. Modes: `checkpoint` (default —
+  gates only at scope and design pick), `full` (a gate at every
+  stage; use for `[sign-off]` items and high-risk work), `auto-jazz`
+  (no gates), and `auto-jazz-lite` (no gates, compressed 2-stage).
   Hard prohibitions (dependency adds, protected files, destructive
-  migrations, large refactors, weakening tests) still apply.
-- `auto-jazz-lite.md` — fast 2-stage flow (scope+plan, then
-  implement+verify+housekeep) with no approval gates. Hard
-  prohibitions still apply. Use for small or low-risk tasks.
+  migrations, large refactors, weakening tests) apply in every mode.
+- `bugfix.md` — diagnosis-before-fix workflow with approval gates.
 
 Otherwise, follow the manual prompt workflow below.
 
@@ -459,8 +469,8 @@ For small or simple tasks (single-stage):
 
 From here, the cycle is: pick a task → scope/plan → implement → update
 project memory → pick the next task. To let the agent pick for you,
-start a chat with `prompts/next-batch.md` — it selects the next logical
-backlog batch and presents it for your go-ahead.
+start a chat with `prompts/session-start.md` → Start B — it selects the
+next logical backlog batch and presents it for your go-ahead.
 
 The files in `project/` are your living memory. `README.md`,
 `AGENTS.md`, `UI-STANDARDS.md`, and `DEV-INFRASTRUCTURE.md` are your
@@ -479,12 +489,13 @@ records the *why* once in `decision-log.md`. Nothing accumulates in the
 hot/active layer — that is what stops the backlog becoming an audit
 trail of shipped work.
 
-- Every end-of-task update runs a size check. If a budget is
-  exceeded, the agent proposes running
-  `pm_skills/prompts/prune-memory.md` — it does not auto-prune.
+- Every end-of-task update runs a size check (fast path on most
+  tasks). If a budget is exceeded, the agent proposes the Prune verb
+  of `pm_skills/prompts/memory-maintenance.md` — it does not
+  auto-prune.
 - Structural drift the size check can't see (stray `[x]` work, dated
-  rounds, stale paths) is repaired by `roadmap-refactor.md` and
-  surfaced by the read-only `doctor-memory.md`.
+  rounds, stale paths) is repaired by the Refactor verb and surfaced
+  by the read-only Diagnose verb of the same file.
 - `pm_skills/project/archive/` is created lazily on the first prune.
   A fresh project has no archive folder.
 - Archives are cold (never auto-read). Search via grep when

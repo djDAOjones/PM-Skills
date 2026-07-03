@@ -6,8 +6,8 @@
      trajectory.md (the outcome) + an entry to decision-log.md (the why),
      then remove the item from this file. There is no Completed section. -->
 <!-- Hot sectional. Agents read the Active section only by default. -->
-<!-- See pm_skills/memory-policy.md for limits; run
-     roadmap-refactor.md when the queue drifts into dated rounds. -->
+<!-- See pm_skills/memory-policy.md for limits; run memory-maintenance.md
+     (Refactor) when the queue drifts into dated rounds. -->
 
 ## Active
 

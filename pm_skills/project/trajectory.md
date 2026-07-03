@@ -2,8 +2,8 @@
 
 <!-- Shipped-work narrative. The story of what changed over time, in chunks. -->
 <!-- Warm tier. Agents do NOT auto-read this every task. Read it on demand:
-     during roadmap-refactor.md, release.md, or when reconstructing what
-     already shipped. See AGENTS.md → "Before every task". -->
+     during memory-maintenance.md (Refactor), release.md, or when
+     reconstructing what already shipped. See AGENTS.md → "Before every task". -->
 <!-- Compress on ship. One line per item: the outcome, not the implementation.
      The WHY lives in decision-log.md; the per-file roles live in file-map.md.
      Never paste a decision-log entry in here. A pointer is enough. -->
@@ -13,9 +13,9 @@
      ID-level reconcile can find them all. -->
 <!-- Structure: newest phase/milestone at the top. Group items by the phase or
      milestone they belong to, with a one-line Outcome per phase. -->
-<!-- Budget: see pm_skills/memory-policy.md. Over budget → prune-memory.md
-     moves the oldest phases to archive/trajectory/trajectory-NNNN-<range>.md and
-     adds a row to archive/INDEX.md. Archives are append-only; never rewrite. -->
+<!-- Budget: see pm_skills/memory-policy.md. Over budget → memory-maintenance.md
+     (Prune) moves the oldest phases to archive/trajectory/trajectory-NNNN-<range>.md
+     and adds a row to archive/INDEX.md. Archives are append-only; never rewrite. -->
 
 <!--
 Example phase (delete when you add your first real one):

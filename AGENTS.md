@@ -71,8 +71,8 @@ read-load review:
 **Warm** — read on demand, not auto-read every task:
 
 - `pm_skills/project/trajectory.md` — the shipped-work narrative. Read
-  during `roadmap-refactor.md`, release work, or when reconstructing
-  what already shipped.
+  during memory maintenance (Refactor), release work, or when
+  reconstructing what already shipped.
 
 **Cold** — never auto-read:
 
@@ -96,30 +96,30 @@ size check, a prune, a roadmap refactor, or a memory health check. It
 is not part of the every-task read load. Summary: accreting files
 (`file-map.md`, backlog Active, `decision-log.md`, `trajectory.md`)
 carry hard prunable budgets; reference docs carry soft guidelines
-only. When a budget trips, propose `pm_skills/prompts/prune-memory.md`
-— never auto-prune.
+only. When a budget trips, propose the Prune verb of
+`pm_skills/prompts/memory-maintenance.md` — never auto-prune.
 
 ### Workflow
 
-1. For non-trivial work, follow the 4-stage prompt sequence in
-   `pm_skills/prompts/`: `scoping.md` → `design-options.md` →
-   `implementation-plan.md` → `validation.md`. The default gating is
-   **checkpoint** (see `pm_skills/integrations/checkpoint.md`): stop
-   for user sign-off on the scope and the design-option pick — the two
-   gates where human judgement adds value — then run plan and
-   validation gateless, stating each assumption in one line. Use the
-   fully gated `feature.md` flow for `[sign-off]` items or when asked.
-   For small tasks, use `pm_skills/prompts/quick-task.md` instead.
+1. For non-trivial work, run `pm_skills/integrations/task.md` — the
+   4-stage prompt sequence (`scoping.md` → `design-options.md` →
+   `implementation-plan.md` → `validation.md`) with a gating mode. The
+   default mode is **checkpoint**: stop for user sign-off on the scope
+   and the design-option pick — the two gates where human judgement
+   adds value — then run plan and validation gateless, stating each
+   assumption in one line. Use `full` mode for `[sign-off]` items or
+   when asked. For small tasks, use `pm_skills/prompts/quick-task.md`
+   (task.md's quick path) instead.
 2. Search the full source tree before proposing changes. Check for
    existing tuneable values and UI controls before adding new ones.
 3. Exception: if the user explicitly invokes `auto-jazz` or
-   `auto-jazz-lite` (see `pm_skills/integrations/`), run those
-   workflows without waiting for scope or plan approval. Make the
-   best conservative decision at each gate, state the assumption in
-   one line, and continue. Only ask the user a question if there is
-   a genuinely blocking ambiguity. All other rules in this file
-   (source-tree search, project-memory housekeeping, memory size
-   check, minimal-change discipline, hard rules) still apply.
+   `auto-jazz-lite` (gateless modes of task.md), run without waiting
+   for scope or plan approval. Make the best conservative decision at
+   each gate, state the assumption in one line, and continue. Only ask
+   the user a question if there is a genuinely blocking ambiguity. All
+   other rules in this file (source-tree search, project-memory
+   housekeeping, memory size check, minimal-change discipline, hard
+   rules) still apply.
 
 ---
 
@@ -131,15 +131,16 @@ not act on it, scope it, estimate it, or discuss it unless the user
 asks — capturing the one line is the whole interaction.
 
 - **User trigger.** "Park it" (or similar) means: append the idea to
-  the wish-list and move on. See `pm_skills/prompts/corrections.md`.
+  the wish-list and move on. See `pm_skills/prompts/session-start.md`
+  → "Drift corrections".
 - **Boundary.** The wish-list is the **pre-triage** inbox — raw,
   unjudged ideas. The backlog **Icebox** is **post-triage** — ideas
   already judged worth keeping. Promote items from the wish-list
   _into_ `backlog.md`; never treat the wish-list as a second backlog.
-- **Triage, not hoarding.** Drain the wish-list during
-  `pm_skills/prompts/next-batch.md` (and when the `end-of-task.md`
-  size check flags it): promote each item into the backlog, or cut
-  it. Promoting moves the line out; cutting deletes it. No history is
+- **Triage, not hoarding.** Drain the wish-list during the next-batch
+  pick (`pm_skills/prompts/session-start.md` → Start B) and when the
+  `end-of-task.md` size check flags it: promote each item into the
+  backlog, or cut it. Promoting moves the line out; cutting deletes it. No history is
   kept in the wish-list.
 
 ---
@@ -329,7 +330,7 @@ See `DEV-INFRASTRUCTURE.md` for the concrete list of protected paths.
 | `DEV-INFRASTRUCTURE.md` | Build, dev server, versioning, scripts, runtime lifecycle, maintainer diagnostics | Build, runtime, or deployment decisions change |
 | `project/` memory files | Brief, architecture, backlog, wish-list, trajectory, file map, conventions, decision log | End of every task session |
 | `project/tickets/` | Optional per-item detail for open backlog items (cold; read only for the active item) | Created when an item needs detail beyond its backlog line; deleted when it ships or is cut |
-| `project/archive/` | Historical content moved out of hot files, indexed in `archive/INDEX.md` | Only via `pm_skills/prompts/prune-memory.md` or `roadmap-refactor.md` |
+| `project/archive/` | Historical content moved out of hot files, indexed in `archive/INDEX.md` | Only via `pm_skills/prompts/memory-maintenance.md` (Prune / Refactor) |
 
 When in doubt: unconditional invariant → `AGENTS.md`. UI convention →
 `UI-STANDARDS.md`. Build/dev rule → `DEV-INFRASTRUCTURE.md`. Evolving
@@ -369,8 +370,8 @@ context → `project/`. Historical content → `project/archive/`.
   backlog holds open work only.
 - Letting the backlog become an audit trail of dated rounds, or
   narrating a shipped item in full in both the backlog and the
-  decision-log. Compress on ship; run `roadmap-refactor.md` to repair
-  drift.
+  decision-log. Compress on ship; run `memory-maintenance.md` →
+  Refactor to repair drift.
 
 Project-specific anti-patterns are in
 `pm_skills/project/conventions.md` under

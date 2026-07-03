@@ -74,8 +74,7 @@ update `pm_skills/MANIFEST.md`:
   and any per-task lists if files were added or removed.
 - `README.md` — update only if the change affects quick start,
   upgrading, or "what's in this repo".
-- `pm_skills/integrations/feature.md`, `checkpoint.md`, `auto-jazz.md`,
-  and `auto-jazz-lite.md` — these point to the stage prompts (`scoping.md`,
+- `pm_skills/integrations/task.md` — points to the stage prompts (`scoping.md`,
   `design-options.md`, `implementation-plan.md`, `validation.md`,
   `quick-task.md`) rather than echoing their output lists, so a change
   to a prompt's **output list** needs no workflow edit. Update a

@@ -1,3 +1,7 @@
+---
+description: Upgrade an existing project from an older pm-skills version
+---
+
 # Upgrade
 
 Run this when a project is on an older version of pm-skills and needs
@@ -170,9 +174,10 @@ below make them safe and are the same every time:
 2. **Propose the whole move.** Show a from → to table (what content
    leaves which file and where each piece lands) alongside the changelog
    entry's specific steps. (Optional pre-flight: a read-only
-   `doctor-memory.md` pass here surfaces status drift — stale `[ ]`,
-   duplicates — before anything moves; `roadmap-refactor.md`'s findings
-   pass also catches these, so skip it if you prefer.) STOP for sign-off.
+   `memory-maintenance.md` → Diagnose pass here surfaces status drift —
+   stale `[ ]`, duplicates — before anything moves; the Refactor
+   findings pass also catches these, so skip it if you prefer.) STOP
+   for sign-off.
 3. **Execute.** First scan `archive/` for any pre-existing shipped /
    trajectory archives (e.g. a `backlog-shipped.md` left by an earlier
    prune) and align with them — reference them from `INDEX.md`, never

@@ -27,153 +27,180 @@ add an entry here. See `prompts/release.md`.
 
 ## 3.0.0 — 2026-07-03
 
-The **token-efficiency release**: cuts the fixed per-task meta-cost on
-three axes — fewer approval round-trips, a lighter always-loaded
-contract, and less over-fetching — without weakening any guardrail. It
-lands the conclusions of an external review of the framework repo, plus
-the maintainer's own observation that the plan/validation approvals
-were rubber stamps costing a full context re-send each.
+The **token-efficiency and consolidation release**: cuts the fixed
+per-task meta-cost (fewer approval round-trips, a lighter always-loaded
+contract, less over-fetching) and shrinks the framework surface from 48
+distributed files to 36 — without weakening any guardrail. It lands the
+conclusions of an external review of the framework repo. The review's
+key finding: the framework's dominant historical bug class was
+cross-file drift between near-identical files (see 2.4.1, 2.7.1,
+2.7.2); consolidation deletes that class at source.
 
-**1. Checkpoint gating (new default).** A new
-`integrations/checkpoint.md` runs the same four stages but gates only
-where human judgement adds value: scope approval and the design-option
-pick. Plan and validation run gateless with one-line stated
-assumptions, per the existing `auto-jazz` mechanics. The ladder is now
-`feature.md` (4 gates, for `[sign-off]`/high-risk) → **`checkpoint.md`
-(2 gates, default)** → `auto-jazz.md` (0) → `auto-jazz-lite.md`
-(0, compressed).
+**1. One task workflow with gating modes.** The former `feature.md`,
+`auto-jazz.md`, and `auto-jazz-lite.md` (plus a short-lived
+`checkpoint.md` draft) merge into `integrations/task.md` — one
+skeleton, four modes: `full` (4 gates, for `[sign-off]`/high-risk),
+**`checkpoint` (2 gates — scope approval and design pick — the new
+default)**, `auto-jazz` (0 gates), `auto-jazz-lite` (0 gates,
+compressed). The old names survive as spoken modes. One canonical
+hard-prohibition list, a small-task escape hatch to the quick path,
+and a resume-insurance rule (persist approved scope + picked option to
+the item's ticket file when work will span sessions).
 
-**2. `memory-policy.md` (new framework file).** The memory size budget
+**2. One memory-maintenance workflow with verbs.** `doctor-memory.md`,
+`prune-memory.md`, and `roadmap-refactor.md` merge into
+`prompts/memory-maintenance.md` — **Diagnose / Prune / Refactor** as
+sections of one file; run only the verb asked for. The wrapper
+integrations (`integrations/prune-memory.md`, `integrations/upgrade.md`)
+are deleted; `prompts/upgrade.md` and `memory-maintenance.md` carry
+workflow frontmatter and are consumed directly.
+
+**3. One session entry point.** `next-batch.md` and `corrections.md`
+merge into `prompts/session-start.md`: Start A (you name the task),
+Start B (the agent picks the next batch, with the wish-list triage),
+and the drift-correction snippets.
+
+**4. One greenfield workflow.** `spec-to-prod.md` merges into
+`integrations/init-mvp.md` as **scope bands**: Band 0 (local MVP — the
+default, the old init-mvp behaviour), Band 1 (deployed MVP), Band 2
+(deployed Current milestone), Band 3 (full backlog to production).
+`integrations/init-project.md` merges into `pm_skills/init.md` via an
+"Agent mode" preamble — one init document for both the manual and
+agent-driven paths, ending the documented mirror-drift between them.
+
+**5. `memory-policy.md` (new framework file).** The memory size budget
 table and overrun actions move out of the always-loaded `AGENTS.md`
-into `pm_skills/memory-policy.md`, read only at task close (size check,
-prune, roadmap refactor, health check). `AGENTS.md` keeps the read
-tiers and a summary pointer — the per-turn constant drops by roughly a
-third. Budget numbers now live in exactly one place.
+into `pm_skills/memory-policy.md`, read only at task close. `AGENTS.md`
+keeps the read tiers and a summary pointer — the per-turn constant
+drops by roughly a third. Also adds the end-of-task size-check **fast
+path** (≤ 2 memory files touched → count only those) and a
+**one-writer rule** for parallel agent sessions.
 
-**3. Leaner reads and outputs.** The decision-log hot-sectional read
-becomes headings-first (scan the latest 10 `##` headings, open only
-relevant bodies — most tasks need 0–2). The `DEV-INFRASTRUCTURE.md`
-tier docs now state the truth that its Quality gate section is a
-sectional read at every task close. The end-of-task size check gains a
-fast path (task touched ≤ 2 memory files → count only those; full
-sweep otherwise or every ~5 tasks). Every stage prompt gains a
-be-terse output rule ("n/a" where empty; spend words on findings).
+**6. Leaner reads and outputs.** Decision-log hot read becomes
+headings-first (scan the latest 10 headings, open only relevant
+bodies). `DEV-INFRASTRUCTURE.md` tier docs now state that its Quality
+gate section is a sectional read at task close. Every stage prompt
+gains a be-terse output rule ("n/a" where empty). The backlog template
+comment becomes the canonical ticket grammar (flags enumerated);
+`release.md` gains a changed-vs-named coverage check on its verify
+step.
 
-**4. Drift-surface cleanup.** The gateless hard-prohibition list now
-has one canonical copy (`auto-jazz.md`); `auto-jazz-lite.md`,
-`checkpoint.md`, and `init-mvp.md` reference it. The backlog ticket
-grammar has one canonical copy (the `backlog.md` template comments,
-now with the full flag list); `roadmap-refactor.md`, `init.md`, and
-`init-project.md` point at it. `session-start.md`'s tier quick-ref is
-re-grouped to match `AGENTS.md` (conditional docs are no longer listed
-under "read every task").
-
-Major because the `AGENTS.md` root template is restructured (its
-budget table is replaced by a pointer) and a new framework file is
-introduced — but there is **no project-memory data migration**.
+Major: files are renamed/merged and the `AGENTS.md` root template is
+restructured — but there is **no project-memory data migration**; all
+`project/` content is untouched.
 
 ### Added
 
-- `pm_skills/memory-policy.md` (`framework`) — the canonical memory
-  size budgets + overrun actions + the size-check fast path. Declared
-  in `MANIFEST.md`.
-- `pm_skills/integrations/checkpoint.md` (`framework`) — the 2-gate
-  default workflow (covered by the `pm_skills/integrations/*`
-  wildcard).
+- `pm_skills/integrations/task.md` (`framework`) — the task workflow;
+  modes `full` / `checkpoint` (default) / `auto-jazz` /
+  `auto-jazz-lite`.
+- `pm_skills/prompts/memory-maintenance.md` (`framework`) — Diagnose /
+  Prune / Refactor verbs; carries workflow frontmatter.
+- `pm_skills/memory-policy.md` (`framework`) — canonical memory
+  budgets, overrun actions, size-check fast path, one-writer rule.
+  Declared in `MANIFEST.md`.
+
+### Removed
+
+- `pm_skills/integrations/feature.md`, `auto-jazz.md`,
+  `auto-jazz-lite.md` → merged into `integrations/task.md` as modes.
+- `pm_skills/prompts/doctor-memory.md`, `prune-memory.md`,
+  `roadmap-refactor.md` → merged into `prompts/memory-maintenance.md`
+  as verbs.
+- `pm_skills/prompts/next-batch.md`, `corrections.md` → merged into
+  `prompts/session-start.md` (Start B; Drift corrections).
+- `pm_skills/integrations/spec-to-prod.md` → merged into
+  `integrations/init-mvp.md` as scope Bands 1–3.
+- `pm_skills/integrations/init-project.md` → merged into
+  `pm_skills/init.md` (Agent mode).
+- `pm_skills/integrations/prune-memory.md`,
+  `pm_skills/integrations/upgrade.md` — thin wrappers deleted; the
+  canonical prompts carry frontmatter and are used directly.
 
 ### Changed
 
 - `AGENTS.md` (`root-template`) — "Memory size budgets" collapses to a
   pointer at `pm_skills/memory-policy.md`; decision-log tier read is
   headings-first; the `DEV-INFRASTRUCTURE.md` conditional bullet notes
-  the Quality-gate sectional read at task close; Workflow rule 1 names
-  checkpoint gating as the default and reserves the fully gated flow
-  for `[sign-off]` items.
+  the Quality-gate sectional read; Workflow rule 1 points at `task.md`
+  with checkpoint as the default mode; wish-list triage and
+  document-ownership rows re-point at `session-start.md` Start B and
+  `memory-maintenance.md`.
+- `pm_skills/prompts/session-start.md` — absorbs Start B (next-batch)
+  and the drift corrections; tier quick-ref re-grouped (conditional
+  split out; headings-first decision-log; Quality-gate sectional
+  note); continuing-a-task points at the item's ticket file.
 - `pm_skills/prompts/end-of-task.md` — size check gains the fast path;
-  budgets referenced from `memory-policy.md`; report line notes fast
-  path vs full sweep.
-- `pm_skills/prompts/prune-memory.md`, `doctor-memory.md`,
-  `roadmap-refactor.md` — budgets referenced from `memory-policy.md`
-  (tier names stay in `AGENTS.md`); `roadmap-refactor.md` points at the
-  canonical ticket grammar instead of restating it.
+  budgets referenced from `memory-policy.md`; maintenance proposals
+  point at the `memory-maintenance.md` verbs.
 - `pm_skills/prompts/scoping.md`, `design-options.md`,
   `implementation-plan.md`, `validation.md`, `quick-task.md` — be-terse
   output rules.
-- `pm_skills/prompts/session-start.md` — tier quick-ref re-grouped
-  (conditional split out; headings-first decision-log; Quality-gate
-  sectional note).
-- `pm_skills/prompts/next-batch.md` — recommends checkpoint by default;
-  fully gated flow only for `[sign-off]`/high-risk items.
-- `pm_skills/prompts/upgrade.md` — intro names `memory-policy.md` among
-  the framework files an upgrade carries.
-- `pm_skills/integrations/feature.md` — positioned as the fully gated
-  flow for `[sign-off]`/high-risk work, pointing everyday tasks at
-  `checkpoint.md`.
-- `pm_skills/integrations/feature.md`, `auto-jazz.md`,
-  `auto-jazz-lite.md`, `bugfix.md` — context-load step adopts the
+- `pm_skills/prompts/upgrade.md` — gains workflow frontmatter; intro
+  names `memory-policy.md`; the migration pre-flight references the
+  Diagnose verb.
+- `pm_skills/prompts/review.md` — reviews `task.md` auto-jazz runs and
+  `init-mvp` builds; memory-hygiene step cross-references the Diagnose
+  verb.
+- `pm_skills/prompts/release.md` — step 5 lists `task.md`; step 6
+  gains the changed-vs-named coverage check with a matching verify
+  snippet.
+- `pm_skills/integrations/bugfix.md` — context-load step adopts the
   headings-first decision-log read.
-- `pm_skills/prompts/release.md` — step 5 lists `checkpoint.md` among
-  the workflows that reference the stage prompts; step 6 gains a
-  changed-vs-named **coverage check** (every changed distributed file
-  must be named in the top changelog entry) with a matching snippet in
-  the verify script.
-- `pm_skills/integrations/auto-jazz.md` — its hard-prohibition list is
-  marked as the canonical copy.
-- `pm_skills/integrations/auto-jazz-lite.md`, `init-mvp.md` — reference
-  the canonical prohibition list instead of restating it (`init-mvp.md`
-  keeps its two mode-specific prohibitions and the greenfield
-  dependency adaptation).
-- `pm_skills/integrations/init-project.md`, `pm_skills/init.md` — the
-  backlog-generation step reads the canonical ticket grammar from the
-  template; `init.md` Step 11 lists `checkpoint.md` as the default
-  workflow.
+- `pm_skills/integrations/init-mvp.md` — absorbs the scope bands,
+  version-control expectation, and deploy phase; foundation steps now
+  reference `init.md` agent mode; prohibitions reference the canonical
+  `task.md` list.
+- `pm_skills/init.md` — gains the Agent mode preamble and workflow
+  frontmatter; Step 3 reads the canonical ticket grammar from the
+  backlog template; Step 11 lists `task.md` modes; memory-hygiene
+  section points at the maintenance verbs.
 - `pm_skills/project/*` templates (`project-memory`) — comment-only:
   `brief.md`, `architecture.md`, `conventions.md`, `file-map.md`,
-  `trajectory.md`, `wish-list.md` point budget references at
-  `pm_skills/memory-policy.md`; `backlog.md`'s ticket-grammar comment
-  is marked canonical and gains the full flag list; `decision-log.md`'s
-  comment notes the headings-first read. Existing populated files are
-  unaffected.
-- `pm_skills/GUIDE.md` — file tree lists `memory-policy.md` and
-  `checkpoint.md`; workflow guidance names checkpoint the default; the
-  manual 4-stage path gains the checkpoint variant; "Keeping memory
-  lean" points budgets at `memory-policy.md`.
+  `trajectory.md`, `wish-list.md`, `backlog.md`, `decision-log.md`
+  point budget references at `pm_skills/memory-policy.md` and
+  maintenance references at the verbs; `backlog.md`'s ticket-grammar
+  comment is marked canonical and gains the full flag list;
+  `decision-log.md` notes the headings-first read. Existing populated
+  files are unaffected.
+- `pm_skills/GUIDE.md` — file tree, Start-here, per-task reference,
+  and memory-lean sections rewritten for the consolidated shape.
+- `pm_skills/MANIFEST.md` — adds the `pm_skills/memory-policy.md` row.
 
 ### Upgrade actions
 
-- Add the new `framework` files: `pm_skills/memory-policy.md` and
-  `pm_skills/integrations/checkpoint.md`.
+- Add the new `framework` files: `pm_skills/integrations/task.md`,
+  `pm_skills/prompts/memory-maintenance.md`,
+  `pm_skills/memory-policy.md`.
+- **Delete** (per-file confirmation, per upgrade Step 6) the merged
+  files listed under Removed above. Any local customisation found in
+  them by the Step 4 check moves to the absorbing file.
 - Replace these `framework` files wholesale (after the Step 4
   customisation check): `pm_skills/GUIDE.md`, `pm_skills/init.md`,
-  `pm_skills/MANIFEST.md`, `pm_skills/prompts/end-of-task.md`,
-  `pm_skills/prompts/prune-memory.md`,
-  `pm_skills/prompts/doctor-memory.md`,
-  `pm_skills/prompts/roadmap-refactor.md`,
-  `pm_skills/prompts/scoping.md`, `pm_skills/prompts/design-options.md`,
+  `pm_skills/MANIFEST.md`, `pm_skills/prompts/session-start.md`,
+  `pm_skills/prompts/end-of-task.md`, `pm_skills/prompts/scoping.md`,
+  `pm_skills/prompts/design-options.md`,
   `pm_skills/prompts/implementation-plan.md`,
   `pm_skills/prompts/validation.md`, `pm_skills/prompts/quick-task.md`,
-  `pm_skills/prompts/session-start.md`, `pm_skills/prompts/next-batch.md`,
-  `pm_skills/prompts/upgrade.md`, `pm_skills/prompts/release.md`,
-  `pm_skills/integrations/feature.md`,
-  `pm_skills/integrations/auto-jazz.md`,
-  `pm_skills/integrations/auto-jazz-lite.md`,
-  `pm_skills/integrations/bugfix.md`,
-  `pm_skills/integrations/init-mvp.md`,
-  `pm_skills/integrations/init-project.md`.
+  `pm_skills/prompts/upgrade.md`, `pm_skills/prompts/review.md`,
+  `pm_skills/prompts/release.md`, `pm_skills/integrations/bugfix.md`,
+  `pm_skills/integrations/init-mvp.md`.
 - `AGENTS.md` (`root-template`, 3-way merge — preserve every populated
   section verbatim): replace the "Memory size budgets" table with the
   new pointer paragraph **only if the project kept the default table**;
   if the project customised budget numbers, move the customised rows
-  into its `pm_skills/memory-policy.md` copy instead and then apply the
-  pointer. Take the new decision-log and `DEV-INFRASTRUCTURE.md` tier
-  bullets and the checkpoint Workflow rule.
+  into its `pm_skills/memory-policy.md` copy first. Take the new
+  Workflow rules, tier bullets, wish-list triage pointers, and
+  document-ownership rows.
+- If your AI tool's workflow directory contains copies of the removed
+  workflows, replace them with `task.md` (and optionally
+  `prompts/upgrade.md` / `prompts/memory-maintenance.md`, which now
+  carry frontmatter).
 - `pm_skills/project/*` templates are `project-memory`: no action for
-  populated files. The comment-only re-pointing applies to fresh
-  projects; optionally update the guidance comments in place (they are
-  comments, not content).
-- No data migration: no memory content moves. `MANIFEST.md` gains the
-  `pm_skills/memory-policy.md` row (included in the wholesale replace
-  above).
+  populated files; the comment-only re-pointing applies to fresh
+  projects (optionally update the guidance comments in place — they
+  are comments, not content).
+- No data migration: no memory content moves.
 
 ---
 

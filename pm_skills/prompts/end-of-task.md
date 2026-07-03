@@ -90,7 +90,8 @@ touched and skip the rest of this section — note "size check: fast
 path" in the report. Run the **full sweep** below when the task did
 real memory work (a prune, refactor, or shipped milestone), touched
 several memory files, or if no full sweep has run in the last ~5
-tasks (`doctor-memory.md` also covers this periodically).
+tasks (`memory-maintenance.md` → Diagnose also covers this
+periodically).
 
 Full sweep:
 
@@ -127,17 +128,18 @@ If any budget is exceeded:
   projects the age budget trips repeatedly with little to archive;
   the entry-count and word budgets are the meaningful triggers.
 - An over-budget `wish-list.md` is drained by triage, not archiving.
-  Propose a triage pass (promote or cut) — via `next-batch.md` or
-  `prune-memory.md` — rather than an archive split.
+  Propose a triage pass (promote or cut) — via the next-batch pick
+  (`session-start.md` → Start B) or the Prune triage action — rather
+  than an archive split.
 - `[x]` items left in the backlog, or a backlog Active over budget, are
-  a structural issue, not a size one: propose `roadmap-refactor.md`
-  (move shipped work to `trajectory.md`, restructure the queue) rather
-  than a generic prune.
+  a structural issue, not a size one: propose `memory-maintenance.md`
+  → Refactor (move shipped work to `trajectory.md`, restructure the
+  queue) rather than a generic prune.
 - An orphan ticket file (no matching open `[detail]` item) is structural
   too: delete it here if its item shipped/was cut this task, else propose
-  `roadmap-refactor.md` to sweep orphans.
-- Propose running `pm_skills/prompts/prune-memory.md` and wait for
-  user approval.
+  `memory-maintenance.md` → Refactor to sweep orphans.
+- Propose the Prune verb of `pm_skills/prompts/memory-maintenance.md`
+  and wait for user approval.
 
 ## 5. Report
 
