@@ -132,10 +132,11 @@ committing rollback checkpoints as it goes, and stopping early only if
 the plan proves wrong (or a hard limit is hit).
 
 **Existing project on an older pm-skills:** point the agent at the
-newer version (sibling clone, Git URL, or pasted files) and run
-[`prompts/upgrade.md`](./prompts/upgrade.md). It reads the version
-gap, applies only the documented deltas, and never overwrites your
-memory or customisations.
+public repo (`https://github.com/djDAOjones/PM-Skills.git`) as the first
+port of call, or another newer source (sibling clone, fork Git URL, or
+pasted files), and run [`prompts/upgrade.md`](./prompts/upgrade.md). It
+reads the version gap, applies only the documented deltas, and never
+overwrites your memory or customisations.
 
 ## The daily loop: pick → build → close
 

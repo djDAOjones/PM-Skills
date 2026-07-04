@@ -19,11 +19,13 @@ in `pm_skills/project/` or `pm_skills/project/archive/`.
 
 ## 0. Locate the latest version
 
-Ask the user for the source of the latest pm-skills if they have not
-already provided one. Acceptable sources:
+If the user has not already provided a source, suggest the public
+framework repo as the first port of call:
+`https://github.com/djDAOjones/PM-Skills.git`. If they prefer another
+source, accept:
 
 - A local checkout (e.g. `../pm-skills/` or `~/code/pm-skills/`).
-- A Git URL the agent can clone or fetch.
+- Another Git URL the agent can clone or fetch.
 - The user pasting individual files into the chat.
 
 From the source, read `pm_skills/VERSION`, `pm_skills/CHANGELOG.md`,

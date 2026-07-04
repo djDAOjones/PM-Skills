@@ -25,6 +25,30 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.1.1 — 2026-07-04
+
+Clarifies the upgrade source flow so agents suggest the public PM-Skills
+GitHub repository as the first port of call, while preserving local
+checkouts, forks, and pasted files as accepted sources.
+
+### Changed
+
+- `pm_skills/prompts/upgrade.md` — Step 0 now names
+  `https://github.com/djDAOjones/PM-Skills.git` as the first source to
+  suggest when the user has not provided one, with local checkouts,
+  alternate Git URLs, and pasted files still supported.
+- `pm_skills/GUIDE.md` — upgrade guidance mirrors the default source
+  wording.
+
+### Upgrade actions
+
+- Replace `pm_skills/prompts/upgrade.md` and `pm_skills/GUIDE.md` with
+  the new versions after the Step 4 customisation check.
+- No root-template merges, `MANIFEST.md` changes, or project-memory
+  migrations.
+
+---
+
 ## 3.1.0 — 2026-07-04
 
 Adds **Traceable version identity** — the framework's first opinion on
