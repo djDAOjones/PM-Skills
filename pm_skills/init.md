@@ -331,8 +331,11 @@ Using the brief and architecture, populate every applicable placeholder:
    baseline ships in `pm_skills/scaffold/` (copied in Step 9).
 7. **Build system** — bundler, entry point, output directory, source
    maps, minification, static file handling.
-8. **Version management** — numbering scheme, sources, auto-increment
-   rules, when to bump manually.
+8. **Version management** — the two-part version identity from
+   `AGENTS.md` → "Traceable version identity": the product version
+   (release name) and build identity (commit/date trace), their sources,
+   how the build identity is injected, and the bump rule. Scale it to the
+   project (see Appendix B).
 9. **Deployment** — target, pipeline, post-deploy verification.
 10. **Utility scripts** — any helper scripts beyond dev/build/test.
 11. **Configuration strategy** — where constants, design tokens, and
@@ -403,6 +406,10 @@ Before starting your first task, confirm:
 - [ ] The quality gate runs: `check` is documented in
   `DEV-INFRASTRUCTURE.md` → "Quality gate" and runs green — or the gate
   is deliberately deferred for an early MVP.
+- [ ] Version identity is defined: `DEV-INFRASTRUCTURE.md` → "Version
+  management" records the product version and build identity per
+  `AGENTS.md` → "Traceable version identity" — or is deliberately
+  deferred for a pre-deploy MVP.
 
 Then run a placeholder lint:
 
@@ -622,7 +629,7 @@ If the project has no persistence layer, remove this section.
 
 ```markdown
 - docs/ or dist/ — build output, overwritten on every build.
-- version.json — managed by the build script.
+- version.json — generated build identity; managed by the build script.
 - node_modules/ — managed by npm.
 - package-lock.json — managed by npm (commit but do not edit).
 ```
@@ -743,9 +750,9 @@ Tier 1 (typical dev-server app):
 - **Global capture:** `window` `error` + `unhandledrejection` funnel
   into the logger, so nothing fails silently.
 - **Copy affordance:** dev-only icon button (see UI-STANDARDS.md →
-  "Diagnostics affordance"). Copies app version, route, UA + viewport,
-  the last N redacted log entries, uncaught errors, and a redaction
-  notice.
+  "Diagnostics affordance"). Copies product version + build id, route,
+  UA + viewport, the last N redacted log entries, uncaught errors, and a
+  redaction notice.
 - **Redaction:** default-on; never tokens, cookies, raw bodies, full
   storage, or PII. Fail closed when unsure.
 - **Gating:** affordance + debug level are dev-only; production needs an
@@ -803,15 +810,20 @@ They are overwritten on every build.
 ### Version management example
 
 ```markdown
-Format: `major.minor.build` (e.g. `3.1.76`)
+Two parts: a product version (release name) and a build identity
+(exact-code trace).
 
-| Component | Source | Updated | Example |
-| --- | --- | --- | --- |
-| `major.minor` | `package.json` version field | Manually, for features or breaking changes | 3.0 → 3.1 |
-| `build` | `version.json` build field | Automatically, once per dev session | 3.1.75 → 3.1.76 |
+| Part | Format | Source | Updated | Example |
+| --- | --- | --- | --- | --- |
+| Product version | `vMAJOR.MINOR.PATCH` | `package.json` version field, tagged in git | Manually — MAJOR era/breaking, MINOR milestone, PATCH fix | `v0.3.0` |
+| Build identity | `product+YYYYMMDD.shortsha` | Commit + date, injected at build | Automatically, every build | `v0.3.0+20260704.a1b2c3d` |
 
-The combined version is injected at build time. Do not edit
-`version.json` manually — the build script manages it.
+The product version answers "what release is this?"; the build identity
+answers "exactly what code is live?". Git tags use the product version
+(`v0.3.0`); the build identity tells apart multiple deploys of one
+product version. Both are exposed in the diagnostics bundle
+(`appVersion` / `buildId`). Start at `v0.1.0`; reserve `v1.0.0` for
+"users can trust it". Do not hand-edit the generated build identity.
 ```
 
 ### Deployment example
@@ -820,8 +832,8 @@ The combined version is injected at build time. Do not edit
 - **Target:** GitHub Pages (served from `docs/` on `main` branch)
 - **Pipeline:** `npm run build:deploy` → builds to `dist/`, copies to
   `docs/`, ready to commit and push.
-- **Post-deploy:** Verify the live URL matches the latest build
-  version.
+- **Post-deploy:** Verify the live URL serves the build identity just
+  built (compare `buildId`).
 ```
 
 ### Utility scripts example
@@ -858,7 +870,8 @@ trimmed (except in markdown), single quotes in JavaScript.
 ```markdown
 - `docs/` — build output, overwritten on every build.
 - `dist/` — intermediate build output.
-- `version.json` — managed by the build script.
+- `version.json` — generated build identity; managed by the build
+  script.
 - `node_modules/` — managed by npm.
 - `package-lock.json` — managed by npm. Do not edit manually, but
   do commit it.

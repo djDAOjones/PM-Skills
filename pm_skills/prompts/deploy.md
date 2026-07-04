@@ -35,8 +35,10 @@ Do not deploy until all of these hold. Report any that fail and stop.
   rolled back.
 - **Green build and tests.** Run the canonical build and test scripts.
   A red build never ships.
-- **Version stamped.** Bump the version per the project's documented
-  versioning scheme so the live deploy maps to a known revision.
+- **Version stamped.** Set the product version and derive the build
+  identity per `DEV-INFRASTRUCTURE.md` → Version management (the two-part
+  identity from `AGENTS.md` → "Traceable version identity"). Tag the
+  release with the product version so the deploy maps to a known commit.
 - **Secrets are external.** Confirm no key, token, or credential is
   hard-coded or about to be committed. Deploy-time secrets come from
   the environment or the platform's secret store, never the repo.
@@ -49,14 +51,17 @@ them. Do not improvise alternative commands, flags, or targets.
 - If a command is destructive or irreversible (e.g. a prod migration,
   a data backfill), flag it explicitly before running and confirm the
   rollback path in step 5 exists first.
-- Capture the output. Note the deployed commit or tag.
+- Capture the output. Note the deployed commit or tag and the build
+  identity it produced.
 
 ## 4. Verify the live deployment
 
 A deploy is not done until the live result is confirmed. Run the
 post-deploy verification `DEV-INFRASTRUCTURE.md` defines, plus:
 
-- **Version match** — the live URL serves the version just built.
+- **Version match** — the live URL serves the build identity just built
+  (not merely the product version); confirm the `buildId` in diagnostics
+  matches this deploy's commit.
 - **Critical-path smoke test** — exercise the one or two flows that
   would break trust if they failed.
 - **Health and logs** — check the platform's health signal and scan
@@ -80,7 +85,7 @@ Know the rollback path *before* you deploy. If verification fails:
 Run `pm_skills/prompts/end-of-task.md` housekeeping. Specifically:
 
 - `pm_skills/project/trajectory.md` — one line: what shipped to
-  production and the version/date.
+  production, with the product version and build identity.
 - `pm_skills/project/decision-log.md` — only if the deploy involved a
   non-obvious choice (a pipeline change, a rollback, an infra decision).
 - `DEV-INFRASTRUCTURE.md` — update Deployment or Version management if

@@ -25,6 +25,95 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.1.0 — 2026-07-04
+
+Adds **Traceable version identity** — the framework's first opinion on
+how a *consuming project* names and traces its releases, and the fourth
+build/run/ship capability alongside *One-command runtime recovery*
+(2.3.0), *Self-explaining runtime* (2.4.0), and *One-command quality
+gate* (2.6.0). The framework already demanded version-stamped,
+commit-mapped, rollback-ready deploys (`deploy.md`) but never defined
+what a version *is*: `DEV-INFRASTRUCTURE.md` → Version management was an
+empty placeholder, the only example (`init.md`) taught an unrelated
+`major.minor.build` scheme, and the diagnostics bundle referenced an
+undefined "app version / build".
+
+This release fills the hole with a two-part identity, expressed the same
+way as the other three capabilities — a hard rule whose implementation
+scales by tier:
+
+- **Product version** — the release name, `vMAJOR.MINOR.PATCH`
+  (SemVer-shaped, `v`-prefixed). MAJOR = product era / breaking
+  data-or-workflow change / real users now depend on it; MINOR = a
+  shipped milestone or feature batch; PATCH = fix, polish, copy. Start at
+  `v0.1.0`; reserve `v1.0.0` for "users can trust it". Answers "what
+  release is this?".
+- **Build identity** — the trace, `vMAJOR.MINOR.PATCH+YYYYMMDD.shortsha`
+  (SemVer build metadata pinning the exact commit). Answers "exactly what
+  code is live?".
+
+Git tags use the product version; multiple deploys of one product
+version are told apart by build identity; production exposes both in the
+diagnostics bundle (`appVersion` / `buildId`, ideally `commit`). It is
+deliberately identity-only — not Git Flow, branch naming, PR rules, or
+Conventional Commits. The framework's own version (`pm_skills/VERSION` +
+`release.md`) is unchanged and separate; `deploy.md` already states that
+boundary.
+
+Minor: a new `AGENTS.md` hard rule and anti-pattern, a populated
+`DEV-INFRASTRUCTURE.md` template section, and sharpened `deploy.md` /
+`init.md` wiring. Backward compatible — no files renamed or removed, no
+`MANIFEST.md` change, no memory-contract change, no data migration.
+
+### Added
+
+- `AGENTS.md` (`root-template`) — hard rule **Traceable version
+  identity** (two-part identity, tag = product version, expose both,
+  tiered) plus a matching anti-pattern rejecting untraceable builds and
+  collapsing the release name into the build trace.
+
+### Changed
+
+- `DEV-INFRASTRUCTURE.md` (`root-template`) — the **Version management**
+  section replaces its bare placeholder with the two-part default policy,
+  its sources / injection / exposure mechanics, and the Tier 0–2 shape,
+  cross-referencing the new hard rule and the diagnostics bundle. The
+  **Maintainer diagnostics** INCLUDE list names `product version + build
+  identity` and `commit` explicitly.
+- `pm_skills/init.md` — Step 8 item 8 (**Version management**) points at
+  the two-part identity; Appendix B's **Version management example**
+  replaces `major.minor.build` with the product-version + build-identity
+  table; the Tier 1 diagnostics example copies the build id; Step 10
+  readiness gains a version-identity checkbox; the never-hand-edit
+  examples label `version.json` as the generated build identity.
+- `pm_skills/prompts/deploy.md` — step 2 **Version stamped** sets the
+  product version and derives/tags the build identity per
+  `DEV-INFRASTRUCTURE.md`; step 3 notes the produced build identity;
+  step 4 **Version match** checks the live `buildId` against this
+  deploy's commit; step 6 records both in `trajectory.md`.
+
+### Upgrade actions
+
+- `AGENTS.md` (`root-template`, 3-way merge — preserve every populated
+  section verbatim): add the **Traceable version identity** hard rule
+  after *One-command quality gate*, and the matching bullet in
+  *Anti-patterns to reject*.
+- `DEV-INFRASTRUCTURE.md` (`root-template`, 3-way merge): take the new
+  **Version management** guidance (if the project already populated that
+  section, keep its content and reconcile it against the new default
+  shape); add `product version + build identity` / `commit` to the
+  **Maintainer diagnostics** INCLUDE list.
+- Replace these `framework` files wholesale (after the Step 4
+  customisation check): `pm_skills/init.md`, `pm_skills/prompts/deploy.md`.
+- Adopt the invariant in practice: define the product version + build
+  identity in `DEV-INFRASTRUCTURE.md` → Version management (or record
+  that it is deliberately deferred for a pre-deploy MVP). If the project
+  still documents a `major.minor.build` scheme, migrate it to the
+  two-part identity.
+- No new or removed paths; `MANIFEST.md` unchanged. No data migration.
+
+---
+
 ## 3.0.0 — 2026-07-03
 
 The **token-efficiency and consolidation release**: cuts the fixed

@@ -107,9 +107,10 @@ scripts, configuration, or deployment.
         that funnel into the logger, so nothing fails silently.
      5. Copy-diagnostics bundle -- what the dev-only affordance copies
         (the control itself lives in UI-STANDARDS.md → "Diagnostics
-        affordance"). INCLUDE: app name / version / build, timestamp +
-        timezone, current URL / route / view, user agent + viewport,
-        dev-mode / feature flags, the last N redacted log entries,
+        affordance"). INCLUDE: app name, product version + build identity
+        (+ commit), timestamp + timezone, current URL / route / view,
+        user agent + viewport, dev-mode / feature flags, the last N
+        redacted log entries,
         uncaught errors and rejections, recent network failures if
         tracked, recent interaction IDs, and a redaction notice. EXCLUDE
         by default: passwords, tokens, cookies, raw request bodies, full
@@ -205,8 +206,46 @@ scripts, configuration, or deployment.
 
 ## Version management
 
-<!-- CUSTOMISE: Define the versioning scheme, sources, and bump rules.
-     See init.md Step 8 for example shape. -->
+<!-- CUSTOMISE: Record how THIS project realises the two-part version
+     identity that AGENTS.md → "Traceable version identity" requires. The
+     invariant is fixed — a human-readable product version plus a
+     machine-traceable build identity; this section records the
+     project-specific mechanics. Populate:
+     1. Product version — the release name, default format
+        `vMAJOR.MINOR.PATCH` (SemVer-shaped, v-prefixed). Name the single
+        source of truth (a VERSION file, package.json, or the git tag)
+        and the bump rule: MAJOR = product era / breaking
+        data-or-workflow change / real users now depend on it; MINOR = a
+        shipped milestone or feature batch; PATCH = fix, polish, copy.
+        Start at v0.1.0; reserve v1.0.0 for "users can trust it".
+     2. Build identity — the trace, default format
+        `vMAJOR.MINOR.PATCH+YYYYMMDD.shortsha` (SemVer build metadata).
+        State how it is derived (commit + date) and, for Tier 1+,
+        injected at build time. It is regenerated per build, never
+        hand-edited (add it to "Files agents must not hand-edit" below).
+     3. Exposure — product version and build identity both reach
+        production and both appear in the diagnostics bundle as
+        `appVersion` / `buildId` (+ `commit` where available). See
+        "Maintainer diagnostics" above; these fields are non-secret.
+     4. Tags & deploys — git tags use the product version (e.g. v0.3.0);
+        deploys map to a known commit (see "Deployment" below); multiple
+        deploys of one product version are told apart by build identity.
+
+     NOT in scope here: branch naming, PR rules, Conventional Commits, or
+     an app changelog format — the invariant is identity only. The
+     framework's OWN version (pm_skills/VERSION, prompts/release.md) is a
+     separate concern this section does not govern.
+
+     Tiered shape (populate only the tier this project is at):
+     - Tier 0 (static / no build / pre-deploy): product version = a git
+       tag; build identity = the commit SHA. No injection.
+     - Tier 1 (typical deploying app): product version in one source;
+       build identity injected at build; both in the diagnostics bundle.
+     - Tier 2 (multi-surface / real users): build identity surfaced at
+       runtime (footer or /version), commit + build time in diagnostics,
+       and a live-vs-built assertion on deploy.
+
+     See init.md Step 8 (Appendix B) for a worked example shape. -->
 
 ---
 

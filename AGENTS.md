@@ -201,6 +201,22 @@ asks — capturing the one line is the whole interaction.
   placeholder and link scan on a docs project to a full lint, type, test,
   and build pipeline), but the documented one-command capability is
   required at every tier. See `DEV-INFRASTRUCTURE.md` → "Quality gate".
+- **Traceable version identity.** Every shippable app carries a two-part
+  version: a human-readable **product version** (`vMAJOR.MINOR.PATCH` —
+  the release name; `v0.1.0` for the first MVP, `v1.0.0` once users can
+  trust it) and a machine-traceable **build identity**
+  (`vMAJOR.MINOR.PATCH+YYYYMMDD.shortsha` — SemVer build metadata that
+  pins the exact commit). The product version answers "what release is
+  this?"; the build identity answers "exactly what code is live?". Git
+  tags use the product version; multiple deploys of one product version
+  are told apart by build identity. Production exposes both — the
+  diagnostics bundle carries `appVersion` and `buildId` (ideally
+  `commit`), which are non-secret and safe to copy. This is identity
+  only — **not** Git Flow, branch naming, PR rules, or Conventional
+  Commits. Implementation scales with complexity (from a git tag plus a
+  commit SHA on a static site, to a build-time-injected build id
+  surfaced at runtime), but the capability is required at every tier.
+  See `DEV-INFRASTRUCTURE.md` → "Version management".
 
 <!-- CUSTOMISE: Add project-specific invariants below. See init.md Step 6 for example shapes. -->
 
@@ -362,6 +378,11 @@ context → `project/`. Historical content → `project/archive/`.
   (reformats or writes) rather than reporting; or green-washing the gate
   — skipping, weakening, or `|| true`-ing a failing check to call a task
   done.
+- No traceable version identity: shipping a build that cannot be mapped
+  back to an exact commit, a production app that exposes no product
+  version or build id, or collapsing the release name and the build
+  trace into one number so "what release is this?" and "exactly what
+  code is live?" can no longer both be answered.
 - Letting the `wish-list.md` inbox become a write-only graveyard, or
   scoping or estimating its items at capture time. Capture is one
   line; judgement happens at triage.
