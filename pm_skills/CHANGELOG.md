@@ -25,6 +25,71 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.3.0 — 2026-07-16
+
+Adds an **environment & sync-conflict preflight** plus a **sync-repair
+playbook** — the framework's memory model assumes a sane filesystem, and
+cloud-sync folders (OneDrive, Dropbox, Google Drive, iCloud) break that
+assumption by silently reverting tracked files mid-session and spawning
+conflict copies. Generalises a heavy consuming project's seven-plus
+recorded OneDrive incidents (including a `.git` divergence and repeated
+mid-task stale-reverts) into a standing, repeatable procedure.
+
+One canonical block, referenced not restated:
+
+- **Environment preflight (shared)** (`memory-maintenance.md`) — three
+  dependency-free shell checks (cloud-sync path match, hostname-derived
+  conflict-artefact scan, git-sanity/HEAD check), a classification +
+  repair playbook (byte-identical-to-HEAD → delete; HEAD + live edits →
+  restore over the stale file; worktree superset → keep and re-stage;
+  uncertain → stop and show diffs), and a one-line-per-repair record
+  rule. Never auto-deletes a conflict copy without byte-verification.
+- **Severity by caller** — session start runs it **warn-only** (a daily
+  blocker gets disabled); Prune (P3) and Upgrade (Step 5) run it
+  **blocking** before they move files.
+- **Standing advice with teeth** — an AGENTS hard rule marks
+  cloud-synced repo paths unsupported for project memory, and the
+  session-start preflight repeats the warning every session so the
+  advice cannot silently lapse.
+
+Minor: new capability, backward compatible. No files added, renamed, or
+removed; no `MANIFEST.md` change; no memory-contract or data migration.
+Projects on a non-synced path are effectively unaffected (the preflight
+is a fast no-op).
+
+### Added
+
+- `pm_skills/prompts/memory-maintenance.md` — an **Environment preflight
+  (shared)** section (E1 detect / E2 classify + repair playbook / E3
+  record, plus severity and standing-advice notes), positioned before
+  the four verbs.
+
+### Changed
+
+- `pm_skills/prompts/session-start.md` — a new **Environment preflight
+  (warn-only)** section running the E1 checks at session start.
+- `pm_skills/prompts/memory-maintenance.md` — Prune **P3** now runs the
+  preflight as a blocking gate before backup.
+- `pm_skills/prompts/upgrade.md` — **Step 5** now runs the preflight as
+  a blocking gate before backup.
+- `AGENTS.md` (root template) — a new **Hostile-filesystem guard** hard
+  rule under "Hard rules (invariants)".
+- `pm_skills/GUIDE.md` — a Quick-answers entry on cloud-synced repo
+  paths pointing at the preflight and repair playbook.
+
+### Upgrade actions
+
+- Overwrite the four `framework` files
+  (`pm_skills/prompts/memory-maintenance.md`,
+  `pm_skills/prompts/session-start.md`, `pm_skills/prompts/upgrade.md`,
+  `pm_skills/GUIDE.md`) with the source versions (Step 4 customisation
+  check applies — surface any local edits before overwriting).
+- `AGENTS.md` is a `root-template`: 3-way merge (Step 7). Add the
+  **Hostile-filesystem guard** bullet as the last item under "Hard rules
+  (invariants)", preserving every populated section verbatim. If the
+  project already added the bullet, skip.
+- No new files, no `MANIFEST.md` change, no project-memory migration.
+
 ## 3.2.0 — 2026-07-16
 
 Adds a **sanctioned lite close + Reconcile verb** — a cheap close-out

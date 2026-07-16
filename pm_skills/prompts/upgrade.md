@@ -101,7 +101,13 @@ future upgrade. Record the decision in Step 10.
 
 ## 5. Backup (conditional)
 
-Run `git status --porcelain` on the project root.
+First run the **Environment preflight** in
+`prompts/memory-maintenance.md` → "Environment preflight (shared)". An
+upgrade overwrites framework files, so treat it as **blocking**: on any
+conflict artefact or git-sanity finding, stop and run the E2 repair
+playbook before backing up — never overwrite on top of sync corruption.
+
+Then run `git status --porcelain` on the project root.
 
 - If output is empty (working tree clean), skip explicit backup —
   git history is sufficient.

@@ -49,6 +49,17 @@ of the every-task load):
 - `pm_skills/project/archive/*.md` — search via grep only when explicitly relevant.
 - `pm_skills/project/tickets/<ITEM-ID>.md` — optional per-item detail; read only the active item's file, and only when its backlog line carries `[detail]`.
 
+## Environment preflight (warn-only)
+
+Run the **Environment preflight** in `prompts/memory-maintenance.md` →
+"Environment preflight (shared)" — the E1 detect checks only (cloud-sync
+path, conflict artefacts, git sanity). At session start it is
+**warn-only**: report any finding in one line and carry on; a check that
+blocks work daily gets disabled. Do not run repairs here unless the user
+asks — Prune (P3) and Upgrade (Step 5) run the blocking version before
+they move files. This is cheap; skip only on a repo path already known
+to be outside any sync folder.
+
 ## Check for unreconciled lite closes
 
 Some tasks close **lite** (`prompts/end-of-task.md` → "Close mode"):

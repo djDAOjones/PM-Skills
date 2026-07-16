@@ -299,6 +299,13 @@ on a fresh project: `project/archive/` (first prune) and
 - **Will upgrading break my memory?** No. `MANIFEST.md` classes every
   file; project memory is never overwritten on upgrade, and populated
   rulebook sections are preserved verbatim.
+- **My repo lives in OneDrive / Dropbox / iCloud — is that OK?** It's
+  unsupported for project memory: sync folders silently revert tracked
+  files and spawn conflict copies. Session start runs a cheap
+  warn-only environment preflight, and prune/upgrade block on it before
+  moving files, with a sync-conflict repair playbook in
+  `prompts/memory-maintenance.md`. If the location is unavoidable, pause
+  syncing during sessions or exclude `.git`.
 - **What does a task cost me in attention?** Checkpoint mode: two
   decisions (scope, design pick) plus reading the closing report.
   Everything else is the agent's job.

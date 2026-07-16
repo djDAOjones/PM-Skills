@@ -32,6 +32,90 @@ Minimise meta-cost: single pass, batch the work.
 
 ---
 
+## Environment preflight (shared)
+
+The memory model assumes a sane filesystem — a repo that stays where
+git left it. Cloud-sync folders (OneDrive, Dropbox, Google Drive,
+iCloud) break that assumption: they silently revert tracked files
+mid-session, drop content, and spawn conflict copies. This is the
+**canonical** preflight; `session-start.md`, **Prune** (P3), and
+**Upgrade** (Step 5) all reference it rather than restating it.
+
+**Severity depends on the caller.** At **session start** it is
+**warn-only** — a daily blocker gets disabled. Before **file surgery**
+(Prune P3, Upgrade Step 5) it **stops** on any finding: those flows are
+about to move files, and moving files on top of sync corruption is how
+the good copy gets lost.
+
+### E1. Detect (cheap, shell-only — no packages)
+
+Three checks, each a single command from the repo root:
+
+- **Cloud-sync path** — does the repo path sit under a sync root?
+
+  ```sh
+  pwd -P | grep -Ei 'Library/CloudStorage|OneDrive|Dropbox|Google Drive|iCloudDrive|iCloud~'
+  ```
+
+  A match means every check below matters; a clean path usually makes
+  this preflight a no-op.
+- **Conflict artefacts** — derive the hostname, never hard-code it, and
+  scan for sync conflict copies:
+
+  ```sh
+  HOST="$(scutil --get LocalHostName 2>/dev/null || echo "${HOST:-$(hostname -s)}")"
+  find . -path ./node_modules -prune -o \
+    \( -name "*-${HOST}*" -o -name "* (1).*" -o -name "*-conflict-*" \
+       -o -name "*conflicted copy*" \) -print
+  ```
+
+- **Git sanity** — uncommitted state and a HEAD check against the last
+  known SHA when one is recorded (the `Reconcile marker:` in
+  `decision-log.md` pairs well):
+
+  ```sh
+  git status --porcelain
+  git log -1 --format=%H
+  ```
+
+  Unexpected reverts on files you did not touch, or a HEAD behind the
+  recorded marker, are the sync-corruption signature.
+
+### E2. Classify and repair (the sync-repair playbook)
+
+For each conflict copy found, classify it against `HEAD` before
+touching anything — sometimes the conflict copy holds the only good
+content, sometimes the working tree does. Never bulk-delete.
+
+| State | Test | Action |
+| --- | --- | --- |
+| Byte-identical to HEAD | `git show HEAD:<path> \| diff -q - <conflict-copy>` reports no difference | Safe to delete the conflict copy. |
+| Conflict copy = HEAD + live edits (working file was stale-reverted) | working file matches HEAD but the copy carries the session's edits | Move the conflict copy over the stale working file, then re-verify. |
+| Working tree is the superset (the `.env.example` case) | the working file is the fuller version; the copy is stale | Keep the worktree, re-stage it, delete the copy only after byte-verifying it adds nothing. |
+| Uncertain | diffs disagree or content is genuinely divergent | **Stop.** Show the diffs and ask; never guess. |
+
+Always run `git status` **before and after** any move or delete.
+Never auto-delete a conflict copy without a byte-verification against
+HEAD (`diff -q` / `cmp`) — a stale-revert can leave the copy as the
+sole carrier of real work.
+
+### E3. Record
+
+Log one line per repair to the consuming project's `decision-log.md`
+(top, append-only): the date, "Sync-conflict repair", and a one-line
+summary (files restored / copies deleted, classification used). This
+keeps a standing record so a recurring hostile-filesystem problem
+becomes visible rather than repeatedly re-improvised.
+
+### Standing advice
+
+Cloud-synced repo paths are **unsupported** for project memory. If the
+location is unavoidable, pause syncing during sessions or exclude
+`.git` from sync. Session start repeats this warning every time
+precisely so the advice cannot silently lapse.
+
+---
+
 ## Diagnose (read-only health check)
 
 Catches *structural* drift the end-of-task size check cannot see:
@@ -205,7 +289,12 @@ Present the proposal to the user. Wait for approval. Do not skip.
 
 ### P3. Backup (conditional)
 
-Run `git status --porcelain` on the project root.
+First run the **Environment preflight** (above). This flow is about to
+move files, so treat it as **blocking**: on any conflict artefact or
+git-sanity finding, stop and run the E2 repair playbook before backing
+up — never archive on top of sync corruption.
+
+Then run `git status --porcelain` on the project root.
 
 - If output is empty (working tree clean), skip explicit backup —
   git history is sufficient.

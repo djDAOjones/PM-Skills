@@ -222,6 +222,14 @@ asks — capturing the one line is the whole interaction.
   commit SHA on a static site, to a build-time-injected build id
   surfaced at runtime), but the capability is required at every tier.
   See `DEV-INFRASTRUCTURE.md` → "Version management".
+- **Hostile-filesystem guard.** Cloud-synced repo paths (OneDrive,
+  Dropbox, Google Drive, iCloud) are unsupported for project memory —
+  they silently revert tracked files mid-session and spawn conflict
+  copies. Run the environment preflight at session start (warn-only) and
+  block on it before any memory-file surgery (prune, upgrade); if a
+  synced location is unavoidable, pause syncing during sessions or
+  exclude `.git`. See `pm_skills/prompts/memory-maintenance.md` →
+  "Environment preflight (shared)".
 
 <!-- CUSTOMISE: Add project-specific invariants below. See init.md Step 6 for example shapes. -->
 
