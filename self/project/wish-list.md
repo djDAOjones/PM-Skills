@@ -20,3 +20,5 @@
   to this repo) be part of the framework for consuming projects?
   SELF-HOST answered it here via `self/`; the general question stands.
   (from: 2026-07-16 maintainer capture)
+- a command that picks up the next backlog item and runs it auto-jazz,
+  for rapid progress (from: 2026-07-16 maintainer capture)

@@ -4,7 +4,7 @@
      item: the outcome. The why lives in decision-log.md; release
      detail lives in pm_skills/CHANGELOG.md — point, don't restate. -->
 
-## Wave 5 — consuming-project features (shipped 2026-07-16, v3.15.0–3.15.1)
+## Wave 5 — consuming-project features (shipped 2026-07-16, v3.15.0–3.15.2)
 
 - CODEBASE-AUDIT (3.15.0) — whole-codebase audit path: an orchestrated
   loop over `review.md` area mode (chunk by `file-map.md` section,
@@ -14,9 +14,14 @@
   exception (don't route the product's own `VERSION` to upgrade);
   two findings closed why-not (file-map `IGNORE` knob, `self/`
   memory-home mapping). See decision-log 2026-07-16.
+- REVIEW-FIXES (3.15.2) — first `review.md` pass over the burst:
+  changelog `self/` reference reworded (product-tree rule),
+  transcripts deduped and renamed to convention, wish-list newline.
+  See decision-log 2026-07-16.
 
 Outcome: first product feature shipped through the self-hosted loop,
-and the loop's own first dogfood findings folded back in.
+the loop's own first dogfood findings folded back in, and the burst
+reviewed clean end-to-end.
 
 ## Self-hosting (shipped 2026-07-16)
 

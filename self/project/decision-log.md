@@ -5,6 +5,30 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-07-16 — REVIEW-FIXES: first review pass over the self-host burst
+
+**Decision:** Reviewed the three-commit burst SELF-HOST → 3.15.0 →
+3.15.1 (`review.md`, range `83ca5cd..797075d`) — verdict: accept with
+follow-ups. Three fixes applied: (1) the 3.15.1 changelog entry's
+repo-specific `self/` reference reworded to repo-neutral prose,
+shipped as patch 3.15.2; (2) a maintainer wish-list capture given its
+trailing newline (the gate was red on MD047); (3) the seven saved
+transcripts deduplicated (two byte-identical to archived copies
+deleted) and renamed to the dated convention.
+
+**Rationale:** The product-tree rule ("no distributed file may
+reference `self/`") outranks the changelog's append-only guidance for
+a same-day prose slip that leaves Upgrade actions untouched — the
+append-only rule protects upgrade semantics, which did not change.
+Boundary recorded: a *repo-specific* `self/` reference violates the
+rule; a *generic example* (adopt.md Step 0's "e.g. `self/`" naming
+the fork pattern) is intent-compliant and stays.
+
+**Alternatives considered:** Leaving the published entry untouched —
+rejected (a permanent letter-violation of a hard rule to preserve
+prose history). Rewording adopt.md's example too — rejected (the
+example is generic by construction and names the one proven pattern).
+
 ## 2026-07-16 — ADOPT-FIXES: one fix shipped, two closed why-not
 
 **Decision:** Triaged the three findings from adopt.md's first real run

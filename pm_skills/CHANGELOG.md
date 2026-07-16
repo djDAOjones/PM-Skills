@@ -25,6 +25,25 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.15.2 — 2026-07-16
+
+REVIEW-FIXES: hygiene from the first review pass over the self-hosted
+releases (3.15.0–3.15.1). Prose correction only; no behaviour change.
+
+### Changed
+
+- `pm_skills/CHANGELOG.md` — the 3.15.1 entry pointed two closed
+  findings at a repo-specific decision-log path that means nothing to
+  consuming projects (distributed files never reference source-only
+  paths). Reworded to repo-neutral prose; that entry's Upgrade
+  actions are untouched.
+
+### Upgrade actions
+
+- None. Changelog prose correction only; nothing to apply.
+
+---
+
 ## 3.15.1 — 2026-07-16
 
 ADOPT-FIXES: fixes from adopt.md's first real run (the SELF-HOST
@@ -40,10 +59,11 @@ record-why-not.
   prior deployment and must not route to `upgrade.md`. Prevents the
   confusing misroute anyone self-hosting a framework fork would hit.
 
-Findings closed without a change (recorded in the self/ decision log):
-the `gen-file-map.mjs` `IGNORE` knob worked as designed (copy-it-out
-path), and the `pm_skills/project/` memory-home assumption is a
-repo-contract concern, not a prompt change.
+Findings closed without a change (recorded in the framework
+repository's own decision log): the `gen-file-map.mjs` `IGNORE` knob
+worked as designed (copy-it-out path), and the `pm_skills/project/`
+memory-home assumption is a repo-contract concern, not a prompt
+change.
 
 ### Upgrade actions
 
