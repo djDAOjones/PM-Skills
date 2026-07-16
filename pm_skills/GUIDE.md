@@ -293,6 +293,37 @@ Two folders are created lazily, so don't be surprised they're missing
 on a fresh project: `project/archive/` (first prune) and
 `project/tickets/` (first item that needs a detail file).
 
+## Saving session transcripts
+
+Whenever your AI tool can export a conversation, save it to a
+`_transcripts/` folder at your project root. It costs nothing during
+the work and compounds into evidence: future evaluations,
+retrospectives, and prompt-tuning get to read what actually happened in
+a session instead of inferring it from the decision log. (The framework
+itself learned this the hard way — a later review was blind to months
+of sessions because no transcripts existed for them.)
+
+The convention:
+
+- **Folder:** `_transcripts/` at the project root — short, sortable,
+  obviously not source.
+- **Naming:** `YYYY-MM-DD-<ITEM-ID-or-topic>.md`, one file per session.
+- **Tier:** cold — never auto-read. Listed in `AGENTS.md` → cold tier
+  alongside the wish-list and archives; it carries zero read-tier cost.
+- **Gitignored by default.** The scaffold `.gitignore` ignores
+  `_transcripts/`, so transcripts stay local unless you deliberately
+  commit them.
+- **Redact before committing.** Transcripts can contain secrets (env
+  values, URLs with codes, tokens). Committing any transcript is an
+  explicit, per-file choice that requires a redaction pass first — the
+  same "redact by default" rule as the diagnostics bundle
+  (`AGENTS.md` → "Self-explaining runtime").
+
+`end-of-task.md`'s closing report carries a one-line reminder to save
+the transcript; it never blocks the close. If you later run a
+retrospective evaluation of your sessions, point it here — the evidence
+lives in `_transcripts/`.
+
 ## Quick answers
 
 - **Do I have to read the memory files?** No — the agent does. Skim

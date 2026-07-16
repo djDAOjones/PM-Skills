@@ -214,4 +214,9 @@ Output a one-line summary:
   lite close").
 - Whether any tripped (and the proposal made if so).
 
+Then add one non-blocking reminder: if your tool can export the
+conversation, save it to `_transcripts/` (redact before committing —
+see `GUIDE.md` → "Saving session transcripts"). This never gates the
+close.
+
 Present the report to the user before closing the task.

@@ -25,6 +25,49 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.7.0 — 2026-07-16
+
+Makes **session transcripts** a first-class (but cold, gitignored)
+artefact. Framework evaluations, retrospectives, and prompt-tuning now
+have observable session evidence instead of inference — the 2026-07-16
+Hub case study was blind to May–June because no transcripts existed for
+those months. Documents a convention only; no scripts, no new prompt
+file, tool-dependent export stays a habit not a mechanism. Implements
+TRANSCRIPTS (Wave 2). Minor.
+
+### Added
+
+- `pm_skills/GUIDE.md` — "Saving session transcripts" section: the
+  `_transcripts/` convention (folder at project root, naming
+  `YYYY-MM-DD-<ITEM-ID-or-topic>.md`, cold tier, gitignored by default,
+  redact-before-commit rule cross-referencing the diagnostics redaction
+  invariant, and a retrospective-evaluation pointer).
+- `pm_skills/scaffold/.gitignore` — ignores `_transcripts/` by default,
+  so transcripts stay local unless deliberately committed after a
+  redaction pass.
+
+### Changed
+
+- `AGENTS.md` (root template) — new cold-tier bullet for
+  `_transcripts/*.md` (never auto-read; points at the GUIDE section).
+- `pm_skills/prompts/end-of-task.md` — the closing report gains one
+  non-blocking reminder to save the conversation to `_transcripts/`
+  (redact before committing). Never gates the close.
+
+### Upgrade actions
+
+- `AGENTS.md` is `root-template` (3-way merge): add the `_transcripts/*.md`
+  cold-tier bullet under "Cold — never auto-read", after the
+  `tickets/<ITEM-ID>.md` bullet, preserving all populated sections.
+- `pm_skills/GUIDE.md` and `pm_skills/prompts/end-of-task.md` are
+  `framework`: overwrite wholesale after the Step 4 customisation check.
+- `pm_skills/scaffold/.gitignore` is `scaffold` (never touched on
+  upgrade): the project owns its copy. Optionally add `_transcripts/`
+  to the project's own root `.gitignore` to adopt the convention — not
+  required, and no effect until a `_transcripts/` folder is created.
+- No `MANIFEST.md` change (no new paths; all touched files already
+  classed).
+
 ## 3.6.0 — 2026-07-16
 
 Adds an **adoption path** for projects that already have code.

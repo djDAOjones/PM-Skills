@@ -88,6 +88,9 @@ read-load review:
   task, and only when its backlog line carries the `[detail]` flag; never
   auto-load the folder. Working context only — the decision rationale
   (the "why") still lives only in `decision-log.md`.
+- `_transcripts/*.md` — saved chat-session transcripts kept as evidence
+  for later evaluation and prompt-tuning. Gitignored by default; never
+  auto-load. See `pm_skills/GUIDE.md` → "Saving session transcripts".
 
 ### Memory size budgets
 
