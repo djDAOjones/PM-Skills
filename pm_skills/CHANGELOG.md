@@ -25,6 +25,58 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.8.0 — 2026-07-16
+
+Adds a **security baseline** as the fifth tiered build/run/ship
+capability, joining runtime recovery (2.3.0), self-explaining runtime
+(2.4.0), quality gate (2.6.0), and version identity (3.1.0). Expressed
+the same way — an `AGENTS.md` hard rule whose implementation scales by
+tier plus a populated `DEV-INFRASTRUCTURE.md` section — and it carries
+the piece the Hub incident proved matters most: a **rotation-first
+leaked-credential response playbook**. The Hub left a real API key
+unrotated for ~7 weeks with a standing tracking item that did nothing;
+tracking is not remediation, rotation is. Implements SEC-BASE (Wave 3).
+Minor.
+
+### Changed
+
+- `AGENTS.md` (root template) — new **Security baseline** hard rule
+  (secrets outside the repo; never in URLs, logs, QR codes, or the
+  diagnostics bundle; committed template values are placeholders;
+  dependency advisories triaged on a cadence and at upgrade;
+  rotate-first on a leak), tiered like the other four capabilities and
+  cross-referencing the diagnostics-redaction rule rather than
+  restating it. Matching anti-pattern bullet added.
+- `DEV-INFRASTRUCTURE.md` (root template) — new **Security baseline**
+  section after "Quality gate": Tier 0–2 shape (secret storage, `.env`
+  workflow, `.gitignore` coverage, a report-only key-shape scan folded
+  into `check`, dependency-audit cadence) plus the rotation-first
+  response playbook.
+- `pm_skills/init.md` — Step 8 populate list gains a "Security baseline"
+  item (renumbered 7–14); a Step 10 readiness checkbox; and an
+  "Appendix B — Security baseline example" (Tier 1 worked shape).
+- `pm_skills/prompts/deploy.md` — the pre-flight "Secrets are external"
+  check now points at the Security baseline section and its
+  rotation-first playbook.
+- `pm_skills/prompts/scoping.md` — new secret-surface flag (mirrors the
+  runtime / diagnostics / quality-gate flags).
+- `pm_skills/prompts/validation.md` — new "Secret surface" check
+  (inserted as item 6; test-plan/edge/signs renumbered 7–9).
+
+### Upgrade actions
+
+- `AGENTS.md` and `DEV-INFRASTRUCTURE.md` are `root-template` (3-way
+  merge): add the new **Security baseline** hard rule + anti-pattern
+  bullet, and the new **Security baseline** section (after "Quality
+  gate"), preserving every populated section verbatim. A project that
+  already documents secrets handling folds it under this heading.
+- `pm_skills/init.md`, `pm_skills/prompts/deploy.md`,
+  `pm_skills/prompts/scoping.md`, and `pm_skills/prompts/validation.md`
+  are `framework`: overwrite wholesale after the Step 4 customisation
+  check.
+- No `MANIFEST.md` change (no new paths; the scaffold secret-compose
+  script is deferred to a follow-up — documented pattern only for now).
+
 ## 3.7.0 — 2026-07-16
 
 Makes **session transcripts** a first-class (but cold, gitignored)

@@ -335,19 +335,25 @@ Using the brief and architecture, populate every applicable placeholder:
    check. For tool choices use the per-stack defaults in
    `project/conventions.md` → Tooling; the Markdown lint + link-check
    baseline ships in `pm_skills/scaffold/` (copied in Step 9).
-7. **Build system** — bundler, entry point, output directory, source
+7. **Security baseline** — where secrets live, the `.env` /
+   `.gitignore` placeholder discipline, the report-only key-shape scan
+   folded into `check`, the dependency-audit cadence, and the
+   leaked-credential response playbook (rotation-first). Scale it to the
+   project (see Appendix B); even a static site keeps env files
+   gitignored and templates placeholder-only.
+8. **Build system** — bundler, entry point, output directory, source
    maps, minification, static file handling.
-8. **Version management** — the two-part version identity from
+9. **Version management** — the two-part version identity from
    `AGENTS.md` → "Traceable version identity": the product version
    (release name) and build identity (commit/date trace), their sources,
    how the build identity is injected, and the bump rule. Scale it to the
    project (see Appendix B).
-9. **Deployment** — target, pipeline, post-deploy verification.
-10. **Utility scripts** — any helper scripts beyond dev/build/test.
-11. **Configuration strategy** — where constants, design tokens, and
+10. **Deployment** — target, pipeline, post-deploy verification.
+11. **Utility scripts** — any helper scripts beyond dev/build/test.
+12. **Configuration strategy** — where constants, design tokens, and
     user-facing config live.
-12. **Editor config** — describe the .editorconfig if one exists.
-13. **Files agents must not hand-edit** — concrete paths.
+13. **Editor config** — describe the .editorconfig if one exists.
+14. **Files agents must not hand-edit** — concrete paths.
 
 Only fill in sections where the architecture provides enough
 information. Leave remaining placeholders for later. Do not invent
@@ -416,6 +422,12 @@ Before starting your first task, confirm:
   management" records the product version and build identity per
   `AGENTS.md` → "Traceable version identity" — or is deliberately
   deferred for a pre-deploy MVP.
+- [ ] Security baseline is defined: `DEV-INFRASTRUCTURE.md` → "Security
+  baseline" records where secrets live, the `.gitignore` / `.env.example`
+  placeholder discipline, and the leaked-credential response playbook per
+  `AGENTS.md` → "Security baseline"; the report-only secret scan is
+  folded into `check` — or deliberately collapsed to one line for a
+  project with no secrets and no third-party dependencies.
 
 Then run a placeholder lint:
 
@@ -796,6 +808,35 @@ Tier 0 collapses to a docs/static gate — e.g. "`check` = a CUSTOMISE /
 placeholder scan + Markdown lint + a relative-link check." Tier 2 adds a
 coverage threshold, automated accessibility checks (e.g. axe), and a
 dependency/security audit, keeping slow suites out of `check`.
+
+### Security baseline example
+
+The capability is required at every tier; the implementation scales.
+The secret scan is report-only and non-mutating, like the rest of
+`check`. Do not restate the diagnostics-redaction rule — cross-reference
+"Maintainer diagnostics".
+
+Tier 1 (typical dev-server app):
+
+```markdown
+- **Secret storage:** runtime secrets in a gitignored `.env.secrets`
+  sidecar; `.env` is composed from `.env.example` (placeholders,
+  committed) + the sidecar. Never in source, URLs, logs, or diagnostics.
+- **.gitignore:** `.env`, `.env.secrets`, `.env.*.local`.
+- **Secret scan:** `check` greps tracked files for `sk-`, `AKIA`,
+  `ghp_`, and PEM headers — report-only, dependency-free.
+- **Dependency audit:** `npm audit` on every upgrade; approved pins held
+  via `overrides`, never a blanket `--force`.
+- **Leak response:** rotate at the provider first, replace in the
+  sidecar, verify, then decide on history rewrite (usually skip once the
+  key is dead). Record the decision in decision-log.md.
+```
+
+Tier 0 collapses to the `.gitignore` + `.env.example` placeholder
+discipline plus the report-only key-shape grep in `check`. Tier 2 adds a
+pre-commit secret scanner (named options — e.g. gitleaks, trufflehog —
+not bundled), the dependency audit wired into CI, and a periodic
+key-rotation note.
 
 ### Build system example
 

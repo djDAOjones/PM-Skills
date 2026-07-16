@@ -196,6 +196,59 @@ scripts, configuration, or deployment.
 
 ---
 
+## Security baseline
+
+<!-- CUSTOMISE: Define how THIS project keeps secrets out of the repo,
+     audits its dependencies, and responds to a leaked credential (see
+     AGENTS.md → "Security baseline"). This is the security analogue of
+     the Quality gate: slots and named options, never a mandated scanner,
+     and the secret scan stays non-mutating like `check`. Do NOT restate
+     the diagnostics-redaction rule — cross-reference "Maintainer
+     diagnostics" above. Populate:
+     1. Secret storage — where secrets actually live (environment, a
+        gitignored sidecar, a platform secret store). Never in source,
+        URLs, logs, QR codes, or the diagnostics bundle.
+     2. .env workflow — the committed template (`.env.example`, all
+        placeholders), the gitignored real values, and how they compose.
+        Cross-ref "Runtime lifecycle" env prerequisites; don't duplicate.
+     3. .gitignore coverage — the env / secret paths that must never be
+        committed.
+     4. Secret scan — the report-only, dependency-free key-shape grep
+        folded into `check` (see "Quality gate"): flag obvious shapes
+        (`sk-`, `AKIA`, `ghp_`, PEM headers) in tracked files.
+        Non-mutating; report-only.
+     5. Dependency audit — the command and the stated cadence (at minimum
+        on every upgrade); how an approved pin is protected (dependency
+        overrides, not a blanket `--force`).
+     6. Leaked-credential response playbook — rotation-first (below).
+
+     Response playbook (rotation-first, never history-rewrite-first):
+     1. Rotate the credential at the provider immediately — assume it is
+        already public.
+     2. Replace it in the sidecar / secret store; recompose `.env`.
+     3. Verify the app runs on the new credential.
+     4. Only then decide on a history rewrite — usually not worth it once
+        the key is dead, and a rewrite rewrites shared history and breaks
+        every existing clone.
+     5. Record the incident and the decision in decision-log.md.
+
+     Tiered shape (populate only the tier this project is at):
+     - Tier 0 (static / docs / scripts): `.gitignore` covers env files;
+       `.env.example` placeholder discipline; the report-only key-shape
+       grep folded into `check`. Costs nothing beyond greps.
+     - Tier 1 (typical app): a gitignored `.env.secrets` sidecar composed
+       into `.env`; a dependency audit run on every upgrade;
+       secret-surface rows in the scripts table.
+     - Tier 2 (mature / multi-surface): a pre-commit secret scanner
+       (named options, not bundled); the dependency audit wired into CI;
+       a periodic key-rotation note.
+
+     If the project has no secrets and no third-party dependencies,
+     collapse this to one line — but keep the .gitignore + placeholder
+     discipline. See init.md Step 8 (Appendix B) for a worked example. -->
+
+---
+
 ## Build system
 
 <!-- CUSTOMISE: Define bundler, entry point, output directory, source

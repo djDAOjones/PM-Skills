@@ -8,6 +8,7 @@
     "package-lock.json"
   ],
   "words": [
+    "AKIA",
     "backticked",
     "clippy",
     "cooldown",
@@ -18,6 +19,7 @@
     "docstrings",
     "FILEMAP",
     "frontmatter",
+    "gitleaks",
     "gofmt",
     "greppable",
     "instrumentable",
@@ -34,10 +36,12 @@
     "smartquotes",
     "staticcheck",
     "timeboxed",
+    "trufflehog",
     "ungated",
     "unhandledrejection",
     "unjudged",
     "unparseable",
+    "unrotated",
     "unstarted",
     "watchouts",
     "WCAG",

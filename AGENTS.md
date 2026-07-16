@@ -226,6 +226,21 @@ asks — capturing the one line is the whole interaction.
   commit SHA on a static site, to a build-time-injected build id
   surfaced at runtime), but the capability is required at every tier.
   See `DEV-INFRASTRUCTURE.md` → "Version management".
+- **Security baseline.** Secrets live outside the repo — in the
+  environment or a secret store — never in source, URLs, logs, QR
+  codes, or the diagnostics bundle. Every value committed in a config
+  template is a placeholder, never a live credential. Dependency
+  advisories are triaged on a stated cadence and at every upgrade. A
+  leaked credential is treated as live exposure: **rotate first at the
+  provider, then decide on history cleanup** — rotation is the fix,
+  history rewriting is optional and usually not worth it once the key is
+  dead. Implementation scales with complexity (from a `.gitignore` +
+  placeholder discipline + a report-only key-shape scan on a static
+  site, to a sidecar-composed `.env`, a pre-commit secret scanner, and a
+  CI dependency audit), but the capability is required at every tier.
+  This extends — never restates — the diagnostics-redaction rule in
+  "Self-explaining runtime". See `DEV-INFRASTRUCTURE.md` → "Security
+  baseline".
 - **Hostile-filesystem guard.** Cloud-synced repo paths (OneDrive,
   Dropbox, Google Drive, iCloud) are unsupported for project memory —
   they silently revert tracked files mid-session and spawn conflict
@@ -400,6 +415,11 @@ context → `project/`. Historical content → `project/archive/`.
   version or build id, or collapsing the release name and the build
   trace into one number so "what release is this?" and "exactly what
   code is live?" can no longer both be answered.
+- No security baseline: committing a real secret (or a live value in a
+  config template that should be a placeholder), putting a credential in
+  a URL, log, QR code, or the diagnostics bundle, or responding to a
+  leak by rewriting git history while the exposed key is left valid
+  instead of rotating it first.
 - Letting the `wish-list.md` inbox become a write-only graveyard, or
   scoping or estimating its items at capture time. Capture is one
   line; judgement happens at triage.

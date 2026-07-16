@@ -40,8 +40,11 @@ Do not deploy until all of these hold. Report any that fail and stop.
   identity from `AGENTS.md` → "Traceable version identity"). Tag the
   release with the product version so the deploy maps to a known commit.
 - **Secrets are external.** Confirm no key, token, or credential is
-  hard-coded or about to be committed. Deploy-time secrets come from
-  the environment or the platform's secret store, never the repo.
+  hard-coded or about to be committed, per `DEV-INFRASTRUCTURE.md` →
+  "Security baseline" (and `AGENTS.md` → "Security baseline").
+  Deploy-time secrets come from the environment or the platform's secret
+  store, never the repo. If a secret has leaked, follow the section's
+  rotation-first response playbook before shipping.
 
 ## 3. Run the documented pipeline
 

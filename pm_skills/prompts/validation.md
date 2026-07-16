@@ -24,12 +24,18 @@ Output:
    (tokens, cookies, raw bodies, full storage, PII) can reach the
    copy-diagnostics bundle. "Not applicable" if the task adds no
    instrumentable behaviour.
-6. Test plan — name the invariants at risk, then the categories that
+6. Secret surface — if this task touches secrets, credentials, `.env` /
+   config templates, or what the diagnostics bundle carries, confirm no
+   secret can reach source, logs, or URLs, that committed templates hold
+   only placeholders, and that `DEV-INFRASTRUCTURE.md` → "Security
+   baseline" will be updated. "Not applicable" if the task touches no
+   secret surface.
+7. Test plan — name the invariants at risk, then the categories that
    apply (happy path, empty, error, boundary, permission/gating,
    regression, persistence round-trip). "Not applicable" is a valid
    answer per category. Flag anything only a manual check can cover.
-7. Edge cases — what might we miss?
-8. Signs the scope is too large or the design is wrong.
+8. Edge cases — what might we miss?
+9. Signs the scope is too large or the design is wrong.
 
 Rules:
 
