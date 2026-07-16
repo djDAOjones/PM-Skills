@@ -25,6 +25,72 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.12.0 — 2026-07-16
+
+Adds a **protected-doc sync loop**. Protected docs (SPEC, ADRs, and kin)
+are correctly edit-on-request only, but nothing scheduled their
+reconciliation, so flagged deltas accumulated silently (the Hub's DOC-1
+ticket ballooned to 13 KB — 4× the ticket soft cap — with per-file edit
+lists deferred for weeks). This gives the debt a **ledger**, an **age**,
+and a **batched sign-off pass**. A new cold-tier
+`pm_skills/project/doc-deltas.md` captures one line per delta at task
+close; session start surfaces the open count + oldest age; a 5th
+`Doc-sync` verb in `memory-maintenance.md` presents each doc's batched
+diff for sign-off, applies approved edits, and ticks the lines; Diagnose
+gains a ledger-health check. The ledger is **capture-only** (the DOC-1
+lesson — the edit is derived fresh from the source at sync time, never
+stored) and nothing auto-edits a protected doc. Implements DOC-SYNC
+(Wave 3). Minor.
+
+### Added
+
+- `pm_skills/project/doc-deltas.md` — new `project-memory` (cold-tier)
+  ledger template: capture-only, one checkbox line per delta, mirrors the
+  wish-list template's capture/triage-boundary comments.
+
+### Changed
+
+- `pm_skills/prompts/memory-maintenance.md` — new **Doc-sync** verb
+  (DS1–DS6 + rules); intro now lists five verbs; Diagnose gains check 11
+  (doc-delta ledger health); Prune P2 gains a `doc-deltas.md` handling
+  line (delete `[x]` lines, propose Doc-sync for open overrun);
+  frontmatter description updated.
+- `pm_skills/prompts/end-of-task.md` — step 3 gains a `doc-deltas.md`
+  capture bullet; size-check full sweep counts open deltas; overrun
+  action proposes Doc-sync.
+- `pm_skills/prompts/session-start.md` — Start B surfaces
+  `doc-deltas: N open, oldest DATE` (nudge, not gate); cold-tier
+  reference list gains the ledger.
+- `pm_skills/prompts/review.md` — the feature-area protected-doc
+  currency check now also appends a one-line delta to the ledger.
+- `pm_skills/memory-policy.md` — new budget row: `doc-deltas.md` open
+  deltas (10 open **or** oldest 30 days).
+- `pm_skills/MANIFEST.md` — `pm_skills/project/doc-deltas.md` →
+  `project-memory` row.
+- `AGENTS.md` (root template) — cold-tier bullet for `doc-deltas.md`.
+- `pm_skills/GUIDE.md` — file tree, memory-update table, and the
+  maintenance-verbs list (now five) document the ledger and Doc-sync.
+
+### Upgrade actions
+
+- Adopt the updated `pm_skills/prompts/memory-maintenance.md`,
+  `end-of-task.md`, `session-start.md`, `review.md`,
+  `pm_skills/memory-policy.md`, `pm_skills/MANIFEST.md`, and
+  `pm_skills/GUIDE.md` (all `framework` — distributed via existing
+  globs). Projects that customised any of these should re-apply the
+  doc-sync additions.
+- **New `project-memory` file:** create
+  `pm_skills/project/doc-deltas.md` from the source template (upgrade
+  Step 8 "new project-memory file → create from template, skip if
+  exists"). There is nothing to preserve; it starts empty.
+- Merge the `AGENTS.md` cold-tier `doc-deltas.md` bullet into the
+  project's `AGENTS.md` (root-template 3-way merge, Step 7).
+- **Optional migration** — a project that has been tracking protected-doc
+  drift in an ad-hoc ticket (the Hub's `tickets/DOC-1.md`) can fold its
+  per-doc flags into `doc-deltas.md` as one capture line each, then
+  delete the ticket. One-time, Reconcile-style; do it only if the ledger
+  is a better home than the existing ticket.
+
 ## 3.11.0 — 2026-07-16
 
 Extends `review.md` to accept a **feature area** as its review scope, not
