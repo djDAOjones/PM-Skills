@@ -1,5 +1,7 @@
 # ARCH-INTEG — Archive-integrity check in Diagnose
 
+<!-- cspell:ignore ngrok -->
+
 > **Status:** Later / minor.
 > **Grades:** Impact **Medium** · Difficulty **Low** · Risk **Low** ·
 > OpΔ **None**.
@@ -55,13 +57,13 @@ a git-recovery hint.
    orphan a pointer).
 3. **Repair guidance, not repair:** Diagnose proposes restoring the
    entries into a dated archive file (append-only: a new archive chunk
-   with a provenance header "restored from <sha>") — applies only with
+   with a provenance header "restored from `<sha>`") — applies only with
    approval, consistent with Diagnose-never-edits.
 
 ## Constraints
 
-- Shell-only (grep/sort/comm); single pass; bounded to the trajectory
-  + INDEX surface — do not grep the whole repo.
+- Shell-only (grep/sort/comm); single pass; bounded to the trajectory +
+  INDEX surface — do not grep the whole repo.
 - Date-level granularity is enough (entry-level would need parsing
   headlines; the failure mode is whole-day slices vanishing with
   reverts/prunes).

@@ -34,10 +34,11 @@
  *   are ignored.
  *
  * Inputs: tracked + non-ignored `*.md` files via `git ls-files`, so
- * `node_modules/` is excluded for free. `user_crud/` (tracked
- * maintainer scratch: roadmap, tickets, transcripts) is excluded
- * explicitly — it is not framework docs, and transcripts carry
- * exported `file://` links that are not checkable references.
+ * `node_modules/` is excluded for free. The repo's living memory
+ * (`self/`) IS checked; only its cold storage is excluded — the
+ * frozen pre-adoption archive, and evaluations/transcripts, which
+ * carry exported `file://` links and Hub-repo paths that are not
+ * checkable references here.
  *
  * Exit code: 0 when everything resolves; 1 otherwise (gates CI).
  */
@@ -75,10 +76,14 @@ const IGNORE = [/(^|\/)archive(\/|$)/, /(^|\/)tickets(\/|$)/];
 const PATH_SOURCE_EXCLUDE = new Set(['pm_skills/CHANGELOG.md']);
 
 /**
- * Directories whose files are not checked at all: tracked maintainer
- * scratch, not framework docs (see the header note).
+ * Directories whose files are not checked at all: the cold self/
+ * tiers (see the header note).
  */
-const FILE_EXCLUDE = [/^user_crud\//];
+const FILE_EXCLUDE = [
+  /^self\/archive\//,
+  /^self\/evaluations\//,
+  /^self\/_transcripts\//,
+];
 
 /**
  * Bases a repo path may be written relative to: the repo root, or

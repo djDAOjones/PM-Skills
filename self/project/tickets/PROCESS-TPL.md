@@ -25,14 +25,14 @@ its own process doc.
 ## Evidence (banked — do not re-research)
 
 - **What the Hub invented** (PROCESS.md, ratified 2026-05-03, v0.2):
-  three macro phases with demoable boundaries; per-task rhythm (now
+  three macro phases with demonstrable boundaries; per-task rhythm (now
   superseded by task.md — the stale half); **ADR closure protocol** (§4:
   spike ≤1 session → `## Decision (date)` section, demote *Current
   thinking* to a dated note → decision-log link → SPEC update → sweep
   working assumptions); trivial-vs-non-trivial criteria (§3.4–3.5:
   always 4-stage for SPEC/ADR/event/data-model/scripts/deps);
-  definitions of done per task/milestone/phase (§5); demo-gate cadence
-  + timeboxed spikes (§6); risk watch list (§7); process anti-patterns
+  definitions of done per task/milestone/phase (§5); demo-gate cadence +
+  timeboxed spikes (§6); risk watch list (§7); process anti-patterns
   (§8); roles (§9); memory-placement table (§10).
 - **It earned its keep:** §3.5 forced the doc-first sequencing of the
   MOD-1 invariant override; §4 closed ADR-001/009 cleanly (2026-05-03)
@@ -48,7 +48,7 @@ its own process doc.
 - **Read-load cost:** the Hub added PROCESS.md to the hot whole-file
   tier (~3,700 words every session) — a template should mark most of it
   conditional/warm.
-- ADRs themselves are project-invented too (`spec/adr/` with *Current
+- ADRs themselves are project-invented too (`spec/adr` with *Current
   thinking* → *Decision* structure, 15 files) — the protocol is the
   portable part; the framework need not ship an ADR template to bless
   the practice.
@@ -85,10 +85,10 @@ no natural home in any existing file and Option B scatters them.
 
 ## Files touched (framework)
 
-Option A: new root `PROCESS.md` template + `pm_skills/MANIFEST.md` row
-+ `init.md` step + `AGENTS.md` read-tier mention + GUIDE. Option B:
-`pm_skills/GUIDE.md`, `pm_skills/project/decision-log.md` comments,
-`init-mvp.md`.
+Option A: new root `PROCESS.md` template + `pm_skills/MANIFEST.md`
+row + `init.md` step + `AGENTS.md` read-tier mention + GUIDE.
+Option B: `pm_skills/GUIDE.md`, `pm_skills/project/decision-log.md`
+comments, `init-mvp.md`.
 
 ## Open questions
 

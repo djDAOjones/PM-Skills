@@ -1,5 +1,7 @@
 # DEPREC-SHIM — Deprecation shims on consolidation
 
+<!-- cspell:ignore Autojazz -->
+
 > **Status:** Later / minor.
 > **Grades:** Impact **Low-Med** · Difficulty **Low** · Risk **Low** ·
 > OpΔ **None**.
@@ -48,7 +50,7 @@ list the old→new name map in Upgrade actions.
    AI tool's workflow dir (path prompted once, remembered in the
    report), replacing old copies with their successors; (b) offer
    tombstones — a 3-line file at the old workflow-dir name:
-   "Removed in <version>. Use `task.md` (mode: auto-jazz). This shim
+   "Removed in `<version>`. Use `task.md` (mode: auto-jazz). This shim
    can be deleted." Never tombstone inside `pm_skills/` itself (the
    tree must match MANIFEST).
 2. **Backup hygiene note:** upgrade backups are for recovery, not

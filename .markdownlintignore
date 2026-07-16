@@ -5,4 +5,6 @@
 # without it the extension lints gitignored scratch and node_modules.
 # Do not remove as "unused" — see CONTRIBUTING.md → Configuration.
 node_modules/
-user_crud/
+self/archive/
+self/evaluations/
+self/_transcripts/

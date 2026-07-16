@@ -87,6 +87,6 @@ dedicated audit.md is chosen (not the lean).
   with the maintainer.
 - Chunk unit for repos without a generated file-map (adopt-tier
   projects): top-level directories? Defer until first real run.
-- Does the audit report live in `_transcripts/`-style cold storage or
-  as a dated `evaluations/`-style file? Lean: dated report next to
+- Does the audit report live in transcript-style cold storage or as a
+  dated file in `self/evaluations/`? Lean: dated report next to
   project memory, cold tier.

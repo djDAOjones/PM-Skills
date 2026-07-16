@@ -4,8 +4,13 @@
   "useGitignore": true,
   "ignorePaths": [
     "node_modules/**",
-    "user_crud/**",
+    "self/archive/**",
+    "self/evaluations/**",
+    "self/_transcripts/**",
     "package-lock.json"
+  ],
+  "ignoreRegExpList": [
+    "/\\b[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+\\b/g"
   ],
   "words": [
     "AKIA",
@@ -37,6 +42,7 @@
     "staticcheck",
     "timebox",
     "timeboxed",
+    "timeboxing",
     "trufflehog",
     "ungated",
     "unhandledrejection",

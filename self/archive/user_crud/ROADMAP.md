@@ -1,5 +1,15 @@
 # PM Skills — Development Roadmap (scratch)
 
+<!-- ARCHIVED 2026-07-16 (SELF-HOST). This file and the whole
+     user_crud/ tree are frozen: the repo now runs its own pm-skills
+     deployment in self/ (contract: self/AGENTS.md). Live content
+     migrated to self/project/ — backlog.md (open waves + Later),
+     wish-list.md (Inbox), decision-log.md (Settled + kick-off
+     provenance), trajectory.md (Shipped), tickets/ (open detail
+     files). The SESSION KICK-OFF block below is retired; its
+     close-out checklist lives on in self/AGENTS.md → "End-of-task
+     extension". Do not edit this tree. -->
+
 <!-- Internal scratch (user_crud/) — TRACKED in git since 2026-07-16
      (versioned backup; see evaluations/2026-07-16-recent-dev-review.md
      P1) but source-only: NOT distributed, NOT a project-memory

@@ -18,22 +18,28 @@ The framework is overwhelmingly Markdown. Two classes of file live here:
   project: `package.json`, `package-lock.json`, `.github/`, `.githooks/`,
   `scripts/`, the root `.editorconfig`, `.markdownlint.json`,
   `.markdownlint-cli2.jsonc`, `.markdownlintignore`, the root
-  `.gitignore`, `CONTRIBUTING.md`, `README.md`, and `user_crud/` (the
-  framework's own project memory — roadmap, tickets, evaluations,
-  transcripts; tracked since 2026-07-16 for versioned backup, excluded
-  from the lint gate).
+  `.gitignore`, `CONTRIBUTING.md`, `README.md`, and `self/` — the
+  repo's **own pm-skills deployment** (SELF-HOST, 2026-07-16): the
+  operative agent contract (`self/AGENTS.md`), living project memory
+  (`self/project/`), and cold storage (`self/archive/` pre-adoption
+  history incl. the retired `user_crud` tree, `self/evaluations/`,
+  `self/_transcripts/`). The living memory is inside the lint gate;
+  only the cold storage is excluded.
 
 Rule: do **not** add a source-only tooling path to `MANIFEST.md`, and the
 upgrade workflow must never carry these files into a consuming project.
 
 Note on deliberate forks: `pm_skills/scaffold/check-links.mjs` /
+`pm_skills/scaffold/gen-file-map.mjs` /
 `pm_skills/scaffold/.markdownlint.json` and their source-only siblings
-(`scripts/check-docs.mjs`, root `.markdownlint.json`) are **separate
-copies by design** — the scaffold ships generic, the source-repo copy is
-tuned for this repo (check-docs also validates inline path references
-and skips the append-only changelog as a path source). A bug fixed in
-one must be considered for the other; there is no sync mechanism, only
-this reminder.
+(`scripts/check-docs.mjs`, `scripts/gen-file-map.mjs`, root
+`.markdownlint.json`) are **separate copies by design** — the scaffold
+ships generic, the source-repo copy is tuned for this repo (check-docs
+also validates inline path references and skips the append-only
+changelog as a path source; gen-file-map maps `pm_skills/` as source
+and targets `self/project/file-map.md`). A bug fixed in one must be
+considered for the other; there is no sync mechanism, only this
+reminder.
 
 ## Prerequisites
 
@@ -66,26 +72,29 @@ Configuration:
   rationale in that file's `$comment` field.
 - markdownlint-cli2 options: `.markdownlint-cli2.jsonc`. Sets
   `gitignore: true` so the linter skips whatever `.gitignore` skips
-  (`node_modules/`), plus an explicit `ignores` for `user_crud/`
-  (tracked scratch, deliberately outside the gate). (markdownlint-cli2
-  does not honour `.markdownlintignore`.)
+  (`node_modules/`), plus an explicit `ignores` for the cold `self/`
+  tiers (`self/archive/`, `self/evaluations/`, `self/_transcripts/`) —
+  the living memory in `self/` is gated. (markdownlint-cli2 does not
+  honour `.markdownlintignore`.)
 - `.markdownlintignore` exists **for the editor extension only**
   (vscode-markdownlint honours it; the CLI does not). It mirrors the
   gate-excluded paths so the IDE Problems panel matches the CLI gate —
   without it the extension flags scratch files the gate deliberately
   skips. Keep it in step with `.gitignore` + the cli2 `ignores` list.
 - cspell: `cspell.json`. `language` accepts `en,en-GB`; `useGitignore`
-  skips ignored paths and `ignorePaths` excludes the tracked
-  `user_crud/` scratch; the `words` array is the curated domain
-  vocabulary (coined terms and jargon the bundled dictionaries miss).
-  When cspell flags a word in distributed docs, **prefer rewording**
-  (plain English over coinage); add to `words` only a term of art the
-  doc genuinely needs (`auto-jazz`, `Reconcile`-family jargon, stack
-  names). Scratch under `user_crud/` is never the reason to grow the
-  dictionary.
+  skips ignored paths and `ignorePaths` excludes the cold `self/`
+  tiers; `ignoreRegExpList` skips SCREAMING-KEBAB backlog/ticket IDs
+  (`SELF-HOST`, `MEM-MAINT`, …) as identifiers, not prose; the `words`
+  array is the curated domain vocabulary (coined terms and jargon the
+  bundled dictionaries miss). When cspell flags a word in distributed
+  docs, **prefer rewording** (plain English over coinage); add to
+  `words` only a term of art the doc genuinely needs (`auto-jazz`,
+  `Reconcile`-family jargon, stack names). Quoted external material in
+  memory files takes a file-scoped `cspell:ignore` comment, and cold
+  storage is never the reason to grow the dictionary.
 - editorconfig-checker: `.editorconfig-checker.json`. Excludes `*.md`
   (markdownlint owns Markdown indentation), the generated lockfile, and
-  the `user_crud/` scratch dir.
+  the cold `self/` tiers.
 
 ### Running without a local install
 

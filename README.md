@@ -164,6 +164,11 @@ copy-paste flow for AI tools without workflow support — is
   distribution templates with `<!-- CUSTOMISE -->` placeholders,
   populated during initialization. Not filled-in contracts for this
   repository.
+- **`self/`** — this repo's **own pm-skills deployment** (the
+  framework develops itself on its own loops): the operative agent
+  contract (`self/AGENTS.md`), living project memory
+  (`self/project/`), and archived history. Source-only, never
+  distributed — see `CONTRIBUTING.md`.
 
 ## Glossary
 

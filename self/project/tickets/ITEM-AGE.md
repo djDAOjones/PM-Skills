@@ -1,5 +1,7 @@
 # ITEM-AGE — Standing-item ageing at the batch pick
 
+<!-- cspell:ignore iceboxed -->
+
 > **Status:** Later / minor.
 > **Grades:** Impact **Medium** (SEC-1 would not be 7 weeks old) ·
 > Difficulty **Low** · Risk **Low** · OpΔ **Low**.
@@ -32,8 +34,8 @@ banner regardless of Start mode.
   2026-07-08), DOC-1 (deferred "to the end of the build phase"
   2026-07-05), DEP-10 ("possibly obsolete — maintainer to confirm or
   cut").
-- The mechanism slot already exists: Start B step 3 presents the pick
-  + runner-up; adding an "ageing standing items" line costs one grep
+- The mechanism slot already exists: Start B step 3 presents the
+  pick + runner-up; adding an "ageing standing items" line costs one grep
   (dates are already conventional in Hub backlog lines, e.g. "Raised
   2026-07-08", "parked from Active 2026-06-23").
 
@@ -61,7 +63,7 @@ banner regardless of Start mode.
 - One banner line max — a wall of nags gets ignored (the
   permanently-red budget lesson, §3.2).
 - No date-parsing dependency: `YYYY-MM-DD` in the line + shell date
-  arithmetic, or plain "since <date>" if arithmetic is unavailable.
+  arithmetic, or plain "since `<date>`" if arithmetic is unavailable.
 
 ## Files touched (framework)
 
