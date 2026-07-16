@@ -2,10 +2,15 @@
   // markdownlint-cli2 options. This is separate from the rule config in
   // .markdownlint.json, which markdownlint-cli2 still reads and merges.
   //
-  // gitignore:true makes the linter skip everything .gitignore skips —
-  // node_modules/ (installed deps) and user_crud/ (internal scratch) —
-  // so the "**/*.md" glob never descends into them. This is the single
-  // source of ignore truth: markdownlint-cli2 does NOT honour a
-  // .markdownlintignore file, so relying on one silently lints node_modules.
-  "gitignore": true
+  // gitignore:true makes the linter skip everything .gitignore skips
+  // (node_modules/, installed deps) so the "**/*.md" glob never descends
+  // into them. markdownlint-cli2 does NOT honour a .markdownlintignore
+  // file, so relying on one silently lints node_modules.
+  "gitignore": true,
+  // user_crud/ is tracked (2026-07-16) but stays out of the gate: it is
+  // maintainer scratch (roadmap, tickets, transcripts), not framework
+  // docs — enforcing lint there taxes every capture. Keep in step with
+  // .markdownlintignore, cspell.json, .editorconfig-checker.json, and
+  // scripts/check-docs.mjs.
+  "ignores": ["user_crud/**"]
 }

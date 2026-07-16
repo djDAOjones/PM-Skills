@@ -12,5 +12,9 @@ Thumbs.db
 node_modules/
 npm-debug.log*
 
-# Internal dev scratch (not distributed)
-user_crud/
+# Internal dev scratch (user_crud/) is TRACKED as of 2026-07-16 — it is
+# the framework's own project memory (roadmap, tickets, evaluations,
+# transcripts) and was previously single-copy on a cloud-synced path.
+# It stays source-only (never distributed; excluded from the lint gate
+# via .markdownlint-cli2.jsonc, cspell.json, .editorconfig-checker.json,
+# and scripts/check-docs.mjs).

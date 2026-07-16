@@ -34,7 +34,10 @@
  *   are ignored.
  *
  * Inputs: tracked + non-ignored `*.md` files via `git ls-files`, so
- * gitignored scratch (`user_crud/`) and `node_modules/` are excluded.
+ * `node_modules/` is excluded for free. `user_crud/` (tracked
+ * maintainer scratch: roadmap, tickets, transcripts) is excluded
+ * explicitly — it is not framework docs, and transcripts carry
+ * exported `file://` links that are not checkable references.
  *
  * Exit code: 0 when everything resolves; 1 otherwise (gates CI).
  */
@@ -72,6 +75,12 @@ const IGNORE = [/(^|\/)archive(\/|$)/, /(^|\/)tickets(\/|$)/];
 const PATH_SOURCE_EXCLUDE = new Set(['pm_skills/CHANGELOG.md']);
 
 /**
+ * Directories whose files are not checked at all: tracked maintainer
+ * scratch, not framework docs (see the header note).
+ */
+const FILE_EXCLUDE = [/^user_crud\//];
+
+/**
  * Bases a repo path may be written relative to: the repo root, or
  * inside `pm_skills/` (framework docs use both forms).
  */
@@ -96,7 +105,9 @@ function markdownFiles() {
         .map((s) => s.trim())
         .filter(Boolean),
     ),
-  ].filter((f) => existsSync(f)); // staged deletions linger in ls-files
+  ]
+    .filter((f) => existsSync(f)) // staged deletions linger in ls-files
+    .filter((f) => !FILE_EXCLUDE.some((re) => re.test(f)));
 }
 
 /**

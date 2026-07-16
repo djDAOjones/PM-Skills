@@ -18,7 +18,10 @@ The framework is overwhelmingly Markdown. Two classes of file live here:
   project: `package.json`, `package-lock.json`, `.github/`, `.githooks/`,
   `scripts/`, the root `.editorconfig`, `.markdownlint.json`,
   `.markdownlint-cli2.jsonc`, `.markdownlintignore`, the root
-  `.gitignore`, `CONTRIBUTING.md`, and `README.md`.
+  `.gitignore`, `CONTRIBUTING.md`, `README.md`, and `user_crud/` (the
+  framework's own project memory — roadmap, tickets, evaluations,
+  transcripts; tracked since 2026-07-16 for versioned backup, excluded
+  from the lint gate).
 
 Rule: do **not** add a source-only tooling path to `MANIFEST.md`, and the
 upgrade workflow must never carry these files into a consuming project.
@@ -63,16 +66,23 @@ Configuration:
   rationale in that file's `$comment` field.
 - markdownlint-cli2 options: `.markdownlint-cli2.jsonc`. Sets
   `gitignore: true` so the linter skips whatever `.gitignore` skips
-  (`node_modules/`, `user_crud/`) — one ignore source, no separate ignore
-  list to drift. (markdownlint-cli2 does not honour `.markdownlintignore`.)
+  (`node_modules/`), plus an explicit `ignores` for `user_crud/`
+  (tracked scratch, deliberately outside the gate). (markdownlint-cli2
+  does not honour `.markdownlintignore`.)
 - `.markdownlintignore` exists **for the editor extension only**
   (vscode-markdownlint honours it; the CLI does not). It mirrors the
-  gitignored paths so the IDE Problems panel matches the CLI gate —
+  gate-excluded paths so the IDE Problems panel matches the CLI gate —
   without it the extension flags scratch files the gate deliberately
-  skips. Keep its two lists in step with `.gitignore`.
+  skips. Keep it in step with `.gitignore` + the cli2 `ignores` list.
 - cspell: `cspell.json`. `language` accepts `en,en-GB`; `useGitignore`
-  skips ignored paths; the `words` array is the curated domain
+  skips ignored paths and `ignorePaths` excludes the tracked
+  `user_crud/` scratch; the `words` array is the curated domain
   vocabulary (coined terms and jargon the bundled dictionaries miss).
+  When cspell flags a word in distributed docs, **prefer rewording**
+  (plain English over coinage); add to `words` only a term of art the
+  doc genuinely needs (`auto-jazz`, `Reconcile`-family jargon, stack
+  names). Scratch under `user_crud/` is never the reason to grow the
+  dictionary.
 - editorconfig-checker: `.editorconfig-checker.json`. Excludes `*.md`
   (markdownlint owns Markdown indentation), the generated lockfile, and
   the `user_crud/` scratch dir.
