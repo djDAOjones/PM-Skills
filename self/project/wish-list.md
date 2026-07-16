@@ -6,5 +6,7 @@
 
 ## Open
 
-<!-- Append captured ideas below, one bullet each. Delete this comment
-     once you add the first real item. -->
+- Cross-ref `[security]` from the root `AGENTS.md` "Security baseline"
+  playbook: state that a leaked-credential tracking item is flagged
+  `[security]` on creation (ITEM-AGE open question 2; deferred — it's a
+  root-template 3-way-merge change).

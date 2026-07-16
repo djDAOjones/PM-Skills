@@ -159,7 +159,12 @@ overwrites your memory or customisations.
 Open a fresh chat. Name the task ("My task: add CSV export to the
 reports page") or say **"pick the next batch"** — the agent triages
 any parked wish-list ideas, proposes the next logical backlog item
-with a recommended mode, and waits for your go-ahead.
+with a recommended mode, and waits for your go-ahead. At the pick it
+also surfaces the **age of standing items** — the
+`[maintainer]`/`[sign-off]`/`[blocked]` work that waits across sessions
+— so long-lived items can't fade into wallpaper; and any open
+`[security]` item (a live exposure) banners at every session start
+until it's closed.
 
 Or, when you trust the backlog order, run
 [`integrations/next.md`](./integrations/next.md): one word picks the

@@ -103,6 +103,23 @@ the quality gate runs but the memory writes are deferred to a batch
   new work until it clears. Under the cap, the count is a nudge, not a
   block. Never auto-run the reconcile; propose it.
 
+## Security banner (both starts)
+
+Scan the backlog for any open `[security]` item — the flag reserved for
+live exposure (a leaked credential, an open auth hole; nothing weaker,
+see the ticket grammar in `pm_skills/project/backlog.md`). If any exist,
+print **one** banner line at the very top of the session, before either
+Start block and regardless of Start mode:
+`SECURITY: SEC-1 open since 2026-05-20 (49 d) — rotate first`. For more
+than one, keep it to one line — the count plus the oldest:
+`SECURITY: 2 open, oldest SEC-1 (49 d)`. Compute age from the item's
+date with plain shell date arithmetic; if that is unavailable, print
+`since 2026-05-20` instead of `(49 d)`. It repeats every session until
+the item is closed. **One line maximum** — a wall of nags gets ignored.
+Skip silently if none. This is the one nag that fires even on a
+task-focused Start A, precisely because an unrotated live exposure
+outranks the task.
+
 ## Then state the task — Start A (you name it)
 
 ### Standard start (full 4-stage task)
@@ -198,6 +215,13 @@ Output, concisely:
    and `refactor` for behaviour-preserving restructuring items.
 5. **Ready-to-paste task statement** — in the matching Start A form.
 6. **Runner-up** — one line: the next item if this one is wrong.
+7. **Ageing standing items** — up to the 3 oldest open
+   `[maintainer]`/`[sign-off]`/`[blocked]` items with their age
+   (`SEC-1 [maintainer][security] — 49 d`), computed from each item's
+   date (`since <date>` if date arithmetic is unavailable). This is the
+   moment a human is already choosing what to do, so it is where age is
+   worth surfacing. Informational only: age never reorders the queue —
+   ordering stays dependency-driven. Skip the line if there are none.
 
 Then **wait** for the user to confirm or redirect. Do not begin
 scoping, planning, or code until they do. If two or three candidates

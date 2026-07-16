@@ -204,6 +204,15 @@ Detail | Proposed action**.
     WARN past the threshold (open count or oldest age). Action:
     **Doc-sync**.
 
+12. **Ageing standing items** — count open `[maintainer]`/`[sign-off]`/
+    `[blocked]` items whose creation date is older than the standing-item
+    age threshold in `memory-policy.md`; list the oldest few with their
+    age. Also flag any open `[security]` item regardless of age (live
+    exposure). WARN past the threshold, or on any open `[security]`.
+    Action: maintainer review — they surface at the next Start B pick,
+    and a `[security]` ager banners at every session start until closed.
+    Diagnose never reorders the queue; age is informational.
+
 Report: the health table, FAILs first; below it, a short prioritised
 action list grouping checks by the verb that fixes them (e.g. "Run
 **Refactor** — addresses checks 2, 3, 5"). If everything is OK, say so

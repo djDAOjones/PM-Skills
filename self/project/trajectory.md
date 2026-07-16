@@ -4,8 +4,14 @@
      item: the outcome. The why lives in decision-log.md; release
      detail lives in pm_skills/CHANGELOG.md — point, don't restate. -->
 
-## Wave 5 — consuming-project features (shipped 2026-07-16, v3.15.0–3.16.0)
+## Wave 5 — consuming-project features (shipped 2026-07-16, v3.15.0–3.17.0)
 
+- ITEM-AGE (3.17.0) — standing human-owned work surfaces its age at the
+  Start B pick; new `[security]` flag banners at every session start
+  until closed; Diagnose check 12 + a `memory-policy.md` age row
+  (WARN 30 d). Grammar (canonical backlog comment) documents
+  `[maintainer]`/`[security]` + the creation-date convention. Age is
+  informational — never reorders the queue. See decision-log 2026-07-16.
 - NEXT-CMD (3.16.0) — the `/next` loop shipped as a distributed
   workflow `pm_skills/integrations/next.md` (Start B pick → auto-jazz
   build → end-of-task close; one item per invocation, invocation is

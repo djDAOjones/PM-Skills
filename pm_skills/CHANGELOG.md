@@ -25,6 +25,61 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.17.0 — 2026-07-16
+
+ITEM-AGE: standing human-owned work no longer ages invisibly. The
+framework already keeps `[maintainer]`/`[sign-off]`/`[blocked]` items
+*visible*, but visibility without age decays into wallpaper (the Hub
+left a leaked API key tracked-but-unrotated for ~7 weeks). This surfaces
+age at the moment a human is already choosing what to do — the Start B
+pick — adds a new `[security]` flag for live exposure that banners at
+every session start until closed, and gives Diagnose a matching check.
+Informational only: age never reorders the queue. Minor.
+
+### Added
+
+- `pm_skills/prompts/session-start.md` — a **Security banner (both
+  starts)** section: any open `[security]` item prints one banner line
+  at the top of every session, on Start A and Start B alike, until it is
+  closed (one line maximum — a wall of nags gets ignored). Start B's
+  "Present the pick" output gains item 7, **Ageing standing items**: up
+  to the 3 oldest `[maintainer]`/`[sign-off]`/`[blocked]` items with
+  their age, computed from each item's date (`since <date>` fallback
+  when shell date arithmetic is unavailable).
+- `pm_skills/prompts/memory-maintenance.md` — Diagnose gains check 12,
+  **Ageing standing items**: WARN on items past the age threshold or on
+  any open `[security]` item; action is maintainer review.
+- `pm_skills/memory-policy.md` — a **Standing-item age** row (WARN at
+  30 days); it is a visibility nudge, not a size budget, and never
+  auto-escalates an item's position.
+
+### Changed
+
+- `pm_skills/project/backlog.md` — ticket-grammar comment (the canonical
+  copy) documents the `[maintainer]` and `[security]` flags and the
+  convention that standing items carry their creation date
+  (`YYYY-MM-DD`). `[security]` is reserved for live exposure (a leaked
+  credential or open auth hole; nothing weaker) and a leaked-credential
+  tracking item is flagged `[security]` on creation.
+- `pm_skills/GUIDE.md` — the "Pick" section notes that the pick surfaces
+  standing-item age and that a `[security]` item banners every session.
+
+### Upgrade actions
+
+- `session-start.md`, `memory-maintenance.md`, `memory-policy.md`, and
+  `GUIDE.md` are `framework` — overwrite wholesale with the new
+  versions after the Step 4 customisation check.
+- `pm_skills/project/backlog.md` is `project-memory` (never overwritten):
+  add the new flags and the standing-item date convention to your own
+  ticket-grammar comment by hand — copy the `[maintainer]`/`[security]`
+  flag lines and the "Standing items … carry their creation date"
+  paragraph from the template. Then, going forward, put a creation date
+  on new standing (`[maintainer]`/`[sign-off]`/`[blocked]`) items so
+  Start B can age them, and flag any live-exposure item `[security]`.
+- No migration of existing items is required; undated standing items
+  simply show no age until you add a date. No MANIFEST or root-template
+  change.
+
 ## 3.16.0 — 2026-07-16
 
 NEXT-CMD: the proven `/next` loop ships as a distributed workflow —

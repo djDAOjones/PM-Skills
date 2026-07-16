@@ -32,7 +32,16 @@
          Done when: the acceptance condition.
      Flags: [sign-off] (scope sign-off first → full mode), [blocked: X],
      [spike] (timeboxed investigation → spike mode in task.md),
-     [detail] (has a ticket file).
+     [detail] (has a ticket file), [maintainer] (human-owned, not agent
+     work), [security] (live exposure — a leaked credential or open auth
+     hole; nothing weaker).
+     Standing items — [maintainer], [sign-off], or [blocked] work that
+     waits across sessions — carry their creation date (YYYY-MM-DD) so
+     Start B can surface their age at the pick and Diagnose can flag the
+     stale ones. A [security] item is a standing item by definition and
+     additionally prints a one-line session-start banner until closed;
+     flag a leaked-credential tracking item [security] on creation
+     (tracking is not remediation — rotate first).
      Add optional Scope:/Risks: lines only for sign-off items. -->
 
 <!-- Optional detail file: when an item needs more context than its line

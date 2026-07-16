@@ -13,9 +13,6 @@
 
 ### Current milestone
 
-- [ ] **ITEM-AGE Standing-item ageing** [detail] — `[maintainer]` /
-  `[sign-off]` items show age at the batch pick; `[security]` banner
-  escalation · Medium / Low / Low / Low.
 - [ ] **ARCH-INTEG Archive-integrity check in Diagnose** [detail] —
   verify dated decision-log references resolve; INDEX coverage ·
   Medium / Low / Low / None.

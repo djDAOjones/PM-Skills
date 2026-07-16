@@ -5,6 +5,47 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-07-16 — ITEM-AGE: standing-item ageing + `[security]` flag (3.17.0)
+
+**Decision:** Shipped ITEM-AGE as a minor release. Standing human-owned
+work (`[maintainer]`/`[sign-off]`/`[blocked]`) now carries a creation
+date in the canonical backlog grammar, and Start B surfaces the 3 oldest
+with their age at the pick (item 7 of "Present the pick"). A new
+`[security]` flag — reserved for live exposure (leaked credential, open
+auth hole; nothing weaker) — prints a one-line banner at every session
+start, on Start A and B alike, until closed. Diagnose gained check 12
+(ageing standing items + any open `[security]`); `memory-policy.md`
+gained a Standing-item age row (WARN 30 d). Decided at the ungated
+gates: (1) **bump = minor** (new capability + flag, backward
+compatible, no migration); (2) **threshold = 30 d WARN** in
+memory-policy (ticket open question 1 — numbers live there); (3)
+**banner = one line max** even for multiple `[security]` items (ticket
+constraint against nag-walls), age via shell arithmetic with a
+`since <date>` fallback; (4) **held scope to the ticket's file set** —
+did **not** edit the root `AGENTS.md` "Security baseline" playbook
+(open question 2), because that would change the release class to a
+root-template 3-way merge; parked as a wish-list follow-up.
+
+**Rationale:** Visibility without age decays into wallpaper — the Hub
+left a leaked API key tracked-but-unrotated ~7 weeks with perfect
+visibility and zero pressure (banked evidence, ticket §Evidence). Age is
+strictly **informational**: it never auto-escalates an item's position
+(ordering stays dependency-driven — the Hub's explicit convention), so
+the whole feature is a surfacing nudge, not a scheduler. `[security]` is
+the one exception that nags on a task-focused Start A, because an
+unrotated live exposure genuinely outranks the task. `project/backlog.md`
+is `project-memory` (never overwritten on upgrade), so the grammar
+addition ships with a manual Upgrade action; the four framework files
+overwrite wholesale. MANIFEST unchanged (no files added/renamed).
+
+**Alternatives considered:** Age reorders the queue — rejected (breaks
+the dependency-ordering invariant; the ticket is explicit age is
+informational). Per-item `[security]` banner lines — rejected
+(nag-wall; the permanently-red-budget lesson). Editing the root
+Security-baseline playbook now — deferred (changes release class;
+parked). A date-parsing dependency — rejected (zero-runtime-deps rule;
+shell arithmetic + `since <date>` fallback).
+
 ## 2026-07-16 — NEXT-CMD: `/next` shipped as a distributed workflow (3.16.0)
 
 **Decision:** Shipped `pm_skills/integrations/next.md` — the one-word
