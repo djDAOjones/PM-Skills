@@ -46,7 +46,7 @@ memory budgets on a small file set) gets exercised for real.
   protocol + staged echo; N1 (transcript naming drift) ↔ the 3.7.0
   convention the repo itself wasn't following.
   `evaluations/2026-07-16-recent-dev-review.md`.
-- **REAL-TRAJ closure** (Tier C): "re-run on the *next* consuming
+- **REAL-TRAJ closure** (ROADMAP Settled record): "re-run on the *next* consuming
   project, not the Hub" — self-hosting makes this repo that project.
 - **ADOPT (3.6.0) has never run on a real repo.** This repo is the
   docs-only tier edge case (no app code, no tests beyond the doc gate)
@@ -62,8 +62,9 @@ memory budgets on a small file set) gets exercised for real.
    inventing a second location. Rename/shape files to the standard set
    where sensible.
 3. ROADMAP.md → `backlog.md` mapping: waves ≈ Next, Later/minor ≈
-   Icebox, Shipped fold-ins ≈ trajectory entries, Tier C ≈ decision
-   log. Migrate once, keep `roadmap_old.md`-style verbatim archive.
+   Icebox, Shipped fold-ins ≈ trajectory entries, Settled record ≈
+   decision log. Migrate once, keep `roadmap_old.md`-style verbatim
+   archive.
 4. The release close-out checklist (kick-off step 5) becomes this
    repo's documented end-of-task extension (release protocol is a
    framework-repo specific concern; don't push it into the
@@ -84,6 +85,9 @@ memory budgets on a small file set) gets exercised for real.
 - The migration must be lossless (diff-verifiable, like a Prune) —
   ROADMAP content either moves somewhere named or is archived
   verbatim.
+- `.windsurf/workflows/next.md` (the /next shortcut) points at the
+  ROADMAP kick-off block — when this item moves or replaces that
+  block, update the workflow pointer in the same change.
 
 ## Files touched (framework)
 

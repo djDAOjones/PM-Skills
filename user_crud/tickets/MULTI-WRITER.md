@@ -1,6 +1,8 @@
 # MULTI-WRITER — Parallel-session / multi-machine hardening
 
-> **Status:** Later / minor.
+> **Status:** Wave 4, second (promoted from Later/minor at the
+> 2026-07-16 evening triage; evidence-raised, see below). Ships before
+> Wave 5 — self-hosting needs the provenance discipline in place.
 > **Grades:** Impact **Medium** · Difficulty **Med-High** · Risk
 > **Medium** · OpΔ **Medium**.
 > **Release class:** minor.

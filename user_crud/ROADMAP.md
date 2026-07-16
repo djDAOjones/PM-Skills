@@ -18,7 +18,9 @@
      the Hub.
 
      SESSION KICK-OFF (self-hosting analogue of session-start.md Start B —
-     paste "follow user_crud/ROADMAP.md" into a fresh chat):
+     paste "follow user_crud/ROADMAP.md" into a fresh chat, or invoke
+     the /next workflow: .windsurf/workflows/next.md points here and
+     adds nothing — this block stays the single source of truth):
      1. Load: this file; the top 2–3 pm_skills/CHANGELOG.md entries;
         pm_skills/VERSION; AGENTS.md (skip if already a global rule); the
         ticket file for the item you pick; the process prompts you'll use.
@@ -184,10 +186,11 @@ Unordered pool — promote into a wave at pick time.
   prohibitions · Low-Med / Low / Low-Med / Low.
   Detail: tickets/TASK-SIZING.md
 
-## Tier C record (closed / deferred / declined — 2026-07-16 triage)
+## Settled — closed / deferred / declined (don't re-litigate)
 
-Kept so decisions aren't re-litigated. Full reasoning: case study
-Addendum A, Tier C.
+Decisions already made at the 2026-07-16 triage; reopen only if a
+stated trigger fires. Full reasoning: case study Addendum A, Tier C
+(this section's former name).
 
 - [x] **REAL-TRAJ** — CLOSED. Executed by the Hub case study
   (`evaluations/2026-07-16-hub-case-study.md`); its "Done when"

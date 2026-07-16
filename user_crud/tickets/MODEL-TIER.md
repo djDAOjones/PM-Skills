@@ -1,6 +1,8 @@
 # MODEL-TIER — Model-tier guidance
 
-> **Status:** Later / minor (piggyback — ship with any release).
+> **Status:** Wave 4, piggyback — ship with either Wave 4 release
+> (promoted from Later/minor at the 2026-07-16 evening triage;
+> evidence-raised, see below).
 > **Grades:** Impact **Low-Med** (cost only, no capability change) ·
 > Difficulty **Trivial** · Risk **Low** · OpΔ **Low**.
 > **Release class:** patch (one GUIDE paragraph + one header line).

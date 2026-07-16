@@ -1,6 +1,7 @@
 # COMMIT-STEP — Commit checkpoints in `task.md`
 
-> **Status:** Later / minor.
+> **Status:** Wave 4, top — the next pick (promoted from Later/minor
+> at the 2026-07-16 evening triage; evidence-raised, see below).
 > **Grades:** Impact **Medium** · Difficulty **Low** · Risk **Low** ·
 > OpΔ **Low**.
 > **Release class:** patch/minor (wording in existing files).
