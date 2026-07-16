@@ -214,6 +214,7 @@ copy-paste flow for AI tools without workflow support — is
 | "This is a quick task: …" | `prompts/quick-task.md` | One combined scope-and-plan to approve, then build. |
 | "This is a bug: …" | `integrations/bugfix.md` | Diagnose root cause first; fix only after your OK. |
 | "Pick the next batch" | `prompts/session-start.md` → Start B | Triages the wish-list, proposes the next backlog item, waits. |
+| "Run next" | `integrations/next.md` | Picks the next backlog item, builds it auto-jazz, closes it — one item per invocation, no per-item sign-off (`[sign-off]` items escalate to full). |
 | "Run end-of-task" | `prompts/end-of-task.md` | Quality gate, memory updates, size check, closing report. |
 | "Park it" | (one-liner) | Captures the current side-idea to the wish-list, resumes work. |
 | "Run review.md" | `prompts/review.md` | Read-only audit of an autonomous run: verdict + punch list. |

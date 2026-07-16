@@ -25,6 +25,38 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.16.0 — 2026-07-16
+
+NEXT-CMD: the proven `/next` loop ships as a distributed workflow —
+one word picks the next backlog item, builds it auto-jazz, and closes
+it. Composes existing pieces (Start B + task.md + end-of-task.md); no
+new mechanism, backward compatible.
+
+### Added
+
+- `pm_skills/integrations/next.md` — one-word "run the next backlog
+  item" trigger. Runs `session-start.md` → Start B to pick, then
+  `task.md` auto-jazz to build, then `end-of-task.md` to close; the
+  invocation is the go-ahead (no stop-for-confirm) and it ships one
+  item per invocation. Guardrails preserved: `[sign-off]` items
+  escalate to `full` mode, wish-list triage and the reconcile gate
+  still run, and the `task.md` hard prohibitions still stop-and-ask.
+  Inherits the `framework` class (`integrations/*`).
+
+### Changed
+
+- `pm_skills/GUIDE.md` — `integrations/` file tree lists `next.md`;
+  the "Pick" section documents the one-word trigger and its
+  guardrails.
+- `README.md` — commands table gains a "Run next" row.
+
+### Upgrade actions
+
+- Copy `pm_skills/integrations/next.md` into the project. If your AI
+  tool uses a workflow directory, also copy it there (alongside the
+  other `integrations/*` files). No migration; no project-memory or
+  root-template change.
+
 ## 3.15.3 — 2026-07-16
 
 REPO-REVIEW: fixes from a full source-tree review. One code defect and

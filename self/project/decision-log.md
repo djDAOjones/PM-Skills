@@ -5,6 +5,41 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-07-16 — NEXT-CMD: `/next` shipped as a distributed workflow (3.16.0)
+
+**Decision:** Shipped `pm_skills/integrations/next.md` — the one-word
+"run the next backlog item" trigger — as a `framework`-class
+integration (auto-jazz run). It composes three existing pieces with no
+new mechanism: `session-start.md` → Start B (pick) → `task.md`
+auto-jazz (build) → `end-of-task.md` (close). Decided at the ungated
+gates: (1) **location** `integrations/` not `prompts/` — it is
+invoked, not pasted (ticket open question, leaned integrations); (2)
+**one item per invocation**, not burn-down-until-stopped — bounded,
+matches "batch" semantics (ticket recommendation); (3) **invocation is
+the go-ahead** — state the pick in one line and continue rather than
+waiting for Start B's confirm (prototype behaviour). Wired GUIDE (file
+tree + Pick section) and README (commands table); MANIFEST unchanged
+(the `integrations/*` wildcard already classes it `framework`). This
+repo's `.windsurf/workflows/next.md` rewritten to defer to the
+distributed copy plus the `self/` path mapping, closing NEXT-CMD's
+"Done when".
+
+**Rationale:** The whole risk of a one-word gateless trigger is
+normalising gateless runs, so the guardrail wording is the real work,
+not the composition. The file makes four guardrails load-bearing and
+non-optional: `[sign-off]` escalates to `full` mode, wish-list triage
+still runs at the pick, the reconcile gate still holds, and `task.md`'s
+hard prohibitions still stop-and-ask. Close stays `full` by default.
+Minor bump (new backward-compatible file); Upgrade action is a single
+file copy.
+
+**Alternatives considered:** `prompts/` placement — rejected (pasted,
+not invoked; the trigger is a command). Burn-down-until-stopped —
+rejected (unbounded gateless runs are exactly what the guardrails
+guard against; one item keeps each run auditable). A new mechanism
+(dedicated pick+run engine) — rejected (the three composed workflows
+already do it; the prototype proved composition works).
+
 ## 2026-07-16 — Roadmap refactor + wish-list triage (maintainer-approved)
 
 **Decision:** Drained the wish-list (5 → 0) and re-ordered the backlog

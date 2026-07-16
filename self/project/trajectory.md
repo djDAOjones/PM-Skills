@@ -4,8 +4,14 @@
      item: the outcome. The why lives in decision-log.md; release
      detail lives in pm_skills/CHANGELOG.md — point, don't restate. -->
 
-## Wave 5 — consuming-project features (shipped 2026-07-16, v3.15.0–3.15.3)
+## Wave 5 — consuming-project features (shipped 2026-07-16, v3.15.0–3.16.0)
 
+- NEXT-CMD (3.16.0) — the `/next` loop shipped as a distributed
+  workflow `pm_skills/integrations/next.md` (Start B pick → auto-jazz
+  build → end-of-task close; one item per invocation, invocation is
+  the go-ahead, `[sign-off]` escalates to full). GUIDE/README wired;
+  this repo's `/next` now defers to the distributed copy + `self/`
+  mapping. See decision-log 2026-07-16.
 - REPO-REVIEW (3.15.3) — full source-tree review: gen-file-map
   idempotence fix in both forks (index block parsed as roles), scaffold
   copy-vs-run-in-place doc drift fixed, memory audited all-green. See

@@ -13,11 +13,6 @@
 
 ### Current milestone
 
-- [ ] **NEXT-CMD Distributed next-item trigger** [detail] — one-word
-  "run the next backlog item" workflow for consuming projects: Start B
-  pick + auto-jazz run + close, full mode only for `[sign-off]` items
-  (merged from two 2026-07-16 wish-list captures) · Med-High / Low-Med
-  / Low-Med / Medium.
 - [ ] **ITEM-AGE Standing-item ageing** [detail] — `[maintainer]` /
   `[sign-off]` items show age at the batch pick; `[security]` banner
   escalation · Medium / Low / Low / Low.

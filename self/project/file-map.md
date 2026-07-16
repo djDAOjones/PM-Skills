@@ -7,12 +7,12 @@ path and only new files need a role written. Hot read is sectional —
 see self/AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 48 file(s) across 7 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 49 file(s) across 7 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 7 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
-- `pm_skills` — 34 file(s)
+- `pm_skills` — 35 file(s)
 - `scripts` — 2 file(s)
 - `self` — 2 file(s)
 <!-- /file-map-index -->
@@ -37,7 +37,7 @@ see self/AGENTS.md "Before every task". -->
 
 ## .windsurf
 
-- `.windsurf/workflows/next.md` — /next slash command: self-hosted session-start pointer (Start B + self/ mapping)
+- `.windsurf/workflows/next.md` — /next slash command: defers to pm_skills/integrations/next.md + self/ mapping and release checklist
 
 ## pm_skills
 
@@ -49,6 +49,7 @@ see self/AGENTS.md "Before every task". -->
 - `pm_skills/integrations/adopt.md` — existing-codebase adoption: reverse-engineer memory, interview for gaps
 - `pm_skills/integrations/bugfix.md` — diagnosis-before-fix bug workflow with approval gates
 - `pm_skills/integrations/init-mvp.md` — idea-to-MVP build run with a signed-off foundation + ceiling
+- `pm_skills/integrations/next.md` — one-word next-item trigger: Start B pick → auto-jazz build → close, one item per invocation
 - `pm_skills/integrations/task.md` — the task workflow: modes (checkpoint/full/auto-jazz/spike/refactor), prohibitions, commit step
 - `pm_skills/memory-policy.md` — memory size budgets, derivations, and overrun actions
 - `pm_skills/project/architecture.md` — blank template: stack, structure, modules, dependency policy

@@ -83,6 +83,7 @@ prompts/         Reusable per-task prompts (paste, or run as commands).
 
 integrations/    Tool-workflow files (copy to your AI tool's workflow dir).
   task.md      The task workflow — modes: full / checkpoint (default) / auto-jazz / auto-jazz-lite / spike / refactor.
+  next.md      One-word "run the next backlog item": Start B pick → auto-jazz build → close. One item per invocation.
   bugfix.md    Diagnosis-before-fix workflow for bugs.
   init-mvp.md  Sign off foundation + scope band, then autonomous build (and optional deploy).
   adopt.md     Retrofit pm-skills onto an existing codebase; reverse-engineer memory, interview for gaps.
@@ -159,6 +160,15 @@ Open a fresh chat. Name the task ("My task: add CSV export to the
 reports page") or say **"pick the next batch"** — the agent triages
 any parked wish-list ideas, proposes the next logical backlog item
 with a recommended mode, and waits for your go-ahead.
+
+Or, when you trust the backlog order, run
+[`integrations/next.md`](./integrations/next.md): one word picks the
+next item, builds it auto-jazz, and closes it — no per-item sign-off.
+It ships **one item per invocation** (run it again for the next), and
+the invocation itself is the go-ahead, so it doesn't wait. The
+guardrails still hold: `[sign-off]` items escalate to full mode,
+wish-list triage and the reconcile gate still run, and every hard
+limit still stops and asks.
 
 ### Build
 
