@@ -590,6 +590,9 @@ reconcile discipline:
   real memory work, so use the full sweep, not the fast path.
 - Output a before / after count: lite closes in window → items evicted
   → trajectory lines added.
+- The reconciled batch is a ready-made feature area — suggest a
+  feature-area review of it (`review.md`, feature-area input) as an
+  optional follow-up. Propose, don't run.
 
 ### Reconcile rules
 

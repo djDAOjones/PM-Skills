@@ -74,7 +74,7 @@ prompts/         Reusable per-task prompts (paste, or run as commands).
   quick-task.md           Single-stage scope-and-plan for small tasks.
   bug-scoping.md          Bug diagnosis: reproduce, root cause, minimal fix.
   end-of-task.md          The closing ritual: quality gate + memory updates.
-  review.md               Read-only audit of an autonomous run.
+  review.md               Read-only audit of an autonomous run or feature area.
   memory-maintenance.md   Diagnose / Prune / Refactor / Reconcile project memory.
   upgrade.md              Move a project to a newer framework version.
   release.md              Maintainer release checklist (source repo only).
@@ -228,6 +228,12 @@ build), paste `prompts/review.md` before accepting it: a read-only
 audit that maps the changes to intent, checks every stated assumption
 and hard rule, names what only a human can verify, and ends with a
 verdict and punch list. It proposes; it never silently rewrites.
+
+`review.md` also accepts a **feature area** (a name plus its IDs and/or
+entry-point files) instead of a diff range: it assembles the change set
+from `git log --grep` per ID plus the matching memory entries — the
+natural review unit once batches ship gateless and lite-closed (a
+reconciled batch is a ready-made area).
 
 ## Manual paste flow
 

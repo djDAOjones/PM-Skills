@@ -25,6 +25,46 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.11.0 — 2026-07-16
+
+Extends `review.md` to accept a **feature area** as its review scope, not
+just a diff range. Give it a name plus its IDs (epic letter, ticket IDs)
+and/or entry-point files; the Load step assembles the change set with
+`git log --grep='<ID>'` per ID, unions the touched files, and pulls the
+matching `trajectory.md` / `decision-log.md` entries — stating the
+assembled commit list and file set before auditing so the scope is
+explicit and correctable. This is the natural review unit once batches
+ship gateless and lite-closed. Everything downstream (scope adherence,
+contract audit, risk, verdict) runs unchanged; the intent map groups by
+ticket ID. Feature-area reviews add one protected-doc currency check
+(does the doc still describe this area's current behaviour?) as a
+punch-list flag. Cross-referenced from `memory-maintenance.md` Reconcile:
+a reconciled batch is a ready-made area to review. Based on the Hub's
+improvised Wave-6 "concept-alignment audit". Implements REVIEW-AREA
+(Wave 3). Minor.
+
+### Changed
+
+- `pm_skills/prompts/review.md` — Inputs gains a feature-area shape
+  (name + IDs/entry points, one area per run, refuse areas that don't map
+  to greppable IDs or named files);
+  Load step documents change-set assembly and mandates an assembled-scope
+  statement before auditing; intent map groups by ticket ID for area
+  reviews; contract audit gains a protected-doc currency check.
+- `pm_skills/prompts/memory-maintenance.md` — Reconcile RE6 suggests a
+  feature-area review of the reconciled batch (propose, don't run).
+- `pm_skills/GUIDE.md` — `review.md` file-tree line notes "or feature
+  area"; "After an autonomous run" section documents the feature-area
+  input.
+
+### Upgrade actions
+
+- Adopt the updated `pm_skills/prompts/review.md`,
+  `pm_skills/prompts/memory-maintenance.md`, and `pm_skills/GUIDE.md`.
+  No new files, no memory-contract change, no MANIFEST change —
+  distributed via existing globs. Projects that customised `review.md`
+  should re-apply the feature-area Inputs/Load additions.
+
 ## 3.10.0 — 2026-07-16
 
 Adds **refactor mode** to `task.md` — a behaviour-preserving

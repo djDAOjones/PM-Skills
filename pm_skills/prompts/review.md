@@ -12,9 +12,17 @@ does not silently change the work. Approved fixes run as their own task.
 
 ## Inputs
 
-- The change set — a commit range, a branch diff, or the uncommitted
-  working tree. Default: the commits since you last reviewed. Ask if
-  unclear; don't guess the range.
+- The change set, given either as:
+  - **a diff range** — a commit range, a branch diff, or the uncommitted
+    working tree (default: the commits since you last reviewed); or
+  - **a feature area** — a name plus its IDs (epic letter, ticket IDs)
+    and/or entry-point files, from which step 1 assembles the change set.
+    This is the natural unit once batches ship gateless and lite-closed
+    (a reconciled batch is a ready-made area). One area per run; if it
+    doesn't map to greppable IDs or named files, ask for the IDs — don't
+    guess.
+
+  Ask if the scope is unclear; don't guess the range.
 - The run's own account — the scope, plan, and assumptions the workflow
   stated, plus the `decision-log.md` entry it wrote.
 
@@ -22,6 +30,12 @@ does not silently change the work. Approved fixes run as their own task.
 
 - Get the diff: `git diff <range>` (or `git diff` / `git status` for
   uncommitted work; `git log --oneline <range>` for the commits).
+- **For a feature area, assemble the change set first.** Run
+  `git log --grep='<ID>'` for each ID, union the touched files, and pull
+  the matching `trajectory.md` lines and `decision-log.md` entries.
+  **State the assembled commit list and file set before auditing** — the
+  reviewer must be auditable about what it did and didn't look at, so the
+  scope is explicit and correctable.
 - Load the standard project context per `AGENTS.md` → "Before every
   task", so changes can be judged against the brief, architecture,
   conventions, and hard rules.
@@ -33,6 +47,8 @@ does not silently change the work. Approved fixes run as their own task.
 Group the diff by *intent*, not by file. For each group: one line on
 what changed and why, with the key `file:line` as evidence. A reader
 should understand the whole run from this map without opening the diff.
+For a feature-area review, group by ticket ID — the assembled IDs
+already name the intents.
 
 ## 3. Scope adherence and assumptions
 
@@ -50,6 +66,9 @@ should understand the whole run from this map without opening the diff.
   re-commented code it was not asked to touch)?
 - `UI-STANDARDS.md` if UI changed; `DEV-INFRASTRUCTURE.md` if build,
   runtime lifecycle, or diagnostics changed.
+- **Protected-doc currency (feature-area reviews):** do the protected
+  docs still describe this area's *current* behaviour? Flag drift as a
+  punch-list line — a full doc-sync ledger is its own task, not this pass.
 
 ## 5. Risk and what to spot-check
 
