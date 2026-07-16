@@ -258,6 +258,12 @@ you; if the memory is hand-maintained, a `<!-- memory synced
 YYYY-MM-DD -->` marker in AGENTS.md would make the direction of truth
 explicit.
 
+**Answered 2026-07-16 (maintainer):** AGENTS.md only ever changes
+through vibe-coding sessions, and those changes are committed to
+GitHub — the tracked file + git history are the source of truth; the
+tool's rule memory is derived from it. No sync marker needed; git log
+IS the sync record. **Closed.**
+
 ### N3 — Residual small stuff (report-only)
 
 - ~~`VERSION` file carries a trailing blank line~~ — **withdrawn**:
@@ -348,6 +354,10 @@ fixes):
   "trailing blank line" was a file-viewer rendering artifact, not a
   real defect — withdrawn); `CONTRIBUTING.md` now records the cspell
   word-vs-reword strategy.
-- **Not applied:** N2 (needs the maintainer's answer on how the
-  global-rule memory is maintained); the OneDrive relocation (user's
-  environment; the 3.3.0 preflight warning stands as mitigation).
+- **N2 — closed by maintainer answer** (2026-07-16 evening): AGENTS.md
+  changes only via vibe-coding sessions, committed to GitHub; file +
+  git history authoritative, rule memory derived. No marker needed.
+- **Not applied:** the OneDrive relocation (user's environment; the
+  3.3.0 preflight warning stands as mitigation — and earned its keep
+  again tonight: a maintainer ROADMAP edit was invisible to a
+  fresh read for several minutes before surfacing, classic sync lag).

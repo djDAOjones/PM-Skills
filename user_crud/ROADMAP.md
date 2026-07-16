@@ -42,8 +42,9 @@
         [ ] Release consistency check: every changed distributed file
             is named in the top CHANGELOG entry; VERSION == top entry.
         [ ] Finished item moved to Shipped here; its ticket file
-            DELETED (fold durable conclusions into the CHANGELOG
-            entry).
+            moved to tickets/archive/ (maintainer call 2026-07-16:
+            archive, never delete — durable conclusions still fold
+            into the CHANGELOG entry).
         [ ] Commit proposed with a staged-set echo (files staged vs
             files touched) — committing is the maintainer's call;
             propose, don't auto-run.
@@ -106,58 +107,65 @@ Exhibition/Digital Art Audience Hub` (pm-skills 3.1.1; 148 commits
 
 ## Inbox (untriaged captures — one line each)
 
-- Apply the pm-skills framework to its own repository (self-hosting:
-  real project memory here, not just ROADMAP scratch?) — captured from
-  maintainer note 2026-07-16.
-- Full code review / refactor feature (holistic codebase pass — relate
-  to review.md + refactor mode; scope unclear) — captured 2026-07-16.
+- (empty — drained at the 2026-07-16 evening triage: self-hosting →
+  SELF-HOST and code-review → CODEBASE-AUDIT, both ticketed into
+  Wave 5; "keep ticket .md files archived for future use" applied
+  directly to the kick-off checklist above — tickets/archive/, never
+  delete.)
 
 ## Current focus
 
-- (empty — DOC-SYNC shipped as 3.12.0, 2026-07-16. Wave 3 complete.
-  Next open: Later/minor — COMMIT-STEP at the top, evidence-raised by
-  the 2026-07-16 burst review.)
+- (empty — next pick: Wave 4 top, COMMIT-STEP.)
 
-## Wave 1 — operational relief (one minor release with Current focus)
+## Waves 1–3 — the 2026-07-16 burst (complete, retired)
 
-- (empty — FILEMAP-GEN shipped as 3.5.0, 2026-07-16.)
+All eleven items shipped same-day as 3.2.0–3.12.0 (+ 3.12.1 fixes):
+MEM-MAINT, ENV-PREFLIGHT, BUDGET-SCALE, FILEMAP-GEN · ADOPT,
+TRANSCRIPTS, SEC-BASE · SPIKE, REFACTOR-MODE, REVIEW-AREA, DOC-SYNC.
+Records in Shipped below + CHANGELOG; burst retrospective in
+evaluations/2026-07-16-recent-dev-review.md.
 
-## Wave 2 — adoption
+## Wave 4 — process hardening (next phase, part 1)
 
-- (empty — ADOPT shipped as 3.6.0, TRANSCRIPTS as 3.7.0, both
-  2026-07-16.)
+Evidence-raised: each failure mode occurred on THIS repo on 2026-07-16
+(evaluations/2026-07-16-recent-dev-review.md W1–W3). Small releases —
+ship before the Wave 5 structural work they protect (multi-session
+self-hosting needs the commit/provenance discipline in place).
 
-## Wave 3 — capabilities
-
-- [x] **SPIKE Spike mode of task.md** — shipped as 3.9.0, 2026-07-16
-  (close semantics corrected in 3.12.1: full close, reduced surface —
-  never lite).
-- [x] **REFACTOR-MODE Refactor mode of task.md** — shipped as 3.10.0,
-  2026-07-16.
-- [x] **REVIEW-AREA review.md accepts a feature area** — shipped as
-  3.11.0, 2026-07-16.
-- [x] **DOC-SYNC Protected-doc sync loop** — shipped as 3.12.0,
-  2026-07-16.
-
-## Later / minor
-
-Order: the top three were evidence-raised by the 2026-07-16 burst
-review (each failure mode occurred on THIS repo the same day — see
-evaluations/2026-07-16-recent-dev-review.md W1–W3).
-
-- [ ] **COMMIT-STEP Commit checkpoints in task.md** [evidence:
-  2026-07-16 burst W3] — recommend-commit step with ID + gate-results
-  message template + staged-set echo · Medium / Low / Low /
-  Low. Detail: tickets/COMMIT-STEP.md
+- [ ] **COMMIT-STEP Commit checkpoints in task.md** [evidence: burst
+  W3] — recommend-commit step with ID + gate-results message template
+  + staged-set echo · Medium / Low / Low / Low.
+  Detail: tickets/COMMIT-STEP.md
 - [ ] **MULTI-WRITER Parallel/multi-machine hardening** [evidence:
-  2026-07-16 burst W1] — session claim declaration + provenance rule
-  for uncommitted changes + git-as-sync-channel guidance · Medium /
+  burst W1] — session claim declaration + provenance rule for
+  uncommitted changes + git-as-sync-channel guidance · Medium /
   Med-High / Medium / Medium. Detail: tickets/MULTI-WRITER.md
-- [ ] **MODEL-TIER Model-tier guidance** [evidence: 2026-07-16 burst
-  W2; piggyback — ship with any release] — one GUIDE paragraph:
+- [ ] **MODEL-TIER Model-tier guidance** [evidence: burst W2;
+  piggyback — ship with either item above] — one GUIDE paragraph:
   mechanical verify/count steps suit cheaper models; propose steps and
   protocol closes do not · Low-Med / Trivial / Low / Low.
   Detail: tickets/MODEL-TIER.md
+
+## Wave 5 — self-hosting & holistic review (next phase, part 2)
+
+Both from the maintainer's 2026-07-16 captures. SELF-HOST first —
+CODEBASE-AUDIT's first real target is then the self-hosted repo
+itself.
+
+- [ ] **SELF-HOST Framework repo adopts its own memory** [decision
+  needed: ROADMAP-vs-backlog + gate posture] — run adopt.md on this
+  repo; real session loops replace the scratch-file analogue; first
+  real ADOPT-tier dogfood · Med-High / Medium / Medium / High.
+  Detail: tickets/SELF-HOST.md
+- [ ] **CODEBASE-AUDIT Whole-codebase review pass** [decision needed:
+  GUIDE recipe vs review.md whole-repo mode] — chunked holistic audit
+  composing review.md area mode; findings-first, never silent edits ·
+  Medium / Medium / Low / Low. Detail: tickets/CODEBASE-AUDIT.md
+
+## Later / minor
+
+Unordered pool — promote into a wave at pick time.
+
 - [ ] **ITEM-AGE Standing-item ageing** — `[maintainer]`/`[sign-off]`
   items show age at the batch pick; `[security]` banner escalation ·
   Medium / Low / Low / Low. Detail: tickets/ITEM-AGE.md
