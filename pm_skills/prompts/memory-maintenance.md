@@ -174,37 +174,53 @@ Detail | Proposed action**.
    WARN on a missing/stale INDEX; a multi-epoch chunk is INFO only.
    Action: **Prune** (rebuild INDEX / split on epoch boundary).
 
-7. **Version drift** — read `pm_skills/VERSION`. If a framework source
+7. **Archive referential integrity** — verify every dated decision-log
+   pointer in the trajectory resolves to real content, the silent-loss
+   mode checks 4 and 6 are blind to (they verify *files*, not *content
+   coverage*). Harvest pointers:
+   `grep -ohE 'decision-log 20[0-9]{2}-[0-9]{2}(-[0-9]{2})?' pm_skills/project/trajectory.md pm_skills/project/archive/trajectory/*.md 2>/dev/null | sort -u`.
+   Harvest coverage: the live log's `## YYYY-MM-DD` headings in
+   `pm_skills/project/decision-log.md` plus each archive's INDEX date
+   range. A referenced date covered by neither is an orphan. FAIL on any
+   orphan, each with a git-recovery hint
+   (`git log -S '## <date>' -- <decision-log path>`). Anchor the harvest
+   to the established cross-ref phrasing and word the finding
+   "unresolved reference", not "data loss" — a small false-positive rate
+   is the price of one cheap single pass. Action: propose restoring the
+   missing entries into a dated archive chunk with a provenance header
+   (append-only; applies only with approval, per Diagnose-never-edits).
+
+8. **Version drift** — read `pm_skills/VERSION`. If a framework source
    is available, compare to its `VERSION`. If behind, note the gap.
    WARN if behind. Action: `prompts/upgrade.md`.
 
-8. **ADR / decision status** (only if the project uses ADRs or a status
+9. **ADR / decision status** (only if the project uses ADRs or a status
    field) — best-effort grep for decisions referenced as final whose
    source still reads "Proposed"/"Draft". Surface mismatches; do not
    resolve them.
    WARN. Action: maintainer review.
 
-9. **Orphan ticket files** (only if `pm_skills/project/tickets/` exists) —
-   for each `tickets/*.md`, confirm a matching open backlog item exists
-   and carries `[detail]`; and for each `[detail]` flag in the backlog,
-   confirm its file exists.
-   WARN on an orphan file (item shipped/cut, file lingered) or a dangling
-   flag (file missing). Action: **Refactor**.
+10. **Orphan ticket files** (only if `pm_skills/project/tickets/` exists) —
+    for each `tickets/*.md`, confirm a matching open backlog item exists
+    and carries `[detail]`; and for each `[detail]` flag in the backlog,
+    confirm its file exists.
+    WARN on an orphan file (item shipped/cut, file lingered) or a dangling
+    flag (file missing). Action: **Refactor**.
 
-10. **Unreconciled lite closes** — count `Close: lite` trailers in
+11. **Unreconciled lite closes** — count `Close: lite` trailers in
     `git log` since the last reconcile marker (see **Reconcile** RE1 for
     how to find it). Compare against the reconcile cap in
     `memory-policy.md` (count and oldest-age).
     WARN past the cap, or if the oldest exceeds the age cap. Action:
     **Reconcile**.
 
-11. **Doc-delta ledger health** (only if `pm_skills/project/doc-deltas.md`
+12. **Doc-delta ledger health** (only if `pm_skills/project/doc-deltas.md`
     exists) — count open (`[ ]`) delta lines and note the oldest date.
     Compare against the ledger threshold in `memory-policy.md`.
     WARN past the threshold (open count or oldest age). Action:
     **Doc-sync**.
 
-12. **Ageing standing items** — count open `[maintainer]`/`[sign-off]`/
+13. **Ageing standing items** — count open `[maintainer]`/`[sign-off]`/
     `[blocked]` items whose creation date is older than the standing-item
     age threshold in `memory-policy.md`; list the oldest few with their
     age. Also flag any open `[security]` item regardless of age (live
@@ -374,6 +390,10 @@ prompts.
   Nothing is lost.
 - Confirm archive files exist with the moved content, and the live
   file's index pointer(s) resolve to them.
+- After a `decision-log.md` or `trajectory.md` split, re-run the
+  archive referential-integrity check (Diagnose check 7) over the
+  touched files — cheap confirmation the split orphaned no trajectory
+  pointer.
 - Confirm the backlog Active open items are unchanged — except any
   `[x]` done-work intentionally relocated to `trajectory.md` this pass.
 - If counts don't reconcile, or a file you did not prune shows as

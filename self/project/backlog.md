@@ -13,9 +13,7 @@
 
 ### Current milestone
 
-- [ ] **ARCH-INTEG Archive-integrity check in Diagnose** [detail] —
-  verify dated decision-log references resolve; INDEX coverage ·
-  Medium / Low / Low / None.
+<!-- empty — next pick falls through to Next milestone -->
 
 ### Next milestone
 

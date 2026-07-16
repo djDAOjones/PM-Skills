@@ -4,8 +4,14 @@
      item: the outcome. The why lives in decision-log.md; release
      detail lives in pm_skills/CHANGELOG.md — point, don't restate. -->
 
-## Wave 5 — consuming-project features (shipped 2026-07-16, v3.15.0–3.17.0)
+## Wave 5 — consuming-project features (shipped 2026-07-16, v3.15.0–3.17.1)
 
+- ARCH-INTEG (3.17.1) — Diagnose gains check 7, archive referential
+  integrity: dated `decision-log` pointers in the trajectory must
+  resolve to a live-log entry or an archive INDEX range, else FAIL with
+  a git-recovery hint (propose-restore, never auto-edit); Prune P5
+  re-runs it after a split. Former checks 7–12 renumber to 8–13. See
+  decision-log 2026-07-16.
 - ITEM-AGE (3.17.0) — standing human-owned work surfaces its age at the
   Start B pick; new `[security]` flag banners at every session start
   until closed; Diagnose check 12 + a `memory-policy.md` age row

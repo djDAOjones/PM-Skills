@@ -5,6 +5,43 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-07-16 — ARCH-INTEG: archive referential-integrity check (3.17.1)
+
+**Decision:** Shipped ARCH-INTEG as patch 3.17.1 — a new Diagnose check
+(**Archive referential integrity**) plus a Prune P5 re-verification note
+in `memory-maintenance.md`. The check harvests dated `decision-log`
+pointers from the trajectory (live + archive chunks) and FAILs on any
+date the live log's `## YYYY-MM-DD` headings and the archive INDEX
+ranges don't cover, with a git-recovery hint. Decided at the ungated
+gates: (1) **placement after archive-hygiene check 6**, not appended at
+the end — the ticket's explicit position, grouping it with the two
+content-adjacent checks (4 file-map paths, 6 INDEX rows) it extends from
+*files exist* to *content covered*; this renumbers the former checks
+7–12 to 8–13. (2) **patch bump** (one check + one note, no new files, no
+migration, MANIFEST unchanged). (3) **date-level granularity +
+"unresolved reference" wording**, accepting a small false-positive rate
+for one cheap shell pass (ticket constraint). (4) **propose-restore,
+never auto-edit** — consistent with Diagnose-never-edits.
+
+**Rationale:** The append-only doctrine protected file *existence* but
+not *a citation resolving to content*; the banked incident (four
+2026-06-23/24 entries dropped by a Hub revert, still referenced by
+trajectory-0003/0004, present in no archive, an invisible INDEX hole)
+went unflagged across three prunes and a Diagnose pass precisely because
+checks 4 and 6 verify files, not coverage. Frozen CHANGELOG entries that
+cite the old check numbers stay as-is — append-only history records the
+release-time state; the renumber is called out in the 3.17.1 Upgrade
+actions instead.
+
+**Alternatives considered:** Append as check 13 (no renumber churn) —
+rejected; the ticket deliberately groups it with checks 4/6 for the
+reader thinking about archive integrity, and MD029 being disabled means
+the renumber is cosmetic, not a lint risk. Entry-level (not date-level)
+granularity — rejected (needs headline parsing; the failure mode is
+whole-day slices vanishing). Reverse check (archive entries never
+referenced) — rejected per the ticket (unreferenced history is fine;
+the doctrine protects existence, not citation).
+
 ## 2026-07-16 — ITEM-AGE: standing-item ageing + `[security]` flag (3.17.0)
 
 **Decision:** Shipped ITEM-AGE as a minor release. Standing human-owned

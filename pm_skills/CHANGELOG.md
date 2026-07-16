@@ -25,6 +25,40 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.17.1 — 2026-07-16
+
+ARCH-INTEG: the append-only doctrine had no integrity check — content
+could vanish from the decision-log + archives while `trajectory.md`
+still pointed at it, and nothing noticed (a real incident: four
+2026-06-23/24 entries dropped by a revert, referenced but present in no
+archive, unflagged across three prunes and a Diagnose pass). Adds a
+cheap referential check to Diagnose so silent loss surfaces at the next
+health pass. Patch: one new Diagnose check + a Prune note, no new files,
+no migration.
+
+### Changed
+
+- `pm_skills/prompts/memory-maintenance.md` — Diagnose gains check 7,
+  **Archive referential integrity**, inserted after archive-hygiene
+  check 6 (the two content-adjacent checks): it harvests dated
+  `decision-log YYYY-MM(-DD)` pointers from `trajectory.md` and its
+  archive chunks, harvests coverage from the live log's `## YYYY-MM-DD`
+  headings plus each archive INDEX date range, and FAILs on any
+  referenced date covered by neither — with a git-recovery hint and a
+  propose-restore (never auto-edit) action. The former checks 7–12
+  (Version drift, ADR status, Orphan ticket files, Unreconciled lite
+  closes, Doc-delta ledger health, Ageing standing items) renumber to
+  8–13. Prune P5 (Verify) gains a note to re-run this check after a
+  `decision-log.md` / `trajectory.md` split.
+
+### Upgrade actions
+
+- `memory-maintenance.md` is `framework` — overwrite wholesale with the
+  new version after the Step 4 customisation check. No project-memory,
+  MANIFEST, or root-template change; no migration. Diagnose check
+  numbers shifted (7 is now Archive referential integrity; 8–13 are the
+  former 7–12) — update any local notes that cite a check by number.
+
 ## 3.17.0 — 2026-07-16
 
 ITEM-AGE: standing human-owned work no longer ages invisibly. The
