@@ -25,6 +25,34 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.15.1 — 2026-07-16
+
+ADOPT-FIXES: fixes from adopt.md's first real run (the SELF-HOST
+dogfood). One distributed change plus two findings closed as
+record-why-not.
+
+### Changed
+
+- `pm_skills/integrations/adopt.md` — Step 0 gains a **framework
+  source tree** exception: a `pm_skills/VERSION` that belongs to the
+  product itself (a clone/fork of the framework, root templates still
+  carrying placeholders, no populated `pm_skills/project/*`) is not a
+  prior deployment and must not route to `upgrade.md`. Prevents the
+  confusing misroute anyone self-hosting a framework fork would hit.
+
+Findings closed without a change (recorded in the self/ decision log):
+the `gen-file-map.mjs` `IGNORE` knob worked as designed (copy-it-out
+path), and the `pm_skills/project/` memory-home assumption is a
+repo-contract concern, not a prompt change.
+
+### Upgrade actions
+
+- No file copies. One edit to an existing framework file
+  (`pm_skills/integrations/adopt.md`) — pick it up via the normal
+  `prompts/upgrade.md` diff. No per-project change to apply.
+
+---
+
 ## 3.15.0 — 2026-07-16
 
 CODEBASE-AUDIT: an invocable whole-codebase audit path. Composes the

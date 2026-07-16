@@ -75,6 +75,14 @@ Before reading anything else:
   Stop and route the user to `pm_skills/prompts/upgrade.md` (it reads
   the version gap and applies only the deltas, preserving memory). Do
   not overwrite existing memory.
+  - **Exception — the framework source tree itself.** If the repo *is*
+    pm-skills (a clone or fork of the framework: `pm_skills/CHANGELOG.md`
+    and `MANIFEST.md` present, the root templates still carrying their
+    placeholders, and no populated `pm_skills/project/*`), that
+    `VERSION` is the *product*, not a prior deployment — do not route to
+    upgrade. Self-hosting a framework fork is an adoption into a
+    **parallel** memory home (e.g. `self/`) by maintainer direction; the
+    standard `pm_skills/project/` stays a pristine template.
 - If there is no code and no history, this is greenfield — recommend
   `pm_skills/init.md` or `integrations/init-mvp.md` instead.
 - Otherwise confirm in one line that this is an existing codebase with

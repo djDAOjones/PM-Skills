@@ -5,6 +5,35 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-07-16 — ADOPT-FIXES: one fix shipped, two closed why-not
+
+**Decision:** Triaged the three findings from adopt.md's first real run
+(SELF-HOST dogfood). Finding 1 (Step-0 misroutes the framework source
+tree to upgrade.md, because its `pm_skills/VERSION` is the *product*)
+shipped as patch 3.15.1 — a Step-0 "framework source tree" exception.
+Findings 2 and 3 close **without** a distributed change:
+
+- **Finding 2 (file-map generator scope).** The scaffold
+  `gen-file-map.mjs` `IGNORE` list excludes `pm_skills/**` — correct for
+  consuming projects, wrong where the product tree IS the source. The
+  documented copy-it-out path (`scripts/gen-file-map.mjs`, tuned to map
+  the product tree) resolved it; the knob worked as designed. No change.
+- **Finding 3 (memory-home assumption).** adopt/init/session prompts
+  assume the memory home is `pm_skills/project/`. Self-hosting needed a
+  parallel home (`self/`) plus a path-mapping rule, but that is a
+  repo-contract concern (`self/AGENTS.md`), not a prompt change, and
+  this repo is the only known self-hosted case. Revisit only if a second
+  self-hosted deployment appears.
+
+**Rationale:** Only Finding 1 is a defect anyone reusing the flow would
+hit; 2 and 3 are self-hosting edge cases the existing knobs and the repo
+contract already cover. Keeps adopt.md's brevity discipline (one
+sub-bullet, no new phase) per the ticket constraint.
+
+**Alternatives considered:** Generalising the `self/` mapping into the
+distributed prompts — rejected as speculative (single known case; would
+bloat every consuming project's read for a maintainer-only concern).
+
 ## 2026-07-16 — CODEBASE-AUDIT: recipe, not a new prompt
 
 **Decision:** Ship the whole-codebase audit as a `GUIDE.md` recipe

@@ -13,12 +13,7 @@
 
 ### Current milestone
 
-- [ ] **ADOPT-FIXES adopt.md fixes from its first real run** [detail]
-  Intent: fold the SELF-HOST dogfood findings back into the
-  distributed adopt flow (Step-0 detection misfires on this repo;
-  file-map generator scope; memory-home assumption).
-  Done when: triaged fix-or-record-why for each finding; distributed
-  changes ship as a normal release · Low-Med / Low / Low / None.
+- (empty — ADOPT-FIXES shipped 3.15.1; next pick from Icebox.)
 
 ### Icebox
 
