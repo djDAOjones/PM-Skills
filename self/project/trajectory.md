@@ -4,8 +4,12 @@
      item: the outcome. The why lives in decision-log.md; release
      detail lives in pm_skills/CHANGELOG.md — point, don't restate. -->
 
-## Wave 5 — consuming-project features (shipped 2026-07-16, v3.15.0–3.15.2)
+## Wave 5 — consuming-project features (shipped 2026-07-16, v3.15.0–3.15.3)
 
+- REPO-REVIEW (3.15.3) — full source-tree review: gen-file-map
+  idempotence fix in both forks (index block parsed as roles), scaffold
+  copy-vs-run-in-place doc drift fixed, memory audited all-green. See
+  decision-log 2026-07-16.
 - CODEBASE-AUDIT (3.15.0) — whole-codebase audit path: an orchestrated
   loop over `review.md` area mode (chunk by `file-map.md` section,
   findings-only, aggregate, triage). GUIDE recipe + review.md pointer

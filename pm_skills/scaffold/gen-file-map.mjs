@@ -114,9 +114,27 @@ function sourceFiles() {
 }
 
 /**
+ * Remove the generated index block from map content. Its section lines
+ * (`` - `dir` — N file(s) ``) match the role-line shape, so parsing
+ * them as roles fed directory names into the stale list and broke
+ * idempotence on every re-run.
+ * @param {string} content
+ * @returns {string} content with the index block removed
+ */
+function stripIndexBlock(content) {
+  const start = content.indexOf(INDEX_START);
+  if (start === -1) return content;
+  const end = content.indexOf(INDEX_END);
+  return end === -1
+    ? content.slice(0, start)
+    : content.slice(0, start) + content.slice(end + INDEX_END.length);
+}
+
+/**
  * Parse an existing map into a path -> role-text lookup. A role line
  * looks like `` - `path` — role `` (any dash variant); the role is
  * everything after the first dash following the closing backtick.
+ * The generated index block is excluded first (see stripIndexBlock).
  * @param {string} content the existing map file, or '' if none
  * @returns {Map<string, string>} path -> role text (may be empty)
  */
@@ -124,7 +142,7 @@ function existingRoles(content) {
   /** @type {Map<string, string>} */
   const roles = new Map();
   const lineRe = /^- `([^`]+)`(?:\s*[—–-]\s*(.*))?$/;
-  for (const line of content.split('\n')) {
+  for (const line of stripIndexBlock(content).split('\n')) {
     const m = line.trim().match(lineRe);
     if (m) roles.set(m[1], (m[2] ?? '').trim());
   }

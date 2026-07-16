@@ -5,6 +5,35 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-07-16 — REPO-REVIEW: full source-tree review + memory refresh
+
+**Decision:** Maintainer-directed full review (auto-jazz): all four
+Node scripts, every distributed doc, configs, CI, hook, and the `self/`
+memory. One defect found and fixed in **both** gen-file-map forks
+(`scripts/` + `pm_skills/scaffold/`, per the deliberate-forks rule):
+the role parser read the generated index block's section lines as path
+roles, so any re-run over an existing map emitted a spurious "No longer
+on disk" block — non-idempotent, contradicting the file header. Fix:
+strip the index block before parsing roles; both forks verified
+idempotent. One doc drift fixed: GUIDE/README described the scaffold as
+wholly copy-once while `gen-file-map.mjs` runs in place (init Step 9
+deliberately does not copy it). Shipped as patch 3.15.3. Memory was
+audited against every budget — all green (48-file map ⇒ floor 2,000 vs
+609 words; 6 log entries; 470 trajectory words; 5 wish-list items; 0
+doc-deltas; 0 lite closes) — so the "purge" resolved to refreshing the
+stale backlog placeholder, not archiving.
+
+**Rationale:** The bug was upstream in the parser, not in the emitted
+map, so the minimal fix is one function; the committed map was clean
+(written by a first run), which is why the gate never caught it — only
+a second run exposed it. Doc wording followed actual behaviour rather
+than the reverse.
+
+**Alternatives considered:** Filtering directory names out of the stale
+list downstream — rejected (treats the symptom; index lines would still
+pollute the roles map). Skipping the scaffold fork — rejected
+(CONTRIBUTING's fork rule; same defect, same fix).
+
 ## 2026-07-16 — REVIEW-FIXES: first review pass over the self-host burst
 
 **Decision:** Reviewed the three-commit burst SELF-HOST → 3.15.0 →

@@ -25,6 +25,39 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.15.3 — 2026-07-16
+
+REPO-REVIEW: fixes from a full source-tree review. One code defect and
+one doc clarification; no new files, no migration.
+
+### Changed
+
+- `pm_skills/scaffold/gen-file-map.mjs` — idempotence fix: the role
+  parser read the generated `<!-- file-map-index -->` block's section
+  lines (`` - `dir` — N file(s) ``) as path roles, so every re-run over
+  an existing map flagged each section name under "No longer on disk".
+  The index block is now excluded from role parsing; running the
+  generator twice with no tree change again produces no diff, as its
+  header promises.
+- `pm_skills/GUIDE.md` — the scaffold file tree now notes that
+  `gen-file-map.mjs` runs in place from `scaffold/` (copy it out only
+  to customise), matching the file's own header and init.md Step 9,
+  which copies the other scaffold files but not this one.
+
+### Upgrade actions
+
+- `pm_skills/GUIDE.md` — pick up via the normal `prompts/upgrade.md`
+  diff; no per-project change to apply.
+- `pm_skills/scaffold/gen-file-map.mjs` — the `scaffold` class is never
+  overwritten by upgrade. **Manual action if you use the generator:**
+  running it in place from `pm_skills/scaffold/`, replace that file with
+  the new version; running a copied-out fork, port the fix (exclude the
+  `<!-- file-map-index -->` block before parsing existing roles). A map
+  already carrying a spurious "No longer on disk" block from this bug:
+  delete the spurious directory-name lines once, then regenerate.
+
+---
+
 ## 3.15.2 — 2026-07-16
 
 REVIEW-FIXES: hygiene from the first review pass over the self-hosted

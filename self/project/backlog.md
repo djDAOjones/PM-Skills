@@ -13,7 +13,7 @@
 
 ### Current milestone
 
-- (empty — ADOPT-FIXES shipped 3.15.1; next pick from Icebox.)
+- (empty — REPO-REVIEW shipped 3.15.3; next pick from Icebox.)
 
 ### Icebox
 

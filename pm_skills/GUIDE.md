@@ -93,6 +93,7 @@ scaffold/        Starter config to copy into your project root once.
   .markdownlint.json  Markdown lint baseline: strict on breakage, relaxed on style.
   check-links.mjs     Dependency-free internal Markdown link checker (Node).
   gen-file-map.mjs    Dependency-free file-map skeleton generator (Node).
+                      Runs in place from scaffold/; copy it out only to customise.
 ```
 
 ## Two ways to drive it
