@@ -119,7 +119,8 @@ Update each of the following if relevant to this task:
   (`memory-maintenance.md`), never here. Skip if the project has no
   protected docs.
 - `pm_skills/project/file-map.md` — if files were added, renamed, or
-  deleted, run `node scaffold/gen-file-map.mjs` (if the project has it):
+  deleted, run `node pm_skills/scaffold/gen-file-map.mjs` (if the
+  project has it):
   it refreshes the skeleton mechanically — regrouping paths, preserving
   existing role text, marking new files `(role needed)`, and flagging
   paths no longer on disk. Then write role text for the `(role needed)`

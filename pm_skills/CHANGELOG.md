@@ -25,6 +25,57 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.12.1 — 2026-07-16
+
+Consistency fixes from a same-day review of the 3.2.0–3.12.0 burst
+(eleven releases in one sitting). No new capability; five cross-file
+inconsistencies the burst left behind. Patch.
+
+### Fixed
+
+- **Spike close mode** (`integrations/task.md`) — the spike section said
+  "close `lite` by default", contradicting step 10's "never default to
+  lite" and, worse, breaking Reconcile: a spike writes its findings
+  decision-log entry and resolves its backlog item at close, so a
+  `Close: lite` trailer would later hand Reconcile an item it cannot
+  evict (RE4 lossless-check mismatch). A spike now closes **full with a
+  reduced surface** — the findings entry and backlog resolution are the
+  memory writes; trajectory/file-map are skipped because throwaway code
+  does not ship. Never lite.
+- **Generator path** — `scaffold/gen-file-map.mjs` resolved from no
+  project root (the file ships at `pm_skills/scaffold/`). All operative
+  references now use the full path: `AGENTS.md` (read tiers),
+  `prompts/session-start.md`, `prompts/end-of-task.md` (the `node`
+  command), `memory-policy.md`, the `project/file-map.md` template
+  comments, and the generator's own usage lines and emitted header/index
+  text.
+- **Scaffold class on upgrade** (`prompts/upgrade.md` Step 3) — "never
+  touched on upgrade; skip" made the 3.5.0 upgrade action ("copy
+  `gen-file-map.mjs` into the project") a dead letter. The rule now
+  reads: never overwrite an existing copy, but a **new** scaffold file
+  named by a changelog entry's Upgrade actions is copied in once.
+- **Mode-list drift** — `prompts/session-start.md` Start B's
+  recommended-mode line gains `refactor` (3.10.0 omission);
+  `init.md` Step 11's mode list gains `spike` and `refactor`
+  (3.9.0/3.10.0 omissions).
+
+### Upgrade actions
+
+- Overwrite the `framework` files: `pm_skills/integrations/task.md`,
+  `pm_skills/prompts/session-start.md`, `pm_skills/prompts/end-of-task.md`,
+  `pm_skills/prompts/upgrade.md`, `pm_skills/memory-policy.md`,
+  `pm_skills/init.md`, and `pm_skills/scaffold/gen-file-map.mjs`*
+  (*scaffold-class: overwrite only if the project has not customised its
+  copy — the change is comment/emitted text only).
+- `AGENTS.md` is `root-template` (3-way merge): in the hot-sectional
+  `file-map.md` bullet, correct the generator path to
+  `pm_skills/scaffold/gen-file-map.mjs`.
+- `pm_skills/project/file-map.md` is `project-memory` — not overwritten.
+  Optionally correct the generator path in its header comments by hand,
+  or let the next generator run refresh the index line.
+- No new files, no `MANIFEST.md` change, no migration. Projects that
+  never used spike mode or the generator are unaffected.
+
 ## 3.12.0 — 2026-07-16
 
 Adds a **protected-doc sync loop**. Protected docs (SPEC, ADRs, and kin)

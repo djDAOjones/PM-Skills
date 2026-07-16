@@ -194,9 +194,13 @@ the user says "spike this".
    in a scratch location.
 4. At the timebox or once the question is answered (whichever is
    first), stop and produce the deliverables above.
-5. Close: `lite` by default (the findings entry IS the memory write).
-   Run `end-of-task.md` steps 1–2 (gate + boot); the trajectory and
-   file-map churn is skipped because throwaway code does not ship.
+5. Close: **full, with a reduced surface**. The findings decision-log
+   entry and the backlog resolution (deliverables above) ARE the memory
+   writes; trajectory and file-map updates are skipped because
+   throwaway code does not ship. Run `end-of-task.md` steps 1–2
+   (gate + boot) as usual. Never close a spike `lite`: its entry is
+   already written and its item already resolved, so a `Close: lite`
+   trailer would hand Reconcile an item it cannot evict.
 
 ## Refactor mode
 

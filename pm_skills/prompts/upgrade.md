@@ -72,7 +72,9 @@ For every path in the work list, look up its class in the source
   (Step 6).
 - `project-memory` → never overwrite; additive section reconcile
   only (Step 7).
-- `scaffold` → never touched on upgrade; skip.
+- `scaffold` → never overwrite an existing copy. Exception: a **new**
+  scaffold file named by a changelog entry's Upgrade actions is copied
+  in once (it cannot carry local edits yet). Otherwise skip.
 
 If a path in the work list is not covered by the manifest, treat it
 as the directory default (`prompts/` and `integrations/` are

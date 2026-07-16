@@ -462,9 +462,12 @@ in Step 6, run one of the task workflows and state your task:
 - `task.md` — the task workflow. Modes: `checkpoint` (default —
   gates only at scope and design pick), `full` (a gate at every
   stage; use for `[sign-off]` items and high-risk work), `auto-jazz`
-  (no gates), and `auto-jazz-lite` (no gates, compressed 2-stage).
-  Hard prohibitions (dependency adds, protected files, destructive
-  migrations, large refactors, weakening tests) apply in every mode.
+  (no gates), `auto-jazz-lite` (no gates, compressed 2-stage),
+  `spike` (timeboxed exploration — findings are the deliverable), and
+  `refactor` (behaviour-preserving restructuring within a declared
+  surface). Hard prohibitions (dependency adds, protected files,
+  destructive migrations, large refactors, weakening tests) apply in
+  every mode.
 - `bugfix.md` — diagnosis-before-fix workflow with approval gates.
 
 Otherwise, follow the manual prompt workflow below.
