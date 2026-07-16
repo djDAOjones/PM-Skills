@@ -35,11 +35,13 @@ doctrine. All customisable.
 
 ## Set up (once per project)
 
-1. Copy `pm_skills/` into your project.
-2. Copy `AGENTS.md`, `UI-STANDARDS.md`, and `DEV-INFRASTRUCTURE.md` to
-   your project root.
-3. Fill everything in by following `pm_skills/init.md` — or just tell
-   the agent:
+1. Copy `pm_skills/` into your project — that folder is the **entire**
+   distributable. Nothing else in this repo (its own memory, tooling,
+   CI) belongs in your project. From a clone of this repo,
+   `npm run package -- <your-project>` exports exactly the right set.
+2. Fill everything in by following `pm_skills/init.md` — its Step 0
+   copies the three rulebook templates from `pm_skills/templates/` to
+   your project root — or just tell the agent:
 
    > Run pm_skills/init.md in agent mode.
 
@@ -156,18 +158,20 @@ copy-paste flow for AI tools without workflow support — is
 
 ## What's in this repo
 
-- **`pm_skills/`** — the framework: templates, prompts, workflows,
-  docs. Versioned via `pm_skills/VERSION`, `pm_skills/CHANGELOG.md`,
-  and `pm_skills/MANIFEST.md`, which make upgrades a declarative read
-  rather than a full-tree diff.
-- **`AGENTS.md`**, **`UI-STANDARDS.md`**, **`DEV-INFRASTRUCTURE.md`** —
-  distribution templates with `<!-- CUSTOMISE -->` placeholders,
-  populated during initialization. Not filled-in contracts for this
-  repository.
-- **`self/`** — this repo's **own pm-skills deployment** (the
-  framework develops itself on its own loops): the operative agent
-  contract (`self/AGENTS.md`), living project memory
-  (`self/project/`), and archived history. Source-only, never
+- **`pm_skills/`** — the framework, the **only** distributed tree:
+  templates (`pm_skills/templates/` — the three rulebooks with
+  `<!-- CUSTOMISE -->` placeholders, copied to a consuming project's
+  root at init), prompts, workflows, docs. Versioned via
+  `pm_skills/VERSION`, `pm_skills/CHANGELOG.md`, and
+  `pm_skills/MANIFEST.md`, which make upgrades a declarative read
+  rather than a full-tree diff. `npm run package -- <target>` exports
+  it, manifest-verified.
+- **`AGENTS.md`** (repo root) — this repo's **operative agent
+  contract** (the framework develops itself on its own loops —
+  self-hosted). Not a template and not distributed; the template
+  lives at `pm_skills/templates/AGENTS.md`.
+- **`self/`** — this repo's own living project memory
+  (`self/project/`) and archived history. Source-only, never
   distributed — see `CONTRIBUTING.md`.
 
 ## Glossary
@@ -203,6 +207,7 @@ copy-paste flow for AI tools without workflow support — is
 | `init.md` | Project setup, step by step (manual or agent-run). |
 | `memory-policy.md` | Size budgets for memory files and what to do when they trip. |
 | `VERSION` / `CHANGELOG.md` / `MANIFEST.md` | Framework version, release history (doubles as upgrade instructions), and per-file upgrade rules. |
+| `templates/` | The three rulebook templates; copied to your project root at init (Step 0). |
 | `scaffold/` | Starter config to copy to your project root: `.editorconfig`, `.gitignore`, `.markdownlint.json`, `check-links.mjs` — plus `gen-file-map.mjs`, which runs in place. |
 
 ### Commands — what you say, what runs

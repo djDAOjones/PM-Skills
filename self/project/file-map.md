@@ -4,28 +4,31 @@
 of the scaffold generator): paths grouped by top-level directory,
 sorted. Re-run after adds/renames/deletes; it preserves role text by
 path and only new files need a role written. Hot read is sectional —
-see self/AGENTS.md "Before every task". -->
+see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 49 file(s) across 7 section(s); regenerate with scripts/gen-file-map.mjs -->
-- `(root)` — 7 file(s)
+<!-- 51 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+- `(root)` — 5 file(s)
+- `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
-- `pm_skills` — 35 file(s)
-- `scripts` — 2 file(s)
-- `self` — 2 file(s)
+- `pm_skills` — 38 file(s)
+- `scripts` — 3 file(s)
+- `self` — 1 file(s)
 <!-- /file-map-index -->
 
 ## (root)
 
-- `AGENTS.md` — PRODUCT: distributed agent-rules template (placeholders intact; not this repo's contract)
+- `AGENTS.md` — the operative agent contract for this repo (moved from self/AGENTS.md in 4.0.0): product/process split, path mapping, release checklist
 - `CONTRIBUTING.md` — canonical source-repo tooling reference: gate, configs, CI, release/versioning rules
-- `DEV-INFRASTRUCTURE.md` — PRODUCT: distributed build/run/ship rulebook template
 - `README.md` — product description + consumer-facing quick start; repo overview
-- `UI-STANDARDS.md` — PRODUCT: distributed UI/accessibility rulebook template
 - `cspell.json` — spell-check config: en-GB, curated dictionary, caps-ID ignore pattern
 - `package.json` — source-only lint tooling; no version field (pm_skills/VERSION is canonical)
+
+## .devin
+
+- `.devin/workflows/session.md` — IDE session workflow shim: points the agent at the standard session-start loop
 
 ## .githooks
 
@@ -76,13 +79,16 @@ see self/AGENTS.md "Before every task". -->
 - `pm_skills/prompts/validation.md` — stage prompt: pre-implementation sanity checks
 - `pm_skills/scaffold/check-links.mjs` — generic shipped link checker (fork sibling: scripts/check-docs.mjs)
 - `pm_skills/scaffold/gen-file-map.mjs` — generic shipped file-map generator (fork sibling: scripts/gen-file-map.mjs)
+- `pm_skills/templates/AGENTS.md` — distributed agent-rules template (placeholders intact; copied to a consuming project's root at init Step 0)
+- `pm_skills/templates/DEV-INFRASTRUCTURE.md` — distributed build/runtime/deploy rulebook template (copied to root at init Step 0)
+- `pm_skills/templates/UI-STANDARDS.md` — distributed UI/accessibility rulebook template (copied to root at init Step 0)
 
 ## scripts
 
 - `scripts/check-docs.mjs` — this repo's docs-integrity gate: links + backticked path references
 - `scripts/gen-file-map.mjs` — this repo's file-map generator: maps pm_skills/ as source, excludes self/ memory
+- `scripts/package.mjs` — distribution-boundary tool: manifest-verifies pm_skills/ and exports exactly that set (lint:boundary + npm run package)
 
 ## self
 
-- `self/AGENTS.md` — the operative agent contract for this repo: product/process split, path mapping, release checklist
 - `self/DEV-INFRASTRUCTURE.md` — this repo's Tier-0 capability surface: scripts, gate, version identity

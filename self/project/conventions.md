@@ -54,7 +54,7 @@ rot risk (broken cross-references). Behaviour changes to prompts are
 ## Patterns to avoid
 
 - Repo-specific content in distributed files (the product/process
-  boundary in `self/AGENTS.md`).
+  boundary in the root `AGENTS.md`).
 - Version-pinned snapshots inside memory files — reconcile against
   `pm_skills/VERSION` + CHANGELOG at session start instead.
 - Growing the cspell dictionary for scratch or archive content.

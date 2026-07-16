@@ -75,7 +75,7 @@ const DEFAULT_HEADER = `# File Map — pm-skills framework repository
 of the scaffold generator): paths grouped by top-level directory,
 sorted. Re-run after adds/renames/deletes; it preserves role text by
 path and only new files need a role written. Hot read is sectional —
-see self/AGENTS.md "Before every task". -->
+see the root AGENTS.md "Before every task". -->
 `;
 
 /** Marks the start/end of the generated section-index block. */

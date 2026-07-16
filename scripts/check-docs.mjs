@@ -73,7 +73,10 @@ const IGNORE = [/(^|\/)archive(\/|$)/, /(^|\/)tickets(\/|$)/];
  * Source files whose backticked paths are NOT checked (append-only
  * history naming legitimately-removed files). Links are still checked.
  */
-const PATH_SOURCE_EXCLUDE = new Set(['pm_skills/CHANGELOG.md']);
+const PATH_SOURCE_EXCLUDE = new Set([
+  'pm_skills/CHANGELOG.md',
+  'self/project/decision-log.md',
+]);
 
 /**
  * Directories whose files are not checked at all: the cold self/

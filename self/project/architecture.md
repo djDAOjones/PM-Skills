@@ -70,4 +70,5 @@ Transitive security pins via `package.json` `overrides`.
 - Release: `pm_skills/prompts/release.md` — bump VERSION, prepend
   CHANGELOG entry with Upgrade actions, sync MANIFEST/GUIDE.
 - Session loop: `pm_skills/prompts/session-start.md` Start B with the
-  `self/` path mapping (`self/AGENTS.md`).
+  `self/` path mapping (root `AGENTS.md`, moved from self/AGENTS.md
+  in 4.0.0).

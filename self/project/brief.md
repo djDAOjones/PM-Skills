@@ -42,7 +42,7 @@ copying `pm_skills/` + the root templates, then tracking releases via
 - Overwhelmingly Markdown; zero runtime dependencies; minimal dev
   tooling (lint gate only).
 - Distributed tree stays pristine — repo-specific content lives in
-  `self/` (see `self/AGENTS.md` → "Product identity").
+  `self/` (see the root `AGENTS.md` → "Product identity").
 - Every distributed change ships as a versioned release with upgrade
   actions; consuming projects must upgrade declaratively.
 - Checkout often lives on a cloud-synced path (OneDrive) — tooling

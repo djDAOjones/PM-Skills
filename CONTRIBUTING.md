@@ -9,25 +9,32 @@ This guide is for developing **the framework repository itself**. For
 The framework is overwhelmingly Markdown. Two classes of file live here:
 
 - **Distributed framework** — copied into consuming projects:
-  `pm_skills/` plus the three root templates ([`AGENTS.md`](./AGENTS.md),
-  [`UI-STANDARDS.md`](./UI-STANDARDS.md),
-  [`DEV-INFRASTRUCTURE.md`](./DEV-INFRASTRUCTURE.md)). Every shipped path
-  and its upgrade class is declared in
-  [`pm_skills/MANIFEST.md`](./pm_skills/MANIFEST.md).
+  `pm_skills/` and nothing else (since 4.0.0 the three rulebook
+  templates live inside it, at
+  [`pm_skills/templates/`](./pm_skills/templates/)). Every shipped
+  path and its upgrade class is declared in
+  [`pm_skills/MANIFEST.md`](./pm_skills/MANIFEST.md), and
+  `npm run package -- <target>` exports exactly that set,
+  manifest-verified.
 - **Source-repo-only** — never distributed, never copied into a consuming
   project: `package.json`, `package-lock.json`, `.github/`, `.githooks/`,
   `scripts/`, the root `.editorconfig`, `.markdownlint.json`,
   `.markdownlint-cli2.jsonc`, `.markdownlintignore`, the root
-  `.gitignore`, `CONTRIBUTING.md`, `README.md`, and `self/` — the
-  repo's **own pm-skills deployment** (SELF-HOST, 2026-07-16): the
-  operative agent contract (`self/AGENTS.md`), living project memory
-  (`self/project/`), and cold storage (`self/archive/` pre-adoption
-  history incl. the retired `user_crud` tree, `self/evaluations/`,
-  `self/_transcripts/`). The living memory is inside the lint gate;
-  only the cold storage is excluded.
+  `.gitignore`, `CONTRIBUTING.md`, `README.md`, plus the repo's **own
+  pm-skills deployment** (SELF-HOST, 2026-07-16): the operative agent
+  contract (root [`AGENTS.md`](./AGENTS.md) — moved from
+  self/AGENTS.md in 4.0.0), living project memory (`self/project/`),
+  and cold storage (`self/archive/` pre-adoption history incl. the
+  retired `user_crud` tree, `self/evaluations/`, `self/_transcripts/`).
+  The living memory is inside the lint gate; only the cold storage is
+  excluded.
 
 Rule: do **not** add a source-only tooling path to `MANIFEST.md`, and the
 upgrade workflow must never carry these files into a consuming project.
+`scripts/package.mjs` enforces the boundary mechanically: it exports
+only `pm_skills/` and fails if the tracked tree and the manifest
+disagree (a new shipped file missing its manifest row, or a manifest
+row pointing at nothing).
 
 Note on deliberate forks: `pm_skills/scaffold/check-links.mjs` /
 `pm_skills/scaffold/gen-file-map.mjs` /
@@ -37,7 +44,9 @@ Note on deliberate forks: `pm_skills/scaffold/check-links.mjs` /
 ships generic, the source-repo copy is tuned for this repo (check-docs
 also validates inline path references and skips the append-only
 changelog as a path source; gen-file-map maps `pm_skills/` as source
-and targets `self/project/file-map.md`). A bug fixed in one must be
+and targets `self/project/file-map.md`; `scripts/package.mjs` has no
+scaffold sibling — it is boundary tooling, not a consuming-project
+utility). A bug fixed in one must be
 considered for the other; there is no sync mechanism, only this
 reminder.
 
@@ -51,7 +60,7 @@ reminder.
 The full gate is one command:
 
 ```text
-npm run lint
+npm run check
 ```
 
 Individual checks:
@@ -65,6 +74,10 @@ Individual checks:
   dictionary in `cspell.json`.
 - `npm run lint:editorconfig` — `.editorconfig` conformance on
   non-Markdown files, via `editorconfig-checker`.
+- `npm run lint:boundary` — distribution boundary: the tracked
+  `pm_skills/` tree and `pm_skills/MANIFEST.md` must agree both ways,
+  via `scripts/package.mjs --check`. (`npm run lint` is the four lint
+  checks without it.)
 
 Configuration:
 

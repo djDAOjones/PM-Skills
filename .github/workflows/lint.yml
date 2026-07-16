@@ -51,3 +51,6 @@ jobs:
 
       - name: EditorConfig check
         run: npm run lint:editorconfig
+
+      - name: Distribution boundary (pm_skills tree vs MANIFEST)
+        run: npm run lint:boundary

@@ -5,6 +5,41 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-07-17 — DIST-BOUNDARY: templates into pm_skills/, packaging verb (4.0.0)
+
+**Decision:** Shipped DIST-BOUNDARY as major 4.0.0 — options A + B
+from the maintainer-picked design. (B) The three rulebook templates
+moved from the repo root into `pm_skills/templates/` (init gains
+Step 0 to copy them out; MANIFEST rows moved; upgrade Step 7 names
+the source location per version), making `pm_skills/` the entire
+distributable. The operative self contract was promoted from
+self/AGENTS.md to the repo root, so IDE global-rule loading now picks
+up the real contract. (A) New source-only `scripts/package.mjs`
+exports the tracked `pm_skills/` tree manifest-verified (two-way:
+every tracked file classified, every literal row exists; empty globs
+allowed for tickets/archive), wired as `npm run package` and folded
+into the gate as `lint:boundary`.
+
+**Rationale:** The distribution boundary existed only as prose; the
+first real consuming project (Cross Stitch Lens, 2026-07-16) cloned
+the whole repo and carried the framework's own `package.json`,
+`scripts/`, CI, CONTRIBUTING and `self/` ignores into the app — and
+its IDE loaded the placeholder template as global rules instead of an
+operative contract. Both failures are structural, both fixed at the
+root: distribution is now one folder, and the boundary is machine-
+checked at every gate run.
+
+**Alternatives:** Two-repo split (rejected — kills dogfooding
+locality; memory would live away from the code it describes); full
+inversion with real memory at `pm_skills/project/` and templates
+generated at release (rejected — the repo would no longer literally
+be the distributable, breaking MANIFEST path identity); A alone
+(rejected — leaves the wrong-contract auto-load failure live).
+`self/DEV-INFRASTRUCTURE.md` deliberately stays in `self/` — only
+AGENTS.md is auto-loaded by IDEs. check-docs now excludes the
+append-only decision log as a path source (same rationale as the
+CHANGELOG exclusion).
+
 ## 2026-07-16 — CI-NODE: bump CI Node to 22 for cspell v10 (source-only)
 
 **Decision:** Bumped `.github/workflows/lint.yml` from `node-version:

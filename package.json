@@ -9,7 +9,9 @@
     "lint:docs": "node scripts/check-docs.mjs",
     "lint:spell": "npx --yes cspell \"**/*.md\"",
     "lint:editorconfig": "npx --yes editorconfig-checker",
-    "check": "npm run lint",
+    "lint:boundary": "node scripts/package.mjs --check",
+    "check": "npm run lint && npm run lint:boundary",
+    "package": "node scripts/package.mjs",
     "prepare": "git config core.hooksPath .githooks"
   },
   "devDependencies": {

@@ -4,6 +4,17 @@
      item: the outcome. The why lives in decision-log.md; release
      detail lives in pm_skills/CHANGELOG.md — point, don't restate. -->
 
+## Wave 6 — distribution boundary (shipped 2026-07-17, v4.0.0)
+
+- DIST-BOUNDARY (4.0.0) — `pm_skills/` is now the entire
+  distributable: the three rulebook templates moved into
+  `pm_skills/templates/` (init Step 0 copies them out), the operative
+  self contract was promoted to the repo root, and source-only
+  `scripts/package.mjs` exports the tree manifest-verified
+  (`npm run package`, gate-wired as `lint:boundary`). Driven by
+  whole-repo-copy leakage observed on the first real consuming
+  project. See decision-log 2026-07-17.
+
 ## Source-only fixes
 
 - CI-NODE (2026-07-16) — CI Lint job bumped Node 20 → 22 and
