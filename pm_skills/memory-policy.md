@@ -24,17 +24,47 @@ propose first.
 | Scope | Soft limit | Action when exceeded |
 | --- | --- | --- |
 | Reference doc (`README`, `brief.md`, `architecture.md`, `conventions.md`, + project standards/process/infra docs) | soft ~3,500 words each | Not a prune target — reference docs don't accrete. If one is genuinely bloated, tighten it or split detail into a permanent contract file; never strip to hit a number. |
-| `file-map.md` (accreting) | 2,000 words | Propose Prune: strip accreted history (task tags, dates, test counts) to `archive/file-map-*-historical.md`, keep current roles. Floor = the irreducible current-role list; on a large codebase that may exceed 2,000, which is fine — strip noise, not signal. |
-| Every-task read load | structural (no aggregate word cap) | A fixed sum fires permanently on a mature project (≥ 5 hot files × the 2,000 file budget > any flat cap), so there is none. Healthy = each file within its own row above. If the always-read set keeps growing, review whether a hot read should move to _conditional_ or _warm_, or whether a reference doc has bloated. |
+| `file-map.md` (accreting) | **derived: ~35 words × mapped files, floor 2,000** (see "Deriving the file-map budget" below) | Propose Prune: strip accreted history (task tags, dates, test counts) to `archive/file-map-*-historical.md`, keep current roles. The derived budget measures **noise, not size** — a large healthy map reads green at its current-role floor; only history accretion (tags, dates, counts) pushes it over. Floor = the irreducible current-role list. |
+| Every-task read load | structural (no aggregate word cap) | A fixed sum fires permanently on a mature project (each hot file's budget scales with the project), so there is none. Healthy = each file within its own row above. If the always-read set keeps growing, review whether a hot read should move to _conditional_ or _warm_, or whether a reference doc has bloated. |
 | `backlog.md` Active | 1,500 words **or** ~40 open items (whichever trips first) | Propose Refactor: restructure by lifecycle, evict done-work, dedupe stale rounds. A low item count with high words means items are too verbose — tighten them. |
 | `backlog.md` shipped work | 0 — done `[x]` items do not live here | Move each to `trajectory.md` (one line) + `decision-log.md` (the why). Flagged by `end-of-task.md` and the Diagnose verb. |
 | `trajectory.md` | 2,000 words | Propose archiving the oldest phases to `archive/trajectory/`, keeping `archive/INDEX.md` current. |
-| `decision-log.md` live log | 20 entries (primary) **or** ~6,000 words | Propose an archive split to `archive/decision-log-*.md` (by whole month; by date-range when one month alone exceeds a budget). Entry count is the primary trigger; the word budget is a secondary guard against runaway entries — a healthy entry is ~150–300 words (Decision, Rationale, Alternatives, Link), not an essay. Keep at least the read-tier latest 10 live. |
-| `decision-log.md` oldest entry age | 90 days | Propose an archive split, oldest first — but only when ≥ 5 entries lie beyond the latest-10 read-tier floor (live log ≥ 15). Below that, note the overrun and skip: on low-velocity / sporadic projects the age budget keeps tripping with little to move, so the entry-count and word budgets are the meaningful triggers. |
+| `decision-log.md` live log | 20 entries (primary) **or** any single entry > ~600 words (runaway-entry guard) | Propose an archive split to `archive/decision-log-*.md` (by whole month; by date-range when one month alone exceeds a budget). Entry count is the primary trigger; the per-entry guard catches a single runaway entry — a healthy entry is ~150–300 words (Decision, Rationale, Alternatives, Link), not an essay. This replaces the old file-level word budget, which tripped on healthy accumulated density (many tight entries) rather than the bloat it was meant to catch. Keep at least the read-tier latest 10 live. |
+| `decision-log.md` oldest entry age | 90 days | Propose an archive split, oldest first — but only when ≥ 5 entries lie beyond the latest-10 read-tier floor (live log ≥ 15). Below that, note the overrun and skip: on low-velocity / sporadic projects the age budget keeps tripping with little to move, so the entry-count and per-entry budgets are the meaningful triggers. |
 | `wish-list.md` open items | 25 items | Propose a triage pass (promote each into `backlog.md`, or cut). Never archive — the wish-list shrinks by triage, not by moving content to `archive/`. |
 | `tickets/<ITEM-ID>.md` (per-item, cold) | soft ~600 words each | Working detail for one open item; not counted in the every-task read load. Shrinks by lifecycle eviction, not archiving — deleted when the item ships or is cut. An orphan file (no matching open item) is structural, not a size issue: Refactor evicts it, Diagnose flags it. |
 | `archive/` chunk | one epoch per file (whole month / migration boundary) | Chunk cold archives by **sequence boundary for INDEX browsability**, not size — they're never auto-read (grep + line-range only), so word count barely matters and an epoch bounds its own growth. Sub-split a single epoch only if it's genuinely unwieldy to grep; never split or merge epochs just to hit a number. Maintain `archive/INDEX.md`. |
 | Unreconciled `Close: lite` closes | **5 closes** since the last reconcile marker, **or** oldest **7 days** (whichever trips first) | Deferred memory writes, not a file size. Under the cap it's a session-start nudge; at or over it, a **Reconcile** (`memory-maintenance.md`) is mandatory before the next-batch pick. Counted from `git log` since the marker, not from a file. See `end-of-task.md` → "Close mode". |
+
+## Deriving the file-map budget
+
+`file-map.md` grows with the project — it maps every source file — so a
+fixed word budget goes permanently red on any codebase that succeeds,
+training agent and maintainer to ignore the size check (the exact
+pathology the hot-set cap was removed for). Its budget is therefore
+**derived from the number of mapped files**, so it measures accreted
+**noise**, not legitimate size:
+
+- **Budget = ~35 words × mapped files, with a floor of 2,000 words.**
+  Count mapped files each check — one file-map entry per line
+  (``grep -cE '^- `' pm_skills/project/file-map.md``, or the project's
+  bullet convention). A ~180-file map budgets ~6,300 words: its
+  stripped current-role floor reads green, while accreted history
+  (task tags, dates, test counts) still pushes it over.
+- **The coefficient (~35) is tunable per project.** 35 fits a dense
+  one-line-plus-parenthetical style; a leaner map runs ~20. A project
+  may state its own coefficient in `conventions.md` (or a comment in
+  `file-map.md`) and derive against that — record the choice so the
+  budget stays arithmetic, not archaeology.
+- **The floor (2,000) protects small projects** from a budget below
+  the point where the check is useful.
+- **Self-explaining:** when the check reports this budget, print the
+  derivation, e.g. `file-map budget: 180 files × 35 = 6,300 words`, so
+  a red result is legible without re-deriving it.
+
+Budgets are periodically re-derived from real mature projects rather
+than guessed — if the coefficient drifts from what healthy maps
+actually run, recalibrate it here.
 
 ## Size-check fast path
 

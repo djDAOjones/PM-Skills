@@ -25,6 +25,66 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.4.0 — 2026-07-16
+
+Makes the two remaining **fixed** memory budgets **scale-aware**, so a
+project that succeeds never carries a permanently-red alarm that trains
+agent and maintainer to ignore the size check — the exact pathology
+2.1.0 removed for the hot-set cap, recreated at the file level. Numbers
+still live only in `memory-policy.md`; the prompts point, never restate.
+
+- **`file-map.md` budget = f(file count).** The fixed 2,000-word budget
+  becomes **~35 words × mapped files, floor 2,000**, re-derived each
+  check from the mapped-file count
+  (``grep -cE '^- `' file-map.md``). A ~180-file map now budgets ~6,300
+  words: its stripped current-role floor reads **green**, while accreted
+  history (task tags, dates, test counts) still trips it. The budget
+  measures **noise, not size**. The coefficient (~35) is tunable per
+  project; the check prints the derivation (`180 × 35 = 6,300`) so a red
+  result is self-explaining. New "Deriving the file-map budget" section
+  documents the arithmetic.
+- **`decision-log.md`: per-entry runaway guard replaces the file-level
+  word budget.** The ~6,000-word file guard tripped on healthy
+  accumulated density (many tight entries) rather than the bloat it was
+  meant to catch. Entry count (20) stays the primary trigger; the
+  secondary guard is now **any single entry > ~600 words** — a
+  runaway-entry detector, which is what the word budget was actually
+  for.
+
+Minor: memory-policy change, backward compatible. No files added,
+renamed, or removed; no `MANIFEST.md` change; no memory-contract or data
+migration. Backlog Active and `trajectory.md` budgets are unchanged
+(both stayed satisfiable in practice) — this is not a general loosening.
+
+### Changed
+
+- `pm_skills/memory-policy.md` — file-map row now `~35 words × mapped
+  files, floor 2,000`; decision-log row's `~6,000 words` secondary guard
+  replaced by `any single entry > ~600 words`; new "Deriving the
+  file-map budget" section; age-row wording aligned to "per-entry".
+- `pm_skills/prompts/end-of-task.md` — full-sweep size check: file-map
+  budget described as derived (print the derivation); decision-log
+  checks entry count + per-entry guard, not file words.
+- `pm_skills/prompts/memory-maintenance.md` — Diagnose budget check and
+  Prune P1/P2 aligned to the derived file-map budget and per-entry
+  decision-log guard.
+
+### Upgrade actions
+
+- Apply this version's edits to the four files above in any project that
+  has customised copies. All are wording/number changes inside existing
+  sections — no structural migration.
+- If a consuming project's `file-map.md` sat over the old 2,000-word
+  budget as an "accepted floor" (a large codebase), re-derive its budget
+  (`mapped files × ~35`, floor 2,000): a healthy stripped map should now
+  read green. Only re-run a Prune if it is still over the derived budget
+  (i.e. carries genuine accreted history).
+- If a project tuned its file-map density away from ~35 words/file,
+  record its coefficient in `conventions.md` (or a `file-map.md`
+  comment) and derive against that.
+- No `VERSION`-gated data or file moves; a project already on 3.3.0
+  needs only the text edits.
+
 ## 3.3.0 — 2026-07-16
 
 Adds an **environment & sync-conflict preflight** plus a **sync-repair

@@ -146,22 +146,25 @@ periodically).
 
 Full sweep:
 
-- Word-count `file-map.md` against its hard accreting budget and each
-  reference doc (`README.md`, `brief.md`, `architecture.md`,
-  `conventions.md`, + any project-added standards/process/infra docs)
-  against its soft guideline. Do not sum them into an aggregate hot-set
-  cap — there isn't one. The conditional reads (`UI-STANDARDS.md`,
-  `DEV-INFRASTRUCTURE.md`) are not part of the every-task check (step 1
-  reads only the Quality gate section, not the whole file).
+- Word-count `file-map.md` against its accreting budget, which is
+  **derived from the mapped-file count** (see `memory-policy.md` →
+  "Deriving the file-map budget"); print the derivation, not just the
+  verdict. Word-count each reference doc (`README.md`, `brief.md`,
+  `architecture.md`, `conventions.md`, + any project-added
+  standards/process/infra docs) against its soft guideline. Do not sum
+  them into an aggregate hot-set cap — there isn't one. The conditional
+  reads (`UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`) are not part of the
+  every-task check (step 1 reads only the Quality gate section, not the
+  whole file).
 - Count the backlog **Active** section's words and open items, and
   confirm **no `[x]` list items remain** in `backlog.md`
   (`grep -cE '^\s*[-*] \[x\]'`, so the status-legend line is not a false
   positive) — shipped work belongs in `trajectory.md`.
 - Word-count `trajectory.md`.
-- Count both entries **and** words in `decision-log.md`, and check the
-  oldest entry's date. The entry count is the primary trigger; keep
-  entries tight (~150–300 words) so the word budget flags runaway
-  entries, not normal density.
+- Count entries in `decision-log.md`, flag any single entry over the
+  per-entry guard, and check the oldest entry's date. The entry count
+  is the primary trigger; the per-entry guard catches a single runaway
+  entry (keep entries ~150–300 words), not normal accumulated density.
 - Count open items in `wish-list.md`.
 - If `pm_skills/project/tickets/` exists: word-count each file against its
   soft ~600-word guideline, and confirm every ticket file maps to an open
@@ -177,7 +180,7 @@ If any budget is exceeded:
   and fewer than ~5 entries lie beyond the latest-10 floor, just
   note it — don't propose a prune. On low-velocity / sporadic
   projects the age budget trips repeatedly with little to archive;
-  the entry-count and word budgets are the meaningful triggers.
+  the entry-count and per-entry budgets are the meaningful triggers.
 - An over-budget `wish-list.md` is drained by triage, not archiving.
   Propose a triage pass (promote or cut) — via the next-batch pick
   (`session-start.md` → Start B) or the Prune triage action — rather

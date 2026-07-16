@@ -125,10 +125,12 @@ It never edits files itself.
 Run each check and record a row: **Check | Status (OK / WARN / FAIL) |
 Detail | Proposed action**.
 
-1. **Budgets** — word-count `file-map.md` (hard accreting budget) and
-   each reference doc (soft per-doc guideline); count backlog Active
-   words and open items; count decision-log entries and live words and
-   oldest-entry age; count trajectory words; count wish-list open items.
+1. **Budgets** — word-count `file-map.md` against its accreting budget
+   (derived from the mapped-file count — show the derivation) and each
+   reference doc (soft per-doc guideline); count backlog Active
+   words and open items; count decision-log entries, flag any single
+   entry over the per-entry guard, and note oldest-entry age; count
+   trajectory words; count wish-list open items.
    Compare against `memory-policy.md` — there is no aggregate hot-set
    cap. FAIL on an accreting or sectional overrun (action: **Prune**);
    a reference doc over its soft guideline is a WARN, not a FAIL (not a
@@ -208,13 +210,16 @@ Word-count each hot whole-file read listed in `AGENTS.md` →
 reference docs (`README.md`, `brief.md`, `architecture.md`,
 `conventions.md`, + any project-added standards / process / infra
 docs) against their soft per-doc guideline, and `file-map.md` against
-its hard accreting budget. Do **not** sum them into a single hot-set
+its accreting budget (**derived from the mapped-file count** — see
+`memory-policy.md` → "Deriving the file-map budget"; show the
+derivation). Do **not** sum them into a single hot-set
 cap — there is no aggregate word budget. Count the backlog **Active**
 words and open items, and any shipped `[x]` items still in
 `backlog.md` — anchor the count to list items
 (`grep -cE '^\s*[-*] \[x\]'`) so the status-legend line is not a false
-positive. Word-count `trajectory.md`. Count both entries and words in
-`decision-log.md`, plus the oldest entry date. Count open items in
+positive. Word-count `trajectory.md`. Count entries in
+`decision-log.md`, flag any single entry over the per-entry guard, plus
+the oldest entry date. Count open items in
 `wish-list.md`. For `archive/` files, note only whether a chunk spans
 more than one epoch (multiple months, or across a migration boundary)
 — size is not a trigger; cold archives are never auto-read (grep +
@@ -251,7 +256,8 @@ For each over-budget file, propose one specific action:
   `archive/trajectory/trajectory-NNNN-YYYY-MM-DD-to-YYYY-MM-DD.md`
   (sequence-numbered), keeping recent phases live. Add an
   `archive/INDEX.md` row.
-- `decision-log.md` > entry budget OR > word budget OR oldest > age
+- `decision-log.md` > entry budget OR any single entry > the per-entry
+  guard OR oldest > age
   budget → archive the oldest entries, keeping the latest live (at
   least the read-tier latest 10, ideally a generous margin above it).
   Default split is by whole month into `archive/decision-log-YYYY-MM.md`.
@@ -260,8 +266,8 @@ For each over-budget file, propose one specific action:
   oldest entries first — but size alone isn't a reason to split; an
   epoch stays one file unless browsability demands otherwise. Leave a
   one-line index at the bottom of the live file pointing at each
-  archive file. If only the age budget is tripped (not the entry or
-  word budget) and fewer than ~5 entries lie beyond the latest-10
+  archive file. If only the age budget is tripped (not the entry count
+  or per-entry guard) and fewer than ~5 entries lie beyond the latest-10
   floor, note the overrun and skip — the archive gain doesn't justify
   the prune (common on low-velocity / sporadic projects).
 - `wish-list.md` over budget → do **not** archive. Propose a triage
