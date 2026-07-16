@@ -8,7 +8,7 @@
      See AGENTS.md → "Before every task". -->
 <!-- What belongs here: a protected doc (SPEC, ADR, or its kin — edit-on-request
      only) no longer describes current behaviour, and reconciling it needs
-     explicit maintainer sign-off. This is sign-off DEBT, not pickable work —
+     explicit maintainer sign-off. This is sign-off DEBT, not work to pick —
      never mix it into backlog.md (the backlog/wish-list boundary precedent). -->
 <!-- Capture, don't rewrite: append ONE line naming the doc and the delta; do
      NOT write edit instructions here. Inventories balloon when they hold the
