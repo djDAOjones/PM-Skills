@@ -1,10 +1,10 @@
 ---
-description: Maintain project memory — diagnose drift, prune by size, refactor the roadmap
+description: Maintain project memory — diagnose drift, prune by size, refactor the roadmap, reconcile lite closes
 ---
 
 # Memory Maintenance
 
-The one file for keeping project memory healthy. Three verbs, each a
+The one file for keeping project memory healthy. Four verbs, each a
 self-contained procedure — run only the section you were asked for
 (the others are context, not obligations):
 
@@ -15,16 +15,20 @@ self-contained procedure — run only the section you were asked for
   flags a file over budget.
 - **Refactor** — repair the roadmap's structure. Run when the backlog
   has drifted (done-work mixed in, dated rounds, duplicates).
+- **Reconcile** — back-fill project memory from git history after
+  `Close: lite` closes (`end-of-task.md`). Run when lite closes have
+  accumulated, or when session-start / the cap says one is due.
 
-It replaces the former `doctor-memory.md`, `prune-memory.md`, and
-`roadmap-refactor.md`; those names survive as verbs. Budgets come from
+Diagnose/Prune/Refactor replace the former `doctor-memory.md`,
+`prune-memory.md`, and `roadmap-refactor.md`; those names survive as
+verbs. Budgets and the reconcile cap come from
 `pm_skills/memory-policy.md`; tier names from `AGENTS.md` → "Read
 tiers". Read them from there; do not restate the numbers.
 
-Shared rules for all three verbs: use plain shell (`wc`, `head`,
-`tail`, `grep`, `ls`, `cp`, `mv`, output redirection) — no Python
-scripts, no retry loops; if a step fails, stop and report. Minimise
-meta-cost: single pass, batch the work.
+Shared rules for all four verbs: use plain shell (`wc`, `head`,
+`tail`, `grep`, `ls`, `cp`, `mv`, `git log`, output redirection) — no
+Python scripts, no retry loops; if a step fails, stop and report.
+Minimise meta-cost: single pass, batch the work.
 
 ---
 
@@ -90,6 +94,13 @@ Detail | Proposed action**.
    confirm its file exists.
    WARN on an orphan file (item shipped/cut, file lingered) or a dangling
    flag (file missing). Action: **Refactor**.
+
+10. **Unreconciled lite closes** — count `Close: lite` trailers in
+    `git log` since the last reconcile marker (see **Reconcile** RE1 for
+    how to find it). Compare against the reconcile cap in
+    `memory-policy.md` (count and oldest-age).
+    WARN past the cap, or if the oldest exceeds the age cap. Action:
+    **Reconcile**.
 
 Report: the health table, FAILs first; below it, a short prioritised
 action list grouping checks by the verb that fixes them (e.g. "Run
@@ -382,3 +393,118 @@ sign-off. Never rewrite the roadmap silently.
   history moves to the trajectory/log, it is not erased.
 - Preserve append-only files verbatim when moving entries.
 - If the backlog is already lean and lifecycle-clean, say so and stop.
+
+---
+
+## Reconcile (back-fill memory from lite closes)
+
+Run when tasks have closed **lite** (`end-of-task.md` → "Close mode")
+and their deferred memory writes need folding back in, or when
+session-start / Diagnose / the cap flags a reconcile due. This is the
+scripted form of the by-hand batch back-fill: one pass reads the
+`Close: lite` commit trailers since the last reconcile and writes the
+memory those tasks skipped — losslessly, no task's record dropped.
+
+Reconcile does not pick work (Start B), archive by size (Prune), or
+re-sequence the queue (Refactor). It only turns committed trailers into
+project-memory entries.
+
+### RE1. Find the window
+
+- The reconcile **marker** is the last-reconciled commit SHA, stored in
+  the most recent reconcile entry in `decision-log.md`. Find it:
+  `grep -m1 'Reconcile marker:' pm_skills/project/decision-log.md`.
+- If a marker exists, the window is `git log <marker>..HEAD`. If none
+  exists (first ever reconcile), use the full history the user names, or
+  the oldest unrecorded commit — state which.
+- List the window's commits oldest-first:
+  `git log --reverse --format='%H %s' <marker>..HEAD`.
+
+### RE2. Parse the trailers
+
+For each commit in the window, read its message and extract every
+`Close: lite` trailer block (grammar in `end-of-task.md`). Anchor the
+greps: `^Item:`, `^Outcome:`, `^Decision:`, `^Close:`. Build a table
+with columns: commit (short SHA), item, outcome, decision, date.
+
+- A commit with a `Close: lite` trailer but **no parseable `Item:`** is
+  a defect — list it under "manual triage", never guess the ID.
+- **Degraded mode:** commits in the window with **no close trailer at
+  all** (e.g. a pre-lite era, or an informal bypass) are listed
+  separately for the user to map by hand. Reconcile records only what it
+  can parse; it never invents an outcome for an unlabelled commit.
+
+### RE3. Propose (before write)
+
+Present, for user approval:
+
+1. **Parsed table** — the `Close: lite` items, oldest first.
+2. **Backlog evictions** — the item IDs to remove from `backlog.md`
+   Active (each must currently be an open item).
+3. **Trajectory lines** — one per item, in the form
+   `ITEM-ID — outcome (date) — see commit <short-sha>`.
+4. **One consolidated decision-log entry** — a single entry standing in
+   for the whole batch, naming **every** folded item ID and its
+   one-line `Decision:` (or "none"), so no folded decision is invisible.
+5. **Manual-triage list** — commits with a missing `Item:` or no
+   trailer, for the user to map or dismiss.
+
+Wait for approval. Never auto-run a reconcile (consistent with Prune).
+
+### RE4. Lossless check
+
+Before writing, prove the mapping is complete — mirror the line-anchored
+reconcile discipline:
+
+- The set of parsed trailer `Item:` IDs **must equal** the set of
+  backlog IDs to evict **plus** the set of new trajectory IDs. No item
+  is written to the trajectory without leaving the backlog, and none
+  leaves the backlog without a trajectory line.
+- Every parsed ID must resolve to an open backlog item. An ID with no
+  matching open item is a mismatch — stop and report; do not evict a
+  guess or fabricate a line.
+- If the sets do not reconcile, stop and report the difference. Do not
+  write partial memory.
+
+### RE5. Apply (after sign-off)
+
+- Remove each reconciled item from `backlog.md` Active.
+- Append each trajectory line under the current phase of
+  `trajectory.md` — ID first, outcome, date, `see commit <short-sha>`.
+  Never paste the decision prose.
+- Append the **one** consolidated entry to `decision-log.md` (top,
+  append-only): date, a `Reconcile — N lite closes` heading, every
+  folded item ID with its one-line decision, and — critically — the
+  marker line
+  `Reconcile marker: <HEAD-sha>` so the next reconcile knows where to
+  start.
+- Leave any manual-triage commits for the user; do not write memory for
+  them.
+- Stage the changed memory files with `git add`. Leave committing to
+  the user.
+
+### RE6. Verify
+
+- Re-grep `Close: lite` since the **new** marker — it must be zero
+  (everything in the window is now reconciled).
+- Confirm the consolidated decision-log entry names every item from the
+  parsed table.
+- Confirm backlog no longer lists the reconciled IDs and trajectory now
+  does. Run the end-of-task size check over the files this pass grew
+  (`decision-log.md`, `trajectory.md`, backlog Active) — a reconcile is
+  real memory work, so use the full sweep, not the fast path.
+- Output a before / after count: lite closes in window → items evicted
+  → trajectory lines added.
+
+### Reconcile rules
+
+- **Never skips memory** — lite defers the write; Reconcile is the write.
+  A batch is not truly closed until it is reconciled.
+- **Never guesses** — an unparseable `Item:` or a bare commit goes to
+  manual triage, never an auto-mapped entry.
+- **One consolidated entry per batch**, naming every folded item, so a
+  dropped decision is visible by its absence.
+- **Marker is mandatory** — every reconcile leaves a `Reconcile marker:`
+  SHA; without it the next pass cannot bound its window.
+- Append-only files (`decision-log.md`, `trajectory.md`) grow at the
+  top/current phase; never rewrite existing entries.

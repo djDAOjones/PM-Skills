@@ -25,6 +25,88 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.2.0 — 2026-07-16
+
+Adds a **sanctioned lite close + Reconcile verb** — a cheap close-out
+for burst development that defers project-memory writes without ever
+bypassing them. Formalises the ad-hoc "source of truth = commits, not
+the backlog" bypass observed in a heavy consuming project (~200 shipped
+items) into a first-class, lossless loop.
+
+Two moving parts:
+
+- **`Close: lite`** (`end-of-task.md`) — a close mode where the quality
+  gate and runtime-boot checks still run, but the memory updates and
+  size check are deferred and the task is recorded as a structured
+  commit trailer (`Item:` / `Outcome:` / `Decision:` / `Verify:` /
+  `Close: lite`). The trailer grammar is defined in exactly one place
+  (`end-of-task.md`) because Reconcile parses it as data. Forbidden for
+  `[sign-off]` items and `full`-mode runs — their rationale is the
+  record.
+- **Reconcile** (`memory-maintenance.md`, the 4th verb beside
+  Diagnose / Prune / Refactor) — reads `Close: lite` trailers from
+  `git log` since the last reconcile marker, evicts each backlog item,
+  adds one trajectory line per item, and appends ONE consolidated
+  decision-log entry naming every folded item plus a `Reconcile marker:`
+  SHA. A lossless ID check (trailer IDs = evicted backlog IDs + new
+  trajectory IDs) refuses to write partial memory; unparseable commits
+  go to manual triage, never a guess. Never auto-run — proposed like
+  Prune.
+
+Session start now counts unreconciled lite closes and enforces a hard
+cap (`memory-policy.md`: 5 closes or oldest 7 days) that makes a
+reconcile mandatory before the next-batch pick, so deferral can't become
+a memory hole. Diagnose gains a matching check.
+
+Minor: new capability, backward compatible. No files renamed or
+removed; no `MANIFEST.md` change; no memory-contract or data migration.
+Projects that never use lite closes are unaffected.
+
+### Added
+
+- `pm_skills/prompts/end-of-task.md` — a **Close mode: full or lite**
+  section defining the canonical `Close: lite` commit-trailer grammar
+  and the lite prohibitions; steps 3–4 note the lite path defers memory
+  writes and the size check; step 5 reports "lite close — reconcile
+  pending".
+- `pm_skills/prompts/memory-maintenance.md` — the **Reconcile** verb
+  (RE1 find window → RE2 parse trailers → RE3 propose → RE4 lossless
+  check → RE5 apply → RE6 verify + Reconcile rules), plus Diagnose
+  check 10 (unreconciled lite closes) and a four-verb intro.
+- `pm_skills/prompts/session-start.md` — a **Check for unreconciled
+  lite closes** section (count + oldest date at session start) and a
+  Start B gate that blocks the next-batch pick past the cap.
+- `pm_skills/memory-policy.md` — an **Unreconciled `Close: lite`
+  closes** budget row (5 closes / 7 days) — the single home for the cap
+  numbers.
+
+### Changed
+
+- `pm_skills/integrations/task.md` — step 10 gains `close: lite|full`
+  inference (lite only if the user asks; never the default; forbidden
+  for `[sign-off]` / `full`).
+- `AGENTS.md` (`root-template`) — one Workflow pointer line (item 4) to
+  the lite close + Reconcile loop.
+- `pm_skills/GUIDE.md` — a "Closing lite (for burst work)" note in the
+  daily loop; Reconcile added to the memory-maintenance verb list (now
+  four); the prompts file-tree description updated.
+
+### Upgrade actions
+
+- Replace the `framework` files with their new versions after the
+  Step 4 customisation check: `pm_skills/prompts/end-of-task.md`,
+  `pm_skills/prompts/memory-maintenance.md`,
+  `pm_skills/prompts/session-start.md`, `pm_skills/memory-policy.md`,
+  `pm_skills/integrations/task.md`, `pm_skills/GUIDE.md`.
+- `AGENTS.md` is `root-template`: 3-way merge — add the new Workflow
+  item 4 (lite close + Reconcile pointer), preserving every populated
+  section verbatim.
+- No `MANIFEST.md` change (no new/removed/renamed paths). No
+  project-memory migration. Existing full closes are unchanged; lite is
+  opt-in per task.
+
+---
+
 ## 3.1.1 — 2026-07-04
 
 Clarifies the upgrade source flow so agents suggest the public PM-Skills

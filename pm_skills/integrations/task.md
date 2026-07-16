@@ -135,3 +135,14 @@ and ask before doing any of these, in any mode:
     Present the closing report. After a gateless run (`auto-jazz`,
     `auto-jazz-lite`), suggest `pm_skills/prompts/review.md` before
     the user accepts the work.
+
+    **Close mode — `full` (default) or `lite`.** Infer from the
+    invocation: a "commit and move on" / "batch this, reconcile later"
+    style instruction implies `lite` **only if the user actually says
+    so** — never default to it. On a `lite` close, `end-of-task.md`
+    steps 1–2 (gate + boot) still run; the memory writes are deferred to
+    a batch **Reconcile** and recorded as a `Close: lite` commit trailer.
+    `lite` is **forbidden** for `[sign-off]` items and any `full`-mode
+    run (their rationale is the record) — close those `full`.
+    `auto-jazz` / `auto-jazz-lite` / `checkpoint` runs may close either
+    way; when unsure, close `full`.

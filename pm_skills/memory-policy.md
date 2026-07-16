@@ -34,6 +34,7 @@ propose first.
 | `wish-list.md` open items | 25 items | Propose a triage pass (promote each into `backlog.md`, or cut). Never archive — the wish-list shrinks by triage, not by moving content to `archive/`. |
 | `tickets/<ITEM-ID>.md` (per-item, cold) | soft ~600 words each | Working detail for one open item; not counted in the every-task read load. Shrinks by lifecycle eviction, not archiving — deleted when the item ships or is cut. An orphan file (no matching open item) is structural, not a size issue: Refactor evicts it, Diagnose flags it. |
 | `archive/` chunk | one epoch per file (whole month / migration boundary) | Chunk cold archives by **sequence boundary for INDEX browsability**, not size — they're never auto-read (grep + line-range only), so word count barely matters and an epoch bounds its own growth. Sub-split a single epoch only if it's genuinely unwieldy to grep; never split or merge epochs just to hit a number. Maintain `archive/INDEX.md`. |
+| Unreconciled `Close: lite` closes | **5 closes** since the last reconcile marker, **or** oldest **7 days** (whichever trips first) | Deferred memory writes, not a file size. Under the cap it's a session-start nudge; at or over it, a **Reconcile** (`memory-maintenance.md`) is mandatory before the next-batch pick. Counted from `git log` since the marker, not from a file. See `end-of-task.md` → "Close mode". |
 
 ## Size-check fast path
 

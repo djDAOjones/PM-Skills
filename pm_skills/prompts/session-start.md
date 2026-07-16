@@ -49,6 +49,24 @@ of the every-task load):
 - `pm_skills/project/archive/*.md` — search via grep only when explicitly relevant.
 - `pm_skills/project/tickets/<ITEM-ID>.md` — optional per-item detail; read only the active item's file, and only when its backlog line carries `[detail]`.
 
+## Check for unreconciled lite closes
+
+Some tasks close **lite** (`prompts/end-of-task.md` → "Close mode"):
+the quality gate runs but the memory writes are deferred to a batch
+**Reconcile**. At session start, count them:
+
+- Find the last reconcile marker —
+  `grep -m1 'Reconcile marker:' pm_skills/project/decision-log.md` — and
+  count `Close: lite` trailers since it in `git log` (whole history if
+  no marker exists yet). This is cheap; skip only if the project has
+  never used lite closes.
+- If any exist, **print the count and the oldest date** in one line.
+- **Hard cap** (numbers in `pm_skills/memory-policy.md`): if the count
+  or the oldest age is over the cap, a **Reconcile** is mandatory
+  **before** the next-batch pick (Start B) — propose it and do not pick
+  new work until it clears. Under the cap, the count is a nudge, not a
+  block. Never auto-run the reconcile; propose it.
+
 ## Then state the task — Start A (you name it)
 
 ### Standard start (full 4-stage task)
@@ -85,6 +103,10 @@ confirm.
 A "batch" is the smallest shippable unit of work: a single backlog
 item, or a tight cluster of items that share the same files or feature
 and clearly belong together.
+
+First honour the reconcile gate above: if unreconciled lite closes are
+over the cap, propose **Reconcile** and pick no new work until it
+clears. A count under the cap is just a nudge — carry on.
 
 ### 1. Triage the wish-list (quick)
 

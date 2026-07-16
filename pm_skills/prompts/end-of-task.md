@@ -5,6 +5,49 @@ and verification are complete. This is the canonical housekeeping
 ritual. The integration workflows reference this file rather than
 duplicating its contents.
 
+## Close mode: full (default) or lite
+
+Two ways to close. **Full** (the default) runs every step below.
+**Lite** is a sanctioned cheap close for burst / low-ceremony work: the
+quality gate and runtime-boot checks (steps 1–2) run **unchanged**, but
+the memory updates and size check (steps 3–4) are deferred — the commit
+message *is* the per-item record, and a later batch **Reconcile**
+(`memory-maintenance.md`) back-fills project memory from git history.
+Lite exists so the memory loop is never bypassed informally; it defers
+the writes, it never skips them.
+
+Use lite only when it was chosen for this run (see `task.md` →
+`close: lite|full`). **Lite is forbidden** for `[sign-off]` items and
+any `full`-mode run — their rationale is the record, and a one-line
+trailer cannot carry it. When in doubt, close full.
+
+### The `Close: lite` commit trailer (canonical grammar)
+
+A lite close records the task as a **structured trailer** at the foot of
+its commit message. This is the *only* place this grammar is defined; it
+is a data format Reconcile parses, so keep it exact and grep-stable
+(`^Item:` / `^Close:` anchored):
+
+```text
+Item: <BACKLOG-ID>
+Outcome: <one line>
+Decision: <one line, or "none">
+Verify: typecheck 0 · <N> tests · build 0
+Close: lite
+```
+
+- One trailer block per item closed in that commit.
+- `Item:` must be a real backlog ID; Reconcile refuses to guess and
+  lists any commit lacking a parseable `Item:` for manual triage.
+- `Decision:` is a one-liner or `none`; if the decision needs more than
+  one line, the task is not lite-eligible — close full.
+- `Verify:` mirrors the gate result (adapt the fields to the stack;
+  keep the `typecheck / tests / build` shape where it applies).
+
+Wish-list capture (`AGENTS.md` → "Capturing deferred ideas") still
+applies during a lite close — appending one line is cheap and is not
+deferred.
+
 ## 1. Run the quality gate
 
 Run the project's one-command quality gate before closing — the `check`
@@ -39,6 +82,11 @@ script — confirm the app still recovers cleanly before closing:
 If the task did not touch the runtime, say "not applicable" and move on.
 
 ## 3. Update project memory
+
+**Lite close:** skip this step — the memory writes are deferred to the
+next **Reconcile** (`memory-maintenance.md`). Instead, record the
+`Close: lite` trailer (grammar above) in the commit message. Jump to
+step 5 and report "lite close — reconcile pending". Steps 1–2 still ran.
 
 Update each of the following if relevant to this task:
 
@@ -80,6 +128,9 @@ Update each of the following if relevant to this task:
   bundle).
 
 ## 4. Run the memory size check
+
+**Lite close:** skip — no memory was written, so there is nothing to
+size-check. The deferred writes are budget-checked at Reconcile.
 
 Budgets are defined in `pm_skills/memory-policy.md`. Do not duplicate
 the numbers here.
@@ -147,8 +198,11 @@ Output a one-line summary:
 
 - Whether the quality gate (`check`) passed (or n/a).
 - Whether the runtime was verified to boot to a ready state (or n/a).
-- Which memory files were updated.
-- Which budgets were checked (or "size check: fast path").
+- Which memory files were updated — or, on a **lite close**, "lite
+  close — reconcile pending" plus the `Item:` IDs recorded in the
+  trailer.
+- Which budgets were checked (or "size check: fast path", or "n/a —
+  lite close").
 - Whether any tripped (and the proposal made if so).
 
 Present the report to the user before closing the task.

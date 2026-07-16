@@ -120,6 +120,11 @@ only. When a budget trips, propose the Prune verb of
    other rules in this file (source-tree search, project-memory
    housekeeping, memory size check, minimal-change discipline, hard
    rules) still apply.
+4. Closing a task: run `pm_skills/prompts/end-of-task.md`. A **lite**
+   close (only if the user asks) still runs the gate but defers memory
+   writes to a `Close: lite` commit trailer, back-filled by the
+   **Reconcile** verb of `pm_skills/prompts/memory-maintenance.md`;
+   session-start caps how long a reconcile may wait.
 
 ---
 

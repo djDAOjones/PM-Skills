@@ -75,7 +75,7 @@ prompts/         Reusable per-task prompts (paste, or run as commands).
   bug-scoping.md          Bug diagnosis: reproduce, root cause, minimal fix.
   end-of-task.md          The closing ritual: quality gate + memory updates.
   review.md               Read-only audit of an autonomous run.
-  memory-maintenance.md   Diagnose / Prune / Refactor project memory.
+  memory-maintenance.md   Diagnose / Prune / Refactor / Reconcile project memory.
   upgrade.md              Move a project to a newer framework version.
   release.md              Maintainer release checklist (source repo only).
   deploy.md               Production deploy + live verification.
@@ -191,6 +191,19 @@ Say "run end-of-task" (`prompts/end-of-task.md`). The agent:
 This ritual is what makes the *next* session start smart. Don't skip
 it.
 
+**Closing lite (for burst work).** If you're closing a run of small
+tasks fast and don't want a full memory write each time, say "close
+lite". The agent still runs the quality gate and boot check, but
+records the task as a structured `Close: lite` trailer in the commit
+message instead of updating the memory files — deferring, never
+skipping, the write. Later, `memory-maintenance.md` → **Reconcile**
+reads those trailers from git history and back-fills the backlog,
+trajectory, and decision-log in one pass. Session start counts any
+unreconciled lite closes and, past a cap, insists on a reconcile before
+picking new work — so the deferral can't quietly become a memory hole.
+`[sign-off]` items and fully-gated runs can't close lite; their
+reasoning is the record.
+
 ### After an autonomous run
 
 If the work ran gateless (`auto-jazz`, `auto-jazz-lite`, an `init-mvp`
@@ -249,7 +262,7 @@ what changes when:
 
 **When a size budget trips** (the end-of-task check tells you), the
 agent proposes `prompts/memory-maintenance.md` and waits for your
-approval. Its three verbs:
+approval. Its four verbs:
 
 - **Diagnose** — read-only health check; finds structural drift and
   points at the right fix. Also worth running after a long gap.
@@ -257,6 +270,9 @@ approval. Its three verbs:
   never summarised) and leaves an index pointer in the live file.
 - **Refactor** — tidies a drifted backlog: evicts shipped work,
   merges duplicates, regroups by milestone.
+- **Reconcile** — back-fills memory from `Close: lite` commit trailers:
+  evicts the reconciled backlog items, adds their trajectory lines, and
+  writes one consolidated decision-log entry for the batch.
 
 Budgets and the actions per file live in
 [`memory-policy.md`](./memory-policy.md) — the agent reads it at task
