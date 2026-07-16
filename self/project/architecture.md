@@ -7,9 +7,9 @@
 
 - **Markdown** — the product is docs; everything distributed is `.md`
   plus two Node scaffold scripts.
-- **Node >= 18 (dev only)** — lint tooling and the two dependency-free
-  scaffold scripts; invoked via `npx --yes` so no local install is
-  required.
+- **Node >= 22.18.0 (dev only)** — lint tooling (cspell v10 requires it)
+  and the two dependency-free scaffold scripts; invoked via `npx --yes`
+  so no local install is required.
 - **git** — sync channel, release ledger, and the discovery mechanism
   for tooling (`git ls-files`, no filesystem walks on cloud-synced
   checkouts).

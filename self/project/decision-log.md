@@ -5,6 +5,24 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-07-16 — CI-NODE: bump CI Node to 22 for cspell v10 (source-only)
+
+**Decision:** Bumped `.github/workflows/lint.yml` from `node-version:
+20` to `22`, and aligned `package.json` `engines` to `>=22.18.0`
+(architecture.md updated to match). No VERSION bump — CI/tooling config
+is source-only.
+
+**Rationale:** Every push to `main` was failing the Lint job (flood of
+GitHub failure emails). Root cause was environmental, not content:
+`cspell@^10` requires Node `>=22.18.0` and aborted the `lint:spell`
+step with `Unsupported NodeJS version (20.20.2)`. `npm run check`
+passed locally because the maintainer runs Node v24; only the pinned
+CI runner was stale.
+
+**Alternatives:** Node 24 (rejected — 22 is current LTS, sufficient for
+the `>=22.18.0` floor); pinning cspell back to v9 (rejected — bumping
+the runner is the correct fix, not freezing a dependency).
+
 ## 2026-07-16 — ARCH-INTEG: archive referential-integrity check (3.17.1)
 
 **Decision:** Shipped ARCH-INTEG as patch 3.17.1 — a new Diagnose check
