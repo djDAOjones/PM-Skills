@@ -48,6 +48,36 @@ Wish-list capture (`AGENTS.md` → "Capturing deferred ideas") still
 applies during a lite close — appending one line is cheap and is not
 deferred.
 
+## Secondary-session close (parallel work)
+
+If this session ran **in parallel** with another that owns the memory
+writes (see `prompts/session-start.md` → "Parallel-session claim" and
+`memory-policy.md` → "One writer at a time"), do **not** write project
+memory here — concurrent appends to `decision-log.md` / `backlog.md`
+collide. Instead:
+
+- Run steps 1–2 (quality gate + boot check) as normal.
+- **Emit a handoff block** for the primary session (or the next serial
+  close / `memory-maintenance.md` → Reconcile) to apply, carrying
+  exactly what would have gone into memory:
+
+  ```text
+  Handoff: <BACKLOG-ID>
+  Trajectory: <one line — outcome (date)>
+  Decision: <the why, or "none">
+  Files: <file-map role changes, or "none">
+  Backlog: <status change — remove / update>
+  ```
+
+- Stage and commit **only your own paths** — never `git add -A` while
+  parallel (`integrations/task.md` → step 11) — so you don't sweep up
+  the primary's in-flight edits.
+
+The single active session, or the **primary** of a parallel set, closes
+normally with steps 3–5 below (and applies any handoff blocks it was
+given). This defers the secondary's writes to a serial close; it never
+skips them.
+
 ## 1. Run the quality gate
 
 Run the project's one-command quality gate before closing — the `check`

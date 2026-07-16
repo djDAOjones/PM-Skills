@@ -64,6 +64,27 @@ asks — Prune (P3) and Upgrade (Step 5) run the blocking version before
 they move files. This is cheap; skip only on a repo path already known
 to be outside any sync folder.
 
+## Parallel-session claim (skip if solo)
+
+If another agent session may be running on this repo — same machine or
+another — declare and check before writing anything. Coordination is
+advisory (no lockfiles: a crashed session must never block the next one).
+
+- **Claim your file set** in chat as your first act: the paths or areas
+  this session intends to touch. This is the NAV-3 pattern made a step —
+  it lets a parallel session pick a collision-free surface.
+- **Check `git status` for in-flight edits, and state their
+  provenance.** Uncommitted changes you did not make are another
+  session's or machine's work: say which session / machine / human made
+  them, or "unknown", **before building on them**. Never silently assume
+  the user made them. Treat "unknown" provenance as external code —
+  verify it is coherent and run the quality gate before folding it in
+  (see `GUIDE.md` → "Parallel and multi-machine work").
+- **Stage your own paths only** at close — never `git add -A` while
+  parallel (`integrations/task.md` → step 11).
+- **If solo** (no parallel session; working tree clean or only your own
+  edits), say so in one line and carry on.
+
 ## Check for unreconciled lite closes
 
 Some tasks close **lite** (`prompts/end-of-task.md` → "Close mode"):

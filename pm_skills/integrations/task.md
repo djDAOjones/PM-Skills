@@ -175,7 +175,10 @@ and ask before doing any of these, in any mode:
       (code *and* memory). Flag any touched file missing from the staged
       set — this is the CHANGELOG-slip failure mode (a release commit
       that shipped without its own changelog entry), caught before the
-      commit rather than after.
+      commit rather than after. When a **parallel session** may be
+      running (see `prompts/session-start.md` → "Parallel-session
+      claim"), stage explicit paths only — never `git add -A` — so you
+      commit your own work and not another session's in-flight edits.
     - **Long runs** — for multi-milestone or cross-session work,
       recommend a checkpoint commit after each completed milestone
       (mirroring `init-mvp.md`), not only at close, so an interrupted

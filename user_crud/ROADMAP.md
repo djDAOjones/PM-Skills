@@ -115,7 +115,7 @@ Exhibition/Digital Art Audience Hub` (pm-skills 3.1.1; 148 commits
 
 ## Current focus
 
-- (empty — next pick: Wave 4 top, MULTI-WRITER.)
+- (empty — next pick: Wave 4, MODEL-TIER.)
 
 ## Waves 1–3 — the 2026-07-16 burst (complete, retired)
 
@@ -132,15 +132,12 @@ Evidence-raised: each failure mode occurred on THIS repo on 2026-07-16
 ship before the Wave 5 structural work they protect (multi-session
 self-hosting needs the commit/provenance discipline in place).
 
-- [ ] **MULTI-WRITER Parallel/multi-machine hardening** [evidence:
-  burst W1] — session claim declaration + provenance rule for
-  uncommitted changes + git-as-sync-channel guidance · Medium /
-  Med-High / Medium / Medium. Detail: tickets/MULTI-WRITER.md
-- [ ] **MODEL-TIER Model-tier guidance** [evidence: burst W2;
-  piggyback — ship with either item above] — one GUIDE paragraph:
-  mechanical verify/count steps suit cheaper models; propose steps and
-  protocol closes do not · Low-Med / Trivial / Low / Low.
-  Detail: tickets/MODEL-TIER.md
+- [ ] **MODEL-TIER Model-tier guidance** [evidence: burst W2] — one
+  GUIDE paragraph: mechanical verify/count steps suit cheaper models;
+  propose steps and protocol closes do not · Low-Med / Trivial / Low /
+  Low. Detail: tickets/MODEL-TIER.md
+  (MULTI-WRITER + COMMIT-STEP, its former piggyback partners, have
+  shipped — MODEL-TIER now stands alone as the Wave 4 tail.)
 
 ## Wave 5 — self-hosting & holistic review (next phase, part 2)
 
@@ -213,6 +210,19 @@ stated trigger fires. Full reasoning: case study Addendum A, Tier C
 
 ## Shipped (recent context — see CHANGELOG for detail)
 
+- **3.14.0** — MULTI-WRITER (Wave 4): parallel-session + multi-machine
+  hardening. Turns memory-policy's "one writer at a time" rule into a
+  mechanism — session-start "Parallel-session claim" (declare file set +
+  check `git status` + state provenance of uncommitted changes, "unknown"
+  → treat as external code: the exact same-repo failure from burst W1);
+  end-of-task "Secondary-session close" `Handoff:` block (secondary defers
+  memory writes for the primary/Reconcile to apply); GUIDE "Parallel and
+  multi-machine work" (git is the sync channel not the filesystem; arrival
+  procedure; single-worktree concurrency limitation); task.md step-11
+  `git add -A` caveat. Advisory-only — no `.claims` lockfile (open
+  question resolved to the manual pattern; add only if a real collision
+  recurs). No new files; MANIFEST unchanged. Ticket → tickets/archive/.
+  Minor.
 - **3.13.0** — COMMIT-STEP (Wave 4): per-task commit checkpoints in
   `integrations/task.md` (new step 11). Recommend-commit only, never
   auto-commit/push; message shape aligned with the `Close: lite` trailer

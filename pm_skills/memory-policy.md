@@ -93,7 +93,14 @@ The end-of-task size check scales with what the task actually touched
   end-of-task memory updates; the others report their updates for the
   next serial close (parallel appends to `decision-log.md` /
   `backlog.md` conflict). The Prune verify step treats an unexpected
-  concurrent edit as a stop-and-report, never a "fix".
+  concurrent edit as a stop-and-report, never a "fix". This rule has a
+  mechanism, not just a constraint: the claim declaration + provenance
+  check at `prompts/session-start.md` → "Parallel-session claim", the
+  secondary-session handoff block at `prompts/end-of-task.md` →
+  "Secondary-session close", and the multi-machine arrival procedure in
+  `GUIDE.md` → "Parallel and multi-machine work". Coordination is
+  advisory (chat-declared file set + `git status`), never a lockfile
+  that could strand a crashed session.
 - Changing a budget is a framework change (this is a `framework`-class
   file): bump `VERSION` and add a `CHANGELOG.md` entry per
   `prompts/release.md`.

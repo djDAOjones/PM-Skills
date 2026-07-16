@@ -25,6 +25,45 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.14.0 — 2026-07-16
+
+MULTI-WRITER: parallel-session and multi-machine hardening. Turns the
+`memory-policy.md` "one writer at a time" rule — which named the
+constraint but gave parallel/multi-machine work no mechanism — into a
+concrete, advisory protocol (no lockfiles; a crashed session must never
+block the next one). New `session-start.md` "Parallel-session claim
+(skip if solo)" section: a session declares its file set in chat and
+checks `git status` before writing, and — the same-repo failure this
+framework hit on 2026-07-16 — states the **provenance** of any
+uncommitted changes it did not make (which session/machine/human, or
+"unknown") before building on them, treating "unknown" as external code
+(verify + gate before folding). New `end-of-task.md` "Secondary-session
+close (parallel work)" section: the non-primary session runs the gate +
+boot check but defers memory writes, emitting a structured `Handoff:`
+block the primary (or the next Reconcile) applies — making concrete
+memory-policy's "report their updates for the next serial close". New
+`GUIDE.md` "Parallel and multi-machine work" subsection: git is the sync
+channel, never the filesystem; the arrival procedure; the
+single-worktree concurrency limitation. `task.md` step 11 staged-set
+echo gains the "stage explicit paths only, never `git add -A` while
+parallel" caveat. `memory-policy.md` one-writer rule now points at all
+three mechanism homes. Advisory-only (no `.claims` lockfile — the
+manual chat + `git status` pattern worked ~15 times on the Hub; add a
+scratch file only if a real collision recurs). No new files; MANIFEST
+unchanged. Minor.
+
+### Upgrade actions
+
+- No file copies. From the next session on a repo where parallel or
+  multi-machine work happens: declare your file set and check
+  `git status` at start (`session-start.md` → "Parallel-session
+  claim"); if you find uncommitted changes you did not make, state their
+  provenance before building on them and treat "unknown" as external
+  code. Parallel secondary sessions close via the new
+  `end-of-task.md` "Secondary-session close" handoff block instead of
+  writing memory. Solo, single-machine projects need do nothing — the
+  claim step is skipped when solo.
+
 ## 3.13.0 — 2026-07-16
 
 COMMIT-STEP: per-task commit checkpoints in the task workflow. Codifies

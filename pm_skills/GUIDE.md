@@ -244,6 +244,39 @@ from `git log --grep` per ID plus the matching memory entries — the
 natural review unit once batches ship gateless and lite-closed (a
 reconciled batch is a ready-made area).
 
+### Parallel and multi-machine work
+
+Project memory assumes **one writer at a time**. You can still run
+sessions in parallel, or across machines — the coordination is advisory,
+never a lock (a crashed session must never block the next one):
+
+- **Parallel sessions (same repo).** Each session's first act is to
+  declare the files it will touch in chat and check `git status`, so two
+  sessions don't append to `decision-log.md` or `backlog.md` at once.
+  Only one session (the **primary**) writes memory at close; the others
+  emit a handoff block (`end-of-task.md` → "Secondary-session close")
+  that the primary — or the next `memory-maintenance.md` → Reconcile —
+  applies. Stage your own paths only; never `git add -A` while parallel.
+- **Multi-machine: git is the sync channel, never the filesystem.** Work
+  crosses machines as commits and branches — pull the branch; don't let
+  a sync folder (OneDrive, Dropbox, iCloud) carry a working tree between
+  machines. A file-synced tree silently reverts tracked files and spawns
+  conflict copies (see "Quick answers").
+- **Arrival procedure.** When a session finds uncommitted changes it did
+  not make — a second machine's in-flight work, or another session's —
+  it states their **provenance** (which machine / session / human, or
+  "unknown") before building on them. "Unknown" provenance is treated
+  like external code: verify it is coherent and run the quality gate
+  before folding it in. (The framework learned this the hard way: a
+  self-hosting session once found uncommitted work, assumed the
+  maintainer had written it, and closed a release on that premise —
+  correct only by luck.)
+- **Known limitation.** Truly concurrent agents on a *single* worktree
+  (two tools editing the same checkout at the same instant) are out of
+  scope — the advisory claim assumes each session sees the other's
+  committed or in-flight state via `git status`, not a live shared
+  buffer.
+
 ## Manual paste flow
 
 For AI tools without workflow support. Start every session by pasting
