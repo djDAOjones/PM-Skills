@@ -33,6 +33,13 @@ Shared rules for all five verbs: use plain shell (`wc`, `head`,
 Python scripts, no retry loops; if a step fails, stop and report.
 Minimise meta-cost: single pass, batch the work.
 
+Model tier (per-*step*, not per-*verb*): the mechanical halves — every
+count, Diagnose's greps, Prune's P1/P4/P5 detect/execute/verify,
+Reconcile's log harvesting — run fine on a cheaper, faster model; the
+**propose** steps (Prune P2, Refactor R3, Reconcile RE3) and any
+judgement call want the stronger tier. See `GUIDE.md` → "Looking after
+project memory".
+
 ---
 
 ## Environment preflight (shared)

@@ -348,6 +348,17 @@ Budgets and the actions per file live in
 [`memory-policy.md`](./memory-policy.md) — the agent reads it at task
 close; you never need to.
 
+**Which model tier?** Memory maintenance is mostly mechanical — counts,
+greps, `tail`/`diff` verification, log harvesting — and that half runs
+fine on a cheaper, faster model. Two things do not: judgement steps
+(scoping, design options, validation, review, and any **propose** step,
+such as Prune's archive proposal or Reconcile's batch write), and
+multi-step protocol closes (the release and end-of-task checklists).
+Both want the stronger tier — protocol adherence and judgement are the
+first things to degrade on a cheap model. Split the work per-step, not
+per-session: run the mechanical verification cheap, switch up for the
+calls that need it.
+
 Two folders are created lazily, so don't be surprised they're missing
 on a fresh project: `project/archive/` (first prune) and
 `project/tickets/` (first item that needs a detail file).

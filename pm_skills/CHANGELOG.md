@@ -25,6 +25,37 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.14.1 — 2026-07-16
+
+MODEL-TIER: model-tier guidance (Wave 4 tail). Guidance-only, no
+mechanism — tells users which work is safe on a cheaper/faster model and
+which wants the stronger tier. New `GUIDE.md` paragraph in "Looking
+after project memory": memory maintenance is mostly mechanical (counts,
+greps, `tail`/`diff` verification, log harvesting) and that half runs
+cheap; judgement steps (scoping, design options, validation, review, any
+**propose** step) and multi-step protocol closes (release + end-of-task
+checklists) want the stronger tier — protocol adherence and judgement
+degrade first on cheap models. The split is per-*step*, not per-session.
+New scoping line in `prompts/memory-maintenance.md`'s shared-rules
+header: the mechanical halves (every count, Diagnose's greps, Prune
+P1/P4/P5 detect/execute/verify, Reconcile's log harvesting) run cheap;
+the propose steps (Prune P2, Refactor R3, Reconcile RE3) and any
+judgement call want the stronger tier — per-step, cross-referencing the
+GUIDE. Evidence: the 2026-07-16 self-hosting burst directly tracked
+session quality to model tier — the weak-model SPIKE session skipped the
+preflight note and release consistency check, never re-ran the gate, and
+introduced the burst's only semantic defect (evaluations/
+2026-07-16-recent-dev-review.md W2). No new files; MANIFEST unchanged.
+Patch.
+
+### Upgrade actions
+
+- No file copies. Documentation-only: the guidance applies from the next
+  memory-maintenance or release/close on any repo — no per-project
+  change to apply.
+
+---
+
 ## 3.14.0 — 2026-07-16
 
 MULTI-WRITER: parallel-session and multi-machine hardening. Turns the

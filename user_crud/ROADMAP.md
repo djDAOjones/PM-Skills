@@ -112,10 +112,11 @@ Exhibition/Digital Art Audience Hub` (pm-skills 3.1.1; 148 commits
 - consider making "/next" part of the pm-skills framework itself. the reason is the following prompt works really well: use @session-start.md as the process to work on pm-skills itself, as a framework to work on the framework. Progress through the @ROADMAP.md  starting with the first to-do item, check the corrosponding file in @tickets for context, autojazz the work except where you need my input, then close out the development task -- if it can fit the project idealogy, doesn't present a conceptual issue, if there is merit, then please add to the roadmap. it's very handy to be able to burn through a roadmap in this fashion, saving time and tokens. if not viable or a good idea, please retain the entirity of this note for future consideration to give a simular one word signal for progress in this fashion.
 - are tickets for roadmap items generated reliably enough? are there scenarios where they dont get made / context isn't flesht needed?
 - should there be more commit and push to git as part of the framework? currently has a lot of manual input
+- should there be somewhere like user crud as part of the pm-skills framework?
 
 ## Current focus
 
-- (empty — next pick: Wave 4, MODEL-TIER.)
+- (empty — Wave 4 complete; next pick: Wave 5, SELF-HOST.)
 
 ## Waves 1–3 — the 2026-07-16 burst (complete, retired)
 
@@ -125,19 +126,12 @@ TRANSCRIPTS, SEC-BASE · SPIKE, REFACTOR-MODE, REVIEW-AREA, DOC-SYNC.
 Records in Shipped below + CHANGELOG; burst retrospective in
 evaluations/2026-07-16-recent-dev-review.md.
 
-## Wave 4 — process hardening (next phase, part 1)
+## Wave 4 — process hardening (complete, retired)
 
 Evidence-raised: each failure mode occurred on THIS repo on 2026-07-16
-(evaluations/2026-07-16-recent-dev-review.md W1–W3). Small releases —
-ship before the Wave 5 structural work they protect (multi-session
-self-hosting needs the commit/provenance discipline in place).
-
-- [ ] **MODEL-TIER Model-tier guidance** [evidence: burst W2] — one
-  GUIDE paragraph: mechanical verify/count steps suit cheaper models;
-  propose steps and protocol closes do not · Low-Med / Trivial / Low /
-  Low. Detail: tickets/MODEL-TIER.md
-  (MULTI-WRITER + COMMIT-STEP, its former piggyback partners, have
-  shipped — MODEL-TIER now stands alone as the Wave 4 tail.)
+(evaluations/2026-07-16-recent-dev-review.md W1–W3). All three items
+shipped: COMMIT-STEP (3.13.0), MULTI-WRITER (3.14.0), MODEL-TIER
+(3.14.1). Records in Shipped below + CHANGELOG.
 
 ## Wave 5 — self-hosting & holistic review (next phase, part 2)
 
@@ -210,6 +204,15 @@ stated trigger fires. Full reasoning: case study Addendum A, Tier C
 
 ## Shipped (recent context — see CHANGELOG for detail)
 
+- **3.14.1** — MODEL-TIER (Wave 4 tail): model-tier guidance,
+  guidance-only. GUIDE "Looking after project memory" paragraph +
+  `memory-maintenance.md` shared-rules header line: mechanical halves
+  (counts, greps, detect/execute/verify, log harvesting) run cheap;
+  judgement steps, **propose** steps (Prune P2 / Refactor R3 /
+  Reconcile RE3), and multi-step protocol closes want the stronger tier
+  — protocol adherence degrades first on cheap models (burst W2
+  evidence). Per-step, not per-session. No new files; MANIFEST
+  unchanged. Ticket → tickets/archive/. Patch.
 - **3.14.0** — MULTI-WRITER (Wave 4): parallel-session + multi-machine
   hardening. Turns memory-policy's "one writer at a time" rule into a
   mechanism — session-start "Parallel-session claim" (declare file set +
