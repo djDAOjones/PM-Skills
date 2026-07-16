@@ -111,6 +111,7 @@ Exhibition/Digital Art Audience Hub` (pm-skills 3.1.1; 148 commits
 
 - consider making "/next" part of the pm-skills framework itself. the reason is the following prompt works really well: use @session-start.md as the process to work on pm-skills itself, as a framework to work on the framework. Progress through the @ROADMAP.md  starting with the first to-do item, check the corrosponding file in @tickets for context, autojazz the work except where you need my input, then close out the development task -- if it can fit the project idealogy, doesn't present a conceptual issue, if there is merit, then please add to the roadmap. it's very handy to be able to burn through a roadmap in this fashion, saving time and tokens. if not viable or a good idea, please retain the entirity of this note for future consideration to give a simular one word signal for progress in this fashion.
 - are tickets for roadmap items generated reliably enough? are there scenarios where they dont get made / context isn't flesht needed?
+- should there be more commit and push to git as part of the framework? currently has a lot of manual input
 
 ## Current focus
 
