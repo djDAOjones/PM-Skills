@@ -35,8 +35,8 @@ Two habits make the memory work:
   reasoning goes to `decision-log.md` (why). Nothing is written twice,
   so the files the agent reads every day stay small.
 - **Read tiers.** Not every file is read every time. Hot files (the
-  brief, the architecture, the file map) are read every task;
-  `backlog.md` is read by section; `trajectory.md` only on demand; the
+  brief, the architecture) are read every task; `backlog.md` and the
+  file map are read by section; `trajectory.md` only on demand; the
   wish-list and archives never load automatically. This keeps each
   session's context — and token bill — bounded as the project grows.
   The canonical tier policy lives in `AGENTS.md` → "Before every
@@ -62,7 +62,7 @@ project/         Your living project memory. Fill once, maintain ongoing.
   backlog.md       Open work only (Current, Next, Icebox).
   trajectory.md    Shipped-work history, one line per item.
   wish-list.md     Parked ideas, waiting for triage.
-  file-map.md      One line per source file: its role.
+  file-map.md      One line per source file: its role. Skeleton generated; read by section.
   decision-log.md  Append-only record of the WHY behind decisions.
 
 prompts/         Reusable per-task prompts (paste, or run as commands).
@@ -90,6 +90,7 @@ scaffold/        Starter config to copy into your project root once.
   .gitignore          Common ignores for JS/npm projects.
   .markdownlint.json  Markdown lint baseline: strict on breakage, relaxed on style.
   check-links.mjs     Dependency-free internal Markdown link checker (Node).
+  gen-file-map.mjs    Dependency-free file-map skeleton generator (Node).
 ```
 
 ## Two ways to drive it

@@ -48,7 +48,9 @@ pathology the hot-set cap was removed for). Its budget is therefore
 - **Budget = ~35 words × mapped files, with a floor of 2,000 words.**
   Count mapped files each check — one file-map entry per line
   (``grep -cE '^- `' pm_skills/project/file-map.md``, or the project's
-  bullet convention). A ~180-file map budgets ~6,300 words: its
+  bullet convention), or read the total straight from the generated
+  `<!-- file-map-index -->` block when the map is produced by
+  `scaffold/gen-file-map.mjs`. A ~180-file map budgets ~6,300 words: its
   stripped current-role floor reads green, while accreted history
   (task tags, dates, test counts) still pushes it over.
 - **The coefficient (~35) is tunable per project.** 35 fits a dense

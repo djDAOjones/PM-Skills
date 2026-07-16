@@ -15,6 +15,7 @@
     "descoped",
     "deserialisation",
     "docstrings",
+    "FILEMAP",
     "frontmatter",
     "gofmt",
     "greppable",

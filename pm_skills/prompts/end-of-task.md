@@ -109,8 +109,14 @@ Update each of the following if relevant to this task:
   roles in file-map. Never paste the decision-log prose.
 - `pm_skills/project/wish-list.md` — append any out-of-scope ideas
   surfaced this task, one line each.
-- `pm_skills/project/file-map.md` — add or update entries for files
-  created or changed. Map roles, not change history.
+- `pm_skills/project/file-map.md` — if files were added, renamed, or
+  deleted, run `node scaffold/gen-file-map.mjs` (if the project has it):
+  it refreshes the skeleton mechanically — regrouping paths, preserving
+  existing role text, marking new files `(role needed)`, and flagging
+  paths no longer on disk. Then write role text for the `(role needed)`
+  lines only, and confirm any flagged stale paths. No generator (or role
+  edits only): update the affected lines by hand. Map roles, not change
+  history.
 - `pm_skills/project/conventions.md` — if new conventions were
   established or existing ones changed.
 - `README.md` — if architecture, dev workflow, or key infrastructure

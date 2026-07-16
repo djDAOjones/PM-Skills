@@ -188,7 +188,7 @@ copy-paste flow for AI tools without workflow support — is
 | `init.md` | Project setup, step by step (manual or agent-run). |
 | `memory-policy.md` | Size budgets for memory files and what to do when they trip. |
 | `VERSION` / `CHANGELOG.md` / `MANIFEST.md` | Framework version, release history (doubles as upgrade instructions), and per-file upgrade rules. |
-| `scaffold/` | Starter config to copy to your project root: `.editorconfig`, `.gitignore`, `.markdownlint.json`, `check-links.mjs`. |
+| `scaffold/` | Starter config to copy to your project root: `.editorconfig`, `.gitignore`, `.markdownlint.json`, `check-links.mjs`, `gen-file-map.mjs`. |
 
 ### Commands — what you say, what runs
 

@@ -25,6 +25,72 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.5.0 — 2026-07-16
+
+Makes `file-map.md` — the biggest per-task hot-read line-item and the
+highest-maintenance memory file — a **generated skeleton read
+sectionally**. A dependency-free script owns the mechanical bookkeeping
+(the path list, grouped by directory) so the agent writes only the
+judgement (each file's role), and the hot read drops from whole-file to
+an index block plus the sections the task touches. Implements FILEMAP-GEN
+(Wave 1); mirrors the headings-first decision-log read 3.0.0 proved.
+
+### Added
+
+- `pm_skills/scaffold/gen-file-map.mjs` — dependency-free Node generator
+  (`scaffold` class). Discovers source files via `git ls-files` (honours
+  `.gitignore`, no full-tree walk), groups them by top-level directory
+  into `## <dir>` sections (root files under `## (root)`), and merges
+  role text **by path**: an existing role is preserved verbatim, a new
+  file gets `(role needed)`, and a path no longer on disk is flagged
+  under a "No longer on disk" block, never silently dropped. Emits a
+  `<!-- file-map-index -->` block (per-section counts + total) so the
+  sectional read is cheap and the BUDGET-SCALE budget can read the file
+  count from it. Idempotent and stably sorted; `--stdout` prints without
+  writing; a target path arg overrides the default; an `IGNORE` knob at
+  the top of the file is the documented tuning point.
+
+### Changed
+
+- `AGENTS.md` — `file-map.md` moves from **hot whole-file** to **hot
+  sectional**: read the `<!-- file-map-index -->` block plus the sections
+  whose directory the task touches; read whole-file only for
+  cross-cutting work (renames, conventions, upgrades). It remains
+  accreting and budgeted.
+- `pm_skills/prompts/session-start.md` — the quick-reference read list
+  mirrors the new tier (file-map under hot sectional).
+- `pm_skills/prompts/end-of-task.md` — the file-map update step offers
+  `node scaffold/gen-file-map.mjs` for adds/renames/deletes, leaving only
+  `(role needed)` lines and flagged stale paths to resolve by hand.
+- `pm_skills/project/file-map.md` (template) — comments describe the
+  index + section + generator convention; carries the
+  `<!-- file-map-index -->` anchor. Existing populated maps are untouched
+  (project-memory class); projects adopt by running the generator once.
+- `pm_skills/memory-policy.md` — the derived file-map budget may read the
+  file count straight from the generated index block.
+- `pm_skills/GUIDE.md` — scaffold tree lists the generator; the read-tier
+  summary and folder listing reflect the sectional file map.
+
+### Upgrade actions
+
+- Copy `pm_skills/scaffold/gen-file-map.mjs` into the project. It is
+  `scaffold` class: copied once, then project-owned — never force-upgraded
+  (covered by the existing `pm_skills/scaffold/*` glob; no `MANIFEST.md`
+  change).
+- Overwrite the `framework` files after the Step 4 customisation check:
+  `GUIDE.md`, `memory-policy.md`, `prompts/session-start.md`,
+  `prompts/end-of-task.md`.
+- `AGENTS.md` is `root-template`: 3-way merge the "Before every task"
+  read tiers — move `file-map.md` out of hot whole-file into the hot
+  sectional group with the index-plus-sections instruction, preserving
+  any project-specific customisations.
+- `pm_skills/project/file-map.md` is `project-memory` — **not**
+  overwritten. To adopt the generated skeleton, run
+  `node scaffold/gen-file-map.mjs` once (it preserves existing role text
+  and adds the index block) and tune the `IGNORE` list. Optional: an
+  existing hand-maintained map still reads correctly whole-file.
+- No data migration.
+
 ## 3.4.0 — 2026-07-16
 
 Makes the two remaining **fixed** memory budgets **scale-aware**, so a
