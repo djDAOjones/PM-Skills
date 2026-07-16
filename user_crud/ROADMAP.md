@@ -109,15 +109,12 @@ Exhibition/Digital Art Audience Hub` (pm-skills 3.1.1; 148 commits
 
 ## Inbox (untriaged captures — one line each)
 
-- (empty — drained at the 2026-07-16 evening triage: self-hosting →
-  SELF-HOST and code-review → CODEBASE-AUDIT, both ticketed into
-  Wave 5; "keep ticket .md files archived for future use" applied
-  directly to the kick-off checklist above — tickets/archive/, never
-  delete.)
+- consider making "/next" part of the pm-skills framework itself. the reason is the following prompt works really well: use @session-start.md as the process to work on pm-skills itself, as a framework to work on the framework. Progress through the @ROADMAP.md  starting with the first to-do item, check the corrosponding file in @tickets for context, autojazz the work except where you need my input, then close out the development task -- if it can fit the project idealogy, doesn't present a conceptual issue, if there is merit, then please add to the roadmap. it's very handy to be able to burn through a roadmap in this fashion, saving time and tokens. if not viable or a good idea, please retain the entirity of this note for future consideration to give a simular one word signal for progress in this fashion.
+- are tickets for roadmap items generated reliably enough? are there scenarios where they dont get made / context isn't flesht needed?
 
 ## Current focus
 
-- (empty — next pick: Wave 4 top, COMMIT-STEP.)
+- (empty — next pick: Wave 4 top, MULTI-WRITER.)
 
 ## Waves 1–3 — the 2026-07-16 burst (complete, retired)
 
@@ -134,10 +131,6 @@ Evidence-raised: each failure mode occurred on THIS repo on 2026-07-16
 ship before the Wave 5 structural work they protect (multi-session
 self-hosting needs the commit/provenance discipline in place).
 
-- [ ] **COMMIT-STEP Commit checkpoints in task.md** [evidence: burst
-  W3] — recommend-commit step with ID + gate-results message template
-  + staged-set echo · Medium / Low / Low / Low.
-  Detail: tickets/COMMIT-STEP.md
 - [ ] **MULTI-WRITER Parallel/multi-machine hardening** [evidence:
   burst W1] — session claim declaration + provenance rule for
   uncommitted changes + git-as-sync-channel guidance · Medium /
@@ -219,6 +212,15 @@ stated trigger fires. Full reasoning: case study Addendum A, Tier C
 
 ## Shipped (recent context — see CHANGELOG for detail)
 
+- **3.13.0** — COMMIT-STEP (Wave 4): per-task commit checkpoints in
+  `integrations/task.md` (new step 11). Recommend-commit only, never
+  auto-commit/push; message shape aligned with the `Close: lite` trailer
+  grammar; **staged-set echo** (staged vs touched, flags the 3.12.0-style
+  changelog omission); shell-safety one-`-m`-per-line example; long-run
+  per-milestone checkpoint mirroring `init-mvp.md`; non-git skip.
+  `end-of-task.md` report gains a commit-status line; GUIDE daily-loop
+  "Commit as you close" paragraph. No new files; MANIFEST unchanged.
+  Ticket → tickets/archive/. Minor.
 - **3.12.1** — burst-review consistency fixes: spike closes full with a
   reduced surface (never lite — the lite trailer broke Reconcile RE4);
   generator path corrected to `pm_skills/scaffold/gen-file-map.mjs`

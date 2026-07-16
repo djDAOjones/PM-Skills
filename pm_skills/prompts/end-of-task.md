@@ -230,6 +230,10 @@ Output a one-line summary:
 - Which budgets were checked (or "size check: fast path", or "n/a —
   lite close").
 - Whether any tripped (and the proposal made if so).
+- Commit status: `committed` / `staged — commit recommended` / `not
+  staged`. Once memory is written, the commit is recommended (never
+  auto-run) with a staged-set echo — see `integrations/task.md` →
+  "Recommend a commit". Say "not a git repo" and skip if it isn't one.
 
 Then add one non-blocking reminder: if your tool can export the
 conversation, save it to `_transcripts/` (redact before committing —

@@ -153,6 +153,36 @@ and ask before doing any of these, in any mode:
     `auto-jazz` / `auto-jazz-lite` / `checkpoint` runs may close either
     way; when unsure, close `full`.
 
+11. Recommend a commit (checkpoint).
+    Once the gate is green and memory is written (step 10), recommend a
+    commit — this gives every task a rollback point from its first week
+    and makes `git log` a verification ledger. **Never auto-commit or
+    push**: staging and proposing is the agent's job, committing is the
+    user's, unless the invocation explicitly said "commit" / "commit and
+    push".
+
+    - **Message shape** — align with the `Close: lite` trailer grammar
+      (`end-of-task.md`) so lite and full closes read the same in
+      `git log`: a `<ITEM-ID>: <summary>` title, then one what/why body
+      line and a `Verify: typecheck 0 · <N> tests · build 0` line (adapt
+      the fields to the stack). On a lite close, append the full
+      `Close: lite` trailer block instead of restating it.
+    - **Shell-safety** — one `-m` per line; never chain body text with a
+      bare ` -m ` inside a single message. Correct form:
+      `git commit -m "ITEM-ID: summary" -m "what/why" -m "Verify: …"`.
+    - **Staged-set echo** — before recommending the commit, list the
+      files about to be committed against the files this task touched
+      (code *and* memory). Flag any touched file missing from the staged
+      set — this is the CHANGELOG-slip failure mode (a release commit
+      that shipped without its own changelog entry), caught before the
+      commit rather than after.
+    - **Long runs** — for multi-milestone or cross-session work,
+      recommend a checkpoint commit after each completed milestone
+      (mirroring `init-mvp.md`), not only at close, so an interrupted
+      run has recent rollback points.
+    - **Not a git repo** — say so once and skip; the rest of the close
+      is unaffected.
+
 ## Spike mode
 
 A timeboxed exploratory mode: findings are the deliverable, code is

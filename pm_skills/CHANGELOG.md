@@ -25,6 +25,36 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.13.0 — 2026-07-16
+
+COMMIT-STEP: per-task commit checkpoints in the task workflow. Codifies
+the per-ticket commit habit the Digital Art Audience Hub converged on by
+trial (per-ticket, ID-titled commits carrying gate results in the body),
+so a rollback point and a `git log` verification ledger exist from a
+project's first week instead of emerging by trial. Recommend-commit
+only — never auto-commit or push. New `integrations/task.md` step 11
+"Recommend a commit (checkpoint)": message shape aligned with the
+`Close: lite` trailer grammar (`<ITEM-ID>: <summary>` title + what/why +
+`Verify:` line); a **staged-set echo** (files about to be committed vs
+files the task touched, flagging any omission — the failure mode where a
+release commit shipped without its own changelog entry); a shell-safety
+one-`-m`-per-line example (the Hub misfired bare ` -m ` chains); a
+long-run per-milestone checkpoint note mirroring `init-mvp.md`; and a
+non-git skip. `end-of-task.md` step 5 report gains a commit-status line
+(`committed` / `staged — commit recommended` / `not staged`). GUIDE
+daily-loop "Commit as you close" paragraph. No new files; MANIFEST
+unchanged. Minor.
+
+### Upgrade actions
+
+- No file copies. When you next run `integrations/task.md`, its close
+  now ends with a recommend-commit step (step 11): after the gate is
+  green and memory is written, the agent stages the change set, echoes
+  the staged files against the files touched, and proposes a commit with
+  the `<ITEM-ID>: <summary>` + `Verify:` message shape — it does not
+  auto-commit or push. Adopt the message shape for your project's
+  commits so lite and full closes read the same in `git log`.
+
 ## 3.12.1 — 2026-07-16
 
 Consistency fixes from a same-day review of the 3.2.0–3.12.0 burst
