@@ -1,5 +1,5 @@
 ---
-description: Run the design-before-code task workflow (gating mode: full / checkpoint / auto-jazz / auto-jazz-lite / spike)
+description: Run the design-before-code task workflow (gating mode: full / checkpoint / auto-jazz / auto-jazz-lite / spike / refactor)
 ---
 
 The single task workflow. One skeleton — goal → context → stages →
@@ -17,11 +17,13 @@ survive as modes.
 | `auto-jazz` | 0 | 4-stage | trusted end-to-end autonomous runs |
 | `auto-jazz-lite` | 0 | 2-stage (quick-task) | small or low-risk tasks |
 | `spike` | 0 | investigate → findings | timeboxed exploration; closing an unknown before committing to a design |
+| `refactor` | 2 — scope (declared surface), option pick | 4-stage | behaviour-preserving restructuring within a named file set |
 
 Infer the mode from how you were invoked ("run this as auto-jazz",
 "fully gated", a `[sign-off]` flag on the item → `full`, a `[spike]`
-flag → `spike`). Default to `checkpoint`. If the user already indicated
-the mode, don't ask.
+flag → `spike`, a "refactor this" / "restructure X without changing
+behaviour" intent → `refactor`). Default to `checkpoint`. If the user
+already indicated the mode, don't ask.
 
 At every **skipped** gate: make the best conservative decision, state
 the assumption in one line, and continue. Only stop to ask if there is
@@ -48,7 +50,9 @@ and ask before doing any of these, in any mode:
 - Destructive migrations, schema-altering operations, or data
   deletion.
 - Refactors touching more than 5 files that were not explicitly in
-  the stated scope.
+  the stated scope. (In `refactor` mode this limit is lifted **within
+  the declared surface** — see "Refactor mode"; files outside it still
+  stop-and-ask.)
 - Disabling, weakening, or deleting an existing test.
 
 ## Steps
@@ -193,3 +197,56 @@ the user says "spike this".
 5. Close: `lite` by default (the findings entry IS the memory write).
    Run `end-of-task.md` steps 1–2 (gate + boot); the trajectory and
    file-map churn is skipped because throwaway code does not ship.
+
+## Refactor mode
+
+A behaviour-preserving restructuring mode: the acceptance criterion is
+fixed — **observable behaviour unchanged** — and the payoff is internal
+(clarity, structure), not new function. Use it when the user says
+"refactor this" or "restructure X without changing behaviour". Gates
+like `checkpoint`: the scope gate approves the **declared surface**, the
+option gate approves the **restructuring shape**.
+
+> Not to be confused with the **Refactor** verb in
+> `memory-maintenance.md`, which tidies drifted project memory. This is
+> a code/structure mode; that is a memory-cleanup verb.
+
+### Declared surface
+
+Scoping names the file set (or directory) the refactor may touch. The
+">5 files not in scope" prohibition is lifted **within that set only** —
+anything outside it stops-and-asks as usual. An under-declared surface
+is the whole risk of this mode: name it deliberately at the scope gate.
+
+### Baseline precondition
+
+A green `check` before starting. If the surface has no test coverage,
+state that and accept it at the scope gate — or land a safety-net test
+*first* as its own step before restructuring.
+
+### Preservation contract (validation checklist)
+
+Name the contract at validation, then re-verify each item after
+implementing:
+
+- Tests unchanged and green **before and after** — no assertion
+  weakened (existing hard rule).
+- No event-catalogue, data-model, API, or route delta.
+- An explicit **preserved-interface list** where DOM ids or module
+  exports are involved, re-verified by grep after implementation (the
+  element-ID-inventory pattern).
+- Build-artefact sanity where relevant (e.g. grep the built output for
+  paths that must not leak).
+
+### Refactor constraints
+
+- All hard prohibitions from this file still apply; protected /
+  never-edit files stay protected regardless of the declared surface.
+- Behaviour preservation covers **observable** behaviour; name
+  performance-sensitive paths explicitly if they are in scope — don't
+  over-promise.
+- No mixing: feature work and refactor never share a run. If the
+  refactor reveals a bug, log it (wish-list/backlog) — don't fix it
+  in-flight. "Refactor + small improvement" is two runs.
+- The decision-log entry must record the preserved-contract list — it
+  is the durable evidence the next session checks against.

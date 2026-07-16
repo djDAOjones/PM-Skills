@@ -25,6 +25,51 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.10.0 — 2026-07-16
+
+Adds **refactor mode** to `task.md` — a behaviour-preserving
+restructuring mode whose acceptance criterion is fixed: **observable
+behaviour unchanged**. It gates like `checkpoint` (scope approves the
+declared surface, option approves the restructuring shape) and lifts the
+">5 files not in scope" hard prohibition **within the declared surface
+only**. Carries a named preservation contract (tests green before and
+after, no event/data-model/API/route delta, an explicit
+preserved-interface list re-verified by grep, build-artefact sanity) and
+a green-`check` baseline precondition. Based on three Hub refactors
+(HELP-9, MOD-2, LINKS-2) that each had to improvise this contract
+through generic modes. The `refactor` mode (code/structure) is distinct
+from the `Refactor` verb in `memory-maintenance.md` (project memory).
+Implements REFACTOR-MODE (Wave 3). Minor.
+
+### Changed
+
+- `pm_skills/integrations/task.md` — new `refactor` row in the mode
+  table; mode-inference paragraph maps "refactor this" / "restructure
+  without changing behaviour" → refactor mode; the >5-file prohibition
+  notes the in-surface lift; new "Refactor mode" section (declared
+  surface, baseline precondition, preservation-contract checklist,
+  constraints, memory Refactor-verb disambiguation); frontmatter mode
+  list updated.
+- `pm_skills/prompts/validation.md` — generic pointer: in `refactor`
+  mode, also run the task.md preservation contract. Prompt stays
+  mode-agnostic; the checklist lives in task.md.
+- `pm_skills/GUIDE.md` — mode table and `task.md` file-tree listing gain
+  the `refactor` row; one-line disambiguation from the memory Refactor
+  verb.
+
+### Upgrade actions
+
+1. Replace `pm_skills/integrations/task.md` with the new version (adds
+   the `refactor` mode row, inference, in-surface prohibition lift, and
+   the "Refactor mode" section).
+2. In `pm_skills/prompts/validation.md`, add the `refactor`-mode pointer
+   bullet to the Rules block.
+3. In `pm_skills/GUIDE.md`, add the `refactor` row to the mode table and
+   the `task.md` file-tree line, plus the one-line disambiguation.
+4. No new files. MANIFEST unchanged.
+
+---
+
 ## 3.9.0 — 2026-07-16
 
 Adds **spike mode** to `task.md` — a timeboxed exploratory mode where

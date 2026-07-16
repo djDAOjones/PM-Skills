@@ -44,4 +44,7 @@ Rules:
 - Say "not applicable" for irrelevant checks.
 - Separate pre-existing issues from task-induced risks.
 - Keep it concrete and actionable.
+- In `refactor` mode, also run the preservation contract in
+  `integrations/task.md` → "Refactor mode" (behaviour unchanged, no
+  event/data/API/route delta, preserved-interface list).
 - No code.
