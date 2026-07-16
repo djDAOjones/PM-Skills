@@ -58,5 +58,5 @@ copying `pm_skills/` + the root templates, then tracking releases via
 
 ## Open questions
 
-- Should `/next`-style self-hosting session workflows become part of
-  the distributed framework? (wish-list, from the 2026-07-16 burst.)
+- (none — the `/next` distribution question was resolved by promoting
+  NEXT-CMD to the backlog Current milestone, 2026-07-16.)

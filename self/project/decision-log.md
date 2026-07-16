@@ -5,6 +5,31 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-07-16 — Roadmap refactor + wish-list triage (maintainer-approved)
+
+**Decision:** Drained the wish-list (5 → 0) and re-ordered the backlog
+by value, per maintainer sign-off ("yes to wishlist triage; re-order as
+you see fit"). Promoted: **NEXT-CMD** (two `/next`-trigger captures
+merged; → Current, first position, ticket created preserving the
+archived-ROADMAP pointer) and **TICKET-GEN** `[spike]` (→ Next). Cut:
+commit-and-push automation, and the maintainer-scratch-home question.
+Current is now NEXT-CMD → ITEM-AGE → ARCH-INTEG; Next is TICKET-GEN →
+PROCESS-TPL; DEPREC-SHIM, TASK-SIZING, and the three blocked items stay
+iced. The brief's open question (was `/next` distribution) is resolved
+by the promotion.
+
+**Rationale:** NEXT-CMD leads — the maintainer asked for it twice and
+the repo's own `/next` is a working prototype; ITEM-AGE / ARCH-INTEG
+are cheap Medium-impact hardening. The spike precedes PROCESS-TPL so
+evidence lands before the heavier `[sign-off]` design. Cuts: never-
+auto-push is a settled framework stance (COMMIT-STEP covers the rest),
+and the scratch-home revisit trigger (a second self-hosted case) is
+already recorded under ADOPT-FIXES.
+
+**Alternatives considered:** Keeping the cut items iced — rejected;
+both have recorded stances/triggers, and the Icebox is post-triage
+commitment, not a second inbox.
+
 ## 2026-07-16 — REPO-REVIEW: full source-tree review + memory refresh
 
 **Decision:** Maintainer-directed full review (auto-jazz): all four

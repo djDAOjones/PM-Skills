@@ -13,21 +13,32 @@
 
 ### Current milestone
 
-- (empty — REPO-REVIEW shipped 3.15.3; next pick from Icebox.)
-
-### Icebox
-
-<!-- Deferred but worth keeping. Trigger noted where one exists. -->
-
+- [ ] **NEXT-CMD Distributed next-item trigger** [detail] — one-word
+  "run the next backlog item" workflow for consuming projects: Start B
+  pick + auto-jazz run + close, full mode only for `[sign-off]` items
+  (merged from two 2026-07-16 wish-list captures) · Med-High / Low-Med
+  / Low-Med / Medium.
 - [ ] **ITEM-AGE Standing-item ageing** [detail] — `[maintainer]` /
   `[sign-off]` items show age at the batch pick; `[security]` banner
   escalation · Medium / Low / Low / Low.
 - [ ] **ARCH-INTEG Archive-integrity check in Diagnose** [detail] —
   verify dated decision-log references resolve; INDEX coverage ·
   Medium / Low / Low / None.
+
+### Next milestone
+
+- [ ] **TICKET-GEN Ticket-generation reliability** [spike] — do
+  `[detail]` tickets get created and fleshed out reliably? Evidence
+  pass over recent items and transcripts; name the scenarios where
+  they don't (or "works as designed") · Medium / Low / Low / None.
 - [ ] **PROCESS-TPL PROCESS.md slot / ADR protocol** [sign-off]
   [detail] — first-class home for macro phases + ADR closure protocol
   (template vs absorb undecided) · Med-High / Medium / Low / Low.
+
+### Icebox
+
+<!-- Deferred but worth keeping. Trigger noted where one exists. -->
+
 - [ ] **DEPREC-SHIM Deprecation shims on consolidation** [detail] —
   upgrade offers workflow-dir cleanup / tombstones for removed files ·
   Low-Med / Low / Low / None.
