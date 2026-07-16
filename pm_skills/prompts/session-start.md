@@ -160,9 +160,9 @@ Output, concisely:
 3. **What it touches** — likely files or areas, grounded in a quick
    source-tree check. A pointer, not full scoping. If the item carries
    `[detail]`, skim its ticket file just enough to ground this line.
-4. **Recommended mode** — checkpoint (default) / full / quick / bug —
-   one line of rationale. Recommend `full` only for `[sign-off]` or
-   high-risk items.
+4. **Recommended mode** — checkpoint (default) / full / quick / bug /
+   spike — one line of rationale. Recommend `full` only for `[sign-off]`
+   or high-risk items. Recommend `spike` for items flagged `[spike]`.
 5. **Ready-to-paste task statement** — in the matching Start A form.
 6. **Runner-up** — one line: the next item if this one is wrong.
 

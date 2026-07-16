@@ -30,8 +30,9 @@
        - **ID Short title** [flags]
          Intent: the outcome wanted.
          Done when: the acceptance condition.
-     Flags: [sign-off] (scope sign-off first), [blocked: X],
-     [spike] (timeboxed investigation), [detail] (has a ticket file).
+     Flags: [sign-off] (scope sign-off first → full mode), [blocked: X],
+     [spike] (timeboxed investigation → spike mode in task.md),
+     [detail] (has a ticket file).
      Add optional Scope:/Risks: lines only for sign-off items. -->
 
 <!-- Optional detail file: when an item needs more context than its line

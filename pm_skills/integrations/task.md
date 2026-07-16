@@ -1,5 +1,5 @@
 ---
-description: Run the design-before-code task workflow (gating mode: full / checkpoint / auto-jazz / auto-jazz-lite)
+description: Run the design-before-code task workflow (gating mode: full / checkpoint / auto-jazz / auto-jazz-lite / spike)
 ---
 
 The single task workflow. One skeleton — goal → context → stages →
@@ -16,10 +16,12 @@ survive as modes.
 | `checkpoint` — **default** | 2 — scope, option pick | 4-stage | everyday non-trivial tasks |
 | `auto-jazz` | 0 | 4-stage | trusted end-to-end autonomous runs |
 | `auto-jazz-lite` | 0 | 2-stage (quick-task) | small or low-risk tasks |
+| `spike` | 0 | investigate → findings | timeboxed exploration; closing an unknown before committing to a design |
 
 Infer the mode from how you were invoked ("run this as auto-jazz",
-"fully gated", a `[sign-off]` flag on the item → `full`). Default to
-`checkpoint`. If the user already indicated the mode, don't ask.
+"fully gated", a `[sign-off]` flag on the item → `full`, a `[spike]`
+flag → `spike`). Default to `checkpoint`. If the user already indicated
+the mode, don't ask.
 
 At every **skipped** gate: make the best conservative decision, state
 the assumption in one line, and continue. Only stop to ask if there is
@@ -146,3 +148,48 @@ and ask before doing any of these, in any mode:
     run (their rationale is the record) — close those `full`.
     `auto-jazz` / `auto-jazz-lite` / `checkpoint` runs may close either
     way; when unsure, close `full`.
+
+## Spike mode
+
+A timeboxed exploratory mode: findings are the deliverable, code is
+throwaway. Use it when the backlog item carries the `[spike]` flag or
+the user says "spike this".
+
+### Contract
+
+- **State the question and timebox up front** (e.g. "Can library X
+  handle our volume? Timebox: this session.").
+- Investigation may write throwaway code in a scratch branch or
+  directory — never merge it to `main`.
+- At the timebox, **stop**. Inconclusive is a valid finding; report it
+  as information with a retreat recommendation.
+- One session, one question. A second question is a second spike.
+
+### Spike deliverables
+
+1. One **decision-log entry**: question, method, findings,
+   recommendation, follow-up tickets (if any).
+2. Optionally a `spec/<topic>-findings.md` for extended detail.
+3. Backlog: the spike item is resolved **or** replaced by concrete
+   follow-up tickets.
+
+### Spike constraints
+
+- All hard prohibitions from this file still apply — **no dependency
+  installs even in a spike** (test a dependency only via ephemeral
+  `/tmp` installs that never touch the project manifest, and say so).
+- Spike code never merges without going back through a normal task mode.
+- No SPEC/ADR/protected-doc edits from within a spike — findings
+  *propose* them.
+
+### Spike steps
+
+1. State the question, the timebox, and the mode (`spike`).
+2. Load project context (same as step 2 of the main flow).
+3. Investigate — search, prototype, analyse. Write throwaway code only
+   in a scratch location.
+4. At the timebox or once the question is answered (whichever is
+   first), stop and produce the deliverables above.
+5. Close: `lite` by default (the findings entry IS the memory write).
+   Run `end-of-task.md` steps 1–2 (gate + boot); the trajectory and
+   file-map churn is skipped because throwaway code does not ship.

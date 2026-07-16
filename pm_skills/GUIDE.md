@@ -81,7 +81,7 @@ prompts/         Reusable per-task prompts (paste, or run as commands).
   deploy.md               Production deploy + live verification.
 
 integrations/    Tool-workflow files (copy to your AI tool's workflow dir).
-  task.md      The task workflow — modes: full / checkpoint (default) / auto-jazz / auto-jazz-lite.
+  task.md      The task workflow — modes: full / checkpoint (default) / auto-jazz / auto-jazz-lite / spike.
   bugfix.md    Diagnosis-before-fix workflow for bugs.
   init-mvp.md  Sign off foundation + scope band, then autonomous build (and optional deploy).
   adopt.md     Retrofit pm-skills onto an existing codebase; reverse-engineer memory, interview for gaps.
@@ -168,6 +168,7 @@ Run `task.md`. Its **modes** set how often it stops for you:
 | `full` | every stage (scope, options, plan, validation) | `[sign-off]` items, high-risk work |
 | `auto-jazz` | nothing — states assumptions and continues | work you'd accept sight-unseen |
 | `auto-jazz-lite` | nothing, and compresses the stages | small, low-risk tasks |
+| `spike` | nothing — timebox, then findings | timeboxed exploration (items flagged `[spike]`) |
 
 Why checkpoint is the default: scope and design choice are where your
 judgement genuinely changes the outcome; plan and validation approvals

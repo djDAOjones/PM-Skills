@@ -25,6 +25,44 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.9.0 — 2026-07-16
+
+Adds **spike mode** to `task.md` — a timeboxed exploratory mode where
+findings are the deliverable and code is throwaway. Use it when a
+backlog item carries the `[spike]` flag or you say "spike this". One
+session, one question; the spike delivers a decision-log entry (and
+optionally a `spec/<topic>-findings.md`), then resolves or replaces the
+item with concrete follow-up tickets. Closes `lite` by default. Based
+on two Hub precedents (REC-VERIFY, NET-1) that had to bend task.md to
+do what spike mode now documents directly. Implements SPIKE (Wave 3).
+Minor.
+
+### Changed
+
+- `pm_skills/integrations/task.md` — new `spike` row in the mode table;
+  new "Spike mode" section (contract, deliverables, constraints, steps);
+  mode-inference paragraph now maps `[spike]` → spike mode; frontmatter
+  updated.
+- `pm_skills/prompts/session-start.md` — Start B "Recommended mode"
+  line now lists `spike` and recommends it for `[spike]`-flagged items.
+- `pm_skills/project/backlog.md` — ticket grammar comment annotates
+  `[spike]` with its mode mapping (`→ spike mode in task.md`) and
+  `[sign-off]` with `→ full mode` for parity.
+- `pm_skills/GUIDE.md` — mode table gains the `spike` row; file-tree
+  listing for `task.md` includes spike in the mode list.
+
+### Upgrade actions
+
+1. Replace `pm_skills/integrations/task.md` with the new version.
+2. In `pm_skills/prompts/session-start.md`, update the "Recommended
+   mode" line (item 4 under "Present the pick") to include `spike` and
+   the `[spike]`-flag recommendation.
+3. In `pm_skills/project/backlog.md`, update the ticket-grammar comment
+   to annotate `[spike]` with `→ spike mode in task.md`.
+4. No new files. MANIFEST unchanged.
+
+---
+
 ## 3.8.0 — 2026-07-16
 
 Adds a **security baseline** as the fifth tiered build/run/ship
