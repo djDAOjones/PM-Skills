@@ -25,6 +25,49 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.6.0 — 2026-07-16
+
+Adds an **adoption path** for projects that already have code.
+`init.md` interviews for a new project and `init-mvp.md` builds one
+from an idea; neither covers arriving with a mature or half-built
+repository. `integrations/adopt.md` reverse-engineers project memory
+from the source tree and git history, then interviews only for the gaps
+the repo cannot fill — the retrofit the Hub proved by hand, now a
+first-class workflow. Implements ADOPT (Wave 2). Minor.
+
+### Added
+
+- `pm_skills/integrations/adopt.md` — retrofit workflow (`framework`
+  class, inherited from `integrations/*`). Step 0 detects prior
+  pm-skills and routes to `upgrade.md`; Phase 1 is a read-only inventory
+  (file-map via `gen-file-map.mjs`, stack from manifests, trajectory
+  seed from `git log`, brief that links existing docs, conventions by
+  sampling) with a per-directory read-cost cap; Phase 2 is a single
+  gap interview (~8 questions, batched) writing the memory files with a
+  single seed decision-log entry and `(reverse-engineered — verify)`
+  markers; Phase 3 runs `init.md` Step 10 readiness and hands off to
+  `session-start.md` → Start B. Adopt-only (no build band). Proposes,
+  never overwrites; degrades without git history.
+
+### Changed
+
+- `pm_skills/init.md` — new "Arriving with an existing codebase?"
+  pointer to `adopt.md` in the agent-mode intro.
+- `pm_skills/GUIDE.md` — `adopt.md` added to the `integrations/` file
+  tree; "Existing codebase, no pm-skills yet" entry under "Starting a
+  project".
+- `README.md` — existing-codebase entry point after the init-mvp block;
+  `adopt.md` row in the commands table.
+
+### Upgrade actions
+
+- Copy `pm_skills/integrations/adopt.md` into the project (new
+  `framework` file; no migration).
+- No project-memory changes. `MANIFEST.md` unchanged — `adopt.md` is
+  covered by the `pm_skills/integrations/*` glob (inherits `framework`).
+- If your tool uses workflow files, copy `adopt.md` into your workflow
+  directory alongside the other `integrations/*` files.
+
 ## 3.5.0 — 2026-07-16
 
 Makes `file-map.md` — the biggest per-task hot-read line-item and the

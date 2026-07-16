@@ -20,6 +20,12 @@ check) applies unchanged. To gate only the foundation and then
 autonomously build the first-milestone MVP, use
 `pm_skills/integrations/init-mvp.md` instead.
 
+**Arriving with an existing codebase?** This file assumes a new
+project. For a repo that already has code, use
+`pm_skills/integrations/adopt.md` — it reverse-engineers project memory
+from the source tree and git history and interviews only for gaps,
+ending at this file's Step 10 readiness check.
+
 This process populates two kinds of project memory:
 
 - **`project/`** — living project memory (brief, backlog, file map,

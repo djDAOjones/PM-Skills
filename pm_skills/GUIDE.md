@@ -84,6 +84,7 @@ integrations/    Tool-workflow files (copy to your AI tool's workflow dir).
   task.md      The task workflow — modes: full / checkpoint (default) / auto-jazz / auto-jazz-lite.
   bugfix.md    Diagnosis-before-fix workflow for bugs.
   init-mvp.md  Sign off foundation + scope band, then autonomous build (and optional deploy).
+  adopt.md     Retrofit pm-skills onto an existing codebase; reverse-engineer memory, interview for gaps.
 
 scaffold/        Starter config to copy into your project root once.
   .editorconfig       Editor style enforcement (indent, encoding, etc.).
@@ -131,6 +132,15 @@ stack, the task list) and a **scope band** — how far this run may go:
 After sign-off it runs to that ceiling without further questions,
 committing rollback checkpoints as it goes, and stopping early only if
 the plan proves wrong (or a hard limit is hit).
+
+**Existing codebase, no pm-skills yet:** run
+[`integrations/adopt.md`](./integrations/adopt.md). It reverse-engineers
+your project memory from the source tree and git history — file map,
+architecture, a seeded trajectory, a brief that points at your existing
+docs — then interviews you only for what the repo can't tell it
+(product intent, invariants, deploy target, what's next). It proposes,
+never overwrites: existing READMEs and specs are linked and digested,
+not clobbered. Ends at the `init.md` readiness check, ready for Start B.
 
 **Existing project on an older pm-skills:** point the agent at the
 public repo (`https://github.com/djDAOjones/PM-Skills.git`) as the first

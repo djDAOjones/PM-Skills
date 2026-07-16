@@ -58,6 +58,16 @@ stack, the task list) and **how far to go** (just build it locally, or
 carry on and deploy it) — then it builds the whole first version
 without further questions.
 
+Already have a codebase? Use
+[`pm_skills/integrations/adopt.md`](pm_skills/integrations/adopt.md)
+instead of init:
+
+> Run adopt.md on this repo.
+
+It reverse-engineers your project memory from the source tree and git
+history, then asks only for what the repo can't tell it — proposing
+edits to your existing docs, never overwriting them.
+
 ## Day to day: pick → build → close
 
 ### 1. Pick what to work on
@@ -206,6 +216,7 @@ copy-paste flow for AI tools without workflow support — is
 | "Run deploy.md" | `prompts/deploy.md` | Pre-flight, documented deploy pipeline, live checks, rollback path. |
 | "Run upgrade.md" | `prompts/upgrade.md` | Updates the framework to a newer version; never touches memory. |
 | "Run init.md in agent mode" / "Run init-mvp: …" | `init.md` / `integrations/init-mvp.md` | Set up a new project / set up **and** build it, to a signed-off ceiling. |
+| "Run adopt.md on this repo" | `integrations/adopt.md` | Retrofit pm-skills onto an existing codebase; reverse-engineer memory, ask only for gaps. |
 | `check` | your project's quality gate | One command that answers "did I break anything?" — defined in `DEV-INFRASTRUCTURE.md`. |
 
 Contributing to the framework itself? See
