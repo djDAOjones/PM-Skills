@@ -13,16 +13,6 @@
 
 ### Current milestone
 
-- [ ] **CODEBASE-AUDIT Whole-codebase review pass** [sign-off] [detail]
-  Intent: chunked holistic audit composing review.md area mode;
-  findings-first, never silent edits. First real target: this
-  self-hosted repo.
-  Done when: the open decision (GUIDE recipe vs a review.md whole-repo
-  mode) is resolved and one full audit has run · Medium / Medium /
-  Low / Low.
-
-### Next milestone
-
 - [ ] **ADOPT-FIXES adopt.md fixes from its first real run** [detail]
   Intent: fold the SELF-HOST dogfood findings back into the
   distributed adopt flow (Step-0 detection misfires on this repo;

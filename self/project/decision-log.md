@@ -5,6 +5,34 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-07-16 — CODEBASE-AUDIT: recipe, not a new prompt
+
+**Decision:** Ship the whole-codebase audit as a `GUIDE.md` recipe
+("Auditing the whole codebase") plus a short pointer note in
+`review.md`'s Inputs, composing the existing pieces (review.md area
+mode, refactor mode, the doc-deltas ledger) rather than a dedicated
+`audit.md`. Chunk unit is the `file-map.md` section (top-level dirs
+for adopt-tier repos with no generated map); the audit is
+findings-only, aggregated into a cold dated report, triaged into
+backlog/wish-list with structural items spun out as refactor tasks.
+Minor release 3.15.0.
+
+**Rationale:** The pieces already existed; the only gap was the outer
+loop (enumerate → review each → aggregate → triage) — orchestration,
+not new mechanism. A recipe keeps the framework surface small and
+defers a prompt file until real use proves it under-specifies. Bounded
+per-chunk read cost answers the banked read-cost lesson (Hub file-map
+~9k words): a single unbounded pass is exactly the anti-pattern the
+sectional file-map fixed.
+
+**Alternatives considered:**
+
+- A new `audit.md` prompt — more surface, duplicates area mode;
+  deferred behind an evidence trigger.
+- A `review.md` whole-repo mode — the orchestration is multi-session
+  and sits above a single review, so it belongs in the GUIDE, not
+  inside the per-chunk engine.
+
 ## 2026-07-16 — SELF-HOST: self/ is the repo's own deployment home
 
 **Decision:** This repo's pm-skills deployment lives in a top-level

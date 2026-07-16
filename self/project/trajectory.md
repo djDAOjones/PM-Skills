@@ -4,6 +4,15 @@
      item: the outcome. The why lives in decision-log.md; release
      detail lives in pm_skills/CHANGELOG.md — point, don't restate. -->
 
+## Wave 5 — consuming-project features (shipped 2026-07-16, v3.15.0)
+
+- CODEBASE-AUDIT (3.15.0) — whole-codebase audit path: an orchestrated
+  loop over `review.md` area mode (chunk by `file-map.md` section,
+  findings-only, aggregate, triage). GUIDE recipe + review.md pointer
+  note; no new files. See decision-log 2026-07-16.
+
+Outcome: first product feature shipped through the self-hosted loop.
+
 ## Self-hosting (shipped 2026-07-16)
 
 - SELF-HOST — framework repo adopted its own memory: `self/`

@@ -25,6 +25,35 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 3.15.0 — 2026-07-16
+
+CODEBASE-AUDIT: an invocable whole-codebase audit path. Composes the
+existing review machinery into an outer loop instead of leaving the
+"review the whole repo" habit in the maintainer's head. New `GUIDE.md`
+subsection "Auditing the whole codebase" (under "The daily loop", after
+"After an autonomous run"): the recipe — enumerate chunks from
+`file-map.md` sections (directory-grouped, budget-aware), review each
+chunk via `review.md` feature-area mode (findings-only, bounded
+per-chunk read cost, resumable across sessions), aggregate into one
+severity-tagged report stored cold, then triage into backlog/wish-list
+with structural items spun out as `refactor`-mode tasks — never edited
+inline. Adopt-tier repos with no generated file map chunk by top-level
+directory; a dedicated `audit.md` is deferred until real use shows the
+recipe under-specifies. New `prompts/review.md` "Whole-repo audit (all
+sections)" note in Inputs: review.md is the per-chunk engine the recipe
+calls; run it once per section, don't pass one oversized area. Chunking
+is the point — a single unbounded pass is the anti-pattern the
+sectional file map fixed. No new files; MANIFEST unchanged. Minor.
+
+### Upgrade actions
+
+- No file copies. Two edits to existing framework files
+  (`pm_skills/GUIDE.md`, `pm_skills/prompts/review.md`) — pick them up
+  via the normal `prompts/upgrade.md` diff. No per-project change to
+  apply; the recipe is available from the next review/audit session.
+
+---
+
 ## 3.14.1 — 2026-07-16
 
 MODEL-TIER: model-tier guidance (Wave 4 tail). Guidance-only, no

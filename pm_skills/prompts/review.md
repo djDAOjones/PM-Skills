@@ -26,6 +26,14 @@ does not silently change the work. Approved fixes run as their own task.
 - The run's own account — the scope, plan, and assumptions the workflow
   stated, plus the `decision-log.md` entry it wrote.
 
+**Whole-repo audit (all sections).** To review the entire codebase
+rather than one change, don't pass one oversized area — run this
+prompt once per `file-map.md` section as an orchestrated loop, then
+aggregate the per-chunk findings into a single report. The recipe
+(chunk list stated up front, bounded per-chunk read cost, aggregation,
+findings-only triage) lives in `GUIDE.md` → "Auditing the whole
+codebase"; this prompt is the per-chunk engine that recipe calls.
+
 ## 1. Load
 
 - Get the diff: `git diff <range>` (or `git diff` / `git status` for

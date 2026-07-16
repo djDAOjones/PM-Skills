@@ -244,6 +244,39 @@ from `git log --grep` per ID plus the matching memory entries — the
 natural review unit once batches ship gateless and lite-closed (a
 reconciled batch is a ready-made area).
 
+### Auditing the whole codebase
+
+Sometimes you want a holistic pass over the *entire* repo — the
+overnight-hardening habit of picking an area, reviewing it, folding
+findings into the backlog — not a review of one recent change. Run it
+as an orchestrated loop over `review.md`, never one unbounded session
+(a big repo blows the very context budget the sectional file map
+exists to bound):
+
+1. **Enumerate the chunks.** Use the `file-map.md` sections as the
+   chunk list — they're already directory-grouped and budget-aware.
+   State the chunk list and the order up front, so the audit stays
+   auditable about what it did and didn't cover.
+2. **Review each chunk.** Run `review.md` in feature-area mode with the
+   chunk as the declared area, findings-only (spike posture), bounded
+   read cost per chunk. Each chunk closes cleanly, so a large audit
+   spans sessions without a monolithic context.
+3. **Aggregate.** Collect the per-chunk findings into one
+   severity-tagged report with a per-chunk coverage statement and an
+   explicit "not audited" list. Store it cold — a dated file next to
+   project memory — never a hot read.
+4. **Triage, don't fix.** An audit never edits code. Append accepted
+   findings to the backlog or wish-list per normal grammar; structural
+   items become `refactor`-mode tasks spun out per finding, not run
+   inline. Protected-doc drift spotted per chunk feeds `doc-deltas.md`,
+   reconciled later in a `doc-sync` pass.
+
+For a repo with no generated file map (adopt-tier), chunk by top-level
+directory instead. If real use ever shows this recipe under-specifies,
+a dedicated `audit.md` prompt gets considered — until then it composes
+the pieces that already exist (`review.md` area mode, `refactor` mode,
+the doc-deltas ledger) rather than duplicating them.
+
 ### Parallel and multi-machine work
 
 Project memory assumes **one writer at a time**. You can still run
