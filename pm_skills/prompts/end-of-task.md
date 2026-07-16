@@ -109,6 +109,15 @@ Update each of the following if relevant to this task:
   roles in file-map. Never paste the decision-log prose.
 - `pm_skills/project/wish-list.md` — append any out-of-scope ideas
   surfaced this task, one line each.
+- `pm_skills/project/doc-deltas.md` — if this task changed behaviour a
+  **protected doc** (SPEC, ADR, or its kin — edit-on-request only)
+  describes, append one capture line
+  (`- [ ] YYYY-MM-DD <doc §> — <one-line delta> (source: <ID/entry>)`)
+  rather than editing the doc or burying the flag in a decision entry.
+  ADR status closures (Proposed → Accepted) are a delta too. The
+  reconciliation itself happens later in the batched `doc-sync` pass
+  (`memory-maintenance.md`), never here. Skip if the project has no
+  protected docs.
 - `pm_skills/project/file-map.md` — if files were added, renamed, or
   deleted, run `node scaffold/gen-file-map.mjs` (if the project has it):
   it refreshes the skeleton mechanically — regrouping paths, preserving
@@ -172,6 +181,10 @@ Full sweep:
   is the primary trigger; the per-entry guard catches a single runaway
   entry (keep entries ~150–300 words), not normal accumulated density.
 - Count open items in `wish-list.md`.
+- If `pm_skills/project/doc-deltas.md` exists: count open (`[ ]`) delta
+  lines and note the oldest date, against the ledger budget in
+  `memory-policy.md`. Over budget is drained by a `doc-sync` pass
+  (`memory-maintenance.md`), not by archiving.
 - If `pm_skills/project/tickets/` exists: word-count each file against its
   soft ~600-word guideline, and confirm every ticket file maps to an open
   backlog item that carries `[detail]` (`ls` the folder, grep the backlog)
@@ -191,6 +204,9 @@ If any budget is exceeded:
   Propose a triage pass (promote or cut) — via the next-batch pick
   (`session-start.md` → Start B) or the Prune triage action — rather
   than an archive split.
+- An over-budget `doc-deltas.md` is drained by a `doc-sync` pass, not
+  archiving. Propose `memory-maintenance.md` → Doc-sync (present each
+  doc's batched diff for sign-off, apply, tick lines).
 - `[x]` items left in the backlog, or a backlog Active over budget, are
   a structural issue, not a size one: propose `memory-maintenance.md`
   → Refactor (move shipped work to `trajectory.md`, restructure the

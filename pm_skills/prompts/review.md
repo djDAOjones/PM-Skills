@@ -68,7 +68,10 @@ already name the intents.
   runtime lifecycle, or diagnostics changed.
 - **Protected-doc currency (feature-area reviews):** do the protected
   docs still describe this area's *current* behaviour? Flag drift as a
-  punch-list line — a full doc-sync ledger is its own task, not this pass.
+  punch-list line **and** append a one-line delta to
+  `pm_skills/project/doc-deltas.md` (if the project keeps the ledger) so
+  the debt is tracked — the actual reconciliation is a `doc-sync` pass
+  (`memory-maintenance.md`), not this review.
 
 ## 5. Risk and what to spot-check
 

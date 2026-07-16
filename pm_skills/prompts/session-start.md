@@ -48,6 +48,7 @@ of the every-task load):
 **Cold** (do not auto-load):
 
 - `pm_skills/project/wish-list.md` — capture inbox; read only during triage (Start B below).
+- `pm_skills/project/doc-deltas.md` — protected-doc reconciliation ledger; only the open-count line is surfaced at Start B, full read is the `doc-sync` pass.
 - `pm_skills/project/archive/*.md` — search via grep only when explicitly relevant.
 - `pm_skills/project/tickets/<ITEM-ID>.md` — optional per-item detail; read only the active item's file, and only when its backlog line carries `[detail]`.
 
@@ -120,6 +121,15 @@ and clearly belong together.
 First honour the reconcile gate above: if unreconciled lite closes are
 over the cap, propose **Reconcile** and pick no new work until it
 clears. A count under the cap is just a nudge — carry on.
+
+Also surface the protected-doc debt in one line, if the ledger exists:
+`grep -c '^- \[ \]' pm_skills/project/doc-deltas.md` for the open count
+and the oldest date from the top line — print
+`doc-deltas: N open, oldest YYYY-MM-DD`. Past the threshold in
+`pm_skills/memory-policy.md` (>10 open or oldest >30 days), propose a
+`doc-sync` pass (`memory-maintenance.md`) — a nudge, not a gate; never
+open the ledger further here. Skip silently if the file is absent or
+empty.
 
 ### 1. Triage the wish-list (quick)
 

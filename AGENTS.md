@@ -80,6 +80,12 @@ read-load review:
 - `pm_skills/project/wish-list.md` — capture inbox for unscoped ideas.
   Read only during an explicit triage pass (see "Capturing deferred
   ideas" below); never auto-load.
+- `pm_skills/project/doc-deltas.md` — capture-only ledger of pending
+  protected-doc reconciliations. Only the open-count line is surfaced at
+  session start (Start B); a full read happens solely in the `doc-sync`
+  pass (`memory-maintenance.md`). Deltas are captured one line at task
+  close (`end-of-task.md`) and reconciled in batches on sign-off — never
+  auto-edit a protected doc. Never auto-load beyond the count line.
 - `pm_skills/project/archive/*.md` — historical content moved out of
   hot files. Search via grep when explicitly relevant; never auto-load.
 - `pm_skills/project/tickets/<ITEM-ID>.md` — optional per-item detail

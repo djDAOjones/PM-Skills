@@ -1,10 +1,10 @@
 ---
-description: Maintain project memory — diagnose drift, prune by size, refactor the roadmap, reconcile lite closes
+description: Maintain project memory — diagnose drift, prune by size, refactor the roadmap, reconcile lite closes, sync protected docs
 ---
 
 # Memory Maintenance
 
-The one file for keeping project memory healthy. Four verbs, each a
+The one file for keeping project memory healthy. Five verbs, each a
 self-contained procedure — run only the section you were asked for
 (the others are context, not obligations):
 
@@ -18,6 +18,9 @@ self-contained procedure — run only the section you were asked for
 - **Reconcile** — back-fill project memory from git history after
   `Close: lite` closes (`end-of-task.md`). Run when lite closes have
   accumulated, or when session-start / the cap says one is due.
+- **Doc-sync** — reconcile protected docs (SPEC, ADRs, and kin) against
+  the `doc-deltas.md` ledger in one batched, sign-off-gated pass. Run
+  when the ledger is over threshold, or when session-start flags it.
 
 Diagnose/Prune/Refactor replace the former `doctor-memory.md`,
 `prune-memory.md`, and `roadmap-refactor.md`; those names survive as
@@ -25,7 +28,7 @@ verbs. Budgets and the reconcile cap come from
 `pm_skills/memory-policy.md`; tier names from `AGENTS.md` → "Read
 tiers". Read them from there; do not restate the numbers.
 
-Shared rules for all four verbs: use plain shell (`wc`, `head`,
+Shared rules for all five verbs: use plain shell (`wc`, `head`,
 `tail`, `grep`, `ls`, `cp`, `mv`, `git log`, output redirection) — no
 Python scripts, no retry loops; if a step fails, stop and report.
 Minimise meta-cost: single pass, batch the work.
@@ -188,6 +191,12 @@ Detail | Proposed action**.
     WARN past the cap, or if the oldest exceeds the age cap. Action:
     **Reconcile**.
 
+11. **Doc-delta ledger health** (only if `pm_skills/project/doc-deltas.md`
+    exists) — count open (`[ ]`) delta lines and note the oldest date.
+    Compare against the ledger threshold in `memory-policy.md`.
+    WARN past the threshold (open count or oldest age). Action:
+    **Doc-sync**.
+
 Report: the health table, FAILs first; below it, a short prioritised
 action list grouping checks by the verb that fixes them (e.g. "Run
 **Refactor** — addresses checks 2, 3, 5"). If everything is OK, say so
@@ -275,6 +284,11 @@ For each over-budget file, propose one specific action:
   Next, or Icebox) or cut it. Survivors move to the backlog; cuts are
   deleted. The file shrinks by triage, not by moving content to
   `archive/`.
+- `doc-deltas.md` over budget → do **not** archive. Delete any ticked
+  (`[x]`) lines (already-reconciled deltas kept only as a short audit
+  trail), then, if open (`[ ]`) deltas still exceed the threshold,
+  propose a **Doc-sync** pass to reconcile them. The ledger shrinks by
+  ticking-then-sweeping and by syncing, never by moving to `archive/`.
 - `archive/` chunk spanning multiple epochs → optionally split on the
   epoch boundary (month / migration) for INDEX browsability, oldest
   first. Size is not a trigger — a single epoch stays one file however
@@ -606,3 +620,90 @@ reconcile discipline:
   SHA; without it the next pass cannot bound its window.
 - Append-only files (`decision-log.md`, `trajectory.md`) grow at the
   top/current phase; never rewrite existing entries.
+
+---
+
+## Doc-sync (reconcile protected docs)
+
+Run when the `doc-deltas.md` ledger is over the threshold in
+`memory-policy.md`, when session-start / Diagnose flags it, or when the
+user asks. Protected docs (SPEC, ADRs, and kin) are correctly
+edit-on-request only, so their drift is captured as one-line ledger
+entries at task close (`end-of-task.md`) and reconciled here — in one
+batched pass, gated on maintainer sign-off **per doc**. This pass *is*
+the "request" that authorises the edits; nothing else opens the ledger.
+
+Doc-sync does not pick work (Start B), archive by size (Prune),
+re-sequence the queue (Refactor), or fold lite closes (Reconcile). It
+turns captured deltas into applied doc edits, losslessly ticked.
+
+### DS1. Load
+
+- `pm_skills/project/doc-deltas.md` — the whole ledger (this is its one
+  auto-read flow). If it is absent or has no open `[ ]` lines, say so in
+  one line and stop.
+- For each open delta, read its `(source: <ID/entry>)` reference — the
+  decision-log entry, ticket, or commit that changed the behaviour — so
+  the edit is derived **fresh** from the source, never from an
+  instruction stored in the ledger (the DOC-1 lesson: ledgers that hold
+  the fix balloon).
+- Open each protected doc named by a delta, at the cited section.
+
+### DS2. Group by doc
+
+Group the open deltas by target document. One doc may carry several
+deltas (e.g. SPEC §6 entity count **and** an ADR-status closure); batch
+them so each doc is presented and signed off **once**, not per line.
+ADR **status** closures (Proposed → Accepted) are a first-class delta
+type — treat a header status change as an ordinary edit in the batch.
+
+### DS3. Propose (diff-style, before write)
+
+For each doc, present a single batched proposal the user can approve in
+one read:
+
+1. **The doc** — name and the sections touched.
+2. **Per delta** — the ledger line, and the concrete edit derived from
+   its source, shown as a before → after diff.
+3. **Sign-off ask** — apply this doc's batch, skip it, or defer
+   individual deltas.
+
+STOP for sign-off **per doc**. Never auto-edit a protected doc — the
+sign-off this pass waits for is the whole point of protected-doc
+discipline, not an obstacle to route around.
+
+### DS4. Apply (after per-doc sign-off)
+
+- Apply only the approved edits to each doc. Preserve the doc's own
+  structure and voice; edit the drifted content, nothing else.
+- Tick each applied delta in `doc-deltas.md` (`[ ]` → `[x]`). A skipped
+  or deferred delta stays `[ ]` — it surfaces again next session.
+- Do not delete ticked lines here; they are swept at the next prune (a
+  ledger full of `[x]` is a size-check signal, not a correctness one).
+
+### DS5. Record
+
+- Append one entry to `decision-log.md` (top, append-only): date,
+  "Doc-sync", and a one-line summary naming each doc reconciled and the
+  deltas applied / deferred (so a deferred delta is visible by name).
+- Stage the changed docs and the ledger with `git add`. Leave
+  committing to the user.
+
+### DS6. Verify
+
+- Re-count open (`[ ]`) deltas — it must equal the count that was
+  deferred/skipped, and every applied delta must now read `[x]`.
+- Confirm each reconciled doc now describes current behaviour at the
+  cited section.
+- Output a before / after count: open deltas → applied → still open.
+
+### Doc-sync rules
+
+- **Never auto-edits a protected doc** — every doc's batch waits for
+  explicit sign-off (consistent with Prune / Refactor / Reconcile).
+- **Capture ≠ fix.** The ledger holds one-line captures; the edit is
+  derived fresh from the source at sync time, never stored.
+- **Tick, don't delete.** Applied deltas become `[x]`; the prune sweeps
+  them, so the ledger keeps a short audit trail between syncs.
+- A reconciled doc is a ready-made review area — suggest a feature-area
+  review (`review.md`) as an optional follow-up. Propose, don't run.

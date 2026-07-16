@@ -62,6 +62,7 @@ project/         Your living project memory. Fill once, maintain ongoing.
   backlog.md       Open work only (Current, Next, Icebox).
   trajectory.md    Shipped-work history, one line per item.
   wish-list.md     Parked ideas, waiting for triage.
+  doc-deltas.md    Protected-doc drift ledger; reconciled in a doc-sync pass.
   file-map.md      One line per source file: its role. Skeleton generated; read by section.
   decision-log.md  Append-only record of the WHY behind decisions.
 
@@ -75,7 +76,7 @@ prompts/         Reusable per-task prompts (paste, or run as commands).
   bug-scoping.md          Bug diagnosis: reproduce, root cause, minimal fix.
   end-of-task.md          The closing ritual: quality gate + memory updates.
   review.md               Read-only audit of an autonomous run or feature area.
-  memory-maintenance.md   Diagnose / Prune / Refactor / Reconcile project memory.
+  memory-maintenance.md   Diagnose / Prune / Refactor / Reconcile / Doc-sync project memory.
   upgrade.md              Move a project to a newer framework version.
   release.md              Maintainer release checklist (source repo only).
   deploy.md               Production deploy + live verification.
@@ -279,13 +280,14 @@ what changes when:
 | `tickets/<ITEM-ID>.md` | Optional, for one big item's working detail; deleted when it ships. |
 | `trajectory.md` | Every task that ships — one line per item. |
 | `wish-list.md` | Whenever an idea is parked; drained at the next-batch pick. |
+| `doc-deltas.md` | Whenever a task changes behaviour a protected doc (SPEC, ADR) describes — one capture line; reconciled in a `doc-sync` pass. |
 | `file-map.md` | When files are created, renamed, or deleted. |
 | `decision-log.md` | During each task's design phase. |
 | Root `README.md` + rulebooks | When architecture, UI conventions, or build/deploy facts change. |
 
 **When a size budget trips** (the end-of-task check tells you), the
 agent proposes `prompts/memory-maintenance.md` and waits for your
-approval. Its four verbs:
+approval. Its five verbs:
 
 - **Diagnose** — read-only health check; finds structural drift and
   points at the right fix. Also worth running after a long gap.
@@ -296,6 +298,10 @@ approval. Its four verbs:
 - **Reconcile** — back-fills memory from `Close: lite` commit trailers:
   evicts the reconciled backlog items, adds their trajectory lines, and
   writes one consolidated decision-log entry for the batch.
+- **Doc-sync** — reconciles protected docs (SPEC, ADRs) against the
+  `doc-deltas.md` ledger: one batched, sign-off-gated pass that applies
+  the drifted edits and ticks each delta. Nothing else edits a
+  protected doc.
 
 Budgets and the actions per file live in
 [`memory-policy.md`](./memory-policy.md) — the agent reads it at task
