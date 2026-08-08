@@ -5,6 +5,32 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-09 — WAVE1-BATCH: four small ships as one release (4.2.0)
+
+**Decision:** Batched TRANSCRIPT-SHA (Start SHA transcript header),
+OPT-PROTO (empirical option checks rule in design-options),
+RETIRE-COMP (imports-at-top dropped from task.md step 8; the
+memory-maintenance plain-shell clause narrowed to
+stop-and-report-on-failure; a no-habitual-bypass rule added at the
+commit step), and CLOSE-COMMIT (commit-and-push becomes a standard
+close step; propose-only restorable per project via root
+`AGENTS.md`; staged-set echo and parallel staging rules kept; the
+agent never adds or changes a remote) into one listed minor
+release, 4.2.0.
+
+**Rationale:** The four were triaged together, are individually
+paragraph-scale, and `release.md` permits batching when every
+change is listed — one upgrade step for consuming projects instead
+of four. RETIRE-COMP is the programme's first measured prose
+retirement (evidence: RQ2-LITE catalogue; EVAL-SCEN's masked
+plants). CLOSE-COMMIT records the maintainer's trust recalibration
+(wish-list capture, applied in behaviour since 2026-08-09, now in
+text).
+
+**Alternatives:** Four patch releases (rejected — upgrade-step
+noise); folding CTX-CACHE in (rejected — a spike with an open
+question, not a ship).
+
 ## 2026-08-09 — EVAL-SCEN: the frontier model repairs the framework as it executes it
 
 **Question:** Can a behavioural scenario (fixture + blinded ask +

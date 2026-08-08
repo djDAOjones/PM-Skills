@@ -110,9 +110,9 @@ closing report:
   `self/project/decision-log.md`; its ticket file moved to
   `self/project/archive/tickets/` (maintainer call 2026-07-16:
   archive, never delete).
-- [ ] Commit proposed with a staged-set echo (files staged vs files
-  touched) — committing is the maintainer's call; propose, never
-  auto-run.
+- [ ] Committed and pushed with a staged-set echo (files staged vs
+  files touched) — standard close step since 4.2.0 (CLOSE-COMMIT,
+  maintainer decision 2026-08-09).
 
 Source-only tasks tick only the last three lines.
 

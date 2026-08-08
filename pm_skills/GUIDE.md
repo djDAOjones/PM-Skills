@@ -231,13 +231,15 @@ Say "run end-of-task" (`prompts/end-of-task.md`). The agent:
 This ritual is what makes the *next* session start smart. Don't skip
 it.
 
-**Commit as you close.** After the gate is green and memory is written,
-the agent recommends a commit — titled with the item ID and carrying the
-gate results — and echoes the files it staged against the files the task
-touched, so nothing (like a changelog entry) is left behind. It never
-commits or pushes for you unless you say so, and on long runs it
-recommends a checkpoint commit per milestone so there's always a recent
-rollback point.
+**Commit as you close.** After the gate is green and memory is
+written, the agent commits — titled with the item ID and carrying the
+gate results — and pushes when a remote is already configured, first
+echoing the files it staged against the files the task touched, so
+nothing (like a changelog entry) is left behind. Standard since
+4.2.0; a project can restore propose-only behaviour with one line in
+its root `AGENTS.md`. The agent never adds or changes a remote to
+make a push possible, and on long runs it makes a checkpoint commit
+per milestone so there's always a recent rollback point.
 
 **Closing lite (for burst work).** If you're closing a run of small
 tasks fast and don't want a full memory write each time, say "close
@@ -433,6 +435,9 @@ The convention:
 - **Folder:** `_transcripts/` at the project root — short, sortable,
   obviously not source.
 - **Naming:** `YYYY-MM-DD-<ITEM-ID-or-topic>.md`, one file per session.
+- **Header:** the first line records the session's starting commit —
+  `Start SHA: <sha>` — so a saved transcript is a ready scenario seed
+  for behavioural evaluations (starting state plus trajectory).
 - **Tier:** cold — never auto-read. Listed in `AGENTS.md` → cold tier
   alongside the wish-list and archives; it carries zero read-tier cost.
 - **Gitignored by default.** The scaffold `.gitignore` ignores

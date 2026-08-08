@@ -2,6 +2,16 @@
 
 ## Phase: Machine-native Wave 1 (R0 instrumentation)
 
+- CLOSE-COMMIT — commit-and-push standard at close; propose-only
+  restorable per project (4.2.0) (2026-08-09) — see decision-log.
+- RETIRE-COMP — first measured prose retirement: imports-at-top
+  dropped, plain-shell clause narrowed, bypass-hardening added
+  (4.2.0) (2026-08-09) — see decision-log.
+- OPT-PROTO — empirical option checks rule in design-options
+  (4.2.0) (2026-08-09) — see decision-log.
+- TRANSCRIPT-SHA — transcripts carry a Start SHA header; the
+  archive becomes scenario seeds (4.2.0) (2026-08-09) — see
+  decision-log.
 - MEM-CHECK — memory validator shipped and wired into the gate as
   lint:memory; budgets machine-readable in memory-policy;
   end-of-task validator hook (4.1.0) (2026-08-09) — see

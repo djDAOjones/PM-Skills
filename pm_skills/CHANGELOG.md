@@ -25,6 +25,51 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 4.2.0 — 2026-08-09
+
+Wave 1 batch — TRANSCRIPT-SHA + OPT-PROTO + RETIRE-COMP +
+CLOSE-COMMIT: four small capability and policy changes from the
+machine-native programme, shipped as one listed release.
+**Behaviour change:** the close now commits — and pushes when a
+remote is already configured — as a standard step instead of a
+proposal.
+
+### Changed
+
+- `pm_skills/GUIDE.md` — the transcript convention gains a
+  `Start SHA:` first-line header (TRANSCRIPT-SHA: a saved transcript
+  becomes a scenario seed for behavioural evaluations); "Commit as
+  you close" reflects the standard commit-and-push close
+  (CLOSE-COMMIT).
+- `pm_skills/prompts/end-of-task.md` — the step 5 commit status
+  reflects the standard commit-and-push close; the transcript
+  reminder carries the `Start SHA:` header.
+- `pm_skills/integrations/task.md` — step 11 becomes "Commit and
+  push (standard close step)", keeping the staged-set echo and
+  parallel-session staging rules and adding a no-habitual-bypass
+  rule (never step past a failing gate with `--no-verify`); step 8
+  drops the obsolete "imports at the top" compensation
+  (RETIRE-COMP — a lint rule owns it where the stack supports one;
+  evidence: two blinded evaluation runs showed frontier agents
+  reconstruct sensible conventions regardless).
+- `pm_skills/prompts/design-options.md` — new rule (OPT-PROTO):
+  when options differ on an empirically checkable claim costing
+  roughly fifteen minutes or less to check, run the check in a
+  scratch location first and present measured comparisons, not
+  argued ones.
+- `pm_skills/prompts/memory-maintenance.md` — the shared verb rules
+  keep stop-and-report-on-failure and drop the obsolete
+  no-ad-hoc-scripts compensation (RETIRE-COMP).
+
+### Upgrade actions
+
+- Replace the five files above with this version's copies (all
+  `framework`-class, standard replace).
+- **Flag the behaviour change to the project owner:** closes now
+  commit and push by default. A project that prefers the previous
+  propose-only behaviour states it in its root `AGENTS.md` (one
+  line, e.g. "Closes propose commits; never auto-commit or push").
+
 ## 4.1.0 — 2026-08-09
 
 MEM-CHECK: budgets become machine-readable and the end-of-task size

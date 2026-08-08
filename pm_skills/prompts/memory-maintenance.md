@@ -28,10 +28,11 @@ verbs. Budgets and the reconcile cap come from
 `pm_skills/memory-policy.md`; tier names from `AGENTS.md` → "Read
 tiers". Read them from there; do not restate the numbers.
 
-Shared rules for all five verbs: use plain shell (`wc`, `head`,
-`tail`, `grep`, `ls`, `cp`, `mv`, `git log`, output redirection) — no
-Python scripts, no retry loops; if a step fails, stop and report.
-Minimise meta-cost: single pass, batch the work.
+Shared rules for all five verbs: prefer plain shell (`wc`, `head`,
+`tail`, `grep`, `ls`, `cp`, `mv`, `git log`, output redirection) and
+no retry loops — if a step fails, **stop and report**; never
+improvise around a failed move. Minimise meta-cost: single pass,
+batch the work.
 
 Model tier (per-*step*, not per-*verb*): the mechanical halves — every
 count, Diagnose's greps, Prune's P1/P4/P5 detect/execute/verify,

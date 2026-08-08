@@ -21,29 +21,9 @@
   hot-set re-read share of an autonomous run, rerun with rules
   imports, compare cached-token share and cost; deliver a number,
   then codify or drop. · Med-High / Low / Low / Low.
-- [ ] **TRANSCRIPT-SHA Starting-SHA transcript header** —
-  one-line convention change: transcripts record the session's
-  starting commit SHA (`GUIDE.md` transcripts section + the
-  end-of-task reminder). Turns the transcript archive into
-  scenario seeds for the evaluation harness.
-  · Med-High / Low / Low / Low.
-- [ ] **OPT-PROTO Empirical option checks** — one-paragraph
-  amendment to `prompts/design-options.md`: when options differ
-  on an empirically checkable claim costing under ~15 minutes to
-  check, run the check in a scratch location and present measured
-  comparisons. · Medium / Low / Low / Low.
-- [ ] **RETIRE-COMP Convert two obsolete compensations** — drop
-  the "imports at the top" prose from `integrations/task.md`
-  (lint owns it where the stack supports); narrow
-  memory-maintenance's plain-shell clause to "stop and report on
-  failure"; add a bypass-hardening note for load-bearing checks.
-  (source: lab RQ2-LITE) · Low-Med / Low / Low / Low.
-- [ ] **CLOSE-COMMIT Unconditional commit-and-push at close** —
-  make commit (and push, when a remote exists) a standard
-  end-of-task step rather than propose-only; maintainer decision
-  2026-08-09 (wish-list capture). Update `end-of-task.md` and
-  `integrations/task.md` step 11, keeping the staged-set echo.
-  · Medium / Low / Low / Medium.
+<!-- Wave 1 remaining: CTX-CACHE below. Shipped: MEM-CHECK (4.1.0),
+     EVAL-SCEN (spike), TRANSCRIPT-SHA / OPT-PROTO / RETIRE-COMP /
+     CLOSE-COMMIT (4.2.0). -->
 
 ### Next milestone
 

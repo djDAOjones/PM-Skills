@@ -122,9 +122,8 @@ and ask before doing any of these, in any mode:
 
 8. Implement.
    Implement the approved (or assumed) plan. Follow the minimal-change
-   discipline in `AGENTS.md`. Keep imports at the top of files. Match
-   existing style. No runtime dependencies beyond any explicitly
-   approved or assumed in the plan.
+   discipline in `AGENTS.md`. Match existing style. No runtime
+   dependencies beyond any explicitly approved or assumed in the plan.
 
 9. Verify.
    - Run the project's quality gate (`check`) if available — or its
@@ -153,13 +152,15 @@ and ask before doing any of these, in any mode:
     `auto-jazz` / `auto-jazz-lite` / `checkpoint` runs may close either
     way; when unsure, close `full`.
 
-11. Recommend a commit (checkpoint).
-    Once the gate is green and memory is written (step 10), recommend a
-    commit — this gives every task a rollback point from its first week
-    and makes `git log` a verification ledger. **Never auto-commit or
-    push**: staging and proposing is the agent's job, committing is the
-    user's, unless the invocation explicitly said "commit" / "commit and
-    push".
+11. Commit and push (standard close step).
+    Once the gate is green and memory is written (step 10), commit —
+    and push when a remote is already configured. This gives every
+    task a rollback point from its first week and makes `git log` a
+    verification ledger. Since 4.2.0 this is a **standard step of the
+    close**, not a proposal; a project that wants propose-only
+    behaviour states so in its root `AGENTS.md`. The staged-set echo
+    below still runs before the commit, and the agent never adds or
+    changes a remote to make a push possible.
 
     - **Message shape** — align with the `Close: lite` trailer grammar
       (`end-of-task.md`) so lite and full closes read the same in
@@ -170,6 +171,10 @@ and ask before doing any of these, in any mode:
     - **Shell-safety** — one `-m` per line; never chain body text with a
       bare ` -m ` inside a single message. Correct form:
       `git commit -m "ITEM-ID: summary" -m "what/why" -m "Verify: …"`.
+    - **No habitual bypass** — never step past a failing gate with
+      `--no-verify` or its kin: fix the cause instead. A bypass used
+      under pressure is exactly when the check mattered — the
+      framework learned this the hard way.
     - **Staged-set echo** — before recommending the commit, list the
       files about to be committed against the files this task touched
       (code *and* memory). Flag any touched file missing from the staged

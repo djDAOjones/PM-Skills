@@ -27,6 +27,13 @@ Rules:
   most words, not the option boilerplate.
 - Don't reopen scope.
 - Don't propose speculative refactors.
+- If options differ on an **empirically checkable claim** (an API
+  supports X; a size or speed bound holds) and the check costs
+  roughly fifteen minutes of build or less, run the check in a
+  scratch location before presenting, and present measured
+  comparisons rather than argued ones — saying which claims were
+  checked and which remain argued. Throwaway probes only: nothing
+  from the check lands in project files.
 - If this is early in the project, options may be about foundational choices (folder structure, patterns, libraries) rather than modifications to existing code.
 - Explain trade-offs in plain language.
 - No code or pseudocode.
