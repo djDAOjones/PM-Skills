@@ -5,6 +5,42 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-09 — EVAL-SCEN: the frontier model repairs the framework as it executes it
+
+**Question:** Can a behavioural scenario (fixture + blinded ask +
+`check-memory.mjs` oracle + property assertions) catch a planted
+prompt regression? Bar: control passes, planted deletion goes red.
+
+**Method:** Houseplant-tracker fixture (packaged at 4.1.0 via
+`npm run package`), three blinded sub-agent runs: control; eviction
+bullet deleted; trajectory ID-format inverted. All states verified
+mechanically. Detail: the dated EVAL-SCEN findings document under
+`self/evaluations/`.
+
+**Findings:** Control passed everything. Both plants were
+**masked** — the agents reconstructed the intended behaviour from
+priors and surviving context (run B even listed the eviction as its
+own stated assumption). Bar unmet as designed, and the
+generalisation is the deliverable: *prompts are load-bearing where
+they encode the arbitrary, not the sensible.* Detectable probes are
+arbitrary machine contracts, corrupted-state repair, and byte-level
+(upgrade) assertions. Machinery proven end-to-end at 66–79k tokens
+per run; zero confabulation across three runs.
+
+**Recommendation:** EVAL-HARNESS unblocked with the revised
+scenario doctrine (its first calibration probe: an
+arbitrary-contract plant). Feeds RQ-ABLATION (two accidental
+ablation cells returned "dead weight at the frontier") and the
+minimal-core fiction (third triangulation). Retirement of prose
+still routes through conversion to checks — now with sharper
+justification.
+
+**Alternatives:** Meeting the bar by re-planting until something
+went red (rejected — the masked plants are the finding, not a
+failure to engineer around); headless CLI runner instead of
+sub-agents (deferred — sub-agents gave blinding and permissions
+for free).
+
 ## 2026-08-09 — MEM-CHECK: memory validator shipped, wired into the gate (4.1.0)
 
 **Decision:** Shipped `scripts/check-memory.mjs` (source-only

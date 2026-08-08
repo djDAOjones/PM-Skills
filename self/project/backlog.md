@@ -17,11 +17,6 @@
      (self/evaluations/2026-08-08 series as revised by the extended
      assessment; triaged 2026-08-09, TRIAGE-REV). -->
 
-- [ ] **EVAL-SCEN First behavioural scenario** [spike] — reduce a
-  documented run to fixture + ask + property assertions, with
-  `check-memory.mjs` as the oracle; the bar: a planted regression
-  (deleted eviction instruction) must go red.
-  · High / Medium / Low / Low.
 - [ ] **CTX-CACHE Import placement** [spike] — measure the
   hot-set re-read share of an autonomous run, rerun with rules
   imports, compare cached-token share and cost; deliver a number,
@@ -59,10 +54,14 @@
 - [ ] **PROCESS-TPL PROCESS.md slot / ADR protocol** [sign-off]
   [detail] — first-class home for macro phases + ADR closure protocol
   (template vs absorb undecided) · Med-High / Medium / Low / Low.
-- [ ] **EVAL-HARNESS Prompt evaluation harness** [blocked:
-  EVAL-SCEN findings] (2026-08-09) — at most 7 scenarios, upgrade
-  scenario first, advisory-first on release, source-only.
-  · High / High / Medium / Medium.
+- [ ] **EVAL-HARNESS Prompt evaluation harness** — at most 7
+  scenarios, advisory-first on release, source-only. Doctrine per
+  EVAL-SCEN findings (2026-08-09): probe arbitrary machine
+  contracts (trailer grammar, budget-block keys), corrupted-state
+  repair, and byte-level upgrade assertions — never
+  sensible-convention tampering (frontier priors mask it,
+  replicated twice). Upgrade scenario first; an arbitrary-contract
+  plant is the calibration probe. · High / High / Medium / Medium.
 - [ ] **MEM-CHECK-2 Derived budgets + attention counters**
   [blocked: MEM-CHECK] (2026-08-09) — generalise the file-map
   derivation to other accreting budgets, denominate in tokens,
