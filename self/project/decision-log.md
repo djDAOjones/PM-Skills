@@ -5,6 +5,36 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-09 — CTX-CACHE: pre-loading the hot set pays, mostly in round-trips and foraging
+
+**Question:** Does moving the identity documents into the rules
+position reduce cost at equal quality? (Wave 1 spike; codify or
+drop.)
+
+**Method:** Matched blinded fixture pair, same task, same starting
+commit: fetch versus pre-loaded prompt. Outcomes oracle-verified
+identical. Detail: the dated CTX-CACHE findings under
+`self/evaluations/`.
+
+**Findings:** −13.8% tokens, −37% tool calls, −9 files opened, −8%
+duration, equal quality. The saving is ~46× the pre-loaded content
+size, so it is round-trip overhead plus an unanticipated
+**foraging reduction** — a pre-grounded agent explores less — not
+content deduplication (which grows with hot-set size; this repo's
+real hot set is ~3,526 words). Cache pricing stays arithmetic:
+sub-agent usage exposes no cache split. Rule derived: pre-load
+identity documents, never work-target files.
+
+**Decision:** Codify in the cheap-reversible lane — root
+`CLAUDE.md` importing the hot set ships with this close
+(source-only, reversible by deletion); the distributed guidance
+note is parked to the wish-list for the next triage rather than
+shipped as a lone-paragraph release.
+
+**Alternatives:** Drop (rejected — consistent gains at equal
+verified quality); distributed note now (deferred — one paragraph,
+rides the next release).
+
 ## 2026-08-09 — WAVE1-BATCH: four small ships as one release (4.2.0)
 
 **Decision:** Batched TRANSCRIPT-SHA (Start SHA transcript header),

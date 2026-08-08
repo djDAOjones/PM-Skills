@@ -17,13 +17,10 @@
      (self/evaluations/2026-08-08 series as revised by the extended
      assessment; triaged 2026-08-09, TRIAGE-REV). -->
 
-- [ ] **CTX-CACHE Import placement** [spike] — measure the
-  hot-set re-read share of an autonomous run, rerun with rules
-  imports, compare cached-token share and cost; deliver a number,
-  then codify or drop. · Med-High / Low / Low / Low.
-<!-- Wave 1 remaining: CTX-CACHE below. Shipped: MEM-CHECK (4.1.0),
+<!-- Wave 1 ship-list COMPLETE 2026-08-09: MEM-CHECK (4.1.0),
      EVAL-SCEN (spike), TRANSCRIPT-SHA / OPT-PROTO / RETIRE-COMP /
-     CLOSE-COMMIT (4.2.0). -->
+     CLOSE-COMMIT (4.2.0), CTX-CACHE (spike; root CLAUDE.md trial).
+     Next pick falls through to Next milestone. -->
 
 ### Next milestone
 
