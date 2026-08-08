@@ -5,6 +5,33 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-09 — TRIAGE-REV: revolution candidates triaged into the backlog
+
+**Decision:** Promoted the machine-native series candidates
+(`self/evaluations/`, 2026-08-08 audit as revised by the extended
+assessment and synthesis) into the backlog. Current = Wave 1 / R0
+instrumentation: MEM-CHECK, EVAL-SCEN, CTX-CACHE, TRANSCRIPT-SHA,
+OPT-PROTO, RETIRE-COMP, CLOSE-COMMIT. Next = Wave 2: EVAL-HARNESS,
+MEM-CHECK-2 (absorbs BUDGET-DERIVE), PRUNE-HYST, REFLECT-PRACTICE.
+Icebox with named triggers: BACKLOG-STATE, JANITOR-READ,
+JANITOR-WRITE, ARCH-RECALL, PAR-BRANCH, PM-MCP. Six wish-list
+lines absorbed by promotions and deleted; five remain open.
+RETIRE-COMP and EVAL-SCEN's planted-regression bar import lab
+findings (PM-Skills-lab RQ8-SCAN, RQ2-LITE). CLOSE-COMMIT records
+the maintainer's decision to make commit-and-push a standard close
+step rather than propose-only.
+
+**Rationale:** Maintainer instruction 2026-08-09 ("triage the
+candidates into canon"), after the lab's first two spikes
+triangulated the direction. Current is exactly the R0 gate the
+revolution programme needs from the incumbent, so incumbent work
+and lab progress now share one critical path.
+
+**Alternatives:** Leaving candidates in the evaluation documents
+(rejected — the pick flow reads the backlog, not cold storage);
+promoting the structural moves now (rejected — they keep their
+named triggers per the two-lane rule).
+
 ## 2026-08-08 — GATE-FRESH: fresh-clone docs-gate repair (source-only)
 
 **Decision:** Fixed `npm run check` failing in a fresh clone with 4
