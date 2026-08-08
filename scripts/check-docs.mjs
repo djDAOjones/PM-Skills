@@ -31,7 +31,8 @@
  *   no longer exist (renamed/merged in later releases). Its links are
  *   still checked.
  * - Template/example paths that never exist here (archive/, tickets/)
- *   are ignored.
+ *   are ignored, as are gitignored trees absent in a fresh clone
+ *   (node_modules/).
  *
  * Inputs: tracked + non-ignored `*.md` files via `git ls-files`, so
  * `node_modules/` is excluded for free. The repo's living memory
@@ -63,11 +64,17 @@ const FILE_EXT_RE = /\.(md|mjs|js|json|jsonc|ya?ml)$/;
 const SAFE_PATH_RE = /^[\w./-]+$/;
 
 /**
- * Path patterns that are documented templates/examples, not real files
- * in this repo: on-demand memory stores that ship blank — archives and
- * per-item ticket detail files.
+ * Path patterns whose absence is never rot: documented
+ * templates/examples (on-demand memory stores that ship blank —
+ * archives and per-item ticket detail files), and gitignored trees
+ * (`node_modules/`) that exist only after a local install, so docs may
+ * name them yet a fresh clone lacks them.
  */
-const IGNORE = [/(^|\/)archive(\/|$)/, /(^|\/)tickets(\/|$)/];
+const IGNORE = [
+  /(^|\/)archive(\/|$)/,
+  /(^|\/)tickets(\/|$)/,
+  /(^|\/)node_modules(\/|$)/,
+];
 
 /**
  * Source files whose backticked paths are NOT checked (append-only

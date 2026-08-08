@@ -17,6 +17,11 @@
 
 ## Source-only fixes
 
+- GATE-FRESH (2026-08-08) — fresh-clone gate repair: check-docs now
+  ignores gitignored `node_modules/` path references (three doc refs
+  failed every fresh clone), and the file-map dropped its stale line
+  for the untracked .devin session-shim stub (map regenerated). No
+  release. See decision-log 2026-08-08.
 - CI-NODE (2026-07-16) — CI Lint job bumped Node 20 → 22 and
   `engines` → `>=22.18.0`; `cspell@^10` needs Node `>=22.18.0` and was
   failing every push to `main`. No release. See decision-log 2026-07-16.

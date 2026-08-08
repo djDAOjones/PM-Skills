@@ -10,3 +10,9 @@
   playbook: state that a leaked-credential tracking item is flagged
   `[security]` on creation (ITEM-AGE open question 2; deferred — it's a
   root-template 3-way-merge change).
+- Devin session shim: write and commit a real
+  .devin/workflows/session.md (sibling of the Windsurf /next shim) —
+  its untracked empty stub broke fresh clones via the file-map line,
+  removed in GATE-FRESH (2026-08-08). Delete or fill the stray stub in
+  any checkout that still has one, so regenerating the file-map does
+  not re-add it.

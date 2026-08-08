@@ -5,6 +5,35 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-08 — GATE-FRESH: fresh-clone docs-gate repair (source-only)
+
+**Decision:** Fixed `npm run check` failing in a fresh clone with 4
+`lint:docs` problems. (1) The `scripts/check-docs.mjs` IGNORE list
+gains `node_modules` — the three backticked `node_modules/` references
+(`self/DEV-INFRASTRUCTURE.md`, `self/project/brief.md`) stay as
+written. (2) `self/project/file-map.md` regenerated: its
+`.devin/workflows/session.md` line — an untracked empty stub, absent
+from every clone — confirmed-and-removed; the shim idea is preserved
+in the wish-list. Source-only; no VERSION bump.
+
+**Rationale:** check-docs verifies backticked repo paths exist on
+disk, but `node_modules/` is gitignored: legitimately absent in a
+fresh clone yet present both locally (after an install) and in CI
+(`npm ci` runs before the gate), so every place the gate runs was
+masked. Found 2026-08-08 while creating the PM-Skills-lab fork. The
+checker-side ignore fixes the class — any future backticked
+node_modules reference — where rewording the three docs would fix the
+instances and leave the trap armed.
+
+**Alternatives:** Rewording docs to avoid the backticked form
+(rejected — instance fix, and the backticked path is the natural
+spelling). Committing the empty .devin stub to make the map line true
+(rejected — an empty file is not the "session workflow shim" the role
+text claimed; write it for real first). Scaffold fork
+`pm_skills/scaffold/check-links.mjs` considered per CONTRIBUTING →
+"Note on deliberate forks": not applicable — it checks links only and
+has no backticked-path pass.
+
 ## 2026-07-17 — DIST-BOUNDARY: templates into pm_skills/, packaging verb (4.0.0)
 
 **Decision:** Shipped DIST-BOUNDARY as major 4.0.0 — options A + B
