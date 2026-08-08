@@ -78,6 +78,10 @@ Memory budgets: `pm_skills/memory-policy.md` applies unchanged.
 - **One-command quality gate.** `npm run check` — non-mutating,
   CI-mirrored. Green after the last edit is the precondition for
   closing any task.
+- **Memory validator.** `node scripts/check-memory.mjs` implements
+  the end-of-task size check for this repo (wired into the gate as
+  `lint:memory`): structural memory failures gate commits; budget
+  overruns warn and feed maintenance proposals.
 - **Deliberate forks stay forked.** `pm_skills/scaffold/` ships
   generic copies; `scripts/` holds this repo's tuned siblings. A bug
   fixed in one must be considered for the other (see

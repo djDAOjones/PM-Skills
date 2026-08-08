@@ -5,6 +5,35 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-09 — MEM-CHECK: memory validator shipped, wired into the gate (4.1.0)
+
+**Decision:** Shipped `scripts/check-memory.mjs` (source-only
+reference implementation) and wired it into `npm run check` as
+`lint:memory`; added the "Machine-readable budgets" JSON block to
+`pm_skills/memory-policy.md` and the generic validator paragraph to
+`pm_skills/prompts/end-of-task.md` step 4 (release 4.1.0, minor).
+Exit semantics honour existing policy: structural failures (grammar,
+`[x]` items, duplicate IDs, ticket orphans, merge residue) gate
+commits; budget overruns and ageing warn and feed proposals —
+budgets propose, they never block. Lite-close trailers with no
+parseable `Item:` warn for manual triage rather than fail (historic
+commits must not poison the gate). Verified on `self/project` (six
+honest warnings: four undated standing items, one over-soft ticket,
+none structural); second-project verification lands with the lab's
+upstream sync.
+
+**Rationale:** Assessment C1 + lab RQ2-LITE: exhortation decays
+within a session, enforcement does not; the validator retires the
+manual greps of end-of-task step 4 and Diagnose's mechanical half,
+and becomes the property oracle EVAL-SCEN needs. First
+mechanism of the programme to pay the retire-prose rent.
+
+**Alternatives:** Parsing the prose budget table (rejected —
+fragile; the JSON block keeps numbers canonical in one file while
+machine-readable); distributing a scaffold copy now (deferred per
+the triaged item — proven here first); failing on undated standing
+items (softened to warn — adopt-tier projects would gate-break).
+
 ## 2026-08-09 — TRIAGE-REV: revolution candidates triaged into the backlog
 
 **Decision:** Promoted the machine-native series candidates

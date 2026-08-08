@@ -25,6 +25,38 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 4.1.0 — 2026-08-09
+
+MEM-CHECK: budgets become machine-readable and the end-of-task size
+check gains a validator hook — the first enforcement-over-exhortation
+release from the 2026-08-08 machine-native evaluation series:
+mechanical memory checks move from prose instructions to a tool a
+project can run, gate on, and build evaluations against.
+
+### Changed
+
+- `pm_skills/memory-policy.md` — new "Machine-readable budgets"
+  section: the canonical budget numbers as a fenced JSON block a
+  memory validator parses; the table below it explains the same
+  numbers for humans. Update block and table together.
+- `pm_skills/prompts/end-of-task.md` — step 4 gains a "Memory
+  validator (preferred when the project keeps one)" paragraph:
+  structural failures must be fixed before closing, WARN lines feed
+  the maintenance proposals, and the manual counts remain the
+  fallback when no validator exists.
+
+### Upgrade actions
+
+- Replace `pm_skills/memory-policy.md` and
+  `pm_skills/prompts/end-of-task.md` with this version's copies
+  (both `framework`-class, standard replace). If your project
+  customised budget numbers, re-apply them inside BOTH the new JSON
+  block and the table — they must stay in step.
+- No new distributed files: the reference validator
+  (`check-memory.mjs`) lives in the framework source repo only; a
+  scaffold copy ships in a later release once proven on a consuming
+  project. Nothing else to do.
+
 ## 4.0.0 — 2026-07-17
 
 DIST-BOUNDARY: the three rulebook templates lived at the framework

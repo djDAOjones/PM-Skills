@@ -1,5 +1,12 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: Machine-native Wave 1 (R0 instrumentation)
+
+- MEM-CHECK — memory validator shipped and wired into the gate as
+  lint:memory; budgets machine-readable in memory-policy;
+  end-of-task validator hook (4.1.0) (2026-08-09) — see
+  decision-log.
+
 <!-- Shipped-work narrative, newest phase at the top. One line per
      item: the outcome. The why lives in decision-log.md; release
      detail lives in pm_skills/CHANGELOG.md — point, don't restate. -->

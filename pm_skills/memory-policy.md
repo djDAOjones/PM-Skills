@@ -11,6 +11,38 @@ Read-tier definitions (hot / sectional / warm / cold) stay in
 `AGENTS.md` → "Before every task" — they govern every session start.
 This file governs the checks that run at task close.
 
+## Machine-readable budgets
+
+The canonical numbers, in the form a **memory validator** reads (a
+`check-memory` script — one command implementing the end-of-task
+size check mechanically). The table below explains the same numbers
+for human readers; when a budget changes, **update the block and the
+table together** — they live in this one file precisely so they
+cannot drift apart silently, but within the file the block is what
+tools parse.
+
+```json
+{
+  "$comment": "Canonical machine-readable budgets. Keep in step with the table below. Units: words unless the key says otherwise.",
+  "referenceDocSoftWords": 3500,
+  "fileMap": { "wordsPerFile": 35, "floorWords": 2000 },
+  "backlogActive": { "softWords": 1500, "maxOpenItems": 40 },
+  "trajectoryWords": 2000,
+  "decisionLog": {
+    "maxLiveEntries": 20,
+    "entryGuardWords": 600,
+    "maxOldestDays": 90,
+    "liveFloorEntries": 10,
+    "minEntriesBeyondFloor": 5
+  },
+  "wishListMaxOpen": 25,
+  "docDeltas": { "maxOpen": 10, "maxOldestDays": 30 },
+  "ticketSoftWords": 600,
+  "liteClose": { "maxCount": 5, "maxOldestDays": 7 },
+  "standingItemWarnDays": 30
+}
+```
+
 ## Memory size budgets
 
 Memory files have word/entry budgets: **hard, prunable** limits on

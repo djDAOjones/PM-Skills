@@ -14,8 +14,7 @@
 - a backlog writing process that takes a list of ideas (or even loose conversational transcript) and produces a prioritized backlog with milestone and component tasks. this potentially includes a process to develop a sequence of backlog items that comprise a milestone.
 - add a backlog ticket writing command (I often offload this to a different agent i.e. codex plug in)
 - Devin session shim: write and commit a real
-  .devin/workflows/session.md (sibling of the Windsurf /next shim) —
-  its untracked empty stub broke fresh clones via the file-map line,
-  removed in GATE-FRESH (2026-08-08). Delete or fill the stray stub in
-  any checkout that still has one, so regenerating the file-map does
-  not re-add it.
+  .devin/workflows/session.md (sibling of the Windsurf /next shim).
+  The stray empty stub is gone from all known checkouts (canon
+  2026-08-09 during MEM-CHECK, lab in LAB-SYNC) — write it for real
+  or drop the idea.

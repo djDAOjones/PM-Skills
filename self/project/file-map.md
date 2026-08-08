@@ -7,13 +7,13 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 50 file(s) across 7 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 51 file(s) across 7 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 5 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
 - `pm_skills` — 38 file(s)
-- `scripts` — 3 file(s)
+- `scripts` — 4 file(s)
 - `self` — 1 file(s)
 <!-- /file-map-index -->
 
@@ -81,6 +81,7 @@ see the root AGENTS.md "Before every task". -->
 ## scripts
 
 - `scripts/check-docs.mjs` — this repo's docs-integrity gate: links + backticked path references
+- `scripts/check-memory.mjs` — memory validator (lint:memory): structural failures gate, budgets warn; reads the machine-readable block in memory-policy
 - `scripts/gen-file-map.mjs` — this repo's file-map generator: maps pm_skills/ as source, excludes self/ memory
 - `scripts/package.mjs` — distribution-boundary tool: manifest-verifies pm_skills/ and exports exactly that set (lint:boundary + npm run package)
 

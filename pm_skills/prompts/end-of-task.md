@@ -181,6 +181,17 @@ size-check. The deferred writes are budget-checked at Reconcile.
 Budgets are defined in `pm_skills/memory-policy.md`. Do not duplicate
 the numbers here.
 
+**Memory validator (preferred when the project keeps one).** If the
+project has a memory validator — one command that checks the ticket
+grammar, hygiene (`[x]` eviction, ticket orphans, merge residue,
+lite-close trailers), and every budget mechanically, reading the
+machine-readable block in `pm_skills/memory-policy.md` — run it and
+use its report for this whole section: structural failures must be
+fixed before closing; its WARN lines feed the proposals below. The
+manual counts below remain the fallback when no validator exists.
+It validates the form of memory, never the truth of it — the
+judgement steps of this close are not delegated to it.
+
 **Fast path (most tasks).** If this task touched ≤ 2 memory files and
 added no material content to an accreting file, count only the files
 touched and skip the rest of this section — note "size check: fast

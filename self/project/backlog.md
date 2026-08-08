@@ -17,21 +17,10 @@
      (self/evaluations/2026-08-08 series as revised by the extended
      assessment; triaged 2026-08-09, TRIAGE-REV). -->
 
-- [ ] **MEM-CHECK Memory validator script** — dependency-free
-  `check-memory.mjs` in `scripts/` (scaffold fork only when a
-  consuming project wants it): structural failures exit 1 (ticket
-  grammar, `[x]` items, ticket orphans, unparseable `Close: lite`
-  trailers), budget overruns warn-only; budgets read from a
-  machine-readable block added to `pm_skills/memory-policy.md`.
-  Intent: automate end-of-task step 4 and Diagnose's mechanical
-  half; double as the evaluation oracle.
-  Done when: one command reports clean/red here and on a consuming
-  project, and `end-of-task.md` points at it.
-  · High / Medium / Low / Medium.
-- [ ] **EVAL-SCEN First behavioural scenario** [spike]
-  [blocked: MEM-CHECK] (2026-08-09) — reduce a documented run to
-  fixture + ask + property assertions; the bar: a planted
-  regression (deleted eviction instruction) must go red.
+- [ ] **EVAL-SCEN First behavioural scenario** [spike] — reduce a
+  documented run to fixture + ask + property assertions, with
+  `check-memory.mjs` as the oracle; the bar: a planted regression
+  (deleted eviction instruction) must go red.
   · High / Medium / Low / Low.
 - [ ] **CTX-CACHE Import placement** [spike] — measure the
   hot-set re-read share of an autonomous run, rerun with rules
