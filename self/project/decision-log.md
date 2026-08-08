@@ -5,6 +5,35 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-09 — R0-INSTR: harness v1 + counters ship; upgrade GREEN; probe DETECTED
+
+**Decision:** Shipped EVAL-HARNESS v1 (`scripts/eval/`: doctrine
+README, generic property asserter, byte-level upgrade asserter,
+close-control spec) and MEM-CHECK phase 2 (attention counters +
+token estimates), both source-only. Ran the upgrade scenario
+(4.0.0 → 4.2.0 fixture: memory byte-identical, customisation
+preserved, changed set exact — **GREEN**, the promise's first
+mechanical verification) and the trailer-key calibration probe
+(blinded agent followed a tampered `Ticket:` contract —
+**DETECTED**). With the validator, three scenarios including
+upgrade, and counters printing, the lab declares gate R0 passed on
+evidence. Detail: the dated R0 instrumentation document under
+`self/evaluations/`.
+
+**Rationale:** Critical path under delegated auto-jazz: R0 was the
+only gate reachable without the maintainer. Roadmap alterations
+under the delegation: full token re-denomination deferred (display
+estimates suffice; a release for units alone fails the rent rule);
+EVAL-HARNESS marked shipped-v1 with pending follow-ups (blinded
+upgrade run, a template-delta window scenario) recorded in the
+harness README rather than held open on the backlog.
+
+**Alternatives:** Holding EVAL-HARNESS open until seven scenarios
+exist (rejected — the cap is a ceiling, not a quota; three
+evidence-bearing scenarios clear R0); running more probes now
+(rejected — budget cap; one sub-agent run spent where blinding was
+essential).
+
 ## 2026-08-09 — CTX-CACHE: pre-loading the hot set pays, mostly in round-trips and foraging
 
 **Question:** Does moving the identity documents into the rules

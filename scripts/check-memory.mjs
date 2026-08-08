@@ -54,6 +54,7 @@ const read = (/** @type {string} */ p) =>
   existsSync(p) ? readFileSync(p, 'utf8') : null;
 const words = (/** @type {string|null} */ s) =>
   s ? s.split(/\s+/).filter(Boolean).length : 0;
+const tok = (/** @type {number} */ w) => `~${Math.round((w * 4) / 3)} tok`;
 const daysSince = (/** @type {string} */ iso) =>
   Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
 
@@ -217,7 +218,7 @@ function budgetsReport(/** @type {any} */ B) {
     const w = words(read(p));
     if (!w) continue;
     say(w > B.referenceDocSoftWords ? 'WARN' : 'OK',
-      `reference doc ${basename(p)}: ${w} words (soft ${B.referenceDocSoftWords})`);
+      `reference doc ${basename(p)}: ${w} words, ${tok(w)} (soft ${B.referenceDocSoftWords})`);
   }
 
   const tw = words(read(join(projectDir, 'trajectory.md')));
@@ -265,6 +266,36 @@ function budgetsReport(/** @type {any} */ B) {
   }
 }
 
+/**
+ * Attention counters (metrics-lite): derivable from trajectory dates
+ * and git history alone — no telemetry infrastructure. Informational;
+ * read at reflection, never a gate.
+ */
+function attentionCounters() {
+  const tr = read(join(projectDir, 'trajectory.md'));
+  if (!tr) return;
+  /** @type {{id:string,date:string}[]} */
+  const items = [];
+  for (const chunk of tr.split(/^(?=- )/m)) {
+    const id = chunk.match(/^- ([A-Z][A-Z0-9-]+) —/)?.[1];
+    const dates = [...chunk.matchAll(/\((\d{4}-\d{2}-\d{2})\)/g)];
+    if (id && dates.length) items.push({ id, date: dates[dates.length - 1][1] });
+  }
+  const last30 = items.filter((i) => daysSince(i.date) <= 30).length;
+  say('note', `counters: ${items.length} items in trajectory, ${last30} shipped in the last 30 days`);
+  let commits = 0, counted = 0;
+  for (const i of items.slice(0, 5)) {
+    try {
+      const n = execSync(`git log --oneline --grep=${i.id}`, {
+        cwd: repoRoot, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'],
+      }).trim().split('\n').filter(Boolean).length;
+      commits += n; counted++;
+    } catch { /* no git — skip */ }
+  }
+  if (counted)
+    say('note', `counters: ${(commits / counted).toFixed(1)} commits per shipped item (last ${counted})`);
+}
+
 function main() {
   console.log(`check-memory: ${projectDir.replace(`${repoRoot}/`, '')} (root ${repoRoot})`);
   console.log('note: validates the form of memory, never the truth of it.');
@@ -274,6 +305,7 @@ function main() {
   markersCheck();
   trailersCheck(B);
   budgetsReport(B);
+  attentionCounters();
   for (const l of lines) console.log(`${l.tag.padEnd(4)} ${l.msg}`);
   const fails = lines.filter((l) => l.tag === 'FAIL').length;
   const warns = lines.filter((l) => l.tag === 'WARN').length;

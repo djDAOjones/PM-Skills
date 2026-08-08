@@ -31,32 +31,11 @@
 - [ ] **PROCESS-TPL PROCESS.md slot / ADR protocol** [sign-off]
   [detail] — first-class home for macro phases + ADR closure protocol
   (template vs absorb undecided) · Med-High / Medium / Low / Low.
-- [ ] **EVAL-HARNESS Prompt evaluation harness** — at most 7
-  scenarios, advisory-first on release, source-only. Doctrine per
-  EVAL-SCEN findings (2026-08-09): probe arbitrary machine
-  contracts (trailer grammar, budget-block keys), corrupted-state
-  repair, and byte-level upgrade assertions — never
-  sensible-convention tampering (frontier priors mask it,
-  replicated twice). Upgrade scenario first; an arbitrary-contract
-  plant is the calibration probe. · High / High / Medium / Medium.
-- [ ] **MEM-CHECK-2 Derived budgets + attention counters**
-  [blocked: MEM-CHECK] (2026-08-09) — generalise the file-map
-  derivation to other accreting budgets, denominate in tokens,
-  print attention counters (sessions per item, gate redirects,
-  nag firing rates). Absorbs the former BUDGET-DERIVE and the
-  "is the decision log long enough" wish. · Medium / Low-Med /
-  Low / Low.
-- [ ] **PRUNE-HYST Prune hysteresis gap** — prune-to targets sit
-  well below trigger thresholds so a prune stops re-firing within
-  a few tasks; scope the optimal gap (cost of a pass vs carrying
-  a larger file). Maintainer capture 2026-08-08.
-  · Medium / Low-Med / Low / Medium.
-- [ ] **REFLECT-PRACTICE Reflection protocol as standing
-  practice** — codify the synthesis §4 protocol (triggers,
-  evidence gate, three capped passes, mandatory retirement check)
-  as a self/ practice doc plus a decision-log policy entry;
-  source-only; distribution decided after two runs.
-  · Medium / Low / Low / Medium.
+<!-- Wave 2 shipped 2026-08-09 (autonomous run): EVAL-HARNESS v1
+     (scripts/eval — upgrade GREEN, probe DETECTED), MEM-CHECK-2
+     (counters + token estimates), PRUNE-HYST (4.3.0),
+     REFLECT-PRACTICE (self/REFLECTION.md). Remaining follow-ups
+     live in wish-list / harness README. -->
 
 ### Icebox
 

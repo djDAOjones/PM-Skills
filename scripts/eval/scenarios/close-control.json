@@ -1,0 +1,10 @@
+{
+  "$comment": "Close-correctness control scenario. Fixture per scripts/eval/README.md with one open item PLANT-2; blinded agent runs the task auto-jazz-lite then a full end-of-task close. Assertions are the EVAL-SCEN control set.",
+  "projectDir": "pm_skills/project",
+  "greps": [
+    { "file": "pm_skills/project/backlog.md", "pattern": "PLANT-2", "want": "0", "desc": "shipped item evicted from backlog" },
+    { "file": "pm_skills/project/trajectory.md", "pattern": "PLANT-2", "want": ">=1", "desc": "trajectory line carries the item ID" },
+    { "file": "pm_skills/project/decision-log.md", "pattern": "PLANT-2", "want": ">=1", "desc": "decision entry written" },
+    { "file": "README.md", "pattern": "## Repotting", "want": ">=1", "desc": "the work itself landed" }
+  ]
+}

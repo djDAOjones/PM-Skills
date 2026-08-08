@@ -1,5 +1,15 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: Machine-native Wave 2
+
+- MEM-CHECK-2 — attention counters (shipped/30d, commits per item)
+  and token estimates in the validator (2026-08-09) — see
+  decision-log.
+- EVAL-HARNESS — harness v1 shipped (scripts/eval): upgrade
+  scenario GREEN (first mechanical proof of the upgrade promise),
+  trailer-key probe DETECTED (arbitrary-contract doctrine
+  confirmed) (2026-08-09) — see decision-log.
+
 ## Phase: Machine-native Wave 1 (R0 instrumentation)
 
 - CLOSE-COMMIT — commit-and-push standard at close; propose-only
