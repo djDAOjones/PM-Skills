@@ -25,4 +25,3 @@
   removed in GATE-FRESH (2026-08-08). Delete or fill the stray stub in
   any checkout that still has one, so regenerating the file-map does
   not re-add it.
->>>>>>> claude/pensive-tereshkova-dbda17
