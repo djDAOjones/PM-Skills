@@ -46,6 +46,16 @@ Two habits make the memory work:
 AI tools that support global rules load `AGENTS.md` automatically.
 For other tools, `prompts/session-start.md` lists what to read.
 
+Where the tool also supports **rules imports** (memory imports and
+kin), import the identity documents — the brief, architecture, and
+conventions — into the rules position rather than reading them each
+session. Measured on a live pair at equal verified quality,
+pre-loading cut tool round-trips by about a third and total tokens
+by about a seventh, partly because an agent that starts oriented
+searches less. Pre-load identity documents only — never
+work-target files: the file being edited must still be read from
+disk.
+
 ## What's in this folder
 
 ```text

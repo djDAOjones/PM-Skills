@@ -6,13 +6,6 @@
 
 ## Open
 
-- CTX-IMPORTS: distributed guidance note (GUIDE / session-start)
-  recommending rules-position imports of the identity documents
-  where the tool supports them, with the
-  pre-load-identity-never-targets rule. Evidence: CTX-CACHE
-  findings 2026-08-09 (−13.8% tokens, −37% round-trips at equal
-  verified quality, N=1). One paragraph; rides any release.
-
 - Cross-ref `[security]` from the root `AGENTS.md` "Security baseline"
   playbook: state that a leaked-credential tracking item is flagged
   `[security]` on creation (ITEM-AGE open question 2; deferred — it's a

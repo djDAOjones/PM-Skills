@@ -39,7 +39,8 @@ tools parse.
   "docDeltas": { "maxOpen": 10, "maxOldestDays": 30 },
   "ticketSoftWords": 600,
   "liteClose": { "maxCount": 5, "maxOldestDays": 7 },
-  "standingItemWarnDays": 30
+  "standingItemWarnDays": 30,
+  "pruneToFraction": 0.7
 }
 ```
 
@@ -52,6 +53,14 @@ reference docs (see the table). The end-of-task update check flags
 overruns and proposes the Prune verb of
 `pm_skills/prompts/memory-maintenance.md`. Do not auto-prune — always
 propose first.
+
+**Prune-to targets (hysteresis).** When any prune or archive action
+in this table fires, reduce the file to at most **70%** of its
+budget (`pruneToFraction`), never merely just under it — a prune
+that lands at 99% re-fires within a few tasks, and the pass costs
+more than the words it moves. The 30% gap makes the re-fire period
+roughly a third of the budget divided by the file's accretion rate;
+tune the fraction per project if velocity demands.
 
 | Scope | Soft limit | Action when exceeded |
 | --- | --- | --- |

@@ -25,6 +25,32 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 4.3.0 — 2026-08-09
+
+PRUNE-HYST + CTX-IMPORTS: prune actions gain a hysteresis target so
+maintenance stops re-firing immediately, and the read-tier guidance
+gains measured rules-import advice.
+
+### Changed
+
+- `pm_skills/memory-policy.md` — new "Prune-to targets (hysteresis)"
+  rule: prune to at most 70% of a budget, never merely under it;
+  `pruneToFraction` added to the machine-readable block.
+- `pm_skills/GUIDE.md` — "How it works" gains rules-import guidance:
+  import the identity documents into the rules position where the
+  tool supports it (measured: about a third fewer tool round-trips,
+  about a seventh fewer tokens at equal verified quality); pre-load
+  identity documents only, never work-target files.
+- `pm_skills/prompts/session-start.md` — one note under the hot
+  whole-file list pointing at the same guidance.
+
+### Upgrade actions
+
+- Replace the three files above with this version's copies (all
+  `framework`-class, standard replace). If your project customised
+  budget numbers, re-apply them in both the JSON block and the
+  table; the new `pruneToFraction` key defaults to 0.7.
+
 ## 4.2.0 — 2026-08-09
 
 Wave 1 batch — TRANSCRIPT-SHA + OPT-PROTO + RETIRE-COMP +

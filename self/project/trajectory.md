@@ -2,6 +2,8 @@
 
 ## Phase: Machine-native Wave 2
 
+- PRUNE-HYST + CTX-IMPORTS — prune hysteresis targets and measured
+  rules-import guidance (4.3.0) (2026-08-09) — see decision-log.
 - MEM-CHECK-2 — attention counters (shipped/30d, commits per item)
   and token estimates in the validator (2026-08-09) — see
   decision-log.

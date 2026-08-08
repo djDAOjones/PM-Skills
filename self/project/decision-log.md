@@ -5,6 +5,25 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-09 — 4.3.0: prune hysteresis + rules-import guidance
+
+**Decision:** Released 4.3.0: prune actions now target at most 70%
+of a budget (`pruneToFraction`, prose rule + machine-readable key)
+so maintenance stops re-firing immediately after completing — the
+maintainer's prune-fatigue capture, scoped: the 30% gap makes the
+re-fire period roughly a third of budget over accretion rate. The
+GUIDE and session-start gain the measured rules-import guidance
+(CTX-CACHE evidence), absorbing the CTX-IMPORTS wish-list line.
+
+**Rationale:** Both were paragraph-scale distributed changes with
+their evidence already banked; batching them into one listed minor
+release follows the 4.2.0 precedent.
+
+**Alternatives:** A tunable per-project fraction row in the table
+(kept simple — the prose says tune per project; the key is the
+default); waiting for a larger batch (rejected — nothing else
+distributed is queued).
+
 ## 2026-08-09 — R0-INSTR: harness v1 + counters ship; upgrade GREEN; probe DETECTED
 
 **Decision:** Shipped EVAL-HARNESS v1 (`scripts/eval/`: doctrine

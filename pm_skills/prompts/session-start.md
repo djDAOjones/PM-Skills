@@ -22,6 +22,11 @@ list below is a quick reference — `AGENTS.md` is authoritative.
 - `pm_skills/project/architecture.md`
 - `pm_skills/project/conventions.md` (if it exists)
 
+Where the tool supports rules imports, this hot set may be imported
+in the rules position instead of read here — pre-load identity
+documents only, never work-target files (`GUIDE.md` → "How it
+works").
+
 **Conditional** (read only when the task touches the domain — not part
 of the every-task load):
 
