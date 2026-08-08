@@ -19,3 +19,10 @@
 - add a backlog ticket writing command (I often offload this to a different agent i.e. codex plug in)
 - commit and push at end of task should be unconditional, not maintainer-triggered/gated — it is always required, so make it a standard step of the close flow rather than something the maintainer has to ask for.
 - prune is too repetitious: it trims to just below the trigger threshold, so another prune is due again almost immediately. Widen the gap between the prune-to target and the prune-trigger threshold so pruning fires less often. Scope what gap is optimal for productivity / compute value (cost of a prune pass vs. cost of carrying a larger file).
+- Devin session shim: write and commit a real
+  .devin/workflows/session.md (sibling of the Windsurf /next shim) —
+  its untracked empty stub broke fresh clones via the file-map line,
+  removed in GATE-FRESH (2026-08-08). Delete or fill the stray stub in
+  any checkout that still has one, so regenerating the file-map does
+  not re-add it.
+>>>>>>> claude/pensive-tereshkova-dbda17

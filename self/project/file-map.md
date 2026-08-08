@@ -7,9 +7,8 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 51 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 50 file(s) across 7 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 5 file(s)
-- `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
@@ -25,10 +24,6 @@ see the root AGENTS.md "Before every task". -->
 - `README.md` — product description + consumer-facing quick start; repo overview
 - `cspell.json` — spell-check config: en-GB, curated dictionary, caps-ID ignore pattern
 - `package.json` — source-only lint tooling; no version field (pm_skills/VERSION is canonical)
-
-## .devin
-
-- `.devin/workflows/session.md` — IDE session workflow shim: points the agent at the standard session-start loop
 
 ## .githooks
 
