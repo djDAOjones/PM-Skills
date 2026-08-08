@@ -93,4 +93,4 @@ see the root AGENTS.md "Before every task". -->
 ## self
 
 - `self/DEV-INFRASTRUCTURE.md` — this repo's Tier-0 capability surface: scripts, gate, version identity
-- `self/REFLECTION.md` — (role needed)
+- `self/REFLECTION.md` — standing reflection practice: triggers, evidence gate, three capped passes, run log
