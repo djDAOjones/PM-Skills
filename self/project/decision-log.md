@@ -5,6 +5,25 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-09 — REFLECT-PRACTICE: reflection is now a standing practice
+
+**Decision:** Codified the reflection protocol as
+`self/REFLECTION.md`: evidence-based triggers, the evidence gate
+with the self-reference countermeasure, three capped passes with a
+mandatory retirement check, the model-generation clause (now
+carrying the EVAL-SCEN doctrine restriction on tamper probes), and
+governance (reflection proposes, never edits; gates stay
+maintainer-owned). The 2026-08-08 series is recorded as run zero.
+Source-only; distribution as a framework verb is decided after two
+self-hosted runs.
+
+**Rationale:** The governance audit found steering depended on the
+maintainer remembering to ask reflective questions; codified
+triggers convert that to something the system asks itself.
+
+**Alternatives:** A distributed `reflect` verb now (rejected — the
+two-run proving rule the synthesis set for itself applies).
+
 ## 2026-08-09 — 4.3.0: prune hysteresis + rules-import guidance
 
 **Decision:** Released 4.3.0: prune actions now target at most 70%
