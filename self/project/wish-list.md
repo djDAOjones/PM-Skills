@@ -13,6 +13,15 @@
 - rename "spike" to something more intuitively self indicative
 - a backlog writing process that takes a list of ideas (or even loose conversational transcript) and produces a prioritized backlog with milestone and component tasks. this potentially includes a process to develop a sequence of backlog items that comprise a milestone.
 - add a backlog ticket writing command (I often offload this to a different agent i.e. codex plug in)
+- Investigate: an easier link between a backlog line and its ticket
+  file. Today `[detail]` implies `tickets/<ID>.md` by convention with
+  nothing to follow — consider a real link, or a generated index, so
+  backlog → ticket is one hop.
+- Investigate: the backlog is hard to understand at a glance. Review
+  whether the problem is structure, item grammar, or density, and what
+  would make the current state of work legible without opening tickets.
+  Related to the item above — navigation and comprehension may be one
+  fix or two.
 - Devin session shim: write and commit a real
   .devin/workflows/session.md (sibling of the Windsurf /next shim).
   The stray empty stub is gone from all known checkouts (canon
