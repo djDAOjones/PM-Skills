@@ -5,6 +5,43 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-17 — ICEBOX-DEEP: nine items analysed against the programme's aim; four promoted
+
+**Decision:** Deep triage of the whole Icebox against the
+machine-native programme. **Promoted, in development order:**
+JANITOR-READ (Current #1 — continuous-core's read-only organ; the
+validator already computes its report; the loop-style operation
+that was its trigger is how development already runs), CL-HORIZON
+(Current #2 — the changelog is the machine-consumed upgrade
+contract at ~18k of its 20k trigger; split scheduled before it
+fires mid-release), BACKLOG-STATE (Next #1 — the records-core
+heart; the "commissioned generation" trigger leg is real:
+maintainer instruction plus the shipped authoring prompt; phased
+so lab RQ3 gates phase 1, keeping R1 unprejudiced), PAR-BRANCH
+(Next #2, chained). All four carry skeleton-true tickets, written
+to the backlog-authoring contract, linked one-hop from their
+items. **Ticketed but held in Icebox:** JANITOR-WRITE — the
+per-verb graduated sign-off is the governance, and a blanket
+sign-off does not satisfy it; its ticket writes the ladder.
+PM-MCP — prototype path unlocked via lab RQ5 once records prove,
+but the more-than-one-consuming-project leg guards distribution
+and stays (external-evidence discipline). **Stay iced, no
+ticket:** DATA-MIG and TEST-DOC (genuinely external triggers;
+guidance without its evidence base is what this programme
+rejects) and ARCH-RECALL (read-time recall pays only at archive
+scale no project here has). Dates added to the two long-undated
+standing items (2026-07-16 triage origin).
+
+**Rationale:** "Meets the aim of this chat" = serves the
+evidence-gated machine-native revolution: the promotions are the
+continuous-core and records-core organs with fired or
+maintainer-supplied triggers; the holds are where governance or
+external evidence is the point.
+
+**Alternatives:** Promoting PM-MCP outright (rejected — mirror
+evidence); cutting TEST-DOC (kept — zero carrying cost, prior
+maintainer call respected).
+
 ## 2026-08-17 — TICKET-SWEEP: thorough pass over every open item (4.4.0)
 
 **Decision:** Under blanket sign-off, processed every open ticket,

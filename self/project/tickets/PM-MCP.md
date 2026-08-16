@@ -1,0 +1,59 @@
+# PM-MCP — Programmatic memory interface
+
+> **Status:** Icebox — horizon item · **Grades:**
+> High / High / Medium / Medium.
+> **Gate:** prototype unlocks when BACKLOG-STATE phase 1 is proven
+> here (the lab's RQ5-INTERFACE is the prototype vehicle);
+> **distribution** additionally stays blocked on more than one
+> consuming project — the external-evidence leg that guards against
+> building the successor's interface on mirror evidence alone.
+
+## Intent
+
+The packaging ladder's fourth rung: serve project memory through a
+protocol interface (MCP-class) — get-context-for-task, pick-next,
+close-item — with structure enforced at the interface and the
+judgement prose unchanged inside the prompts. Portability via
+protocol rather than lowest-common-denominator file reads.
+
+## Done when (prototype scope only)
+
+- A minimal MCP server over the records layer runs against the lab
+  repo's own project-memory records (RQ5-INTERFACE).
+- The close-control scenario passes when driven through the tools
+  instead of file edits, oracle-verified.
+- A findings document compares tool-driven against file-driven on
+  reliability, enforcement, and cost — the codify-or-drop input for
+  any distribution decision, which is its own future item.
+
+## Evidence / context
+
+RQ8-SCAN: MCP is foundation-governed and universally adopted — the
+protocol-convergence trigger leg fired 2026-08-08. The synthesis's
+packaging ladder names this rung and its identity cost: a server is
+code, an install step, a dependency surface — everything the
+zero-dependency product refuses — so it can only ever be an
+**optional adapter outside `pm_skills/`**, never the core.
+
+## Approach
+
+Records first (BACKLOG-STATE), then the lab prototype (RQ5), then
+evidence, then — separately — a distribution question with the
+external-evidence leg intact. Never merged into this repo's
+distributed tree in prototype form.
+
+## Constraints
+
+- Adapter, never core: the file-based framework must remain fully
+  functional without the server.
+- The interface carries state operations only; scoping, options,
+  validation, and review stay prose curricula.
+- No dependencies inside `pm_skills/`; the server lives with the
+  lab or a sibling package.
+
+## Open questions
+
+- Which harness's MCP client hosts the prototype run — pick at
+  RQ5 scoping.
+- Whether pick-next belongs in the interface or stays a prompt
+  (the pick is judgement-adjacent) — RQ5 evidence decides.
