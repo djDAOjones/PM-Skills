@@ -5,6 +5,44 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-16 — TICKET-GEN: tickets are batch-authored at triage, never at scoping
+
+**Question:** Do `[detail]` tickets get created and fleshed out
+reliably? Name the scenarios where they don't, or "works as
+designed".
+
+**Method:** Repo-history evidence pass (no fixtures): git history
+of `tickets/` + `archive/tickets/`, `-G'\[detail\]'` backlog
+history, the framework's ticket instruction inventory, the
+2026-07-16 transcripts, the TRIAGE-REV entry. Detail: the dated
+TICKET-GEN findings document under `self/evaluations/`.
+
+**Findings:** The lifecycle is asymmetric. Retirement: 5/5 archived
+at the ship commit; flag↔file consistency mechanically enforced
+since 4.1.0 (validator FAILs both directions). Creation: all eight
+tickets ever created were batch-authored on 2026-07-16 (seven at
+adoption, one at triage); the scoping-time "resume insurance" path
+has never fired — defensibly, since every item since shipped
+in-session. The observable gap is **promotion time**: Start B
+triage deletes the promoted wish-list line with no instruction to
+create a ticket (TRIAGE-REV: 17 promotions, zero tickets, detail
+left in cold storage); no ticket template ships; the maintainer
+offloads ticket writing to outside agents. Scenarios named: S1
+context-rich promotion, S2 external authoring without a contract,
+S3 misjudged in-session call (invisible without instrumentation).
+
+**Recommendation:** Scoping path — works as designed. Fix surface
+is authoring at promotion: ticket skeleton in the distribution +
+one Start B triage line (create `tickets/<ID>.md` + `[detail]`
+before deleting an outgrown line) + optionally the wish-listed
+ticket-writing command. Converges with three existing wish-list
+captures — triage as one cluster; one new wish-list line added.
+
+**Alternatives:** Instrumenting S3 first (rejected — no observed
+incident; promotion gap has direct evidence); mandatory tickets for
+every item (rejected — "don't create a file for an item that fits
+its line" is load-bearing against memory bloat).
+
 ## 2026-08-09 — REFLECT-PRACTICE: reflection is now a standing practice
 
 **Decision:** Codified the reflection protocol as

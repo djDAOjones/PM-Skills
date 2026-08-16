@@ -24,10 +24,6 @@
 
 ### Next milestone
 
-- [ ] **TICKET-GEN Ticket-generation reliability** [spike] — do
-  `[detail]` tickets get created and fleshed out reliably? Evidence
-  pass over recent items and transcripts; name the scenarios where
-  they don't (or "works as designed") · Medium / Low / Low / None.
 - [ ] **PROCESS-TPL PROCESS.md slot / ADR protocol** [sign-off]
   [detail] — first-class home for macro phases + ADR closure protocol
   (template vs absorb undecided) · Med-High / Medium / Low / Low.

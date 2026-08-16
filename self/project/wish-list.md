@@ -22,6 +22,11 @@
   would make the current state of work legible without opening tickets.
   Related to the item above — navigation and comprehension may be one
   fix or two.
+- Ticket skeleton + Start B triage hook: a promoted wish-list line
+  that has outgrown its line gets `tickets/<ID>.md` + `[detail]`
+  before the line is deleted (TICKET-GEN finding 2026-08-16 —
+  triage with the ticket-writing-command and backlog→ticket-link
+  lines as one authoring cluster).
 - Devin session shim: write and commit a real
   .devin/workflows/session.md (sibling of the Windsurf /next shim).
   The stray empty stub is gone from all known checkouts (canon
