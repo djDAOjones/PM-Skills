@@ -7,14 +7,14 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 60 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 64 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
-- `pm_skills` — 40 file(s)
-- `scripts` — 8 file(s)
+- `pm_skills` — 43 file(s)
+- `scripts` — 9 file(s)
 - `self` — 2 file(s)
 <!-- /file-map-index -->
 
@@ -45,6 +45,9 @@ see the root AGENTS.md "Before every task". -->
 
 ## pm_skills
 
+- `pm_skills/CHANGELOG-1x.md` — archived 1.x changelog epoch (verbatim; upgrade walks via the index)
+- `pm_skills/CHANGELOG-2x.md` — archived 2.x changelog epoch (verbatim)
+- `pm_skills/CHANGELOG-3x.md` — archived 3.x changelog epoch (verbatim; 3.17.1 stays live)
 - `pm_skills/CHANGELOG.md` — append-only release history; doubles as the upgrade instruction set
 - `pm_skills/GUIDE.md` — the full framework manual for consuming projects
 - `pm_skills/MANIFEST.md` — per-path upgrade classes (framework/root-template/project-memory/scaffold)
@@ -95,6 +98,7 @@ see the root AGENTS.md "Before every task". -->
 - `scripts/eval/assert-upgrade.mjs` — byte-level upgrade assertions: memory identity, customisation, version, allowed set
 - `scripts/eval/scenarios/close-control.json` — close-correctness control scenario spec
 - `scripts/gen-file-map.mjs` — this repo's file-map generator: maps pm_skills/ as source, excludes self/ memory
+- `scripts/janitor-read.mjs` — read-only janitor: validator + environment line into the reports file (JANITOR-READ)
 - `scripts/package.mjs` — distribution-boundary tool: manifest-verifies pm_skills/ and exports exactly that set (lint:boundary + npm run package)
 
 ## self

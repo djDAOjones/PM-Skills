@@ -12,5 +12,5 @@
   // and evaluations/transcripts (working outputs with unchecked
   // exported content). Keep in step with .markdownlintignore,
   // cspell.json, .editorconfig-checker.json, and scripts/check-docs.mjs.
-  "ignores": ["self/archive/**", "self/evaluations/**", "self/_transcripts/**"]
+  "ignores": ["self/archive/**", "self/evaluations/**", "self/_transcripts/**", "self/project/reports/**"]
 }

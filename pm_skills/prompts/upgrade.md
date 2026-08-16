@@ -57,6 +57,13 @@ up to and including the source version. Concatenate their **Upgrade
 actions** blocks in order, oldest first. That ordered list is the
 entire plan — there is no need to diff the trees.
 
+If the project's version predates the live file's oldest epoch, the
+changelog's **Archived epochs** index names the sibling files
+(`CHANGELOG-1x.md` and kin): start the walk in the oldest archived
+file the gap touches, in order, then continue in the live file.
+Archived entries are verbatim history — identical in authority to
+live ones.
+
 Present the work list as a short table:
 
 | Version | Path | Action | Class |

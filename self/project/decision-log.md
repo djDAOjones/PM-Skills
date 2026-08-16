@@ -5,6 +5,31 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-17 — 4.5.0: JANITOR-READ + CL-HORIZON ship together
+
+**Decision:** Released 4.5.0. JANITOR-READ: a read-only janitor
+script wraps the validator plus the environment line into
+`self/project/reports/latest.md` (timestamp + Start SHA); the
+reports directory joins the generated-cold lint excludes (the
+evaluations precedent, mirrored across the four configs and the
+docs checker); session-start gains the read-when-fresh path with
+the staleness contract mandatory and surfacing unchanged (the
+report moves where numbers come from, never whether they print).
+CL-HORIZON: 43 of 49 entries moved byte-verified into three epoch
+archives; the live changelog keeps 4.x plus 3.17.1 (a one-gap
+upgrade never opens the archive) behind an index the upgrade walk
+follows; live file ~1.9k words from ~17.9k.
+
+**Rationale:** Both Current items were paragraph-to-script scale
+with banked designs; one listed release per the batching
+precedent. The split executed *before* the 20k trigger so no
+future release carries it as a side quest.
+
+**Alternatives:** Committing janitor reports on every run
+(deferred — the report updates when runs happen; commits happen at
+closes); one rolling archive file (rejected — per-major files
+bound their own growth and read cleanly).
+
 ## 2026-08-17 — ICEBOX-DEEP: nine items analysed against the programme's aim; four promoted
 
 **Decision:** Deep triage of the whole Icebox against the

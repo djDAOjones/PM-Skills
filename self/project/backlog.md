@@ -17,16 +17,8 @@
      (ICEBOX-DEEP triage 2026-08-17); order is the development
      order. -->
 
-- [ ] **JANITOR-READ Background maintenance reporter**
-  [detail](tickets/JANITOR-READ.md) — janitor script wraps the
-  validator into a dated report; session-start reads it when fresh
-  (staleness contract), computes as fallback. Read-only forever.
-  · Medium / Low-Med / Low / Medium.
-- [ ] **CL-HORIZON Changelog epoch split**
-  [detail](tickets/CL-HORIZON.md) — archive superseded major
-  epochs verbatim with an index the upgrade walk follows; execute
-  before the ~20k trigger fires mid-release (measured 17,352 +
-  4.4.0). · Medium / Low-Med / Low / Low.
+<!-- Current shipped 2026-08-17 (4.5.0): JANITOR-READ, CL-HORIZON.
+     Next pick falls through to Next milestone. -->
 
 ### Next milestone
 

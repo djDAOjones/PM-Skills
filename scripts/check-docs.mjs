@@ -82,6 +82,9 @@ const IGNORE = [
  */
 const PATH_SOURCE_EXCLUDE = new Set([
   'pm_skills/CHANGELOG.md',
+  'pm_skills/CHANGELOG-1x.md',
+  'pm_skills/CHANGELOG-2x.md',
+  'pm_skills/CHANGELOG-3x.md',
   'self/project/decision-log.md',
 ]);
 
@@ -93,6 +96,7 @@ const FILE_EXCLUDE = [
   /^self\/archive\//,
   /^self\/evaluations\//,
   /^self\/_transcripts\//,
+  /^self\/project\/reports\//,
 ];
 
 /**

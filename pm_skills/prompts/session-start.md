@@ -63,6 +63,20 @@ of the every-task load):
 - `pm_skills/project/archive/*.md` — search via grep only when explicitly relevant.
 - `pm_skills/project/tickets/<ITEM-ID>.md` — optional per-item detail; read only the active item's file, and only when its backlog line carries `[detail]`.
 
+## Janitor report (read it fresh, else compute)
+
+If the project keeps a **janitor report** — generated maintenance
+output carrying its own timestamp and starting SHA — and it is
+fresher than ~24 hours with a Start SHA still in this branch's
+history, read it in place of computing the counts and banners below
+(the preflight warn line, lite-close count, doc-deltas line,
+standing ages, and any security banner still get *printed* from the
+report's content — reading the report changes where the numbers
+come from, never whether they are surfaced). Stale, absent, or
+unknown-SHA reports are ignored: compute as written below. The
+report is generated output — never edit it, never treat it as
+canonical memory.
+
 ## Environment preflight (warn-only)
 
 Run the **Environment preflight** in `prompts/memory-maintenance.md` →

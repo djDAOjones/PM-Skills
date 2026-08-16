@@ -61,6 +61,8 @@ disk.
 ```text
 VERSION          Current framework version (semver). The upgrade check.
 CHANGELOG.md     Append-only release log; each entry is an upgrade plan.
+CHANGELOG-*.md   Archived epochs (1.x/2.x/3.x), verbatim; the upgrade
+                 walk follows the live file's index into them.
 MANIFEST.md      Path classes: framework / template / memory / scaffold.
 GUIDE.md         This guide.
 init.md          Project setup, step by step (manual or agent-run).

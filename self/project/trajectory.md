@@ -2,6 +2,13 @@
 
 ## Phase: Ticket sweep (post-wave incumbent development)
 
+- CL-HORIZON — changelog epochs archived behind an index; live
+  file ~1.9k words from ~17.9k; upgrade walk spans the split
+  (4.5.0) (2026-08-17) — see decision-log.
+- JANITOR-READ — read-only janitor: report script + session-start
+  read-when-fresh path with staleness contract; first report
+  generated (4.5.0) (2026-08-17) — see decision-log.
+
 - BACKLOG-AUTH — authoring cluster shipped: backlog-authoring
   prompt with canonical ticket skeleton and external contract,
   Start B promotion hook, `[detail]` links, legibility guidance
