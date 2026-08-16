@@ -85,6 +85,11 @@ cp -n pm_skills/templates/AGENTS.md \
 Skip any file that already exists at the root — never overwrite a
 populated rulebook (`cp -n` does this for you).
 
+**Optional fourth template:** a complex multi-phase project — one
+with macro phases, formal decision records (ADRs), or per-phase
+definitions of done — may also copy `pm_skills/templates/PROCESS.md`
+and populate it. Simple projects skip it entirely; nothing nags.
+
 ---
 
 ## Step 1: Fill in the project brief

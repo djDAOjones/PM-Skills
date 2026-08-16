@@ -1,5 +1,19 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: Ticket sweep (post-wave incumbent development)
+
+- BACKLOG-AUTH — authoring cluster shipped: backlog-authoring
+  prompt with canonical ticket skeleton and external contract,
+  Start B promotion hook, `[detail]` links, legibility guidance
+  (4.4.0) (2026-08-17) — see decision-log.
+- PROCESS-TPL — optional PROCESS.md root template shipped, option
+  A: phases + DoD, ADR closure protocol, always-4-stage triggers,
+  demo/spike cadence, risk watch (4.4.0) (2026-08-17) — see
+  decision-log.
+- DEPREC-SHIM — deprecation shims on consolidation: upgrade
+  workflow-dir sweep + tombstones, backup-invocation guard,
+  release old→new map rule (4.4.0) (2026-08-17) — see decision-log.
+
 ## Phase: Machine-native Wave 2
 
 - REFLECT-PRACTICE — reflection protocol codified as a standing

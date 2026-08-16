@@ -25,6 +25,76 @@ add an entry here. See `prompts/release.md`.
 
 ---
 
+## 4.4.0 — 2026-08-17
+
+Ticket-sweep release: the optional PROCESS template (PROCESS-TPL,
+option A), backlog authoring + ticket skeleton + navigation
+(BACKLOG-AUTH — the TICKET-GEN authoring cluster), deprecation
+shims on consolidation (DEPREC-SHIM), the `[security]`-flag
+cross-reference, and harness auto-memory guidance.
+
+### Added
+
+- `pm_skills/templates/PROCESS.md` — optional fourth root template
+  (`root-template` class) for complex multi-phase projects: macro
+  phases with definitions of done, the decision/ADR closure
+  protocol, always-four-stage triggers, demo/spike cadence, risk
+  watch list. Conditional read tier; skippable without nag.
+- `pm_skills/prompts/backlog-authoring.md` — loose ideas or a
+  transcript → grammar-true backlog items grouped by milestone,
+  plus `tickets/<ID>.md` files from its canonical ticket skeleton;
+  doubles as the contract an external agent follows when asked to
+  write tickets.
+
+### Changed
+
+- `pm_skills/prompts/upgrade.md` — Step 6 gains deprecation-shim
+  handling for removed user-invocable files (workflow-dir sweep,
+  optional tombstones); Step 5 and the report carry the
+  backups-are-for-recovery-never-invocation rule.
+- `pm_skills/prompts/release.md` — verify step requires an
+  old → new mapping table whenever a release removes or renames a
+  user-invocable file.
+- `pm_skills/prompts/session-start.md` — stops any workflow
+  invoked from `archive/upgrade-backup-*`; Start B triage now
+  creates a ticket (skeleton + `[detail]`) for a promoted line
+  that has outgrown one line, before the line is deleted.
+- `pm_skills/project/backlog.md` — ticket grammar: the `[detail]`
+  flag is written as a Markdown link targeting `tickets/<ID>.md`,
+  so backlog → ticket is one hop; legibility guidance (lean
+  milestones, one
+  intent line per heading, shipped work never lingers even as
+  comments); pointer to the authoring prompt.
+- `pm_skills/templates/AGENTS.md` — conditional read tier gains
+  the optional `PROCESS.md` line; the Security baseline states
+  that leaked-credential tracking items are flagged `[security]`
+  on creation.
+- `pm_skills/init.md` — Step 0 mentions the optional fourth
+  template.
+- `pm_skills/GUIDE.md` — templates tree + prompts list updated;
+  new "Harness auto-memories" guidance (tool memories are a
+  per-tool cache; the files are the record); backlog-authoring
+  usage note.
+- `README.md` — commands table gains "Draft a backlog from these
+  notes".
+- `pm_skills/MANIFEST.md` — row for the new template.
+
+### Upgrade actions
+
+- Copy the two new files (`pm_skills/templates/PROCESS.md`,
+  `pm_skills/prompts/backlog-authoring.md`); replace
+  `pm_skills/prompts/upgrade.md`, `pm_skills/prompts/release.md`,
+  `pm_skills/prompts/session-start.md`,
+  `pm_skills/project/backlog.md` (template),
+  `pm_skills/init.md`, `pm_skills/GUIDE.md`, and
+  `pm_skills/MANIFEST.md` with this version's copies.
+- `pm_skills/templates/AGENTS.md` is `root-template`: 3-way merge
+  the two additive changes into your populated root copy (one
+  conditional-tier bullet; one Security-baseline sentence).
+- Optional adoptions, no action required: copy and populate
+  `PROCESS.md` only if your project is multi-phase; rewrite
+  existing `[detail]` flags as links at your next backlog touch.
+
 ## 4.3.0 — 2026-08-09
 
 PRUNE-HYST + CTX-IMPORTS: prune actions gain a hysteresis target so

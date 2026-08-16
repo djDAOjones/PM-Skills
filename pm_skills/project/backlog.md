@@ -32,9 +32,16 @@
          Done when: the acceptance condition.
      Flags: [sign-off] (scope sign-off first → full mode), [blocked: X],
      [spike] (timeboxed investigation → spike mode in task.md),
-     [detail] (has a ticket file), [maintainer] (human-owned, not agent
-     work), [security] (live exposure — a leaked credential or open auth
-     hole; nothing weaker).
+     [detail] (has a ticket file — write the flag as a Markdown link
+     targeting `tickets/<ID>.md`, one hop), [maintainer] (human-owned,
+     not agent work), [security] (live exposure — a leaked credential
+     or open auth hole; nothing weaker).
+     Legibility: keep milestone sections lean — shipped work never
+     lingers here, not even as comments (trajectory owns history); a
+     milestone heading may carry one line of intent so the queue reads
+     without opening tickets. Authoring at volume (ideas/transcript →
+     items + tickets): `pm_skills/prompts/backlog-authoring.md`, which
+     also holds the canonical ticket skeleton.
      Standing items — [maintainer], [sign-off], or [blocked] work that
      waits across sessions — carry their creation date (YYYY-MM-DD) so
      Start B can surface their age at the pick and Diagnose can flag the

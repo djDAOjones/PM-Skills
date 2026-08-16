@@ -5,6 +5,48 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-17 — TICKET-SWEEP: thorough pass over every open item (4.4.0)
+
+**Decision:** Under blanket sign-off, processed every open ticket,
+Icebox item, and wish-list line. Shipped as 4.4.0: PROCESS-TPL
+(option A — optional `PROCESS.md` root template), DEPREC-SHIM
+(upgrade shims + backup-invocation guard + release map rule,
+including the ticket's "lean yes" open question), BACKLOG-AUTH
+(the authoring cluster: `backlog-authoring.md` with the canonical
+ticket skeleton and external contract, Start B promotion hook,
+`[detail]` links, legibility guidance, absorbing five wish-list
+lines and the TICKET-GEN recommendation), the `[security]`-flag
+cross-reference in the AGENTS template, harness auto-memory
+guidance in the GUIDE (absorbing the lab's coexistence wish), and
+the real Devin session shim (source-only). **Cut with rationale:**
+TASK-SIZING — its own evidence records no failure from absence,
+free-text steering already works, and formalising it is the
+sensible-practice prose class the ablation marked dead weight while
+its named risk (a sticky `large` eroding conservative defaults) is
+asymmetric; ticket archived. "Rename spike" — cut: standard agile
+vocabulary is prior-aligned; renaming buys churn, not clarity.
+**Kept blocked, triggers re-affirmed:** DATA-MIG, TEST-DOC,
+CL-HORIZON (measured 17,352 words — expect the ~20k trigger within
+a few releases), BACKLOG-STATE (authoring-demand leg served by
+BACKLOG-AUTH; trigger now rests on merge incidents),
+JANITOR-READ/WRITE, ARCH-RECALL, PAR-BRANCH, PM-MCP. Wish-list
+drained to empty; backlog rewritten to its own new legibility
+guidance (accreted shipped-comments removed — trajectory owns
+history).
+
+**Rationale:** PROCESS-TPL's Hub evidence packages judgement and
+arbitrary-contract content — the classes ablation proved
+load-bearing — as an optional, conditional-tier template, which
+fits the minimal-core direction rather than fighting it. The
+authoring cluster is where three maintainer wants and the
+TICKET-GEN finding converged on one surface.
+
+**Alternatives:** Building BACKLOG-STATE now to serve authoring
+(rejected — prose-first serves the want at a tenth the risk and
+leaves R1 unprejudiced); keeping TASK-SIZING iced (rejected — an
+item whose own ticket argues against its priority accrues reading
+cost each sweep; cut cleanly, revivable from the archive).
+
 ## 2026-08-16 — TICKET-GEN: tickets are batch-authored at triage, never at scoping
 
 **Question:** Do `[detail]` tickets get created and fleshed out

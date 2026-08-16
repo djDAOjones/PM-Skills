@@ -70,6 +70,9 @@ templates/       Rulebook templates. Copied to your project root at init
   AGENTS.md          (init.md Step 0), then populated there — the copies
   UI-STANDARDS.md    are yours; upgrades merge new sections in, never
   DEV-INFRASTRUCTURE.md  overwrite.
+  PROCESS.md         Optional fourth: macro phases, ADR closure, DoD —
+                     for complex multi-phase projects only; conditional
+                     read tier, skippable without nag.
 
 project/         Your living project memory. Fill once, maintain ongoing.
   brief.md         What we're building, for whom, what's out of scope.
@@ -93,6 +96,7 @@ prompts/         Reusable per-task prompts (paste, or run as commands).
   end-of-task.md          The closing ritual: quality gate + memory updates.
   review.md               Read-only audit of an autonomous run or feature area.
   memory-maintenance.md   Diagnose / Prune / Refactor / Reconcile / Doc-sync project memory.
+  backlog-authoring.md    Ideas or a transcript → grammar-true backlog items + tickets; the ticket skeleton and external authoring contract.
   upgrade.md              Move a project to a newer framework version.
   release.md              Maintainer release checklist (source repo only).
   deploy.md               Production deploy + live verification.
@@ -425,6 +429,22 @@ Both want the stronger tier — protocol adherence and judgement are the
 first things to degrade on a cheap model. Split the work per-step, not
 per-session: run the mechanical verification cheap, switch up for the
 calls that need it.
+
+**Harness auto-memories.** Many AI tools now accrete their own
+memories as you work (observed patterns, auto-generated notes).
+Treat them as a per-tool cache, never as the record: the canonical
+project memory is these files — curated, git-versioned, portable.
+When a tool memory contradicts a memory file, the file wins;
+periodically reconcile anything durable a tool memory holds into
+the files, or deliberately ignore it. Never let the two fork.
+
+**Authoring a backlog from raw material.** "Draft a backlog from
+these notes" runs `prompts/backlog-authoring.md`: it extracts
+candidate items from loose ideas or a transcript, writes them in
+the ticket grammar grouped by milestone, and authors
+`tickets/<ID>.md` files (from its canonical skeleton) for items
+that outgrow one line. The same file is the contract an external
+agent follows when asked to write tickets.
 
 Two folders are created lazily, so don't be surprised they're missing
 on a fresh project: `project/archive/` (first prune) and

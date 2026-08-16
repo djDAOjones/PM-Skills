@@ -2,63 +2,49 @@
 
 <!-- OPEN WORK ONLY. Status: [ ] todo  [~] in progress  [-] cut. -->
 <!-- Ticket grammar: canonical copy in pm_skills/project/backlog.md
-     (the template). Grades carried from the 2026-07-16 case-study
-     triage: Impact / Difficulty / Risk / OpΔ, where Impact =
-     operational improvement to consuming projects and OpΔ = change to
-     the maintainer's day-to-day operation. -->
-<!-- Detail files live in self/project/tickets/<ID>.md ([detail] flag).
-     Shipped tickets move to self/project/archive/tickets/. -->
+     (the template). Grades: Impact / Difficulty / Risk / OpΔ, where
+     Impact = operational improvement to consuming projects and OpΔ =
+     change to the maintainer's day-to-day operation. -->
+<!-- Detail files: the [detail] flag links to `tickets/<ID>.md`;
+     shipped tickets move to archive/tickets/. Authoring at volume:
+     pm_skills/prompts/backlog-authoring.md. -->
 
 ## Active
 
 ### Current milestone
 
-<!-- Wave 1 — R0 instrumentation for the revolution programme
-     (self/evaluations/2026-08-08 series as revised by the extended
-     assessment; triaged 2026-08-09, TRIAGE-REV). -->
-
-<!-- Wave 1 ship-list COMPLETE 2026-08-09: MEM-CHECK (4.1.0),
-     EVAL-SCEN (spike), TRANSCRIPT-SHA / OPT-PROTO / RETIRE-COMP /
-     CLOSE-COMMIT (4.2.0), CTX-CACHE (spike; root CLAUDE.md trial).
-     Next pick falls through to Next milestone. -->
+<!-- Intent: nothing committed — the incumbent is between waves;
+     the next pick falls through to Next, then to lab research. -->
 
 ### Next milestone
 
-- [ ] **PROCESS-TPL PROCESS.md slot / ADR protocol** [sign-off]
-  [detail] — first-class home for macro phases + ADR closure protocol
-  (template vs absorb undecided) · Med-High / Medium / Low / Low.
-<!-- Wave 2 shipped 2026-08-09 (autonomous run): EVAL-HARNESS v1
-     (scripts/eval — upgrade GREEN, probe DETECTED), MEM-CHECK-2
-     (counters + token estimates), PRUNE-HYST (4.3.0),
-     REFLECT-PRACTICE (self/REFLECTION.md). Remaining follow-ups
-     live in wish-list / harness README. -->
+<!-- Intent: nothing queued. New work arrives via wish-list triage,
+     lab findings, or consuming-project evidence. -->
 
 ### Icebox
 
-<!-- Deferred but worth keeping. Trigger noted where one exists. -->
+<!-- Intent: kept with explicit triggers; re-checked at each sweep
+     (last full sweep 2026-08-17, TICKET-SWEEP). -->
 
-- [ ] **DEPREC-SHIM Deprecation shims on consolidation** [detail] —
-  upgrade offers workflow-dir cleanup / tombstones for removed files ·
-  Low-Med / Low / Low / None.
-- [ ] **TASK-SIZING Size hint for task scope** [detail] — `size:
-  minimal|medium|large` calibrates option breadth, never gates or
-  prohibitions · Low-Med / Low / Low-Med / Low.
 - [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
-  project with persistent user data] — hard rule "no irreversible data
-  change without a documented back-out" + DEV-INFRASTRUCTURE section
-  reusing the upgrade.md snapshot → propose → execute → reconcile
-  shape. Grades when triggered: High / Medium / Low / Low.
-- [ ] **TEST-DOC Testing-doctrine cross-reference** [blocked: evidence
-  of need] — if ever done: one cross-reference paragraph in the
-  DEV-INFRA Quality-gate section, nothing more.
+  project with persistent user data] — hard rule "no irreversible
+  data change without a documented back-out" + DEV-INFRASTRUCTURE
+  section reusing the upgrade.md snapshot → propose → execute →
+  reconcile shape. Grades when triggered: High / Medium / Low / Low.
+- [ ] **TEST-DOC Testing-doctrine cross-reference** [blocked:
+  evidence of need] — if ever done: one cross-reference paragraph in
+  the DEV-INFRA Quality-gate section, nothing more.
 - [ ] **CL-HORIZON Changelog horizon** [blocked: CHANGELOG past ~20k
-  words] — split or index the changelog; cold outside upgrades, so no
-  action at current size.
+  words; measured 17,352 + this release at the 2026-08-17 sweep —
+  expect the trigger within a few releases] — split or index the
+  changelog.
 - [ ] **BACKLOG-STATE Backlog state/view split** [blocked: observed
   parallel-merge incidents, or a commissioned backlog-generation
   process] (2026-08-09) — per-item ticket files + a generated index
-  (the gen-file-map move applied to the backlog).
-  · High / High / Med-High / Medium.
+  (the gen-file-map move applied to the backlog). Note 2026-08-17:
+  the authoring-demand leg was served cheaply by
+  `backlog-authoring.md`; the trigger now rests on merge incidents
+  or generation outgrowing prose. · High / High / Med-High / Medium.
 - [ ] **JANITOR-READ Background maintenance reporter** [blocked: an
   autonomous-loop deployment] (2026-08-09) — reconcile counts, ages,
   and budgets computed into a dated report session-start reads

@@ -32,6 +32,7 @@ project**, not inside this source repo.
 | `pm_skills/templates/AGENTS.md` | `root-template` |
 | `pm_skills/templates/UI-STANDARDS.md` | `root-template` |
 | `pm_skills/templates/DEV-INFRASTRUCTURE.md` | `root-template` |
+| `pm_skills/templates/PROCESS.md` | `root-template` |
 | `pm_skills/project/brief.md` | `project-memory` |
 | `pm_skills/project/architecture.md` | `project-memory` |
 | `pm_skills/project/conventions.md` | `project-memory` |

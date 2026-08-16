@@ -224,6 +224,7 @@ copy-paste flow for AI tools without workflow support — is
 | "Park it" | (one-liner) | Captures the current side-idea to the wish-list, resumes work. |
 | "Run review.md" | `prompts/review.md` | Read-only audit of an autonomous run: verdict + punch list. |
 | "Run memory maintenance" | `prompts/memory-maintenance.md` | Diagnose (health check), Prune (archive), or Refactor (tidy backlog). |
+| "Draft a backlog from these notes" | `prompts/backlog-authoring.md` | Loose ideas or a transcript → grammar-true items by milestone, plus tickets for the big ones. |
 | "Run deploy.md" | `prompts/deploy.md` | Pre-flight, documented deploy pipeline, live checks, rollback path. |
 | "Run upgrade.md" | `prompts/upgrade.md` | Updates the framework to a newer version; never touches memory. |
 | "Run init.md in agent mode" / "Run init-mvp: …" | `init.md` / `integrations/init-mvp.md` | Set up a new project / set up **and** build it, to a signed-off ceiling. |

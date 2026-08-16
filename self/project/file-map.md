@@ -7,12 +7,13 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 57 file(s) across 7 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 60 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
+- `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
-- `pm_skills` — 38 file(s)
+- `pm_skills` — 40 file(s)
 - `scripts` — 8 file(s)
 - `self` — 2 file(s)
 <!-- /file-map-index -->
@@ -25,6 +26,10 @@ see the root AGENTS.md "Before every task". -->
 - `README.md` — product description + consumer-facing quick start; repo overview
 - `cspell.json` — spell-check config: en-GB, curated dictionary, caps-ID ignore pattern
 - `package.json` — source-only lint tooling; no version field (pm_skills/VERSION is canonical)
+
+## .devin
+
+- `.devin/workflows/session.md` — Devin session shim: defers to pm_skills/integrations/next.md + self/ mapping (sibling of the Windsurf shim)
 
 ## .githooks
 
@@ -60,6 +65,7 @@ see the root AGENTS.md "Before every task". -->
 - `pm_skills/project/file-map.md` — blank template: per-file roles, generator-owned skeleton
 - `pm_skills/project/trajectory.md` — blank template: shipped-work narrative
 - `pm_skills/project/wish-list.md` — blank template: pre-triage idea inbox
+- `pm_skills/prompts/backlog-authoring.md` — ideas/transcript → grammar-true items + tickets; canonical ticket skeleton + external authoring contract
 - `pm_skills/prompts/bug-scoping.md` — stage prompt: bug diagnosis before any fix
 - `pm_skills/prompts/deploy.md` — pre-flight, documented pipeline, live verification, rollback
 - `pm_skills/prompts/design-options.md` — stage prompt: 2–3 options with a recommendation
@@ -77,6 +83,7 @@ see the root AGENTS.md "Before every task". -->
 - `pm_skills/scaffold/gen-file-map.mjs` — generic shipped file-map generator (fork sibling: scripts/gen-file-map.mjs)
 - `pm_skills/templates/AGENTS.md` — distributed agent-rules template (placeholders intact; copied to a consuming project's root at init Step 0)
 - `pm_skills/templates/DEV-INFRASTRUCTURE.md` — distributed build/runtime/deploy rulebook template (copied to root at init Step 0)
+- `pm_skills/templates/PROCESS.md` — optional fourth root template: macro phases + DoD, ADR closure, always-4-stage triggers, cadence, risk watch (conditional tier)
 - `pm_skills/templates/UI-STANDARDS.md` — distributed UI/accessibility rulebook template (copied to root at init Step 0)
 
 ## scripts

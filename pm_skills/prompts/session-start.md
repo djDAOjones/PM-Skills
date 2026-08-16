@@ -14,6 +14,11 @@ Load the standard project context per `AGENTS.md` → "Before every
 task". The canonical hot-read list and tier policy live there. The
 list below is a quick reference — `AGENTS.md` is authoritative.
 
+If any pasted or referenced workflow path resolves inside
+`archive/upgrade-backup-*`, stop and use the current `pm_skills/`
+copy instead — backups hold superseded instructions and are for
+recovery, never invocation.
+
 **Hot whole-file** (read every task):
 
 - `README.md`
@@ -189,6 +194,12 @@ forcing function that stops the inbox becoming a graveyard:
   above/below rationale, so the pick reads off a current order.
 - Apply only what the user confirms. Never auto-promote. Promoting
   moves the line out; cutting deletes it.
+- **When a promoted line has outgrown one line** (it carries
+  research, options, or acceptance detail), create
+  `pm_skills/project/tickets/<ITEM-ID>.md` from the skeleton in
+  `pm_skills/prompts/backlog-authoring.md` and add the `[detail]`
+  flag **before** deleting the wish-list line — otherwise the
+  context dies with the line.
 - If the wish-list is empty, say so in one line and move on.
 
 Keep this a triage glance, not scoping.

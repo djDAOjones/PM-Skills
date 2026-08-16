@@ -85,6 +85,10 @@ update `pm_skills/MANIFEST.md`:
 
 - `pm_skills/VERSION` matches the new top changelog entry.
 - The changelog entry has an **Upgrade actions** block.
+- If the release removes or renames any user-invocable file
+  (`prompts/` or `integrations/`), the Upgrade actions include an
+  explicit old → new mapping table — `upgrade.md` Step 6 builds its
+  workflow-dir sweep and tombstones from it.
 - **Coverage:** every changed distributed file is named in the entry.
   List the uncommitted/staged changes and check each `pm_skills/**` or
   root-template path appears in the top changelog entry — a changed

@@ -51,6 +51,9 @@ read-load review:
   versioning, or scripts. Exception: its **Quality gate** section is a
   hot _sectional_ read at task close — `end-of-task.md` needs the
   `check` command every task. Read that section only; not the file.
+- `PROCESS.md` (if the project keeps one) — a task that touches a
+  phase boundary, closes a decision record, or asks whether a phase
+  is done.
 
 **Hot sectional** — read by section only:
 
@@ -240,7 +243,9 @@ asks — capturing the one line is the whole interaction.
   leaked credential is treated as live exposure: **rotate first at the
   provider, then decide on history cleanup** — rotation is the fix,
   history rewriting is optional and usually not worth it once the key is
-  dead. Implementation scales with complexity (from a `.gitignore` +
+  dead. A backlog item tracking a leaked credential is flagged
+  `[security]` on creation (the ticket grammar's live-exposure flag —
+  tracking is not remediation; it banners every session until closed). Implementation scales with complexity (from a `.gitignore` +
   placeholder discipline + a report-only key-shape scan on a static
   site, to a sidecar-composed `.env`, a pre-commit secret scanner, and a
   CI dependency audit), but the capability is required at every tier.
