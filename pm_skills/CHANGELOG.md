@@ -36,6 +36,49 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.7.0 — 2026-08-17
+
+PAR-DISPATCH: a dispatch verb initiates parallel dev work in
+parallel chats; the per-close transcript reminder retires.
+
+### Added
+
+- `pm_skills/integrations/dispatch.md` — the parallel-work entry
+  move: pick two or three disjoint backlog items (at most one
+  touching the release-bearing tree), assign lanes (branch, mode,
+  a working tree each) and the primary, and emit one paste-ready
+  brief per chat; the dispatching session integrates the returning
+  lanes, applies their handoff blocks, and releases once. Composes
+  the Start B pick, the GUIDE parallel conventions, and the
+  secondary close; verified by a live two-lane dispatched exercise
+  before release.
+
+### Changed
+
+- `pm_skills/integrations/next.md` — gains a pointer to the
+  dispatch verb; the trigger itself stays strictly one-item.
+- `pm_skills/GUIDE.md` — the file tree, the daily-loop Pick, and
+  "Parallel and multi-machine work" gain dispatch pointers;
+  "Saving session transcripts" is demoted to an optional on-demand
+  reference (the 4.2.0 per-close reminder never fired in consuming
+  evidence).
+- `pm_skills/prompts/end-of-task.md` — the closing report's
+  non-blocking save-your-transcript reminder paragraph is removed;
+  the report step is otherwise unchanged.
+
+### Upgrade actions
+
+- Copy the new `pm_skills/integrations/dispatch.md` into place; if
+  your AI tool runs workflows from a directory, copy it there
+  alongside `task.md` and `next.md`.
+- Replace `pm_skills/integrations/next.md`, `pm_skills/GUIDE.md`,
+  and `pm_skills/prompts/end-of-task.md` with this version's
+  copies (all `framework` class).
+- Behaviour note: task closes no longer print the
+  save-your-transcript reminder. The `_transcripts/` convention is
+  unchanged and stays documented in `GUIDE.md` → "Saving session
+  transcripts".
+
 ## 4.6.0 — 2026-08-17
 
 PAR-BRANCH: branch-per-session coordination for records-mode

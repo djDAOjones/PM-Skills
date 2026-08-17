@@ -1,5 +1,20 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: Parallel arc
+
+- PAR-DISPATCH — parallel dispatch verb shipped (4.7.0): disjoint
+  pick, lane briefs, the dispatching session integrates and
+  releases once; verified by a live two-lane dispatched exercise
+  on this repo before the text shipped (2026-08-17) — see
+  decision-log.
+- RETIRE-TRANSCRIPT-NAG — per-close transcript reminder retired
+  from end-of-task; GUIDE transcript section demoted to on-demand
+  reference (4.7.0, dispatched lane) (2026-08-17) — see
+  decision-log.
+- REPORTS-IGNORE — janitor report untracked: self/project/reports/
+  git-ignored, freshness purely the filesystem contract
+  (source-only, dispatched lane) (2026-08-17) — see decision-log.
+
 ## Phase: Records arc
 
 - VALIDATOR-QC — probe-evidenced check-memory hardening

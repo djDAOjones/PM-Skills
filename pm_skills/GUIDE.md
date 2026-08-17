@@ -106,6 +106,7 @@ prompts/         Reusable per-task prompts (paste, or run as commands).
 integrations/    Tool-workflow files (copy to your AI tool's workflow dir).
   task.md      The task workflow — modes: full / checkpoint (default) / auto-jazz / auto-jazz-lite / spike / refactor.
   next.md      One-word "run the next backlog item": Start B pick → auto-jazz build → close. One item per invocation.
+  dispatch.md  Initiate parallel chats: disjoint pick, lane briefs; the dispatching chat integrates.
   bugfix.md    Diagnosis-before-fix workflow for bugs.
   init-mvp.md  Sign off foundation + scope band, then autonomous build (and optional deploy).
   adopt.md     Retrofit pm-skills onto an existing codebase; reverse-engineer memory, interview for gaps.
@@ -196,6 +197,12 @@ the invocation itself is the go-ahead, so it doesn't wait. The
 guardrails still hold: `[sign-off]` items escalate to full mode,
 wish-list triage and the reconcile gate still run, and every hard
 limit still stops and asks.
+
+With two or three genuinely independent items and attention to
+spare, [`integrations/dispatch.md`](./integrations/dispatch.md)
+initiates parallel chats instead: a disjoint pick, one lane and one
+paste-ready brief per chat, and integration back in the dispatching
+session.
 
 ### Build
 
@@ -342,6 +349,11 @@ never a lock (a crashed session must never block the next one):
   protocol above remains for prose-memory projects and for the
   genuinely shared files — decision log, trajectory — where
   same-file appends stay git's weakest case.
+- **Initiating a parallel set.** The entry move is packaged as
+  `integrations/dispatch.md`: pick two or three disjoint items,
+  assign lanes (branch, mode, a working tree each) and the one
+  primary, emit paste-ready briefs, then integrate in the
+  dispatching session — merges, handoffs, one release.
 - **Multi-machine: git is the sync channel, never the filesystem.** Work
   crosses machines as commits and branches — pull the branch; don't let
   a sync folder (OneDrive, Dropbox, iCloud) carry a working tree between

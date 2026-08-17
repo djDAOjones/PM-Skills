@@ -9,6 +9,38 @@
      see archive/INDEX.md for ranges. Grep the archive files
      directly; never re-inline them. -->
 
+## 2026-08-17 — PAR-DISPATCH: dispatch verb ships exercise-verified (4.7.0)
+
+**Decision:** Shipped `pm_skills/integrations/dispatch.md` — the
+parallel-work initiation verb: disjoint pick (two or three items,
+at most one touching the release-bearing tree), lane assignment
+(branch, mode, a working tree each) with the dispatching session
+as primary, one paste-ready brief per chat, and integration with a
+single release. Design calls: a sibling file, not a next.md mode
+(the one-item guardrail stays untouched); the primary is the
+dispatching session; lanes never release. Verified before the text
+shipped, per the ticket's PAR-BRANCH discipline: a live two-lane
+dispatched exercise on this repo — RETIRE-TRANSCRIPT-NAG
+(distributed lane) and REPORTS-IGNORE (source-only lane) run as
+independent sessions in scratch working trees on lane branches,
+secondary closes with handoff blocks, both merged conflict-free,
+one 4.7.0 release at integration. (Integration note for the next
+reader: merging a lane that stops tracking a file deletes the
+primary's disk copy; the janitor regenerates it.) Lane whys, folded on ship: the
+4.2.0 transcript reminder had zero fires in any evidence
+(reflection run one) — the nag goes, the transcripts convention
+survives as reference; the janitor report is regenerated per
+session and read from the filesystem (timestamp + Start SHA), so
+git tracking added churn without authority.
+
+**Rationale:** the exercise doubled as real work (two wishes
+drained) and as the verification the ticket's Done-when demanded;
+both lanes' gates ran green in their own trees before merge.
+
+**Alternatives:** a synthetic exercise (rejected — real items test
+the real choreography); more than one distributed lane (kept
+forbidden — changelog prepends are git's weakest merge case).
+
 ## 2026-08-17 — PAR-DISPATCH: parallel-initiation verb queued (Next #1)
 
 **Decision:** Queued PAR-DISPATCH in the Next milestone after a

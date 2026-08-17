@@ -7,13 +7,13 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 65 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 66 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
-- `pm_skills` — 43 file(s)
+- `pm_skills` — 44 file(s)
 - `scripts` — 10 file(s)
 - `self` — 2 file(s)
 <!-- /file-map-index -->
@@ -55,6 +55,7 @@ see the root AGENTS.md "Before every task". -->
 - `pm_skills/init.md` — new-project setup, manual or agent-driven (Steps 1–11 + appendices)
 - `pm_skills/integrations/adopt.md` — existing-codebase adoption: reverse-engineer memory, interview for gaps
 - `pm_skills/integrations/bugfix.md` — diagnosis-before-fix bug workflow with approval gates
+- `pm_skills/integrations/dispatch.md` — parallel-work initiation: disjoint pick, lane briefs, primary integrates and releases once
 - `pm_skills/integrations/init-mvp.md` — idea-to-MVP build run with a signed-off foundation + ceiling
 - `pm_skills/integrations/next.md` — one-word next-item trigger: Start B pick → auto-jazz build → close, one item per invocation
 - `pm_skills/integrations/task.md` — the task workflow: modes (checkpoint/full/auto-jazz/spike/refactor), prohibitions, commit step
