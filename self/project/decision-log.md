@@ -9,6 +9,48 @@
      see archive/INDEX.md for ranges. Grep the archive files
      directly; never re-inline them. -->
 
+## 2026-08-17 — PACE-POLICY adopted; lab legs recaptured; review verdict on the gateless close
+
+**Decision:** Three maintainer instructions on the INTAKE-DEEP
+report, executed together. (1) **PACE-POLICY is adopted:**
+successor increments pause until the Hub leg lands — external
+evidence, not volume, restarts them. The answered line leaves the
+wish-list; NEXT-FRAGMENTS (the one successor increment queued
+anywhere) is now explicitly paused under it; RECORDS-DIST is
+incumbent-framework work and unaffected. The adoption is also
+noticed lab-side, where successor work actually runs — the lab's
+wish-list line now points at this entry and asks the next lab
+session to log it locally. (2) **The two lab chores were already
+captured:** the lab's inherited wish-list still held the full
+three-leg REPORTS-IGNORE line, and both legs verified real (the
+lab's janitor report still tracked and not ignored; the pm-next
+template at lab/next). The line was narrowed to the two live legs
+and marked current rather than recaptured from nothing; the
+INTAKE-DEEP cut here stands. (3) **Review run** over the
+INTAKE-DEEP close commit per `pm_skills/prompts/review.md`:
+verdict **accept with follow-ups**. One defect — the INTAKE-DEEP
+entry's heading below miscounts its buckets; the true split of the
+thirteen source items is **five wish lines promoted (into three
+backlog items), seven held, one cut**. The entry body and every
+per-item verdict are correct; append-only discipline puts the
+correction here rather than rewriting there. Cosmetic follow-up:
+the three stub records read "no working detail yet" above their
+new assessment lines — reword at next touch. Flagged for the lab's
+next triage: its RELEASE-EVALS and RETIRE-TRANSCRIPT-NAG wish
+lines predate the 4.7.0 arc (the latter already shipped).
+
+**Rationale:** adoption and recapture are explicit maintainer
+instruction; marking the lab lines current instead of duplicating
+them keeps one capture per chore; the count correction follows the
+changelog pattern — append a correction, never rewrite a published
+entry.
+
+**Alternatives:** recording the policy in REFLECTION.md (deferred —
+it governs successor increments, not reflection runs; this entry
+plus the paused lines are the binding surface); editing the lab's
+other stale lines (declined — outside the instructed scope; its
+own triage owns that inbox).
+
 ## 2026-08-17 — INTAKE-DEEP: thirteen intake items assessed; three promoted, nine held, one cut
 
 **Decision:** Deep assessment of the whole intake pool (five icebox
