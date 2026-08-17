@@ -1,5 +1,12 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: Records arc
+
+- BACKLOG-STATE — phase 1 shipped: canon backlog runs records mode
+  (tickets = records, view generated, validator coherence FAILs
+  divergence); phase 0 = lab RQ3 pass (2026-08-17) — see
+  decision-log.
+
 ## Phase: Ticket sweep (post-wave incumbent development)
 
 - CL-HORIZON — changelog epochs archived behind an index; live

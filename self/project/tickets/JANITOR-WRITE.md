@@ -1,3 +1,15 @@
+---
+id: JANITOR-WRITE
+name: Auto-run maintenance verbs
+status: todo
+milestone: icebox
+flags: detail,blocked
+blocked-on: per-verb scenario green + explicit per-verb maintainer sign-off
+date: 2026-08-09
+grades: Medium / Medium / Medium / Medium
+order: 4
+summary: graduated autonomy, Reconcile rung first; a blanket sign-off does not open this gate.
+---
 # JANITOR-WRITE — Auto-run maintenance verbs (graduated)
 
 > **Status:** Icebox — deliberately gated · **Grades:**

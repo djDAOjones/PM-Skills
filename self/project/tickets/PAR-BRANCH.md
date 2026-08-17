@@ -1,3 +1,14 @@
+---
+id: PAR-BRANCH
+name: Branch-per-session coordination
+status: in-progress
+milestone: next
+flags: detail
+date: 2026-08-09
+grades: Medium / Low-Med / Low / Medium
+order: 2
+summary: records make item writes disjoint; branch-per-session with the regenerate-the-view merge rule; advisory claims remain for shared files and prose-memory projects.
+---
 # PAR-BRANCH — Branch-per-session coordination (records era)
 
 > **Status:** Next #2, after BACKLOG-STATE · **Grades:**

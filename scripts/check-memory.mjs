@@ -101,6 +101,8 @@ function backlogCheck(/** @type {any} */ B) {
   const { items, sectionWords } = parseBacklog(content);
   const ids = new Map();
   const detailIds = new Set();
+  /** @type {Map<string,string>} */
+  const openStatuses = new Map();
   const ageing = [];
   let open = 0, unparsed = 0;
 
@@ -113,6 +115,7 @@ function backlogCheck(/** @type {any} */ B) {
     const id = bold[1];
     if (ids.has(id)) say('FAIL', `backlog: duplicate item ID ${id}`);
     ids.set(id, true);
+    if (it.status !== 'x') openStatuses.set(id, it.status);
     const head = bold[3].split('—')[0] ?? '';
     const flags = [...head.matchAll(/\[([^\]]+)\]/g)].map((f) => f[1]);
     for (const f of flags)
@@ -135,13 +138,55 @@ function backlogCheck(/** @type {any} */ B) {
     say('WARN', `backlog Active over budget: ${sectionWords} words / ${open} open (budget ${B.backlogActive.softWords} words / ${B.backlogActive.maxOpenItems} items) — propose Refactor`);
   else
     say('OK', `backlog Active: ${sectionWords} words, ${open} open items (budget ${B.backlogActive.softWords} / ${B.backlogActive.maxOpenItems})`);
-  return { detailIds };
+  return { detailIds, openStatuses };
 }
 
-function ticketsCheck(/** @type {any} */ B, /** @type {Set<string>} */ detailIds) {
+/** Parse a record file's flat frontmatter, or null if none. */
+function recordFm(/** @type {string} */ p) {
+  const m = (read(p) ?? '').match(/^---\n([\s\S]*?)\n---/);
+  if (!m) return null;
+  /** @type {Record<string,string>} */
+  const fm = {};
+  for (const line of m[1].split('\n')) {
+    const kv = line.match(/^([a-z-]+):\s*(.*)$/);
+    if (kv) fm[kv[1]] = kv[2].trim();
+  }
+  return fm;
+}
+
+function ticketsCheck(/** @type {any} */ B, /** @type {Set<string>} */ detailIds, /** @type {Map<string,string>|null} */ openStatuses) {
   const dir = join(projectDir, 'tickets');
   if (!existsSync(dir)) { say('note', 'tickets/: absent — skipped'); return; }
   const files = readdirSync(dir).filter((f) => f.endsWith('.md'));
+  if (files.includes('_meta.md') && openStatuses) {
+    // RECORDS MODE (BACKLOG-STATE phase 1): tickets are the records;
+    // the backlog view is generated. Coherence replaces the old
+    // detail-flag two-way rule.
+    const recs = files.filter((f) => !f.startsWith('_'));
+    const recIds = new Map(recs.map((f) => {
+      const fm = recordFm(join(dir, f));
+      return [basename(f, '.md'), fm];
+    }));
+    for (const [id, fm] of recIds) {
+      if (!fm) { say('FAIL', `records: ${id}.md has no frontmatter`); continue; }
+      if (!openStatuses.has(id))
+        say('FAIL', `records: ${id}.md has no open item in the view — shipped records move to archive`);
+      else {
+        const box = openStatuses.get(id);
+        const want = fm.status === 'in-progress' ? '~' : fm.status === 'cut' ? '-' : ' ';
+        if (box !== want)
+          say('FAIL', `records: ${id} status '${fm.status}' does not match view box '[${box}]' — regenerate`);
+        const w = words(read(join(dir, `${id}.md`)));
+        if (w > B.ticketSoftWords)
+          say('WARN', `records: ${id}.md at ${w} words (soft ${B.ticketSoftWords})`);
+      }
+    }
+    for (const id of openStatuses.keys())
+      if (!recIds.has(id))
+        say('FAIL', `records: open item ${id} has no record file — the view should be generated`);
+    say('OK', `records mode: ${recs.length} record(s), view coherence checked`);
+    return;
+  }
   for (const f of files) {
     const id = basename(f, '.md');
     if (!detailIds.has(id))
@@ -300,8 +345,8 @@ function main() {
   console.log(`check-memory: ${projectDir.replace(`${repoRoot}/`, '')} (root ${repoRoot})`);
   console.log('note: validates the form of memory, never the truth of it.');
   const B = readBudgets();
-  const { detailIds } = backlogCheck(B);
-  ticketsCheck(B, detailIds);
+  const { detailIds, openStatuses } = backlogCheck(B);
+  ticketsCheck(B, detailIds, openStatuses);
   markersCheck();
   trailersCheck(B);
   budgetsReport(B);

@@ -1,3 +1,13 @@
+---
+id: BACKLOG-STATE
+name: Backlog state/view split
+status: in-progress
+milestone: next
+flags: detail
+grades: High / High / Med-High / Medium
+order: 1
+summary: per-item record files (flat frontmatter) under a generated backlog view; validator checks record↔view coherence. Phase 0 (lab RQ3) passed 2026-08-17.
+---
 # BACKLOG-STATE — Backlog state/view split
 
 > **Status:** Next #1 · **Grades:** High / High / Med-High /

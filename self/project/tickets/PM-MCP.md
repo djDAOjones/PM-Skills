@@ -1,3 +1,15 @@
+---
+id: PM-MCP
+name: Programmatic memory interface
+status: todo
+milestone: icebox
+flags: detail,blocked
+blocked-on: BACKLOG-STATE proven — prototype via lab RQ5; distribution additionally on more than one consuming project
+date: 2026-08-09
+grades: High / High / Medium / Medium
+order: 5
+summary: packaging-ladder rung 4; adapter outside the distributed tree, never core.
+---
 # PM-MCP — Programmatic memory interface
 
 > **Status:** Icebox — horizon item · **Grades:**

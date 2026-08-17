@@ -5,6 +5,30 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-17 — BACKLOG-STATE: canon runs records mode (phase 1)
+
+**Decision:** Shipped phase 1, source-only. Records are the ticket
+files — flat `key: value` frontmatter (id, name, summary, status,
+milestone, flags, blocked-on, date, grades, order; the key is
+`name`, never `title`, which markdownlint claims) over the H1
+ticket body; three Icebox items gained minimal records; `_meta.md`
+carries milestone intents. `scripts/gen-backlog.mjs` (fork of the
+lab RQ3 prototype) generates the Active section between markers;
+`check-memory.mjs` gains records-mode coherence (missing record,
+orphan record, status mismatch — all structural FAILs, replacing
+the old detail-flag two-way rule in records mode). Phase 0 = lab
+RQ3 pass: append case clean as records versus a hard prose
+conflict; merge rule "regenerate, never hand-merge the view".
+Phase 2 (distribution) remains a separate future decision.
+
+**Rationale:** The Next-arc plan as ticketed; the prototype's
+findings applied unchanged (ticket-shaped records, name key, merge
+recipe).
+
+**Alternatives:** Separate records directory (rejected — tickets
+already are per-item files with the right lifecycle; one dir, one
+lifecycle).
+
 ## 2026-08-17 — 4.5.0: JANITOR-READ + CL-HORIZON ship together
 
 **Decision:** Released 4.5.0. JANITOR-READ: a read-only janitor
