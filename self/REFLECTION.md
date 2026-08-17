@@ -60,4 +60,9 @@ maintainer-owned and are never advanced by a reflection.
 ## Run log
 
 - Run zero — 2026-08-08 (audit / concepts / synthesis series;
-  chartered the lab). Run one is due on the next trigger.
+  chartered the lab).
+- Run one — 2026-08-17 (item-count trigger, fired at ~26 of ~15 —
+  noticed late; pure self-hosted, discount declared). Six findings,
+  five candidates, one retirement named (the transcript nag). See
+  the dated run-one document under `self/evaluations/`. Run two
+  fires on external evidence, not volume.

@@ -9,6 +9,30 @@
      see archive/INDEX.md for ranges. Grep the archive files
      directly; never re-inline them. -->
 
+## 2026-08-17 — REFLECT-1: reflection run one (self-hosted, discounted)
+
+**Decision:** Ran the standing practice's first triggered pass —
+late: the ~15-item trigger had fired at ~26 items unnoticed, which
+the run records as its own first finding about the practice
+(triggers work only when read; the janitor report is the natural
+carrier for a trigger line — folded into RELEASE-EVALS scoping).
+Declared pure self-hosted; discount applied throughout. Six
+findings, assessed adversarially with a delta list; five
+candidates to the wish-list (RELEASE-EVALS, RETIRE-TRANSCRIPT-NAG
+— the mandatory retirement, a shipped capability with zero fires —
+REPORTS-IGNORE, PACE-POLICY, NEXT-FRAGMENTS); invariant drift
+noted (I5 regressed in practice: the regression net exists,
+unhung). No policies auto-adopted; no gates touched. Detail: the
+dated run-one document under `self/evaluations/`.
+
+**Rationale:** The practice's own trigger, honoured; run two is
+declared to fire on external evidence, not volume — the Hub leg
+remains the programme's binding input.
+
+**Alternatives:** Skipping until Hub evidence exists (rejected —
+the evidence gate was satisfied and six findings were waiting;
+but the pacing conclusion itself says the *next* run waits).
+
 ## 2026-08-17 — PAR-BRANCH: branch-per-session ships for records mode (4.6.0)
 
 **Decision:** Released 4.6.0: the GUIDE's parallel-work section and
