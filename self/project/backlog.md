@@ -44,9 +44,10 @@
   autonomy, Reconcile rung first; a blanket sign-off does not open this
   gate. · Medium / Medium / Medium / Medium
 - [ ] **PM-MCP Programmatic memory interface**
-  [detail](tickets/PM-MCP.md) [blocked: BACKLOG-STATE proven — prototype
-  via lab RQ5; distribution additionally on more than one consuming
-  project] (2026-08-09) — packaging-ladder rung 4; adapter outside the
-  distributed tree, never core. · High / High / Medium / Medium
+  [detail](tickets/PM-MCP.md) [blocked: harness-client run of the lab
+  prototype (RQ5 GREEN 2026-08-17); distribution additionally on more than
+  one consuming project] (2026-08-09) — packaging-ladder rung 4; adapter
+  outside the distributed tree, never core. · High / High / Medium /
+  Medium
 
 <!-- generated:records:end -->
