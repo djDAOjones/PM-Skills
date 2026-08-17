@@ -1,5 +1,12 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: Regression-net slice (post-INTAKE-DEEP)
+
+- RELEASE-EVALS — advisory harness check in the release close:
+  release.md step 7 + repo checklist line, scenario-class mapping
+  decided, janitor line declined; first release closed under the
+  net (4.7.1) (2026-08-17) — see decision-log.
+
 ## Phase: Parallel arc
 
 - PAR-DISPATCH — parallel dispatch verb shipped (4.7.0): disjoint

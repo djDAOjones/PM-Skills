@@ -102,7 +102,7 @@ Run a quick consistency check:
 
 ```sh
 echo "VERSION: $(cat pm_skills/VERSION)"
-echo "Top changelog heading:"; grep -m1 '^## ' pm_skills/CHANGELOG.md
+echo "Top changelog heading:"; grep -m1 '^## [0-9]' pm_skills/CHANGELOG.md
 echo "Changed distributed files not named in the top entry:"
 TOP=$(awk '/^## /{n++} n==1' pm_skills/CHANGELOG.md)
 git status --porcelain | awk '{print $2}' | \
@@ -120,6 +120,28 @@ for f in pm_skills/VERSION pm_skills/*.md; do
   grep -q "$(basename "$f")" pm_skills/GUIDE.md || echo "  MISSING: $f"
 done
 ```
+
+## 7. Harness check (advisory)
+
+If the repo keeps a behavioural eval harness for the framework
+(scenario specs with end-state assertions), run the scenarios
+applicable to this release and note the results in the closing
+report:
+
+- **Upgrade scenario** — when the release changes the upgrade
+  machinery: `prompts/upgrade.md`, manifest rows or classes,
+  changelog structure, or any rename/removal of distributed files.
+  The routine prepend of this release's own entry never qualifies
+  by itself.
+- **Close scenario** — when the release changes the close protocol:
+  `prompts/end-of-task.md`, the close steps of
+  `integrations/task.md`, or the `Close: lite` trailer grammar.
+- **Neither** — note "harness: no applicable scenarios" and the
+  one-line reason; the note is the evidence the check ran.
+
+Advisory, never a gate: a red scenario informs the closing report
+and lands in the backlog as a finding — it never blocks the
+release. Repos without a harness skip this section.
 
 ## Rules
 

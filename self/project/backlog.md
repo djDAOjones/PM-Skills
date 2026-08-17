@@ -15,14 +15,8 @@
 
 ### Current milestone
 
-<!-- Intent: post-INTAKE-DEEP slice — RELEASE-EVALS then CL-440-WORDING: hang the regression net first so the correction release runs under it (INTAKE-DEEP verdicts 2026-08-17). -->
+<!-- Intent: post-INTAKE-DEEP slice — CL-440-WORDING runs under the net RELEASE-EVALS hung (4.7.1, 2026-08-17; INTAKE-DEEP verdicts 2026-08-17). -->
 
-- [ ] **RELEASE-EVALS Advisory harness line in the release close**
-  [detail](tickets/RELEASE-EVALS.md) (2026-08-17) — run the applicable
-  harness scenarios at every release close and note results in the closing
-  report — advisory, never blocking; hangs the shipped regression net in
-  the loop it protects (reflection run one, finding 6). · High / Low / Low
-  / Low
 - [ ] **CL-440-WORDING Correct the 4.4.0 upgrade-actions wording**
   [detail](tickets/CL-440-WORDING.md) (2026-08-17) — the 4.4.0 Upgrade
   actions name pm_skills/project/backlog.md in a "replace" list — only the

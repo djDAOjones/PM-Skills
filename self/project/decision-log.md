@@ -9,6 +9,39 @@
      see archive/INDEX.md for ranges. Grep the archive files
      directly; never re-inline them. -->
 
+## 2026-08-17 — RELEASE-EVALS: the release close gains the advisory harness line (4.7.1)
+
+**Decision:** `release.md` step 7 plus the repo checklist line wire
+the eval harness into every release close, advisory-only. The
+scenario-class mapping picked: **upgrade scenario** only for
+upgrade-machinery changes (`upgrade.md`, manifest rows/classes,
+changelog structure, renames/removals of distributed files) — the
+routine entry prepend never qualifies by itself, else the
+~70–80k-token scenario fires at literally every release;
+**close scenario** for close-protocol changes (end-of-task, task.md
+close steps, `Close: lite` trailer grammar); **neither** → the
+closing report notes "no applicable scenarios" plus the reason —
+the note is the evidence the check ran. The REFLECT-1 janitor fold
+is **declined**: no janitor trigger line for the harness — the
+trigger now sits in the mandatory release checklist, the exact loop
+finding 6 saw fail, and inferring "last scenario run" from
+`self/evaluations/` filenames would put fragile parsing in a
+deliberately mechanical read-only script; the janitor's existing
+note counters already carry the reflection-volume signal. Auto-jazz
+run (next-verb). Assumptions at skipped gates: patch bump (one
+prompt gains a section, no new files); checklist line inserted
+third so "the last three lines" keeps its source-only meaning.
+This close is the first under the net.
+
+**Rationale:** the net must hang in the loop it protects
+(reflection run one, finding 6 — the only finding to survive pass 2
+intact); advisory keeps a red scenario informative, never blocking.
+
+**Alternatives:** upgrade scenario at every release (rejected —
+makes the mapping vacuous at ~70–80k tokens a run); janitor counter
+line (declined as above — revisit if closing reports show the
+checklist line being skipped).
+
 ## 2026-08-17 — PACE-POLICY adopted; lab legs recaptured; review verdict on the gateless close
 
 **Decision:** Three maintainer instructions on the INTAKE-DEEP

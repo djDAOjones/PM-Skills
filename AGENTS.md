@@ -114,6 +114,11 @@ closing report:
   Upgrade actions.
 - [ ] `pm_skills/MANIFEST.md` / `pm_skills/GUIDE.md` synced if files
   were added, renamed, or removed.
+- [ ] Harness check (advisory): scenarios applicable to this release
+  run per `pm_skills/prompts/release.md` → "Harness check", results
+  — or "no applicable scenarios" plus the reason — noted in the
+  closing report. This repo's harness: `scripts/eval/`
+  (close-control scenario; upgrade assertion).
 - [ ] `npm run check` green AFTER the last edit (including the memory
   updates themselves).
 - [ ] Release consistency: every changed distributed file is named in

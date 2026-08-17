@@ -36,6 +36,29 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.7.1 — 2026-08-17
+
+Advisory harness check joins the release close (RELEASE-EVALS).
+
+### Changed
+
+- `prompts/release.md` — new step 7, "Harness check (advisory)":
+  repos keeping a behavioural eval harness run the scenarios
+  applicable to the release — upgrade scenario for upgrade-machinery
+  changes, close scenario for close-protocol changes — and note the
+  results (or "no applicable scenarios" plus the reason) in the
+  closing report. Advisory, never a gate; repos without a harness
+  skip it. Also fixes the step 6 consistency snippet: the top-entry
+  grep now matches version headings (`^## [0-9]`), not the
+  "Archived epochs" section CL-HORIZON added above the entries.
+
+### Upgrade actions
+
+- Replace `pm_skills/prompts/release.md` with the 4.7.1 copy
+  (`framework` class — no customisation check expected). No memory
+  migration. Projects without an eval harness see no behavioural
+  change.
+
 ## 4.7.0 — 2026-08-17
 
 PAR-DISPATCH: a dispatch verb initiates parallel dev work in
