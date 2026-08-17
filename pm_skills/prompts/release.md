@@ -104,7 +104,7 @@ Run a quick consistency check:
 echo "VERSION: $(cat pm_skills/VERSION)"
 echo "Top changelog heading:"; grep -m1 '^## [0-9]' pm_skills/CHANGELOG.md
 echo "Changed distributed files not named in the top entry:"
-TOP=$(awk '/^## /{n++} n==1' pm_skills/CHANGELOG.md)
+TOP=$(awk '/^## [0-9]/{n++} n==1' pm_skills/CHANGELOG.md)
 git status --porcelain | awk '{print $2}' | \
   grep -E '^(pm_skills/|AGENTS\.md|UI-STANDARDS\.md|DEV-INFRASTRUCTURE\.md)' | \
   grep -v 'CHANGELOG.md\|VERSION' | while read -r f; do

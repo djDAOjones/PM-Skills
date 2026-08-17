@@ -9,6 +9,39 @@
      see archive/INDEX.md for ranges. Grep the archive files
      directly; never re-inline them. -->
 
+## 2026-08-17 — CL-440-WORDING: 4.4.0 corrected; first real harness pull (4.7.2)
+
+**Decision:** three changes, one patch release. (1) The 4.4.0
+correction rides a `### Corrections` section in the 4.7.2 entry
+(assumption: extends the canonical entry shape; the published 4.4.0
+entry stays byte-untouched). (2) The ticket's open question is
+taken: `upgrade.md` Step 3 gains the class-precedence guard — the
+decisive argument is reach: a changelog entry is read only by walks
+crossing it, while the procedure is read by **every** walk, so the
+rule must live in the procedure. (3) `release.md`'s step 6 awk
+completes the 4.7.1 snippet fix (review F1). **Mapping call:** the
+upgrade scenario **applied** — the release changes `upgrade.md` and
+corrects upgrade instructions; the milestone intent had sequenced
+this release under the net. First **blinded** run (R0's pending
+gap): fixture 4.3.0 → 4.7.2, populated memory, template-merge
+window. Raw pass **RED** — the asserter flagged the mandated Step
+10 decision-log append as a memory mutation; calibrated on R0's
+in-role run, which skipped Step 10. Oracle fixed source-only
+(append-only assertion replaces byte-identical for that one file;
+5 checks where there were 4), re-run **GREEN 5/5**. The protected
+property held: the populated backlog crossed 4.4.0 untouched, with
+the blinded agent citing the correction unprompted. Detail:
+`self/evaluations/2026-08-17-upgrade-scenario-4.7.2.md`.
+
+**Rationale:** correct the record for planners (Step 2 assembles
+the whole gap before executing, so the correction reaches in-flight
+walks); make precedence structural for future walks; fix the oracle
+openly rather than let the net cry wolf at every faithful run.
+
+**Alternatives:** correction entry without the guard (rejected —
+reach, above); leaving the asserter and annotating runs (rejected —
+a net that is red on every honest pass trains people to ignore it).
+
 ## 2026-08-17 — RELEASE-EVALS: the release close gains the advisory harness line (4.7.1)
 
 **Decision:** `release.md` step 7 plus the repo checklist line wire

@@ -6,6 +6,10 @@
   release.md step 7 + repo checklist line, scenario-class mapping
   decided, janitor line declined; first release closed under the
   net (4.7.1) (2026-08-17) — see decision-log.
+- CL-440-WORDING — 4.4.0 upgrade-actions correction entry +
+  class-precedence guard in upgrade.md Step 3 + release.md awk
+  completion (review F1); first blinded upgrade-scenario run at a
+  release close (4.7.2) (2026-08-17) — see decision-log.
 
 ## Phase: Parallel arc
 

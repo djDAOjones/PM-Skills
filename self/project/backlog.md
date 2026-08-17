@@ -15,14 +15,7 @@
 
 ### Current milestone
 
-<!-- Intent: post-INTAKE-DEEP slice — CL-440-WORDING runs under the net RELEASE-EVALS hung (4.7.1, 2026-08-17; INTAKE-DEEP verdicts 2026-08-17). -->
-
-- [ ] **CL-440-WORDING Correct the 4.4.0 upgrade-actions wording**
-  [detail](tickets/CL-440-WORDING.md) (2026-08-17) — the 4.4.0 Upgrade
-  actions name pm_skills/project/backlog.md in a "replace" list — only the
-  MANIFEST class stops an upgrade overwriting a populated backlog; append
-  a correction entry (append-only file: correction, not a rewrite).
-  (source: R1 Hub evidence 2026-08-17) · High / Low / Low / Low
+<!-- Intent: post-INTAKE-DEEP slice shipped (RELEASE-EVALS 4.7.1, CL-440-WORDING 4.7.2, both 2026-08-17) — Current is empty; the next pick falls through to Next (RECORDS-DIST arc). -->
 
 ### Next milestone
 

@@ -36,6 +36,46 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.7.2 — 2026-08-17
+
+Correction release (CL-440-WORDING): 4.4.0's Upgrade actions name a
+project-memory path in a replace list; plus the precedence rule in
+`prompts/upgrade.md` and a `prompts/release.md` snippet completion.
+
+### Corrections
+
+- **4.4.0 → Upgrade actions** (published entry stays byte-untouched
+  — append-only rule): the replace list names
+  `pm_skills/project/backlog.md` "(template)". That path is
+  `project-memory` class in `MANIFEST.md` and is **never replaced**
+  in a consuming project — a populated backlog must survive every
+  upgrade. What 4.4.0 should have said: the backlog-template deltas
+  (linked `[detail]` grammar, legibility guidance) reach populated
+  backlogs by adoption at the next backlog touch — see that entry's
+  own "Optional adoptions" line — never by file replacement. For
+  every walk: when an entry's literal action list conflicts with a
+  path's MANIFEST class, **the class wins** (`prompts/upgrade.md`
+  Step 3).
+
+### Changed
+
+- `prompts/upgrade.md` — Step 3 now states the precedence rule: an
+  entry's action list never overrides a path's class; a
+  `project-memory` path is never replaced whatever an entry says.
+- `prompts/release.md` — step 6 snippet: the `TOP=` awk anchors to
+  version headings (`^## [0-9]`), completing 4.7.1's grep fix (the
+  coverage check was comparing against the "Archived epochs"
+  section).
+
+### Upgrade actions
+
+- Replace `pm_skills/prompts/upgrade.md` and
+  `pm_skills/prompts/release.md` with the 4.7.2 copies (`framework`
+  class).
+- No memory changes. If a past upgrade across 4.4.0 replaced a
+  populated `pm_skills/project/backlog.md`, restore it from git
+  history — 4.4.0 never licensed that replace.
+
 ## 4.7.1 — 2026-08-17
 
 Advisory harness check joins the release close (RELEASE-EVALS).

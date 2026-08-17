@@ -42,8 +42,21 @@ const check = (/** @type {boolean} */ ok, /** @type {string} */ msg) => {
   if (!ok) failed++;
 };
 
-const memDiff = git(['diff', '--name-only', ref, '--', 'pm_skills/project/']).trim();
-check(memDiff === '', `memory byte-identical to ${ref}${memDiff ? ` (changed: ${memDiff.replace(/\n/g, ', ')})` : ''}`);
+// upgrade.md Step 10 mandates prepending one record to the project
+// decision log, so that file is asserted append-only rather than
+// byte-identical; every other memory file must not change at all.
+const LOG = 'pm_skills/project/decision-log.md';
+const memChanged = git(['diff', '--name-only', ref, '--', 'pm_skills/project/'])
+  .trim().split('\n').filter(Boolean);
+const memRogue = memChanged.filter((p) => p !== LOG);
+check(memRogue.length === 0, `memory byte-identical to ${ref} (Step 10 log exempt)${memRogue.length ? ` (changed: ${memRogue.join(', ')})` : ''}`);
+if (memChanged.includes(LOG)) {
+  const oldLog = git(['show', `${ref}:${LOG}`]);
+  const i = oldLog.indexOf('\n## ');
+  const oldBody = i >= 0 ? oldLog.slice(i) : oldLog;
+  const newLog = readFileSync(join(R, LOG), 'utf8');
+  check(newLog.includes(oldBody), 'decision-log change is append-only (baseline entries intact)');
+}
 
 const custom = opt('--custom', '');
 if (custom) {
