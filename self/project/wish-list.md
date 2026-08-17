@@ -34,9 +34,11 @@
   evidence 2026-08-17)
 - RECORDS-TAXONOMY: the fixed current/next/icebox view flattens a
   consuming project's group dialect (Standing / Venue / Rolling
-  survive only as flags + summary prose) — configurable groups, or
-  document the flattening trade at adoption. (source: R1 Hub
-  evidence 2026-08-17)
+  survive only as flags + summary prose), and the validator's
+  KNOWN_FLAGS list is canon-hardcoded (the Hub's `⚠ rehearsal`
+  WARNs as unknown after its records adoption) — configurable
+  groups + flags, or document the flattening trade at adoption.
+  (source: R1 Hub evidence + Hub records adoption, 2026-08-17)
 - RECORDS-GRAMMAR-GUIDE: adoption guidance for long summaries
   (frontmatter lines cannot hard-wrap) and ID-less icebox prose
   (records force an ID per item). (source: R1 Hub evidence
