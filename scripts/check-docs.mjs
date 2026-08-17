@@ -97,6 +97,7 @@ const FILE_EXCLUDE = [
   /^self\/evaluations\//,
   /^self\/_transcripts\//,
   /^self\/project\/reports\//,
+  /^self\/project\/archive\//, // frozen history: pre-rename paths are not rot
 ];
 
 /**
