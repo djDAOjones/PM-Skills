@@ -286,10 +286,4 @@ Output a one-line summary:
   propose-only behaviour in its root `AGENTS.md`. Say "not a git
   repo" and skip if it isn't one.
 
-Then add one non-blocking reminder: if your tool can export the
-conversation, save it to `_transcripts/` with the session's starting
-commit on the first line (`Start SHA: <sha>`), and redact before
-committing — see `GUIDE.md` → "Saving session transcripts". This
-never gates the close.
-
 Present the report to the user before closing the task.
