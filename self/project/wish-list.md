@@ -6,36 +6,13 @@
 
 ## Open
 
-- RELEASE-EVALS: wire the advisory harness line into the release
-  close — run the applicable scenarios, note results in the closing
-  report. 4.5.0 restructured the changelog the upgrade scenario
-  protects, with no scenario run. (source: reflection run one)
-- REPORTS-IGNORE (residual): janitor reports out of git in the lab
-  and the pm-next template — the canon leg was promoted to the
-  backlog 2026-08-17. (source: reflection run one)
 - PACE-POLICY: successor increments pause until the Hub leg lands —
-  policy, needs maintainer adoption. (source: reflection run one)
+  policy, needs an explicit maintainer yes/no, not a milestone
+  slot. (source: reflection run one; held 2026-08-17 INTAKE-DEEP,
+  awaiting that answer — the assessment recommends adopting)
 - NEXT-FRAGMENTS: pm-next v0.2 — per-item decision/trajectory
   fragments folded at integration, closing the successor's last
-  shared-append residue. (source: reflection run one)
-- CL-4.4.0-WORDING: the 4.4.0 Upgrade actions name
-  `pm_skills/project/backlog.md` in a "replace" list — only the
-  MANIFEST class stops an upgrade overwriting a populated backlog;
-  reword (append-only file: correction entry, not a rewrite).
-  (source: R1 Hub evidence 2026-08-17)
-- RECORDS-SCAFFOLD: ship `gen-backlog.mjs` + `check-memory.mjs` as
-  scaffold with `--project-dir` — both are source-only and the
-  generator is path-hardcoded (the Hub run is the "proven on a
-  consuming project" trigger 4.1.0 named). (source: R1 Hub
-  evidence 2026-08-17)
-- RECORDS-TAXONOMY: the fixed current/next/icebox view flattens a
-  consuming project's group dialect (Standing / Venue / Rolling
-  survive only as flags + summary prose), and the validator's
-  KNOWN_FLAGS list is canon-hardcoded (the Hub's `⚠ rehearsal`
-  WARNs as unknown after its records adoption) — configurable
-  groups + flags, or document the flattening trade at adoption.
-  (source: R1 Hub evidence + Hub records adoption, 2026-08-17)
-- RECORDS-GRAMMAR-GUIDE: adoption guidance for long summaries
-  (frontmatter lines cannot hard-wrap) and ID-less icebox prose
-  (records force an ID per item). (source: R1 Hub evidence
-  2026-08-17)
+  shared-append residue. (source: reflection run one; held
+  2026-08-17 INTAKE-DEEP — lab-side work governed by the
+  PACE-POLICY answer: adopted means paused until the Hub leg lands,
+  declined means route to the lab's own queue)

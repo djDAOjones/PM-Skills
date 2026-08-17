@@ -15,21 +15,36 @@
 
 ### Current milestone
 
-<!-- Intent: INTAKE-DEEP is the committed slice — assess the whole intake pool before any promotion (maintainer instruction 2026-08-17). -->
+<!-- Intent: post-INTAKE-DEEP slice — RELEASE-EVALS then CL-440-WORDING: hang the regression net first so the correction release runs under it (INTAKE-DEEP verdicts 2026-08-17). -->
 
-- [ ] **INTAKE-DEEP Deep assessment of icebox and wish-list**
-  [detail](tickets/INTAKE-DEEP.md) (2026-08-17) — every open icebox record
-  and wish-list line assessed against current evidence — promote / hold /
-  cut with recorded reasons; nothing enters a milestone blindly
-  (maintainer instruction 2026-08-17). · High / Low / Low / Low
+- [ ] **RELEASE-EVALS Advisory harness line in the release close**
+  [detail](tickets/RELEASE-EVALS.md) (2026-08-17) — run the applicable
+  harness scenarios at every release close and note results in the closing
+  report — advisory, never blocking; hangs the shipped regression net in
+  the loop it protects (reflection run one, finding 6). · High / Low / Low
+  / Low
+- [ ] **CL-440-WORDING Correct the 4.4.0 upgrade-actions wording**
+  [detail](tickets/CL-440-WORDING.md) (2026-08-17) — the 4.4.0 Upgrade
+  actions name pm_skills/project/backlog.md in a "replace" list — only the
+  MANIFEST class stops an upgrade overwriting a populated backlog; append
+  a correction entry (append-only file: correction, not a rewrite).
+  (source: R1 Hub evidence 2026-08-17) · High / Low / Low / Low
 
 ### Next milestone
 
-<!-- Intent: nothing queued — INTAKE-DEEP's verdicts populate it. -->
+<!-- Intent: RECORDS-DIST — records-mode distribution (BACKLOG-STATE phase 2) as one arc; evidence base the R1 Hub run (INTAKE-DEEP verdict 2026-08-17). -->
+
+- [ ] **RECORDS-DIST Records-mode distribution (BACKLOG-STATE phase 2)**
+  [detail](tickets/RECORDS-DIST.md) (2026-08-17) — records mode becomes
+  distributable — one arc absorbing RECORDS-SCAFFOLD (scaffold generator +
+  validator with --project-dir), RECORDS-TAXONOMY (configurable groups and
+  flags, or the flattening trade documented), and RECORDS-GRAMMAR-GUIDE
+  (adoption grammar guidance). (source: R1 Hub run 2026-08-17) · High /
+  Medium / Medium / Medium
 
 ### Icebox
 
-<!-- Intent: kept with explicit triggers; re-checked each sweep (deep sweep 2026-08-17). -->
+<!-- Intent: kept with explicit triggers; all five held with reasons at the INTAKE-DEEP assessment (2026-08-17). -->
 
 - [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
   project with persistent user data] (2026-07-16) — hard rule "no

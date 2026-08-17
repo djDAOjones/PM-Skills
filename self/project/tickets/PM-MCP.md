@@ -47,6 +47,12 @@ code, an install step, a dependency surface — everything the
 zero-dependency product refuses — so it can only ever be an
 **optional adapter outside `pm_skills/`**, never the core.
 
+Last assessed 2026-08-17 (INTAKE-DEEP): hold — RQ5 GREEN
+(2026-08-17) advanced the prototype leg; the harness-client run
+stays a lab move (this record tracks the gate, not the lab's
+queue), and distribution stays blocked on more than one consuming
+project (external-evidence discipline).
+
 ## Approach
 
 Records first (BACKLOG-STATE), then the lab prototype (RQ5), then

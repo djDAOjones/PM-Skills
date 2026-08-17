@@ -102,6 +102,13 @@
 
 ## Source-only fixes
 
+- INTAKE-DEEP (2026-08-17) — the whole intake pool (five icebox
+  records, eight wish-list lines) deep-assessed against the day's
+  evidence: RELEASE-EVALS and CL-440-WORDING promoted to Current,
+  the three records-distribution wishes merged into RECORDS-DIST
+  (Next), all five icebox records held with dated reasons,
+  PACE-POLICY surfaced for a maintainer yes/no, one lab-side
+  residual cut. No release. See decision-log 2026-08-17.
 - DEV-PREP (2026-08-17) — prep sweep before the next arc: the five
   loose July transcripts identified, renamed to convention, and
   committed after a redaction scan; npm audit 3 high → 0 via

@@ -45,6 +45,12 @@ proposed, never auto-run). The continuous-core fiction assumes
 this ships eventually; the ablation's governance arm (D) showed
 prohibition-class rules doing real work — this gate is that class.
 
+Last assessed 2026-08-17 (INTAKE-DEEP): hold — the per-verb gate is
+untouched (no scenario built, no per-verb sign-off recorded).
+JANITOR-READ is now live and bedding in (4.5.0; reports untracked
+since REPORTS-IGNORE), so the Reconcile-rung scenario can be built
+whenever the maintainer chooses to open the gate.
+
 ## Approach
 
 Reconcile-rung first, built on JANITOR-READ's wrapper: detect

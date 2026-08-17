@@ -9,6 +9,61 @@
      see archive/INDEX.md for ranges. Grep the archive files
      directly; never re-inline them. -->
 
+## 2026-08-17 — INTAKE-DEEP: thirteen intake items assessed; three promoted, nine held, one cut
+
+**Decision:** Deep assessment of the whole intake pool (five icebox
+records, eight wish-list lines) against the day's evidence — the R1
+Hub run and records adoption, reflection run one, and RQ5 GREEN.
+Run gateless under `next:`; placements written directly per the
+backlog-authoring gateless clause, every one reversible by a record
+edit plus regeneration. **Promoted to Current:** RELEASE-EVALS
+(#1 — reflection finding 6 survived assessment intact: the shipped
+regression net has never run at a release, including 4.5.0
+restructuring the changelog the upgrade scenario protects; the net
+hangs first so the next release runs under it) and CL-440-WORDING
+(#2 — R1 Hub evidence: the 4.4.0 Upgrade actions name a
+project-memory path in a replace list, a live hazard to the
+never-touch-memory promise; fixed by an appended correction entry,
+never a rewrite; the wish's "CL-4.4.0-WORDING" label renamed at
+promotion — the item-ID grammar excludes dots, which the validator
+caught live and RECORDS-DIST's grammar leg now records). **Promoted to Next as one arc:** RECORDS-DIST,
+absorbing RECORDS-SCAFFOLD + RECORDS-TAXONOMY +
+RECORDS-GRAMMAR-GUIDE — one evidence base (the Hub mis-served three
+ways by canon-shaped tooling), one release surface; shipping any
+leg alone re-creates the gap the others name. This takes up
+BACKLOG-STATE's deferred phase 2 on the fired 4.1.0
+proven-on-a-consuming-project trigger. **Icebox — all five held,
+triggers restated and honest,** dated verdict lines on each record:
+DATA-MIG (no consuming project carries persistent user data),
+TEST-DOC (zero evidence of need at zero carrying cost; a cut stays
+the maintainer's call), ARCH-RECALL (no missed-precedent pain
+reported), JANITOR-WRITE (per-verb gate untouched; JANITOR-READ now
+bedding in makes the Reconcile rung buildable when the maintainer
+opens the gate), PM-MCP (RQ5 GREEN advanced the prototype leg; the
+harness-client run stays a lab move — the ticket's open question,
+answered — and distribution stays on the more-than-one-project
+leg). **Wish-list:** PACE-POLICY held — policy adoption needs an
+explicit maintainer yes/no, surfaced in the closing report with a
+recommendation to adopt; NEXT-FRAGMENTS held — lab-side successor
+work governed by that same answer; REPORTS-IGNORE residual cut —
+the canon leg shipped with 4.7.0 and the lab / pm-next legs are
+lab-repo chores to re-capture in the lab's own tracking (surfaced
+in the closing report so the pointer is handed over, not hoped
+for).
+
+**Rationale:** assessment before inclusion, as instructed — every
+placement names its evidence; the two Current items are the
+smallest committed slice and each guards a core framework promise
+(regression visibility; never touch project memory).
+
+**Alternatives:** promoting the three records wishes as separate
+items (rejected — one evidence base, one surface; separate items
+invite shipping the tools without the dialect design); promoting
+PM-MCP's harness-client leg into this backlog (rejected — lab
+work; the icebox record tracks the gate); cutting TEST-DOC
+(rejected again — prior maintainer keep respected at zero carrying
+cost).
+
 ## 2026-08-17 — DEV-PREP: tidy, secure, and triage-queue sweep (source-only)
 
 **Decision:** Ran the maintainer-requested prep sweep before the

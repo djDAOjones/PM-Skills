@@ -12,3 +12,7 @@ summary: hard rule "no irreversible data change without a documented back-out" +
 # DATA-MIG — Data-migration guidance
 
 Record only — the summary is the item; no working detail yet.
+
+Last assessed 2026-08-17 (INTAKE-DEEP): hold — trigger unfired; no
+consuming project carries persistent user data (the R1 Hub evidence
+is memory-records evidence, not user data).

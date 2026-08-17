@@ -12,3 +12,7 @@ summary: richer archive INDEX summaries + a search-then-skim pass; embeddings on
 # ARCH-RECALL — Recall over cold storage
 
 Record only — the summary is the item; no working detail yet.
+
+Last assessed 2026-08-17 (INTAKE-DEEP): hold — no consuming project
+has reported missed-precedent pain; no archive here or downstream
+is yet at the scale where recall pays.
