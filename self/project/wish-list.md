@@ -22,3 +22,32 @@
 - NEXT-FRAGMENTS: pm-next v0.2 — per-item decision/trajectory
   fragments folded at integration, closing the successor's last
   shared-append residue. (source: reflection run one)
+- CL-4.4.0-WORDING: the 4.4.0 Upgrade actions name
+  `pm_skills/project/backlog.md` in a "replace" list — only the
+  MANIFEST class stops an upgrade overwriting a populated backlog;
+  reword (append-only file: correction entry, not a rewrite).
+  (source: R1 Hub evidence 2026-08-17)
+- VALIDATOR-DIALECT: check-memory counters miss the Hub's
+  `- ID (date, mode) —` trajectory dialect (report 0 items on a
+  ~200-item project, silently) — tolerate it or state the grammar.
+  (source: R1 Hub evidence 2026-08-17)
+- RECORDS-REPAIR-MSGS: under records mode, coherence FAILs must
+  say "regenerate from records" — today's "evict to trajectory" /
+  "move to archive" advice, followed verbatim on a naive view
+  edit, would archive a live item; also WARN on unknown record
+  `status:` values (`done` currently renders silently as open).
+  (source: R1 Hub evidence 2026-08-17)
+- RECORDS-SCAFFOLD: ship `gen-backlog.mjs` + `check-memory.mjs` as
+  scaffold with `--project-dir` — both are source-only and the
+  generator is path-hardcoded (the Hub run is the "proven on a
+  consuming project" trigger 4.1.0 named). (source: R1 Hub
+  evidence 2026-08-17)
+- RECORDS-TAXONOMY: the fixed current/next/icebox view flattens a
+  consuming project's group dialect (Standing / Venue / Rolling
+  survive only as flags + summary prose) — configurable groups, or
+  document the flattening trade at adoption. (source: R1 Hub
+  evidence 2026-08-17)
+- RECORDS-GRAMMAR-GUIDE: adoption guidance for long summaries
+  (frontmatter lines cannot hard-wrap) and ID-less icebox prose
+  (records force an ID per item). (source: R1 Hub evidence
+  2026-08-17)
