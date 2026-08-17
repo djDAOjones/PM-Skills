@@ -1,8 +1,8 @@
 ---
 id: PAR-DISPATCH
 name: Parallel dispatch verb
-status: todo
-milestone: next
+status: in-progress
+milestone: current
 flags: detail
 date: 2026-08-17
 grades: Medium / Low-Med / Medium / Low-Med
@@ -11,8 +11,8 @@ summary: initiation verb for parallel chats — disjoint pick, lane and primary 
 ---
 # PAR-DISPATCH — Parallel dispatch verb
 
-> **Status:** Next #1 · **Grades:** Medium / Low-Med / Medium /
-> Low-Med.
+> **Status:** Current — in build (promoted 2026-08-17) · **Grades:**
+> Medium / Low-Med / Medium / Low-Med.
 
 ## Intent
 

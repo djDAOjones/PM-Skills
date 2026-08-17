@@ -10,13 +10,9 @@
   close — run the applicable scenarios, note results in the closing
   report. 4.5.0 restructured the changelog the upgrade scenario
   protects, with no scenario run. (source: reflection run one)
-- RETIRE-TRANSCRIPT-NAG: remove the per-close transcript reminder
-  (shipped 4.2.0, zero fires ever); demote the GUIDE transcript
-  section to reference. The run's named retirement. (source:
-  reflection run one)
-- REPORTS-IGNORE: janitor reports out of git in canon, lab, and the
-  pm-next template — freshness is a filesystem contract, not a git
-  one. (source: reflection run one)
+- REPORTS-IGNORE (residual): janitor reports out of git in the lab
+  and the pm-next template — the canon leg was promoted to the
+  backlog 2026-08-17. (source: reflection run one)
 - PACE-POLICY: successor increments pause until the Hub leg lands —
   policy, needs maintainer adoption. (source: reflection run one)
 - NEXT-FRAGMENTS: pm-next v0.2 — per-item decision/trajectory

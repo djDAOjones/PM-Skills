@@ -15,17 +15,25 @@
 
 ### Current milestone
 
-<!-- Intent: nothing committed — the records arc runs in Next. -->
+<!-- Intent: PAR-DISPATCH in build with its two dispatched exercise lanes (RETIRE-TRANSCRIPT-NAG, REPORTS-IGNORE — promoted from the wish-list 2026-08-17). -->
 
-### Next milestone
-
-<!-- Intent: PAR-DISPATCH queued 2026-08-17 via maintainer triage — the parallel arc's missing initiation verb; further work arrives via triage, lab findings, or consuming-project evidence. -->
-
-- [ ] **PAR-DISPATCH Parallel dispatch verb**
+- [~] **PAR-DISPATCH Parallel dispatch verb**
   [detail](tickets/PAR-DISPATCH.md) (2026-08-17) — initiation verb for
   parallel chats — disjoint pick, lane and primary assignment, one
   paste-ready brief per chat; composes Start B + PAR-BRANCH conventions +
   the secondary close. · Medium / Low-Med / Medium / Low-Med
+- [~] **RETIRE-TRANSCRIPT-NAG Retire the per-close transcript reminder**
+  (2026-08-17) — remove the per-close transcript reminder (shipped 4.2.0,
+  zero fires ever) from end-of-task; demote the GUIDE transcript section
+  to reference (source: reflection run one).
+- [~] **REPORTS-IGNORE Janitor report out of git (canon scope)**
+  (2026-08-17) — stop git-tracking the janitor report here — freshness is
+  a filesystem contract, not a git one; the lab and pm-next template legs
+  remain wished (source: reflection run one).
+
+### Next milestone
+
+<!-- Intent: nothing queued — new work arrives via triage, lab findings, or consuming-project evidence. -->
 
 ### Icebox
 
