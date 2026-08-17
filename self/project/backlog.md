@@ -19,7 +19,13 @@
 
 ### Next milestone
 
-<!-- Intent: nothing queued — the records arc shipped 2026-08-17; new work arrives via triage, lab findings, or consuming-project evidence. -->
+<!-- Intent: PAR-DISPATCH queued 2026-08-17 via maintainer triage — the parallel arc's missing initiation verb; further work arrives via triage, lab findings, or consuming-project evidence. -->
+
+- [ ] **PAR-DISPATCH Parallel dispatch verb**
+  [detail](tickets/PAR-DISPATCH.md) (2026-08-17) — initiation verb for
+  parallel chats — disjoint pick, lane and primary assignment, one
+  paste-ready brief per chat; composes Start B + PAR-BRANCH conventions +
+  the secondary close. · Medium / Low-Med / Medium / Low-Med
 
 ### Icebox
 

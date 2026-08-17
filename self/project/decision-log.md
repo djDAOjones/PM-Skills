@@ -9,6 +9,34 @@
      see archive/INDEX.md for ranges. Grep the archive files
      directly; never re-inline them. -->
 
+## 2026-08-17 — PAR-DISPATCH: parallel-initiation verb queued (Next #1)
+
+**Decision:** Queued PAR-DISPATCH in the Next milestone after a
+maintainer-requested viability exploration: a distributed verb that
+initiates parallel dev work across parallel chats — disjoint pick,
+lane and primary assignment, one paste-ready brief per chat.
+Viability closed on shipped evidence: PAR-BRANCH (4.6.0) verified
+the parallel mechanics live on both repos, next.md supplies the
+composition-verb idiom, and nothing yet performs the entry move —
+the GUIDE governs sessions already in flight. Constraints and open
+questions live in the ticket record.
+
+**Rationale:** every hard concurrency problem (merge rule,
+one-writer, secondary close) shipped and verified this week; the
+remaining gap is orchestration — one prompt file's worth.
+Placement is Next, not Current: the instruction was "add to
+roadmap", and Current's intent reserves the committed
+build-next slice — promotion is a separate maintainer call.
+
+**Alternatives:** wish-list capture (rejected — the instruction was
+conditional roadmap placement and the viability condition was met);
+treating the GUIDE parallel section as sufficient per the
+audit-recipe precedent (rejected — that precedent defers verbs
+whose recipe already exists as composable pieces; the entry move
+has no recipe anywhere); a dispatch mode inside next.md (kept open
+in the ticket — lean sibling file so the one-item guardrail stays
+untouched).
+
 ## 2026-08-17 — VALIDATOR-QC: probe-evidenced hardening ships source-only
 
 **Decision:** three `scripts/check-memory.mjs` fixes, straight from
