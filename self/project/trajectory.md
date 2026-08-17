@@ -2,6 +2,13 @@
 
 ## Phase: Records arc
 
+- VALIDATOR-QC — probe-evidenced check-memory hardening
+  (source-only): records-aware repair messages on both coherence
+  FAILs, WARN on unknown record status values, dialect-tolerant
+  trajectory counters; verified against canon, the Hub's live
+  memory (counters 0 → 12), and replays of both Hub probe failure
+  scenarios (2026-08-17) — see decision-log.
+
 - PAR-BRANCH — branch-per-session for records mode: verified live
   on both repos (records clean; view conflicts regenerate away);
   GUIDE + secondary-close updated (4.6.0) (2026-08-17) — see

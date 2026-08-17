@@ -27,16 +27,6 @@
   MANIFEST class stops an upgrade overwriting a populated backlog;
   reword (append-only file: correction entry, not a rewrite).
   (source: R1 Hub evidence 2026-08-17)
-- VALIDATOR-DIALECT: check-memory counters miss the Hub's
-  `- ID (date, mode) —` trajectory dialect (report 0 items on a
-  ~200-item project, silently) — tolerate it or state the grammar.
-  (source: R1 Hub evidence 2026-08-17)
-- RECORDS-REPAIR-MSGS: under records mode, coherence FAILs must
-  say "regenerate from records" — today's "evict to trajectory" /
-  "move to archive" advice, followed verbatim on a naive view
-  edit, would archive a live item; also WARN on unknown record
-  `status:` values (`done` currently renders silently as open).
-  (source: R1 Hub evidence 2026-08-17)
 - RECORDS-SCAFFOLD: ship `gen-backlog.mjs` + `check-memory.mjs` as
   scaffold with `--project-dir` — both are source-only and the
   generator is path-hardcoded (the Hub run is the "proven on a

@@ -9,6 +9,33 @@
      see archive/INDEX.md for ranges. Grep the archive files
      directly; never re-inline them. -->
 
+## 2026-08-17 — VALIDATOR-QC: probe-evidenced hardening ships source-only
+
+**Decision:** three `scripts/check-memory.mjs` fixes, straight from
+the R1 Hub evidence probes, shipped source-only (no VERSION bump —
+the validator has no scaffold copy yet; RECORDS-SCAFFOLD remains
+wished): (1) records-aware repair messages — under records mode the
+shipped-`[x]` and record-without-open-item FAILs now say
+regenerate-from-records / move-record-to-archive instead of "evict
+to trajectory", whose verbatim following would have archived a live
+item; (2) WARN on unknown record `status:` values (the probe's
+`done` typo rendered silently as open); (3) trajectory counters
+tolerate the consuming-project dialect `- ID (date, mode) — …`.
+
+**Rationale:** all three failures were demonstrated live on the Hub
+records probe (`PM-Skills-lab` findings 2026-08-17); the maintainer
+gave a same-day quality mandate. Fixes verified four ways: canon
+green (counters gained two previously missed lines), lab memory
+unaffected (its fork inherits at next upstream merge), Hub live
+memory counters 0 → 12 items, and both probe scenarios replayed
+against the patched validator now produce correct, non-destructive
+guidance.
+
+**Alternatives:** wait for triage (rejected — same-day mandate,
+directly evidenced, source-only surface); fold into a release with
+the 4.4.0 changelog-wording fix (rejected — that one is distributed
+and stays wished as CL-4.4.0-WORDING).
+
 ## 2026-08-17 — REFLECT-1: reflection run one (self-hosted, discounted)
 
 **Decision:** Ran the standing practice's first triggered pass —

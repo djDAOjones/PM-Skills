@@ -98,6 +98,10 @@ function backlogCheck(/** @type {any} */ B) {
   const path = join(projectDir, 'backlog.md');
   const content = read(path);
   if (!content) { say('note', 'backlog.md: absent — skipped'); return { detailIds: new Set() }; }
+  // Records mode changes the right repair: the view is generated, so a bad
+  // line is fixed by regenerating from records — never by editing the view.
+  const recordsMode = content.includes('<!-- generated:records:start')
+    || existsSync(join(projectDir, 'tickets', '_meta.md'));
   const { items, sectionWords } = parseBacklog(content);
   const ids = new Map();
   const detailIds = new Set();
@@ -108,7 +112,9 @@ function backlogCheck(/** @type {any} */ B) {
 
   for (const it of items) {
     if (it.status === 'x')
-      say('FAIL', `backlog: shipped [x] item still present (line ${it.line}) — evict to trajectory`);
+      say('FAIL', recordsMode
+        ? `backlog: shipped [x] item in the generated view (line ${it.line}) — move the record to archive and regenerate (gen-backlog); never hand-edit between the markers`
+        : `backlog: shipped [x] item still present (line ${it.line}) — evict to trajectory`);
     if (it.status === ' ' || it.status === '~') open++;
     const bold = it.text.match(/^\*\*([A-Z][A-Z0-9-]+)\b([^*]*)\*\*\s*(.*)$/);
     if (!bold) { unparsed++; continue; }
@@ -169,13 +175,16 @@ function ticketsCheck(/** @type {any} */ B, /** @type {Set<string>} */ detailIds
     }));
     for (const [id, fm] of recIds) {
       if (!fm) { say('FAIL', `records: ${id}.md has no frontmatter`); continue; }
+      const status = fm.status ?? '';
+      if (!/^(open|todo|in-progress|cut)$/.test(status))
+        say('WARN', `records: ${id} status '${status}' is not a known value (open/todo/in-progress/cut) — it renders as open; a shipped record moves to archive instead`);
       if (!openStatuses.has(id))
-        say('FAIL', `records: ${id}.md has no open item in the view — shipped records move to archive`);
+        say('FAIL', `records: ${id}.md has no open item in the view — if it shipped, move the record to archive and regenerate; if still open, the view has drifted — regenerate from records (never hand-edit the view)`);
       else {
         const box = openStatuses.get(id);
-        const want = fm.status === 'in-progress' ? '~' : fm.status === 'cut' ? '-' : ' ';
+        const want = status === 'in-progress' ? '~' : status === 'cut' ? '-' : ' ';
         if (box !== want)
-          say('FAIL', `records: ${id} status '${fm.status}' does not match view box '[${box}]' — regenerate`);
+          say('FAIL', `records: ${id} status '${status}' does not match view box '[${box}]' — regenerate the view from records`);
         const w = words(read(join(dir, `${id}.md`)));
         if (w > B.ticketSoftWords)
           say('WARN', `records: ${id}.md at ${w} words (soft ${B.ticketSoftWords})`);
@@ -322,8 +331,10 @@ function attentionCounters() {
   /** @type {{id:string,date:string}[]} */
   const items = [];
   for (const chunk of tr.split(/^(?=- )/m)) {
-    const id = chunk.match(/^- ([A-Z][A-Z0-9-]+) —/)?.[1];
-    const dates = [...chunk.matchAll(/\((\d{4}-\d{2}-\d{2})\)/g)];
+    // Tolerate consuming-project dialects: `- ID (date, mode) — …` as well
+    // as canon's `- ID — …`, and `(YYYY-MM-DD, anything)` date stamps.
+    const id = chunk.match(/^- ([A-Z][A-Z0-9-]+)(?: \([^)]*\))? —/)?.[1];
+    const dates = [...chunk.matchAll(/\((\d{4}-\d{2}-\d{2})(?:,[^)]*)?\)/g)];
     if (id && dates.length) items.push({ id, date: dates[dates.length - 1][1] });
   }
   const last30 = items.filter((i) => daysSince(i.date) <= 30).length;
