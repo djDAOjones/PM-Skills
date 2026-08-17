@@ -1,9 +1,9 @@
 name: Lint
 
 # Runs the framework's full quality gate -- Markdown standard, internal
-# link integrity, inline path references, spelling, and EditorConfig
-# conformance -- on every push to the default branch and every pull
-# request. Runs in a clean Ubuntu runner, so the OneDrive / on-demand
+# link integrity, inline path references, memory structure, spelling,
+# and EditorConfig conformance -- on every push to the default branch
+# and every pull request. Runs in a clean Ubuntu runner, so the OneDrive / on-demand
 # filesystem constraints of a local checkout never apply here.
 
 on:
@@ -45,6 +45,9 @@ jobs:
 
       - name: Docs integrity (links + inline paths)
         run: npm run lint:docs
+
+      - name: Memory validator (check-memory)
+        run: npm run lint:memory
 
       - name: Spell check (cspell)
         run: npm run lint:spell

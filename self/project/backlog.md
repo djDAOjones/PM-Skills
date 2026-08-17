@@ -15,11 +15,17 @@
 
 ### Current milestone
 
-<!-- Intent: nothing committed — PAR-DISPATCH and its two exercise lanes shipped 4.7.0 (2026-08-17). -->
+<!-- Intent: INTAKE-DEEP is the committed slice — assess the whole intake pool before any promotion (maintainer instruction 2026-08-17). -->
+
+- [ ] **INTAKE-DEEP Deep assessment of icebox and wish-list**
+  [detail](tickets/INTAKE-DEEP.md) (2026-08-17) — every open icebox record
+  and wish-list line assessed against current evidence — promote / hold /
+  cut with recorded reasons; nothing enters a milestone blindly
+  (maintainer instruction 2026-08-17). · High / Low / Low / Low
 
 ### Next milestone
 
-<!-- Intent: nothing queued — new work arrives via triage, lab findings, or consuming-project evidence. -->
+<!-- Intent: nothing queued — INTAKE-DEEP's verdicts populate it. -->
 
 ### Icebox
 

@@ -102,6 +102,14 @@
 
 ## Source-only fixes
 
+- DEV-PREP (2026-08-17) — prep sweep before the next arc: the five
+  loose July transcripts identified, renamed to convention, and
+  committed after a redaction scan; npm audit 3 high → 0 via
+  markdownlint-cli2 0.23.2 with both override pins retired at their
+  documented condition; the missing lint:memory step added to CI
+  and the DEV-INFRASTRUCTURE table (4.1.0 parity drift);
+  INTAKE-DEEP queued as Current #1. No release. See decision-log
+  2026-08-17.
 - GATE-FRESH (2026-08-08) — fresh-clone gate repair: check-docs now
   ignores gitignored `node_modules/` path references (three doc refs
   failed every fresh clone), and the file-map dropped its stale line

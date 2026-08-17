@@ -9,6 +9,37 @@
      see archive/INDEX.md for ranges. Grep the archive files
      directly; never re-inline them. -->
 
+## 2026-08-17 — DEV-PREP: tidy, secure, and triage-queue sweep (source-only)
+
+**Decision:** Ran the maintainer-requested prep sweep before the
+next development arc. **Tidy:** the five loose exports in
+`self/_transcripts/` identified by content and modified times as
+the missing tail of the 2026-07-16 burst (REVIEW-FIXES,
+REPO-REVIEW, NEXT-CMD, ITEM-AGE, ARCH-INTEG), renamed to the
+dated-ID convention and committed after a redaction scan (no
+secrets; the view-link paths match the already-tracked July set).
+**Secure:** `npm audit` 3 high → 0 by bumping `markdownlint-cli2`
+to 0.23.2 and retiring both `overrides` pins at their documented
+retirement condition (the tool now depends on patched `js-yaml`
+5.x and `markdown-it` 14.3.0 directly; the js-yaml 4.x fix was
+never backported, so the tool bump was the only clean resolution);
+the missing `lint:memory` step added to CI and to the
+DEV-INFRASTRUCTURE script table — 4.1.0 wired it into
+`npm run lint` but workflow and table never followed. **Triage:**
+nothing promoted on momentum — INTAKE-DEEP authored as Current #1:
+every icebox and wish-list item assessed against current evidence
+(promote / hold / cut, reasons recorded) as the next task.
+
+**Rationale:** the maintainer asked for tidy, secure, and triage
+in preparation for more dev, with assessment-before-inclusion
+explicit — queuing the assessment as the committed slice honours
+that instead of pre-empting its verdicts.
+
+**Alternatives:** promoting the records-distribution wishes now
+(rejected — the instruction defers inclusion to the assessment);
+holding markdownlint-cli2 back with deeper pins (rejected — no
+patched js-yaml 4.x exists to pin to).
+
 ## 2026-08-17 — PAR-DISPATCH: dispatch verb ships exercise-verified (4.7.0)
 
 **Decision:** Shipped `pm_skills/integrations/dispatch.md` — the

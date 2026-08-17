@@ -170,20 +170,22 @@ npm install --package-lock-only
 
 ### Security overrides
 
-`package.json` `overrides` pins two transitive dependencies of
-`markdownlint-cli2` to patched releases:
+`package.json` currently carries **no** `overrides`. The two
+historical pins — `js-yaml` `^4.2.0` (CVE-2026-53550) and
+`markdown-it` `^14.2.0` (CVE-2026-48988) — were retired on
+2026-08-17, when `markdownlint-cli2@0.23.2` moved onto patched
+releases of both directly (the retirement condition the pins were
+documented with). The same bump resolved the js-yaml 4.x
+quadratic-CPU advisories (CVE-2026-59870, fix never backported to
+4.x) and the transitive `mailto:` scan-loop DoS under
+`markdown-it`.
 
-- `js-yaml` → `^4.2.0` (CVE-2026-53550: quadratic-complexity DoS in YAML
-  merge-key handling).
-- `markdown-it` → `^14.2.0` (CVE-2026-48988: quadratic-complexity DoS in
-  the smartquotes rule).
-
-Both are dev-only, lint-time DoS issues over trusted repo docs, not a
-runtime exposure — but the pins keep `npm audit` clean at no cost (both
-are backward-compatible minor bumps). `markdownlint-cli2` still pins the
-unpatched versions exactly, so its own auto-fix would downgrade it;
-remove an override only once `markdownlint-cli2` depends on the patched
-version (or later) directly.
+All such advisories to date are dev-only, lint-time DoS exposure
+over trusted repo docs, not a runtime surface. Triage new ones via
+`npm audit`; reintroduce an override only when the tool itself
+cannot move yet, document the CVE beside the pin, and remove it
+once `markdownlint-cli2` depends on the patched version (or later)
+directly.
 
 ## Versioning and releases
 

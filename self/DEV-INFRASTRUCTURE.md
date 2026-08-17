@@ -18,9 +18,10 @@ in `CONTRIBUTING.md` → "Security overrides".
 | Script | Command | Purpose |
 | --- | --- | --- |
 | `check` | `npm run check` | The quality gate (`lint` + `lint:boundary`) |
-| `lint` | `npm run lint` | The four lint checks below, in sequence |
+| `lint` | `npm run lint` | The five lint checks below, in sequence |
 | `lint:md` | `npx markdownlint-cli2 "**/*.md"` | Markdown lint |
 | `lint:docs` | `node scripts/check-docs.mjs` | Relative-link + inline-path integrity |
+| `lint:memory` | `node scripts/check-memory.mjs` | Memory structure + budgets (the end-of-task size check) |
 | `lint:spell` | `npx cspell "**/*.md"` | Spelling (en-GB, curated dictionary) |
 | `lint:editorconfig` | `npx editorconfig-checker` | EditorConfig conformance (non-Markdown) |
 | `lint:boundary` | `node scripts/package.mjs --check` | Distribution boundary: `pm_skills/` tree ↔ MANIFEST agreement |
@@ -33,7 +34,8 @@ Do not add scripts without updating this table and `CONTRIBUTING.md`.
 
 - **Command:** `npm run check` — non-mutating, CI-safe.
 - **Runs:** markdownlint, docs integrity (links + backticked paths),
-  cspell, editorconfig-checker, distribution-boundary check
+  memory validator (`scripts/check-memory.mjs`), cspell,
+  editorconfig-checker, distribution-boundary check
   (`scripts/package.mjs --check`).
 - **Scope:** every tracked Markdown file except the gate-excluded
   paths: `self/archive/**` (frozen pre-adoption history),
