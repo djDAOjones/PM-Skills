@@ -2,6 +2,10 @@
 
 ## Phase: Records arc
 
+- PAR-BRANCH — branch-per-session for records mode: verified live
+  on both repos (records clean; view conflicts regenerate away);
+  GUIDE + secondary-close updated (4.6.0) (2026-08-17) — see
+  decision-log.
 - BACKLOG-STATE — phase 1 shipped: canon backlog runs records mode
   (tickets = records, view generated, validator coherence FAILs
   divergence); phase 0 = lab RQ3 pass (2026-08-17) — see

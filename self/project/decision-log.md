@@ -5,6 +5,26 @@
      relevant bodies. Keep entries tight: Decision / Rationale /
      Alternatives. -->
 
+## 2026-08-17 — PAR-BRANCH: branch-per-session ships for records mode (4.6.0)
+
+**Decision:** Released 4.6.0: the GUIDE's parallel-work section and
+the end-of-task secondary close gain the records-mode path —
+sessions on branches, no claims for item work, and the merge rule
+verified live on both repos: record files merge clean;
+insert-collisions conflict only in the generated view and are
+resolved by regeneration; field edits usually merge clean
+everywhere. Advisory claims remain for prose-memory projects and
+the shared append files (same-file appends stay git's weakest
+case). The Next milestone is now empty: the records arc is
+complete.
+
+**Rationale:** The ticket's own verification requirement was met
+twice over (lab E1 insert case; canon field-edit exercise) before
+the GUIDE text claimed anything.
+
+**Alternatives:** Retiring advisory claims entirely (rejected —
+the C10 append caveat still governs the shared files).
+
 ## 2026-08-17 — BACKLOG-STATE: canon runs records mode (phase 1)
 
 **Decision:** Shipped phase 1, source-only. Records are the ticket

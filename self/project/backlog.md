@@ -19,13 +19,7 @@
 
 ### Next milestone
 
-<!-- Intent: the records arc; phase 1 shipped 2026-08-17 — PAR-BRANCH completes it. -->
-
-- [~] **PAR-BRANCH Branch-per-session coordination**
-  [detail](tickets/PAR-BRANCH.md) (2026-08-09) — records make item writes
-  disjoint; branch-per-session with the regenerate-the-view merge rule;
-  advisory claims remain for shared files and prose-memory projects. ·
-  Medium / Low-Med / Low / Medium
+<!-- Intent: nothing queued — the records arc shipped 2026-08-17; new work arrives via triage, lab findings, or consuming-project evidence. -->
 
 ### Icebox
 

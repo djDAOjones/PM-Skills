@@ -36,6 +36,31 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.6.0 — 2026-08-17
+
+PAR-BRANCH: branch-per-session coordination for records-mode
+projects, with the regenerate-the-view merge rule.
+
+### Changed
+
+- `pm_skills/GUIDE.md` — "Parallel and multi-machine work" gains
+  the records-mode path: sessions on branches, item work needs no
+  claims, record files merge clean, and any view conflict is
+  resolved by regenerating from the merged records — never by
+  hand-merging the view. Advisory claims remain for prose-memory
+  projects and the shared append files.
+- `pm_skills/prompts/end-of-task.md` — the secondary-session close
+  shrinks under records mode: the handoff block carries only the
+  shared-file appends; backlog changes ride the branch as record
+  edits.
+
+### Upgrade actions
+
+- Replace `pm_skills/GUIDE.md` and
+  `pm_skills/prompts/end-of-task.md` with this version's copies.
+  No action for prose-memory projects — the new paths activate only
+  where a project runs a generated backlog over per-item records.
+
 ## 4.5.0 — 2026-08-17
 
 JANITOR-READ + CL-HORIZON: session start can read a standing

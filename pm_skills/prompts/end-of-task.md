@@ -72,6 +72,13 @@ collide. Instead:
 - Stage and commit **only your own paths** — never `git add -A` while
   parallel (`integrations/task.md` → step 11) — so you don't sweep up
   the primary's in-flight edits.
+- **Records mode** (a generated backlog over per-item records): your
+  backlog changes ride your branch as record edits and merge
+  mechanically at integration — the handoff block shrinks to the
+  shared-file appends only (`Trajectory:` and `Decision:`), and the
+  `Backlog:` line becomes "record updated on branch". On any view
+  conflict at merge, regenerate from the merged records; never
+  hand-merge the view.
 
 The single active session, or the **primary** of a parallel set, closes
 normally with steps 3–5 below (and applies any handoff blocks it was

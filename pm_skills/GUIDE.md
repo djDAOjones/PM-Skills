@@ -330,6 +330,18 @@ never a lock (a crashed session must never block the next one):
   emit a handoff block (`end-of-task.md` → "Secondary-session close")
   that the primary — or the next `memory-maintenance.md` → Reconcile —
   applies. Stage your own paths only; never `git add -A` while parallel.
+- **Records mode changes the arithmetic.** Where the backlog runs as
+  per-item records under a generated view, two sessions working
+  different items touch different files: work each session on its own
+  branch and merge at close — no claims needed for item work. The
+  merge rule is mechanical: record files merge clean; on any view
+  conflict, **regenerate from the merged records and stage the
+  result — never hand-merge the view**. (Verified live:
+  insert-collisions conflict only in the view and regenerate away;
+  field edits usually merge clean everywhere.) The advisory-claim
+  protocol above remains for prose-memory projects and for the
+  genuinely shared files — decision log, trajectory — where
+  same-file appends stay git's weakest case.
 - **Multi-machine: git is the sync channel, never the filesystem.** Work
   crosses machines as commits and branches — pull the branch; don't let
   a sync folder (OneDrive, Dropbox, iCloud) carry a working tree between
