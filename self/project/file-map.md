@@ -7,13 +7,13 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 66 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 68 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
-- `pm_skills` — 44 file(s)
+- `pm_skills` — 46 file(s)
 - `scripts` — 10 file(s)
 - `self` — 2 file(s)
 <!-- /file-map-index -->
@@ -84,6 +84,8 @@ see the root AGENTS.md "Before every task". -->
 - `pm_skills/prompts/upgrade.md` — declarative framework upgrade from the version gap
 - `pm_skills/prompts/validation.md` — stage prompt: pre-implementation sanity checks
 - `pm_skills/scaffold/check-links.mjs` — generic shipped link checker (fork sibling: scripts/check-docs.mjs)
+- `pm_skills/scaffold/check-memory.mjs` — generic shipped memory validator, records-aware (fork sibling: scripts/check-memory.mjs)
+- `pm_skills/scaffold/gen-backlog.mjs` — generic shipped records-mode view generator (fork sibling: scripts/gen-backlog.mjs)
 - `pm_skills/scaffold/gen-file-map.mjs` — generic shipped file-map generator (fork sibling: scripts/gen-file-map.mjs)
 - `pm_skills/templates/AGENTS.md` — distributed agent-rules template (placeholders intact; copied to a consuming project's root at init Step 0)
 - `pm_skills/templates/DEV-INFRASTRUCTURE.md` — distributed build/runtime/deploy rulebook template (copied to root at init Step 0)

@@ -38,13 +38,19 @@ row pointing at nothing).
 
 Note on deliberate forks: `pm_skills/scaffold/check-links.mjs` /
 `pm_skills/scaffold/gen-file-map.mjs` /
+`pm_skills/scaffold/gen-backlog.mjs` /
+`pm_skills/scaffold/check-memory.mjs` /
 `pm_skills/scaffold/.markdownlint.json` and their source-only siblings
-(`scripts/check-docs.mjs`, `scripts/gen-file-map.mjs`, root
+(`scripts/check-docs.mjs`, `scripts/gen-file-map.mjs`,
+`scripts/gen-backlog.mjs`, `scripts/check-memory.mjs`, root
 `.markdownlint.json`) are **separate copies by design** — the scaffold
 ships generic, the source-repo copy is tuned for this repo (check-docs
 also validates inline path references and skips the append-only
 changelog as a path source; gen-file-map maps `pm_skills/` as source
-and targets `self/project/file-map.md`; `scripts/package.mjs` has no
+and targets `self/project/file-map.md`; the records-mode pair differs
+only in defaults — `--project-dir self/project` plus the canon marker
+text vs the generic `pm_skills/project` — so their diffs should stay
+near-empty; `scripts/package.mjs` has no
 scaffold sibling — it is boundary tooling, not a consuming-project
 utility). A bug fixed in one must be
 considered for the other; there is no sync mechanism, only this

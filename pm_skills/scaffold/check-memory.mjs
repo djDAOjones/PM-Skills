@@ -4,15 +4,13 @@
 /**
  * check-memory.mjs — mechanical validator for pm-skills project memory.
  *
- * Implements the end-of-task size check (end-of-task.md step 4) and the
- * mechanical half of memory-maintenance's Diagnose verb as one command,
- * and doubles as the property oracle for behavioural evaluation
- * scenarios (EVAL-SCEN).
+ * Implements the end-of-task size check (end-of-task.md step 4) and
+ * the mechanical half of memory-maintenance's Diagnose verb as one
+ * command. Optionally wire it into the project's `check` gate.
  *
- * Exit semantics (assessment C1: budgets propose, they never block):
+ * Exit semantics (budgets propose, they never block):
  *   - STRUCTURAL failures exit 1 — grammar violations, [x] items left
  *     in the backlog, duplicate IDs, ticket orphans, conflict markers.
- *     These gate commits via lint:memory in `npm run check`.
  *   - BUDGET overruns and ageing are WARN lines, exit 0 — they feed
  *     maintenance proposals, never block work.
  *
@@ -20,18 +18,24 @@
  * `pm_skills/memory-policy.md` (the canonical home of the numbers);
  * this script carries none of its own.
  *
+ * Records mode (a generated backlog over per-item records) is
+ * detected automatically; `tickets/_meta.md` may then extend the
+ * known flag list with a dialect key:
+ *
+ *   flags: rehearsal, venue-hold
+ *
+ * Custom flags are known, never standing — ageing tracks only the
+ * canonical standing flags (sign-off / maintainer / blocked).
+ *
  * HONESTY NOTE: this validates the FORM of project memory, never the
  * truth of it — a well-formed decision entry can still be wrong.
  *
- * Records-mode dialect (RECORDS-DIST): `tickets/_meta.md` may carry
- * `flags: a, b` to extend the known flag list. Custom flags are known,
- * never standing. Kept in step with the generic fork
- * `pm_skills/scaffold/check-memory.mjs` (deliberate forks,
- * CONTRIBUTING.md).
+ * Runs in place from pm_skills/scaffold/; copy it out only to
+ * customise.
  *
  * Usage:
- *   node scripts/check-memory.mjs [--project-dir self/project]
- *                                 [--repo-root .]
+ *   node pm_skills/scaffold/check-memory.mjs
+ *     [--project-dir pm_skills/project] [--repo-root .]
  *
  * Zero dependencies; git via execSync only for the lite-close trailer
  * scan (skipped gracefully outside a git repo / on shallow history).
@@ -54,7 +58,7 @@ const argOf = (/** @type {string} */ name, /** @type {string} */ dflt) => {
   return i >= 0 && args[i + 1] ? args[i + 1] : dflt;
 };
 const repoRoot = resolve(argOf('--repo-root', '.'));
-const projectDir = resolve(repoRoot, argOf('--project-dir', 'self/project'));
+const projectDir = resolve(repoRoot, argOf('--project-dir', 'pm_skills/project'));
 
 const read = (/** @type {string} */ p) =>
   existsSync(p) ? readFileSync(p, 'utf8') : null;
@@ -180,9 +184,8 @@ function ticketsCheck(/** @type {any} */ B, /** @type {Set<string>} */ detailIds
   if (!existsSync(dir)) { say('note', 'tickets/: absent — skipped'); return; }
   const files = readdirSync(dir).filter((f) => f.endsWith('.md'));
   if (files.includes('_meta.md') && openStatuses) {
-    // RECORDS MODE (BACKLOG-STATE phase 1): tickets are the records;
-    // the backlog view is generated. Coherence replaces the old
-    // detail-flag two-way rule.
+    // RECORDS MODE: tickets are the records; the backlog view is
+    // generated. Coherence replaces the old detail-flag two-way rule.
     const recs = files.filter((f) => !f.startsWith('_'));
     const recIds = new Map(recs.map((f) => {
       const fm = recordFm(join(dir, f));
@@ -346,8 +349,8 @@ function attentionCounters() {
   /** @type {{id:string,date:string}[]} */
   const items = [];
   for (const chunk of tr.split(/^(?=- )/m)) {
-    // Tolerate consuming-project dialects: `- ID (date, mode) — …` as well
-    // as canon's `- ID — …`, and `(YYYY-MM-DD, anything)` date stamps.
+    // Tolerate project dialects: `- ID (date, mode) — …` as well as
+    // `- ID — …`, and `(YYYY-MM-DD, anything)` date stamps.
     const id = chunk.match(/^- ([A-Z][A-Z0-9-]+)(?: \([^)]*\))? —/)?.[1];
     const dates = [...chunk.matchAll(/\((\d{4}-\d{2}-\d{2})(?:,[^)]*)?\)/g)];
     if (id && dates.length) items.push({ id, date: dates[dates.length - 1][1] });

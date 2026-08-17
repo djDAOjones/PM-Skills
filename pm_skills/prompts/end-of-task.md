@@ -133,6 +133,9 @@ Update each of the following if relevant to this task:
 - `pm_skills/project/backlog.md` — when this task ships, **remove** its
   item (there is no Completed section); add any follow-ups to Active as
   open items. If the task isn't finished, update its status in place.
+  (Records mode: apply all of these as record edits — a shipped item's
+  record moves to the archive — then regenerate the view; never
+  hand-edit between the generated markers.)
 - `pm_skills/project/tickets/<ITEM-ID>.md` — if the active item carries
   the `[detail]` flag: when it ships or is cut, fold any durable
   conclusions into `decision-log.md` (the why) + `trajectory.md` (the

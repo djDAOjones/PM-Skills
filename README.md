@@ -208,7 +208,7 @@ copy-paste flow for AI tools without workflow support — is
 | `memory-policy.md` | Size budgets for memory files and what to do when they trip. |
 | `VERSION` / `CHANGELOG.md` / `MANIFEST.md` | Framework version, release history (doubles as upgrade instructions), and per-file upgrade rules. |
 | `templates/` | The three rulebook templates; copied to your project root at init (Step 0). |
-| `scaffold/` | Starter config to copy to your project root: `.editorconfig`, `.gitignore`, `.markdownlint.json`, `check-links.mjs` — plus `gen-file-map.mjs`, which runs in place. |
+| `scaffold/` | Starter config to copy to your project root: `.editorconfig`, `.gitignore`, `.markdownlint.json`, `check-links.mjs` — plus run-in-place tooling: `gen-file-map.mjs` and the optional records-mode pair `gen-backlog.mjs` + `check-memory.mjs`. |
 
 ### Commands — what you say, what runs
 

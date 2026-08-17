@@ -2,28 +2,40 @@
 // @ts-check
 
 /**
- * gen-backlog.mjs — backlog VIEW generator (BACKLOG-STATE phase 1,
- * source-repo fork of the lab RQ3 prototype).
+ * gen-backlog.mjs — backlog VIEW generator for records mode.
  *
- * Records ARE the ticket files: self/project/tickets/<ID>.md with a
- * flat `key: value` frontmatter block (no nesting, no YAML library)
- * over the ticket body. `_meta.md` holds milestone intent lines.
- * The Active section of self/project/backlog.md is rendered between
- * generated markers in the standard ticket grammar ([detail] is
- * rendered as the one-hop link when the flag is present); content
- * outside the markers is preserved.
+ * Records ARE the ticket files: `<project-dir>/tickets/<ID>.md` with
+ * a flat `key: value` frontmatter block (no nesting, no YAML library)
+ * over the ticket body. `tickets/_meta.md` holds milestone intent
+ * lines and the optional dialect keys (below). The Active section of
+ * `<project-dir>/backlog.md` is rendered between generated markers in
+ * the standard ticket grammar ([detail] is rendered as the one-hop
+ * link when the flag is present); content outside the markers is
+ * preserved.
  *
- * Merge rule (RQ3 finding): on any view conflict, REGENERATE from
- * the merged records — never hand-merge the view.
+ * Dialect keys (optional, in `tickets/_meta.md`):
  *
- * Dialect keys (optional, in `_meta.md` — RECORDS-DIST): `milestones:`
- * as ordered `key=Title` pairs (absent → the canonical three), and
- * `flags:` for the validator. A record naming an unconfigured
- * milestone is an error, never a silent drop. Kept in step with the
- * generic fork `pm_skills/scaffold/gen-backlog.mjs` (deliberate
- * forks, CONTRIBUTING.md).
+ *   milestones: current=Current milestone, next=Next milestone, icebox=Icebox
+ *     Ordered `key=Title` pairs, comma-separated. Absent, the three
+ *     canonical groups above apply. Each group may carry its own
+ *     `<key>-intent:` line, rendered as a comment under the heading.
  *
- * Usage: node scripts/gen-backlog.mjs [--project-dir self/project] [--check]
+ *   flags: rehearsal, venue-hold
+ *     Extra flag names for the memory validator (check-memory.mjs);
+ *     this generator renders any flag it is given.
+ *
+ * A record whose `milestone:` matches no configured group is an
+ * ERROR (exit 1) — silently dropping it from the view would hide the
+ * item (the validator would also flag the divergence).
+ *
+ * Merge rule: on any view conflict, REGENERATE from the merged
+ * records — never hand-merge the view.
+ *
+ * Runs in place from pm_skills/scaffold/; copy it out only to
+ * customise.
+ *
+ * Usage: node pm_skills/scaffold/gen-backlog.mjs
+ *          [--project-dir pm_skills/project] [--check]
  */
 
 import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
@@ -34,7 +46,7 @@ const argOf = (/** @type {string} */ name, /** @type {string} */ dflt) => {
   const i = args.indexOf(name);
   return i >= 0 && args[i + 1] ? args[i + 1] : dflt;
 };
-const projectDir = resolve(argOf('--project-dir', 'self/project'));
+const projectDir = resolve(argOf('--project-dir', 'pm_skills/project'));
 const recDir = join(projectDir, 'tickets');
 const viewPath = join(projectDir, 'backlog.md');
 const check = args.includes('--check');
@@ -125,7 +137,7 @@ for (const [key, title] of milestones) {
   if (rows.length) out += '\n';
 }
 
-const START = '<!-- generated:records:start (edit tickets/, run scripts/gen-backlog.mjs) -->';
+const START = '<!-- generated:records:start (edit tickets/, rerun gen-backlog.mjs) -->';
 const END = '<!-- generated:records:end -->';
 const esc = (/** @type {string} */ s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const existing = existsSync(viewPath) ? readFileSync(viewPath, 'utf8') : '';
@@ -135,7 +147,7 @@ const block = `${START}\n\n${out.trim()}\n\n${END}`;
 /**
  * First generation appends the block at the end of the file, inside
  * the `## Active` section the validator parses — creating the heading
- * when the file lacks one. If the backlog keeps other `## ` sections
+ * when the file lacks one. If your backlog keeps other `## ` sections
  * after Active, move the block inside Active once; later runs rewrite
  * it in place. @param {string} content @param {string} blk
  */

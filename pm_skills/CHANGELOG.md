@@ -36,6 +36,78 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.8.0 — 2026-08-17
+
+RECORDS-DIST: records mode becomes distributable (BACKLOG-STATE
+phase 2) — run-in-place scaffold tooling, a configurable dialect
+surface, and adoption grammar guidance. Evidence base: the first
+records adoption on a consuming project (2026-08-17), which
+canon-shaped tooling mis-served three ways.
+
+### Added
+
+- `pm_skills/scaffold/gen-backlog.mjs` — records-mode backlog-view
+  generator (`scaffold` class, the directory default): flat
+  frontmatter records under `tickets/` render the backlog's Active
+  section between generated markers. Takes `--project-dir` (default
+  `pm_skills/project`) and `--check`; first generation creates the
+  `## Active` heading when the file lacks one; a record naming a
+  milestone outside the configured groups is an error, never a
+  silent drop. Dialect
+  keys in `tickets/_meta.md`: `milestones: key=Title, …` (ordered;
+  absent → Current / Next / Icebox) and per-group `<key>-intent:`
+  lines.
+- `pm_skills/scaffold/check-memory.mjs` — memory validator: the
+  end-of-task size check and the mechanical half of Diagnose as one
+  command, reading budgets from `pm_skills/memory-policy.md`.
+  Records-aware (record↔view coherence, records-mode repair
+  messages, dialect `flags:` extension — custom flags are known,
+  never standing); structural failures exit 1, budget overruns
+  warn. Optionally wired into a project's `check` gate.
+
+### Changed
+
+- `pm_skills/prompts/backlog-authoring.md` — new "Records mode"
+  section: the record frontmatter grammar and field list, the
+  `_meta.md` dialect keys, and the grammar the frontmatter forces —
+  every item needs an ID (icebox lines included), IDs are
+  SCREAMING-KEBAB with no dots, `summary:` is one physical line,
+  edit-records-regenerate. The ticket-file lifecycle rule notes the
+  records-mode inversion.
+- `pm_skills/GUIDE.md` — "Records mode (optional)" adoption path
+  under "Looking after project memory"; the scaffold file tree
+  lists the two new tools.
+- `pm_skills/init.md` — Step 9 notes the run-in-place scaffold
+  tooling (nothing new to copy at init).
+- `pm_skills/prompts/end-of-task.md` — the step 3 backlog bullet
+  gains the records-mode aside: apply changes as record edits and
+  regenerate; never hand-edit between the generated markers.
+- `pm_skills/project/backlog.md` (template) — one pointer comment
+  to the records-mode docs.
+- `pm_skills/MANIFEST.md` — the class-inheritance rule now names
+  `pm_skills/scaffold/` → `scaffold` explicitly (the paths table's
+  wildcard already covered it).
+
+### Upgrade actions
+
+- Add `pm_skills/scaffold/gen-backlog.mjs` and
+  `pm_skills/scaffold/check-memory.mjs` from this version
+  (`scaffold` class; both run in place from `pm_skills/scaffold/` —
+  nothing to copy into the project root).
+- Replace `pm_skills/GUIDE.md`, `pm_skills/init.md`,
+  `pm_skills/prompts/backlog-authoring.md`,
+  `pm_skills/prompts/end-of-task.md`, and `pm_skills/MANIFEST.md`
+  with this version's copies.
+- Do **not** replace `pm_skills/project/backlog.md` in a consuming
+  project (`project-memory` class — the class wins): the template's
+  records-mode pointer comment reaches populated backlogs by
+  adoption at the next backlog touch, never by file replacement.
+- Optional adoption: a project that wants a generated backlog
+  follows `pm_skills/GUIDE.md` → "Records mode" (records under
+  `tickets/`, `_meta.md` dialect keys, the two tools optionally in
+  its `check` gate). Prose backlogs remain first-class; no action
+  otherwise.
+
 ## 4.7.2 — 2026-08-17
 
 Correction release (CL-440-WORDING): 4.4.0's Upgrade actions name a

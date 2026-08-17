@@ -9,6 +9,40 @@
      see archive/INDEX.md for ranges. Grep the archive files
      directly; never re-inline them. -->
 
+## 2026-08-17 — RECORDS-DIST: records mode ships distributable (4.8.0)
+
+**Decision:** BACKLOG-STATE phase 2 shipped as one arc, gateless
+under `next:`: scaffold copies of the records tooling
+(`pm_skills/scaffold/gen-backlog.mjs` + `check-memory.mjs`,
+run-in-place, `--project-dir` defaulting to `pm_skills/project`), a
+dialect surface, and adoption grammar guidance (GUIDE "Records
+mode", backlog-authoring "Records mode", template pointer, init
+Step 9 note, end-of-task records aside). Dialect pick — the
+ticket's open question — flat keys in `tickets/_meta.md`
+(`milestones: key=Title, …` ordered pairs; `flags:` extras, known
+never standing) over a config file (a new artifact for two keys) or
+documented-trade-only (fails the Hub evidence: the dialect really
+was flattened). A record naming a milestone outside the configured
+groups errors, never silently drops. Both source forks gained the
+same mechanism (deliberate-forks parity; canon view byte-stable).
+Fixture testing caught one real gap — first generation onto a file
+without `## Active` produced a view the validator could not parse —
+fixed in both forks (the generator now creates the heading).
+
+**Verification:** gate green after the last edit; Hub-style dialect
+fixture green including both negative paths; template-adoption path
+green. Harness (advisory): close scenario applicable
+(end-of-task.md changed) — first blinded close-control run,
+**GREEN** (4/4 assertions + oracle; the fixture's validator was the
+newly shipped scaffold copy operating in-role) — see
+`self/evaluations/`.
+
+**Alternatives:** tools without the dialect surface (rejected —
+re-creates the flattening RECORDS-TAXONOMY named); three separate
+releases (rejected at INTAKE-DEEP — one evidence base, one
+surface); a second consuming project before building (the ticket's
+re-gate option — not exercised; the INTAKE-DEEP placement stood).
+
 ## 2026-08-17 — CL-440-WORDING: 4.4.0 corrected; first real harness pull (4.7.2)
 
 **Decision:** three changes, one patch release. (1) The 4.4.0

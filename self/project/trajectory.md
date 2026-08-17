@@ -1,5 +1,15 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: Records distribution (BACKLOG-STATE phase 2)
+
+- RECORDS-DIST — records mode distributable (4.8.0): scaffold
+  gen-backlog + check-memory (run in place, --project-dir),
+  `_meta.md` dialect keys (milestones/flags), adoption + grammar
+  guidance (GUIDE, backlog-authoring, template pointer); fixture
+  caught and fixed the missing-`## Active` first-generation gap;
+  close-control harness run at the release (2026-08-17) — see
+  decision-log.
+
 ## Phase: Regression-net slice (post-INTAKE-DEEP)
 
 - RELEASE-EVALS — advisory harness check in the release close:

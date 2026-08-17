@@ -118,6 +118,10 @@ scaffold/        Starter config to copy into your project root once.
   check-links.mjs     Dependency-free internal Markdown link checker (Node).
   gen-file-map.mjs    Dependency-free file-map skeleton generator (Node).
                       Runs in place from scaffold/; copy it out only to customise.
+  gen-backlog.mjs     Records mode (optional): backlog-view generator.
+                      Runs in place, like gen-file-map.mjs.
+  check-memory.mjs    Records-aware memory validator against the
+                      memory-policy budgets. Runs in place.
 ```
 
 ## Two ways to drive it
@@ -471,6 +475,41 @@ the ticket grammar grouped by milestone, and authors
 `tickets/<ID>.md` files (from its canonical skeleton) for items
 that outgrow one line. The same file is the contract an external
 agent follows when asked to write tickets.
+
+**Records mode (optional).** By default the backlog is a hand-edited
+file. A project whose backlog churns fast — parallel sessions,
+automation, a dialect of its own — may instead run it as **records**:
+one `tickets/<ID>.md` per open item (flat frontmatter over the ticket
+body), with the Active section of `backlog.md` **generated** between
+markers by `pm_skills/scaffold/gen-backlog.mjs`. Prose backlogs stay
+first-class; records mode is opt-in and reversible (the view is a
+normal backlog file — retire the markers and `tickets/_meta.md` to go
+back). To adopt:
+
+1. Create `tickets/_meta.md`: optional per-group `<key>-intent:`
+   lines, plus — where your milestones or flags differ from the
+   canonical taxonomy — the dialect keys `milestones: key=Title, …`
+   and `flags: …` (grammar and field list:
+   `prompts/backlog-authoring.md` → "Records mode").
+2. Write one record per open item and delete the hand-maintained
+   item lines the records replace (every item needs an ID, icebox
+   lines included).
+3. Run `node pm_skills/scaffold/gen-backlog.mjs` — in place, like
+   `gen-file-map.mjs`; add `--project-dir` if your memory lives
+   elsewhere. First generation appends the block inside `## Active`,
+   creating that heading if the file lacks one.
+4. Optionally wire `--check` plus
+   `node pm_skills/scaffold/check-memory.mjs` into your `check` gate:
+   the validator detects records mode and enforces record↔view
+   coherence mechanically.
+
+The one rule: **edit records and regenerate — never hand-edit
+between the generated markers.** Any workflow instruction that says
+"edit the backlog" means "edit the record, regenerate the view"
+here; a shipped item's record moves to your archive before the
+regenerate. Parallel sessions get simpler, not harder — see
+"Parallel and multi-machine work" for branch-per-session and the
+regenerate-on-conflict merge rule.
 
 Two folders are created lazily, so don't be surprised they're missing
 on a fresh project: `project/archive/` (first prune) and

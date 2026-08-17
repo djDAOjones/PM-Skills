@@ -15,19 +15,11 @@
 
 ### Current milestone
 
-<!-- Intent: post-INTAKE-DEEP slice shipped (RELEASE-EVALS 4.7.1, CL-440-WORDING 4.7.2, both 2026-08-17) — Current is empty; the next pick falls through to Next (RECORDS-DIST arc). -->
+<!-- Intent: RECORDS-DIST shipped (4.8.0, 2026-08-17) — Current and Next are empty; Active holds icebox-only, so the next pick needs maintainer direction or a fired trigger. -->
 
 ### Next milestone
 
-<!-- Intent: RECORDS-DIST — records-mode distribution (BACKLOG-STATE phase 2) as one arc; evidence base the R1 Hub run (INTAKE-DEEP verdict 2026-08-17). -->
-
-- [ ] **RECORDS-DIST Records-mode distribution (BACKLOG-STATE phase 2)**
-  [detail](tickets/RECORDS-DIST.md) (2026-08-17) — records mode becomes
-  distributable — one arc absorbing RECORDS-SCAFFOLD (scaffold generator +
-  validator with --project-dir), RECORDS-TAXONOMY (configurable groups and
-  flags, or the flattening trade documented), and RECORDS-GRAMMAR-GUIDE
-  (adoption grammar guidance). (source: R1 Hub run 2026-08-17) · High /
-  Medium / Medium / Medium
+<!-- Intent: empty — the RECORDS-DIST arc shipped as 4.8.0 (2026-08-17). -->
 
 ### Icebox
 
