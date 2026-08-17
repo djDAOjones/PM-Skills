@@ -19,3 +19,8 @@ npm-debug.log*
 # self/evaluations/, self/_transcripts/) are excluded, via
 # .markdownlint-cli2.jsonc, cspell.json, .editorconfig-checker.json,
 # and scripts/check-docs.mjs.
+
+# Exception: the janitor report is generated each session and read
+# from the filesystem (freshness contract: timestamp + Start SHA),
+# so it is not tracked (REPORTS-IGNORE, 2026-08-17).
+self/project/reports/
