@@ -23,7 +23,7 @@
 
 ### Icebox
 
-<!-- Intent: kept with explicit triggers; all five held with reasons at the INTAKE-DEEP assessment (2026-08-17). -->
+<!-- Intent: five held with explicit triggers (INTAKE-DEEP, 2026-08-17); VOICE-INTAKE added unblocked 2026-08-18 — an investigation awaiting a maintainer pick. -->
 
 - [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
   project with persistent user data] (2026-07-16) — hard rule "no
@@ -49,5 +49,12 @@
   one consuming project] (2026-08-09) — packaging-ladder rung 4; adapter
   outside the distributed tree, never core. · High / High / Medium /
   Medium
+- [ ] **VOICE-INTAKE Voice-memo transcript intake**
+  [detail](tickets/VOICE-INTAKE.md) (2026-08-18) — investigate a
+  transcript-intake workflow — verb + raw transcript + triage: topic cues
+  gathered, the transcript rebuilt for quality, features / approach /
+  tasks derived, results factored into the roadmap or backlog. The
+  maintainer's current method, run today outside the framework; viability
+  and worth are the questions. · Medium / Medium / Low / Low
 
 <!-- generated:records:end -->
