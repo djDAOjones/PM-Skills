@@ -1,6 +1,6 @@
 ---
-current-intent: RECORDS-DIST shipped (4.8.0, 2026-08-17) — Current and Next are empty; Active holds icebox-only, so the next pick needs maintainer direction or a fired trigger.
-next-intent: empty — the RECORDS-DIST arc shipped as 4.8.0 (2026-08-17).
-icebox-intent: five held with explicit triggers (INTAKE-DEEP, 2026-08-17); VOICE-INTAKE and PLAN-ORDER added unblocked 2026-08-18 — investigations awaiting a maintainer pick.
+current-intent: VOICE-INTAKE promoted at the 2026-08-18 Re-assess pass (first live run of the 4.9.0 verb) — the next arc, blocked on maintainer inputs (real transcripts plus the external preparation prompts).
+next-intent: empty — refill at the next Re-assess pass; nothing else is committed while VOICE-INTAKE waits on its inputs.
+icebox-intent: five held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed current at the 2026-08-18 Re-assess pass — no trigger has fired.
 ---
 # Backlog view meta (records mode)

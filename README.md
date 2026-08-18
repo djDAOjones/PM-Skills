@@ -224,7 +224,7 @@ copy-paste flow for AI tools without workflow support — is
 | "Run end-of-task" | `prompts/end-of-task.md` | Quality gate, memory updates, size check, closing report. |
 | "Park it" | (one-liner) | Captures the current side-idea to the wish-list, resumes work. |
 | "Run review.md" | `prompts/review.md` | Read-only audit of an autonomous run: verdict + punch list. |
-| "Run memory maintenance" | `prompts/memory-maintenance.md` | Diagnose (health check), Prune (archive), or Refactor (tidy backlog). |
+| "Run memory maintenance" | `prompts/memory-maintenance.md` | Diagnose (health check), Prune (archive), Refactor (tidy backlog), or Re-assess (re-judge the queue). |
 | "Draft a backlog from these notes" | `prompts/backlog-authoring.md` | Loose ideas or a transcript → grammar-true items by milestone, plus tickets for the big ones. |
 | "Run deploy.md" | `prompts/deploy.md` | Pre-flight, documented deploy pipeline, live checks, rollback path. |
 | "Run upgrade.md" | `prompts/upgrade.md` | Updates the framework to a newer version; never touches memory. |

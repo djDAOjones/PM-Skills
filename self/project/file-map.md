@@ -75,7 +75,7 @@ see the root AGENTS.md "Before every task". -->
 - `pm_skills/prompts/design-options.md` — stage prompt: 2–3 options with a recommendation
 - `pm_skills/prompts/end-of-task.md` — close protocol: gate, memory writes, size check, report
 - `pm_skills/prompts/implementation-plan.md` — stage prompt: step plan from the picked option
-- `pm_skills/prompts/memory-maintenance.md` — verbs: Diagnose/Prune/Refactor/Reconcile/Doc-sync + environment preflight
+- `pm_skills/prompts/memory-maintenance.md` — verbs: Diagnose/Prune/Refactor/Re-assess/Reconcile/Doc-sync + environment preflight
 - `pm_skills/prompts/quick-task.md` — single-stage scope-and-plan for small tasks
 - `pm_skills/prompts/release.md` — framework release procedure (VERSION/CHANGELOG/MANIFEST discipline)
 - `pm_skills/prompts/review.md` — read-only audit of a diff range or feature area

@@ -36,6 +36,43 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.9.0 — 2026-08-18
+
+PLAN-ORDER: memory maintenance gains a sixth verb, **Re-assess
+(re-judge the queue)** — a maintainer-gated pass that re-grades
+standing items, refreshes hold reasons and triggers, re-orders, and
+refills empty milestones, so the next pick stands on current
+judgement rather than stale grades. Refactor repairs the map's
+structure and stops when it is clean; Re-assess re-judges its
+substance, which a structurally clean backlog can need all the same
+(evidence: two manual precedents on the source repo, 2026-08-17 and
+2026-08-18).
+
+### Changed
+
+- `pm_skills/prompts/memory-maintenance.md` — new **Re-assess** verb
+  (RA1–RA5 + rules: propose-only, never auto-run, age informs but
+  never reorders, quiet no-op when nothing changed); the intro and
+  shared-rules lines now count six verbs; the model-tier note adds
+  RA3 to the propose steps; Diagnose check 13's action now routes
+  ageing standing items to Re-assess.
+- `pm_skills/prompts/session-start.md` — Start B step 2: an Icebox
+  pull with nothing committed in Active now proposes a Re-assess
+  pass first; with Current and Next both empty, that pass is the
+  refill mechanism.
+- `pm_skills/GUIDE.md` — the folder-tree line and the "Looking after
+  project memory" verb list carry all six verbs.
+
+### Upgrade actions
+
+- Re-copy `pm_skills/prompts/memory-maintenance.md`,
+  `pm_skills/prompts/session-start.md`, and `pm_skills/GUIDE.md`
+  (all `framework` class — replace wholesale).
+- No file adds, renames, or removals; no memory migration. Records
+  mode needs no record changes: `Last assessed:` is a ticket-body
+  line the new verb writes only when an assessment changes
+  something.
+
 ## 4.8.0 — 2026-08-17
 
 RECORDS-DIST: records mode becomes distributable (BACKLOG-STATE

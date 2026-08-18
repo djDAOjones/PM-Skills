@@ -1,5 +1,13 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: Planning loop
+
+- PLAN-ORDER — Re-assess verb ships (4.9.0): sixth
+  memory-maintenance verb re-judges the standing queue (grades,
+  holds, order, refill), propose-only and never auto-run; Diagnose
+  check 13 and the Start B icebox rule route to it; first pass run
+  live on this repo at the release (2026-08-18) — see decision-log.
+
 ## Phase: Records distribution (BACKLOG-STATE phase 2)
 
 - RECORDS-DIST — records mode distributable (4.8.0): scaffold

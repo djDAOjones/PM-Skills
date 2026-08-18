@@ -9,6 +9,39 @@
      see archive/INDEX.md for ranges. Grep the archive files
      directly; never re-inline them. -->
 
+## 2026-08-18 — PLAN-ORDER: Re-assess verb ships; first pass run live (4.9.0)
+
+**Decision:** the development-order investigation concluded *build*:
+memory maintenance gains **Re-assess (re-judge the queue)** rather
+than a new prompt file or a Refactor extension. Evidence for the gap:
+Refactor's own rules stop on a structurally clean backlog ("not a
+re-prioritisation"), yet a clean backlog still needed a judgement
+pass twice in two days (INTAKE-DEEP 2026-08-17 by hand; the
+maintainer's 2026-08-18 "triage, assess, grade the icebox" request —
+this session's pass). Distributed because the sibling intake flow
+(backlog-authoring) already is, and any graded backlog ages the same
+way.
+
+**Shape calls:** (1) sibling verb, not a Refactor mode — structure
+and substance want separate sign-off surfaces. (2) Propose-only and
+**never auto-run**, written into the verb rules so no future
+automated-maintenance ladder can absorb a judgement pass. (3) Noise
+rule: `Last assessed:` body lines only where the assessment changed
+something; confirmed holds stay diff-quiet, the pass's log entry
+carries the batch date. (4) An `assessed:` frontmatter key stays out
+of the record grammar until a mechanical consumer (janitor/validator
+staleness computed off assessment date, not creation date) earns it —
+that is the formalisation trigger.
+
+**First pass (this session, delegated gateless):** seven items
+assessed — PLAN-ORDER shipped as the verb itself; VOICE-INTAKE
+promoted Icebox → Current, blocked on maintainer inputs (real
+transcripts + the external preparation prompts); the five triggered
+holds confirmed current (no trigger fired since INTAKE-DEEP); zero
+cut; wish-list's NEXT-FRAGMENTS left parked per PACE-POLICY.
+Harness: no applicable scenarios — neither the close protocol nor
+the upgrade machinery changed.
+
 ## 2026-08-17 — RECORDS-DIST: records mode ships distributable (4.8.0)
 
 **Decision:** BACKLOG-STATE phase 2 shipped as one arc, gateless

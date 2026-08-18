@@ -15,15 +15,25 @@
 
 ### Current milestone
 
-<!-- Intent: RECORDS-DIST shipped (4.8.0, 2026-08-17) — Current and Next are empty; Active holds icebox-only, so the next pick needs maintainer direction or a fired trigger. -->
+<!-- Intent: VOICE-INTAKE promoted at the 2026-08-18 Re-assess pass (first live run of the 4.9.0 verb) — the next arc, blocked on maintainer inputs (real transcripts plus the external preparation prompts). -->
+
+- [ ] **VOICE-INTAKE Voice-memo transcript intake**
+  [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
+  more real raw transcripts plus the external preparation prompts (ticket
+  → "Inputs needed at pick")] (2026-08-18) — investigate a
+  transcript-intake workflow — verb + raw transcript + triage: topic cues
+  gathered, the transcript rebuilt for quality, features / approach /
+  tasks derived, results factored into the roadmap or backlog. The
+  maintainer's current method, run today outside the framework; viability
+  and worth are the questions. · Medium / Medium / Low / Low
 
 ### Next milestone
 
-<!-- Intent: empty — the RECORDS-DIST arc shipped as 4.8.0 (2026-08-17). -->
+<!-- Intent: empty — refill at the next Re-assess pass; nothing else is committed while VOICE-INTAKE waits on its inputs. -->
 
 ### Icebox
 
-<!-- Intent: five held with explicit triggers (INTAKE-DEEP, 2026-08-17); VOICE-INTAKE and PLAN-ORDER added unblocked 2026-08-18 — investigations awaiting a maintainer pick. -->
+<!-- Intent: five held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed current at the 2026-08-18 Re-assess pass — no trigger has fired. -->
 
 - [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
   project with persistent user data] (2026-07-16) — hard rule "no
@@ -49,19 +59,5 @@
   one consuming project] (2026-08-09) — packaging-ladder rung 4; adapter
   outside the distributed tree, never core. · High / High / Medium /
   Medium
-- [ ] **VOICE-INTAKE Voice-memo transcript intake**
-  [detail](tickets/VOICE-INTAKE.md) (2026-08-18) — investigate a
-  transcript-intake workflow — verb + raw transcript + triage: topic cues
-  gathered, the transcript rebuilt for quality, features / approach /
-  tasks derived, results factored into the roadmap or backlog. The
-  maintainer's current method, run today outside the framework; viability
-  and worth are the questions. · Medium / Medium / Low / Low
-- [ ] **PLAN-ORDER Development-order planning**
-  [detail](tickets/PLAN-ORDER.md) (2026-08-18) — investigate whether a
-  verb — or other development — earns a place for re-assessing, triaging,
-  and planning the development order: a repeatable pass that re-grades
-  standing items, refreshes hold reasons, re-orders, and refills
-  milestones. INTAKE-DEEP (2026-08-17) is the manual precedent; sibling of
-  VOICE-INTAKE (new-material intake). · Medium / Low / Low / Low
 
 <!-- generated:records:end -->

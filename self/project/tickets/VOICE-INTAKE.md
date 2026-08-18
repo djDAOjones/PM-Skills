@@ -2,18 +2,22 @@
 id: VOICE-INTAKE
 name: Voice-memo transcript intake
 status: todo
-milestone: icebox
-flags: detail
+milestone: current
+flags: detail, blocked
+blocked-on: maintainer inputs — one or more real raw transcripts plus the external preparation prompts (ticket → "Inputs needed at pick")
 date: 2026-08-18
 grades: Medium / Medium / Low / Low
-order: 6
+order: 1
 summary: investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features / approach / tasks derived, results factored into the roadmap or backlog. The maintainer's current method, run today outside the framework; viability and worth are the questions.
 ---
 # VOICE-INTAKE — Voice-memo transcript intake
 
-> **Status:** Icebox — investigation, unblocked; open to a
-> maintainer pick. **Grades:** provisional at intake (2026-08-18):
-> Medium / Medium / Low / Low — the investigation re-grades.
+> **Status:** Current — the next arc, blocked on maintainer inputs
+> (real raw transcripts plus the external preparation prompts).
+> **Grades:** Medium / Medium / Low / Low — the investigation
+> re-grades. **Last assessed:** 2026-08-18 — promoted from the
+> Icebox at the first Re-assess pass (4.9.0); runnable the moment
+> the inputs land.
 
 ## Intent
 

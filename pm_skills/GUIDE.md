@@ -97,7 +97,7 @@ prompts/         Reusable per-task prompts (paste, or run as commands).
   bug-scoping.md          Bug diagnosis: reproduce, root cause, minimal fix.
   end-of-task.md          The closing ritual: quality gate + memory updates.
   review.md               Read-only audit of an autonomous run or feature area.
-  memory-maintenance.md   Diagnose / Prune / Refactor / Reconcile / Doc-sync project memory.
+  memory-maintenance.md   Diagnose / Prune / Refactor / Re-assess / Reconcile / Doc-sync project memory.
   backlog-authoring.md    Ideas or a transcript → grammar-true backlog items + tickets; the ticket skeleton and external authoring contract.
   upgrade.md              Move a project to a newer framework version.
   release.md              Maintainer release checklist (source repo only).
@@ -429,7 +429,7 @@ what changes when:
 
 **When a size budget trips** (the end-of-task check tells you), the
 agent proposes `prompts/memory-maintenance.md` and waits for your
-approval. Its five verbs:
+approval. Its six verbs:
 
 - **Diagnose** — read-only health check; finds structural drift and
   points at the right fix. Also worth running after a long gap.
@@ -437,6 +437,9 @@ approval. Its five verbs:
   never summarised) and leaves an index pointer in the live file.
 - **Refactor** — tidies a drifted backlog: evicts shipped work,
   merges duplicates, regroups by milestone.
+- **Re-assess** — re-judges the standing queue when the milestones
+  run empty or items age: grades, hold reasons, ordering, and the
+  refill, proposed for your sign-off; never auto-run.
 - **Reconcile** — back-fills memory from `Close: lite` commit trailers:
   evicts the reconciled backlog items, adds their trajectory lines, and
   writes one consolidated decision-log entry for the batch.
