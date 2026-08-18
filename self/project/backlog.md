@@ -23,7 +23,7 @@
 
 ### Icebox
 
-<!-- Intent: five held with explicit triggers (INTAKE-DEEP, 2026-08-17); VOICE-INTAKE added unblocked 2026-08-18 — an investigation awaiting a maintainer pick. -->
+<!-- Intent: five held with explicit triggers (INTAKE-DEEP, 2026-08-17); VOICE-INTAKE and PLAN-ORDER added unblocked 2026-08-18 — investigations awaiting a maintainer pick. -->
 
 - [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
   project with persistent user data] (2026-07-16) — hard rule "no
@@ -56,5 +56,12 @@
   tasks derived, results factored into the roadmap or backlog. The
   maintainer's current method, run today outside the framework; viability
   and worth are the questions. · Medium / Medium / Low / Low
+- [ ] **PLAN-ORDER Development-order planning**
+  [detail](tickets/PLAN-ORDER.md) (2026-08-18) — investigate whether a
+  verb — or other development — earns a place for re-assessing, triaging,
+  and planning the development order: a repeatable pass that re-grades
+  standing items, refreshes hold reasons, re-orders, and refills
+  milestones. INTAKE-DEEP (2026-08-17) is the manual precedent; sibling of
+  VOICE-INTAKE (new-material intake). · Medium / Low / Low / Low
 
 <!-- generated:records:end -->
