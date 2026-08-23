@@ -1,7 +1,7 @@
 ---
 id: TEST-DOC
 name: Testing-doctrine cross-reference
-status: todo
+status: cut
 milestone: icebox
 flags: blocked
 blocked-on: evidence of need

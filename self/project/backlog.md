@@ -33,7 +33,7 @@
 
 ### Icebox
 
-<!-- Intent: five held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed current at the 2026-08-18 Re-assess pass — no trigger has fired. -->
+<!-- Intent: four held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). -->
 
 - [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
   project with persistent user data] (2026-07-16) — hard rule "no
@@ -41,9 +41,6 @@
   DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose →
   execute → reconcile shape. Grades when triggered: High / Medium / Low /
   Low.
-- [ ] **TEST-DOC Testing-doctrine cross-reference** [blocked: evidence
-  of need] (2026-07-16) — if ever done: one cross-reference paragraph in
-  the DEV-INFRA Quality-gate section, nothing more.
 - [ ] **ARCH-RECALL Recall over cold storage** [blocked: a consuming
   project reports missed-precedent pain] (2026-08-09) — richer archive
   INDEX summaries + a search-then-skim pass; embeddings only if evidence

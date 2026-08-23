@@ -9,6 +9,32 @@
      and 2026-07 — see archive/INDEX.md for ranges. Grep the
      archive files directly; never re-inline them. -->
 
+## 2026-08-23 — Re-assess (scoped): TEST-DOC cut, DATA-MIG held
+
+**Decision:** Scoped Re-assess over the two standing items past the
+30-day threshold — assessed 2, promoted 0, held 1, cut 1. **DATA-MIG
+held**, no re-stamp: the trigger (first consuming project with
+persistent user data) is concrete, testable, and restated in
+`brief.md` → Out of scope; the only consuming project runs an
+append-only log with rebuildable projections. **TEST-DOC cut**
+(maintainer decision, 2026-08-23); record archived verbatim with
+`status: cut`.
+
+**Rationale (cut):** The July origin verdict was already "DEFERRED /
+cut down" — the testing doctrine lives in `templates/AGENTS.md` →
+Testing and behaved on the Hub (2,002 tests, honest not-applicable
+use). The whole deliverable was one cross-reference paragraph in
+the DEV-INFRA Quality-gate section — a one-minute edit the day any
+evidence appears, needing no record to be remembered. The trigger
+"evidence of need" is untestable and did not fire through five
+judgements (07-16 triage, TICKET-SWEEP, ICEBOX-DEEP, INTAKE-DEEP,
+the 08-18 pass), each keeping it only by deferring to a prior call;
+carrying cost had become a judgement slot per pass and a WARN per
+close. Re-add condition kept in the Icebox intent line.
+
+**Alternatives:** keep both (rejected — a fifth deferral); cut both
+(rejected — DATA-MIG's hold is sound and brief-stated).
+
 ## 2026-08-23 — RELEASE-TREE-GLOB: glob-aware GUIDE-tree check (4.9.2)
 
 **Decision:** The step 6 loop derives one extended regex from the
