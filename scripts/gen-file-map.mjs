@@ -9,7 +9,8 @@
  * itself: here the `pm_skills/` tree IS the source being mapped, so
  * the scaffold's `pm_skills/**` exclusion is replaced by exclusions
  * for this repo's own memory and cold storage (`self/project/`,
- * `self/archive/`, `self/evaluations/`, `self/_transcripts/`). A bug
+ * `self/archive/`, `self/evaluations/`, `self/_transcripts/`, the
+ * per-project directories under `self/field-reports/`). A bug
  * fixed here must be considered for the scaffold copy and vice versa —
  * see CONTRIBUTING.md → "Note on deliberate forks".
  *
@@ -59,6 +60,7 @@ const IGNORE = [
   /^self\/archive\//, // frozen pre-adoption history
   /^self\/evaluations\//, // cold working outputs
   /^self\/_transcripts\//, // cold session transcripts
+  /^self\/field-reports\/[^/]+\//, // cold consuming-project reports (tier README stays mapped)
   /(^|\/)\.[^/]+$/, // dotfiles at any level (.gitignore, .editorconfig, …)
   /(^|\/)(package-lock|pnpm-lock|yarn)\.(json|lock|ya?ml)$/,
   /(^|\/)LICENSE$/,

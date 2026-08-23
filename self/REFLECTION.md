@@ -20,8 +20,9 @@ Run a reflection when any fires:
 
 Inputs are the attention counters (`check-memory`), new transcripts
 since the last run, the incident list, and consuming-project
-reports. **Empty inputs → skip and say so.** Reflection without
-fresh evidence only polishes the mirror.
+reports (`self/field-reports/`, per project, dated). **Empty inputs
+→ skip and say so.** Reflection without fresh evidence only polishes
+the mirror.
 
 **Self-reference countermeasure:** consuming-project evidence
 outweighs self-hosted. A reflection run purely on self-hosted

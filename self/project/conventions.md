@@ -18,6 +18,9 @@
 - Transcripts: `YYYY-MM-DD-<ITEM-ID-or-topic>.md` (the 3.7.0
   convention), under `self/_transcripts/`.
 - Evaluations: `YYYY-MM-DD-<topic>.md`, under `self/evaluations/`.
+- Field reports (consuming-project evidence):
+  `self/field-reports/<project-slug>/YYYY-MM-DD-<type>[-<topic>].md`
+  — slug, type list, and header contract in that tier's README.
 
 ## Commit messages
 

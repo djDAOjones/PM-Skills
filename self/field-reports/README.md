@@ -1,0 +1,117 @@
+# Field reports — consuming-project evidence
+
+<!-- Source-only cold tier (FIELD-REPORTS, 2026-08-23). Canonical
+     description of what is filed here and how; other files point
+     at this one. The tier's per-project directories are lint-exempt;
+     this README is gated. -->
+
+## Purpose
+
+Reports carried back from projects that run pm-skills — "consuming
+projects" in the framework's vocabulary, "applied projects" in the
+maintainer's. They are the evidence base for analysing how the
+framework is actually used: which verbs fire, what the memory sizes
+do over time, where prompts get skipped or mis-serve a project, how
+upgrades land. They are also the input the reflection practice
+weights above self-hosted material (`self/REFLECTION.md` →
+"Evidence gate": consuming-project evidence outweighs self-hosted).
+
+Until this tier existed the only such evidence — the Hub case study
+— sat in the frozen pre-adoption archive, and every reflection run
+had to declare itself pure self-hosted. Reports filed here end that.
+
+## What goes here
+
+Anything produced *by or about* a consuming project that bears on
+framework usage, filed verbatim:
+
+- Case studies and retrospective evaluations of a project's use of
+  the framework (when written in or by the project).
+- Session-close / end-of-task closing reports.
+- Janitor reports — the generated maintenance output a project
+  keeps (`pm_skills/prompts/session-start.md` → "Janitor report"):
+  a dated snapshot of memory health.
+- Memory validator output (`check-memory.mjs`) and memory-size
+  snapshots.
+- Upgrade reports: the outcome of an `upgrade.md` walk — version
+  from → to, actions taken, friction met.
+- Incident notes: prose-skips, gate misfires, a prompt that
+  mis-served the project, a close that went wrong.
+- Maintainer notes on a project — anything observed while working
+  in it that the framework should learn from.
+
+What does **not** go here:
+
+- This repository's own analysis — that is `self/evaluations/`
+  (dated, cold). A field report is *input*; an evaluation is
+  *output*. An analysis of field reports is written as an evaluation
+  and links back to the reports it read.
+- This repository's own session transcripts — `self/_transcripts/`.
+- A consuming project's live memory. Copy the report, never the
+  memory; the project remains the only owner of its memory files.
+- Secrets, credentials, personal data. **This repository is
+  public** (`https://github.com/djDAOjones/PM-Skills`) and `self/`
+  is tracked — redact before filing. Project names and paths are
+  fine when the project is the maintainer's own.
+
+## Layout
+
+```text
+self/field-reports/
+  README.md                          <- this file (lint-gated)
+  <project-slug>/                    <- one directory per project (cold)
+    YYYY-MM-DD-<type>[-<topic>].md
+```
+
+- `<project-slug>` — lower-case kebab, stable for the project's
+  life (`digital-art-audience-hub`). Name it once in the Projects
+  table below when the directory is created.
+- Files are dated by the day the report was **produced in the
+  project**, not the day it was filed here.
+- `<type>` comes from a short closed list so reports group across
+  projects: `case-study`, `session-close`, `janitor`, `validator`,
+  `upgrade`, `incident`, `note`. Add `-<topic>` when one day
+  carries several reports of a type.
+- Non-Markdown evidence (validator text, JSON, CSV) is fine; same
+  name shape, its own extension.
+
+A report is filed verbatim. If it did not arrive with a header,
+prepend this one so a later analysis can grep the tier and read
+usage against the release history:
+
+```markdown
+<!-- field-report: project=<slug> · date=YYYY-MM-DD · type=<type>
+     · pm-skills=<version in the project at the time>
+     · source=<who or what produced it> -->
+```
+
+The `pm-skills=` field is the join key: it is what lets a report be
+read against `pm_skills/CHANGELOG.md` for the release in force when
+the project produced it.
+
+## Lint status
+
+Everything under `self/field-reports/*/` is cold — excluded from
+markdownlint, cspell, editorconfig-checker, the docs-integrity
+checker, and the file-map generator, because exported content
+carries foreign paths and spellings the gate cannot check. This
+README is the tier's one gated file and is listed in
+`self/project/file-map.md`. Changing the tier's shape means
+updating `.markdownlint-cli2.jsonc`, `.markdownlintignore`,
+`cspell.json`, `.editorconfig-checker.json`,
+`scripts/check-docs.mjs`, `scripts/gen-file-map.mjs`, and the cold
+tier in the root `AGENTS.md` in the same change (`CONTRIBUTING.md`
+→ "Configuration").
+
+## Read tier
+
+Cold — never auto-read at session start (root `AGENTS.md` → "Before
+every task"). Read when a reflection runs (`self/REFLECTION.md` →
+"Evidence gate"), when a usage analysis or evaluation is the task,
+or when a backlog item cites a report as evidence.
+
+## Projects
+
+| Slug | Project | pm-skills since | Earliest evidence |
+| --- | --- | --- | --- |
+| `digital-art-audience-hub` | Digital Art Audience Hub (AI Jam Exhibition System v2) — the first real deployment, ~200 shipped items, two live shows | 2026-05-02 (unversioned → 3.1.1 → tracking current) | 2026-07-16 case study, written in this repo before adoption — stays frozen at `self/archive/user_crud/evaluations/2026-07-16-hub-case-study.md` (archive, never moved); reports from the project file here |

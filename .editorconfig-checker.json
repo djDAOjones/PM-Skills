@@ -6,6 +6,7 @@
     "self/evaluations",
     "self/_transcripts",
     "node_modules",
-    "self/project/reports"
+    "self/project/reports",
+    "self/field-reports/[^/]+/"
   ]
 }

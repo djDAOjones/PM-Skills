@@ -8,7 +8,8 @@
     "self/evaluations/**",
     "self/_transcripts/**",
     "package-lock.json",
-    "self/project/reports/**"
+    "self/project/reports/**",
+    "self/field-reports/*/**"
   ],
   "ignoreRegExpList": [
     "/\\b[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+\\b/g"

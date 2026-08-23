@@ -15,7 +15,8 @@ governs the *development* of that product.
 - **Consuming projects** — solo and small-team builders who own
   product direction and let AI agents implement. Primary evidence
   base: the Digital Art Audience Hub (first real deployment, ~200
-  shipped items).
+  shipped items); reports from consuming projects are filed under
+  `self/field-reports/`.
 - **This repository** — the framework's own development runs on the
   framework (self-hosted since 2026-07-16, SELF-HOST).
 

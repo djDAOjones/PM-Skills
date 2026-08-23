@@ -37,9 +37,10 @@
  * Inputs: tracked + non-ignored `*.md` files via `git ls-files`, so
  * `node_modules/` is excluded for free. The repo's living memory
  * (`self/`) IS checked; only its cold storage is excluded — the
- * frozen pre-adoption archive, and evaluations/transcripts, which
- * carry exported `file://` links and Hub-repo paths that are not
- * checkable references here.
+ * frozen pre-adoption archive, evaluations/transcripts, and the
+ * per-project field-report directories, which carry exported
+ * `file://` links and consuming-project paths that are not checkable
+ * references here (the field-reports tier README stays checked).
  *
  * Exit code: 0 when everything resolves; 1 otherwise (gates CI).
  */
@@ -98,6 +99,7 @@ const FILE_EXCLUDE = [
   /^self\/_transcripts\//,
   /^self\/project\/reports\//,
   /^self\/project\/archive\//, // frozen history: pre-rename paths are not rot
+  /^self\/field-reports\/[^/]+\//, // verbatim consuming-project exports; README stays checked
 ];
 
 /**

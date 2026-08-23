@@ -16,9 +16,9 @@ npm-debug.log*
 # living project memory, and archived history (versioned backup on a
 # cloud-synced path). It is source-only (never distributed). The living
 # memory is lint-gated; only the cold tiers (self/archive/,
-# self/evaluations/, self/_transcripts/) are excluded, via
-# .markdownlint-cli2.jsonc, cspell.json, .editorconfig-checker.json,
-# and scripts/check-docs.mjs.
+# self/evaluations/, self/_transcripts/, self/field-reports/*/) are
+# excluded, via .markdownlint-cli2.jsonc, cspell.json,
+# .editorconfig-checker.json, and scripts/check-docs.mjs.
 
 # Exception: the janitor report is generated each session and read
 # from the filesystem (freshness contract: timestamp + Start SHA),

@@ -40,8 +40,9 @@ Do not add scripts without updating this table and `CONTRIBUTING.md`.
 - **Scope:** every tracked Markdown file except the gate-excluded
   paths: `self/archive/**` (frozen pre-adoption history),
   `self/evaluations/**` and `self/_transcripts/**` (working outputs
-  with exported content the gate cannot check). The living memory in
-  `self/project/**` IS gated.
+  with exported content the gate cannot check), `self/field-reports/*/`
+  (consuming-project reports filed verbatim; the tier README is
+  gated). The living memory in `self/project/**` IS gated.
 - **CI parity:** `.github/workflows/lint.yml` runs the same checks on
   every push and PR. A tracked pre-commit hook (`.githooks/`) runs
   `npm run check`; wired via `git config core.hooksPath .githooks`

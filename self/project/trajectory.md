@@ -2,6 +2,11 @@
 
 ## Phase: Planning loop
 
+- FIELD-REPORTS (2026-08-23) — cold tier for consuming-project
+  reports (source-only): `self/field-reports/<slug>/` with a gated
+  README (type list, header contract, redaction rule), wired into
+  every exclusion point and the `AGENTS.md` cold tier; first
+  directory `digital-art-audience-hub` — see decision-log.
 - RELEASE-TREE-GLOB — release.md step 6 GUIDE-tree check honours
   glob lines (4.9.2): the three `CHANGELOG-*x.md` archives no longer
   fire MISSING at every release; regex-derived match, verified under

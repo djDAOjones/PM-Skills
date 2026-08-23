@@ -25,7 +25,9 @@ The framework is overwhelmingly Markdown. Two classes of file live here:
   contract (root [`AGENTS.md`](./AGENTS.md) — moved from
   self/AGENTS.md in 4.0.0), living project memory (`self/project/`),
   and cold storage (`self/archive/` pre-adoption history incl. the
-  retired `user_crud` tree, `self/evaluations/`, `self/_transcripts/`).
+  retired `user_crud` tree, `self/evaluations/`, `self/_transcripts/`,
+  and the per-project directories under `self/field-reports/` —
+  consuming-project reports filed verbatim; see that tier's README).
   The living memory is inside the lint gate; only the cold storage is
   excluded.
 
@@ -92,8 +94,9 @@ Configuration:
 - markdownlint-cli2 options: `.markdownlint-cli2.jsonc`. Sets
   `gitignore: true` so the linter skips whatever `.gitignore` skips
   (`node_modules/`), plus an explicit `ignores` for the cold `self/`
-  tiers (`self/archive/`, `self/evaluations/`, `self/_transcripts/`) —
-  the living memory in `self/` is gated. (markdownlint-cli2 does not
+  tiers (`self/archive/`, `self/evaluations/`, `self/_transcripts/`,
+  `self/field-reports/*/` — the tier README itself stays gated) — the
+  living memory in `self/` is gated. (markdownlint-cli2 does not
   honour `.markdownlintignore`.)
 - `.markdownlintignore` exists **for the editor extension only**
   (vscode-markdownlint honours it; the CLI does not). It mirrors the

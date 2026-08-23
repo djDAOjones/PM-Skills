@@ -28,7 +28,9 @@
 - `AGENTS.md`, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md` (root) —
   **product**: distribution templates with placeholders intact.
 - `self/` — **process**: this repo's own pm-skills deployment
-  (contract, memory, archive). Never distributed.
+  (contract, memory, archive, and `self/field-reports/` — the cold
+  tier where consuming-project reports are filed for usage
+  analysis). Never distributed.
 - `scripts/` — source-only tooling forks tuned for this repo
   (`check-docs.mjs`, `gen-file-map.mjs`).
 - `.github/workflows/`, `.githooks/` — CI lint gate + pre-commit hook.

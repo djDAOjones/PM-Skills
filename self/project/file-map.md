@@ -7,7 +7,7 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 68 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 69 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
@@ -15,7 +15,7 @@ see the root AGENTS.md "Before every task". -->
 - `.windsurf` — 1 file(s)
 - `pm_skills` — 46 file(s)
 - `scripts` — 10 file(s)
-- `self` — 2 file(s)
+- `self` — 3 file(s)
 <!-- /file-map-index -->
 
 ## (root)
@@ -109,3 +109,4 @@ see the root AGENTS.md "Before every task". -->
 
 - `self/DEV-INFRASTRUCTURE.md` — this repo's Tier-0 capability surface: scripts, gate, version identity
 - `self/REFLECTION.md` — standing reflection practice: triggers, evidence gate, three capped passes, run log
+- `self/field-reports/README.md` — cold evidence tier for consuming-project reports: what is filed, per-project layout, filename/header contract, lint status

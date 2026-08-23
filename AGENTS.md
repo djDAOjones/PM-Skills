@@ -56,7 +56,9 @@ sections), `self/project/backlog.md` (Active only),
 **Cold (never auto-read)** — `self/project/wish-list.md`,
 `self/project/doc-deltas.md`, `self/project/tickets/<ID>.md` (active
 `[detail]` item only), `self/project/archive/`, `self/archive/`
-(pre-adoption history), `self/evaluations/`, `self/_transcripts/`.
+(pre-adoption history), `self/evaluations/`, `self/_transcripts/`,
+`self/field-reports/` (consuming-project reports — read for a
+reflection or a usage analysis; see its README).
 
 Memory budgets: `pm_skills/memory-policy.md` applies unchanged.
 

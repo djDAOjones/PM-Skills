@@ -9,6 +9,37 @@
      and 2026-07 — see archive/INDEX.md for ranges. Grep the
      archive files directly; never re-inline them. -->
 
+## 2026-08-23 — FIELD-REPORTS: a cold tier for consuming-project evidence
+
+**Decision:** Reports from projects that run pm-skills are filed
+under `self/field-reports/<project-slug>/YYYY-MM-DD-<type>.md` — a
+new cold tier beside `self/evaluations/` and `self/_transcripts/`,
+source-only, tracked, lint-exempt per project directory with one
+gated README as the canonical description (what is filed, the type
+list, the header contract with a `pm-skills=` join key, the public-
+repo redaction rule). Wired into all six exclusion points and the
+root `AGENTS.md` cold tier; `digital-art-audience-hub` is the first
+project directory. The Hub case study stays in the frozen archive
+and is pointed at, not moved.
+
+**Rationale:** `self/REFLECTION.md` already names consuming-project
+reports as the evidence input that outweighs self-hosted material,
+yet no tier held them — run one had to declare itself pure
+self-hosted. Neither existing cold tier fits: evaluations are this
+repo's analysis *outputs*, transcripts are its own session inputs;
+exports from outside need their own home so a usage analysis can
+group by project and read each report against the release in force.
+Per-project directories keep the README gated while the verbatim
+exports (foreign paths and spellings) stay out of the gate.
+
+**Alternatives:** a `self/evaluations/projects/` subtree (rejected —
+inherits exclusions for free but conflates input with output, which
+the reflection's self-reference countermeasure needs kept apart);
+flat dated files with a project prefix (rejected — no grouping for
+cross-project analysis, and no way to gate a README); gitignore the
+tier like the janitor report (rejected — evidence is kept, not
+regenerated; the tracked checkout is the backup).
+
 ## 2026-08-23 — Re-assess (scoped): TEST-DOC cut, DATA-MIG held
 
 **Decision:** Scoped Re-assess over the two standing items past the
