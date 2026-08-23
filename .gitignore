@@ -24,3 +24,10 @@ npm-debug.log*
 # from the filesystem (freshness contract: timestamp + Start SHA),
 # so it is not tracked (REPORTS-IGNORE, 2026-08-17).
 self/project/reports/
+
+# Field reports from consuming projects that cannot be public stay on
+# the maintainer's checkout only (FIELD-REPORTS local lane, 2026-08-23):
+# the tier is tracked in a public repo, so each project's `local/`
+# subdirectory is ignored. See self/field-reports/README.md → "Local-only
+# lane".
+self/field-reports/*/local/

@@ -9,6 +9,34 @@
      and 2026-07 — see archive/INDEX.md for ranges. Grep the
      archive files directly; never re-inline them. -->
 
+## 2026-08-23 — FIELD-REPORTS: local-only lane for evidence that cannot be public
+
+**Decision:** The first real field report — a 343 KB primary-source
+export from the Derry Lane Development System (private by design:
+household property matters and a third party's attributed views,
+verbatim) — is kept local-only: `self/field-reports/<slug>/local/`
+is gitignored by one tracked rule, the project directory stays
+tracked with a `.gitkeep`, the Projects row says which lane the
+evidence uses, and the README gains an `export` type for raw dumps.
+Maintainer decision 2026-08-23, on the recommendation.
+
+**Rationale:** the tier lives in a public repo and a push is
+permanent (forks, caches, indexers); mechanical redaction removed
+IDs and emails but cannot remove the household content the
+framework-usage evidence is inseparable from. Local-only keeps every
+byte on the cloud-synced checkout for analysis and publishes
+nothing; the redaction judgement moves to the public evaluation
+that reads it. A per-project `local/` subdirectory scales without
+further `.gitignore` edits and keeps public/private visible in the
+path.
+
+**Alternatives:** commit as-is (rejected — a third party's words in
+a public repo, irreversibly); trim to memory files + git log
+(rejected — the project *is* the household matter, so every section
+carries it, and trimming destroys the primary evidence); gitignore
+the whole project directory (rejected — per-project rule, and the
+project vanishes from the tree).
+
 ## 2026-08-23 — FIELD-REPORTS: a cold tier for consuming-project evidence
 
 **Decision:** Reports from projects that run pm-skills are filed

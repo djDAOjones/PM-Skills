@@ -6,7 +6,11 @@
   reports (source-only): `self/field-reports/<slug>/` with a gated
   README (type list, header contract, redaction rule), wired into
   every exclusion point and the `AGENTS.md` cold tier; first
-  directory `digital-art-audience-hub` — see decision-log.
+  directory `digital-art-audience-hub` — see decision-log. Same
+  day: `export` type added and a gitignored local-only lane
+  (`self/field-reports/*/local/`) for evidence that cannot be
+  public; first real report (Derry Lane,
+  343 KB export) filed local-only — see decision-log.
 - RELEASE-TREE-GLOB — release.md step 6 GUIDE-tree check honours
   glob lines (4.9.2): the three `CHANGELOG-*x.md` archives no longer
   fire MISSING at every release; regex-derived match, verified under
