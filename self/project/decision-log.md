@@ -9,6 +9,29 @@
      and 2026-07 — see archive/INDEX.md for ranges. Grep the
      archive files directly; never re-inline them. -->
 
+## 2026-08-23 — LAB-FIRST: the lab arc gates this repo's queue
+
+**Decision:** Maintainer standing order queued as an ALERT record
+at the top of Current (LAB-FIRST, order 0; custom `ALERT` flag
+registered via the 4.8.0 `_meta.md` dialect key): no new canon
+work before the lab arc — UPSTREAM-ASSIM (queued lab-side the
+same day, lab commit `437fed6`), then R2 parallel-run preparation
+for the two-arm test on the next real project. Exceptions:
+gate-forced maintenance, and upstream work the lab arc itself
+requests. Only the maintainer clears the record.
+
+**Rationale:** the R2 comparison needs the incumbent at its
+current best *as merged by the lab*; canon commits made before
+the assimilation widen the delta and stale the survey hints on
+the lab's ticket. The hot Active view is the surface session
+start actually reads, so the order lives there, not in
+assistant-side memory alone.
+
+**Alternatives:** memory-only note (rejected — not a framework
+surface, and other harnesses would never see it); blocking
+VOICE-INTAKE explicitly (unnecessary — already blocked on its
+maintainer inputs).
+
 ## 2026-08-23 — FIELD-REPORTS: local-only lane for evidence that cannot be public
 
 **Decision:** The first real field report — a 343 KB primary-source

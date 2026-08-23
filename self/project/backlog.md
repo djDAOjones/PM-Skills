@@ -15,8 +15,14 @@
 
 ### Current milestone
 
-<!-- Intent: VOICE-INTAKE promoted at the 2026-08-18 Re-assess pass (first live run of the 4.9.0 verb) — the next arc, blocked on maintainer inputs (real transcripts plus the external preparation prompts). -->
+<!-- Intent: LAB-FIRST alert gates the queue (maintainer order 2026-08-23) — the lab arc runs first. VOICE-INTAKE promoted at the 2026-08-18 Re-assess pass (first live run of the 4.9.0 verb) — the next arc, blocked on maintainer inputs (real transcripts plus the external preparation prompts). -->
 
+- [ ] **LAB-FIRST Work the lab before this repo** [ALERT] [maintainer]
+  [detail](tickets/LAB-FIRST.md) (2026-08-23) — maintainer standing order
+  (2026-08-23) — before picking any new work here, run the lab arc
+  (djDAOjones/PM-Skills-lab, checkout in CascadeProjects): UPSTREAM-ASSIM
+  first, then R2 parallel-run preparation for the two-arm test on the next
+  real project. Exceptions in the ticket. Cleared only by the maintainer.
 - [ ] **VOICE-INTAKE Voice-memo transcript intake**
   [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
   more real raw transcripts plus the external preparation prompts (ticket
