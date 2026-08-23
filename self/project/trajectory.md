@@ -2,6 +2,11 @@
 
 ## Phase: Planning loop
 
+- README-SYNC (2026-08-23) — README caught up to 4.9.0 (source-only):
+  optional `PROCESS.md` template, `doc-deltas.md`, all six
+  memory-maintenance verbs, spike/refactor modes, `next`/`dispatch`
+  in the daily loop, the commit-and-push close (and the opt-out
+  line), lite close, rules-import tip, archived changelog epochs.
 - PLAN-ORDER — Re-assess verb ships (4.9.0): sixth
   memory-maintenance verb re-judges the standing queue (grades,
   holds, order, refill), propose-only and never auto-run; Diagnose
