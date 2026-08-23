@@ -36,6 +36,32 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.9.2 — 2026-08-23
+
+RELEASE-TREE-GLOB: the release checklist's GUIDE-tree check now
+honours glob lines. Since 4.5.0 the guide's folder tree lists the
+archived changelog epochs as one `CHANGELOG-*.md` line, and the step 6
+snippet grepped each shipped basename literally — so the three
+archive files reported MISSING at every release (a false positive
+reproduced at the 4.9.1 close). Wording and snippet only; no new
+files, no behaviour change for consuming projects.
+
+### Changed
+
+- `pm_skills/prompts/release.md` — step 6's "Top-level files missing
+  from the GUIDE tree" loop: a basename that matches any `*` pattern
+  token in the guide (file-shaped tokens only, `name*name.ext`) now
+  passes; a name the guide neither mentions nor covers by pattern
+  still reports MISSING. Shell-agnostic (regex via `grep -E`, no
+  word-splitting or pathname-expansion dependence); verified under
+  sh, bash, and zsh. One explanatory paragraph follows the snippet.
+
+### Upgrade actions
+
+- Replace `pm_skills/prompts/release.md` with this version's copy
+  (`framework` class). Source-repo maintainers only — consuming
+  projects never run the release checklist; nothing else to do.
+
 ## 4.9.1 — 2026-08-23
 
 GUIDE-SYNC: the guide's prose catches up with behaviour that shipped

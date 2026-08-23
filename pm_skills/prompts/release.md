@@ -116,10 +116,19 @@ for f in pm_skills/prompts/* pm_skills/integrations/*; do
   echo "  (ok if covered by a /* wildcard) $f"
 done
 echo "Top-level files missing from the GUIDE tree:"
+GLOB_RE=$(grep -oE '[A-Za-z0-9_.-]*\*[A-Za-z0-9_.-]*\.[a-z]+' pm_skills/GUIDE.md \
+  | sort -u | sed 's/\./\\./g; s/\*/.*/g' | paste -s -d '|' -)
 for f in pm_skills/VERSION pm_skills/*.md; do
-  grep -q "$(basename "$f")" pm_skills/GUIDE.md || echo "  MISSING: $f"
+  b=$(basename "$f")
+  grep -q "$b" pm_skills/GUIDE.md && continue
+  [ -n "$GLOB_RE" ] && echo "$b" | grep -qE "^($GLOB_RE)$" && continue
+  echo "  MISSING: $f"
 done
 ```
+
+(The tree may list a file family on one glob line — `CHANGELOG-*.md`
+for the archived epochs — so the last loop accepts a basename that
+matches any `*` pattern in the guide, not only a literal mention.)
 
 ## 7. Harness check (advisory)
 

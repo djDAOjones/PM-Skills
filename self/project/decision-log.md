@@ -9,6 +9,26 @@
      and 2026-07 — see archive/INDEX.md for ranges. Grep the
      archive files directly; never re-inline them. -->
 
+## 2026-08-23 — RELEASE-TREE-GLOB: glob-aware GUIDE-tree check (4.9.2)
+
+**Decision:** The step 6 loop derives one extended regex from the
+guide's file-shaped `*` tokens (`name*name.ext` only, so markdown
+bold never matches) and tests each basename with `grep -E` after
+the literal grep fails. Patch release; GUIDE untouched.
+
+**Rationale:** The snippet is pasted into whatever shell the
+maintainer has. A `case`-pattern loop over the token list depends
+on word-splitting (zsh does not split unquoted expansions) and on
+pathname expansion being off; a `while read` pipe loses the match
+flag in a bash subshell. One regex sidesteps all three; verified
+identical output under sh, bash, and zsh, positive and negative.
+
+**Alternatives:** `case` + `set -f` (rejected — zsh word-splitting);
+expanding the guide's glob line into three names (rejected — the
+4.5.0 glob was deliberate and the check should serve future
+families too); scoping the literal grep to the tree block only
+(deferred — stricter than today; not this fix's concern).
+
 ## 2026-08-23 — Pruned project memory: decision-log 21 → 10 live
 
 **Decision:** Archived the oldest 11 entries (REFLECT-1 … CTX-CACHE,

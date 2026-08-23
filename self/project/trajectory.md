@@ -2,6 +2,11 @@
 
 ## Phase: Planning loop
 
+- RELEASE-TREE-GLOB — release.md step 6 GUIDE-tree check honours
+  glob lines (4.9.2): the three `CHANGELOG-*x.md` archives no longer
+  fire MISSING at every release; regex-derived match, verified under
+  sh/bash/zsh, negative case still reports (2026-08-23) — see
+  decision-log.
 - GUIDE-SYNC — guide prose caught up to 4.9.0 behaviour (4.9.1):
   optional `PROCESS.md` and the full hot tier in the mental model,
   exact MANIFEST class names, `backlog-authoring.md` as a workflow
