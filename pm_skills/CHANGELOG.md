@@ -36,6 +36,36 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.9.1 — 2026-08-23
+
+GUIDE-SYNC: the guide's prose catches up with behaviour that shipped
+across 4.4.0–4.9.0 but was only ever reflected in the file tree or
+the verb list. Wording only — no new files, no behaviour change.
+
+### Changed
+
+- `pm_skills/GUIDE.md` — the mental model names the optional
+  `PROCESS.md` rulebook and the full hot-tier set (root README,
+  brief, architecture, conventions); the folder tree states the
+  `MANIFEST.md` class names exactly (`root-template`,
+  `project-memory`); "Two ways to drive it" lists
+  `prompts/backlog-authoring.md` among the prompts carrying workflow
+  frontmatter; the daily-loop Pick describes the 4.9.0 empty-queue
+  rule (a Re-assess pass is proposed before any Icebox pull) and the
+  optional janitor report; the Close steps name the `doc-deltas.md`
+  capture and `scaffold/check-memory.mjs` as the whole of step 4
+  where it is wired; "Looking after project memory" presents the
+  validator as a gate for any project, not only records mode, and
+  the model-tier note adds Re-assess's re-grading to the propose
+  steps.
+
+### Upgrade actions
+
+- Replace `pm_skills/GUIDE.md` with this version's copy (`framework`
+  class).
+- No file adds, renames, or removals; no memory migration; nothing
+  to do in a consuming project beyond the replace.
+
 ## 4.9.0 — 2026-08-18
 
 PLAN-ORDER: memory maintenance gains a sixth verb, **Re-assess

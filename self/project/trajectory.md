@@ -2,6 +2,12 @@
 
 ## Phase: Planning loop
 
+- GUIDE-SYNC — guide prose caught up to 4.9.0 behaviour (4.9.1):
+  optional `PROCESS.md` and the full hot tier in the mental model,
+  exact MANIFEST class names, `backlog-authoring.md` as a workflow
+  command, the empty-queue Re-assess rule and janitor report at
+  Pick, `doc-deltas.md` and `check-memory.mjs` in the Close steps,
+  the validator as a gate for any project (2026-08-23).
 - README-SYNC (2026-08-23) — README caught up to 4.9.0 (source-only):
   optional `PROCESS.md` template, `doc-deltas.md`, all six
   memory-maintenance verbs, spike/refactor modes, `next`/`dispatch`

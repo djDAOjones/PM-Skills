@@ -23,7 +23,8 @@ the end of every task**:
   building, what's next, what shipped, and why choices were made.
 - **Rulebooks** (`AGENTS.md`, `UI-STANDARDS.md`,
   `DEV-INFRASTRUCTURE.md` in your project root — copied out of
-  `templates/` at init) — the permanent rules: invariants, UI and
+  `templates/` at init, plus an optional `PROCESS.md` for complex
+  multi-phase projects) — the permanent rules: invariants, UI and
   accessibility standards, build and deploy facts. Populated once
   during setup; updated only when big decisions change.
 - **Workflows** (`integrations/` and `prompts/`) — the procedures:
@@ -36,9 +37,10 @@ Two habits make the memory work:
   reasoning goes to `decision-log.md` (why). Nothing is written twice,
   so the files the agent reads every day stay small.
 - **Read tiers.** Not every file is read every time. Hot files (the
-  brief, the architecture) are read every task; `backlog.md` and the
-  file map are read by section; `trajectory.md` only on demand; the
-  wish-list and archives never load automatically. This keeps each
+  root README, the brief, the architecture, the conventions) are read
+  every task; `backlog.md` and the file map are read by section;
+  `trajectory.md` only on demand; the wish-list and archives never
+  load automatically. This keeps each
   session's context — and token bill — bounded as the project grows.
   The canonical tier policy lives in `AGENTS.md` → "Before every
   task"; the size budgets live in `memory-policy.md`.
@@ -63,7 +65,7 @@ VERSION          Current framework version (semver). The upgrade check.
 CHANGELOG.md     Append-only release log; each entry is an upgrade plan.
 CHANGELOG-*.md   Archived epochs (1.x/2.x/3.x), verbatim; the upgrade
                  walk follows the live file's index into them.
-MANIFEST.md      Path classes: framework / template / memory / scaffold.
+MANIFEST.md      Path classes: framework / root-template / project-memory / scaffold.
 GUIDE.md         This guide.
 init.md          Project setup, step by step (manual or agent-run).
 memory-policy.md Memory size budgets + overrun actions (read at task close only).
@@ -128,9 +130,10 @@ scaffold/        Starter config to copy into your project root once.
 
 - **Workflow-capable AI tools** (slash commands or similar): copy the
   files from `integrations/` into your tool's workflow directory —
-  plus `prompts/upgrade.md` and `prompts/memory-maintenance.md` if you
-  want those as commands too (they carry workflow frontmatter). Then
-  you just invoke a workflow and talk.
+  plus `prompts/upgrade.md`, `prompts/memory-maintenance.md`, and
+  `prompts/backlog-authoring.md` if you want those as commands too
+  (they carry workflow frontmatter). Then you just invoke a workflow
+  and talk.
 - **Any other AI tool**: paste the prompt files into chat at the right
   moments. The "Manual paste flow" section below gives the exact
   sequences. Same rigour, more copy-paste.
@@ -191,7 +194,14 @@ also surfaces the **age of standing items** — the
 `[maintainer]`/`[sign-off]`/`[blocked]` work that waits across sessions
 — so long-lived items can't fade into wallpaper; and any open
 `[security]` item (a live exposure) banners at every session start
-until it's closed.
+until it's closed. When nothing committed is left — Current and Next
+both empty, only the Icebox to pull from — it proposes a
+**Re-assess** pass (`memory-maintenance.md`) before pulling, so the
+next pick stands on current grades and hold reasons rather than
+stale ones. A project that keeps a generated **janitor report**
+(fresh, on this branch) lets session start read those counts and
+banners from the report instead of recomputing them — see
+`session-start.md` → "Janitor report".
 
 Or, when you trust the backlog order, run
 [`integrations/next.md`](./integrations/next.md): one word picks the
@@ -249,10 +259,14 @@ Say "run end-of-task" (`prompts/end-of-task.md`). The agent:
 1. Runs the project's one-command quality gate (`check`).
 2. Verifies the app still boots, if the task touched the runtime.
 3. Updates project memory — removes the shipped backlog item, records
-   the why in `decision-log.md`, adds the trajectory line, refreshes
-   the file map and any rulebook that changed.
+   the why in `decision-log.md`, adds the trajectory line, notes any
+   protected-doc drift in `doc-deltas.md`, refreshes the file map and
+   any rulebook that changed.
 4. Size-checks the memory files (a fast path skips the full audit on
-   most tasks) and proposes maintenance if a budget tripped.
+   most tasks) and proposes maintenance if a budget tripped. Where
+   the project wires `scaffold/check-memory.mjs`, that one command
+   is the whole step: structural failures block the close, budget
+   warnings feed the proposal.
 5. Reports what it did.
 
 This ritual is what makes the *next* session start smart. Don't skip
@@ -450,13 +464,19 @@ approval. Its six verbs:
 
 Budgets and the actions per file live in
 [`memory-policy.md`](./memory-policy.md) — the agent reads it at task
-close; you never need to.
+close; you never need to. The mechanical half of all this — every
+budget, the ticket grammar, the hygiene checks, Diagnose's greps —
+ships as one command, `scaffold/check-memory.mjs` (runs in place; no
+records mode required). Wire it into your `check` gate and the size
+check stops being a ritual the agent performs and becomes a gate the
+agent cannot skip.
 
 **Which model tier?** Memory maintenance is mostly mechanical — counts,
 greps, `tail`/`diff` verification, log harvesting — and that half runs
 fine on a cheaper, faster model. Two things do not: judgement steps
 (scoping, design options, validation, review, and any **propose** step,
-such as Prune's archive proposal or Reconcile's batch write), and
+such as Prune's archive proposal, Re-assess's re-grading, or
+Reconcile's batch write), and
 multi-step protocol closes (the release and end-of-task checklists).
 Both want the stronger tier — protocol adherence and judgement are the
 first things to degrade on a cheap model. Split the work per-step, not
