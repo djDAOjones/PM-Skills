@@ -39,7 +39,7 @@
 
 ### Icebox
 
-<!-- Intent: five held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired. GATE-PARITY added 2026-08-24, after the second fresh-clone gate divergence. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). -->
+<!-- Intent: four held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired. GATE-PARITY was filed here 2026-08-24 and shipped the same day on the maintainer's direct pick, without waiting for its trigger. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). -->
 
 - [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
   project with persistent user data] (2026-07-16) — hard rule "no
@@ -62,13 +62,5 @@
   one consuming project] (2026-08-09) — packaging-ladder rung 4; adapter
   outside the distributed tree, never core. · High / High / Medium /
   Medium
-- [ ] **GATE-PARITY Make the local gate CI-faithful**
-  [detail](tickets/GATE-PARITY.md) [blocked: a third local-vs-CI gate
-  divergence, or a red default-branch run that survives more than one
-  push] (2026-08-24) — the gate is documented as CI-mirrored but passes
-  locally while CI fails, because gitignored generated files exist only on
-  a working checkout; options are a clean-clone check target, a
-  pristine-checkout CI step, or a red-run notification. · Medium / Low /
-  Low / Low
 
 <!-- generated:records:end -->

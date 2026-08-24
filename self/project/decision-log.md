@@ -9,6 +9,42 @@
      and 2026-07 — see archive/INDEX.md for ranges. Grep the
      archive files directly; never re-inline them. -->
 
+## 2026-08-24 — GATE-PARITY: the gate resolves against Git, not the filesystem
+
+**Decision:** `scripts/check-docs.mjs` resolves link targets and
+backticked paths against the set of paths Git knows about — tracked
+files, non-ignored new files, and their ancestor directories — rather
+than calling `existsSync`. Its `IGNORE` list stays as the single
+deliberate exception and is documented as prose-only: a link gets no
+escape hatch, because CI cannot follow one. A new `npm run check:clone`
+(`scripts/check-clone.mjs`) runs the whole gate against a fresh clone
+of HEAD. Source-only; shipped on the maintainer's direct pick, which
+cleared the record's own trigger and the LAB-FIRST gate.
+
+**Rationale:** the root contract calls the gate "CI-mirrored" and it
+was not. CI lints a fresh clone; a working checkout also carries
+gitignored generated files, so a filesystem check passed here on
+references CI could not resolve. Twice — GATE-FRESH (`node_modules/`)
+and GATE-REPORTS (the janitor report), the latter red for ten pushes
+over six days behind a green local gate. Both were repaired by adding
+a pattern to `IGNORE` after the fact, which fixes the instance and
+leaves the class. Resolution was already half git-faithful: sources
+come from `git ls-files`, and every other gate tool honours
+`.gitignore`. Making the target side agree closes the class at its
+source, costs nothing at runtime, needs no clone, and — being
+exact-case — also stops a case-only reference passing on a
+case-insensitive macOS volume and failing on Linux.
+
+**Alternatives:** the ticket's three options. A clone-based check
+alone (rejected as the primary — opt-in, so it cannot stop the
+divergence being introduced; kept as the secondary `check:clone`,
+which is worth having because it covers classes the docs check cannot
+model). A CI step asserting parity (rejected — CI already *is* the
+fresh clone; once local resolution is faithful, a red CI run means a
+real fault). A notification on a red default-branch run (rejected as a
+fix — it shortens the feedback loop but leaves the gate lying about
+being mirrored; still worth enabling as a repo setting).
+
 ## 2026-08-24 — GATE-REPORTS: check-docs ignores the generated janitor report
 
 **Decision:** `scripts/check-docs.mjs` adds a

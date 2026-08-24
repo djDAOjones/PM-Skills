@@ -87,6 +87,12 @@ Individual checks:
   via `scripts/package.mjs --check`. (`npm run lint` is the four lint
   checks without it.)
 
+Not part of the gate:
+
+- `npm run check:clone` — runs the whole gate against a fresh clone of
+  HEAD in a temp directory, exactly as CI does. Run it before pushing a
+  change to the gate itself; see "Local–CI parity" below.
+
 Configuration:
 
 - markdownlint rules: `.markdownlint.json`. Each rule customisation has a
@@ -145,10 +151,34 @@ exclude `node_modules` from cloud sync first.
 ## Continuous integration
 
 `.github/workflows/lint.yml` runs `npm ci`, then `npm run lint:md`,
-`lint:docs`, `lint:spell`, and `lint:editorconfig`, on
-every push to the default branch and every pull request. It runs in a
-clean Ubuntu runner, so the cloud-sync constraints above never apply to
-CI.
+`lint:docs`, `lint:memory`, `lint:spell`, `lint:editorconfig`, and
+`lint:boundary` — the same set as `npm run check` — on every push to
+the default branch and every pull request. It runs in a clean Ubuntu
+runner, so the cloud-sync constraints above never apply to CI.
+
+### Local–CI parity
+
+CI lints a **fresh clone**; your checkout also holds files Git ignores
+— `node_modules/`, the generated janitor report under
+`self/project/reports/`, a project's `local/` field reports. Anything
+in the gate that consults the filesystem can therefore pass locally and
+fail in CI. That happened twice: GATE-FRESH (2026-08-08, `node_modules/`)
+and GATE-REPORTS (2026-08-24, the janitor report), the second leaving
+the Lint badge red for ten pushes over six days.
+
+Two things keep the two honest:
+
+- `scripts/check-docs.mjs` resolves every reference against the set of
+  paths **Git** knows about, never against the filesystem, so a link to
+  a generated file fails here exactly as it fails in CI. Its `IGNORE`
+  list is the one deliberate exception, and it covers backticked prose
+  only — never links. The other checks already honour `.gitignore`
+  (`gitignore: true`, `useGitignore: true`, and the
+  editorconfig-checker excludes).
+- `npm run check:clone` proves the whole gate on a pristine clone, for
+  divergence classes nobody has anticipated. It is opt-in because it
+  costs a clone plus a cold `npx` fetch. Run it whenever you change a
+  lint config, a check script, or `.gitignore`.
 
 ## Pre-commit hook
 

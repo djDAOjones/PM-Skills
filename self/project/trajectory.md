@@ -2,6 +2,18 @@
 
 ## Phase: Planning loop
 
+- GATE-PARITY (2026-08-24) — the local gate made CI-faithful
+  (source-only): `scripts/check-docs.mjs` resolves every reference
+  against the paths Git knows about instead of calling `existsSync`,
+  so a link to a gitignored generated file now fails locally exactly
+  as it fails in CI. `IGNORE` survives as the one deliberate escape
+  hatch — backticked prose only, never links. Adds `check:clone`
+  (`scripts/check-clone.mjs`), which runs the whole gate on a fresh
+  clone of HEAD for divergence classes the docs check cannot see.
+  Filed in the Icebox and shipped the same day on the maintainer's
+  direct pick, clearing both its own trigger and the LAB-FIRST gate.
+  The scaffold fork still carries the bug — captured as
+  SCAFFOLD-GITPATH. No release. See decision-log 2026-08-24.
 - GATE-REPORTS (2026-08-24) — fresh-clone gate repair: check-docs
   now ignores the gitignored janitor report path
   (`self/project/reports/`), which the root contract names in prose.

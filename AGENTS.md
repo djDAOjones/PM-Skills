@@ -78,8 +78,12 @@ Memory budgets: `pm_skills/memory-policy.md` applies unchanged.
   file updates `pm_skills/MANIFEST.md` and the `pm_skills/GUIDE.md`
   file tree in the same change.
 - **One-command quality gate.** `npm run check` — non-mutating,
-  CI-mirrored. Green after the last edit is the precondition for
-  closing any task.
+  CI-mirrored: references resolve against Git rather than the
+  filesystem, so the gate cannot pass here on paths a fresh clone
+  lacks (GATE-PARITY). Green after the last edit is the precondition
+  for closing any task. Before changing the gate itself — a lint
+  config, a check script, `.gitignore` — run `npm run check:clone`,
+  which runs it all on a pristine clone.
 - **Memory validator.** `node scripts/check-memory.mjs` implements
   the end-of-task size check for this repo (wired into the gate as
   `lint:memory`): structural memory failures gate commits; budget

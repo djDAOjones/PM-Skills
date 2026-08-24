@@ -12,6 +12,7 @@
     "lint:editorconfig": "npx --yes editorconfig-checker",
     "lint:boundary": "node scripts/package.mjs --check",
     "check": "npm run lint && npm run lint:boundary",
+    "check:clone": "node scripts/check-clone.mjs",
     "package": "node scripts/package.mjs",
     "prepare": "git config core.hooksPath .githooks"
   },

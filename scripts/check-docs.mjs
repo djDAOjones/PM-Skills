@@ -5,9 +5,9 @@
  * check-docs.mjs — Markdown integrity checks for this repo, in one pass:
  *
  *   1. LINKS — every relative Markdown link target `[text](target)`
- *      resolves to a real file on disk.
+ *      resolves to a real file in the repository.
  *   2. PATHS — every backticked inline repo path (e.g.
- *      `pm_skills/prompts/release.md`) resolves on disk.
+ *      `pm_skills/prompts/release.md`) resolves in the repository.
  *
  * Replaces the former check-links.mjs + check-paths.mjs pair (they
  * duplicated their file-listing and reporting scaffolding). The
@@ -18,6 +18,16 @@
  * cross-references (a prompt renamed, a path moved) — not external
  * URLs. Zero dependencies; no full-tree walk (stalls on cloud-synced /
  * on-demand filesystems).
+ *
+ * Resolution model (GATE-PARITY, 2026-08-24): references resolve
+ * against the set of paths GIT knows about, never against the local
+ * filesystem. CI lints a fresh clone, which holds exactly those paths,
+ * while a working checkout also carries gitignored generated files. An
+ * `existsSync` check therefore passed locally on references CI could
+ * not resolve — twice; the second time (GATE-REPORTS) left the badge
+ * red for ten pushes over six days. Set membership makes local and CI
+ * agree by construction, and being exact-case it matches Linux rather
+ * than a case-insensitive macOS volume.
  *
  * Scope and deliberate non-goals:
  * - Inline links only (`[text](target)`); reference-style links are
@@ -31,8 +41,11 @@
  *   no longer exist (renamed/merged in later releases). Its links are
  *   still checked.
  * - Template/example paths that never exist here (archive/, tickets/)
- *   are ignored, as are gitignored paths absent in a fresh clone
- *   (node_modules/, the generated janitor report).
+ *   are ignored, as are runtime paths absent from a fresh clone
+ *   (node_modules/, the generated janitor report) — see IGNORE, which
+ *   covers backticked prose only. A LINK has no such escape hatch: it
+ *   must resolve to a path in the repository, because CI cannot follow
+ *   it otherwise.
  *
  * Inputs: tracked + non-ignored `*.md` files via `git ls-files`, so
  * `node_modules/` is excluded for free. The repo's living memory
@@ -47,7 +60,7 @@
 
 import { execSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { dirname, relative, resolve } from 'node:path';
 
 /** Matches inline Markdown links: captured group 1 is the raw target. */
 const LINK_RE = /\[[^\]]*\]\(([^)]+)\)/g;
@@ -71,6 +84,13 @@ const SAFE_PATH_RE = /^[\w./-]+$/;
  * that exist only after a local install (`node_modules/`) or a
  * generator run (the janitor report), so docs may name them yet a
  * fresh clone lacks them.
+ *
+ * This is the ONE deliberate escape hatch from the git-faithful
+ * resolution above, and it applies to backticked prose only — never
+ * to links. It is applied BEFORE any resolution, so it behaves
+ * identically on a working checkout and in CI. Adding an entry here
+ * means "docs may name this path though the repository never holds
+ * it"; it must never be used to silence a genuinely broken reference.
  */
 const IGNORE = [
   /(^|\/)archive(\/|$)/,
@@ -132,6 +152,51 @@ function markdownFiles() {
   ]
     .filter((f) => existsSync(f)) // staged deletions linger in ls-files
     .filter((f) => !FILE_EXCLUDE.some((re) => re.test(f)));
+}
+
+/**
+ * Every repo-relative path Git knows about: tracked files, new files
+ * Git does not ignore, and every ancestor directory of both. This is
+ * precisely what a fresh clone contains, so it is what CI can resolve.
+ * Built once with two Git calls — no filesystem walk.
+ * @returns {Set<string>} POSIX-separated, no trailing slash
+ */
+function gitPaths() {
+  const listed = [
+    execSync('git ls-files', { encoding: 'utf8' }),
+    execSync('git ls-files --others --exclude-standard', { encoding: 'utf8' }),
+  ].join('\n');
+  /** @type {Set<string>} */
+  const paths = new Set();
+  for (const line of listed.split('\n')) {
+    const file = line.trim();
+    if (!file) continue;
+    paths.add(file);
+    for (let dir = dirname(file); dir && dir !== '.'; dir = dirname(dir)) {
+      paths.add(dir);
+    }
+  }
+  return paths;
+}
+
+/** The repository's resolvable paths (see gitPaths). */
+const REPO_PATHS = gitPaths();
+
+/**
+ * Does a reference resolve to a path the repository actually holds?
+ * Deliberately NOT an `existsSync` call — see "Resolution model" in
+ * the header. Out-of-tree targets (`../` past the root) never resolve.
+ * @param {string} baseDir directory the target is written relative to
+ * @param {string} target cleaned target path
+ * @returns {boolean}
+ */
+function resolves(baseDir, target) {
+  const rel = relative(process.cwd(), resolve(baseDir, target))
+    .split('\\')
+    .join('/')
+    .replace(/\/$/, '');
+  if (!rel || rel === '..' || rel.startsWith('../')) return false;
+  return REPO_PATHS.has(rel);
 }
 
 /**
@@ -199,7 +264,7 @@ function problemsIn(file) {
   for (const m of content.matchAll(LINK_RE)) {
     const target = linkPath(m[1]);
     if (target === null) continue;
-    if (existsSync(resolve(baseDir, target))) continue;
+    if (resolves(baseDir, target)) continue;
     problems.push({ file, line: lineOf(content, m.index), kind: 'broken link', target });
   }
 
@@ -207,7 +272,7 @@ function problemsIn(file) {
     for (const m of content.matchAll(CODE_SPAN_RE)) {
       const target = codePath(m[1]);
       if (target === null) continue;
-      if (BASES.some((base) => existsSync(resolve(base, target)))) continue;
+      if (BASES.some((base) => resolves(base, target))) continue;
       problems.push({ file, line: lineOf(content, m.index), kind: 'missing path', target });
     }
   }

@@ -7,7 +7,7 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 69 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 70 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
@@ -94,7 +94,8 @@ see the root AGENTS.md "Before every task". -->
 
 ## scripts
 
-- `scripts/check-docs.mjs` — this repo's docs-integrity gate: links + backticked path references
+- `scripts/check-clone.mjs` — clone-based gate parity check (check:clone): runs the whole gate on a fresh clone of HEAD, as CI does
+- `scripts/check-docs.mjs` — this repo's docs-integrity gate: links + backticked path references, resolved against Git not the filesystem
 - `scripts/check-memory.mjs` — memory validator (lint:memory): structural failures gate, budgets warn; reads the machine-readable block in memory-policy
 - `scripts/eval/README.md` — evaluation harness v1: scenario doctrine, fixture recipe, run log
 - `scripts/eval/assert-scenario.mjs` — generic scenario asserter: oracle + spec-driven property greps

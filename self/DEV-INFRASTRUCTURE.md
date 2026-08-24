@@ -26,6 +26,7 @@ in `CONTRIBUTING.md` → "Security overrides".
 | `lint:editorconfig` | `npx editorconfig-checker` | EditorConfig conformance (non-Markdown) |
 | `lint:boundary` | `node scripts/package.mjs --check` | Distribution boundary: `pm_skills/` tree ↔ MANIFEST agreement |
 | `lint:fix` | `npx markdownlint-cli2 --fix "**/*.md"` | Auto-fix — separate verb, never the gate |
+| `check:clone` | `npm run check:clone` | The gate against a fresh clone of HEAD, as CI runs it — not part of the gate |
 | `package` | `npm run package -- <target>` | Export the distributable (manifest-verified) — not part of the gate |
 
 Do not add scripts without updating this table and `CONTRIBUTING.md`.
@@ -46,7 +47,12 @@ Do not add scripts without updating this table and `CONTRIBUTING.md`.
 - **CI parity:** `.github/workflows/lint.yml` runs the same checks on
   every push and PR. A tracked pre-commit hook (`.githooks/`) runs
   `npm run check`; wired via `git config core.hooksPath .githooks`
-  (the `prepare` script does this on `npm install`).
+  (the `prepare` script does this on `npm install`). CI lints a fresh
+  clone, so the gate never consults the filesystem for a reference —
+  `scripts/check-docs.mjs` resolves against Git — and
+  `npm run check:clone` proves the whole gate on a pristine clone
+  before any change to the gate itself (GATE-PARITY; see
+  `CONTRIBUTING.md` → "Local–CI parity").
 - A red gate blocks task close — fix the cause or record why the rule
   is wrong; never skip or weaken a check.
 

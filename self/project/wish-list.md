@@ -11,6 +11,13 @@
   shared-append residue. (source: reflection run one; PACE-POLICY
   adopted 2026-08-17 — paused until the Hub leg lands, then route
   to the lab's own queue)
+- SCAFFOLD-GITPATH: carry the GATE-PARITY fix into the shipped
+  `pm_skills/scaffold/check-links.mjs`, which resolves link targets
+  with `existsSync` and so has the same local-passes/CI-fails gap the
+  source fork just lost. Distributed → a release; deliberately not
+  taken with GATE-PARITY (source-only) while LAB-FIRST holds the canon
+  queue. (source: GATE-PARITY close, 2026-08-24 — fork rule,
+  CONTRIBUTING.md → "Note on deliberate forks")
 - FIELD-EXPORT: a framework verb that emits a standard usage report
   from a consuming project — memory counters, verbs fired, upgrade
   outcome, incidents — already in the header shape the maintainer's
