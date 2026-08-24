@@ -31,8 +31,8 @@
  *   no longer exist (renamed/merged in later releases). Its links are
  *   still checked.
  * - Template/example paths that never exist here (archive/, tickets/)
- *   are ignored, as are gitignored trees absent in a fresh clone
- *   (node_modules/).
+ *   are ignored, as are gitignored paths absent in a fresh clone
+ *   (node_modules/, the generated janitor report).
  *
  * Inputs: tracked + non-ignored `*.md` files via `git ls-files`, so
  * `node_modules/` is excluded for free. The repo's living memory
@@ -67,14 +67,16 @@ const SAFE_PATH_RE = /^[\w./-]+$/;
 /**
  * Path patterns whose absence is never rot: documented
  * templates/examples (on-demand memory stores that ship blank —
- * archives and per-item ticket detail files), and gitignored trees
- * (`node_modules/`) that exist only after a local install, so docs may
- * name them yet a fresh clone lacks them.
+ * archives and per-item ticket detail files), and gitignored paths
+ * that exist only after a local install (`node_modules/`) or a
+ * generator run (the janitor report), so docs may name them yet a
+ * fresh clone lacks them.
  */
 const IGNORE = [
   /(^|\/)archive(\/|$)/,
   /(^|\/)tickets(\/|$)/,
   /(^|\/)node_modules(\/|$)/,
+  /^self\/project\/reports\//,
 ];
 
 /**

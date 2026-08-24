@@ -9,6 +9,30 @@
      and 2026-07 — see archive/INDEX.md for ranges. Grep the
      archive files directly; never re-inline them. -->
 
+## 2026-08-24 — GATE-REPORTS: check-docs ignores the generated janitor report
+
+**Decision:** `scripts/check-docs.mjs` adds a
+`self/project/reports/` pattern to its `IGNORE` list, so a
+backticked reference to the janitor report is never counted as a
+missing path. Source-only; taken under the LAB-FIRST gate-forced
+maintenance exception.
+
+**Rationale:** the report is generated and gitignored
+(REPORTS-IGNORE, 2026-08-17), so the root contract's pointer to it
+resolved on a working checkout and failed in every fresh clone. The
+CI Lint job went red on 2026-08-18 and stayed red for ten pushes
+while `npm run check` was green locally, leaving a failing badge at
+the top of the README. Every other gate tool already excluded the
+path — markdownlint, cspell, editorconfig-checker, and check-docs'
+own `FILE_EXCLUDE` — only the target-side `IGNORE` list had missed
+it. Same repair GATE-FRESH (2026-08-08) made for `node_modules/`.
+
+**Alternatives:** track a placeholder report (rejected —
+contradicts REPORTS-IGNORE and is overwritten every session); drop
+the path from the contract's prose (rejected — the pointer is the
+contract for a documented verb); ignore a generic `reports/`
+segment anywhere (rejected — would mask real rot elsewhere).
+
 ## 2026-08-23 — LAB-FIRST: the lab arc gates this repo's queue
 
 **Decision:** Maintainer standing order queued as an ALERT record

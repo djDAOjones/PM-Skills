@@ -2,6 +2,13 @@
 
 ## Phase: Planning loop
 
+- GATE-REPORTS (2026-08-24) — fresh-clone gate repair: check-docs
+  now ignores the gitignored janitor report path
+  (`self/project/reports/`), which the root contract names in prose.
+  CI had been red on every push since 2026-08-18 (ten runs) while
+  the local gate stayed green — the generated file exists only on a
+  working checkout. Taken under the LAB-FIRST gate-forced
+  maintenance exception. No release. See decision-log 2026-08-24.
 - FIELD-REPORTS (2026-08-23) — cold tier for consuming-project
   reports (source-only): `self/field-reports/<slug>/` with a gated
   README (type list, header contract, redaction rule), wired into
