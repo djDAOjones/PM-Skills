@@ -39,7 +39,7 @@
 
 ### Icebox
 
-<!-- Intent: four held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired. GATE-PARITY was filed here 2026-08-24 and shipped the same day on the maintainer's direct pick, without waiting for its trigger. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). -->
+<!-- Intent: four held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired. GATE-PARITY was filed here 2026-08-24 and shipped the same day on the maintainer's direct pick, without waiting for its trigger. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). BACKLOG-TABLE and REVIEW-SUITE filed unblocked 2026-08-26 (maintainer intake) — investigations awaiting a pick, held behind LAB-FIRST like everything else. -->
 
 - [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
   project with persistent user data] (2026-07-16) — hard rule "no
@@ -62,5 +62,20 @@
   one consuming project] (2026-08-09) — packaging-ladder rung 4; adapter
   outside the distributed tree, never core. · High / High / Medium /
   Medium
+- [ ] **BACKLOG-TABLE Readable backlog table and phase history**
+  [detail](tickets/BACKLOG-TABLE.md) (2026-08-26) — investigate a readable
+  table view — at the top of the backlog, or as a generated human-readable
+  file — showing outstanding tickets plus previous development grouped
+  into collapsible phases since inception. A second renderer over records
+  gen-backlog.mjs already parses; where it lives and what it costs the hot
+  read are the questions. · Medium / Low / Low / Low
+- [ ] **REVIEW-SUITE Deep code-review suite**
+  [detail](tickets/REVIEW-SUITE.md) (2026-08-26) — investigate a thorough
+  code-review suite — engineering-depth dimensions (security, performance,
+  dependencies, tests), a validation phase that runs the project's own
+  tooling, and a severity-plus-confidence finding schema — layered on the
+  whole-repo audit recipe CODEBASE-AUDIT shipped. Candidate basis archived
+  at self/inputs/2026-08-26-code-review-prompt.txt. · High / High / Medium
+  / Low
 
 <!-- generated:records:end -->

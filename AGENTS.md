@@ -58,7 +58,9 @@ sections), `self/project/backlog.md` (Active only),
 `[detail]` item only), `self/project/archive/`, `self/archive/`
 (pre-adoption history), `self/evaluations/`, `self/_transcripts/`,
 `self/field-reports/` (consuming-project reports — read for a
-reflection or a usage analysis; see its README).
+reflection or a usage analysis; see its README), `self/inputs/`
+(verbatim external source material — read when a backlog item
+cites it; see its README).
 
 Memory budgets: `pm_skills/memory-policy.md` applies unchanged.
 

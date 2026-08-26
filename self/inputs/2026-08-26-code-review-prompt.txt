@@ -1,0 +1,394 @@
+Act as a principal software engineer, security reviewer, software architect, and test engineer. Undertake a comprehensive, evidence-based review of this entire repository.
+
+Repository/project context:
+- Purpose: [briefly describe what the software is intended to do]
+- Intended users: [users]
+- Deployment environment: [local/web/cloud/mobile/desktop/etc.]
+- Important constraints: [security, privacy, accessibility, browser support, performance, budget, institutional requirements, etc.]
+- Known concerns: [optional]
+- Areas that must not be changed: [optional]
+
+You have permission to inspect the whole repository, including source code, tests, configuration, infrastructure, scripts, documentation, dependency files, CI/CD workflows, commit history, and generated artefacts where relevant.
+
+## Objective
+
+Determine:
+
+1. Whether the software works as intended.
+2. Whether its architecture and implementation are sound.
+3. What could fail in production or under unusual conditions.
+4. What presents a security, privacy, data-loss, accessibility, reliability, performance, or maintainability risk.
+5. What is incomplete, misleading, duplicated, obsolete, or unnecessarily complex.
+6. Whether tests, documentation, configuration, and deployment processes are adequate.
+7. What should be fixed first and how.
+
+Do not make changes unless I explicitly ask you to. First perform the review and present your findings.
+
+## Review method
+
+Work systematically rather than reviewing isolated files.
+
+### Phase 1: Understand the repository
+
+- Inspect the full directory structure.
+- Read the README and all relevant documentation.
+- Identify languages, frameworks, libraries, build systems, package managers, databases, external services, deployment targets, and CI/CD systems.
+- Locate the main entry points and trace the principal execution flows.
+- Identify trust boundaries, data flows, persistence mechanisms, authentication and authorisation paths, user-controlled inputs, network requests, background jobs, and integrations.
+- Distinguish handwritten source code from vendored, generated, built, cached, or third-party files.
+- Infer the intended behaviour from code, tests, documentation, configuration, and commit history.
+- State any important uncertainties or contradictions.
+
+Begin by producing a concise architectural map covering:
+
+- major components;
+- responsibilities;
+- important dependencies;
+- data flow;
+- entry points;
+- external integrations;
+- build, test, deployment, and runtime processes.
+
+### Phase 2: Validate the project
+
+Use the repository’s own documented tooling wherever possible.
+
+Attempt to:
+
+- install or resolve dependencies;
+- build or compile the project;
+- run formatting and linting checks;
+- run static analysis and type checking;
+- run unit, integration, end-to-end, and other available tests;
+- inspect test coverage where available;
+- identify vulnerable, abandoned, incompatible, duplicated, or unnecessarily broad dependencies;
+- inspect CI/CD and deployment configuration;
+- inspect environment-variable handling and secrets management.
+
+Do not claim that a command succeeded unless you actually ran it and saw the result.
+
+Record:
+
+- commands executed;
+- relevant tool and runtime versions;
+- successes;
+- failures;
+- warnings;
+- environmental limitations;
+- whether failures are caused by the repository or the review environment.
+
+Do not use destructive commands, alter external systems, expose secrets, or deploy anything.
+
+### Phase 3: Review the implementation
+
+Review all first-party code, prioritising critical execution paths while still accounting for the complete repository.
+
+Evaluate the following areas.
+
+#### Correctness and reliability
+
+Look for:
+
+- incorrect logic or assumptions;
+- broken control flow;
+- race conditions and concurrency problems;
+- inconsistent state;
+- unhandled exceptions;
+- unsafe null or undefined handling;
+- resource leaks;
+- incorrect async behaviour;
+- partial writes and non-atomic operations;
+- data corruption or loss risks;
+- invalid parsing, serialisation, time, timezone, encoding, and numeric handling;
+- edge cases and boundary conditions;
+- poor retry, timeout, cancellation, rollback, and recovery behaviour;
+- failures caused by unavailable services, malformed data, interrupted operations, or limited resources.
+
+#### Security and privacy
+
+Look for:
+
+- embedded credentials, tokens, private keys, or sensitive information;
+- weak authentication or authorisation;
+- privilege escalation;
+- insecure direct object references;
+- injection vulnerabilities;
+- cross-site scripting, request forgery, server-side request forgery, path traversal, unsafe redirects, and command execution;
+- unsafe deserialisation, file handling, uploads, archives, and temporary files;
+- insecure cryptography or randomness;
+- sensitive-data leakage through logs, errors, URLs, analytics, caches, client bundles, or version control;
+- missing validation, sanitisation, output encoding, rate limiting, or abuse protection;
+- permissive CORS, headers, permissions, scopes, network access, or cloud policies;
+- insecure dependency, build, release, or CI/CD practices;
+- privacy, retention, deletion, consent, and data-minimisation concerns.
+
+Map findings to recognised categories such as CWE or OWASP where this is genuinely useful. Do not manufacture compliance claims.
+
+#### Architecture and design
+
+Assess:
+
+- separation of concerns;
+- cohesion and coupling;
+- module boundaries;
+- dependency direction;
+- layering;
+- API design;
+- domain modelling;
+- state management;
+- configuration design;
+- error-handling strategy;
+- extensibility;
+- observability;
+- scalability;
+- portability;
+- suitability of patterns and abstractions;
+- unnecessary abstraction or overengineering;
+- technical debt that materially affects future work.
+
+Identify architectural decisions that are sensible as well as those that should change.
+
+#### Performance and resource use
+
+Look for:
+
+- avoidable repeated work;
+- inefficient algorithms or data structures;
+- excessive network, database, disk, memory, CPU, GPU, or browser usage;
+- blocking work on critical threads;
+- uncontrolled concurrency;
+- unnecessary rendering or recomputation;
+- large bundles or payloads;
+- poor caching;
+- N+1 requests or queries;
+- missing pagination, streaming, batching, limits, or back-pressure;
+- potential denial-of-service vectors;
+- likely bottlenecks under realistic workloads.
+
+Distinguish measured problems from plausible risks requiring profiling.
+
+#### Dependencies, configuration, and deployment
+
+Assess:
+
+- outdated, vulnerable, abandoned, redundant, or incorrectly pinned dependencies;
+- lockfile consistency and reproducibility;
+- excessive dependency privileges or scope;
+- environment-specific assumptions;
+- insecure or missing production settings;
+- development defaults leaking into production;
+- container and infrastructure configuration;
+- migration and rollback safety;
+- deployment repeatability;
+- CI/CD permissions, secret handling, branch protections, artefact integrity, and release controls;
+- backup, recovery, monitoring, health checks, and operational readiness.
+
+#### Tests and quality assurance
+
+Assess:
+
+- whether tests exercise meaningful behaviour rather than implementation details;
+- coverage of critical paths, security boundaries, failures, and edge cases;
+- flaky, brittle, misleading, obsolete, duplicated, or missing tests;
+- unrealistic mocks;
+- missing integration and end-to-end validation;
+- whether tests would detect the defects you identify.
+
+For important untested behaviour, specify the tests that should be added.
+
+#### Maintainability and developer experience
+
+Look for:
+
+- confusing naming;
+- excessive complexity;
+- long or highly coupled functions;
+- duplication;
+- dead code;
+- stale feature flags;
+- obsolete compatibility code;
+- inconsistent conventions;
+- misleading comments;
+- inadequate typing;
+- poor logging and diagnostics;
+- weak local setup;
+- fragile scripts;
+- missing automation;
+- unclear ownership or boundaries.
+
+Do not report cosmetic style preferences unless they materially affect clarity, correctness, consistency, or maintenance.
+
+#### Documentation
+
+Compare documentation with actual behaviour.
+
+Identify:
+
+- incorrect or obsolete instructions;
+- undocumented prerequisites;
+- missing setup, configuration, testing, deployment, backup, recovery, security, or troubleshooting information;
+- undocumented public interfaces;
+- claims that are not supported by the implementation;
+- important architectural decisions that should be recorded.
+
+#### User-facing quality
+
+Where relevant, assess:
+
+- usability;
+- accessibility;
+- responsive behaviour;
+- error messages;
+- loading, empty, offline, failure, and recovery states;
+- keyboard operation and focus management;
+- semantic structure;
+- user feedback and prevention of irreversible mistakes;
+- compatibility with stated browsers, devices, operating systems, and assistive technologies.
+
+## Evidence requirements
+
+Every finding must:
+
+- identify the exact file and line or smallest relevant code region;
+- explain the current behaviour;
+- explain why it matters;
+- describe a realistic failure or exploitation scenario;
+- distinguish confirmed defects from risks, hypotheses, and preferences;
+- include a practical remediation;
+- mention relevant tests or verification steps;
+- avoid overstating severity.
+
+Trace usages before declaring code dead or behaviour unreachable.
+
+Check neighbouring code, callers, tests, configuration, and framework behaviour before concluding that something is defective.
+
+Do not invent files, commands, outputs, dependencies, APIs, vulnerabilities, or runtime behaviour. Explicitly state when evidence is insufficient.
+
+## Severity and confidence
+
+Classify findings as:
+
+- Critical: likely compromise, serious data loss, unsafe deployment, or complete failure of a core function.
+- High: substantial security, correctness, privacy, or reliability impact under realistic conditions.
+- Medium: material defect or maintainability risk that should be scheduled.
+- Low: limited impact but worthwhile improvement.
+- Informational: observation, clarification, or optional improvement.
+
+Also assign confidence:
+
+- High: directly demonstrated by code, tests, or command output.
+- Medium: strongly supported but dependent on runtime assumptions.
+- Low: plausible concern requiring further investigation.
+
+Prioritise impact and likelihood, not the number of observations. Consolidate findings with a shared root cause.
+
+## Required output
+
+Produce the final report in this order.
+
+### 1. Executive summary
+
+Include:
+
+- overall assessment;
+- whether the repository appears suitable for production;
+- the most serious risks;
+- the strongest aspects;
+- the five most important next actions.
+
+### 2. Repository and architecture overview
+
+Summarise:
+
+- the system’s purpose;
+- technologies;
+- principal components;
+- execution and data flows;
+- deployment model;
+- important external dependencies;
+- trust boundaries.
+
+### 3. Validation results
+
+Provide a table containing:
+
+- command or check;
+- result;
+- important output;
+- interpretation.
+
+### 4. Prioritised findings
+
+For each finding use this structure:
+
+#### [ID] Concise finding title
+
+- Severity:
+- Confidence:
+- Category:
+- Location:
+- Affected component or flow:
+- Evidence:
+- Current behaviour:
+- Impact:
+- Realistic scenario:
+- Recommended remediation:
+- Suggested test or verification:
+- Estimated effort: Small / Medium / Large
+- Dependencies or sequencing considerations:
+
+Order findings by severity, then likelihood and breadth of impact.
+
+### 5. Positive findings
+
+Identify design, implementation, testing, security, documentation, or operational decisions that are notably sound.
+
+### 6. Test-gap analysis
+
+List important behaviours that are currently untested or inadequately tested, prioritised by risk.
+
+### 7. Dependency and configuration assessment
+
+Summarise dependency health, reproducibility, environment handling, CI/CD, deployment, and operational concerns.
+
+### 8. Remediation roadmap
+
+Group work into:
+
+- Immediate: block release or fix urgently.
+- Near term: next development cycle.
+- Medium term: structural improvements.
+- Optional: worthwhile but non-essential refinements.
+
+For each item, state expected benefit, dependencies, effort, and risk of change.
+
+### 9. Questions and unresolved uncertainties
+
+List only questions that materially affect the assessment. Explain why each answer matters.
+
+### 10. Review coverage
+
+State:
+
+- directories and major files reviewed;
+- files intentionally excluded and why;
+- commands run;
+- areas that could not be validated;
+- limitations of the review environment.
+
+## Final quality check
+
+Before completing the review:
+
+- revisit every Critical and High finding;
+- verify the referenced code locations;
+- check for existing mitigations;
+- check whether tests already cover the issue;
+- remove speculative or duplicate findings;
+- ensure recommendations fit the project’s actual stack and constraints;
+- distinguish mandatory fixes from optional refactoring;
+- ensure the report is useful to someone planning implementation work.
+
+Do not stop after finding a few issues. Continue until the repository has been reviewed systematically and the coverage limitations are explicit.
+
+After presenting the report, do not implement anything yet. Propose a sequence of small, reviewable changes. Each proposed change should identify the affected files, tests, risks, and rollback approach. Wait for explicit authorisation before modifying code.
