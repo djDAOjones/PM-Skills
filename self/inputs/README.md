@@ -90,3 +90,4 @@ when scoping or building the item that consumes it.
 | File | Arrived | Supplied by | Consumed by |
 | --- | --- | --- | --- |
 | `2026-08-26-code-review-prompt.txt` | 2026-08-26 | Maintainer, from outside the project | `REVIEW-SUITE` — candidate basis for a deep code-review suite |
+| `2026-08-26-code-abstraction-prompt.txt` | 2026-08-26 | Maintainer, from outside the project | `ABSTRACTION-PLAN` — candidate basis for an abstraction and auditability planning function |

@@ -39,7 +39,7 @@
 
 ### Icebox
 
-<!-- Intent: four held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired. GATE-PARITY was filed here 2026-08-24 and shipped the same day on the maintainer's direct pick, without waiting for its trigger. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). BACKLOG-TABLE and REVIEW-SUITE filed unblocked 2026-08-26 (maintainer intake) — investigations awaiting a pick, held behind LAB-FIRST like everything else. -->
+<!-- Intent: four held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired. GATE-PARITY was filed here 2026-08-24 and shipped the same day on the maintainer's direct pick, without waiting for its trigger. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). BACKLOG-TABLE, REVIEW-SUITE, and ABSTRACTION-PLAN filed unblocked 2026-08-26 (maintainer intake) — investigations awaiting a pick, held behind LAB-FIRST like everything else. -->
 
 - [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
   project with persistent user data] (2026-07-16) — hard rule "no
@@ -77,5 +77,13 @@
   whole-repo audit recipe CODEBASE-AUDIT shipped. Candidate basis archived
   at self/inputs/2026-08-26-code-review-prompt.txt. · High / High / Medium
   / Low
+- [ ] **ABSTRACTION-PLAN Abstraction and auditability planning**
+  [detail](tickets/ABSTRACTION-PLAN.md) (2026-08-26) — investigate a
+  read-only whole-repository planning function that turns evidence into a
+  coverage-accounted programme of small, behaviour-preserving
+  improvements, with appropriate abstraction and de-abstraction rules,
+  staged waves, a pilot, and measurable validation. Candidate basis
+  archived at self/inputs/2026-08-26-code-abstraction-prompt.txt. · High /
+  High / Medium / Low
 
 <!-- generated:records:end -->

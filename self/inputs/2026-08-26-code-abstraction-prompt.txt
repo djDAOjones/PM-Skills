@@ -1,0 +1,731 @@
+Act as a principal software architect, senior refactoring engineer, and independent code auditor.
+
+Your task is to inspect this entire repository and design a comprehensive, staged process for improving it through appropriate abstraction. The intended result is a codebase in which every meaningful segment is easier to:
+
+- understand;
+- audit;
+- test;
+- maintain;
+- change safely;
+- reuse where genuinely appropriate;
+- replace independently;
+- reason about without relying on hidden context.
+
+This is an investigation and planning task, not an implementation task.
+
+OPERATING CONSTRAINTS
+
+1. Do not modify application source code.
+2. Do not perform refactors.
+3. Do not commit, push, create branches, open pull requests, or alter repository history.
+4. Do not install packages or change dependencies.
+5. You may run safe, non-destructive inspection commands and existing tests, builds, linters, type-checkers, dependency analysers, or coverage tools.
+6. Do not suppress, repair, or work around existing failures merely to obtain cleaner results.
+7. You may create or overwrite only this report file:
+
+    CODEBASE_ABSTRACTION_AND_AUDITABILITY_PLAN.md
+
+8. Record any limitations that prevented inspection. Never silently skip an area.
+9. Preserve existing behaviour as the default assumption. Recommend behavioural changes only when clearly identified and justified.
+10. Do not assume that more abstraction is always better. Identify over-abstraction, unnecessary indirection, and premature generalisation as problems too.
+
+PRIMARY OBJECTIVE
+
+Produce an evidence-based process for incrementally improving the architecture and internal organisation of the whole repository.
+
+The process must cover all meaningful repository areas, not merely the most prominent application code. It must make omissions visible through an explicit coverage ledger.
+
+The final recommendations should improve:
+
+- separation of concerns;
+- module cohesion;
+- dependency direction;
+- explicit contracts and interfaces;
+- naming and discoverability;
+- isolation of side effects;
+- management of state;
+- testability;
+- error handling;
+- input validation;
+- observability;
+- security reviewability;
+- configuration handling;
+- documentation;
+- appropriate reuse;
+- ability to make small, independently reviewable changes.
+
+DEFINITION OF “ABSTRACTION”
+
+Treat abstraction as the creation or improvement of meaningful boundaries around stable responsibilities.
+
+Good abstractions should generally:
+
+- represent a coherent concept;
+- hide implementation details that callers should not need;
+- expose a small and explicit contract;
+- have clear ownership;
+- have limited and understandable dependencies;
+- reduce duplication without obscuring behaviour;
+- make testing and replacement easier;
+- reduce the amount of code a reviewer must understand at once.
+
+Do not recommend abstraction merely to reduce line count.
+
+Explicitly identify cases where the better solution is:
+
+- clearer inline code;
+- deleting unused code;
+- consolidating duplicate implementations;
+- splitting an oversized unit;
+- removing an unnecessary wrapper;
+- replacing inheritance with composition;
+- reducing generic parameters;
+- making an implicit dependency explicit;
+- retaining some duplication because the concepts are likely to diverge;
+- leaving working code unchanged.
+
+DEFINITION OF “AUDITABLE”
+
+Treat a segment as auditable when a reviewer can efficiently determine:
+
+- what it is responsible for;
+- what inputs it accepts;
+- what outputs or side effects it produces;
+- what assumptions and invariants it relies on;
+- which dependencies it uses;
+- how failures are represented;
+- which security or privacy boundaries it crosses;
+- where it is called from;
+- how its behaviour is verified;
+- whether a proposed change is safe.
+
+DEFINITION OF “REUSABLE”
+
+Treat reuse as justified only when:
+
+- the same concept occurs in multiple places;
+- those occurrences share genuinely stable semantics;
+- the proposed abstraction has a clear owner and contract;
+- reuse will reduce total maintenance cost;
+- consumers will not become coupled to unrelated behaviour.
+
+Do not create speculative frameworks for hypothetical future consumers.
+
+REQUIRED INVESTIGATION METHOD
+
+Use multiple passes. Do not jump directly from a superficial scan to recommendations.
+
+PASS 0 — READ REPOSITORY GUIDANCE
+
+Inspect all applicable repository instructions, including where present:
+
+- AGENTS.md files;
+- README files;
+- CONTRIBUTING documentation;
+- architecture decision records;
+- development documentation;
+- package or workspace manifests;
+- coding standards;
+- CI configuration;
+- test instructions;
+- deployment documentation.
+
+State which instructions governed your analysis.
+
+PASS 1 — CREATE AN EXHAUSTIVE REPOSITORY CENSUS
+
+Establish a machine-derived inventory of the repository.
+
+Prefer tracked-file information such as `git ls-files`, supplemented where appropriate by filesystem inspection.
+
+Account for every tracked file by assigning it to one of these categories:
+
+- production source;
+- user interface;
+- server or backend;
+- shared library;
+- domain model;
+- API or integration;
+- data access;
+- database schema or migration;
+- configuration;
+- infrastructure or deployment;
+- build tooling;
+- development tooling;
+- scripts;
+- tests;
+- fixtures or test data;
+- generated code;
+- vendored or third-party code;
+- static assets;
+- documentation;
+- examples;
+- deprecated or legacy code;
+- unknown or requiring investigation;
+- intentionally excluded.
+
+For every exclusion, provide:
+
+- path or pattern;
+- reason for exclusion;
+- whether the exclusion was verified;
+- any risk created by not inspecting it.
+
+Do not silently ignore hidden files, root-level scripts, CI files, configuration, migrations, test utilities, or small directories.
+
+Generated, vendored, binary, cache, build-output, and dependency directories may be excluded from detailed code review, but they must still appear in the inventory with a reason.
+
+PASS 2 — MAP THE CURRENT ARCHITECTURE
+
+Build a current-state map containing:
+
+- major components;
+- directories and packages;
+- executable entry points;
+- public interfaces;
+- important classes, functions, services, hooks, handlers, commands, jobs, and scripts;
+- internal and external dependencies;
+- data flows;
+- control flows;
+- state ownership;
+- persistence boundaries;
+- network boundaries;
+- authentication and authorisation boundaries;
+- configuration sources;
+- error propagation;
+- logging and monitoring;
+- background processing;
+- build, test, release, and deployment flows.
+
+Identify dependency direction and important cycles.
+
+Where practical, distinguish:
+
+- compile-time dependencies;
+- runtime dependencies;
+- data dependencies;
+- implicit dependencies;
+- shared mutable state;
+- environment-dependent behaviour.
+
+PASS 3 — SEGMENT THE ENTIRE CODEBASE
+
+Divide the repository into reviewable segments.
+
+Use the most meaningful level for each area, which may be:
+
+- package;
+- directory;
+- module;
+- file;
+- class;
+- service;
+- component;
+- public API;
+- major function group;
+- data pipeline;
+- cross-cutting subsystem.
+
+Segments must be:
+
+- mutually understandable;
+- small enough to analyse meaningfully;
+- collectively exhaustive;
+- traceable back to the file inventory.
+
+Assign every relevant production and support file to at least one primary segment. Cross-cutting files may also have secondary segment assignments.
+
+Give each segment a stable identifier, such as `SEG-001`.
+
+PASS 4 — ASSESS EVERY SEGMENT
+
+For each segment, record:
+
+1. Segment ID.
+2. Paths and important symbols.
+3. Current responsibility.
+4. Known callers or consumers.
+5. Inputs, outputs, and side effects.
+6. State owned or mutated.
+7. Internal dependencies.
+8. External dependencies.
+9. Public or quasi-public contracts.
+10. Existing tests and their apparent quality.
+11. Documentation available.
+12. Current strengths.
+13. Auditability problems.
+14. Reuse problems or opportunities.
+15. Duplication.
+16. Coupling.
+17. Cohesion.
+18. Hidden assumptions.
+19. Error-handling issues.
+20. Security, privacy, concurrency, data-integrity, or performance concerns.
+21. Appropriate abstraction opportunities.
+22. Signs of over-abstraction or needless indirection.
+23. Recommended treatment.
+24. Evidence supporting the recommendation.
+25. Estimated effort.
+26. Change risk.
+27. Confidence in the assessment.
+28. Dependencies on other proposed changes.
+
+Do not write generic observations that could apply to any repository. Cite concrete paths, symbols, dependency relationships, or repeated patterns.
+
+PASS 5 — ASSESS CROSS-CUTTING CONCERNS
+
+Review these across segment boundaries:
+
+- domain logic;
+- UI and presentation logic;
+- data access;
+- API clients and server endpoints;
+- validation;
+- serialisation and parsing;
+- authentication;
+- authorisation;
+- secrets handling;
+- error types and error propagation;
+- retry, timeout, and cancellation behaviour;
+- logging;
+- metrics and tracing;
+- feature flags;
+- configuration;
+- caching;
+- concurrency;
+- asynchronous jobs;
+- resource lifecycle;
+- file and network I/O;
+- date, time, locale, and timezone handling;
+- identifiers and data types;
+- shared constants;
+- test fixtures and factories;
+- dependency injection;
+- dependency cycles;
+- platform-specific behaviour;
+- accessibility where applicable;
+- internationalisation where applicable;
+- security-sensitive operations;
+- personal or sensitive data handling;
+- build and release automation.
+
+For each concern, determine whether it is:
+
+- consistently centralised;
+- appropriately distributed;
+- duplicated;
+- hidden;
+- tightly coupled;
+- insufficiently tested;
+- abstracted at the wrong level.
+
+PASS 6 — IDENTIFY REFACTORING CANDIDATES
+
+Identify and classify concrete candidates including:
+
+- duplicated business rules;
+- near-duplicate implementations;
+- oversized modules;
+- oversized functions or classes;
+- mixed responsibilities;
+- inappropriate dependencies;
+- dependency cycles;
+- leaky abstractions;
+- unstable interfaces;
+- hidden global state;
+- excessive shared mutable state;
+- hard-coded environment assumptions;
+- inconsistent representations of the same concept;
+- primitive obsession;
+- shotgun-surgery risks;
+- feature envy;
+- dead or unreachable code;
+- redundant wrappers;
+- unnecessary inheritance;
+- abstractions with only one trivial consumer;
+- abstractions whose consumers require repeated special cases;
+- generic utilities that mix unrelated concepts;
+- code that cannot be tested without large portions of the system;
+- implicit temporal coupling;
+- weak or inconsistent error contracts;
+- inconsistent validation;
+- fragile tests;
+- missing characterisation tests;
+- important behaviour with no verification.
+
+For each candidate, explain whether the recommended response is to:
+
+- extract;
+- split;
+- consolidate;
+- rename;
+- move;
+- invert a dependency;
+- introduce an interface;
+- introduce a domain type;
+- isolate side effects;
+- parameterise;
+- simplify;
+- inline;
+- delete;
+- document;
+- test before changing;
+- defer;
+- leave unchanged.
+
+PASS 7 — DESIGN THE TARGET DIRECTION
+
+Describe a pragmatic target architecture rather than an idealised rewrite.
+
+Specify:
+
+- proposed component and module boundaries;
+- ownership of responsibilities;
+- dependency rules;
+- contracts between major areas;
+- treatment of state and side effects;
+- location of shared domain logic;
+- expected public APIs;
+- testing boundaries;
+- configuration boundaries;
+- error-handling conventions;
+- observability conventions;
+- rules for reusable components;
+- rules preventing generic “utility” dumping grounds;
+- rules preventing circular dependencies;
+- rules governing future abstraction.
+
+Prefer incremental compatibility with the current design.
+
+Include diagrams using Mermaid where they materially improve clarity:
+
+1. current high-level component map;
+2. current important dependency problems;
+3. proposed dependency direction;
+4. staged migration sequence.
+
+Do not create a diagram merely to decorate the report.
+
+PASS 8 — DESIGN A STAGED IMPROVEMENT PROCESS
+
+Create a sequence of small, reviewable refactoring waves.
+
+The process should generally follow this safety order:
+
+1. establish a reliable baseline;
+2. add or strengthen characterisation tests around risky behaviour;
+3. document existing contracts and invariants;
+4. remove clearly dead code;
+5. improve naming and local clarity;
+6. isolate side effects and external integrations;
+7. untangle dependency cycles;
+8. separate mixed responsibilities;
+9. consolidate proven duplication;
+10. introduce justified reusable abstractions;
+11. migrate consumers incrementally;
+12. remove obsolete paths;
+13. validate the resulting architecture;
+14. encode architectural rules in tooling and repository guidance.
+
+Adapt that order where repository evidence justifies doing so.
+
+For each wave provide:
+
+- objective;
+- included segment IDs;
+- exact paths or components affected;
+- prerequisite work;
+- recommended change;
+- behaviour that must remain unchanged;
+- tests needed before work begins;
+- validation after the change;
+- likely risks;
+- rollback or recovery approach;
+- suggested maximum change size;
+- review focus;
+- completion criteria;
+- dependencies on earlier or later waves.
+
+Avoid large “rewrite this subsystem” recommendations. Break large changes into independently mergeable steps.
+
+PASS 9 — DEFINE AUDITABILITY STANDARDS
+
+Create a concise checklist that future code segments should meet.
+
+Cover:
+
+- one clear primary responsibility;
+- explicit inputs and outputs;
+- explicit dependencies;
+- controlled side effects;
+- documented invariants;
+- predictable error contracts;
+- clear security and trust boundaries;
+- meaningful names;
+- limited size and complexity;
+- appropriate tests;
+- traceability from public behaviour to implementation;
+- absence of surprising global state;
+- limited dependency fan-in and fan-out;
+- reviewable change scope.
+
+Make the checklist specific enough to use during pull-request review.
+
+PASS 10 — DEFINE ABSTRACTION DECISION RULES
+
+Create a decision framework for determining whether to extract an abstraction.
+
+Include questions such as:
+
+- Is the concept genuinely the same in all candidate locations?
+- Is it likely to change for the same reason?
+- Can its contract be stated clearly?
+- Does extraction reduce the context required to understand callers?
+- Does it reduce coupling rather than move it?
+- Can it be tested independently?
+- Is there evidence of at least two real consumers?
+- Would duplication be safer than coupling the consumers?
+- Is the proposed interface smaller and more stable than its implementation?
+- Will callers need flags, type checks, or exceptions to use it?
+- Is the abstraction named after a domain concept rather than an implementation accident?
+
+Include explicit warning signs for premature or harmful abstraction.
+
+PASS 11 — DEFINE VALIDATION AND METRICS
+
+Recommend baseline and ongoing measurements, using only metrics appropriate to this repository.
+
+Consider:
+
+- test pass rate;
+- meaningful code coverage;
+- mutation testing where practical;
+- type-checking status;
+- lint status;
+- build reproducibility;
+- dependency cycles;
+- module coupling;
+- function or module complexity;
+- duplication;
+- public API surface;
+- change failure rate;
+- defects associated with frequently changed areas;
+- average pull-request size;
+- time required to review a change;
+- number of components required to understand a feature;
+- number of consumers relying on undocumented behaviour.
+
+Do not turn proxy metrics into targets that encourage gaming.
+
+For each selected metric, state:
+
+- what it indicates;
+- its limitations;
+- current baseline if available;
+- desired direction rather than an arbitrary target where appropriate.
+
+PASS 12 — VERIFY COVERAGE BEFORE FINISHING
+
+Perform a final reconciliation between:
+
+- the machine-derived tracked-file inventory;
+- the segment register;
+- the architecture map;
+- the cross-cutting review;
+- the refactoring backlog;
+- the staged plan.
+
+The report must include a coverage ledger showing, for every tracked file or clearly defined file group:
+
+- path or pattern;
+- category;
+- primary segment ID;
+- inspection status;
+- recommendation status;
+- exclusion reason, if any;
+- confidence;
+- outstanding uncertainty.
+
+Calculate and report:
+
+- total tracked files;
+- files inspected directly;
+- files covered through a reviewed group;
+- files excluded with justification;
+- files not successfully assessed;
+- percentage accounted for;
+- percentage substantively assessed.
+
+“Accounted for” does not mean “adequately assessed”. Keep those figures separate.
+
+Do not claim complete coverage if any tracked file remains unclassified or if an important area was inferred rather than inspected.
+
+Before finalising, explicitly search for commonly missed areas:
+
+- dotfiles;
+- nested package manifests;
+- alternate entry points;
+- test helpers;
+- one-off scripts;
+- migration scripts;
+- generated-source inputs;
+- CI workflows;
+- deployment files;
+- Docker or container files;
+- infrastructure-as-code;
+- feature flags;
+- environment templates;
+- code-generation configuration;
+- examples;
+- old or deprecated directories;
+- platform-specific code;
+- error definitions;
+- shared types;
+- background jobs;
+- command-line tools;
+- scheduled tasks;
+- fixtures;
+- mocks;
+- seed data;
+- build plugins;
+- local development tooling.
+
+REQUIRED REPORT STRUCTURE
+
+Write `CODEBASE_ABSTRACTION_AND_AUDITABILITY_PLAN.md` with these sections:
+
+# Codebase Abstraction and Auditability Plan
+
+## 1. Executive summary
+Summarise the current condition, principal risks, strongest parts of the architecture, and recommended overall strategy.
+
+## 2. Scope, constraints, and inspection method
+Describe what was inspected, commands or tools used, instructions followed, tests run, and limitations.
+
+## 3. Repository census
+Summarise the full file inventory by category.
+
+## 4. Current architecture
+Explain the present structure, entry points, data flows, state, integrations, and dependency direction.
+
+## 5. Segment register
+Provide the complete segment list and path mapping.
+
+## 6. Segment assessments
+Include a substantive assessment for every segment.
+
+## 7. Cross-cutting assessment
+Cover all applicable cross-cutting concerns.
+
+## 8. Duplication and reuse map
+Distinguish:
+- exact duplication;
+- semantic duplication;
+- coincidental similarity;
+- justified independent implementations;
+- existing abstractions that should be retained;
+- existing abstractions that should be removed or narrowed.
+
+## 9. Abstraction opportunities
+Rank proposed abstractions and explain the evidence for each.
+
+## 10. Simplification and de-abstraction opportunities
+Identify wrappers, layers, frameworks, generic utilities, or patterns that make the code harder to audit.
+
+## 11. Proposed target direction
+Describe boundaries, contracts, ownership, and dependency rules.
+
+## 12. Prioritised refactoring backlog
+Use a table with these columns:
+
+| ID | Segment IDs | Location | Problem | Evidence | Proposed treatment | Benefit | Risk | Effort | Prerequisites | Priority |
+
+## 13. Staged implementation process
+Provide independently reviewable waves with validation and rollback criteria.
+
+## 14. Pilot recommendation
+Choose one representative, bounded area for validating the proposed process.
+
+Explain:
+- why it is representative;
+- why it is sufficiently safe;
+- what should be learned;
+- what would invalidate the broader approach;
+- how success should be measured.
+
+Do not implement the pilot.
+
+## 15. Auditability checklist
+Create a practical pull-request and module-review checklist.
+
+## 16. Abstraction decision framework
+Provide rules for creating, retaining, revising, or removing abstractions.
+
+## 17. Testing and verification strategy
+Explain characterisation tests, contract tests, integration tests, regression tests, and architectural checks needed during the programme.
+
+## 18. Metrics and progress reporting
+Recommend useful baselines and progress indicators.
+
+## 19. Risks and failure modes
+Include:
+- over-abstraction;
+- accidental behavioural change;
+- excessive refactor scope;
+- unstable intermediate states;
+- misleading coverage;
+- abstractions based on superficial similarity;
+- migration paths that remain permanently duplicated;
+- performance regressions;
+- security regressions;
+- documentation becoming stale.
+
+## 20. Questions requiring human decisions
+Only include decisions that genuinely cannot be resolved from repository evidence. Give a recommended default for each.
+
+## 21. Coverage ledger
+Account for every tracked file or defined file group.
+
+## 22. Unassessed or uncertain areas
+State exactly what could not be verified and why.
+
+## 23. Recommended next action
+Specify the first small, reversible planning or implementation step after human approval.
+
+QUALITY REQUIREMENTS
+
+- Be exhaustive in coverage but concise within each finding.
+- Prioritise evidence over architectural fashion.
+- Reference concrete paths and symbols.
+- Distinguish confirmed facts from inference.
+- Label confidence as high, medium, or low.
+- State uncertainty rather than filling gaps with assumptions.
+- Distinguish necessary abstraction from optional cleanup.
+- Include positive findings so that good existing design is preserved.
+- Do not recommend a repository-wide rewrite.
+- Do not propose changing everything merely for consistency.
+- Do not treat all duplication as a defect.
+- Do not optimise solely for reduced line count.
+- Do not propose interfaces that merely mirror one implementation.
+- Do not use vague recommendations such as “improve modularity” without specifying where, why, and how.
+- Make the proposed process safe for incremental execution by another engineer or agent.
+- Ensure each recommendation can be traced to repository evidence and at least one segment ID.
+
+FINAL SELF-REVIEW
+
+Before writing the final report, challenge your own analysis:
+
+1. Which areas might have received less attention because they looked unimportant?
+2. Did the analysis over-focus on the main application path?
+3. Were tests, scripts, migrations, configuration, build tooling, and deployment treated as part of the system?
+4. Were proposed abstractions based on stable concepts or merely similar syntax?
+5. Would any recommendation increase the amount of context needed to understand the code?
+6. Were good existing boundaries recognised and protected?
+7. Does every tracked file appear in the coverage ledger?
+8. Can every backlog item be traced to evidence?
+9. Are implementation waves small enough to review and reverse?
+10. Are any claims of completeness stronger than the evidence allows?
+
+Correct the report where this review identifies weaknesses.
+
+Now inspect the repository thoroughly and produce the report. Do not implement any of the proposed source-code changes.
