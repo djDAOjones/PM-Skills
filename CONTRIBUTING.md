@@ -54,9 +54,10 @@ changelog as a path source; gen-file-map maps `pm_skills/` as source
 and targets `self/project/file-map.md`; the records-mode pair differs
 only in defaults — `--project-dir self/project` plus the canon marker
 text vs the generic `pm_skills/project` — so their diffs should stay
-near-empty; `scripts/package.mjs` has no
-scaffold sibling — it is boundary tooling, not a consuming-project
-utility). A bug fixed in one must be
+near-empty; `scripts/package.mjs` and `scripts/gen-roadmap.mjs` have
+no scaffold sibling — the first is boundary tooling, the second is
+an unproven second renderer held source-only until this repo has
+used it). A bug fixed in one must be
 considered for the other; there is no sync mechanism, only this
 reminder.
 

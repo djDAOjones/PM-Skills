@@ -7,14 +7,14 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 76 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 77 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
 - `pm_skills` — 47 file(s)
-- `scripts` — 11 file(s)
+- `scripts` — 12 file(s)
 - `self` — 8 file(s)
 <!-- /file-map-index -->
 
@@ -75,8 +75,6 @@ see the root AGENTS.md "Before every task". -->
 - `pm_skills/prompts/design-options.md` — stage prompt: 2–3 options with a recommendation
 - `pm_skills/prompts/end-of-task.md` — close protocol: gate, memory writes, size check, report
 - `pm_skills/prompts/field-report.md` — usage-report prompt a consuming
-  project runs against itself; emits the field-reports header contract
-  outside the project tree.
 - `pm_skills/prompts/implementation-plan.md` — stage prompt: step plan from the picked option
 - `pm_skills/prompts/memory-maintenance.md` — verbs: Diagnose/Prune/Refactor/Re-assess/Reconcile/Doc-sync + environment preflight
 - `pm_skills/prompts/quick-task.md` — single-stage scope-and-plan for small tasks
@@ -106,6 +104,9 @@ see the root AGENTS.md "Before every task". -->
 - `scripts/eval/scenarios/close-control.json` — close-correctness control scenario spec
 - `scripts/gen-backlog.mjs` — backlog view generator (records mode): tickets frontmatter → Active section between markers
 - `scripts/gen-file-map.mjs` — this repo's file-map generator: maps pm_skills/ as source, excludes self/ memory
+- `scripts/gen-roadmap.mjs` — second renderer over the ticket records:
+  emits the human-readable `self/project/roadmap.md` (outstanding table +
+  collapsible shipped phases); gate-checked as `lint:roadmap`.
 - `scripts/janitor-read.mjs` — read-only janitor: validator + environment line into the reports file (JANITOR-READ)
 - `scripts/package.mjs` — distribution-boundary tool: manifest-verifies pm_skills/ and exports exactly that set (lint:boundary + npm run package)
 

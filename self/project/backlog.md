@@ -17,13 +17,6 @@
 
 <!-- Intent: refactored 2026-08-27 after FIELD-EXPORT shipped (4.11.0) emptied Current of workable items again. The backlog-machinery pair moves up together: BACKLOG-TABLE first on EPIC-AUTOJAZZ's own instruction that sequencing it second reimplements it, then EPIC-AUTOJAZZ, which this session is executing unratified and whose evidence is therefore being generated as it waits. VOICE-INTAKE stays last, still blocked on maintainer inputs. -->
 
-- [ ] **BACKLOG-TABLE Readable backlog table and phase history**
-  [detail](tickets/BACKLOG-TABLE.md) (2026-08-26) — investigate a readable
-  table view — at the top of the backlog, or as a generated human-readable
-  file — showing outstanding tickets plus previous development grouped
-  into collapsible phases since inception. A second renderer over records
-  gen-backlog.mjs already parses; where it lives and what it costs the hot
-  read are the questions. · Medium / Low / Low / Low
 - [ ] **EPIC-AUTOJAZZ Continuous burn-down mode**
   [detail](tickets/EPIC-AUTOJAZZ.md) (2026-08-27) — investigate an "epic"
   auto-jazz mode that keeps developing continuously across the backlog —

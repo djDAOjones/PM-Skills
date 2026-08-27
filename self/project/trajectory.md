@@ -2,6 +2,13 @@
 
 ## Phase: Planning loop
 
+- BACKLOG-TABLE (2026-08-27) — human-readable roadmap view ships
+  source-only: `scripts/gen-roadmap.mjs` → tracked
+  `self/project/roadmap.md`, gate-checked as `lint:roadmap`. Separate
+  file (not in the hot-read backlog), gate-clean via an inline MD033
+  disable, phases declared from the trajectory's own headings and
+  archived phases listed from INDEX rows without opening cold chunks
+  — see decision-log.
 - FIELD-EXPORT (2026-08-27) — the twice-run-by-hand harvest
   procedure ships as `prompts/field-report.md`: a prompt not a
   script, distributed not maintainer-side, because the work runs

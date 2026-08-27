@@ -11,6 +11,54 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-27 — BACKLOG-TABLE: a second renderer, source-only for now
+
+**Decision:** build `scripts/gen-roadmap.mjs` → tracked
+`self/project/roadmap.md`, gate-checked as `lint:roadmap`. Answers to
+the ticket's five questions, each with the reason that decided it:
+
+- **Shape 2, a separate file** — not a table at the top of
+  `backlog.md`. The backlog is a hot sectional read, so a wide table
+  there bills agent context every session for a purely human benefit;
+  the agent already reads the records perfectly well.
+- **Tracked, and gate-clean rather than gate-exempt.** The janitor
+  report's precedent (generated, gitignored, exempt in four configs)
+  is wrong here: a shareable snapshot must survive a clone and be
+  visible on the forge. The only lint-hostile element is `<details>`
+  (MD033), so the generator emits `<!-- markdownlint-disable MD033 -->`
+  as the file's first line — an inline, one-file disable rather than
+  a lint-config change and its `check:clone` obligation.
+- **Phases are declared, not derived** — they are the trajectory's own
+  level-2 headings, which ARCH-RETENTION made the load-bearing
+  sequence unit hours earlier. Archived phases are listed from
+  `archive/INDEX.md` rows **without opening the cold chunks**, which
+  is precisely what that INDEX row contract (range, count, IDs, file)
+  was specified for. The history side of this item cost almost
+  nothing because that shape already existed.
+- **Columns: ID, Name, Milestone, Description, Status** — the set the
+  maintainer asked for and this session rendered by hand twice before
+  the generator existed. Nothing added.
+- **Process, not product.** Held source-only until this repo has
+  actually used it; distributing it now would double the maintenance
+  under the deliberate-fork rule for a shape with no usage evidence.
+  Parked on the wish-list for promotion once it has earned it.
+
+**Rationale:** the whole item is cheap because the data model already
+existed — records for the open side, declared phases plus INDEX rows
+for the history side. What needed deciding was where the output lives
+and what it costs the hot read, and both answers fell out of "the
+backlog view is for the agent, this one is for a person".
+
+**Assumptions at skipped gates (auto-jazz):** source-only, so no
+release; `package.json` counts as gate config, so `check:clone` was
+run against the committed state (see the closing report).
+
+**Alternatives:** a table inside `backlog.md` (rejected — hot-read
+cost, and MD033 would need a config exception); gitignored like the
+janitor report (rejected — not shareable, not in the versioned
+backup); phases derived from release minors (rejected — declared
+phases already exist and are now contractual).
+
 ## 2026-08-27 — FIELD-EXPORT: the harvest procedure ships as a prompt (4.11.0)
 
 **Decision:** ship `pm_skills/prompts/field-report.md` — a prompt, not
