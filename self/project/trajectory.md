@@ -2,6 +2,20 @@
 
 ## Phase: Planning loop
 
+- FIELD-HARVEST (2026-08-27) — two applied projects filed as
+  consuming-project evidence (source-only): Route Plotter v3
+  (pm-skills 4.7.0) and UoN Video Helper (4.9.2) harvested into
+  `self/field-reports/` — eleven tracked reports (deployment-snapshot
+  notes, memory with byte inventories, rulebooks, full git logs,
+  review artefacts, the Video Helper's preserved init prompt) plus 23
+  raw session logs in the local lane. First multi-project use of the
+  tier; both source repos are public, so only the session logs needed
+  the local lane. Taken on the maintainer's direct pick, clearing the
+  LAB-FIRST gate. Two findings for a later evaluation: no deployment
+  on record has ever walked `upgrade.md` (Route Plotter declined 4.9.2
+  outright), and UoN Video Helper runs canon content despite its lab
+  provenance — so R2's two-arm test has not started. No release. See
+  decision-log 2026-08-27.
 - GATE-PARITY (2026-08-24) — the local gate made CI-faithful
   (source-only): `scripts/check-docs.mjs` resolves every reference
   against the paths Git knows about instead of calling `existsSync`,

@@ -9,6 +9,63 @@
      and 2026-07 — see archive/INDEX.md for ranges. Grep the
      archive files directly; never re-inline them. -->
 
+## 2026-08-27 — FIELD-HARVEST: two applied projects filed as evidence
+
+**Decision:** harvested Route Plotter v3 and UoN Video Helper into
+`self/field-reports/` — eleven tracked reports (deployment-snapshot
+notes, project memory with byte inventories, rulebooks, full git logs,
+review artefacts, and the Video Helper's preserved init prompt) plus
+23 raw Claude Code session logs in the local lane. Both source
+repositories are public and carry `pm_skills/project/` tracked, so the
+memory and rulebook material is filed in the tracked lane: copying it
+here discloses nothing that is not already published. Only the session
+logs go to `local/`, because those have never been published and
+cannot be made public by mechanical redaction. Absolute checkout paths
+were collapsed to `<checkout>`/`<home>` on filing; the one third-party
+personal name — the primary user named in Route Plotter's `brief.md` —
+was left as written and flagged in that export's header, because it is
+already public upstream and cutting it would misrepresent how the
+brief template is used in practice. Taken on the maintainer's direct
+pick, which cleared the LAB-FIRST gate as GATE-PARITY did on
+2026-08-24. No backlog item shipped; nothing removed from the backlog.
+
+**Rationale:** two live deployments running the framework daily in the
+same week, one of them recorded from install onwards, is the strongest
+usage evidence this tier has held — and `self/REFLECTION.md` →
+"Evidence gate" weights consuming-project evidence above self-hosted
+material. It was also perishable: both projects pruned memory during
+the harvest itself, and Route Plotter's live decision log shrank from
+roughly 130 KB to 35 KB while the export was being taken. The exports
+therefore record working-tree state with the diff from HEAD attached,
+rather than claiming a clean snapshot.
+
+**What the evidence says**, recorded here as a starting point rather
+than a conclusion — the analysis belongs in `self/evaluations/`:
+
+- Three deployments are now on record (Derry Lane, Route Plotter, UoN
+  Video Helper) and none reached its current version by walking
+  `pm_skills/prompts/upgrade.md`. Route Plotter is the sharp case: its
+  decision log records the owner choosing to "stay on PM-Skills 4.7.0
+  (upstream is 4.9.2 — skipped, not merely deferred)". The declarative
+  upgrade contract — MANIFEST classes, CHANGELOG Upgrade actions — is
+  built on a procedure no consuming project has yet used.
+- UoN Video Helper is **not** the lab arm it has been treated as. It
+  is sourced from the PM-Skills-lab fork but runs canon 4.9.2 content;
+  no `pm-next` artefact exists anywhere in the tree, and one README
+  link is the only mention of the lab. This bears directly on
+  LAB-FIRST's R2 parallel-run: on this evidence the two-arm test has
+  not started.
+- Two independent projects have written cloud-sync defences into their
+  rulebooks, confirming from the field the constraint the brief
+  already names.
+
+**Alternatives:** filing everything local-only, as Derry Lane was —
+rejected, because it would hide already-public material behind a lane
+meant for genuinely private evidence, and would stop a public
+evaluation citing them at all. Waiting for a quiescent moment in
+both projects — rejected, because both are in daily flux and the
+prune that ran mid-harvest is itself evidence worth holding.
+
 ## 2026-08-24 — GATE-PARITY: the gate resolves against Git, not the filesystem
 
 **Decision:** `scripts/check-docs.mjs` resolves link targets and
