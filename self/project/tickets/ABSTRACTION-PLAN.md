@@ -2,7 +2,7 @@
 id: ABSTRACTION-PLAN
 name: Abstraction and auditability planning
 status: todo
-milestone: next
+milestone: current
 flags: detail
 date: 2026-08-26
 grades: High / High / Medium / Low

@@ -12,9 +12,9 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
-| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Current #1 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs — one or more real raw transcripts plus… |
-| **[REVIEW-SUITE](tickets/REVIEW-SUITE.md)** | Deep code-review suite | Next #1 | Investigate a thorough code-review suite — engineering-depth dimensions (security, performance, dependencies, tests), a validation phase that runs… | Todo |
-| **[ABSTRACTION-PLAN](tickets/ABSTRACTION-PLAN.md)** | Abstraction and auditability planning | Next #2 | Investigate a read-only whole-repository planning function that turns evidence into a coverage-accounted programme of small, behaviour-preserving… | Todo |
+| **[REVIEW-SUITE](tickets/REVIEW-SUITE.md)** | Deep code-review suite | Current #1 | Investigate a thorough code-review suite — engineering-depth dimensions (security, performance, dependencies, tests), a validation phase that runs… | Todo |
+| **[ABSTRACTION-PLAN](tickets/ABSTRACTION-PLAN.md)** | Abstraction and auditability planning | Current #2 | Investigate a read-only whole-repository planning function that turns evidence into a coverage-accounted programme of small, behaviour-preserving… | Todo |
+| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Current #3 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs — one or more real raw transcripts plus… |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
 | **[JANITOR-WRITE](tickets/JANITOR-WRITE.md)** | Auto-run maintenance verbs | Icebox #2 | Graduated autonomy, Reconcile rung first; a blanket sign-off does not open this gate. | Blocked — per-verb scenario green + explicit per-verb maintainer… |
 | **ARCH-RECALL** | Recall over cold storage | Icebox #3 | Richer archive INDEX summaries + a search-then-skim pass; embeddings only if evidence demands. · Medium / Medium / Low / Low | Blocked — a consuming project reports missed-precedent pain |
