@@ -17,15 +17,6 @@
 
 <!-- Intent: refilled at the 2026-08-27 Re-assess, the first pass since LAB-FIRST was paused. ARCH-RETENTION leads because its trigger has actually fired — the trajectory is over budget at 2116/2000 and archive/trajectory/ has never been created here, so the next Prune defines the archive shape whether or not anyone decides it. SCAFFOLD-GITPATH follows: a known bug with a known fix in a distributed file, deferred in the wish-list only because LAB-FIRST held the queue, and a release when taken. VOICE-INTAKE sits last and stays blocked on maintainer inputs (real transcripts plus the external preparation prompts). -->
 
-- [ ] **ARCH-RETENTION Retaining history for later analysis**
-  [detail](tickets/ARCH-RETENTION.md) (2026-08-27) — investigate how the
-  decision log, trajectory, and other history are retained in the archive
-  so they can be analysed later, not merely evicted and grepped for
-  precedent. Retention sibling of ARCH-RECALL. Trigger FIRED 2026-08-27:
-  the trajectory is now OVER budget at 2116/2000 and archive/trajectory/
-  has still never been created, so the next Prune defines the archive
-  shape whether or not anyone decides it first. · Medium / Medium / Low /
-  Low
 - [ ] **SCAFFOLD-GITPATH Carry the GATE-PARITY fix into the scaffold**
   [detail](tickets/SCAFFOLD-GITPATH.md) (2026-08-24) — the shipped
   pm_skills/scaffold/check-links.mjs still resolves link targets with

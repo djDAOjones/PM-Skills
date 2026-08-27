@@ -301,8 +301,11 @@ For each over-budget file, propose one specific action:
   rule above, but leave the re-sequencing to the refactor.
 - `trajectory.md` over budget → move the oldest phases verbatim to
   `archive/trajectory/trajectory-NNNN-YYYY-MM-DD-to-YYYY-MM-DD.md`
-  (sequence-numbered), keeping recent phases live. Add an
-  `archive/INDEX.md` row.
+  (sequence-numbered), keeping recent phases live. Move **whole
+  phases** — never split one across chunks, even if that leaves the
+  chunk short. Add an `archive/INDEX.md` row carrying the range, the
+  item count, and the item IDs (`memory-policy.md` → "Retention
+  shape").
 - `decision-log.md` > entry budget OR any single entry > the per-entry
   guard OR oldest > age
   budget → archive the oldest entries, keeping the latest live (at
@@ -313,7 +316,9 @@ For each over-budget file, propose one specific action:
   oldest entries first — but size alone isn't a reason to split; an
   epoch stays one file unless browsability demands otherwise. Leave a
   one-line index at the bottom of the live file pointing at each
-  archive file. If only the age budget is tripped (not the entry count
+  archive file, and add the `archive/INDEX.md` row in the contract
+  form — range, entry count, entry IDs (`memory-policy.md` →
+  "Retention shape"). If only the age budget is tripped (not the entry count
   or per-entry guard) and fewer than ~5 entries lie beyond the latest-10
   floor, note the overrun and skip — the archive gain doesn't justify
   the prune (common on low-velocity / sporadic projects).

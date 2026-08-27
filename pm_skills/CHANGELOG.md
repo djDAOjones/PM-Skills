@@ -36,6 +36,53 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.10.0 — 2026-08-27
+
+ARCH-RETENTION: the archive gains a **retention shape** — the rules
+that decide whether evicted memory can still be asked questions
+later, rather than only grepped for precedent on a lucky guess. The
+budget table already said *when* memory is archived; nothing said
+*how*, so the first `archive/trajectory/` prune in any project would
+have set the shape by accident. Four rules, all forward-only: the
+item ID is the join key and every INDEX row lists the IDs its chunk
+holds; chunks break on whole sequence units (epochs for the decision
+log, whole **phases** for the trajectory); INDEX rows carry enough
+to choose a chunk without opening it; and a reversal is marked
+**forward** by the overturning entry, since append-only means the
+superseded one can never be edited to say so. Analysis stays a
+practice, not a new verb — added only when a project reports an
+analysis it could not perform.
+
+### Changed
+
+- `pm_skills/memory-policy.md` — new section "Retention shape (what
+  the archive must preserve)", between the file-map derivation and
+  the size-check fast path. No budget numbers changed; the
+  machine-readable block is untouched, so memory validators need no
+  update.
+- `pm_skills/prompts/memory-maintenance.md` — Prune P2: the
+  `trajectory.md` action now says whole phases only and names the
+  INDEX row contract; the `decision-log.md` action names the same
+  contract for its own row.
+- `pm_skills/project/decision-log.md` (template) — header comments
+  gain the forward-supersession grammar
+  (`Supersedes: <ID or heading> — <one line>`).
+
+### Upgrade actions
+
+- Replace `pm_skills/memory-policy.md` and
+  `pm_skills/prompts/memory-maintenance.md` with this version's
+  copies (`framework` class).
+- `pm_skills/project/decision-log.md` is `template` class — a
+  populated project keeps its own file. To adopt the supersession
+  grammar, copy the new `Supersedes:` comment block from the
+  template into your log's header comments. Optional: nothing
+  breaks without it, and **no existing entry is ever rewritten** to
+  add one — the marker applies forward only.
+- If your project already has `archive/` chunks whose `INDEX.md`
+  rows lack item IDs, leave them: rows are brought up to contract
+  as chunks are added, never by a back-fill pass.
+
 ## 4.9.2 — 2026-08-23
 
 RELEASE-TREE-GLOB: the release checklist's GUIDE-tree check now

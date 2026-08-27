@@ -10,6 +10,10 @@
 <!-- This is the home of the WHY. The backlog/trajectory only point here;
      never paste an entry's prose into those files. -->
 <!-- Append-only: when archiving, move entries verbatim. Never rewrite. -->
+<!-- Reversing an earlier decision? Mark it FORWARD: the new entry carries a
+     `Supersedes: <ID or entry heading> — <one line>` line and the old entry is
+     left untouched, so one grep for `Supersedes:` finds every reversal.
+     See pm_skills/memory-policy.md → "Retention shape". -->
 
 <!--
 Example entry (delete when you add your first real one):

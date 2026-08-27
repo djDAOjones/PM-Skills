@@ -111,6 +111,50 @@ Budgets are periodically re-derived from real mature projects rather
 than guessed — if the coefficient drifts from what healthy maps
 actually run, recalibrate it here.
 
+## Retention shape (what the archive must preserve)
+
+The budget table above says **when** memory is archived. This says
+**how**, so the record stays answerable later rather than merely
+stored. Every rule here is **forward-only**: material already
+archived is never rewritten to match it.
+
+- **The item ID is the join key.** A decision entry, a trajectory
+  line, a ticket record, and a commit describe one item and are
+  joined by nothing but its identifier — so that identifier is
+  load-bearing, not a naming habit. Every `archive/INDEX.md` row
+  lists the IDs its chunk contains, which makes the index a
+  one-file ID→chunk lookup for the whole archive.
+- **Chunk on a sequence boundary, never mid-unit.** A chunk holds
+  whole units of the file's own sequence: whole epochs (month or
+  migration) for `decision-log.md`, whole **phases** for
+  `trajectory.md` — its `## Phase:` headings are its epochs, so a
+  phase is never split across chunks even when that leaves a chunk
+  well under budget. Trajectory chunks live at
+  `archive/trajectory/trajectory-NNNN-YYYY-MM-DD-to-YYYY-MM-DD.md`,
+  sequence-numbered, the dates being the span actually archived.
+- **INDEX rows are chosen from, not opened.** One row per chunk,
+  carrying the range, the unit count, the IDs, and the file, so a
+  reader picks the chunk to grep without opening any of them:
+
+  ```text
+  - 2026-08-08 → 2026-08-09 (5 entries: WAVE1-BATCH, EVAL-SCEN,
+    MEM-CHECK, TRIAGE-REV, GATE-FRESH) — decision-log-2026-08a.md
+  ```
+
+- **Supersession is marked forward.** Entries are append-only and
+  never edited, so a reversed decision reads exactly like a
+  standing one and "what do we now believe about X" means reading
+  all of it. The **overturning** entry therefore carries a
+  `Supersedes: <ID or entry heading> — <one line>` line; the
+  superseded entry is left untouched. One grep for `Supersedes:`
+  then yields every reversal in the log's history.
+- **Analysis is a practice, not a verb.** Retention makes the
+  record answerable; it does not add a workflow that reads it.
+  Reflection (`REFLECTION.md` where a project keeps one) and the
+  Diagnose verb remain the consumers. Add a verb only when a
+  project reports an analysis it could not perform — the same
+  evidence bar recall sits behind.
+
 ## Size-check fast path
 
 The end-of-task size check scales with what the task actually touched
