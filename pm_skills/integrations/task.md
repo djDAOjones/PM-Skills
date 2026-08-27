@@ -257,7 +257,10 @@ option gate approves the **restructuring shape**.
 
 ### Declared surface
 
-Scoping names the file set (or directory) the refactor may touch. The
+One accepted wave of `prompts/improvement-waves.md` is exactly one
+run of this mode, and that wave's stated grouping is the declared
+surface. Scoping names the file set (or directory) the refactor may
+touch. The
 ">5 files not in scope" prohibition is lifted **within that set only** —
 anything outside it stops-and-asks as usual. An under-declared surface
 is the whole risk of this mode: name it deliberately at the scope gate.

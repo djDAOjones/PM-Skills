@@ -2,6 +2,13 @@
 
 ## Phase: Epic burn-down (2026-08-27)
 
+- ABSTRACTION-PLAN (2026-08-27) — the composition layer ships as
+  `prompts/improvement-waves.md`: verified findings into staged
+  revertible waves with a pilot, six equal treatments (abstraction is
+  not the objective), and a coverage ledger where "exhaustive" means
+  reconciled, not everything read. Separate from findings.md because
+  per-finding disposition cannot decide order (4.16.0) — see
+  decision-log.
 - REVIEW-SUITE (2026-08-27) — shipped as `prompts/findings.md`, not
   the dimension suite scoped: field evidence showed both consuming
   projects got competent multi-dimension reviews from tools and then

@@ -12,6 +12,66 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-27 — ABSTRACTION-PLAN: the composition layer ships (4.16.0)
+
+**Decision:** ship `pm_skills/prompts/improvement-waves.md` as a
+**separate prompt**, not a stage of REVIEW-SUITE. Once REVIEW-SUITE
+landed as per-finding verify-and-disposition, the boundary became
+structural rather than a judgement call: `findings.md` decides what
+each finding is and where it goes; nothing in a per-finding pass can
+decide **order, grouping, or where to stop** across all of them.
+That is this file, and it is the composition layer the ticket
+suspected was missing.
+
+**The four open questions, answered:**
+
+1. *Separate or a stage?* Separate — per above.
+2. *Consume findings, or repeat the census?* **Consume, and cite
+   IDs.** Two coverage claims over one repository will disagree, and
+   then neither can be trusted. With no findings the prompt stops
+   rather than substituting for looking.
+3. *Which metrics?* Only observations — coverage, waves shipped
+   versus reverted, gate result. **No numeric targets for code
+   properties**: this prompt authorises the changes that move line
+   counts and duplication percentages, so a target makes gaming them
+   the cheapest route to success.
+4. *Autonomous no-pausing mode in a gated framework?* **Already
+   settled**, this morning, by READ-ONLY-AUDIT (4.14.0) — the ticket
+   asked for it to be settled once for both, and it was. This file
+   declares `read-only.md` and re-opens nothing.
+
+**The two invariants worth the file's existence.** "Exhaustive"
+means a **reconciled ledger**, not everything read: every area graded
+substantive / superficial / classified-only / excluded-with-reason
+and appearing exactly once. And when a run cannot finish, areas stay
+*classified only* — never trade inspection for assumption.
+Downgrading the grade is honest; inferring what an unread area
+contains is the failure the ledger exists to prevent.
+
+**Abstraction is not the objective**, and the file says so: six equal
+treatments including *keep the duplication* and *leave unchanged*. A
+plan whose every entry says "abstract" has not been thought about.
+
+**Assumptions at skipped gates (auto-jazz):** minor release, new
+file; named `improvement-waves.md` rather than `improvement-plan.md`
+to avoid a folder listing where it sits one word from
+`implementation-plan.md`, which is a different thing (one change, not
+a programme).
+
+**The Done-when line that is NOT met, stated plainly:** "a pilot on a
+real codebase gives useful, traceable recommendations without
+modifying application source." This repository has no application
+source — Markdown and lint tooling. The prompt's pilot rule is
+written but has never been run. That is the same gap REVIEW-SUITE
+carries, and the same test closes both: a run against Route Plotter
+or UoN Video Helper. Filed to the wish-list rather than left implied.
+
+**Alternatives:** fold it into `findings.md` (rejected — per-finding
+and across-findings are different operations and the combined file
+would be twice the length for one audience at a time); adopt the
+basis prompt's census-first shape (rejected — duplicates the audit
+and creates the competing coverage claim question 2 rejects).
+
 ## 2026-08-27 — Second mid-run Prune; this session declared as its own phase
 
 **Decision:** trajectory hit 1909/2000 between items, so a second

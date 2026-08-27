@@ -101,6 +101,7 @@ prompts/         Reusable per-task prompts (paste, or run as commands).
   review.md               Read-only audit of an autonomous run or feature area.
   read-only.md            The no-write posture: hard contract, command isolation, start-and-end integrity check.
   findings.md             Verify a review's findings against source, spot what it missed, disposition them into the backlog.
+  improvement-waves.md    Verified findings -> a staged programme of small reversible waves, with a coverage ledger. Planning only.
   memory-maintenance.md   Diagnose / Prune / Refactor / Re-assess / Reconcile / Doc-sync project memory.
   backlog-authoring.md    Ideas or a transcript → grammar-true backlog items + tickets; the ticket skeleton and external authoring contract.
   field-report.md         Emit a usage report about this project's use of pm-skills, for whoever collects them upstream.

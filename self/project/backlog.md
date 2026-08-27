@@ -17,14 +17,6 @@
 
 <!-- Intent: refactored 2026-08-27 after UPGRADE-REFUSED (4.13.0) and READ-ONLY-AUDIT (4.14.0) shipped. The read-only pair moves up together now that the mode they both run inside exists — REVIEW-SUITE first (what is wrong; its finding schema is the narrower piece), ABSTRACTION-PLAN second (what to change; it consumes findings, so it reads better after the schema is fixed). Both carry archived basis material under self/inputs/, and both share the same honest limit: this repository has no application to investigate deeply, so neither can be validated here. -->
 
-- [ ] **ABSTRACTION-PLAN Abstraction and auditability planning**
-  [detail](tickets/ABSTRACTION-PLAN.md) (2026-08-26) — investigate a
-  read-only whole-repository planning function that turns evidence into a
-  coverage-accounted programme of small, behaviour-preserving improvements
-  — abstraction and de-abstraction rules, staged waves, a pilot,
-  measurable validation. Two revisions of the basis archived under
-  self/inputs/ (2026-08-26, superseded by 2026-08-27). · High / High /
-  Medium / Low
 - [ ] **VOICE-INTAKE Voice-memo transcript intake**
   [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
   more real raw transcripts plus the external preparation prompts (ticket

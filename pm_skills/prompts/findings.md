@@ -104,6 +104,11 @@ Keep a **crosswalk**: every original finding ID against its verdict
 and where it went. It is what lets someone months later ask "what
 happened to R-07?" and get an answer.
 
+When the survivors are many enough that their *order* matters —
+several touch the same code, or one should clearly precede another —
+`prompts/improvement-waves.md` groups them into a staged programme
+instead. Individual disposition cannot decide sequencing.
+
 ## Finding shape
 
 Whatever the source review used, a finding leaving this prompt

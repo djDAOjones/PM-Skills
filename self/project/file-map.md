@@ -7,13 +7,13 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 80 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 81 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
-- `pm_skills` — 50 file(s)
+- `pm_skills` — 51 file(s)
 - `scripts` — 12 file(s)
 - `self` — 8 file(s)
 <!-- /file-map-index -->
@@ -77,9 +77,10 @@ see the root AGENTS.md "Before every task". -->
 - `pm_skills/prompts/end-of-task.md` — close protocol: gate, memory writes, size check, report
 - `pm_skills/prompts/field-report.md` — usage-report prompt a consuming
 - `pm_skills/prompts/findings.md` — verify review findings against
-  source, spot what the review missed, disposition survivors into the
-  backlog; source-agnostic.
 - `pm_skills/prompts/implementation-plan.md` — stage prompt: step plan from the picked option
+- `pm_skills/prompts/improvement-waves.md` — verified findings into a
+  staged programme of revertible waves with a pilot and a coverage
+  ledger; planning only.
 - `pm_skills/prompts/memory-maintenance.md` — verbs: Diagnose/Prune/Refactor/Re-assess/Reconcile/Doc-sync + environment preflight
 - `pm_skills/prompts/quick-task.md` — single-stage scope-and-plan for small tasks
 - `pm_skills/prompts/read-only.md` — the no-write posture other

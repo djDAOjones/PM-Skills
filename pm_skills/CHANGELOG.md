@@ -36,6 +36,77 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.16.0 — 2026-08-27
+
+ABSTRACTION-PLAN: `prompts/improvement-waves.md` turns verified
+findings into a staged programme — a few independently revertible
+waves, in dependency order, with an honest coverage ledger. Planning
+only; each accepted wave becomes one normal task, and a
+behaviour-preserving one runs as `task.md` refactor mode against
+that wave's stated grouping.
+
+It completes the read-only family: `review.md` and an audit produce
+findings, `findings.md` verifies and dispositions them one by one,
+this decides the **order, grouping and stopping point** across them —
+which per-finding disposition structurally cannot — and refactor
+mode executes one wave.
+
+Four decisions worth naming:
+
+- **Consume findings; never re-census.** Two coverage claims over one
+  repository will disagree, and then neither can be trusted.
+  Traceability comes from the ledger citing finding IDs, not from
+  doing the work twice. With no findings, the prompt stops.
+- **Abstraction is not the objective.** Six treatments are
+  first-class and equal: abstract, de-abstract, simplify, isolate,
+  keep the duplication, leave unchanged. A plan whose every entry
+  says "abstract" has not been thought about.
+- **"Exhaustive" means a reconciled ledger, not everything read.**
+  Every area is graded substantive / superficial / classified-only /
+  excluded-with-reason and appears exactly once. When a run cannot
+  finish, areas stay *classified only* — **never** trade inspection
+  for assumption; downgrading the grade is honest, inferring what an
+  unread area contains is not.
+- **Measures are observations, never targets.** No numeric goals for
+  line counts, file counts, duplication percentages or module sizes:
+  this prompt authorises the very changes that move those numbers, so
+  a target makes gaming them the cheapest way to succeed.
+
+The first wave is a **pilot**: run it, compare outcome against
+prediction, and re-plan the rest if the prediction was wrong. A
+programme whose first estimate missed is built on a wrong model.
+
+The autonomy question this item shared with READ-ONLY-AUDIT is
+already settled by 4.14.0 and is not re-opened: run under
+`prompts/read-only.md`, whose exemption ends the moment a wave is
+executed.
+
+### Added
+
+- `pm_skills/prompts/improvement-waves.md` (`framework` class) —
+  what a wave is, the pilot rule, the six treatments, the coverage
+  ledger, preserve-these findings, measures, report lifecycle
+  (cold storage, per-wave acceptance, one record per wave), and the
+  report contract.
+
+### Changed
+
+- `pm_skills/prompts/findings.md` — points here when the survivors
+  are many enough that their order matters.
+- `pm_skills/integrations/task.md` — refactor mode's declared
+  surface is one accepted wave's stated grouping.
+- `pm_skills/GUIDE.md` — the `prompts/` tree lists the new file.
+
+### Upgrade actions
+
+- Copy `pm_skills/prompts/improvement-waves.md` into your project's
+  `pm_skills/prompts/` (`framework` class — new file, nothing
+  overwritten).
+- Replace `pm_skills/prompts/findings.md`,
+  `pm_skills/integrations/task.md` and `pm_skills/GUIDE.md` with this
+  version's copies.
+- Nothing else changes; the prompt is inert until findings exist.
+
 ## 4.15.0 — 2026-08-27
 
 REVIEW-SUITE: `prompts/findings.md` — verify a review's findings

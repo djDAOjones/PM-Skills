@@ -6,6 +6,12 @@
 
 ## Open
 
+- WAVES-PILOT: run `prompts/findings.md` + `improvement-waves.md`
+  end-to-end against a real consuming project (Route Plotter or UoN
+  Video Helper) and file the result as a field report. Both prompts
+  shipped 2026-08-27 unvalidated in use — this repository has no
+  application source to pilot them on, and both tickets named that
+  gap. One run closes it for both.
 - ROADMAP-DIST: distribute the roadmap renderer — `gen-roadmap.mjs`
   to `pm_skills/scaffold/`, the view to the project-memory templates —
   once this repo has actually used the source-only copy for a while.
