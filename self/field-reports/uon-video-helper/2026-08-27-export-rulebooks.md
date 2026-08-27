@@ -1,46 +1,21 @@
 <!-- field-report: project=uon-video-helper · date=2026-08-27 · type=export
      · pm-skills=4.9.2
-     · source=harvested from the maintainer's checkout by Claude Code -->
+     · source=tracked root rulebooks at git commit 09702c2d8c749e72943678c94c558cf33ac1270f
+     · redacted=none needed after path, email, and credential-shape scans
+     · not-redacted=already-public personal names, public repository/account identifiers, commit hashes, workflow identifiers, and project facts -->
 
-# Rulebook export — uon-video-helper
+# UoN Video Helper rulebook export
 
-Verbatim copy of the project's rulebooks and README. These are
-the populated descendants of the framework's root templates;
-read against `pm_skills/templates/` they show how far a live
-project moves from what it was handed.
+Snapshot: `09702c2d8c749e72943678c94c558cf33ac1270f`.
 
-State at harvest: HEAD `a3c070a`, 108 commits, 6 path(s)
-differing from HEAD.
-
-Paths differing from HEAD at harvest:
-
-```text
-M  pm_skills/project/archive/INDEX.md
-A  pm_skills/project/archive/decision-log-0002-2026-08-25-to-2026-08-27.md
-A  pm_skills/project/archive/trajectory/trajectory-0003-review-remediation-and-band-1-close.md
-M  pm_skills/project/decision-log.md
-M  pm_skills/project/file-map.md
-M  pm_skills/project/trajectory.md
-```
-
-Redaction. Absolute checkout paths have been collapsed to
-`<checkout>`, and any other path under the maintainer's home
-directory to `<home>`; that is the only alteration, and the content
-is otherwise byte-verbatim. A scan of this set found no e-mail
-addresses, credentials, or account identifiers.
-
-## Inventory at harvest
-
-| File | Bytes |
+| Source file | Bytes at snapshot |
 | --- | ---: |
-| `AGENTS.md` | 30366 |
-| `UI-STANDARDS.md` | 10176 |
-| `DEV-INFRASTRUCTURE.md` | 20868 |
+| `AGENTS.md` | 30,366 |
+| `UI-STANDARDS.md` | 10,176 |
+| `DEV-INFRASTRUCTURE.md` | 21,338 |
 | `CLAUDE.md` | 505 |
-| `README.md` | 6932 |
-
-## Files
-
+| `README.md` | 6,932 |
+| **Total** | **69,317** |
 <!-- FILE: AGENTS.md -->
 
 # AI Agent Rules
@@ -638,7 +613,6 @@ Project-specific:
 - Hard-coding a threshold, duration, bitrate or colour outside
   `src/config/` or a CSS token.
 
-
 <!-- FILE: UI-STANDARDS.md -->
 
 # UI Standards
@@ -901,7 +875,6 @@ Before sign-off on any UI-affecting change, verify:
     Carbon-styled, ≥ 44 × 44 CSS px, keyboard operable, gives copy
     feedback, and sits on a permanent surface without covering primary
     controls.
-
 
 <!-- FILE: DEV-INFRASTRUCTURE.md -->
 
@@ -1166,12 +1139,19 @@ npm run check
 ```
 
 ```bash
-npm run typecheck && npm run lint && npm run test && npm run build && npm run docs:lint && npm run docs:links && npm run check:placeholders && npm run check:memory
+npm run check:placeholders && npm run typecheck && npm run lint && npm run test && npm run check:build && npm run docs:lint && npm run docs:links && npm run check:memory
 ```
 
 **Non-mutating and CI-safe.** It reports; it never reformats or writes.
 `lint:fix` and `format` are separate verbs and are never part of the
 gate.
+
+That was a claim before it was true. The gate ran `build`, which rewrites
+`dist/` — so every green run replaced the artifact it had just certified,
+and a gate that overwrites its own evidence cannot vouch for it. Since
+VH-76 the bundle step is `check:build`, which builds to a temporary
+directory and removes it on every exit path, signals included. `build`
+is unchanged and still produces `dist/` for a deploy.
 
 Runs, in order:
 
@@ -1180,7 +1160,7 @@ Runs, in order:
 | `typecheck` | Type errors, broken imports |
 | `lint` | Unused/broken imports, dead code, floating promises |
 | `test` | Unit suite — **including the EBU Tech 3341 harness** |
-| `build` | Anything that only breaks in a production bundle |
+| `check:build` | Anything that only breaks in a production bundle. Builds to a temp directory, never `dist/` |
 | `docs:lint` + `docs:links` | Broken Markdown and dead cross-references in `docs/` and project memory |
 | `check:placeholders` | Stray `CUSTOMISE` / `[Project Name]` markers (the init Step 10 lint, folded in) |
 | `check:memory` | Project-memory drift — shipped items left in the backlog, ticket-grammar violations, dangling `[detail]` links, stale file-map paths |
@@ -1403,7 +1383,6 @@ disagree; if they ever do, Prettier wins and `.editorconfig` is corrected.
 | `docs/*.md` | The specification set. Protected — propose corrections, do not rewrite. |
 | `pm_skills/` (except `pm_skills/project/`) | Framework files, replaced on upgrade. |
 
-
 <!-- FILE: CLAUDE.md -->
 
 # Claude Code project instructions
@@ -1419,7 +1398,6 @@ disagree; if they ever do, Prettier wins and `.editorconfig` is corrected.
   locations assigned by `AGENTS.md`.
 - Put personal project instructions in the ignored `CLAUDE.local.md`, not in
   this shared adapter.
-
 
 <!-- FILE: README.md -->
 
@@ -1565,4 +1543,3 @@ development. Project memory is in [`pm_skills/project/`](pm_skills/project/).
   `AGENTS.md`. Tool-maintained memories are local recall aids, not the shared
   project record. Personal Claude instructions belong in the ignored
   `CLAUDE.local.md`.
-

@@ -119,6 +119,18 @@ maintainer — two contrasts stand out:
   `2026-08-26-export-review-artefacts.md`. The critique-of-review
   artefacts have no counterpart in the framework's own prompts.
 
+## Provenance: two passes
+
+This directory was assembled in two passes on 2026-08-27. The first
+harvested the project from a Claude Code session and wrote the notes
+below. The second ran a Codex agent inside the project itself, which
+re-took every export at a later commit with fuller commit metadata and
+explicit per-file redaction counts — those supersede the first pass's
+copies, so an export's stated snapshot may sit slightly ahead of the
+figures quoted in this note. Codex wrote its output inside the project
+directory; it was moved here and removed from there, so no harvest
+artefact remains in the applied project.
+
 ## What is in this directory
 
 | File | Lane | Contents |
@@ -129,8 +141,14 @@ maintainer — two contrasts stand out:
 | `2026-08-27-export-git-log.md` | tracked | full history with bodies and changed files |
 | `2026-08-26-export-review-artefacts.md` | tracked | the `reviews/2026-08-26/` tree |
 | `2026-08-24-export-init-prompt.md` | tracked | init prompt, original brief, open-decisions register |
+| `2026-08-25-export-end-user-evidence.md` | tracked | pilot deployment records and maintainer-run checks; no analytics or third-party feedback exists |
 | `local/2026-08-27-export-session-logs.md` | local | index of the raw Claude Code session logs |
 | `local/sessions/*.jsonl` | local | 11 sessions, 14,013 messages, ~28 MB, byte-verbatim |
+| `local/2026-08-27-note-working-tree-snapshot.md` | local | uncommitted changes in flight at harvest |
 
 Every tracked file above is already public in the source repository;
 the session logs are not, which is why they sit in the local lane.
+
+One first-pass file was kept rather than superseded: the init-prompt
+export above also carries `docs/03-open-decisions.md`, which the
+second pass omitted.

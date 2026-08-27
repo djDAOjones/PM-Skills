@@ -1,63 +1,31 @@
 <!-- field-report: project=route-plotter · date=2026-08-27 · type=export
      · pm-skills=4.7.0
-     · source=harvested from the maintainer's checkout by Claude Code -->
+     · source=Git blobs under pm_skills/project at public snapshot 6f2ac154430be665a9cb1665a6f20d1b317990e0
+     · redaction=0 checkout path occurrence(s) and 0 other home-path occurrence(s) collapsed; 0 e-mail address(es) replaced; no credential-shaped values found
+     · retained=public names Joe Bell and Gary Priestnall and public GitHub identifier djDAOjones retained where present; no unpublished identity was intentionally added -->
 
-# Project memory export — route-plotter
+# Project-memory export
 
-Verbatim copy of `pm_skills/project/**` as it stood on disk.
-Source repository: https://github.com/djDAOjones/route-plotter
-(public — every file below is already published there).
+Snapshot: `6f2ac154430be665a9cb1665a6f20d1b317990e0`. This is the public committed baseline; the separately indexed local working-tree snapshot records in-flight changes.
 
-Snapshot caveat. Both projects were under active development while
-this was taken — sessions were open and commits were landing during
-the harvest itself. This is a point-in-time copy, not a quiescent
-one. Content is read from the working tree, so anything in flight is
-captured as the maintainer actually had it, which is why the state
-line below reports paths differing from HEAD rather than asserting a
-clean tree.
-
-State at harvest: HEAD `f1c14b9`, 85 commits, 0 path(s)
-differing from HEAD.
-
-Redaction. Absolute checkout paths have been collapsed to
-`<checkout>`, and any other path under the maintainer's home
-directory to `<home>`; that is the only alteration, and the content
-is otherwise byte-verbatim. A scan of this set found no e-mail
-addresses, credentials, or account identifiers.
-
-Not redacted: `brief.md` names the project's primary user — a
-real, named individual at the University of Nottingham — in its
-"Who is it for?" section. That sentence is already public in the
-source repository, and cutting it would misrepresent how the
-framework's brief template gets used in practice, so it is filed as
-written. Flagged here so the choice is visible and reversible.
-
-Files are separated by `<!-- FILE: <repo-relative path> -->`
-markers; content between markers is byte-verbatim after the
-path redaction described above.
-
-## Inventory at harvest
-
-| File | Bytes |
-| --- | ---: |
-| `pm_skills/project/architecture.md` | 7109 |
-| `pm_skills/project/archive/INDEX.md` | 1520 |
-| `pm_skills/project/archive/decision-log-2026-04.md` | 1470 |
-| `pm_skills/project/archive/decision-log-2026-06.md` | 32569 |
-| `pm_skills/project/archive/decision-log-2026-08-17-to-2026-08-26.md` | 97330 |
-| `pm_skills/project/archive/trajectory/trajectory-0001-2026-04-16-to-2026-06-17.md` | 7821 |
-| `pm_skills/project/archive/trajectory/trajectory-0002-2026-08-17-to-2026-08-19.md` | 7361 |
-| `pm_skills/project/backlog.md` | 4709 |
-| `pm_skills/project/brief.md` | 3535 |
-| `pm_skills/project/conventions.md` | 2633 |
-| `pm_skills/project/decision-log.md` | 34723 |
-| `pm_skills/project/doc-deltas.md` | 1487 |
-| `pm_skills/project/file-map.md` | 36279 |
-| `pm_skills/project/tickets/REV-03.md` | 4163 |
-| `pm_skills/project/trajectory.md` | 12825 |
-| `pm_skills/project/wish-list.md` | 2652 |
-
-## Files
+| Repository-relative path | Source bytes at snapshot | Exported bytes after redaction |
+| --- | ---: | ---: |
+| `pm_skills/project/architecture.md` | 7109 | 7109 |
+| `pm_skills/project/archive/INDEX.md` | 1520 | 1520 |
+| `pm_skills/project/archive/decision-log-2026-04.md` | 1470 | 1470 |
+| `pm_skills/project/archive/decision-log-2026-06.md` | 32569 | 32569 |
+| `pm_skills/project/archive/decision-log-2026-08-17-to-2026-08-26.md` | 97330 | 97330 |
+| `pm_skills/project/archive/trajectory/trajectory-0001-2026-04-16-to-2026-06-17.md` | 7821 | 7821 |
+| `pm_skills/project/archive/trajectory/trajectory-0002-2026-08-17-to-2026-08-19.md` | 7361 | 7361 |
+| `pm_skills/project/backlog.md` | 6890 | 6890 |
+| `pm_skills/project/brief.md` | 3535 | 3535 |
+| `pm_skills/project/conventions.md` | 2633 | 2633 |
+| `pm_skills/project/decision-log.md` | 37807 | 37807 |
+| `pm_skills/project/doc-deltas.md` | 1487 | 1487 |
+| `pm_skills/project/file-map.md` | 36310 | 36310 |
+| `pm_skills/project/tickets/REV-03.md` | 4163 | 4163 |
+| `pm_skills/project/trajectory.md` | 13222 | 13222 |
+| `pm_skills/project/wish-list.md` | 2652 | 2652 |
 
 <!-- FILE: pm_skills/project/architecture.md -->
 
@@ -184,7 +152,6 @@ this boundary; a selected waypoint group moves by one shared bounds-safe delta.
   non-mutating production build)
 - Deploy: commit source, run `npm run push:dry-run`, then `npm run push`
 
-
 <!-- FILE: pm_skills/project/archive/INDEX.md -->
 
 # Archive index
@@ -197,7 +164,6 @@ this boundary; a selected waypoint group moves by one shared bounds-safe delta.
 - `trajectory/trajectory-0001-2026-04-16-to-2026-06-17.md` — trajectory, 1,094 words: v2-line era epoch (path styling, export options, camera zoom, contrast, June polish + hardening)
 - `decision-log-2026-06.md` — 14 June-2026 entries (v2-line era): segment-speed model + worker removal, path glow + HTML-export casing parity, console-spam gate, undo granularity, sidebar calmness, export include-toggles, restart.sh orphan fix, maintainer scripts, OneDrive watch survival, control contrast, camera major-keyframing, roadmap triage, memory prune, deploy-path fix, threads-pool test fix, code-review rounds, pm-skills 2.3.0 upgrade
 - `decision-log-2026-04.md` — 2 April-2026 entries: path casing as a global style toggle, PM-Skills framework adoption
-
 
 <!-- FILE: pm_skills/project/archive/decision-log-2026-04.md -->
 
@@ -237,7 +203,6 @@ integrations. Better discipline, cheaper AI sessions.
 - Keep the old system: simpler but lacked project memory, UI standards,
   dev infrastructure rules, and structured workflows.
 - Build a custom system: more work, less battle-tested.
-
 
 <!-- FILE: pm_skills/project/archive/decision-log-2026-06.md -->
 
@@ -879,7 +844,6 @@ pm-skills relocates shipped work into `trajectory.md` (one line) +
 lossless.
 
 ---
-
 
 <!-- FILE: pm_skills/project/archive/decision-log-2026-08-17-to-2026-08-26.md -->
 
@@ -2505,7 +2469,6 @@ fork's AGENTS.md + overview archived to specs/dot-crowd-navigator/.
 
 ---
 
-
 <!-- FILE: pm_skills/project/archive/trajectory/trajectory-0001-2026-04-16-to-2026-06-17.md -->
 
 # Trajectory — archived epoch: v2-line era (2026-04-16 → 2026-06-17)
@@ -2582,7 +2545,6 @@ Outcome: exports can omit camera movement and/or text labels; toggles reflect li
 
 Outcome: white path casing is now a global on/off style (defaults on for backward compatibility).
 
-
 <!-- FILE: pm_skills/project/archive/trajectory/trajectory-0002-2026-08-17-to-2026-08-19.md -->
 
 # Trajectory — archived epoch: v3.0 refactor milestone (2026-08-17 → 2026-08-19)
@@ -2642,7 +2604,6 @@ Outcome: the orchestrator is navigable and the draw order is data; build + 142 t
 Outcome: v3 founded on the mature trunk with the swarm feature specced and its graph data layer already tested in-tree; build + 131 tests green. Phase 0 closed 2026-08-17 (memory reconciled, JSZip bundled, offline-capable). Next: Phase 1 — main.js split, renderer layer registry, PlayerCore + deterministic animation-core teardown.
 
 
-
 <!-- FILE: pm_skills/project/backlog.md -->
 
 # Backlog
@@ -2683,6 +2644,32 @@ Outcome: v3 founded on the mature trunk with the swarm feature specced and its g
   (48 rules, zero violations, contrast evaluated live), with two AAA failures
   fixed and axe now a standing gate. Screen readers stay owner-run; forced
   colours needs devtools emulation.
+- [ ] **DEPLOY-01 Release the remediation branch** · Release
+  [blocked: owner calls the release] — The owner held the merge on 2026-08-27
+  (`f1c14b9`): the live site stays on v3.2.618 until they call it. This ticket
+  exists so RP-07's residual is tracked rather than forgotten, not to reopen
+  the decision. When called: `review-remediation` is 41 commits ahead of
+  `main`, which is what Pages serves. Also settle GitHub branch-protection and
+  Pages permissions, which the review could inspect only from repository files.
+- [ ] **REL-01 Decide the production source-map policy** · Release
+  [ready] [sign-off] — `docs/app.js.map` publishes 3.1 MB carrying the full
+  unminified source of 89 first-party files (`sourcesContent`). The repository
+  is public, so this is a size and tidiness decision rather than a secrecy one:
+  keep it for debuggable production stack traces, or drop it. Review §17
+  Optional.
+- [ ] **PERF-01 Benchmark a representative maximum project** · Performance
+  [ready] — Hostile inputs are bounded and fixture-covered (RP-09), but no
+  *legitimate* large project was ever profiled, so the supported ceiling is a
+  UI limit rather than a measured budget. Profile an agreed maximum — waypoint
+  count, crowd size, image resolution — and record what it costs. Review §18
+  "intended project-size ceiling".
+- [ ] **LEGAL-01 Confirm the MPL source-notice posture** · Governance
+  [ready] [maintainer] — `mediabunny` (runtime, bundled) and now `axe-core`
+  (dev-only) are MPL-2.0. Notices and licence text shipped under REV-09, but
+  the review flagged that a technical review cannot give legal advice and the
+  owner should confirm the redistribution posture is what they intend. Review
+  §18 "MPL/source-notice obligations". Pair with DEPS-01, which moves those
+  same versions.
 - [ ] **A11Y-01 Tooltip triggers should not be buttons** · Accessibility
   [ready] — `[data-tip]` labels get `role="button"` and `tabindex="0"`, so ~80
   hint labels announce as buttons that perform no action and owe a 44px target
@@ -2724,10 +2711,14 @@ Outcome: v3 founded on the mature trunk with the swarm feature specced and its g
   contains secondary area palettes under More while keeping Marker colour
   visible for novices; promote only if observed palette height becomes a real
   navigation problem.
+- [ ] **ICE-03 Visual and performance benchmark corpus** · QA [deferred] —
+  Golden-frame fixtures catch timeline regressions, but there is no repeatable
+  benchmark for subtle visual or performance drift, so optimisation decisions
+  stay anecdotal. Review §17 Optional. Promote if a visual regression escapes
+  the golden frames, or alongside PERF-01.
 - [ ] **ICE-02 Import-time palette conversion** · Import/colour [deferred] —
   Import-time Okabe-Ito/UoN palette conversion. Promote only on user demand;
   photo posterisation/dithering needs separate quality work.
-
 
 <!-- FILE: pm_skills/project/brief.md -->
 
@@ -2808,7 +2799,6 @@ frozen v2 line remains served from
 - Public/share/support boundaries retain original project image bytes only in
   explicit saves/exports, use previewable redacted diagnostics, and publish
   under MIT with third-party notices and best-effort GitHub support.
-
 
 <!-- FILE: pm_skills/project/conventions.md -->
 
@@ -2896,7 +2886,6 @@ captures how they apply to this project:
 - Formatter: `.editorconfig` (mechanical)
 - Linter: none
 
-
 <!-- FILE: pm_skills/project/decision-log.md -->
 
 # Decision Log
@@ -2930,6 +2919,60 @@ player sourcemap). Owner calls this session: **stay on PM-Skills 4.7.0**
 (upstream is 4.9.2 — skipped, not merely deferred); **dependency updates
 deferred into new ticket DEPS-01** (consider upgrades across the board).
 Gate context: 67 files / 1006 tests green, `npm audit` clean.
+
+## 2026-08-27 — the original review is fully dispositioned into the backlog
+
+**Question asked:** is everything from the original review and its report now
+effective in the backlog? **Audited rather than assumed**, against all three
+layers of the report, not just the headline findings.
+
+**RP-01…RP-18:** all shipped or carrying a named ticket. The crosswalk was
+already accurate for the findings themselves and has been refreshed with
+current dispositions.
+
+**The gap was everything that was not a numbered finding.** Section 17's
+*Optional* roadmap and section 18's *unresolved uncertainties* never entered
+the backlog, because the crosswalk only ever bridged RP-01…RP-18. Five items
+were still open and are now ticketed:
+
+- **DEPLOY-01** — RP-07's stated residual plus §18's "GitHub branch
+  protection/Pages permissions". Written as an open sign-off, then corrected
+  on reading `f1c14b9`: a parallel maintenance session had already put the
+  question to the owner, who **held the merge** — the live site stays on
+  v3.2.618 until they call the release. The ticket is now `[blocked: owner
+  calls the release]`, so the residual is tracked without reopening a settled
+  decision.
+- **REL-01** — `docs/app.js.map` publishes 3.1 MB carrying `sourcesContent`
+  for 89 first-party files. The repository is public, so this is a size and
+  tidiness decision, not a secrecy one; saying otherwise would overstate it.
+  `[sign-off]`.
+- **PERF-01** — RP-09 bounded *hostile* inputs, but no *legitimate* maximum
+  project was ever profiled, so the supported ceiling is a UI limit rather than
+  a measured budget.
+- **LEGAL-01** — MPL-2.0 posture for mediabunny (bundled) and now axe-core
+  (dev-only). Notices shipped under REV-09; the review was explicit that a
+  technical review cannot give legal advice. `[maintainer]`.
+- **ICE-03** — a visual/performance benchmark corpus, Icebox with a trigger.
+
+Seven further §17/§18 items were checked and are genuinely closed: structured
+diagnostics, Clear All semantics, content sensitivity, public-ZIP intent,
+supported browsers, the coverage floor, and the AAA audit. Each is recorded in
+the crosswalk with where it landed, so the next audit does not repeat this one.
+
+**Crosswalk extended** with a second table covering the non-finding items, and
+the dossier index now points at the current continuation prompt. The old
+prompt is kept as provenance for the run it briefed rather than deleted.
+
+**Parallel session reconciled.** Two commits (`ea3e27a`, `f1c14b9`) landed on
+the branch from a maintenance session while this audit ran: the memory prune
+happened, with an owner-set quality bar that pruning must never harm
+development, and DEPS-01 was added. This session's edits applied cleanly on top
+(additions only, nothing clobbered), DEPLOY-01 was corrected as above, and
+LEGAL-01 now points at DEPS-01, which moves the same MPL-licensed versions.
+The trajectory and decision-log budget warnings this session had been
+preserving are therefore resolved, not deferred.
+
+**Link:** DEPLOY-01, REL-01, PERF-01, LEGAL-01, ICE-03.
 
 ## 2026-08-27 — owner verdicts clear quarantine, and axe joins the gate
 
@@ -3500,7 +3543,6 @@ evidence residuals rather than being closed early.
 ## Archived: 2026-06 — see archive/decision-log-2026-06.md
 ## Archived: 2026-04 — see archive/decision-log-2026-04.md
 
-
 <!-- FILE: pm_skills/project/doc-deltas.md -->
 
 # Doc-deltas
@@ -3529,20 +3571,19 @@ evidence residuals rather than being closed early.
 
 ## Open
 
-
 <!-- FILE: pm_skills/project/file-map.md -->
 
 # File Map
 
 <!-- file-map-index -->
-<!-- 287 file(s) across 12 section(s); regenerate with pm_skills/scaffold/gen-file-map.mjs -->
+<!-- 288 file(s) across 12 section(s); regenerate with pm_skills/scaffold/gen-file-map.mjs -->
 - `(root)` — 14 file(s)
 - `.devin` — 2 file(s)
 - `.github` — 3 file(s)
 - `_Joe` — 45 file(s)
 - `docs` — 20 file(s)
 - `images` — 6 file(s)
-- `reviews` — 6 file(s)
+- `reviews` — 7 file(s)
 - `scripts` — 4 file(s)
 - `specs` — 15 file(s)
 - `src` — 97 file(s)
@@ -3673,6 +3714,8 @@ evidence residuals rather than being closed early.
   — Paste-ready, path-based continuation contract for the next development chat
 - `reviews/route-plotter-v3-comprehensive-repository-review-2026-08-26.md` —
   Full historical Route Plotter review at commit cec0191, public-path sanitised
+- `reviews/route-plotter-continuation-prompt-2026-08-27.md` — Current
+  paste-ready continuation prompt; work is driven by the PM-Skills backlog
 
 ## scripts
 
@@ -3821,8 +3864,6 @@ evidence residuals rather than being closed early.
 - `tests/assetAdmission.test.js` — Pure minimum-prefix image admission at exact count, 40 MiB and 48-million-pixel boundaries plus fail-closed inputs
 - `tests/assetPruning.test.js` — Reference collection, deterministic sweep and transactional marker/head admission, redo and rollback contracts
 - `tests/axeAudit.test.js` — Standing axe-core gate over the app shell across
-  WCAG 2.0/2.1/2.2 A/AA/AAA and best practice; colour contrast is measured
-  live instead, since jsdom cannot paint
 - `tests/branchAuthoring.test.js` — ROUTE-01c contract: branch numbering,
 - `tests/branchExportParity.test.js` — ROUTE-01d contract: branch links in
 - `tests/branchHandle.test.js` — COMPOSE-04 contract: which waypoints are
@@ -3881,7 +3922,6 @@ evidence residuals rather than being closed early.
 - `tests/waypointList.test.js` — UI-02 sidebar list contract: whole-route
 - `tests/waypointNaming.test.js` — Route numbering and its agreement with
 - `tests/wiringBus.test.js` — Waypoint edit event compatibility, card-action refresh and exactly-once undo/render/list/autosave routing
-
 
 <!-- FILE: pm_skills/project/tickets/REV-03.md -->
 
@@ -3962,7 +4002,6 @@ area model ownership, linear-project persistence, deterministic rendering and
 the one-undo-per-gesture rule. Do not broaden this ticket into list drag/drop,
 player controls or route-branch interaction design.
 
-
 <!-- FILE: pm_skills/project/trajectory.md -->
 
 # Trajectory
@@ -3983,6 +4022,14 @@ player controls or route-branch interaction design.
 <!-- Budget: see AGENTS.md -> "Memory size budgets". Over budget -> prune-memory.md
      moves the oldest phases to archive/trajectory/trajectory-NNNN-<range>.md and
      adds a row to archive/INDEX.md. Archives are append-only; never rewrite. -->
+
+## Programme close-out (2026-08-27)
+
+PM — The original review is fully dispositioned: RP-01…RP-18 all shipped or
+ticketed, and the review's Optional roadmap and unresolved uncertainties —
+never covered by the RP crosswalk — audited into DEPLOY-01, REL-01, PERF-01,
+LEGAL-01 and ICE-03. The backlog is now the single source of truth for what to
+do next. (2026-08-27) — see decision-log.
 
 ## Accessibility assurance (in progress 2026-08-27)
 
@@ -4206,7 +4253,6 @@ dependency phase. (2026-08-26) — see decision-log 2026-08-26.
 ## REV-01 — comprehensive repository-review remediation (shipped 2026-08-26)
 
 REV-01 — Project recovery/import is transactional and bounded; autosave is honest and Clear All cannot revive stale work; timeline/export behaviour is deterministic; keyboard, modal and responsive reflow defects are repaired; and CI, clean Pages builds, deployment and restart scripts fail safely. The larger product, assurance and governance questions remain as REV-02–REV-10. (2026-08-26) — see decision-log 2026-08-26.
-
 
 
 <!-- FILE: pm_skills/project/wish-list.md -->

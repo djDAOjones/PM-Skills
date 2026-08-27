@@ -1,34 +1,55 @@
 <!-- field-report: project=route-plotter · date=2026-08-27 · type=export
      · pm-skills=4.7.0
-     · source=git log from the maintainer's checkout, harvested by Claude Code -->
+     · source=git log --name-only through public snapshot 6f2ac154430be665a9cb1665a6f20d1b317990e0, newest first
+     · redaction=0 checkout path occurrence(s) and 0 other home-path occurrence(s) collapsed; 44 e-mail address(es) replaced; no credential-shaped values found
+     · retained=public names Joe Bell and Gary Priestnall and public GitHub identifier djDAOjones retained where present; no unpublished identity was intentionally added -->
 
-# Git log export — route-plotter
+# Full Git log
 
-Full history to HEAD `f1c14b9`, newest first, with commit
-bodies and changed-file lists. The bodies carry the project's
-`Verify:` lines, so this doubles as a record of which quality
-gate ran at each task close, and the subjects show how far the
-`<ITEM-ID>: <summary>` commit grammar was actually followed.
+<!-- FILE: git-log-through-6f2ac154430be665a9cb1665a6f20d1b317990e0.txt -->
 
-State at harvest: HEAD `f1c14b9`, 85 commits, 0 path(s)
-differing from HEAD.
+commit 6f2ac154430be665a9cb1665a6f20d1b317990e0
+Author: djDAOjones
+Author date: 2026-08-27T23:12:39+01:00
+Commit date: 2026-08-27T23:12:39+01:00
+Subject: PM: disposition the whole original review into the backlog
 
-Redaction. Absolute checkout paths have been collapsed to
-`<checkout>`, and any other path under the maintainer's home
-directory to `<home>`; that is the only alteration, and the content
-is otherwise byte-verbatim. A scan of this set found no e-mail
-addresses, credentials, or account identifiers.
+Audited all three layers of the 2026-08-26 report, not just the numbered findings. RP-01..RP-18 were already shipped or ticketed; the gap was everything that was not a finding — section 17's Optional roadmap and section 18's unresolved uncertainties never entered the backlog, because the crosswalk only ever bridged the RP items.
 
-```text
-f1c14b9 2026-08-27 djDAOjones
-docs(pm): record owner calls — prune quality bar, merge held
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Five still-open items ticketed: DEPLOY-01 (RP-07 residual — the branch is 41 commits ahead of main, which is what Pages serves), REL-01 (docs/app.js.map ships 3.1MB with sourcesContent for 89 first-party files), PERF-01 (no legitimate maximum project was ever profiled), LEGAL-01 (owner/legal MPL posture) and ICE-03 (benchmark corpus, Icebox with a trigger). Seven further items verified closed and recorded so the next audit need not repeat this one.
 
----
+Reconciled with the parallel maintenance session (ea3e27a, f1c14b9): DEPLOY-01 corrected to [blocked: owner calls the release] rather than an open sign-off, since the owner had already held the merge; LEGAL-01 linked to DEPS-01, which moves the same MPL-licensed versions.
+
+Crosswalk extended with a second table covering the non-finding items; new continuation prompt supersedes the 2026-08-26 one, which stays as provenance.
+
+Verify: 67 files / 1006 tests · restart safety pass · non-mutating check build · docs unchanged (PM/docs only)
+
+Changed files:
+
+pm_skills/project/backlog.md
+pm_skills/project/decision-log.md
+pm_skills/project/file-map.md
+pm_skills/project/trajectory.md
+reviews/README.md
+reviews/route-plotter-continuation-prompt-2026-08-27.md
+reviews/route-plotter-review-finding-crosswalk-2026-08-26.md
+commit f1c14b96a6e69a3609f4bab4d2ad4109d099752a
+Author: djDAOjones
+Author date: 2026-08-27T22:25:22+01:00
+Commit date: 2026-08-27T22:25:22+01:00
+Subject: docs(pm): record owner calls — prune quality bar, merge held
+
+Co-Authored-By: Claude Fable 5 <redacted-email>
+
+Changed files:
 
 pm_skills/project/decision-log.md
-ea3e27a 2026-08-27 djDAOjones
-docs(pm): memory prune — Aug 17–26 log + closed trajectory epochs archived; DEPS-01 added
+commit ea3e27a0a206d2ea3c8ad84e5477fa1da1c1592d
+Author: djDAOjones
+Author date: 2026-08-27T22:20:54+01:00
+Commit date: 2026-08-27T22:20:54+01:00
+Subject: docs(pm): memory prune — Aug 17–26 log + closed trajectory epochs archived; DEPS-01 added
+
 Diagnose-approved prune (owner sign-off in session): 36 decision-log
 entries (2026-08-17→26) and the v2-era + v3.0-milestone trajectory
 epochs moved verbatim to archive/ (diff-verified lossless); ticked
@@ -36,9 +57,9 @@ doc-deltas line swept; stale docs/player.js.map file-map row dropped.
 Owner calls recorded: stay on PM-Skills 4.7.0; dependency upgrades
 deferred into DEPS-01.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 pm_skills/project/archive/INDEX.md
 pm_skills/project/archive/decision-log-2026-08-17-to-2026-08-26.md
@@ -49,8 +70,12 @@ pm_skills/project/decision-log.md
 pm_skills/project/doc-deltas.md
 pm_skills/project/file-map.md
 pm_skills/project/trajectory.md
-9276e4f 2026-08-27 djDAOjones
-REV-05a: add axe-core as a standing accessibility gate; clear quarantine
+commit 9276e4fce215a4ed2536892ae826d773a7a78658
+Author: djDAOjones
+Author date: 2026-08-27T21:16:14+01:00
+Commit date: 2026-08-27T21:16:14+01:00
+Subject: REV-05a: add axe-core as a standing accessibility gate; clear quarantine
+
 axe-core added as a dev dependency on owner approval — runtime dependencies remain jszip and mediabunny, and nothing of axe reaches the published bundle. tests/axeAudit.test.js now runs it over the app shell across WCAG 2.0/2.1/2.2 A/AA/AAA and best practice. 48 rules, zero violations, verified twice in production Chromium (empty shell and with the Open day route loaded) with colour contrast genuinely evaluated; the jsdom gate disables contrast because jsdom cannot paint and a pass there would be a false green.
 
 Four incompletes triaged, none a defect: axe independently confirms A11Y-01 and is stricter than the original finding (role=button is invalid on a label, not merely questionable), the dropdown aria-controls targets exist but are display:none, and the fork mark is a decorative aria-hidden glyph.
@@ -59,7 +84,7 @@ Quarantine cleared on owner verdicts: QUAR-01 and QUAR-04 cut; QUAR-02 promoted 
 
 Verify: 67 files / 1006 tests · restart safety pass · non-mutating check build · Pages build v3.2.679, 20-file inventory
 
----
+Changed files:
 
 THIRD_PARTY_NOTICES.md
 docs/app.js
@@ -74,17 +99,25 @@ pm_skills/project/trajectory.md
 tests/axeAudit.test.js
 tests/governance.test.js
 version.json
-ad2d049 2026-08-27 djDAOjones
-PM: evict the shipped ROUTE-01 and COMPOSE-01 detail tickets
+commit ad2d04910abec9f6b0242ddcf7a60b7ab923015b
+Author: djDAOjones
+Author date: 2026-08-27T16:07:33+01:00
+Commit date: 2026-08-27T16:07:33+01:00
+Subject: PM: evict the shipped ROUTE-01 and COMPOSE-01 detail tickets
+
 A ticket file is working detail for one open item and is deleted when that item ships (memory-policy). Both items are in trajectory and the decision log; REV-03.md stays, its item is still open.
 
----
+Changed files:
 
 pm_skills/project/file-map.md
 pm_skills/project/tickets/COMPOSE-01.md
 pm_skills/project/tickets/ROUTE-01.md
-24e650c 2026-08-27 djDAOjones
-REV-05: run the accessibility audit and fix two AAA failures
+commit 24e650c6b1f0c1599058d4a575a045e8d87caf2c
+Author: djDAOjones
+Author date: 2026-08-27T16:06:07+01:00
+Commit date: 2026-08-27T16:06:07+01:00
+Subject: REV-05: run the accessibility audit and fix two AAA failures
+
 Structural audit (names, ids, heading order, landmarks, lang, alt text, live region), AAA contrast measured on every visible text node against its effective background, target size on every rendered control, and reflow at 320 CSS px — the WCAG 1.4.10 equivalent of 400% zoom — all green in production Chromium.
 
 Two failures found and fixed: the Edit/Preview label measured 6.37:1 because --text-03 is 7:1 on white but sits here on --ui-02 (now --text-02, 19.17:1), and the skip link was 37px tall (now a full 44px target). The structural half is kept as a regression test that asserts only what static analysis can settle.
@@ -93,7 +126,7 @@ Two findings ticketed rather than folded into an assurance pass: A11Y-01, ParamT
 
 Verify: 66 files / 1003 tests · restart safety pass · non-mutating check build · Pages build v3.2.677, 20-file inventory
 
----
+Changed files:
 
 docs/app.js
 docs/index.html
@@ -106,8 +139,12 @@ pm_skills/project/trajectory.md
 styles/main.css
 tests/accessibilityAudit.test.js
 version.json
-a9795fe 2026-08-27 djDAOjones
-DEMO-01: ship three example projects as downloadable saves
+commit a9795fe23bb01d3dbcb727e13767323f5ca9c355
+Author: djDAOjones
+Author date: 2026-08-27T15:58:49+01:00
+Commit date: 2026-08-27T15:58:49+01:00
+Subject: DEMO-01: ship three example projects as downloadable saves
+
 A plain labelled route, a branching campus route with a crowd traced from it and released at the head's arrival, and a weighted signal network with two dot streams. Each ships as a real .zip project save people can download and re-use, and opens from the File menu through the ordinary loadProject path — no special case anywhere.
 
 Generated rather than committed as source: the repo holds the example definitions plus the already-bundled backgrounds, and the build pairs them. Byte-reproducible (fixed entry timestamps, pinned authoring date) so a rebuild that changed no example produces no diff. Built from the live models, so they cannot rot into an invalid shape — exampleProjects.test.js rehydrates each through the app's own timing path and asserts it resolves, times deterministically and leaves no broken crowd binding.
@@ -116,7 +153,7 @@ Publication boundary honoured, not bypassed: the build's ban on project ZIPs was
 
 Verify: 65 files / 991 tests · restart safety pass · non-mutating check build · production Chromium (Open day route opened from the File menu with its background, 1 branch, 0 structural problems, 4 crowd nodes bound and none broken, one join wait, 11.65s timeline, zero console entries) · Pages build v3.2.675, 20-file inventory
 
----
+Changed files:
 
 .gitignore
 build.js
@@ -140,8 +177,12 @@ src/examples/index.js
 tests/exampleProjects.test.js
 tests/publicationBoundary.test.js
 version.json
-fe35771 2026-08-27 djDAOjones
-COMPOSE-04: offer a branch handle where a crowd enters the route
+commit fe3577132fb26ba2e2d541693ea6284f16734148
+Author: djDAOjones
+Author date: 2026-08-27T15:28:37+01:00
+Commit date: 2026-08-27T15:28:37+01:00
+Subject: COMPOSE-04: offer a branch handle where a crowd enters the route
+
 A waypoint a bound entry node sits on carries a "+" handle beside its marker; clicking it emits route:branch-arm, the same event Alt+click emits, so there is one branch path rather than a second mechanism. Entry nodes only, and a broken binding offers nothing. The leg-midpoint "+" and this one now draw through one routine.
 
 The handle is its own hit target, checked ahead of the waypoint because it sits clear of the marker and so outside its hit radius. The click path hit-tests it directly rather than trusting the hover state: gating on hover left it dead on touch and pen, where a tap never hovers first — exactly the devices REV-03 unified this transaction for.
@@ -150,7 +191,7 @@ DEV-01: restart.sh matches LISTEN sockets only. It was refusing to boot on a bro
 
 Verify: 64 files / 963 tests · restart safety pass · non-mutating check build · production Chromium (handle armed the fork with no hover beforehand; the place click created Waypoint 1-B1 alongside the existing 2-B1, correctly lettered per fork, no structural problems, zero console entries) · Pages build v3.2.672, 17-file inventory
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -170,15 +211,19 @@ src/services/RenderingService.js
 src/utils/routeAnchors.js
 tests/branchHandle.test.js
 version.json
-d2f6caa 2026-08-27 djDAOjones
-COMPOSE-02: solve and bake the wait that outlasts a crowd
+commit d2f6caa50c5e13bc66de9bc2406330e842b99b98
+Author: djDAOjones
+Author date: 2026-08-27T15:13:48+01:00
+Commit date: 2026-08-27T15:13:48+01:00
+Subject: COMPOSE-02: solve and bake the wait that outlasts a crowd
+
 "Wait here for this crowd" computes the wait a waypoint needs so the head is still there when the last dot arrives, and writes it as an ordinary authored pauseTime. Solved in closed form rather than differenced: adding a wait lengthens the timeline and every onset is a fraction of it, so "last arrival minus arrival" undershoots. Per dot, P >= (f*D + J - A) / (1 - f), taking the largest — exact in one pass and idempotent, so a refit never creeps.
 
 Unsatisfiable cases report a reason instead of a wrong number: a dot released at the very end moves out by whatever the route is lengthened, and a looping crowd has no arrival at all. The onset arithmetic was extracted from SwarmEngine into crowdArrival.js and the engine now imports it, with every swarm fixture byte-for-byte identical through the extraction.
 
 Verify: 63 files / 945 tests · restart safety pass · non-mutating check build · production Chromium (a crowd finishing at ~25s against a 7.3s route solved to a 48215ms wait, after which the head leaves at 53984ms and the last dot arrives at 53983ms; zero console entries) · Pages build v3.2.670, 17-file inventory
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -196,15 +241,19 @@ src/services/SwarmEngine.js
 src/utils/crowdArrival.js
 tests/crowdArrival.test.js
 version.json
-c042a78 2026-08-27 djDAOjones
-COMPOSE-03: trace the route into a crowd guide network
+commit c042a789bc162d6d23a71a4ceeee106f1fe84de9
+Author: djDAOjones
+Author date: 2026-08-27T15:06:36+01:00
+Commit date: 2026-08-27T15:06:36+01:00
+Subject: COMPOSE-03: trace the route into a crowd guide network
+
 A node per major waypoint, an edge per leg carrying that leg's minors as control points so the guide curve is the route's own curve, and branches traced as edges leaving the fork and returning to the rejoin. Entries and exits are derived from the traced topology, so a branched route yields several exits. Edges are one-way: a guide traced from a route inherits its direction of travel.
 
 The result is a copy the author reshapes freely — nothing done to it reaches back into the route — while each node keeps its COMPOSE-01 binding, so moving a waypoint carries its traced node instead of stranding the copy. A route too short to trace, or one whose branch structure is unresolved, is refused with a reason rather than half-built.
 
 Verify: 62 files / 923 tests · restart safety pass · non-mutating check build · production Chromium on the branched route (4 bound nodes, entry and exit derived correctly, 4 one-way edges including fork-to-branch and branch-to-rejoin, trunk leg carrying its 2 minors as control points, zero console entries) · Pages build v3.2.668, 17-file inventory
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -220,15 +269,19 @@ src/app/network.js
 src/utils/routeTrace.js
 tests/routeTrace.test.js
 version.json
-a1ec48f 2026-08-27 djDAOjones
-COMPOSE-01: bind crowds to route moments
+commit a1ec48f7746be5c3af0f81c7f4a60cb2b15615c0
+Author: djDAOjones
+Author date: 2026-08-27T14:58:49+01:00
+Commit date: 2026-08-27T14:58:49+01:00
+Subject: COMPOSE-01: bind crowds to route moments
+
 GraphNode.anchorWaypointId binds a node's evaluated position to a waypoint; Emitter.releaseAnchor binds a release window's start to arrival, pause-end or route-end. Both resolve at evaluation time from live route state, default to null and are omitted from toJSON when null. Ownership is strictly one-way: nothing here moves a waypoint, and route timing never becomes a function of crowd arrival.
 
 Authored intent survives binding — a node keeps its own x/y and only a derived position() follows the waypoint, so a deleted waypoint returns the node to where it was authored, keeps the binding, and reports the break once per change. Only a bound emitter's window start moves, leaving every existing unanchored swarm hash byte-for-byte identical.
 
 Verify: 61 files / 906 tests · restart safety pass · non-mutating check build · production Chromium (node bound to its waypoint's exact position with authored coords intact, emitter released at 2993ms = arrival + wait with nothing before, broken binding falling back and reported, zero console entries) · Pages build v3.2.666, 17-file inventory
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -251,13 +304,17 @@ src/services/SwarmEngine.js
 src/utils/routeAnchors.js
 tests/routeAnchors.test.js
 version.json
-823329a 2026-08-27 djDAOjones
-ROUTE-01d: carry branches through export
+commit 823329aec6b5460126063e1c8393d487edad98da
+Author: djDAOjones
+Author date: 2026-08-27T14:47:57+01:00
+Commit date: 2026-08-27T14:47:57+01:00
+Subject: ROUTE-01d: carry branches through export
+
 PlayerApp already takes pathTimingMixin wholesale, so it builds the same splines and composes the same master timeline; this carries branchPaths and branchTimeline into its render state and proves nothing is lost in between. A terminal branch that outlives the trunk now extends the timeline instead of being cut off at the trunk's end, while a branch that fits inside it changes nothing. The composed-timeline cache is keyed on base speed as well as geometry.
 
 Verify: 60 files / 878 tests · restart safety pass · non-mutating check build · live Chromium (composed total and engine duration agree at 7269ms; the coordVersion-9 snapshot carries branch links on exactly the one branch waypoint and adds no key to the other five; the inlined player.js bundle contains the branch composition and render code; zero console entries). Opening an exported file end-to-end stays REV-04's owner-run evidence. · Pages build v3.2.664, 17-file inventory
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -273,15 +330,19 @@ src/player/PlayerApp.js
 tests/branchExportParity.test.js
 tests/playerApp.test.js
 version.json
-80f0692 2026-08-27 djDAOjones
-ROUTE-01c: author branches by fork gesture and drag-to-rejoin
+commit 80f06920d33fe98cab4ba7ab3c24639225e4453c
+Author: djDAOjones
+Author date: 2026-08-27T14:42:17+01:00
+Commit date: 2026-08-27T14:42:17+01:00
+Subject: ROUTE-01c: author branches by fork gesture and drag-to-rejoin
+
 Alt+click a waypoint arms a branch and the next canvas click places it, inserted after the fork's own leg block so the array still reads in route order; Alt+click on empty canvas still force-adds a major. Dragging a branch's last waypoint onto another waypoint rejoins it there, and onto the current target clears it — the point is restored, not moved. Branch rows are indented and tagged, numbered fork·letter·position (2·B1) by the shared routing that the scope chip and the semantic outline now also read, and the fork wears a badge on its own marker.
 
 Two bugs the live pass found: findWaypointAt hit-tested the waypoint being dragged (it sits on the target at drop time), and both handlers snapshotted undo before mutating when this project's stack holds post-action states.
 
 Verify: 59 files / 869 tests · restart safety pass · non-mutating check build · production Chromium (fork armed and placed, rejoin with a 1203ms join wait and the point restored, same drag toggling back to terminal, undo restoring the rejoin, reload round-trip, zero console entries) · Pages build v3.2.663, 17-file inventory
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -304,15 +365,19 @@ src/utils/waypointNaming.js
 styles/main.css
 tests/branchAuthoring.test.js
 version.json
-8711cea 2026-08-27 djDAOjones
-ROUTE-01b: draw and animate hero-route branches
+commit 8711ceaffbc288c7b6afd098cac04f14186194a6
+Author: djDAOjones
+Author date: 2026-08-27T13:29:35+01:00
+Commit date: 2026-08-27T13:29:35+01:00
+Subject: ROUTE-01b: draw and animate hero-route branches
+
 Each branch gets its own spline, anchored at its fork and rejoin so it meets the trunk at both ends, plus its own head. Timing stays derived: AnimationEngine keeps the one authoritative transport, branchTiming builds each run's leg, and a branch resolves its position from master timeline time through the same PlayerCore.timelineToPath mapping the trunk uses — so an interleaved pause holds a branch head still by the same arithmetic. Two additive vector layers (branch-paths under the trunk, branch-heads above it) reuse renderPath/renderPathHead via an engine facade differing only in getPathProgress.
 
 Trunk timing now reads the trunk run rather than the whole array, via a module helper because PlayerApp borrows only part of the mixin. The follow-camera keeps tracking the trunk head; per-fork camera choice is left to ROUTE-01c's sign-off. Linear routes never enter the branch pass.
 
 Verify: 58 files / 832 tests · restart safety pass · non-mutating check build · production Chromium on a branched route (both splines start at the fork, two heads advance simultaneously, shorter branch completes and holds, zero console entries) · Pages build v3.2.661, 17-file inventory
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -332,15 +397,19 @@ src/utils/routeBranches.js
 tests/branchTiming.test.js
 tests/vectorLayers.test.js
 version.json
-ba46cf7 2026-08-27 djDAOjones
-ROUTE-01a: add the branch model and master-timeline composition
+commit ba46cf7e98f9c2183d3617acaaaa2d2ecdbf0c75
+Author: djDAOjones
+Author date: 2026-08-27T13:14:41+01:00
+Commit date: 2026-08-27T13:14:41+01:00
+Subject: ROUTE-01a: add the branch model and master-timeline composition
+
 A hero-route branch is a contiguous run of waypoints sharing a branchId in the one ordered array, with branchFrom on its first waypoint and branchRejoin on its last. All three default to null and are omitted from toJSON(), so an unsplit project's save stays byte-identical. resolveRouteBranches validates fork/rejoin links and reports structural problems without repairing them; PlayerCore.composeBranchTimeline resolves leg starts by relaxation over fork dependencies, giving simultaneous fork start, latest-arrival rejoin recorded once per join, universal completion, and order-independent, terminating output on a cyclic structure.
 
 Headless slice: no rendering, authoring or export change. ROUTE-01 is now ROUTE-01a/b/c/d.
 
 Verify: 57 files / 808 tests · restart safety pass · non-mutating check build · Pages build v3.2.659, 17-file inventory
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -356,15 +425,19 @@ src/models/Waypoint.js
 src/utils/routeBranches.js
 tests/routeBranches.test.js
 version.json
-5e03962 2026-08-27 djDAOjones
-UI-02: show minor waypoints in the route list
+commit 5e03962d385f7ff7597a420f69ccaff45de64013
+Author: djDAOjones
+Author date: 2026-08-27T13:07:44+01:00
+Commit date: 2026-08-27T13:07:44+01:00
+Subject: UI-02: show minor waypoints in the route list
+
 The sidebar list renders the whole route: minors are indented, selectable, renameable rows under the leg they shape, numbered major.minor by a shared routine the semantic outline now also uses (the outline's route-position numbering collided with the list's major numbering). A minor is reorder-visible, not reorder-able — it has no drag or arrow controls, and a major drags as its whole leg block so minors visibly travel where reorderWaypointBlocks will put them; the waypoints:reordered payload stays majors-only.
 
 UI-02a: inline rename detaches its blur listener before replacing the input. Chrome dispatches the blur from inside that replaceWith, and the re-entrant pass threw NotFoundError on every successful Enter-committed rename.
 
 Verify: 56 files / 773 tests · restart safety pass · non-mutating check build · production Chromium (selection, rename, block reorder, autosave round-trip, 44px rows, zero console entries) · Pages build v3.2.658, 17-file inventory
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -384,23 +457,31 @@ tests/sceneOutline.test.js
 tests/waypointList.test.js
 tests/waypointNaming.test.js
 version.json
-87740a7 2026-08-27 djDAOjones
-DOC-01: unify the Codex/Claude agent contract
+commit 87740a7c79c7c08d0f7673f4e01386ef328356e3
+Author: djDAOjones
+Author date: 2026-08-27T12:41:01+01:00
+Commit date: 2026-08-27T12:41:01+01:00
+Subject: DOC-01: unify the Codex/Claude agent contract
+
 AGENTS.md becomes the single shared standing contract with tiered read policy; a minimal root CLAUDE.md imports it. Removes the obsolete inline budget table (budgets live only in pm_skills/memory-policy.md) and the stale prompt paths that no longer exist (roadmap-refactor.md, prune-memory.md, next-batch.md, doctor-memory.md, corrections.md).
 
 Verify: docs only, no source change; baseline npm run check green (745 tests, restart safety, non-mutating check build).
 
----
+Changed files:
 
 .gitignore
 AGENTS.md
 CLAUDE.md
 pm_skills/project/decision-log.md
 pm_skills/project/file-map.md
-9211bc3 2026-08-26 djDAOjones
-docs(review): add durable remediation handover
+commit 9211bc32dcf0fb5926180d9a75095438e68a0155
+Author: djDAOjones
+Author date: 2026-08-26T22:37:24+01:00
+Commit date: 2026-08-26T22:37:24+01:00
+Subject: docs(review): add durable remediation handover
 
----
+
+Changed files:
 
 README.md
 pm_skills/project/file-map.md
@@ -410,18 +491,26 @@ reviews/route-plotter-review-finding-crosswalk-2026-08-26.md
 reviews/route-plotter-review-headlines-for-novices-2026-08-26.md
 reviews/route-plotter-review-remediation-continuation-prompt-2026-08-26.md
 reviews/route-plotter-v3-comprehensive-repository-review-2026-08-26.md
-c9a953c 2026-08-26 djDAOjones
-PM: refactor roadmap after HEAD-01
+commit c9a953cbaac74691ac947855c16531138d311e79
+Author: djDAOjones
+Author date: 2026-08-26T22:12:36+01:00
+Commit date: 2026-08-26T22:12:36+01:00
+Subject: PM: refactor roadmap after HEAD-01
 
----
+
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/tickets/COMPOSE-01.md
-673e627 2026-08-26 djDAOjones
-HEAD-01: ship built-in drone head preset
+commit 673e627c9add1871f9b08ca74f88b9d5f973bfac
+Author: djDAOjones
+Author date: 2026-08-26T22:10:47+01:00
+Commit date: 2026-08-26T22:10:47+01:00
+Subject: HEAD-01: ship built-in drone head preset
 
----
+
+Changed files:
 
 build.js
 docs/app.js
@@ -449,13 +538,17 @@ tests/pathHeadPresets.test.js
 tests/playerApp.test.js
 tests/projectReset.test.js
 version.json
-8f1167f 2026-08-26 djDAOjones
-MAINT-01: remove verified dead helpers
+commit 8f1167f3336f07bb6f26fc1c8b2a1be989c6019e
+Author: djDAOjones
+Author date: 2026-08-26T21:43:02+01:00
+Commit date: 2026-08-26T21:43:02+01:00
+Subject: MAINT-01: remove verified dead helpers
+
 Delete only the pre-verified superseded timing, visibility and inert export paths, including their orphaned cache state, without widening the sweep.
 
 Verify: 53 test files · 739 tests · restart safety 0 · build 0
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -476,13 +569,17 @@ tests/playerApp.test.js
 tests/reviewTimeline.test.js
 tests/units.test.js
 version.json
-a6f7b54 2026-08-26 djDAOjones
-SCALE-01: add project-reference sizing
+commit a6f7b5433887bd47ca73c2c981d01556097f83c5
+Author: djDAOjones
+Author date: 2026-08-26T21:37:41+01:00
+Commit date: 2026-08-26T21:37:41+01:00
+Subject: SCALE-01: add project-reference sizing
+
 Persist one visual reference so editor, HTML and video outputs preserve authored map-bound proportions without coupling appearance to timeline or normalised geometry.
 
 Verify: 53 test files · 739 tests · restart safety 0 · build 0 · Chromium production pass
 
----
+Changed files:
 
 UI-STANDARDS.md
 docs/app.js
@@ -521,19 +618,27 @@ tests/reviewPersistence.test.js
 tests/scenePersistence.test.js
 tests/vectorLayers.test.js
 version.json
-285a0cd 2026-08-26 djDAOjones
-PM: mark SCALE-01 ready after REV-06
+commit 285a0cdf354cee9b2310e7044453ee0840f29c53
+Author: djDAOjones
+Author date: 2026-08-26T20:58:40+01:00
+Commit date: 2026-08-26T20:58:40+01:00
+Subject: PM: mark SCALE-01 ready after REV-06
 
----
+
+Changed files:
 
 pm_skills/project/tickets/SCALE-01.md
-97c18ae 2026-08-26 djDAOjones
-REV-06: sleep stable paused render loops
+commit 97c18aec6127c11347ce61355fc0072fd72e0e32
+Author: djDAOjones
+Author date: 2026-08-26T20:57:59+01:00
+Commit date: 2026-08-26T20:57:59+01:00
+Subject: REV-06: sleep stable paused render loops
+
 Make preview scheduling demand-driven, keep camera settling alive only while visible work remains, and keep export seeks inside the synchronous export loop. Profiling shows 500-dot 4K drawing is already below a millisecond, so direct-render changes stay out of scope.
 
 Verify: 52 files · 729 tests · restart safety · build 0 · production Chromium v3.2.651
 
----
+Changed files:
 
 AGENTS.md
 README.md
@@ -553,10 +658,14 @@ src/services/AnimationEngine.js
 src/services/CameraService.js
 tests/performanceScheduling.test.js
 version.json
-ef791a3 2026-08-26 djDAOjones
-CROWD-02: add whole-route busyness envelope
+commit ef791a3744062eda734268af20dbe81f2e4203f3
+Author: djDAOjones
+Author date: 2026-08-26T20:30:59+01:00
+Commit date: 2026-08-26T20:30:59+01:00
+Subject: CROWD-02: add whole-route busyness envelope
 
----
+
+Changed files:
 
 AGENTS.md
 docs/app.js
@@ -587,13 +696,17 @@ tests/reviewAccessibility.test.js
 tests/scenePersistence.test.js
 tests/swarmEngine.test.js
 version.json
-60cc4b4 2026-08-26 djDAOjones
-CROWD-03: expose seeded crowd variation
+commit 60cc4b4c085f57901737d441a2801f5299f0d839
+Author: djDAOjones
+Author date: 2026-08-26T20:05:27+01:00
+Commit date: 2026-08-26T20:05:27+01:00
+Subject: CROWD-03: expose seeded crowd variation
+
 Add plain-language walking, pace, release timing and release bias controls, an exact pattern seed, and a seed-only Re-roll action with one-step Undo.
 
 Verify: 50 test files / 708 tests; restart safety passed; build check passed; production Chromium passed at 320 px.
 
----
+Changed files:
 
 UI-STANDARDS.md
 docs/app.js
@@ -619,13 +732,17 @@ tests/reviewAccessibility.test.js
 tests/scenePersistence.test.js
 tests/swarmEngine.test.js
 version.json
-ec59de1 2026-08-26 djDAOjones
-UI-05: add waypoint card actions
+commit ec59de142fc11cb31dd97f31ba9c8561df379259
+Author: djDAOjones
+Author date: 2026-08-26T19:51:39+01:00
+Commit date: 2026-08-26T19:51:39+01:00
+Subject: UI-05: add waypoint card actions
+
 Reset selected card settings to route style and apply a single waypoint's settings onward through one accessible, undoable transaction.
 
 Verify: 50 test files / 701 tests; restart safety passed; build check passed; production Chromium passed at 320 px.
 
----
+Changed files:
 
 UI-STANDARDS.md
 docs/app.js
@@ -650,13 +767,17 @@ tests/reviewAccessibility.test.js
 tests/waypointCardActions.test.js
 tests/wiringBus.test.js
 version.json
-2a359b0 2026-08-26 djDAOjones
-UI-04: show honest mixed waypoint values
+commit 2a359b0228111adf7a1b724a12a722e5e4e216ac
+Author: djDAOjones
+Author date: 2026-08-26T19:22:48+01:00
+Commit date: 2026-08-26T19:22:48+01:00
+Subject: UI-04: show honest mixed waypoint values
+
 Compare each inspector control against its real write targets and keep mixed presentation transient.
 
 Verify: 685 tests; restart safety passed; build check passed
 
----
+Changed files:
 
 UI-STANDARDS.md
 docs/app.js
@@ -685,13 +806,17 @@ tests/multiSelect.test.js
 tests/swatchPicker.test.js
 tests/units.test.js
 version.json
-8b986d0 2026-08-26 djDAOjones
-UI-03: expose label appearance and zoom transitions
+commit 8b986d0951ab1273d52411af73b0aa4ebcf6c7cb
+Author: djDAOjones
+Author date: 2026-08-26T19:00:18+01:00
+Commit date: 2026-08-26T19:00:18+01:00
+Subject: UI-03: expose label appearance and zoom transitions
+
 Surface existing per-waypoint controls under More and keep exact custom-colour state honest.
 
 Verify: 678 tests · restart safety 0 · build 0
 
----
+Changed files:
 
 UI-STANDARDS.md
 docs/app.js
@@ -717,10 +842,14 @@ tests/reviewAccessibility.test.js
 tests/swatchPicker.test.js
 tests/units.test.js
 version.json
-d3b4cf6 2026-08-26 djDAOjones
-UX-02: make inspector units honest
+commit d3b4cf67732139606ae0244c29dedb85cb49e69f
+Author: djDAOjones
+Author date: 2026-08-26T18:35:24+01:00
+Commit date: 2026-08-26T18:35:24+01:00
+Subject: UX-02: make inspector units honest
 
----
+
+Changed files:
 
 UI-STANDARDS.md
 docs/app.js
@@ -746,13 +875,17 @@ src/services/RenderingService.js
 src/utils/uiReadouts.js
 tests/reviewAccessibility.test.js
 version.json
-bd2148d 2026-08-26 djDAOjones
-UI-01: add two-tier inspector cards
+commit bd2148d471a057f60ab63856adbe108e82b04a6f
+Author: djDAOjones
+Author date: 2026-08-26T18:16:23+01:00
+Commit date: 2026-08-26T18:16:23+01:00
+Subject: UI-01: add two-tier inspector cards
+
 Keep each common card task visible and place refinements in one native, keyboard-stable More disclosure; refactor the roadmap around the unlocked UI and crowd work.
 
 Verify: 47 test files · 671 tests · restart safety 0 · build 0 · Chromium production pass
 
----
+Changed files:
 
 UI-STANDARDS.md
 docs/app.js
@@ -769,13 +902,17 @@ src/controllers/SectionController.js
 styles/main.css
 tests/reviewAccessibility.test.js
 version.json
-bbc1c3f 2026-08-26 djDAOjones
-REV-03: unify canvas pointer transactions
+commit bbc1c3f8130aff15a0a914b34e088d3bb0582b6d
+Author: djDAOjones
+Author date: 2026-08-26T17:53:40+01:00
+Commit date: 2026-08-26T17:53:40+01:00
+Subject: REV-03: unify canvas pointer transactions
+
 Use one restoring Pointer Events state machine for waypoint, area and network gestures; retain physical iOS and Android evidence as the closure gate.
 
 Verify: 47 test files · 669 tests · restart safety 0 · build 0 · Chromium production pass
 
----
+Changed files:
 
 AGENTS.md
 README.md
@@ -806,10 +943,14 @@ tests/interactionPointer.test.js
 tests/networkEdit.test.js
 tests/wiringBus.test.js
 version.json
-31cbfd3 2026-08-26 djDAOjones
-REV-02: add semantic scene authoring
+commit 31cbfd3e89be704bafbf140a83912c19905b04be
+Author: djDAOjones
+Author date: 2026-08-26T17:17:59+01:00
+Commit date: 2026-08-26T17:17:59+01:00
+Subject: REV-02: add semantic scene authoring
 
----
+
+Changed files:
 
 AGENTS.md
 README.md
@@ -861,10 +1002,14 @@ tests/reviewPersistence.test.js
 tests/sceneOutline.test.js
 tests/sceneOutlineApp.test.js
 version.json
-b3c20ea 2026-08-26 djDAOjones
-SUPPORT-01: add privacy-safe bug reporting
+commit b3c20ea654c7fe2a5654ce3d30bdee953ef7f1d3
+Author: djDAOjones
+Author date: 2026-08-26T15:49:45+01:00
+Commit date: 2026-08-26T15:49:45+01:00
+Subject: SUPPORT-01: add privacy-safe bug reporting
 
----
+
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -881,10 +1026,14 @@ styles/main.css
 tests/privacy.test.js
 tests/reviewAccessibility.test.js
 version.json
-c1b73d8 2026-08-26 djDAOjones
-PHASE-1: close health and asset-boundary tranche
+commit c1b73d8f876d410daa1a5a75acf3d38bcd04c886
+Author: djDAOjones
+Author date: 2026-08-26T15:28:18+01:00
+Commit date: 2026-08-26T15:28:18+01:00
+Subject: PHASE-1: close health and asset-boundary tranche
 
----
+
+Changed files:
 
 .gitignore
 README.md
@@ -951,10 +1100,14 @@ tests/undoService.test.js
 tests/videoExporter.test.js
 tests/wiringBus.test.js
 version.json
-591e1d6 2026-08-26 djDAOjones
-PHASE-1: repair live editing and governance
+commit 591e1d6df36c630a64796aef96f7660bdd51c7a7
+Author: djDAOjones
+Author date: 2026-08-26T14:13:11+01:00
+Commit date: 2026-08-26T14:13:11+01:00
+Subject: PHASE-1: repair live editing and governance
 
----
+
+Changed files:
 
 .github/SECURITY.md
 .github/SUPPORT.md
@@ -975,13 +1128,17 @@ tests/areaEdit.test.js
 tests/governance.test.js
 tests/multiSelect.test.js
 tests/reviewAccessibility.test.js
-cf3b20e 2026-08-26 djDAOjones
-PHASE-0: sign off foundation decisions
+commit cf3b20ee6b32851a6f8acf2029f074c3fda226f9
+Author: djDAOjones
+Author date: 2026-08-26T14:02:26+01:00
+Commit date: 2026-08-26T14:02:26+01:00
+Subject: PHASE-0: sign off foundation decisions
+
 Convert accepted owner decisions into explicit implementation contracts and dependency-placed roadmap work.
 
 Verify: 410 tests · restart safety 0 · build 0
 
----
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/brief.md
@@ -992,13 +1149,17 @@ pm_skills/project/tickets/REV-09.md
 pm_skills/project/tickets/ROUTE-01.md
 pm_skills/project/tickets/SCALE-01.md
 pm_skills/project/trajectory.md
-7b7aef5 2026-08-26 djDAOjones
-ROADMAP: prioritise live health and crowd delivery
+commit 7b7aef5819152051402d38d7511d7f27457bca73
+Author: djDAOjones
+Author date: 2026-08-26T13:46:11+01:00
+Commit date: 2026-08-26T13:46:11+01:00
+Subject: ROADMAP: prioritise live health and crowd delivery
+
 Refactor the queue into dependency phases, promote confirmed user-value gaps, expose owner decisions, retire superseded work and add scoped tickets for crowd, scaling, assets and composition.
 
 Verify: tests 410 · restart contract 0 · build 0 · memory integrity 0
 
----
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/brief.md
@@ -1015,13 +1176,17 @@ pm_skills/project/tickets/REV-10.md
 pm_skills/project/tickets/ROUTE-01.md
 pm_skills/project/tickets/SCALE-01.md
 pm_skills/project/wish-list.md
-2bc9fff 2026-08-26 djDAOjones
-chore: deploy v3.2.619
+commit 2bc9fffdb4f5c6a7763477721a98fa709561b441
+Author: djDAOjones
+Author date: 2026-08-26T13:22:00+01:00
+Commit date: 2026-08-26T13:22:00+01:00
+Subject: chore: deploy v3.2.619
+
 Generate the clean GitHub Pages /docs artifact from the reviewed source and remove stale files outside the deployment allowlist.
 
 Verify: build 0 · cache references 0 · staged set docs/version only
 
----
+Changed files:
 
 docs/UoN_map 24-bit.png
 docs/UoN_map.png
@@ -1035,13 +1200,17 @@ docs/player.js
 docs/styles/main.css
 docs/styles/tokens.css
 version.json
-a813328 2026-08-26 djDAOjones
-REV-01: remediate repository review blockers
+commit a8133289809dd1a12ab20060c9493f175e356f9d
+Author: djDAOjones
+Author date: 2026-08-26T13:20:27+01:00
+Commit date: 2026-08-26T13:20:27+01:00
+Subject: REV-01: remediate repository review blockers
+
 Make recovery, imports, async images, timeline playback, responsive UI, release builds, deployment and restart ownership fail safely; retain product-scale and governance questions as explicit roadmap work.
 
 Verify: tests 410 · restart contract 0 · build 0 · browser QA 0
 
----
+Changed files:
 
 .github/workflows/ci.yml
 .gitignore
@@ -1116,23 +1285,31 @@ tests/reviewTimeline.test.js
 tests/scenePersistence.test.js
 tests/startup.test.js
 tests/units.test.js
-cec0191 2026-08-19 djDAOjones
-docs(pm): backlog triage — next milestone resequenced into waves, quarantine created
+commit cec0191250ab981b30e7242772ff165ea3e775b7
+Author: djDAOjones
+Author date: 2026-08-19T11:03:25+01:00
+Commit date: 2026-08-19T11:03:25+01:00
+Subject: docs(pm): backlog triage — next milestone resequenced into waves, quarantine created
+
 All 27 backlog items assessed (useful / fits design / viable) with claims
 re-verified in code. Waves 0-4 sequenced; 3 wish-list defects promoted;
 two scaling items merged into one design ticket; 5 items quarantined
 pending owner approval (nothing deleted). Full write-up:
 https://claude.ai/code/artifact/22f61966-b4a3-4240-88c6-f41f6674b075
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/wish-list.md
-27dd376 2026-08-19 djDAOjones
-docs(pm): Phase 5 close-out — v3 live, milestone closed, log archived
+commit 27dd37682c7d1cf411452ae0ac073e702eb2a997
+Author: djDAOjones
+Author date: 2026-08-19T09:53:44+01:00
+Commit date: 2026-08-19T09:53:44+01:00
+Subject: docs(pm): Phase 5 close-out — v3 live, milestone closed, log archived
+
 README/brief/architecture/DEV-INFRASTRUCTURE point at the live v3 Pages
 URL and document the dual-bundle build + real-stack HTML export. Dev
 guide reconciled with owner sign-off (mixin split in §4/§7/§10, worker
@@ -1143,9 +1320,9 @@ added; June and April 2026 entries archived by month to
 pm_skills/project/archive/ with INDEX.md (owner-approved split; live log
 15 entries).
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 DEV-INFRASTRUCTURE.md
 README.md
@@ -1160,10 +1337,14 @@ pm_skills/project/decision-log.md
 pm_skills/project/doc-deltas.md
 pm_skills/project/file-map.md
 pm_skills/project/trajectory.md
-a436396 2026-08-19 djDAOjones
-chore: deploy v3.2.618
+commit a43639673abb359e28c9470f5db38fc5942ee226
+Author: djDAOjones
+Author date: 2026-08-19T09:45:00+01:00
+Commit date: 2026-08-19T09:45:00+01:00
+Subject: chore: deploy v3.2.618
 
----
+
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -1171,8 +1352,12 @@ docs/index.html
 docs/meta.json
 docs/player.js
 version.json
-2d813b5 2026-08-19 djDAOjones
-feat(export): HTML exports run the real render stack via PlayerCore (Phase 5)
+commit 2d813b5068f4fd2ad017bb7611af101a45a7b9ec
+Author: djDAOjones
+Author date: 2026-08-19T09:44:45+01:00
+Commit date: 2026-08-19T09:44:45+01:00
+Subject: feat(export): HTML exports run the real render stack via PlayerCore (Phase 5)
+
 The exported player is now PlayerApp — a headless app core bundled to
 docs/player.js and inlined into every export — running the app's own
 PlayerCore, AnimationEngine, SwarmEngine, RenderingService and child
@@ -1200,9 +1385,9 @@ highlights, and scrub==play==export holds by construction.
   instances, includeText flow-through); scenePersistence fake app binds
   the real _buildProjectSnapshot. 331 passing.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 build.js
 package.json
@@ -1213,18 +1398,26 @@ src/player/playerEntry.js
 src/services/HTMLExportService.js
 tests/playerApp.test.js
 tests/scenePersistence.test.js
-51a73b0 2026-08-18 djDAOjones
-chore: deploy v3.1.611
+commit 51a73b08d728299b7db98f265d83d2f9fba4c270
+Author: djDAOjones
+Author date: 2026-08-18T20:33:14+01:00
+Commit date: 2026-08-18T20:33:14+01:00
+Subject: chore: deploy v3.1.611
 
----
+
+Changed files:
 
 docs/app.js
 docs/app.js.map
 docs/index.html
 docs/meta.json
 version.json
-6f3bee9 2026-08-18 djDAOjones
-docs(pm): Phase 4 fifth slice close-out — multi-select everywhere
+commit 6f3bee9243e05877885c952cc080f5943833705d
+Author: djDAOjones
+Author date: 2026-08-18T20:33:08+01:00
+Commit date: 2026-08-18T20:33:08+01:00
+Subject: docs(pm): Phase 4 fifth slice close-out — multi-select everywhere
+
 Backlog ticks the last Phase 4 item; decision-log entry (36 live —
 prune pass still awaiting owner's call); wish-list gains group-drag,
 mixed-value indication, marquee selection, and the dead Tab
@@ -1232,16 +1425,20 @@ select-adjacent emit; the stale-after-undo quirk narrows to editor
 control values (chip half fixed); file-map notes selectionTargets,
 setSelection, and the new test file.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/file-map.md
 pm_skills/project/wish-list.md
-94523f0 2026-08-18 djDAOjones
-feat(ui): multi-select honoured by every card — the bulk mode dissolves (Phase 4)
+commit 94523f07f2d9e63713b9b22384e4549f2e6c5f46
+Author: djDAOjones
+Author date: 2026-08-18T20:33:01+01:00
+Commit date: 2026-08-18T20:33:01+01:00
+Subject: feat(ui): multi-select honoured by every card — the bulk mode dissolves (Phase 4)
+
 Selection becomes an app-level set with a primary: selectedWaypoints
 rides beside selectedWaypoint, kept by the existing selected/
 multi-selected/deselected event trio plus new waypoint:toggle-select.
@@ -1269,9 +1466,9 @@ at v3.1.610 dev: bulk writes hit exactly the selection, +1 undo stack
 entry per gesture, Cmd+A/toggle/nudge/delete via real events, autosave
 round-trip, per-waypoint ring pixel diffs, zero console errors.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 index.html
 src/app/crowds.js
@@ -1286,11 +1483,15 @@ src/handlers/InteractionHandler.js
 src/main.js
 src/services/RenderingService.js
 tests/multiSelect.test.js
-7989a64 2026-08-18 djDAOjones
-chore: deploy v3.1.608
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+commit 7989a64c7bd0681af20958a3ca77eefc14affb5b
+Author: djDAOjones
+Author date: 2026-08-18T18:30:16+01:00
+Commit date: 2026-08-18T18:30:16+01:00
+Subject: chore: deploy v3.1.608
 
----
+Co-Authored-By: Claude Fable 5 <redacted-email>
+
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -1298,24 +1499,32 @@ docs/index.html
 docs/meta.json
 docs/styles/main.css
 version.json
-3ddbda9 2026-08-18 djDAOjones
-docs(pm): Phase 4 fourth slice close-out — network edit mode
+commit 3ddbda90d59f2988920463127db0d72b67494353
+Author: djDAOjones
+Author date: 2026-08-18T18:30:11+01:00
+Commit date: 2026-08-18T18:30:11+01:00
+Subject: docs(pm): Phase 4 fourth slice close-out — network edit mode
+
 Decision-log entry (gestures, entry/exit rules, traffic-share display,
 preview-mode force, verification narrative, feel-check flags); backlog
 item ticked; file-map gains NetworkEditService + network mixin + test
 suite; wish-list gains network extras, the route-gated Add crowd
 question, the 'At route end' wording, and the ModeBanner dedupe.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/file-map.md
 pm_skills/project/wish-list.md
-342de28 2026-08-18 djDAOjones
-feat(ui): network edit mode — the pen draws where crowds walk (Phase 4)
+commit 342de2839141c2365923daa3bbc98fc9aedb9ac9
+Author: djDAOjones
+Author date: 2026-08-18T18:30:05+01:00
+Commit date: 2026-08-18T18:30:05+01:00
+Subject: feat(ui): network edit mode — the pen draws where crowds walk (Phase 4)
+
 The one true tool mode on the area-draw pattern: the Guide card's
 Custom network option is live — switching an empty-network crowd hands
 over the pen (forcing Edit mode), Edit network re-enters. Pen chaining:
@@ -1341,9 +1550,9 @@ re-bind mode + selection by id. .btn[hidden] now actually hides
 301/301 tests (28 new); live-verified end-to-end at 1680×1000 with real
 events — see decision-log 'Phase 4 fourth slice'.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 index.html
 src/app/crowds.js
@@ -1361,11 +1570,15 @@ styles/main.css
 tests/mixins.test.js
 tests/networkEdit.test.js
 tests/vectorLayers.test.js
-ab93d4c 2026-08-18 djDAOjones
-chore: deploy v3.1.605
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+commit ab93d4c0633d51d1b298dccde7bcae48457502b5
+Author: djDAOjones
+Author date: 2026-08-18T17:06:30+01:00
+Commit date: 2026-08-18T17:06:30+01:00
+Subject: chore: deploy v3.1.605
 
----
+Co-Authored-By: Claude Fable 5 <redacted-email>
+
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -1374,21 +1587,29 @@ docs/meta.json
 docs/styles/main.css
 docs/styles/tokens.css
 version.json
-67b33a7 2026-08-18 djDAOjones
-docs(pm): Phase 4 third slice close-out — layers strip + Crowd scope
+commit 67b33a7a971710fe691690d0b7ecb78f259197cd
+Author: djDAOjones
+Author date: 2026-08-18T17:06:29+01:00
+Commit date: 2026-08-18T17:06:29+01:00
+Subject: docs(pm): Phase 4 third slice close-out — layers strip + Crowd scope
+
 Decision-log entry, backlog tick, file-map (crowds mixin), wish-list
 (crowd later-tier extras).
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/file-map.md
 pm_skills/project/wish-list.md
-7eb1d80 2026-08-18 djDAOjones
-feat(ui): layers strip + Crowd scope — dots flowing in two clicks (Phase 4)
+commit 7eb1d805cea7985d6e2524667e93bc4509c2420f
+Author: djDAOjones
+Author date: 2026-08-18T17:06:29+01:00
+Commit date: 2026-08-18T17:06:29+01:00
+Subject: feat(ui): layers strip + Crowd scope — dots flowing in two clicks (Phase 4)
+
 Layers strip above the waypoint list: Route row + one row per crowd
 (swatch, name, visibility eye, delete with undo toast, double-click
 rename), and "+ Add crowd" gated on a route existing. One click adds
@@ -1409,9 +1630,9 @@ Fix: the waypoint:deselect bus handler threw this.selectWaypoint-is-
 not-a-function since the Phase 1 mixin split (EventBus swallowed it) —
 Escape now clears waypoint selection through the canonical pipeline.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 index.html
 src/app/crowds.js
@@ -1425,11 +1646,15 @@ styles/main.css
 styles/tokens.css
 tests/crowds.test.js
 tests/mixins.test.js
-10ccd57 2026-08-18 djDAOjones
-chore: deploy v3.1.604
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+commit 10ccd57a880591cf9104eb4fad1b5aa3dae4ad9d
+Author: djDAOjones
+Author date: 2026-08-18T16:39:23+01:00
+Commit date: 2026-08-18T16:39:23+01:00
+Subject: chore: deploy v3.1.604
 
----
+Co-Authored-By: Claude Fable 5 <redacted-email>
+
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -1437,22 +1662,30 @@ docs/index.html
 docs/meta.json
 docs/styles/main.css
 version.json
-47837c7 2026-08-18 djDAOjones
-docs(pm): Phase 4 second slice close-out — canvas affordances
+commit 47837c7e08519b059b6563c99eb07e0e216ce5b6
+Author: djDAOjones
+Author date: 2026-08-18T16:39:23+01:00
+Commit date: 2026-08-18T16:39:23+01:00
+Subject: docs(pm): Phase 4 second slice close-out — canvas affordances
+
 Decision-log entry, backlog tick, file-map (segmentHitTest util), and
 three pre-existing quirks wish-listed (dead history:undo emits, stale
 scope chip after undo restore, area handle hit-test at zoom > 1).
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/file-map.md
 pm_skills/project/wish-list.md
-4d23c59 2026-08-18 djDAOjones
-feat(ui): canvas affordances — hover ring, leg hit-testing, midpoint + insert (Phase 4)
+commit 4d23c59343071fa7d0c5398a41fb66a00ee43d0f
+Author: djDAOjones
+Author date: 2026-08-18T16:39:17+01:00
+Commit date: 2026-08-18T16:39:17+01:00
+Subject: feat(ui): canvas affordances — hover ring, leg hit-testing, midpoint + insert (Phase 4)
+
 Hover: rAF-throttled idle hit-testing (area handle > waypoint > leg +
 > leg, same cascade as clicks); two-tone hover ring on waypoints and
 area handles; glow underlay along the hovered leg; pointer cursor with
@@ -1467,9 +1700,9 @@ Modifier gestures unchanged.
 
 New pure util src/utils/segmentHitTest.js + 16 tests (259 total).
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 src/app/pointer.js
 src/app/wiringControllers.js
@@ -1482,10 +1715,14 @@ src/utils/segmentHitTest.js
 styles/main.css
 tests/segmentHitTest.test.js
 tests/vectorLayers.test.js
-f926aa2 2026-08-18 djDAOjones
-chore: deploy v3.1.603
+commit f926aa2fec92e7a1cbce4feb481e212e15595986
+Author: djDAOjones
+Author date: 2026-08-18T15:41:50+01:00
+Commit date: 2026-08-18T15:41:50+01:00
+Subject: chore: deploy v3.1.603
 
----
+
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -1494,18 +1731,26 @@ docs/meta.json
 docs/styles/main.css
 docs/styles/tokens.css
 version.json
-e22c370 2026-08-18 djDAOjones
-docs(pm): Phase 4 first slice close-out — scope-split inspector
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+commit e22c370a72fcfbfa9c012960cf0ffd2e6882b073
+Author: djDAOjones
+Author date: 2026-08-18T15:41:49+01:00
+Commit date: 2026-08-18T15:41:49+01:00
+Subject: docs(pm): Phase 4 first slice close-out — scope-split inspector
 
----
+Co-Authored-By: Claude Fable 5 <redacted-email>
+
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/file-map.md
 pm_skills/project/trajectory.md
-ceab7c3 2026-08-18 djDAOjones
-feat(ui): scope-split inspector — one inspector, explicit scopes (Phase 4)
+commit ceab7c3d4be29f2b558ad40539fc4eedc2ed2d3e
+Author: djDAOjones
+Author date: 2026-08-18T15:41:43+01:00
+Commit date: 2026-08-18T15:41:43+01:00
+Subject: feat(ui): scope-split inspector — one inspector, explicit scopes (Phase 4)
+
 The sidebar is now an inspector for the current selection. A scope chip
 names the subject (Editing · Waypoint 2 'Library' · major / Editing ·
 Route) with prev/next stepping through Route → Waypoint 1 → … → last.
@@ -1516,17 +1761,21 @@ Pacing · Reveal · Path emphasis · Background · Video settings. The
 right sidebar keeps only the Waypoints list. Markup + wiring only —
 no model changes; all control ids preserved.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 index.html
 src/controllers/SectionController.js
 src/controllers/UIController.js
 styles/main.css
 styles/tokens.css
-95ec554 2026-08-18 djDAOjones
-fix(timing): count preview tail time only in comet mode
+commit 95ec5547ed444cda93cf2fe8a83432beb6111222
+Author: djDAOjones
+Author date: 2026-08-18T14:57:05+01:00
+Commit date: 2026-08-18T14:57:05+01:00
+Subject: fix(timing): count preview tail time only in comet mode
+
 Root cause of the review's 8.6s vs 7.7s duration discrepancy: tail time
 (trail fade + 500ms handle) was added for any scene with pathTrail > 0
 in preview, but the trail only renders in comet ('instantaneous') path
@@ -1536,15 +1785,19 @@ read identically in both modes (verified live, 7080 == 7080ms); comet
 keeps its genuine preview extension for the fade. The deployed v3.1.600
 bundle already carried this change — this commit aligns the source.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 src/app/pathTiming.js
-1c8e33e 2026-08-18 djDAOjones
-chore: deploy v3.1.600
+commit 1c8e33eac4ab23de083df6f7d7ed042aa753d298
+Author: djDAOjones
+Author date: 2026-08-18T14:56:46+01:00
+Commit date: 2026-08-18T14:56:46+01:00
+Subject: chore: deploy v3.1.600
 
----
+
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -1552,19 +1805,27 @@ docs/index.html
 docs/meta.json
 docs/styles/context-menu.css
 version.json
-2bfbeee 2026-08-18 djDAOjones
-docs(pm): close out Phase 3.5 — decision log, backlog, trajectory, file map, wish list
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+commit 2bfbeeeefc8fbe0e81fe2f3e03df76ef6093c614
+Author: djDAOjones
+Author date: 2026-08-18T14:56:39+01:00
+Commit date: 2026-08-18T14:56:39+01:00
+Subject: docs(pm): close out Phase 3.5 — decision log, backlog, trajectory, file map, wish list
 
----
+Co-Authored-By: Claude Fable 5 <redacted-email>
+
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/file-map.md
 pm_skills/project/trajectory.md
 pm_skills/project/wish-list.md
-2187d4d 2026-08-18 djDAOjones
-chore(ui): remove dead wiring — label colour controls, camera zoom-mode UI, segmentTension, stale section key
+commit 2187d4d85cb5647823ec9c250bcad981058bc93b
+Author: djDAOjones
+Author date: 2026-08-18T14:47:01+01:00
+Commit date: 2026-08-18T14:47:01+01:00
+Subject: chore(ui): remove dead wiring — label colour controls, camera zoom-mode UI, segmentTension, stale section key
+
 Review 2026-08-18 paper cuts, all zero-behaviour-change removals:
 - label colour/bg/opacity listeners + editor sync targeted controls that
   don't exist in index.html (model + rendering stay — wish-listed for
@@ -1577,9 +1838,9 @@ Review 2026-08-18 paper cuts, all zero-behaviour-change removals:
   old saves carrying it load unchanged
 - stale 'general' key in SectionController defaults (no such section)
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 index.html
 src/app/camera.js
@@ -1589,8 +1850,12 @@ src/app/wiringDom.js
 src/controllers/SectionController.js
 src/main.js
 src/models/Waypoint.js
-441d43b 2026-08-18 djDAOjones
-fix(interaction): shift-delete undo toast; selects excluded from shortcuts
+commit 441d43b53a1c3f5c135158dbb09247d45289825b
+Author: djDAOjones
+Author date: 2026-08-18T14:43:23+01:00
+Commit date: 2026-08-18T14:43:23+01:00
+Subject: fix(interaction): shift-delete undo toast; selects excluded from shortcuts
+
 Shift+click delete stays instant with a toast advertising Cmd/Ctrl+Z
 (decided over a confirm dialog, owner 2026-08-18) via a new generic
 ui:toast event into the existing showToast. Both global keydown
@@ -1598,15 +1863,19 @@ handlers (app + InteractionHandler) now skip focused <select> elements
 and contenteditable — arrows/T/a were changing dropdown values AND
 firing shortcuts simultaneously.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 src/app/playback.js
 src/app/wiringControllers.js
 src/handlers/InteractionHandler.js
-f24c740 2026-08-18 djDAOjones
-feat(canvas): right-click context menu for waypoints and canvas
+commit f24c74014b87b2b5ab4fc0ee8bffea7f2bf879d9
+Author: djDAOjones
+Author date: 2026-08-18T14:41:58+01:00
+Commit date: 2026-08-18T14:41:58+01:00
+Subject: feat(canvas): right-click context menu for waypoints and canvas
+
 InteractionHandler emitted waypoint:/canvas:show-context-menu with no
 listener since v2 — right-click suppressed the native menu and did
 nothing. New ContextMenu component (Carbon menu anatomy in project
@@ -1622,17 +1891,21 @@ Rides on three previously missing pieces implemented here:
   toward the neighbour (or extends past an endpoint)
 - waypoint:request-rename bridges into the list's inline rename
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 build.js
 index.html
 src/app/wiringControllers.js
 src/components/ContextMenu.js
 styles/context-menu.css
-a4f2707 2026-08-18 djDAOjones
-refactor(list): dedupe inline rename, option roles, undoable renames
+commit a4f2707387501d1ccc62199bed3b57d1b73f5713
+Author: djDAOjones
+Author date: 2026-08-18T14:39:31+01:00
+Commit date: 2026-08-18T14:39:31+01:00
+Subject: refactor(list): dedupe inline rename, option roles, undoable renames
+
 startRenameFor(waypoint) replaces the two verbatim copies of the rename
 logic (F2 closure + double-click inline block, review 2026-08-18); both
 paths now defer one frame and re-find the row, which also fixes F2
@@ -1641,14 +1914,18 @@ role=option (the container is role=listbox and aria-selected was
 sitting on plain buttons); li wrappers are presentational. Renames now
 take a debounced undo snapshot.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 src/app/wiringControllers.js
 src/controllers/UIController.js
-d81006c 2026-08-18 djDAOjones
-fix(pathhead): resolve the three-way head mismatch — route-global only
+commit d81006c796097cb2cfa484f49619eb613de01e4a
+Author: djDAOjones
+Author date: 2026-08-18T14:32:34+01:00
+Commit date: 2026-08-18T14:32:34+01:00
+Subject: fix(pathhead): resolve the three-way head mismatch — route-global only
+
 Decided global (owner 2026-08-18, decision-log): UI and renderer were
 already global; the model's per-waypoint pathHead* fields were dead
 weight that was serialised, copied on waypoint creation, and — worst —
@@ -1661,16 +1938,20 @@ editor sync reads the global; the duplicate pathhead:* event pair
 synchronous render per input) is removed — the DOM layer owns head
 wiring.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 src/app/editorPanel.js
 src/app/wiringControllers.js
 src/controllers/UIController.js
 src/models/Waypoint.js
-b464439 2026-08-18 djDAOjones
-fix(editor): single-writer controls — bulk-only UIController listeners
+commit b464439c6d49fa4746d855cceec960894af1eff7
+Author: djDAOjones
+Author date: 2026-08-18T14:30:07+01:00
+Commit date: 2026-08-18T14:30:07+01:00
+Subject: fix(editor): single-writer controls — bulk-only UIController listeners
+
 The waypoint editor controls were wired twice: the app's DOM wiring
 (single-selection: mutation, unit conversion, readouts) and UIController
 duplicates whose single-mode emissions were inert — every input event
@@ -1688,9 +1969,9 @@ Real defects fixed alongside:
 - labelPosition had no single-selection wiring at all (the select did
   nothing) — wired in the app DOM layer like its label siblings
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 index.html
 src/app/editorPanel.js
@@ -1699,8 +1980,12 @@ src/app/wiringDom.js
 src/controllers/UIController.js
 src/utils/pathWidthScale.js
 tests/mixins.test.js
-edaa4e1 2026-08-18 djDAOjones
-fix(waypoints): carry trailing minors with their major on reorder
+commit edaa4e1e81a75c53963fb94c26bcd984a51ab03e
+Author: djDAOjones
+Author date: 2026-08-18T14:23:18+01:00
+Commit date: 2026-08-18T14:23:18+01:00
+Subject: fix(waypoints): carry trailing minors with their major on reorder
+
 Reordering majors rebuilt the array with minors frozen at their original
 indices, silently reattaching them to different legs (data bug, review
 2026-08-18). Majors now move as blocks with their trailing minors, via
@@ -1709,35 +1994,47 @@ fixes two latent defects in the same handler: the index-derived
 _majorWaypointsCache was never invalidated after reorder, and reorder
 took no undo snapshot.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 src/app/wiringControllers.js
 tests/mixins.test.js
-7f31850 2026-08-18 djDAOjones
-docs(pm): resolve Phase 3.5 kickoff sub-decisions (sequencing, path head, shift-delete, Crowd)
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+commit 7f3185039a3d948429a68699a2d51919fe1c7e72
+Author: djDAOjones
+Author date: 2026-08-18T14:19:54+01:00
+Commit date: 2026-08-18T14:19:54+01:00
+Subject: docs(pm): resolve Phase 3.5 kickoff sub-decisions (sequencing, path head, shift-delete, Crowd)
 
----
+Co-Authored-By: Claude Fable 5 <redacted-email>
+
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
-67d3e08 2026-08-18 djDAOjones
-docs(pm): fold 2026-08-18 authoring-UI review into backlog + decision log
+commit 67d3e083220983515abe68550fb3089f7de59474
+Author: djDAOjones
+Author date: 2026-08-18T12:24:08+01:00
+Commit date: 2026-08-18T12:24:08+01:00
+Subject: docs(pm): fold 2026-08-18 authoring-UI review into backlog + decision log
+
 Phase 3.5 paper-cut list (incl. minor-detach data bug), Phase 4 rewritten
 to the adopted one-inspector/explicit-scopes direction, post-Phase-4
 review items added to next milestone. Review artifact linked in the
 decision-log entry.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
-def083f 2026-08-18 djDAOjones
-feat(swarm): Phase 3 — deterministic SwarmEngine + batched DotRenderer
+commit def083f583086812629aeefbcba8fa07de91d929
+Author: djDAOjones
+Author date: 2026-08-18T11:01:39+01:00
+Commit date: 2026-08-18T11:01:39+01:00
+Subject: feat(swarm): Phase 3 — deterministic SwarmEngine + batched DotRenderer
+
 Dots are now a pure function of timeline time: SwarmEngine.evaluate
 (timelineMs, layer, context) recomputes every dot per call via
 hash(seed, dotIndex, hopIndex) — onset windows with variance/ramp,
@@ -1750,9 +2047,9 @@ beneath the hero route. 234/234 tests (30 new); live-verified at
 v3.1.591 (pixel-delta layer toggle, byte-identical scrub-return,
 owner autosave restored byte-for-byte).
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -1769,17 +2066,21 @@ src/services/index.js
 tests/swarmEngine.test.js
 tests/vectorLayers.test.js
 version.json
-9d45a07 2026-08-18 djDAOjones
-feat(models): Phase 2 scene model — flow layers persist at coordVersion 9
+commit 9d45a07165827e281e9eefbc1d1b27b948b7baea
+Author: djDAOjones
+Author date: 2026-08-18T10:37:21+01:00
+Commit date: 2026-08-18T10:37:21+01:00
+Subject: feat(models): Phase 2 scene model — flow layers persist at coordVersion 9
+
 Scene → FlowLayer (guide graph or hero route + Emitters) as pure data
 models; per-emitter seeds; normalised release windows on the master
 timeline; full founding swarm vocabulary. Saves gain an additive scene
 block at coordVersion 9 (8 skipped); pre-v9 projects load unchanged.
 Scene wired into clearAll and undo snapshots. 204/204 tests.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -1801,8 +2102,12 @@ tests/FlowLayer.test.js
 tests/Scene.test.js
 tests/scenePersistence.test.js
 version.json
-02ae134 2026-08-17 djDAOjones
-refactor(core): PlayerCore teardown — scene is a pure function of timeline time
+commit 02ae134d02fb1764281dbe9ada068e1b9670f3a0
+Author: djDAOjones
+Author date: 2026-08-17T23:17:28+01:00
+Commit date: 2026-08-17T23:17:28+01:00
+Subject: refactor(core): PlayerCore teardown — scene is a pure function of timeline time
+
 Phase 1 complete. New src/core/PlayerCore.js owns all timeline math as
 pure functions: segment building, pause budgets (grow/ripple/pulse
 minimums), per-beacon clock schedules, and the timeline<->path mappings.
@@ -1828,9 +2133,9 @@ timeline. tests/playerCore.test.js pins builders, budgets, windows,
 and inverses. 158/158 tests; verified live incl. a fully-throttled
 105-frame MP4 export with zero console errors.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 README.md
 docs/app.js
@@ -1853,8 +2158,12 @@ tests/exportFrameDelta.test.js
 tests/goldenFrames.test.js
 tests/playerCore.test.js
 version.json
-5a8cac2 2026-08-17 djDAOjones
-fix(export): pin beacon time to encoded-frame delta during video export
+commit 5a8cac229b9205d662760221b24cf5b728f6c885
+Author: djDAOjones
+Author date: 2026-08-17T22:04:43+01:00
+Commit date: 2026-08-17T22:04:43+01:00
+Subject: fix(export): pin beacon time to encoded-frame delta during video export
+
 Owner report: exports encoded with slowed/weird animation unless the
 browser stayed active. The frame stepper was already deterministic
 (seekToProgress + explicit WebCodecs timestamps), but renderBeacons()
@@ -1876,9 +2185,9 @@ Verified in the throttled embedded browser (the failing environment):
 75-frame MP4 completed with all 76 beacon updates at exactly 0.100s.
 Tests: exportFrameDelta.test.js (145 total).
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -1892,17 +2201,21 @@ src/app/playback.js
 src/services/RenderingService.js
 tests/exportFrameDelta.test.js
 version.json
-466c4a6 2026-08-17 djDAOjones
-docs(pm): close out Phase 1 items 1-2 in project memory
+commit 466c4a630e4ce743ab9c2c6c26453b1112e55bed
+Author: djDAOjones
+Author date: 2026-08-17T21:38:14+01:00
+Commit date: 2026-08-17T21:38:14+01:00
+Subject: docs(pm): close out Phase 1 items 1-2 in project memory
+
 Backlog trimmed to the remaining PlayerCore item; decision-log entry
 for the mixin split + VECTOR_LAYERS registry (incl. deviations and the
 rAF-throttle finding); trajectory + file-map + architecture reflect
 src/app/* and the registry; README tree gains app/ and the unwired
 graph models; dev-guide drift captured in doc-deltas.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 README.md
 pm_skills/project/architecture.md
@@ -1911,8 +2224,12 @@ pm_skills/project/decision-log.md
 pm_skills/project/doc-deltas.md
 pm_skills/project/file-map.md
 pm_skills/project/trajectory.md
-f00e2e3 2026-08-17 djDAOjones
-refactor(rendering): drive vector draw order from VECTOR_LAYERS registry
+commit f00e2e3616acf09c5dbdb632bafade94ceb81668
+Author: djDAOjones
+Author date: 2026-08-17T21:35:18+01:00
+Commit date: 2026-08-17T21:35:18+01:00
+Subject: refactor(rendering): drive vector draw order from VECTOR_LAYERS registry
+
 renderVectorLayerTo()'s hard-coded sequence (area highlights, path,
 path head, beacons, waypoints, edit handles, draw preview) becomes a
 static RenderingService.VECTOR_LAYERS list, bottom to top. Each entry
@@ -1924,9 +2241,9 @@ the render body.
 Tests pin the canonical order and the dispatch guards (142 total).
 Verified in-browser in both edit and preview modes, console clean.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -1934,8 +2251,12 @@ docs/meta.json
 src/services/RenderingService.js
 tests/vectorLayers.test.js
 version.json
-6837084 2026-08-17 djDAOjones
-refactor(app): split main.js into prototype mixins (Phase 1)
+commit 6837084ccf29da72fd7069b85688d261fc47a7df
+Author: djDAOjones
+Author date: 2026-08-17T21:25:15+01:00
+Commit date: 2026-08-17T21:25:15+01:00
+Subject: refactor(app): split main.js into prototype mixins (Phase 1)
+
 main.js 6235 -> 1122 lines. Twelve method groups moved verbatim to
 src/app/* and attached via Object.assign(RoutePlotter.prototype, ...):
 wiringDom, wiringBus, wiringControllers, undoRedo, playback, camera,
@@ -1953,9 +2274,9 @@ snapToAngle unit tests), ESLint no-undef sweep clean, and an
 interactive in-browser pass (waypoint add/drag, play/scrub, JKL,
 undo/redo, zoom, autosave reload) with zero console errors.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 docs/app.js
 docs/app.js.map
@@ -1977,20 +2298,28 @@ src/main.js
 src/utils/snapToAngle.js
 tests/mixins.test.js
 version.json
-c7b9429 2026-08-17 djDAOjones
-Close out Phase 0
+commit c7b94291edd415715f827dfd2f5dee08fa4c52a5
+Author: djDAOjones
+Author date: 2026-08-17T20:34:41+01:00
+Commit date: 2026-08-17T20:34:41+01:00
+Subject: Close out Phase 0
+
 Backlog and trajectory mark Phase 0 complete (2026-08-17). Next: Phase 1
 enabling refactor — main.js split, renderer layer registry, PlayerCore +
 deterministic animation-core teardown (see backlog Phase 1).
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/trajectory.md
-e4743eb 2026-08-17 djDAOjones
-Reconcile project memory with v3 reality
+commit e4743ebe1a5c728a1733b2b670bc0ff3797f85b0
+Author: djDAOjones
+Author date: 2026-08-17T20:21:58+01:00
+Commit date: 2026-08-17T20:21:58+01:00
+Subject: Reconcile project memory with v3 reality
+
 brief: v3 layered-scene scope, flow layers, students added to audience,
 deterministic-timeline constraint, two-bundled-deps policy, repo/Pages
 status. architecture: workers/ phantom removed (with pointer to the v2
@@ -2000,24 +2329,28 @@ trajectory: v3 founding + salvage chunk. backlog: Phase 0 items closed.
 
 Phase 0 of the v3 refactor is complete except branch housekeeping.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 pm_skills/project/architecture.md
 pm_skills/project/backlog.md
 pm_skills/project/brief.md
 pm_skills/project/file-map.md
 pm_skills/project/trajectory.md
-de6ee4e 2026-08-17 djDAOjones
-Bundle JSZip; drop runtime CDN dependency
+commit de6ee4ea56cfb2f832fb90242cb32e1858f815ba
+Author: djDAOjones
+Author date: 2026-08-17T20:19:52+01:00
+Commit date: 2026-08-17T20:19:52+01:00
+Subject: Bundle JSZip; drop runtime CDN dependency
+
 jszip 3.10.1 pinned as a real dependency and bundled by esbuild;
 ImageAssetService's _loadJSZip() CDN script-injection removed.
 Project save/load now works offline. Bundle 494.6 -> 590.8 KB.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 README.md
 docs/app.js
@@ -2029,8 +2362,12 @@ package.json
 pm_skills/project/backlog.md
 src/services/ImageAssetService.js
 version.json
-e07afbd 2026-08-17 djDAOjones
-Salvage dot-crowd fork: land GraphModel + 25 tests, archive fork material
+commit e07afbdc407a60f94d02527f1185631b6e24a9a5
+Author: djDAOjones
+Author date: 2026-08-17T19:56:04+01:00
+Commit date: 2026-08-17T19:56:04+01:00
+Subject: Salvage dot-crowd fork: land GraphModel + 25 tests, archive fork material
+
 The pre-archive gate on the fork's OneDrive working copy surfaced a
 never-pushed working graph editor and Phase 2 swarm core (2026-05-03),
 partially destroyed by OneDrive file-offloading. Recovered via git +
@@ -2047,9 +2384,9 @@ Carried into v3:
 - decision-log: salvage entry; coordVersion for layered scene set to 9
   (fork locally shipped a different graph-only 8)
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -2068,8 +2405,12 @@ specs/dot-crowd-navigator/tests-salvage/SimulationState.test.js
 specs/dot-crowd-navigator/tests-salvage/SwarmEngine.test.js
 src/models/GraphModel.js
 tests/GraphModel.test.js
-8eaad84 2026-08-17 djDAOjones
-Fix fresh-clone build: track lockfile, raise esbuild target to es2022
+commit 8eaad8472d012f42193aecffd037d215a0133704
+Author: djDAOjones
+Author date: 2026-08-17T18:55:46+01:00
+Commit date: 2026-08-17T18:55:46+01:00
+Subject: Fix fresh-clone build: track lockfile, raise esbuild target to es2022
+
 npm installs resolved esbuild ^0.27.0 to 0.27.7, which refuses the
 legacy chrome58/firefox57/safari11 targets (200+ 'transforming
 destructuring' errors) — fresh clones could not build at all; it only
@@ -2084,9 +2425,9 @@ package-lock.json was gitignored, so nothing pinned the resolution.
 - backlog: v3.0 refactor phases added as current milestone
 - docs/: rebuilt at v3.1.575; verified build green + 106/106 tests
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 .gitignore
 DEV-INFRASTRUCTURE.md
@@ -2098,8 +2439,12 @@ docs/index.html
 docs/meta.json
 package-lock.json
 version.json
-96e194e 2026-08-17 djDAOjones
-Cherry-pick dot-crowd-navigator: GraphNode/GraphEdge models + tests; archive fork spec
+commit 96e194ec2fc59581e101f644056de075895e9493
+Author: djDAOjones
+Author date: 2026-08-17T18:55:46+01:00
+Commit date: 2026-08-17T18:55:46+01:00
+Subject: Cherry-pick dot-crowd-navigator: GraphNode/GraphEdge models + tests; archive fork spec
+
 The only net-new code the fork produced: two dependency-free model
 classes (normalised 0-1 coords, byte-compatible with Waypoint's
 convention) and their 37 unit tests. Deliberately left out of the
@@ -2111,9 +2456,9 @@ with provenance headers as the feature spec for Phases 2-4.
 
 Also renames the stale 'Windsurf Map Router' workspace file.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 Route Plotter v3.code-workspace
 specs/dot-crowd-navigator/AGENTS-spec.md
@@ -2122,8 +2467,12 @@ src/models/GraphEdge.js
 src/models/GraphNode.js
 tests/GraphEdge.test.js
 tests/GraphNode.test.js
-599407f 2026-08-17 djDAOjones
-Install PM-Skills 4.7.0 (fresh, manifest-verified); port v2 project memory
+commit 599407f4b5b4b62e304bb47a807295761ee6b588
+Author: djDAOjones
+Author date: 2026-08-17T18:55:20+01:00
+Commit date: 2026-08-17T18:55:20+01:00
+Subject: Install PM-Skills 4.7.0 (fresh, manifest-verified); port v2 project memory
+
 Fresh install via the framework's packager (47 files) replacing the
 embedded v2.3.0 copy, which was two major epochs behind. The populated
 v2 project memory (brief, architecture, backlog, conventions,
@@ -2136,9 +2485,9 @@ dot-crowd fold-in with layered-scene coexistence (supersedes the fork's
 (scene = pure fn(timelineMs, projectState, seed)) motivated by v2
 scrub-vs-play mismatches.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 pm_skills/CHANGELOG-1x.md
 pm_skills/CHANGELOG-2x.md
@@ -2187,8 +2536,12 @@ pm_skills/templates/AGENTS.md
 pm_skills/templates/DEV-INFRASTRUCTURE.md
 pm_skills/templates/PROCESS.md
 pm_skills/templates/UI-STANDARDS.md
-3509790 2026-08-17 djDAOjones
-Import router-plotter-02 @ v3.1 build 573 (commit 5b19787) as fresh v3 history
+commit 3509790b68b50fc31e666dc41521f589a5d8c533
+Author: djDAOjones
+Author date: 2026-08-17T18:49:24+01:00
+Commit date: 2026-08-17T18:49:24+01:00
+Subject: Import router-plotter-02 @ v3.1 build 573 (commit 5b19787) as fresh v3 history
+
 Route Plotter v3 starts here: a fresh-history continuation of
 https://github.com/djDAOjones/router-plotter-02 at its final v2-line
 state (v3.1.x, build 573, 2026-06-18). The old repo remains as the
@@ -2198,9 +2551,9 @@ follow in separate commits.
 pm_skills/ (v2.3.0) intentionally not imported — PM-Skills 4.7.0 is
 installed fresh in the next commit, with the v2 project memory ported.
 
-Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5 <redacted-email>
 
----
+Changed files:
 
 .codeiumignore
 .devin/workflows/bugfix.md
@@ -2339,4 +2692,3 @@ tests/setup.js
 tests/units.test.js
 version.json
 vitest.config.js
-```

@@ -126,17 +126,32 @@ resembling records mode.
   finding crosswalk, and a remediation continuation prompt. Filed as
   `2026-08-26-export-review-artefacts.md`.
 
+## Provenance: two passes
+
+This directory was assembled in two passes on 2026-08-27. The first
+harvested the project from a Claude Code session and wrote the notes
+below. The second ran a Codex agent inside the project itself, which
+re-took every export at a later commit with fuller commit metadata and
+explicit per-file redaction counts — those supersede the first pass's
+copies, so an export's stated snapshot may sit slightly ahead of the
+figures quoted in this note. Codex wrote its output inside the project
+directory; it was moved here and removed from there, so no harvest
+artefact remains in the applied project.
+
 ## What is in this directory
 
 | File | Lane | Contents |
 | --- | --- | --- |
 | `2026-08-27-note-deployment-snapshot.md` | tracked | this file |
+| `2026-08-17-export-init-prompt.md` | tracked | earliest retained brief, recovered from the install commit |
 | `2026-08-27-export-memory.md` | tracked | `pm_skills/project/**` verbatim, with a byte inventory |
 | `2026-08-27-export-rulebooks.md` | tracked | `AGENTS.md`, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`, `CLAUDE.md`, `README.md` |
 | `2026-08-27-export-git-log.md` | tracked | full history with bodies and changed files |
 | `2026-08-26-export-review-artefacts.md` | tracked | the `reviews/` tree |
 | `local/2026-08-27-export-session-logs.md` | local | index of the raw Claude Code session logs |
 | `local/sessions/*.jsonl` | local | 12 sessions, 7,671 messages, ~30 MB, byte-verbatim |
+| `local/2026-08-27-export-working-tree-snapshot.md` | local | uncommitted changes in flight at harvest |
+| `local/build-report-exports.mjs` | local | the generator the second pass used, kept as provenance |
 
 Every tracked file above is already public in the source repository;
 the session logs are not, which is why they sit in the local lane.

@@ -1,38 +1,149 @@
 <!-- field-report: project=uon-video-helper · date=2026-08-27 · type=export
      · pm-skills=4.9.2
-     · source=git log from the maintainer's checkout, harvested by Claude Code -->
+     · source=git log through commit 09702c2d8c749e72943678c94c558cf33ac1270f
+     · redacted=192 email occurrence(s) to <redacted-email>
+     · not-redacted=already-public personal names, public repository/account identifiers, commit hashes, workflow identifiers, and project facts -->
 
-# Git log export — uon-video-helper
+# UoN Video Helper full git log
 
-Full history to HEAD `a3c070a`, newest first, with commit
-bodies and changed-file lists. The bodies carry the project's
-`Verify:` lines, so this doubles as a record of which quality
-gate ran at each task close, and the subjects show how far the
-`<ITEM-ID>: <summary>` commit grammar was actually followed.
+Newest first through `09702c2d8c749e72943678c94c558cf33ac1270f`; commit bodies and changed-file lists are included.
 
-State at harvest: HEAD `a3c070a`, 108 commits, 6 path(s)
-differing from HEAD.
+<!-- FILE: git log --name-only -->
 
-Paths differing from HEAD at harvest:
+commit 09702c2d8c749e72943678c94c558cf33ac1270f
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T23:09:36+01:00
 
-```text
-M  pm_skills/project/archive/INDEX.md
-A  pm_skills/project/archive/decision-log-0002-2026-08-25-to-2026-08-27.md
-A  pm_skills/project/archive/trajectory/trajectory-0003-review-remediation-and-band-1-close.md
-M  pm_skills/project/decision-log.md
-M  pm_skills/project/file-map.md
-M  pm_skills/project/trajectory.md
-```
+VH-76: a gate that overwrote its own evidence
 
-Redaction. Absolute checkout paths have been collapsed to
-`<checkout>`, and any other path under the maintainer's home
-directory to `<home>`; that is the only alteration, and the content
-is otherwise byte-verbatim. A scan of this set found no e-mail
-addresses, credentials, or account identifiers.
+AGENTS.md says the quality gate reports and never writes.
+DEV-INFRASTRUCTURE.md repeated the claim under a heading reading
+"Non-mutating and CI-safe". It was not true: `check` ran `build`, which
+rewrites `dist/`.
 
-```text
-a3c070a 2026-08-27 djDAOjones
+Not a tidiness point. Every green run replaced the artifact it had just
+certified, so the gate could never vouch for what was on disk — and
+`dist/` is what a deploy publishes. Proven rather than argued: the
+fingerprint of `dist/` before a gate run and after it differ.
+
+`check` now runs `check:build`, which builds to a temporary directory.
+`build` is untouched and still produces `dist/` for a deploy.
+
+Ported from the archived implementation branch (VH-71 WP4) rather than
+written fresh, with one addition. The original removed its temp directory
+in a `finally`, which does not run on SIGINT — and a gate interrupted
+with Ctrl-C is an ordinary event rather than an exceptional one, so the
+signal handlers are explicit.
+
+Verified: the `dist/` fingerprint is byte-identical either side of a
+green check, and no temp directory survives. The documented gate command
+matches package.json again, and now says plainly that the non-mutating
+claim preceded the behaviour.
+
+npm run check: 439 passed, 1 skipped, 0 broken links.
+
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
+
+
+DEV-INFRASTRUCTURE.md
+package.json
+pm_skills/project/backlog.md
+pm_skills/project/decision-log.md
+pm_skills/project/file-map.md
+pm_skills/project/trajectory.md
+scripts/check-build.mjs
+commit c0e0a197f4699e64ab8e6a292dbcfdb37cbf5913
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T23:04:17+01:00
+
+Refactor the backlog: band by who is blocked, order by dependency
+
+Three structural problems, all introduced by the last two days rather
+than by anyone's error.
+
+Band 1b existed for maintainer DECISIONS and emptied on 2026-08-27 when
+VH-49, VH-46b, VH-31, VH-25 and VH-32 all closed. VH-19 was left in it
+alone — and VH-19 does not need a decision, it needs a corpus. A band of
+one item that contradicts its own heading is worse than no band.
+
+Band 2 had become nine items with no ordering principle: an umbrella, its
+five children, an unrelated harness item and a maintainer-gated one, all
+as siblings. It is now ordered by dependency and says why. VH-76 leads
+because everything below it is judged by a gate that currently rewrites
+`dist/` on every run, and a gate that writes cannot honestly certify a
+change to the thing it writes. VH-62 is last because its remaining half
+is harness work whose value depends on what Band 1a does to the pipeline.
+
+And "blocked on the maintainer" was spread across three places. Band 3
+now holds it in one: VH-19 (needs a corpus), VH-17 (needs a SharePoint
+upload), VH-26 (needs Firefox and a portrait sample), VH-30 (needs a
+scope sign-off). That is distinct from Standing, where the WORK is the
+maintainer's — here only the unblocking is.
+
+Two smaller repairs. The provenance note now covers both sources, since
+VH-71..VH-78 come from the archived-branch cross-check and cite work
+packages rather than R-numbers. And Band 1a says plainly that VH-55 and
+VH-74 are one piece of work: both re-time the same four timestamp sites,
+and VH-74's fixtures are what would grade VH-55's change, so doing either
+alone means touching A/V sync twice.
+
+No item body was rewritten; the detail stays inline, as the maintainer
+prefers. Active is still over its word budget — that is a Prune, which is
+a separate verb and not what was asked for.
+
+npm run check: 439 passed, 1 skipped, 0 broken links.
+
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
+
+
+pm_skills/project/backlog.md
+commit 03e0144be6f95bbd962a86e5816f1a486a7d6661
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T23:00:27+01:00
+
+VH-71: cross-check the archived branch, keep what it taught
+
+Maintenance session close, three phases:
+
+Prune — decision-log 39 -> 14 live entries (25 verbatim to
+archive/decision-log-0002), trajectory 3,010 -> 1,303 words (13 sections
+to archive/trajectory/trajectory-0003), file-map -4 stale opening-*.mp4
+paths. All splits diff-proven lossless before swap; INDEX updated.
+
+Branch archival — codex/repository-review-implementation (10 commits)
+and codex/comprehensive-review-remediation (1 commit) preserved as
+annotated archive/* tags on origin, then deleted as branches; the
+abandoned /private/tmp worktree removed.
+
+Reconciliation — the archived branch cross-checked feature by feature
+against HEAD: a module inventory of its 23 unique modules, a 30-finding
+coverage audit of the 2026-08-26 internal review (20 fixed, 3 tracked,
+5 uncovered cores/residuals), and its own decision record. Remainders
+itemised: VH-74 (P1-02 source timeline, Band 1a with VH-55),
+VH-72/73/75/76/77 (Band 2), VH-78 (Icebox), VH-19 unblocked by the
+recovered classifier, VH-62 and VH-70 amended. Detail and the
+decided-not-to-reconcile list live in tickets/VH-71.md.
+
+Gate: check green — typecheck, lint, tests, build, docs, links, memory
+(0 structural failures).
+
+Co-Authored-By: Claude Fable 5 <<redacted-email>>
+
+
+pm_skills/project/archive/INDEX.md
+pm_skills/project/archive/decision-log-0002-2026-08-25-to-2026-08-27.md
+pm_skills/project/archive/trajectory/trajectory-0003-review-remediation-and-band-1-close.md
+pm_skills/project/backlog.md
+pm_skills/project/decision-log.md
+pm_skills/project/file-map.md
+pm_skills/project/tickets/VH-71.md
+pm_skills/project/trajectory.md
+commit a3c070a4eb7a42724e7772249772feb5c89d8afd
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T21:17:36+01:00
+
 VH-26: the colour fear did not reproduce
+
 The maintainer supplied a curated list of directly-downloadable phone
 recordings. Five are now in `samples/phone/` — HLG 1080p, Dolby Vision
 4K60, an 8-bit 4K30 pair and a legacy 3GP — gitignored with the rest of
@@ -73,15 +184,18 @@ is the answer.
 
 npm run check: 439 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/tickets/VH-26.md
-bfc3d3f 2026-08-27 djDAOjones
+commit bfc3d3fe508202b417733da225caa9498e221672
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T20:56:30+01:00
+
 VH-32 and VH-61 closed, VH-17 reframed around EchoVideo
+
 VH-32 — no redesign. The maintainer's answer to the interface pass he
 asked for is that he likes the simplicity, and the only thing that would
 justify a SECOND screen is a trim function. So it closes on "nothing to
@@ -115,28 +229,34 @@ taking "Best quality", which is already the default and already what
 
 npm run check: 439 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/tickets/VH-32.md
 pm_skills/project/trajectory.md
-1bea1f9 2026-08-27 djDAOjones
+commit 1bea1f970f99b59523c9eadb323866dc151c7062
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T16:15:57+01:00
+
 Drop an invented backlog flag
+
 `[low]` is not in the ticket grammar AGENTS.md defines — the flags are
 [sign-off], [blocked: X], [spike], [detail], [maintainer] and [security],
 and the memory checker was right to say so. Icebox placement already
 carries the priority, so the flag said nothing the section did not.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
-741ed16 2026-08-27 djDAOjones
+commit 741ed16d05f7b1e7b83f6b705a1f06fe4fe4ec17
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T16:14:41+01:00
+
 Triage the wish-list against what this session shipped
+
 Four entries were describing a repository that no longer exists.
 
 "Preflight is uncancellable: `handlePreflight` never registers in
@@ -161,13 +281,16 @@ Merged, with both sightings kept.
 
 npm run check: 439 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/wish-list.md
-bddd9b7 2026-08-27 djDAOjones
+commit bddd9b7ca43f41d8f464792f12a19932d9fc7369
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T16:12:33+01:00
+
 VH-19: the probe samples the one part of a lecture that says nothing
+
 Everything needed to ship this looked present — `ContentClass` exists,
 `outputShapeFor` already takes it, and the calibration probe already
 decodes three seconds. Measuring the real corpus before writing the
@@ -198,14 +321,17 @@ No classifier shipped. The table is in the backlog item.
 
 npm run check: 439 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
-8488eef 2026-08-27 djDAOjones
+commit 8488eef10eedb928e7c1c014590f6b6d341ccc56
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T16:09:27+01:00
+
 VH-31: an upper bound that is actually one
+
 The maintainer chose the upper bound and asked for improvement where it
 was cheap. Two things were cheap; one was not.
 
@@ -236,9 +362,8 @@ objections unanswered.
 
 npm run check: 439 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -248,8 +373,12 @@ src/config/branding.test.ts
 src/config/branding.ts
 src/ui/preflight-panel.ts
 src/workers/job.worker.ts
-074d0ec 2026-08-27 djDAOjones
+commit 074d0eccb1c8b2c0910886a8a19af0f3d64875d0
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T16:05:34+01:00
+
 Record seven maintainer answers, and close four items on them
+
 D4 / VH-15 — signed off. Safari below 26 may be excluded. This was the
 one decision flagged as expensive to reverse; it is closed rather than
 standing.
@@ -298,17 +427,20 @@ with no editing is the case this tool exists for.
 
 npm run check: 437 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/doc-deltas.md
 pm_skills/project/tickets/VH-48.md
 pm_skills/project/trajectory.md
-6d2539d 2026-08-27 djDAOjones
+commit 6d2539dfb3d5c7b798a492626331987c9817a7ab
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T16:03:19+01:00
+
 VH-46b: one question, four answers
+
 All four closing choices are back, as a single radio group: Clean cut,
 Over the picture, Over a freeze frame, No closing sequence. The GUI
 analysis the maintainer asked for turns on three facts.
@@ -346,9 +478,8 @@ four options behind a click for no gain at this length.
 
 npm run check: 437 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 README.md
 index.html
@@ -357,8 +488,12 @@ pm_skills/project/decision-log.md
 pm_skills/project/trajectory.md
 src/main.ts
 src/styles/app.css
-2283311 2026-08-27 djDAOjones
+commit 228331188c849552a83ba621784eea1df7c67547
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T15:55:24+01:00
+
 VH-25 cut, VH-23 iceboxed: less to decide, not more
+
 VH-25 — no picture fades at the branding boundary, in either direction.
 Cut, not deferred.
 
@@ -402,9 +537,8 @@ to bring the feature back.
 
 npm run check: 437 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -415,8 +549,12 @@ public/branding/opening-1080p30.mp4
 public/branding/opening-2160p25.mp4
 public/branding/opening-2160p30.mp4
 src/media/branding.ts
-f912a67 2026-08-27 djDAOjones
+commit f912a670bb5d2e50c4900f1acd6f9c3e5bf2abb6
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T15:52:16+01:00
+
 VH-49: Firefox is told to switch, not served a lesser file
+
 The maintainer's call. Three options were on the table — block, ship
 WebM/Opus, or drop audio. Dropping audio was never real: a silent lecture
 is not a lecture. WebM/Opus means a second output contract, and spec §6.1
@@ -445,9 +583,8 @@ ENOENT instead of reporting anything.
 
 npm run check: 437 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 README.md
 check-links.mjs
@@ -456,8 +593,12 @@ pm_skills/project/decision-log.md
 pm_skills/project/doc-deltas.md
 pm_skills/project/tickets/VH-49.md
 pm_skills/project/trajectory.md
-40dc550 2026-08-27 djDAOjones
+commit 40dc5507f9691166e794d1cd0edf316606366539
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T15:48:43+01:00
+
 D1: the padding colour is Nottingham Blue
+
 The maintainer supplied the brand palette
 (nottingham.ac.uk/brand/visual/colour.aspx) as the source the branding
 masters were made from. `--uon-brand-bg` is now Nottingham Blue #10263B,
@@ -484,17 +625,20 @@ which is where `main.ts` reads it — checked, not assumed.
 
 npm run check: 437 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/decision-log.md
 pm_skills/project/doc-deltas.md
 pm_skills/project/trajectory.md
 scripts/gen-placeholder-branding.mjs
 src/styles/tokens.brand.css
-bb68aae 2026-08-27 djDAOjones
+commit bb68aae43e1c91d403220e0df124d21ff13e4963
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T15:07:51+01:00
+
 VH-66: correct the code where the doc was right
+
 Four drifts, and they did not all point the same way (review R-15).
 
 `DEV-INFRASTRUCTURE.md` said both the product version and the build
@@ -532,9 +676,8 @@ lists the pause freeze once where the implementation needs it twice
 
 npm run check: 437 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 DEV-INFRASTRUCTURE.md
 pm_skills/project/architecture.md
@@ -544,8 +687,12 @@ pm_skills/project/doc-deltas.md
 pm_skills/project/trajectory.md
 scripts/gen-placeholder-branding.mjs
 src/main.ts
-8fade35 2026-08-27 djDAOjones
+commit 8fade35d0eb7bb2ea19540bfd40b0a061cce57e6
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T15:03:37+01:00
+
 VH-64: name the progress, and ask before the slow job
+
 A bare `<progress>` announces a percentage and nothing else, so a
 screen-reader user heard "63%" with no way to know 63% of what — and the
 stage is the half that carries the meaning. It is now labelled by a
@@ -571,17 +718,20 @@ audio" rather than nothing while it runs.
 
 npm run check: 437 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 index.html
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/trajectory.md
 src/main.ts
-48a4100 2026-08-27 djDAOjones
+commit 48a41009f0d0037bf23a5a6bc1d7bc6d2a9e8850
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T14:59:27+01:00
+
 VH-60: an answer belongs to the question that asked it
+
 Three ways the screen could describe one job while Start submitted
 another.
 
@@ -621,9 +771,8 @@ level 4.2 with a byte-identical result.
 
 npm run check: 437 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -636,8 +785,12 @@ src/media/preflight.ts
 src/spike/preflight-audio.ts
 src/ui/preflight-panel.ts
 src/workers/job.worker.ts
-67fb40a 2026-08-27 djDAOjones
+commit 67fb40add344da317655b3686716bc8517f510aa
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T14:50:25+01:00
+
 VH-61, VH-67: freeze the finished envelope, and keep less of the curve
+
 VH-61's first half. Spec §5.2 step 3 lists the pause freeze LAST — after
 smoothing, clamping and slew limiting — and the code applied it first, to
 the raw correction only. The smoothing window is centred, so speech
@@ -676,9 +829,8 @@ Protected DSP touched, so the EBU Tech 3341 harness was re-run: 22
 passed, 1 skipped, unchanged.
 npm run check: 426 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -688,8 +840,12 @@ src/audio/loudness.test.ts
 src/audio/loudness.ts
 src/audio/macrolevel.test.ts
 src/audio/macrolevel.ts
-9f0c6a1 2026-08-27 djDAOjones
+commit 9f0c6a13c5dd01d882704b886824c3c349a64c01
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T14:43:34+01:00
+
 VH-65: the build job does not need to be able to publish
+
 Every push to `main` deploys (VH-14), so this workflow IS the act of
 publishing and its blast radius is the University's pilot site.
 
@@ -721,17 +877,20 @@ the file.
 
 npm run check: 418 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 .github/workflows/deploy-pages.yml
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/trajectory.md
 scripts/check-placeholders.mjs
-4aea28a 2026-08-27 djDAOjones
+commit 4aea28a19a33e90c3890c61825ad754138e9e4a4
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T14:40:25+01:00
+
 VH-63: keep a long job alive, and warn while there is something to lose
+
 Spec §7.5 asks for a screen wake lock during processing and a
 `beforeunload` warning while a job runs. Neither existed anywhere in
 `src/` (review R-12). A forty-minute encode on a laptop that sleeps is
@@ -765,9 +924,8 @@ verified here.
 
 npm run check: 418 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -776,8 +934,12 @@ pm_skills/project/trajectory.md
 src/core/keep-awake.test.ts
 src/core/keep-awake.ts
 src/main.ts
-e1b78b1 2026-08-27 djDAOjones
+commit e1b78b1a04336dc330de530927b70138e6e553d7
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T14:35:43+01:00
+
 VH-68: four faults that were nobody's ticket
+
 The review's consolidation dropped these, and each survives precisely
 because it is too small to schedule.
 
@@ -816,9 +978,8 @@ Protected DSP touched (`truepeak.ts`, `limiter.ts`), so the EBU Tech 3341
 harness was re-run in the same change: 22 passed, 1 skipped, unchanged.
 npm run check: 413 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -831,8 +992,12 @@ src/audio/truepeak.ts
 src/audio/warnings.test.ts
 src/audio/warnings.ts
 src/config/audio.ts
-907d237 2026-08-27 djDAOjones
+commit 907d237f27b392a63a3365753621d84120598240
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T14:30:03+01:00
+
 VH-62: stop the harness reporting what it did not look at
+
 Four ways acceptance could be green without having looked (review R-11).
 
 Criterion 3 was hard-coded `pass`. The EBU conformance it describes is
@@ -876,9 +1041,8 @@ in what VH-62 has left.
 
 npm run check: 408 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -892,8 +1056,12 @@ src/core/egress.test.ts
 src/core/egress.ts
 src/workers/job.worker.ts
 src/workers/protocol.ts
-6a27285 2026-08-27 djDAOjones
+commit 6a2728534597564dbefff8c4af930a7835585d2c
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T14:20:46+01:00
+
 Keep one copy of the internal review, in the bundle that indexes it
+
 `pm_skills/project/code-review-2026-08-26.md` was untracked and
 deliberately left alone; a `git add -A` in d02b3c8 swept it in. It is
 byte-identical to `reviews/2026-08-26/uon-video-helper-internal-code-review-2026-08-26.md`
@@ -904,14 +1072,17 @@ So the duplicate goes and the record stays. The README's provenance
 section said the source file "was not modified, staged or deleted", which
 stopped being true; it now says what actually happened.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/code-review-2026-08-26.md
 reviews/2026-08-26/README.md
-23f9b9a 2026-08-27 djDAOjones
+commit 23f9b9a2b41cd51afc7f41f54cda80d9f4efdd84
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T13:31:15+01:00
+
 VH-59: inspect the track that will be encoded, and name what cannot be kept
+
 Inspection read `getVideoTracks()[0]` and `getAudioTracks()[0]`. The
 pipeline asks Mediabunny for its PRIMARY tracks, and that is a different
 selection: primacy comes from position, disposition, bitrate — higher
@@ -943,9 +1114,8 @@ for VH-62.
 
 npm run check: 401 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -958,8 +1128,12 @@ src/ui/source-panel.test.ts
 src/ui/source-panel.ts
 src/ui/warning-text.test.ts
 src/ui/warning-text.ts
-ae793b2 2026-08-27 djDAOjones
+commit ae793b2db16b1e6709e5d38eb54c8023bb2bbd4b
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T13:25:13+01:00
+
 VH-55: say what the delay compensation took, and why the rest waits
+
 Compensating the AAC encoder's ~44 ms delay shifts the audio timeline
 earlier and discards whatever lands before zero. Three files in the real
 corpus carry energy there — two near -26 dBFS, one near -48 — so what
@@ -1000,9 +1174,8 @@ sequenced after VH-62.
 
 npm run check: 393 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1017,8 +1190,12 @@ src/media/pipeline.ts
 src/ui/warning-text.test.ts
 src/ui/warning-text.ts
 src/workers/job.worker.ts
-e043713 2026-08-27 djDAOjones
+commit e0437139ec653454353b95011feb9951ae3d69d6
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T13:15:38+01:00
+
 VH-57: make every phase answer Cancel
+
 `Cancel leaves nothing behind` is an AGENTS.md invariant, and three paths
 broke it (review R-07).
 
@@ -1060,9 +1237,8 @@ and leaves the OPFS jobs root empty. Finishing is the new one.
 
 npm run check: 383 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1074,8 +1250,12 @@ src/media/pipeline.ts
 src/workers/cancellation.test.ts
 src/workers/cancellation.ts
 src/workers/job.worker.ts
-ae763ba 2026-08-27 djDAOjones
+commit ae763ba998b5990f206ea62fe16d4496b1bfedba
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T13:04:46+01:00
+
 VH-56: own the finished file until the user has it
+
 The result was a `File` on the screen and nothing more, and there were
 four ordinary ways to lose it (review R-04).
 
@@ -1121,9 +1301,8 @@ scratch it reads had gone.
 
 npm run check: 379 passed, 1 skipped, 0 broken links.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1135,8 +1314,12 @@ src/media/save.test.ts
 src/media/save.ts
 src/workers/job.worker.ts
 src/workers/protocol.ts
-d02b3c8 2026-08-27 djDAOjones
+commit d02b3c8e0273deb083ee5321aacca0a7b35ab1dd
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T12:51:39+01:00
+
 VH-50: solve the gain against the chain that runs, and leave AAC its decibel
+
 Two independent reasons a real lecture missed spec §13 criterion 2 while
 every fixture passed. Measured, not argued.
 
@@ -1178,9 +1361,8 @@ each job's own AAC overshoot instead of carrying a corpus constant, and
 AAC costs integrated loudness too — 0.02 to 0.41 LU, worst on the most
 heavily limited material.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/code-review-2026-08-26.md
@@ -1194,8 +1376,12 @@ src/audio/limiter.test.ts
 src/config/audio.ts
 src/media/audio-plan.ts
 test/helpers/signals.ts
-2b98d86 2026-08-27 djDAOjones
+commit 2b98d86d1c62746d4546d0a692b90d66b5faaa89
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T12:40:13+01:00
+
 VH-54: measure the end of the file, and limit it
+
 The 4x-oversampling interpolator is causal — BS.1770-4 Annex 2's
 y[4i + p] = sum_j h_p[j] * x[i - j] — so the inter-sample peaks a frame
 contributes to are only evaluated once the following twelve frames have
@@ -1223,9 +1409,8 @@ end — the defect was position-dependent, and 0, 1 and 3 frames escaped
 while 6 and beyond did not. Protected DSP, so the EBU Tech 3341 harness
 was re-run in the same change and is unchanged: 373 passed, 1 skipped.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 src/audio/analyse.test.ts
 src/audio/analyse.ts
@@ -1234,8 +1419,12 @@ src/audio/limiter.ts
 src/audio/truepeak.test.ts
 src/audio/truepeak.ts
 test/ebu3341/tech3341.test.ts
-a4d5dbc 2026-08-27 djDAOjones
+commit a4d5dbc05d90e3ee4f7ea248c0a37ca629451369
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T12:39:57+01:00
+
 VH-31: stop charging silent sources for an audio track
+
 Recovered from an abandoned parallel session, reviewed and kept.
 
 `projectedOutputBytes` added `shape.audioBitrateBps` unconditionally, so a
@@ -1248,17 +1437,20 @@ Audio presence is now a required parameter rather than a default, so a
 future caller cannot inherit the original failure mode by omission. This
 is one named contributor, not the estimate redesign — VH-31 stays open.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/decision-log.md
 pm_skills/project/tickets/VH-31.md
 src/config/presets.test.ts
 src/config/presets.ts
 src/workers/job.worker.ts
-de2465d 2026-08-27 djDAOjones
+commit de2465ddfb25be183ab43f803abc7eced51a1b83
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T12:39:57+01:00
+
 VH-58: claim the job directory before it exists, and delete under the claim
+
 Recovered from an abandoned parallel session, reviewed line by line and
 kept: the change is complete, tested and green under `npm run check`.
 
@@ -1276,14 +1468,17 @@ becomes `sweepUnclaimed`, because there is no longer a list of names to
 select: each directory is attempted under its own claim, and a failure
 ends that directory rather than the sweep.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 src/media/opfs.test.ts
 src/media/opfs.ts
-5e8c1be 2026-08-27 djDAOjones
+commit 5e8c1be3ee30ddb75959319f84ab9f212f2e6ef5
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T12:28:24+01:00
+
 Refactor the backlog: band the review's findings against the queue
+
 The 2026-08-26 review's sixteen findings, plus five its consolidation
 dropped, become fifteen items (VH-54..VH-68). They are banded against the
 existing queue rather than appended to it: R-01..R-04 and R-07..R-09 are
@@ -1300,13 +1495,16 @@ Where the review's own remedy was disproved, the item says so: R-10's
 as unreproduced. Evidence now lives in reviews/2026-08-26/ and items cite
 the R-number instead of restating it.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
-12f4dd4 2026-08-27 djDAOjones
+commit 12f4dd44065e9fab89eab2842a220e67d38675f1
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T12:23:37+01:00
+
 VH-50: make the output contract a postcondition, and close VH-52
+
 Two in-flight closes that the previous session left uncommitted.
 
 VH-50 (still open): a finalized MP4 is no longer reported as processed
@@ -1321,9 +1519,8 @@ VH-52 (shipped): the 30-second DSP timeout stays the measured CI bound,
 and the test run now states what an unusually long duration means, so
 contention is legible at the point of failure.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 DEV-INFRASTRUCTURE.md
 package.json
@@ -1335,17 +1532,20 @@ src/acceptance/run.ts
 src/media/output-verification.test.ts
 src/media/output-verification.ts
 src/workers/job.worker.ts
-66e675b 2026-08-27 djDAOjones
+commit 66e675b7aba545ea4f8a0ae1078b4d4e6130c9fd
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-27T12:23:14+01:00
+
 Land the 2026-08-26 review bundle as durable evidence
+
 Three review documents plus the byte-exact source archive move out of
 Downloads and into the repository, so every later task can cite a path
 rather than a chat attachment. The imported comprehensive review is
 excluded from table-style lint because it is evidence, not project prose;
 its links were normalised only in the portable reading copy.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 .markdownlint-cli2.jsonc
 reviews/2026-08-26/README.md
@@ -1355,13 +1555,16 @@ reviews/2026-08-26/uon-video-helper-comprehensive-review-2026-08-26.source.txt
 reviews/2026-08-26/uon-video-helper-internal-code-review-2026-08-26.md
 reviews/2026-08-26/uon-video-helper-review-critique-2026-08-26.md
 reviews/2026-08-26/uon-video-helper-updated-review-critique-2026-08-26.md
-fad65f1 2026-08-26 djDAOjones
+commit fad65f1c4e298b563a68f21f3de8d2f6a18dd5a8
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T23:10:45+01:00
+
 VH-53: share project context across coding agents
+
 Add a Claude adapter that imports the canonical AGENTS.md and document the local-memory boundary.
 
 Verify: typecheck 0 · 355 tests passed, 1 skipped · build 0 · docs 0
 
----
 
 .gitignore
 CLAUDE.md
@@ -1369,43 +1572,56 @@ README.md
 pm_skills/project/decision-log.md
 pm_skills/project/file-map.md
 pm_skills/project/trajectory.md
-66227e5 2026-08-26 djDAOjones
+commit 66227e51dc0905c1853d79fb927d8f009be80ad4
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T05:40:09+01:00
+
 VH-31: the third refuter, and the smallest lever
+
 The workflow's last refuter reported after the write-up: all three blocked the recommendation rather than two. It adds one finding the others missed — the wall budget withdraws the fix from exactly the large files it exists to fix, on hardware only ~1.8x slower than the Mac it was measured on, and the two-window regime that results is the modal outcome on a mid-speed laptop with a measured 2x under-call and was never scored.
 
 Also recorded, verified by hand rather than taken from an agent: projectedOutputBytes multiplies by the SOURCE duration, so the estimate omits the closing tail entirely — 4.00s, or 5.00s with a freeze — even though branding.ts already owns that rule as closingAddedSeconds(mode). About 3% on a 130s lecture, in the unsafe direction, and part of why four Smaller file jobs measure below 1.0. It is a one-line fix that raises a figure multiplied by 2.5 into a hard storage block, so it belongs with the item rather than ahead of it.
 
----
 
 pm_skills/project/decision-log.md
 pm_skills/project/tickets/VH-31.md
-7d76da1 2026-08-26 djDAOjones
+commit 7d76da12e6f7773273fc75b703b223f7d2ceb744
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T03:55:41+01:00
+
 VH-52: say what the DSP timeout can and cannot cover
+
 A parallel session reviewing the backlog noticed that testTimeout: 30_000 was set here (79355f0) for CI slowness — a ~1.5x runner against a ~3.9s slowest test — while the same constant elsewhere was a STARVATION bound with ~34x headroom over a 889ms test. Same number, ~7.7x cover here rather than ~34x. Both premises verified against this repo.
 
 A measurement taken here on 2026-08-26 changes the conclusion rather than confirming it: chain.test.ts ran 540s and failed a test with three headless browsers encoding alongside it — ~138x. So deriving the timeout from duration times a starvation factor, the shape suggested, gives a bound of minutes, and a genuinely hung test would take minutes to fail. The constant does the CI job correctly and cannot do the starvation job at all.
 
 The operational half is done here: DEV-INFRASTRUCTURE's quality-gate section now carries the measurement and the "gate on a settled machine" rule, which previously existed only in the other project. What remains is making a contention failure legible rather than looking like a real one, raised as VH-52 in Band 2.
 
----
 
 DEV-INFRASTRUCTURE.md
 pm_skills/project/backlog.md
-edefef2 2026-08-26 djDAOjones
+commit edefef2dea5329692a14ce3907dd37070d80f11e
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T03:51:14+01:00
+
 VH-31: record what was measured, and why it was not built
+
 An eight-agent design workflow measured 46 whole-file re-encodes at production targets and benchmarked four estimators. Two of three adversarial refuters then returned blocking findings against its own recommendation, so nothing was implemented — building it at 4am with no time for the review pass that had just caught a midnight regression would have repeated the mistake that review existed to find.
 
 Two of this ticket's premises turned out false. The 3.6x headline is stale: VH-47 shipped hours earlier and cut it to 1.70x, which I verified by hand rather than taking the agent's figure. And the over-estimate is NOT the safety margin the ticket assumed — at Smaller file the projection already falls below the produced file on 4 of 23 real jobs, so a fix that only shrinks the number makes that half worse. The bake-off also settled that the first three seconds are useless as a sample (0.049 of actual on one file), because a 3-second encode reproduces its requested bitrate to ~99.8%.
 
 The measurements, the surviving design ideas and the blocking objections are all on the ticket.
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/tickets/VH-31.md
-1b116bb 2026-08-26 djDAOjones
+commit 1b116bbc6104d13a5f2c322ea6dfe8977c64d1cd
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T02:30:20+01:00
+
 VH-51: fix what the overnight self-review confirmed
+
 A 25-agent adversarial review of the night's 14 commits confirmed 15 defects and refuted 3. The worst was a regression I introduced: VH-38's 60-second SILENCE watchdog rested on "the encode loop reports every thirty frames", which is true of the encode loop and nothing else. Inspection, both planAudio traversals and the post-encode verification emit nothing and all three scale with the source, so the fix for a duration cap reintroduced one at a lower threshold, on exactly the long jobs the item existed to protect. All three report now; the bound is 120s.
 
 Also: a cancel arriving between the last throwIfAborted and the lane controller was lost outright, because a listener attached to an already-aborted AbortSignal never fires (reproduced in Node). honoursRgbaReadback compared allocationSize against CODED dimensions where it measures the VISIBLE rect, so a padded master would fail closed onto the Firefox-broken path and quietly undo VH-44. timelineSeconds added the audio overrun on top of the closing rather than taking the later track, and the test I wrote locked the error in. compositeSampled had dropped the opaque and transparent fast paths, ~133M reads a frame at 4K.
@@ -1414,7 +1630,6 @@ Three claims of mine were false and are corrected rather than dropped: Promise.a
 
 Verify: typecheck 0 · lint 0 · 355 tests · build 0 · docs 0 · links 0 · memory 0 structural · /spike-alpha.html still correct in all three engines after the composite changes · a job completes and restores the controls in the browser
 
----
 
 README.md
 pm_skills/project/decision-log.md
@@ -1429,30 +1644,40 @@ src/media/composite.ts
 src/media/lanes.test.ts
 src/media/pipeline.ts
 src/workers/job.worker.ts
-e5bcc45 2026-08-26 djDAOjones
+commit e5bcc45f5e00b0fda5f3b587bc320185801affe2
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T01:44:17+01:00
+
 Raise VH-50: real material misses the loudness invariant
+
 AMCS3059 comes out at -16.75 LUFS against -16 +/-0.5 and -1.98 dBTP against a -2.00 ceiling. Both miss, and conventions.md lists that pair as invariant 2. Verified NOT a regression — re-running the identical file on de0b94f, before this session, gives figures identical to the hundredth.
 
 The worse half is that the acceptance harness passes criterion 2 on synthesised material. A harness that passes the invariant the product misses is worse than no harness, so the item requires a fixture that would have caught it, not just a fix.
 
----
 
 pm_skills/project/backlog.md
-9589d93 2026-08-26 djDAOjones
+commit 9589d936dbb844700af0f4fa461180985ae7118e
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T01:29:13+01:00
+
 Archive the overnight run's own memory overflow
+
 Both overruns were created by the run that is now clearing them, which is the right order: leaving them would hand the next session a mandatory prune before it could pick up any work. decision-log splits at its read-tier floor — the latest ten stay live, twelve go verbatim to archive/decision-log-0001-2026-08-25.md. trajectory loses a second phase to archive/trajectory/trajectory-0002-real-material-and-band-1.md. 3,321 to 1,435 words; 22 to 11 entries.
 
 Verify: three diffs per file against the intact original — archived slice, kept header, kept tail — all byte-identical before the swap. Full gate green.
 
----
 
 pm_skills/project/archive/INDEX.md
 pm_skills/project/archive/decision-log-0001-2026-08-25.md
 pm_skills/project/archive/trajectory/trajectory-0002-real-material-and-band-1.md
 pm_skills/project/decision-log.md
 pm_skills/project/trajectory.md
-fab13df 2026-08-26 djDAOjones
+commit fab13df96b4f46e44aa8134757b2ab17c0bced11
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T01:26:13+01:00
+
 VH-44: detect the property, not the engine
+
 compose() reads the branding pixels through VideoSample.copyTo where the engine honours a request for RGBA, and through the canvas readback where it does not. No route is portable — copyTo returns the luma plane in Safari, the canvas readback un-premultiplies in Firefox — and their union is.
 
 The ticket proposed probing a known branding frame and comparing expected RGBA. That works and ages badly: the expected values are the ASSETS' values, so re-running build-branding.mjs would silently invalidate the check protecting the assets. Asking allocationSize({format:'RGBA'}) whether it equals width*height*4 tests the same thing — does this engine mean RGBA when it says RGBA — and depends on nothing that can drift. Safari answers 5,184,000 against 8,294,400; Chrome and Firefox answer exactly. Scaling moved out of the canvas into compositeSampled, bilinear, which is well-defined on premultiplied colour.
@@ -1463,7 +1688,6 @@ NOT done, deliberately: restoring the two controls VH-45 withdrew. The engineeri
 
 Verify: typecheck 0 · lint 0 · 353 tests (8 new) · build 0 · docs 0 · links 0 · memory 0 structural · /spike-alpha.html measured in Chrome 151, Firefox 154 and Safari 26.5.2
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1473,24 +1697,30 @@ src/media/composite.test.ts
 src/media/composite.ts
 src/media/pipeline.ts
 src/spike/alpha.ts
-f926eb1 2026-08-26 djDAOjones
+commit f926eb12c20e9fe8a5dd27eb3416d6f1101a1034
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T01:20:37+01:00
+
 Pin the no-aac-encode block in unit tests
+
 The block shipped verified in three real browsers but with nothing in the Node suite holding it. Three assertions: it fires when AAC is refused, it stays quiet when there is no encoder at all, and when both video and audio fail it names the picture rather than the sound.
 
 Verify: full gate green, 345 tests
 
----
 
 src/media/preflight.test.ts
-aa39f03 2026-08-26 djDAOjones
+commit aa39f0384e3e9c52e050cc3d8bf90af58e341c49
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T01:19:12+01:00
+
 VH-43: verify the odd shapes, and find that Firefox cannot make audio
+
 The shape half is what the item asked for and it passes: 852x480, 4:3, 16:10, mono, 44.1 kHz and silent sources all reach a correct output — aspect preserved, dimensions even, 44.1 conformed to 48, channel count never silently changed, a silent source producing no empty audio track. Synthesised rather than the real lectures, because samples/ is gitignored and a check that depends on it runs on exactly one machine, while the PROPERTIES travel.
 
 It also found something much larger, which is now VH-49. Firefox 154 has the AudioEncoder class and refuses mp4a.40.2 at every bitrate from 64k to 256k and at both channel counts, while accepting Opus and every video configuration we ask for — measured headless AND in a normal window. capability.ts checked only that the class existed, so a Firefox user passed pre-flight, watched a progress bar, and got "Something went wrong" when the audio reached the encoder. Every lecture with sound, in a browser spec 10 lists as supported. capability.ts now asks AudioEncoder.isConfigSupported for the exact configuration the job will use, and pre-flight blocks with no-aac-encode before anything starts, naming a browser that works. What Firefox users should actually GET is a product decision and carries [sign-off].
 
 Verify: typecheck 0 · lint 0 · 342 tests · build 0 · docs 0 · links 0 · memory 0 structural · /spike-shapes.html ALL PASS in Chrome and Safari, and in Firefox with the audio cases honestly skipped · /spike-preflight-audio.html ALL PASS in all three: Firefox blocks with no-aac-encode, Chrome and Safari proceed, silent sources proceed everywhere
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1509,15 +1739,18 @@ src/spike/preflight-audio.ts
 src/spike/shapes.ts
 src/ui/preflight-panel.ts
 src/workers/job.worker.ts
-c952f58 2026-08-26 djDAOjones
+commit c952f58e7397cdbd4a4856964cbbce4e07fe7033
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T01:07:59+01:00
+
 VH-16: make the harness run the path the app actually takes
+
 OpfsWorkspace.createFile prefers a FileSystemSyncAccessHandle and falls back to createWritable() when one is unavailable — and sync handles are worker-only. The harness called runPipeline on the main thread, so every acceptance run this project has done exercised the FALLBACK and never the real path. That is a gap that makes a passing harness worse than none, because it is evidence pointing at the wrong thing. It now drives a fixture through the worker: 81 kB, 4.10s, pass.
 
 Preset comparison moved to a new deterministic camera-motion fixture. On the screen-like default H.264 predicts nearly everything for free and the two presets land within a few percent, so comparing them measured nothing; on a field that changes everywhere every frame they separate properly — 1223 kB against 468 kB, 38%. And the loudness offset now comes from PipelineResult.contentOffsetSeconds rather than BRANDING_DURATIONS.openingSeconds: the pipeline offsets by the clip's actual decoded duration and the two agreed only because the placeholder is exactly 5.000s, so a real asset a few frames off would have shifted every window measured while the harness went on passing.
 
 Verify: typecheck 0 · lint 0 · 342 tests · build 0 · docs 0 · links 0 · memory 0 structural · full acceptance run in the browser: "Finished — nothing failed", with both new checks passing
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1525,15 +1758,18 @@ pm_skills/project/trajectory.md
 src/acceptance/fixtures.ts
 src/acceptance/run.ts
 src/media/pipeline.ts
-c79bcc3 2026-08-26 djDAOjones
+commit c79bcc37064d6b54ee886975f29e8078ed1a7cc4
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T00:52:11+01:00
+
 VH-38: measure silence, not duration
+
 The process request carried a 3,600,000 ms deadline on the whole job — a duration cap of exactly the kind spec section 7 opens by disclaiming, and one that gets slow devices backwards by punishing the machines that most need patience. Worse, it rejected WITHOUT telling the worker, so the job ran on, finished, landed its result in the finished map, and nothing ever released it: the user was told the job had failed while it quietly succeeded and held its output for the tab's lifetime.
 
 The watchdog now resets on every message the worker sends about the request and gives up only after WORKER_SILENCE_LIMIT_MS of quiet. pipeline.ts reports a stage every thirty frames, so a healthy job speaks several times a second however long it runs, which makes silence the question that actually separates a wedged worker from a busy one. Giving up posts cancel first. Extracted as createWatchdog so it is testable without a worker and an hour — including that a late progress message must not resurrect a request whose caller has already been told it failed.
 
 Verify: typecheck 0 · lint 0 · 342 tests (7 new) · build 0 · docs 0 · links 0 · memory 0 structural · browser: a job completes with the watchdog resetting on progress, and a mid-job cancel still settles cleanly and restores the controls
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1543,13 +1779,16 @@ src/config/thresholds.ts
 src/core/watchdog.test.ts
 src/core/watchdog.ts
 src/main.ts
-ee0f0cd 2026-08-26 djDAOjones
+commit ee0f0cd8d654a379e5cca18d552652e98ae2823f
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T00:47:49+01:00
+
 VH-20: emit the audio chain's tail rather than document the loss
+
 The limiter delays by its look-ahead and the encode path just stopped, dropping that window from the end of every job. The ticket offered a choice — emit the tail, or measure the loss and accept it — and a fact not in the ticket settled it: AudioChain.flush() already existed and analyseSourceAudio already called it. So the analysis pass measured the whole signal while the output dropped its last window, and the meter and the output disagreed about the same audio. Accepting that would have meant writing down the disagreement when the fix was to call a method already there. createContentAudioProcessor returns { process, flush } and feedAudio emits the tail after the last sample.
 
 Verify: typecheck 0 · lint 0 · 335 tests (1 new) · build 0 · docs 0 · links 0 · memory 0 structural · pinned by frame conservation: strictly short before the flush, exact after
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1557,15 +1796,18 @@ pm_skills/project/trajectory.md
 src/audio/chain.test.ts
 src/media/audio-plan.ts
 src/media/pipeline.ts
-48788af 2026-08-26 djDAOjones
+commit 48788af60915573e99582453bc63eb6224db3a87
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T00:43:41+01:00
+
 VH-40: run the guard before anything is written
+
 check:placeholders stops a real lecture recording being copied into a deployed build — the most direct protection the no-egress invariant has — and it ran AFTER build in the gate, and not at all for a bare npm run build, which is precisely what deploy-pages.yml calls. It is a prebuild script now, so nothing writes dist/ without it. A small Vite plugin drops branding/README.md, which the live site was serving with its ticket IDs and build notes. And the worker sets its own minimum log level: it has a separate module scope, so main.ts:32 never reached it and every debug line the job emitted reached a production console.
 
 Two of the item's three claims did not survive checking, and both are recorded rather than acted on. The spike pages do not ship — rollupOptions.input names index.html alone and every spike-*.html returns 404 live. And the sourcemaps expose nothing, because the repository is public: every line they reveal is already on GitHub, while they are what turns a diagnostics bundle from a lecturer's machine into real function names. That rests on visibility rather than on the deploy, so vite.config.ts names the condition to revisit.
 
 Verify: typecheck 0 · lint 0 · 334 tests · build 0 · docs 0 · links 0 · memory 0 structural · prebuild confirmed firing before build · dist/branding/README.md confirmed absent with the assets intact
 
----
 
 package.json
 pm_skills/project/backlog.md
@@ -1573,15 +1815,18 @@ pm_skills/project/decision-log.md
 pm_skills/project/trajectory.md
 src/workers/job.worker.ts
 vite.config.ts
-331d4dc 2026-08-26 djDAOjones
+commit 331d4dc9ef58003ad19bfe9e7ee1771bed1a6db1
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T00:40:45+01:00
+
 VH-37: report the disease, not the symptom
+
 InvalidVttError was checked in handleInspect and handlePreflight, neither of which parses VTT, and NOT in handleProcess — the only path that reaches offsetVtt (pipeline.ts:293 is its sole caller). A malformed sidecar therefore surfaced as "Something went wrong". The check moved to where the throw is and the two dead branches are gone, so the next reader is not told inspection can produce a subtitle error.
 
 The lane bug was two bugs. Promise.all rejects on the first failure and abandons the second promise, so the survivor kept feeding an Output that was already cancelling and then rejected with nothing awaiting it — and diagnostics.ts hooks unhandledrejection, so that reached the user as a second error they had no way to interpret. settleLanes observes both, aborts the survivor through a signal derived from the caller's, and rethrows the original cause in preference to the CancelledError that cause triggered. Extracted from encode() so it is testable without WebCodecs: seven assertions, including that nothing is left unobserved when both lanes fail independently.
 
 Verify: typecheck 0 · lint 0 · 334 tests (7 new) · build 0 · docs 0 · links 0 · memory 0 structural
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1590,28 +1835,34 @@ pm_skills/project/trajectory.md
 src/media/lanes.test.ts
 src/media/pipeline.ts
 src/workers/job.worker.ts
-666df43 2026-08-26 djDAOjones
+commit 666df437410adbdb7e104c08da7f51ad5208a170
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T00:35:24+01:00
+
 VH-39: make three stale claims read true
+
 README said "Foundation set, build not started" on the front page of an app that has been live since 2026-08-25; it now says what the pilot is and names what is withdrawn from it. media/branding.ts described the transition modes as not built, two days after they shipped. And presets.ts commented avc1.640033 as level 4.2 where 0x33 is 51, i.e. level 5.1 — wrong in the direction that matters, because 4.2 tops out below the 4K sources spec 2 contains, so anyone trusting the comment would have "corrected" the string into refusing them.
 
 Verify: typecheck 0 · docs:lint 0 · links 0 broken · check:memory 0 structural
 
----
 
 README.md
 pm_skills/project/backlog.md
 pm_skills/project/trajectory.md
 src/config/presets.ts
 src/media/branding.ts
-5eabf1b 2026-08-26 djDAOjones
+commit 5eabf1bdae862f5fdff9bbc8201a3231ab5d8339
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T00:34:01+01:00
+
 VH-42: measure the branding boundaries against the picture
+
 PipelineOptions.durationSeconds was SourceReport.durationSeconds, which is max(video, audio), and every branding boundary keyed off it. Audio outrunning the picture therefore put the closing where the AUDIO ended — opening a video gap with nothing fed into it — and pushed the composite point past anything the picture reached, so the build silently never appeared. A source shorter than the 1.00s build computed a negative overlay start. The field is now videoDurationSeconds plus audioDurationSeconds, which made the compiler enumerate all four call sites rather than leaving me to find them.
 
 The arithmetic moved out of encode() into a pure closingTimeline(), because inside the pipeline it needed WebCodecs to reach and neither failure exists in the corpus — so no test could express either one, and a defect no test can express comes back. Trailing audio now plays under the closing rather than being truncated, since the real masters carry no audio to collide with; if a future one does, the content yields at the boundary instead, and that branch is pinned too.
 
 Verify: typecheck 0 · lint 0 · 327 tests (14 new) · build 0 · docs 0 · links 0 · memory 0 structural · two synthesised fixtures in /spike-modes.html, since the corpus contains neither shape: audio +2s yields 8.00s where the old code gave 10.08s, and a 0.5s source yields 5.52s via the over-freeze downgrade
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1625,8 +1876,12 @@ src/media/pipeline.ts
 src/spike/modes.ts
 src/spike/real.ts
 src/workers/job.worker.ts
-7a2555a 2026-08-26 djDAOjones
+commit 7a2555a4bef01410c6dd3fb2896d41b8306650b6
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-26T00:03:34+01:00
+
 VH-47: anchor best quality to the source, and only ever downward
+
 The best-quality bitrate is now the geometric mean of spec 6.1's pixelRate x 0.12 anchor and the source's own measured density, clamped to [0.03, 0.12] bits/pixel/frame. The upper bound IS the anchor, so the rule can only lower the figure, never raise it — nothing that runs today can be refused tomorrow for storage it suddenly needs. Teams falls 3.98 to 2.00 Mbps and is still at 1.99x its source; the thinnest corpus file falls to a quarter of today; a well-encoded master is left exactly where it is.
 
 Designed and adversarially verified by an eight-agent workflow. Two of three refuters returned blocking findings against the first recommendation and the design here is the corrected one: a 0.18 bpp ceiling was measured, with real encodes, to add up to 933 MB per file for +0.60 VMAF against a ~6-point JND. That also retired half the ticket's diagnosis — under-serving a pristine master is not a defect when the destination re-encodes on ingest, and the ticket's proposed 1.2x floor would have forbidden the right answer on 7 real files. The unmeasured 2.0x ratio cap was declined for the same reason it was proposed: no measurement behind it.
@@ -1635,7 +1890,6 @@ Two errors of mine from yesterday, found by the scout: MAC_EXPORT carried frame 
 
 Verify: typecheck 0 · lint 0 · 313 tests (11 new) · build 0 · docs 0 · links 0 · memory 0 structural · corpus figures re-measured independently with ffprobe (Teams 1005714, AMCS3068 484914, Nonreligion 19105327 all match to the byte) · invariants brute-forced: 0 violations of best>=smaller over 6048 combinations, 0 non-monotonic points
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1648,27 +1902,33 @@ src/config/presets.test.ts
 src/config/presets.ts
 src/spike/real.ts
 src/workers/job.worker.ts
-c5049f9 2026-08-25 djDAOjones
+commit c5049f9a082a6d714256d87c0d5f9532f803e3cc
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T23:03:31+01:00
+
 Raise VH-47 and VH-48, and promote D10 out of the icebox
+
 Authored by a parallel session on this repo, 2026-08-25; committed here after verification because it was left uncommitted and the tree has to be clean before anything builds on it. Gate re-run clean against it: 302 tests, 0 structural memory failures, 0 broken links.
 
 VH-47 is a fair catch on VH-41: exempting best quality from the never-exceed-source cap was right, but the figure it exempts is pixelRate x 0.12, which never looks at the source — so the Teams recording gets 4.0x headroom and a 20 Mbps camera master gets 0.37x, inverted with respect to the exemption's own purpose. It sequences ahead of VH-31 because an estimate should be grounded against the bitrate that will actually be requested. VH-48 promotes D10 now that VH-24 has disproven half its rejection, and correctly keeps [sign-off] because the codec-parameter-matching objection still stands.
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/doc-deltas.md
 pm_skills/project/tickets/VH-47.md
 pm_skills/project/tickets/VH-48.md
-de0b94f 2026-08-25 djDAOjones
+commit de0b94fce016aa95571698b713c89a8c48e3207a
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T22:48:21+01:00
+
 VH-24, VH-41: the output shape stops lying about the source
+
 Two rules the spec has carried since the 2026-08-25 doc-sync and the code did not. conformedFrameRate withdraws round-to-nearest-standard below 24 fps, so a Teams recording stays at its measured 16.000 instead of becoming 24 with half its frames duplicated; above the floor nothing changes and a PowerPoint export at 30.303 still conforms to 30. inspect now measures the source's real video bitrate from its packets, and the smaller preset's request is capped at it, so the preset named for making files smaller cannot inflate one. The cap is stated in the preflight panel in plain language rather than applied silently. Not applied to best quality, deliberately: that preset's destinations re-encode on ingest, where headroom is what prevents generation loss. The framerate test that asserted the old 15->24 behaviour pinned the defect; it was rewritten to pin the rule, with a comment saying so.
 
 The corpus ticket moved from VH-24 to VH-43, which is the open item still resting on it — the gate's orphan check caught that, and every reference was repointed.
 
 Verify: typecheck 0 · lint 0 · 302 tests (13 new) · build 0 · docs 0 · links 0 · memory 0 structural · browser: a 16 fps source reports "640 x 360 at 16 fps" and the smaller preset shows the cap notice with the estimate falling 324 kB to 82 kB
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1681,13 +1941,16 @@ src/media/framerate.ts
 src/media/inspect.ts
 src/ui/preflight-panel.ts
 src/workers/job.worker.ts
-34f9cb4 2026-08-25 djDAOjones
+commit 34f9cb45b5c1b1d0f09b15b8c610233e515ff0c9
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T22:37:51+01:00
+
 VH-33: withdraw the opening control until an approved asset exists
+
 The checkbox was already defaulted off and captioned "Not yet available... leave this off unless you are testing". That is an instruction, not a constraint, and what it guarded is a published video carrying an unapproved University graphic. Same shape as VH-45: remove the control, keep the capability, restore it when there is something approved to restore (VH-23). The placeholder assets stay and keep shipping, which is harmless — they draw the literal words PLACEHOLDER - opening - 1080p25 and no University branding, so the risk was only ever compositing one into someone's video.
 
 Verify: typecheck 0 · lint 0 · 289 tests · build 0 · docs 0 · links 0 · memory 0 structural · browser: no branding-opening input or helper in the DOM, Branding reads "Add the closing sequence" alone
 
----
 
 index.html
 pm_skills/project/backlog.md
@@ -1695,26 +1958,32 @@ pm_skills/project/decision-log.md
 pm_skills/project/trajectory.md
 pm_skills/project/wish-list.md
 src/main.ts
-29246d2 2026-08-25 djDAOjones
+commit 29246d2b14e1fc2062ae5c671a678ffa4c77778b
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T22:32:17+01:00
+
 VH-36: the screen locks while a job runs
+
 The bug was not which controls were disabled but that the controls were being REBUILT: showProcessControls ran processActions.replaceChildren() on every preflight, so changing the preset mid-job detached the running job's Cancel and appended a fresh enabled Start — the job became uncancellable and a second one launchable. Start and Cancel are now built once at module scope and never replaced, which also lets the cancel listener be bound once instead of once per Start click. One setJobInFlight flag disables the file, subtitle, preset and branding controls for the duration; VH-32 inherits that model rather than re-deciding it. A second defect found on the way: disabling Start was already happening and was invisible, because .button sets its own colours and a disabled file input still drew a live blue ::file-selector-button. The disabled look drops the fill rather than washing out the text, so it reuses a pair contrast.test.ts already pins at AAA.
 
 Verify: typecheck 0 · lint 0 · 289 tests · build 0 · docs 0 · links 0 · memory 0 structural · browser: preset change leaves both button nodes identical, every invalidating control disabled mid-job, three extra Start clicks inert, cancel at 15% settles cancelled and restores the screen
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/trajectory.md
 src/main.ts
 src/styles/app.css
-4cb1449 2026-08-25 djDAOjones
+commit 4cb14490f98022a6d37b06151e981bfea9de2eba
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T22:06:46+01:00
+
 VH-35: a second tab no longer deletes the first tab's work
+
 The ticket proposed passing the live job ids to the sweep, which fixes nothing — the sweep runs at worker boot, when this context has no jobs, and the directories at risk belong to another tab whose ids it cannot see. A live workspace now holds an origin-wide Web Lock on its directory and the sweep removes only what nobody holds; the browser releases those locks when a tab dies, which is the exact case the sweep exists for. Directory names gained a per-tab session prefix, fixing a second defect found on the way: job-${id} is a per-worker counter, so two tabs both opened job-1. Running the new spike page in all three engines found two more — one undeletable directory abandoned every orphan after it in the sweep loop, and the cancel path was never exercised.
 
 Verify: typecheck 0 · lint 0 · 289 tests (7 new) · build 0 · docs 0 · links 0 · memory 0 structural · /spike-opfs.html ALL PASS in Chrome 151, Firefox 154, Safari 26.5.2
 
----
 
 AGENTS.md
 pm_skills/project/backlog.md
@@ -1727,13 +1996,16 @@ src/media/opfs.test.ts
 src/media/opfs.ts
 src/spike/opfs.ts
 src/workers/job.worker.ts
-1b466b4 2026-08-25 djDAOjones
+commit 1b466b469973c77ddc1d43db44fb0384e64a0af8
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T21:57:04+01:00
+
 VH-46: make the three-engine check one command
+
 The VH-34 harness was built ad hoc and thrown away, which is the wrong way round: conventions require browser-only checks to be verified in a real browser and recorded, and a recorded check nobody can re-run is weak. scripts/run-in-engines.mjs drives Chrome over CDP, Firefox over WebDriver BiDi and Safari over safaridriver, keying off the <pre id="log"> ... done contract every spike page already shares, so it works on any of them. No dependency — the protocols are already on the machine and Node has a global WebSocket. VH-44 needs it to prove its regression test in three engines. eslint.config.js gains four Node globals in the existing .mjs block; no rule weakened. Also filled 15 missing file-map roles and cleared the two glob lines the generator could not resolve.
 
 Verify: typecheck 0 · lint 0 · 282 tests · build 0 · docs 0 · links 0 · memory 0 structural · 3/3 engines reported a complete run on /spike-alpha.html
 
----
 
 DEV-INFRASTRUCTURE.md
 eslint.config.js
@@ -1744,39 +2016,51 @@ pm_skills/project/trajectory.md
 pm_skills/project/wish-list.md
 public/branding/README.md
 scripts/run-in-engines.mjs
-0c9c5c7 2026-08-25 djDAOjones
+commit 0c9c5c771284b8d8f1e37f10821640a5d3c66fff
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T21:45:46+01:00
+
 Archive the Band 0 phase out of the live trajectory
+
 The previous prune predicted the next shipped item would trip the 2,000-word budget, and VH-45 did. Phase 1 moves verbatim to archive/trajectory/trajectory-0001-band-0-mvp.md behind a pointer, and archive/INDEX.md is created as the map of cold storage. 2,069 to 1,358 words, against a 1,400 prune-to target. Three diffs against the intact original proved the split lossless.
 
 Verify: docs:lint 0 · links 0 broken · check:memory 0 structural
 
----
 
 pm_skills/project/archive/INDEX.md
 pm_skills/project/archive/trajectory/trajectory-0001-band-0-mvp.md
 pm_skills/project/decision-log.md
 pm_skills/project/trajectory.md
-3ec6544 2026-08-25 djDAOjones
+commit 3ec6544de9b14d9f84db427ee0abd09346abead1
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T21:43:30+01:00
+
 Correct the deploy trigger: every push to main already publishes
+
 VH-44's note and VH-14 both said the Pages workflow was workflow_dispatch only. It carries push: branches: [main] as well, added when public hosting was accepted — so VH-45's withdrawal went live with its own push. Verified on the deployed site: no branding-mode or branding-style inputs remain in the DOM.
 
----
 
 pm_skills/project/backlog.md
-b169bed 2026-08-25 djDAOjones
+commit b169bed0045c3eb0e9883a5ebe54e81058aade7a
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T21:39:31+01:00
+
 Say plainly that the withdrawal is not live until someone deploys
+
 VH-44's note claimed the exposure was closed. It is closed in the code; the Pages workflow is workflow_dispatch only, so the deployed site still offers the two broken controls until a deploy runs.
 
----
 
 pm_skills/project/backlog.md
-55a9fb5 2026-08-25 djDAOjones
+commit 55a9fb5454e3640ab63241c4894c06110efcdfb7
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T21:39:12+01:00
+
 VH-45: withdraw the two closing transition controls
+
 VH-34 found over-picture and over-freeze wrong in Firefox, and both were live radio buttons on the deployed site. VH-44's fix is a startup probe with a regression test, so the controls come out first — VH-33's precedent, and reversible when VH-44 lands. Animation goes with them: Fade and Slide differ only during the build a hard cut discards, so syncBrandingOptions was already disabling it on every default job. chosenBranding already fell back to CLOSING_DEFAULTS, so the pipeline keeps all three modes untouched. Spec 4.1 still describes the choice as the user's; recorded as a doc-delta.
 
 Verify: typecheck 0 · lint 0 · 282 tests · build 0 · docs 0 · links 0 · memory 0 structural · DOM checked in the browser (0 mode inputs, 0 style inputs, 2 colour inputs, no console errors)
 
----
 
 index.html
 pm_skills/project/backlog.md
@@ -1784,13 +2068,16 @@ pm_skills/project/decision-log.md
 pm_skills/project/doc-deltas.md
 pm_skills/project/trajectory.md
 src/main.ts
-7491ce3 2026-08-25 djDAOjones
+commit 7491ce3bc8127e111602bbf26e39aa95111314bf
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T21:29:19+01:00
+
 Measure the composite in all three engines, and find it broken in one
+
 VH-34 asked whether compose()'s getImageData readback puts back the engine disagreement the CPU blend was meant to escape. It does. Firefox returns the blue onset 3.7x too bright and overflows the white one past 255, where it wraps to 17 rather than clamping — so a white closing over dark picture inverts. Neither alternative route is portable either: VideoSample.copyTo is right in Chrome and Firefox and returns the luma plane in Safari, which ignores the requested format silently. Ground truth came from ffmpeg reading the onsets straight out of the WebM; the browsers were driven headlessly over BiDi, CDP and safaridriver. The spike closes as VH-44, which carries the numbers a fix has to satisfy, and the claims that outran the evidence are narrowed in composite.ts, the branding README and trajectory.
 
 Verify: typecheck 0 · lint 0 · 282 tests · build 0 · docs 0 · links 0 · memory 0 structural
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
@@ -1802,18 +2089,25 @@ public/branding/README.md
 spike-alpha.html
 src/media/composite.ts
 src/spike/alpha.ts
-47df0f1 2026-08-25 djDAOjones
+commit 47df0f16785bffd41752ccce8f1585a262c22407
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T20:51:07+01:00
+
 Split VH-24 into the four defects it was actually carrying
+
 One item had five acceptance conditions across five files: the frame-rate conform (VH-24), the never-exceed-source bitrate cap (VH-41), the closing boundary's duration (VH-42), and odd source shapes (VH-43). VH-42 is a wrong boundary on the default path, so it moves up beside the other severe items; the rest stay in the output-shape cluster. The ticket file stays whole as the shared corpus characterisation and gains a fixture map, which also records that VH-42 has no fixture in the corpus and needs two synthesised.
 
 Verify: docs:lint 0 · links 0 broken · check:memory 0 structural
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/tickets/VH-24.md
-e2f6e25 2026-08-25 djDAOjones
+commit e2f6e250c56b41b07c0d7dca3deb9d03fabd80ac
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T20:37:11+01:00
+
 Let the specification say what the assets and the corpus actually are
+
 Reconciles docs/01-specification.md against all 12 open doc-deltas in one
 signed-off batch, plus 3 consequential edits the ledger had not captured:
 §13's acceptance criteria still required both animations and a
@@ -1840,9 +2134,8 @@ Two residual deltas the sync did not reach are captured rather than fixed —
 §9.1 still offers an opening toggle, and §8 frames subtitle re-timing wholly
 on the opening. Both need their own sign-off.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 docs/01-specification.md
 pm_skills/project/backlog.md
@@ -1856,8 +2149,12 @@ pm_skills/project/tickets/VH-32.md
 pm_skills/project/tickets/VH-34.md
 pm_skills/project/trajectory.md
 pm_skills/project/wish-list.md
-f02b416 2026-08-25 djDAOjones
+commit f02b416b4ada5ed8257f362bd10a651e7aaa893e
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T19:58:51+01:00
+
 Confirm the alpha divergence is settled, not a passing bug
+
 Firefox 154 returns exactly what 152 did - drawImage over white gives
 255, and the frame at t=0.40s reads alpha 69. Two major versions apart,
 identical.
@@ -1875,16 +2172,19 @@ later moves it onto the GPU on the strength of testing one browser.
 The frame-boundary difference is stable per engine too, so it is
 rounding rather than flakiness.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/tickets/VH-22.md
 pm_skills/project/trajectory.md
 public/branding/README.md
 src/media/composite.ts
-1c08b04 2026-08-25 djDAOjones
+commit 1c08b0452688a1307810d244d27750fd1a94e6e9
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T19:55:23+01:00
+
 Record that the engines disagree on premultiplied alpha
+
 Firefox 152 completes the set - all three supported browsers decode VP9
 alpha through the app's own loader, so every closing mode works
 everywhere.
@@ -1909,9 +2209,8 @@ engines - t=0.40s on a 25fps build returned the neighbouring frame in
 Firefox - and that the deployed site works on a University machine, so
 github.io is not filtered.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/tickets/VH-22.md
@@ -1919,8 +2218,12 @@ pm_skills/project/trajectory.md
 public/branding/README.md
 src/media/composite.ts
 src/spike/alpha.ts
-79355f0 2026-08-25 djDAOjones
+commit 79355f0af16e8dcbbe381feea87a0588483b9895
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T19:39:50+01:00
+
 Give the DSP tests enough time to pass on a CI runner
+
 The first deploy that actually ran the gate in CI failed, and not on an
 assertion: three audio chain tests timed out. They push 90-120 seconds
 of synthesised speech through the full chain, so locally the slowest
@@ -1936,14 +2239,17 @@ Worth knowing that the previous commit therefore never deployed - the
 live site was still the build before it, without the opening-off
 change.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 DEV-INFRASTRUCTURE.md
 vite.config.ts
-c377ad6 2026-08-25 djDAOjones
+commit c377ad657941b0e66eb6d1b66af931099408cc05
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T19:36:40+01:00
+
 Default the opening sequence off, and log what the first real use found
+
 The opening toggle defaulted ON with only a generated placeholder behind
 it. On a public site that means a real video could ship carrying a
 stand-in UoN graphic, which is a brand risk rather than an unfinished
@@ -1966,9 +2272,8 @@ VH-32: a deliberate interface pass, requested after real use. The
 screen accretes rather than progresses, speaks in codecs rather than
 outcomes, and never shows moving picture despite being a video tool.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 index.html
 pm_skills/project/backlog.md
@@ -1976,8 +2281,12 @@ pm_skills/project/tickets/VH-31.md
 pm_skills/project/tickets/VH-32.md
 pm_skills/project/trajectory.md
 public/branding/README.md
-e4df33e 2026-08-25 djDAOjones
+commit e4df33e4f7f6dfe206aeb1a3a77b4a303adce06f
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T18:22:20+01:00
+
 Run real UoN material end to end, and enable deployment
+
 The maintainer accepted a public pilot site, so main now deploys
 automatically; manual dispatch stays for re-running without a commit.
 
@@ -2006,9 +2315,8 @@ net. Three of twenty-two corpus files are now silent.
 Quantifies the bitrate concern too: against this 2.08 Mbps source, the
 preset named "smaller file" asks for 2.50 Mbps.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 .github/workflows/deploy-pages.yml
 pm_skills/project/backlog.md
@@ -2017,8 +2325,12 @@ pm_skills/project/tickets/VH-24.md
 spike-real.html
 src/spike/framerate.ts
 src/spike/real.ts
-95d8021 2026-08-25 djDAOjones
+commit 95d80214db5f5369f1b3e58b06a57082f5e803c4
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T18:10:40+01:00
+
 Make the build deployable to GitHub Pages
+
 Pages is viable, and the WebCodecs decision is why: nothing uses
 SharedArrayBuffer or crossOriginIsolated, so the app needs no COOP/COEP
 headers - which Pages cannot set, and which would have made an
@@ -2044,9 +2356,8 @@ VH-14 is no longer blocked on D5 for the technical work; what remains
 is the hosting question itself, plus whether github.io is reachable
 from a managed University machine.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 .github/workflows/deploy-pages.yml
 pm_skills/project/backlog.md
@@ -2054,8 +2365,12 @@ pm_skills/project/file-map.md
 src/config/branding.test.ts
 src/config/branding.ts
 vite.config.ts
-3221c34 2026-08-25 djDAOjones
+commit 3221c341821abceb25d2b7c484d1e8f929fe21a2
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T17:34:27+01:00
+
 Log the trim feature, and correct an overstated frame-rate claim
+
 VH-30 records trim as a future feature. Ranged reads are native to
 Mediabunny so the mechanics are cheap; the ticket captures the
 interactions instead, the sharpest being that loudness must measure the
@@ -2080,9 +2395,8 @@ first invariant is that no media leaves the device - a forgotten
 fixture in a deployed build would publish someone's lecture. The
 placeholder check now fails on anything left in public/spike/.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 .gitignore
 pm_skills/project/backlog.md
@@ -2092,8 +2406,12 @@ pm_skills/project/tickets/VH-30.md
 scripts/check-placeholders.mjs
 spike-framerate.html
 src/spike/framerate.ts
-3018496 2026-08-25 djDAOjones
+commit 30184961d1df22ebc5b8cb8b82ae5ded90bc1925
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T17:29:05+01:00
+
 Add the branding options UI, and close VH-12
+
 Style, colour and mode are now selectable, behind a disclosure so the
 default path stays a single decision - the maintainer's framing was
 that hard cut is what nobody should have to think about and the rest
@@ -2118,9 +2436,8 @@ Closes VH-12: deletes the now-dead closing placeholders, rewrites the
 branding README so the opening guidance does not repeat assumptions the
 real closings disproved, and records the outcome in trajectory.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 index.html
 pm_skills/project/backlog.md
@@ -2138,8 +2455,12 @@ src/media/pipeline.ts
 src/styles/app.css
 src/workers/job.worker.ts
 src/workers/protocol.ts
-3c58545 2026-08-25 djDAOjones
+commit 3c58545e98e82bec9defb774d8c3415d5fe8bbea
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T17:18:24+01:00
+
 Wire the three closing modes into the pipeline
+
 The compositor and the freeze picker existed but nothing called them.
 Now feedVideo branches on mode: over-picture composites the build over
 the closing second of moving picture, over-freeze holds the last clean
@@ -2165,9 +2486,8 @@ and +4.97s against 4/4/5 expected, with the console confirming the
 build is fetched only for the two modes that composite it - duration
 alone would not have distinguished over-picture from a silent fallback.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/file-map.md
 pm_skills/project/tickets/VH-12.md
@@ -2175,8 +2495,12 @@ spike-modes.html
 src/media/freeze.ts
 src/media/pipeline.ts
 src/spike/modes.ts
-e4f1d5f 2026-08-25 djDAOjones
+commit e4f1d5ffd261afad513f38b25da6aaf437f2e2da
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T17:13:54+01:00
+
 Name the boundary modes with the conventional edit terms
+
 "clean cut" was invented wording. The three modes really differ in what
 sits UNDER the graphic's 1s animated build, so they are now named for
 that, using terms an editor would recognise:
@@ -2195,9 +2519,8 @@ under its word budget, and carries the implementation notes worth
 having to hand: pair frames by timestamp not order (the build is 25fps
 and sources are not), and the blend cannot use drawImage.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/tickets/VH-12.md
@@ -2206,19 +2529,26 @@ public/branding/README.md
 src/config/branding.test.ts
 src/config/branding.ts
 src/media/branding.ts
-d7fe01f 2026-08-25 djDAOjones
+commit d7fe01f4c84ae71d7ee0f7731cb506ed5537552c
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T17:07:39+01:00
+
 Trim VH-12 back under its ticket budget
+
 Compresses the sections that had been restated as work landed. No
 findings removed - the asset facts live in public/branding/README.md
 and the rationale in the decision log.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/tickets/VH-12.md
-1256bc0 2026-08-25 djDAOjones
+commit 1256bc0f5e9ba302c42a8b8f706a4426e57bd47d
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T17:07:04+01:00
+
 Default to clean cut, and build the pieces the transitions need
+
 Clean cut is now the default: least for a user to think about, per the
 maintainer, and it happens to be the most robust choice too - the one
 mode that composites nothing, so the default path keeps working even in
@@ -2245,9 +2575,8 @@ fitting the slope is more machinery than the case is worth.
 
 15 new tests; 282 pass.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 src/config/branding.test.ts
 src/config/branding.ts
@@ -2255,8 +2584,12 @@ src/media/composite.ts
 src/media/freeze.test.ts
 src/media/freeze.ts
 src/spike/alpha.ts
-d29d5fc 2026-08-25 djDAOjones
+commit d29d5fc0e91146c8f43ea86b4f34e5141d4f2bd3
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T16:42:31+01:00
+
 Load the transparent onsets, and check it through the app's own loader
+
 fetchClip now offers both container formats on every branding fetch
 rather than choosing by file extension - the tails are MP4 and the
 onsets are WebM, and a URL is not a reliable statement about what is
@@ -2271,15 +2604,18 @@ The spike page now exercises the app loader as well as Mediabunny
 directly, since that is the path that actually has to work:
 loadClosingOnset -> 1.000s, loadBrandingClip -> 4.000s, both passing.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/tickets/VH-12.md
 src/media/branding.ts
 src/spike/alpha.ts
-960d213 2026-08-25 djDAOjones
+commit 960d213bfe71665cad5ec83cfa06d1f97c7060e4
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T16:40:39+01:00
+
 Add the premultiplied compositor, pinned against the wrong formula
+
 The UoN masters store premultiplied alpha, so the composite is
 out = brand + source*(1-a), not the straight-alpha form. Applying the
 straight form to premultiplied source multiplies by alpha twice,
@@ -2299,16 +2635,19 @@ are opaque, so that is the common path.
 
 Seven new tests; 267 pass. Also maps the five files added this session.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/file-map.md
 pm_skills/project/tickets/VH-12.md
 src/media/composite.test.ts
 src/media/composite.ts
-aedc57c 2026-08-25 djDAOjones
+commit aedc57c81381fe471459e1a9eff28a5a585df59f
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T16:37:28+01:00
+
 Rewire branding config, and put the real closing asset in the pipeline
+
 src/config/branding.ts now models the two-part closing: style, colour
 and mode types, the measured 1s/4s split, closingAddedSeconds(mode) and
 modeNeedsOnset(mode). brandingAssetHeight replaces the old frame-rate
@@ -2332,17 +2671,20 @@ mode-dependent, so a copy would have drifted silently.
 
 Nine new config tests; 260 pass.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/tickets/VH-12.md
 src/acceptance/run.ts
 src/config/branding.test.ts
 src/config/branding.ts
 src/media/branding.ts
-0fb5a3d 2026-08-25 djDAOjones
+commit 0fb5a3d2b59140c4ea51bdf9d3f61f7d988c0ae5
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T16:03:56+01:00
+
 Convert the branding masters, and verify alpha decode in a browser
+
 The spike passed: Mediabunny merges colour and alpha on the CPU, so it
 needs only ordinary VP9 decode rather than native browser alpha-video
 support. /spike-alpha.html loads each asset, draws it through a canvas
@@ -2368,9 +2710,8 @@ point and mode durations all depend on that shape.
 The app still loads the placeholders - selection and compositing are
 not written yet, so nothing references a missing file.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/tickets/VH-12.md
 public/branding/README.md
@@ -2389,8 +2730,12 @@ public/branding/closing-tail-white-2160p.mp4
 scripts/build-branding.mjs
 spike-alpha.html
 src/spike/alpha.ts
-526bddd 2026-08-25 djDAOjones
+commit 526bddd0ef9c08b887379ed212545375a3ea63d6
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T15:55:45+01:00
+
 Approve VH-12 and settle the branding choices
+
 Maintainer approved the work and settled the open questions: all four
 2025 styles ship, Fade Blue is the default, the 2023 exit animation is
 retired, and the shared tail is deliberate - the assets were authored
@@ -2402,9 +2747,8 @@ coincidence, so the app ships two shared tails (Blue, White) and four
 onsets, cutting alpha-carrying material to four seconds total. The tail
 is identical within a colour; Blue and White differ throughout.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 DEV-INFRASTRUCTURE.md
 package-lock.json
@@ -2412,8 +2756,12 @@ package.json
 pm_skills/project/backlog.md
 pm_skills/project/decision-log.md
 pm_skills/project/tickets/VH-12.md
-c30aae4 2026-08-25 djDAOjones
+commit c30aae484861b63c8472e8d89f37d05459925a5c
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T15:39:50+01:00
+
 Confirm the clean-frame freeze, and check the code against phone sources
+
 Mode 3 freezes the last CLEAN frame, confirmed by the maintainer. With
 21 of 21 corpus sources ending on a bright frame, a corrupt or
 black-flashed final frame would be held in full view for a second, so
@@ -2439,17 +2787,20 @@ Also restructures the Active section: Band 0 shipped, so its heading no
 longer claims to be the current milestone, and the five ticketed items
 are summaries rather than duplicating their detail files.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/doc-deltas.md
 pm_skills/project/tickets/VH-22.md
 pm_skills/project/tickets/VH-26.md
 src/media/encoding.ts
-2f2ce04 2026-08-25 djDAOjones
+commit 2f2ce048ed0cee5e9aa49027f8e4fffcd9f821e2
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T15:18:56+01:00
+
 Confirm the three boundary modes and trace every anomaly to PowerPoint
+
 Maintainer confirmed the mode definitions, so they are written down with
 exact timings: hard transition discards the 1.00s onset (output T+4.00,
 no compositing); transition plays the onset over the closing second
@@ -2467,28 +2818,34 @@ exports are clean. PowerPoint exports a nominal 30 fps as 1000/33 and
 sometimes declares 30/1 anyway. The 852x480 and 640x480 geometry is
 the same family's presets.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/tickets/VH-22.md
 pm_skills/project/tickets/VH-24.md
-6278285 2026-08-25 djDAOjones
+commit 627828539f701079086e0f16824246990c285d40
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T14:46:04+01:00
+
 Record that silent branding is intended, not a gap
+
 Maintainer confirms no audio on the graphics is 'more native', so
 spec 4.4's audio bed and its -16 LUFS mastering rule are struck rather
 than treated as unmet. Flags the shared Fade/Slide tail for
 confirmation before it becomes load-bearing.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/doc-deltas.md
 pm_skills/project/tickets/VH-12.md
-7e6a646 2026-08-25 djDAOjones
+commit 7e6a646eea3dabade7e4eabdd6b6be4b81f3a66f
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T14:45:40+01:00
+
 Characterise the branding alpha, the Teams recording and boundary fades
+
 The branding alpha is premultiplied, matted with black: on the white
 variant, RGB is exactly capped at alpha (16/16, 75/75, 255/255). The
 straight-alpha composite the spec implies would double-darken the logo
@@ -2510,9 +2867,8 @@ Adds VH-25 for boundary fades, where the corpus shows a clear
 asymmetry: 21 of 21 sources end on a bright frame, but none end above
 -69 dBFS, so the picture always needs a fade and the audio never does.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/doc-deltas.md
@@ -2520,8 +2876,12 @@ pm_skills/project/tickets/VH-12.md
 pm_skills/project/tickets/VH-24.md
 pm_skills/project/tickets/VH-25.md
 pm_skills/project/trajectory.md
-864eb36 2026-08-25 djDAOjones
+commit 864eb369d38113facb2d79817b3db61c0b30e2a4
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T12:58:00+01:00
+
 Record findings from the real corpus and branding masters
+
 The maintainer supplied the test corpus (VH-M1) and the branding
 masters. Both changed the picture rather than confirming it, so this
 records what they showed and reopens the affected tickets.
@@ -2542,9 +2902,8 @@ Adds VH-22 (branding boundary modes: clean cut, transition, transition
 with freeze frame) and VH-23 (opening graphics, deferred), and closes
 VH-M1 with its coverage gaps folded into VH-M2 and VH-24.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/doc-deltas.md
@@ -2552,8 +2911,12 @@ pm_skills/project/tickets/VH-12.md
 pm_skills/project/tickets/VH-24.md
 pm_skills/project/trajectory.md
 public/branding/README.md
-53761fb 2026-08-25 djDAOjones
+commit 53761fbe604b5938b5dfc836c4ec76a343b232c6
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T11:01:02+01:00
+
 Close Band 0: consolidated decision log and shipped-phase record
+
 Step 13 housekeeping for the init-mvp run.
 
 - decision-log: one consolidated entry covering the stack choice, the
@@ -2572,14 +2935,17 @@ Memory size check, full sweep — every budget green:
   trajectory 900 / 2000, decision-log 1 entry, wish-list 13 / 25
   doc-deltas 3 open / 10
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/decision-log.md
 pm_skills/project/trajectory.md
-6f3695e 2026-08-25 djDAOjones
+commit 6f3695e5b9e82fe440217e647e7d35bf33e720b3
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T10:45:12+01:00
+
 VH-18: cancel the AAC encoder's delay — acceptance criterion 6 passes
+
 The 50 ms of late audio was the AAC encoder's own priming. Measured in
 isolation by encoding an impulse at a known time and decoding it back:
 
@@ -2627,9 +2993,8 @@ build as worse than it was:
 
 Acceptance run: 5 passed, 0 failed, 4 need a person.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/file-map.md
@@ -2642,8 +3007,12 @@ src/media/encoder-delay.ts
 src/media/inspect.ts
 src/media/pipeline.ts
 src/workers/job.worker.ts
-ccc1509 2026-08-25 djDAOjones
+commit ccc150999bd5c56055ef39938a620ef77e3f6496
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T10:28:37+01:00
+
 Backlog: remove a duplicate VH-16 and name the band boundary
+
 The fixture generator was built as part of VH-11 but its earlier entry
 was never removed, leaving two items sharing an ID.
 
@@ -2653,13 +3022,16 @@ since were found while building them and sit beyond that ceiling. VH-18
 is the exception — it is spec 13 criterion 6, so it belongs to the
 original definition of done rather than to new scope.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
-483f2b3 2026-08-25 djDAOjones
+commit 483f2b3f9f37892d82bf3ca9eea22a5f2b0f324e
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T08:39:31+01:00
+
 VH-11: acceptance verification against spec 13
+
 A repeatable in-browser harness at /acceptance.html, so "it works" is a
 report with numbers rather than an impression. Development only —
 vite.config builds index.html alone, so a test harness never ships.
@@ -2704,9 +3076,8 @@ lint rightly objected to — the browser's own resource timeline catches
 every request however it was made, including from code that does not
 exist yet, so it replaces the patching rather than supplementing it.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 acceptance.html
 pm_skills/project/backlog.md
@@ -2721,8 +3092,12 @@ src/media/opfs.ts
 src/media/pipeline.ts
 src/styles/app.css
 vite.config.ts
-f13a362 2026-08-25 djDAOjones
+commit f13a3622036bae305f8cf6f49f3b717ceb3f94c2
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T08:15:12+01:00
+
 VH-10: UI workflow, audio-quality warnings, and saving
+
 The spec 5.4 conditions were undetected, not merely unrendered — the
 analysis pass produced the data and nothing derived them. Now detected,
 worded, and shown BEFORE processing, because a lecturer told their
@@ -2773,9 +3148,8 @@ Verified in a browser:
   PCM the meter read +0.021 dBTP with 162,070 clipped positions and the
   warning fired.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 index.html
 pm_skills/project/backlog.md
@@ -2796,8 +3170,12 @@ src/ui/warning-text.test.ts
 src/ui/warning-text.ts
 src/workers/job.worker.ts
 src/workers/protocol.ts
-66764f9 2026-08-25 djDAOjones
+commit 66764f9205ab7be4b2e6180527851e3eed30a04a
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T00:50:47+01:00
+
 VH-9: subtitle, chapter and metadata handling
+
 Carries non-A/V tracks through where it can, and fails loudly where it
 cannot — never loses them silently.
 
@@ -2839,9 +3217,8 @@ Verified in a browser:
 - Cue text came through verbatim, and file-level metadata tags
   round-tripped including the raw MP4 atoms.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 index.html
 pm_skills/project/backlog.md
@@ -2857,18 +3234,25 @@ src/media/vtt.ts
 src/ui/source-panel.ts
 src/workers/job.worker.ts
 src/workers/protocol.ts
-c9cd65b 2026-08-25 djDAOjones
+commit c9cd65b18308167f2e5b0bf16367c98632dae0f3
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T00:36:44+01:00
+
 VH-M3: note OneDrive syncing paused as an interim mitigation
+
 Pausing is per-session and reverts on its own, so the item stays open
 until the folder is excluded or marked always-keep-local.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
-c4cfecf 2026-08-25 djDAOjones
+commit c4cfecf8d8b59b30457c63eeaa661d64c73a7357
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-25T00:19:31+01:00
+
 Record VH-8 issues, and a OneDrive failure that broke the build
+
 Bookkeeping plus one operational finding that needs the maintainer.
 
 The quality gate began failing with `ETIMEDOUT: connection timed out,
@@ -2909,16 +3293,19 @@ wish-list: branding assets are fetched with no caching, against spec 11's
 offline requirement; and every branding frame is redrawn through a canvas
 for brand-colour padding, worth measuring before 4K masters land.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 DEV-INFRASTRUCTURE.md
 README.md
 pm_skills/project/backlog.md
 pm_skills/project/wish-list.md
-b5a738a 2026-08-24 djDAOjones
+commit b5a738a5d3a4594e42ceeb84f41fc7f1948fdc99
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-24T23:49:07+01:00
+
 VH-8: branding conform and concatenation
+
 Sequences are prepended and appended, never overlaid, with two
 independent toggles giving all four combinations. Eight placeholder
 masters cover the four spec 4.2 variants, generated by a local ffmpeg
@@ -2969,9 +3356,8 @@ Verified in a browser on a 4:3 source, so the padding path was exercised:
 - The opening bed measured -15.71 LUFS against -15.99 standalone, the
   0.28 dB being the boundary fade; the content measured -15.88 LUFS.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 index.html
 pm_skills/project/backlog.md
@@ -2998,8 +3384,12 @@ src/media/encoding.ts
 src/media/pipeline.ts
 src/workers/job.worker.ts
 src/workers/protocol.ts
-f02cdbb 2026-08-24 djDAOjones
+commit f02cdbb157433c39b7a0a750d414089c42f8cdb1
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-24T23:31:52+01:00
+
 Record issues surfaced by VH-7
+
 Bookkeeping, no behaviour change.
 
 backlog:
@@ -3019,14 +3409,17 @@ wish-list: the macro-levelling envelope assumes audio starting at t=0
 with no gaps; the compressor's RMS detection is a choice inside the spec
 that belongs in the decision log at close.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/wish-list.md
-288c1bd 2026-08-24 djDAOjones
+commit 288c1bdfad9bc7d80e896fbabd656b3234e6e04d
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-24T23:26:29+01:00
+
 VH-7: audio chain
+
 Spec 5.2 steps 2-6, each a separate tested module, planned over three
 audio passes. The single linear gain has to land the OUTPUT on -16 LUFS,
 and steps 2-4 change the loudness on the way — so pass A measures the
@@ -3069,9 +3462,8 @@ its own, and an absolute threshold cannot tell that apart from pumping.
 On the drifting fixture the chain added 0.3 LU to the worst one-second
 swing, against a slew limit that caps its contribution at 1 LU.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/file-map.md
@@ -3092,8 +3484,12 @@ src/main.ts
 src/media/audio-plan.ts
 src/media/pipeline.ts
 test/helpers/signals.ts
-ddb62d3 2026-08-24 djDAOjones
+commit ddb62d33f033fff9622fc67796d87ae9ebed8874
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-24T23:12:40+01:00
+
 Record issues surfaced by VH-5 and VH-6
+
 Bookkeeping, no behaviour change.
 
 backlog:
@@ -3116,14 +3512,17 @@ network; the time estimate does not yet include the audio chain or
 branding; Mediabunny's bestGuessFrameRate read 32.25 on a fixture
 averaging 21.96 and we round from that; progress granularity.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/wish-list.md
-1380627 2026-08-24 djDAOjones
+commit 13806276f89d7a3869fec90fc2b4e9c084763af4
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-24T22:33:07+01:00
+
 VH-6: video pipeline
+
 Decode to encode to mux, streaming to OPFS. Frames flow one at a time,
 Mediabunny applies backpressure to the decoder when the encoder falls
 behind, and bytes land in OPFS as they are produced — memory is bounded
@@ -3169,9 +3568,8 @@ Also removed FrameScaler and its helpers from conform.ts. Mediabunny's
 transform does that work now, and they had no callers; conform.ts keeps
 only the fit geometry VH-8 will need for brand-coloured padding.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 index.html
 pm_skills/project/backlog.md
@@ -3186,8 +3584,12 @@ src/media/probe.ts
 src/styles/app.css
 src/workers/job.worker.ts
 src/workers/protocol.ts
-47dc1a3 2026-08-24 djDAOjones
+commit 47dc1a37d145d5206a431bfe0e90196675180399
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-24T22:12:54+01:00
+
 VH-5: pre-flight and calibration probe
+
 Answers "will this work here, and how long?" with a measurement rather
 than a guess. Capability is asked against the exact encoder configuration
 the job will use, never a generic flag: WebCodecs support is
@@ -3222,9 +3624,8 @@ had to defer:
   720x1280 display dimensions, warned that the output will be upright,
   and shaped the output to match.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 index.html
 pm_skills/project/backlog.md
@@ -3245,8 +3646,12 @@ src/styles/app.css
 src/ui/preflight-panel.ts
 src/workers/job.worker.ts
 src/workers/protocol.ts
-ba5150d 2026-08-24 djDAOjones
+commit ba5150d0c68d305633dd6d66097d95d9336a0a10
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-24T22:03:18+01:00
+
 Record outstanding issues across project memory
+
 Bookkeeping, no behaviour change. Everything raised while building
 VH-1..VH-4 is now written down where the relevant workflow will find it,
 rather than living in a chat transcript.
@@ -3269,16 +3674,19 @@ directions — `check:placeholders` existed but was undocumented, and
 `fixtures` was documented but did not exist. DEV-INFRASTRUCTURE calls
 that a defect by its own rule.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 DEV-INFRASTRUCTURE.md
 pm_skills/project/backlog.md
 pm_skills/project/doc-deltas.md
 pm_skills/project/wish-list.md
-7ab7b2d 2026-08-24 djDAOjones
+commit 7ab7b2db75e7d3b0965d1ed24670c63eb98a2b14
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-24T21:55:21+01:00
+
 VH-4: file inspection
+
 Demuxes a chosen file into a SourceReport — resolution, display
 dimensions, rotation, duration, frame-rate metrics, codecs, audio
 presence and channel count — and runs in the worker, so the rule that
@@ -3312,9 +3720,8 @@ Also:
   files are reverted and `.prettierignore` now prevents a repeat.
   markdownlint remains the Markdown authority.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 .claude/launch.json
 .markdownlint-cli2.jsonc
@@ -3342,8 +3749,12 @@ src/workers/job.worker.ts
 src/workers/protocol.ts
 test/ebu3341/signals.ts
 vite.config.ts
-b039b86 2026-08-24 djDAOjones
+commit b039b8664a564f19c5da2ccf7287996d56c338d7
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-24T21:38:59+01:00
+
 VH-3: EBU Tech 3341 compliance gate
+
 Spec section 13 acceptance criterion 3. Table 1 cases 1-6 and 9-23 are
 synthesised from their published definitions and asserted inside
 `npm run check`, so a change that breaks meter accuracy fails the gate
@@ -3380,9 +3791,8 @@ Known gaps, deliberate and recorded:
   15-19 (0.265 dB vs 0.024 dB), and that caveat belongs with any future
   failure there.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/file-map.md
@@ -3391,8 +3801,12 @@ src/audio/loudness.test.ts
 src/audio/loudness.ts
 test/ebu3341/signals.ts
 test/ebu3341/tech3341.test.ts
-0cdb9c9 2026-08-24 djDAOjones
+commit 0cdb9c9468833c27e70fc181495953f4a2a5cb19
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-24T21:25:36+01:00
+
 VH-2: BS.1770-4 loudness meter and true-peak detector
+
 The component everything downstream trusts, built before anything
 consumes it. Pure arithmetic over Float32Array — no AudioContext, no
 WebCodecs, no DOM — so the whole meter runs in Node under the EBU
@@ -3431,9 +3845,8 @@ invariance is now asserted down to single-sample chunks.
 Measured: 3.6 s loudness + 8.8 s true peak projected for a one-hour
 stereo file.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 pm_skills/project/backlog.md
 pm_skills/project/file-map.md
@@ -3449,8 +3862,12 @@ src/audio/truepeak.test.ts
 src/audio/truepeak.ts
 src/config/audio.ts
 test/helpers/signals.ts
-c8c1848 2026-08-24 djDAOjones
+commit c8c1848d459432050b7220b46cc20ab96c60628f
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-24T21:12:14+01:00
+
 VH-1: runnable skeleton with diagnostics and quality gate
+
 Phase B checkpoint 2. The app boots in dev and production, the job worker
 round-trips, and an uncaught throw on either thread is captured and
 surfaced with a stack. `npm run check` runs seven steps green.
@@ -3477,9 +3894,8 @@ in both themes, which failed seven pairs on the first palette. Clearing
 so status colour reads as near-black rather than as "red" or "green" —
 acceptable only because every status also states its outcome in words.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 .claude/launch.json
 .markdownlint-cli2.jsonc
@@ -3513,8 +3929,12 @@ src/workers/protocol.ts
 test/contrast.test.ts
 tsconfig.json
 vite.config.ts
-82ad18b 2026-08-24 djDAOjones
+commit 82ad18b22ef296481db70e4b09f5161ae782df4d
+Author: djDAOjones <<redacted-email>>
+Date: 2026-08-24T19:52:18+01:00
+
 Populate PM Skills project memory and rulebooks for the MVP build
+
 Phase A of init-mvp: foundation and mandate. Both gates passed —
 product readback confirmed, Band 0 (local MVP, no deploy) signed off.
 
@@ -3540,9 +3960,8 @@ docs, which corrected four things:
   with createWritable(), so no bespoke OPFS target is needed
 - The worker exists for UI responsiveness, not for sync access handles
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 .editorconfig
 .markdownlint.json
@@ -3555,8 +3974,12 @@ pm_skills/project/architecture.md
 pm_skills/project/backlog.md
 pm_skills/project/brief.md
 pm_skills/project/conventions.md
-92e9791 2026-08-24 Joe Bell
+commit 92e97914372e27457acecd5cdd935d1c90e51599
+Author: Joe Bell <<redacted-email>>
+Date: 2026-08-24T18:18:06+01:00
+
 Reinstall PM Skills framework at v4.9.2
+
 Erased and replaced the v4.6.0 install rather than running the upgrade
 procedure — nothing had been customised and no project memory was
 populated yet, so a clean replace is simpler and carries no merge risk.
@@ -3574,9 +3997,8 @@ structure, so docs/04-init-prompt.md remains accurate; updated its
 version reference and noted that prose backlog (not records mode) is
 the right default for a solo v1.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 README.md
 docs/04-init-prompt.md
@@ -3596,15 +4018,22 @@ pm_skills/prompts/session-start.md
 pm_skills/prompts/upgrade.md
 pm_skills/scaffold/check-memory.mjs
 pm_skills/scaffold/gen-backlog.mjs
-fad297a 2026-08-24 Joe Bell
-Add PM Skills initialisation prompt
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+commit fad297accce48e35bf69527a2230c1a981a80a5a
+Author: Joe Bell <<redacted-email>>
+Date: 2026-08-24T17:23:36+01:00
 
----
+Add PM Skills initialisation prompt
+
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
+
 
 docs/04-init-prompt.md
-2767039 2026-08-24 Joe Bell
+commit 27670397d12baf457d0bdd46b551dca6d0b5285c
+Author: Joe Bell <<redacted-email>>
+Date: 2026-08-24T17:22:46+01:00
+
 Add specification v2, technical rationale and open decisions
+
 Resolves the brief's open questions with researched recommendations.
 
 Key architectural finding: ffmpeg.wasm cannot meet this brief. Its output
@@ -3621,23 +4050,25 @@ must be offset when branding is prepended, and 'windowed loudness
 normalisation' needs conditional application with slew limiting to avoid
 causing the pumping it aims to prevent.
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 README.md
 docs/00-original-brief.md
 docs/01-specification.md
 docs/02-technical-rationale.md
 docs/03-open-decisions.md
-f46bcf0 2026-08-24 Joe Bell
+commit f46bcf0e4994cd8df1daa9dec15bb0876fdbae80
+Author: Joe Bell <<redacted-email>>
+Date: 2026-08-24T17:10:10+01:00
+
 Install PM Skills framework v4.6.0
+
 Exported from djDAOjones/PM-Skills-lab via scripts/package.mjs
 (46 manifest-verified files under pm_skills/).
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 5 <<redacted-email>>
 
----
 
 .gitignore
 pm_skills/CHANGELOG-1x.md
@@ -3686,4 +4117,3 @@ pm_skills/templates/AGENTS.md
 pm_skills/templates/DEV-INFRASTRUCTURE.md
 pm_skills/templates/PROCESS.md
 pm_skills/templates/UI-STANDARDS.md
-```

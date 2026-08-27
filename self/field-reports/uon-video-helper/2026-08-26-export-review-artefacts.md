@@ -1,43 +1,23 @@
 <!-- field-report: project=uon-video-helper · date=2026-08-26 · type=export
      · pm-skills=4.9.2
-     · source=review artefacts produced in the project, harvested by Claude Code -->
+     · source=tracked reviews tree at git commit 09702c2d8c749e72943678c94c558cf33ac1270f
+     · redacted=53 absolute checkout path occurrence(s) to <checkout>; 1 other home path occurrence(s) to <home>
+     · not-redacted=already-public personal names, public repository/account identifiers, commit hashes, workflow identifiers, and project facts -->
 
-# Review-round artefacts — uon-video-helper
+# UoN Video Helper review-artefact export
 
-Verbatim copy of the project's `reviews/` tree. Both projects
-ran a review round on 2026-08-26.
+The review material was produced on 2026-08-26 and landed in the repository on 2026-08-27.
 
-These bear on the framework because they descend from
-`pm_skills/prompts/review.md`: the read-only review prompt the
-project actually used, the review it produced, a critique of
-that review, and the continuation prompt that carried
-remediation into a later session. They show the review verb
-under real load, and where a project felt the need to extend
-it.
-
-State at harvest: HEAD `a3c070a`, 108 commits, 6 path(s)
-differing from HEAD.
-
-Paths differing from HEAD at harvest:
-
-```text
-M  pm_skills/project/archive/INDEX.md
-A  pm_skills/project/archive/decision-log-0002-2026-08-25-to-2026-08-27.md
-A  pm_skills/project/archive/trajectory/trajectory-0003-review-remediation-and-band-1-close.md
-M  pm_skills/project/decision-log.md
-M  pm_skills/project/file-map.md
-M  pm_skills/project/trajectory.md
-```
-
-Redaction. Absolute checkout paths have been collapsed to
-`<checkout>`, and any other path under the maintainer's home
-directory to `<home>`; that is the only alteration, and the content
-is otherwise byte-verbatim. A scan of this set found no e-mail
-addresses, credentials, or account identifiers.
-
-Files are separated by `<!-- FILE: <repo-relative path> -->`
-markers.
-
+| Source file | Bytes at snapshot |
+| --- | ---: |
+| `reviews/2026-08-26/README.md` | 2,519 |
+| `reviews/2026-08-26/continuation-prompt.md` | 15,702 |
+| `reviews/2026-08-26/uon-video-helper-comprehensive-review-2026-08-26.md` | 82,226 |
+| `reviews/2026-08-26/uon-video-helper-comprehensive-review-2026-08-26.source.txt` | 88,863 |
+| `reviews/2026-08-26/uon-video-helper-internal-code-review-2026-08-26.md` | 29,410 |
+| `reviews/2026-08-26/uon-video-helper-review-critique-2026-08-26.md` | 19,099 |
+| `reviews/2026-08-26/uon-video-helper-updated-review-critique-2026-08-26.md` | 46,665 |
+| **Total** | **284,484** |
 <!-- FILE: reviews/2026-08-26/README.md -->
 
 # Repository review bundle — 26 August 2026
@@ -77,7 +57,7 @@ only to repository-relative paths.
 
 The `.source.txt` archive is verified byte-for-byte against:
 
-`<downloads>/uon-video-helper-comprehensive-review-2026-08-26.md`
+`<home>/Downloads/uon-video-helper-comprehensive-review-2026-08-26.md`
 
 The Markdown reading copy differs only by replacing editor-specific absolute
 repository links and `:line` suffixes with portable repository-relative links.
@@ -90,7 +70,6 @@ while this bundle was assembled, then swept into commit `d02b3c8` by a
 `git add -A` and removed again on 2026-08-27 once the two were confirmed
 byte-identical apart from one link rewritten for this directory. The copy here
 is the surviving record; project memory holds no second one.
-
 
 <!-- FILE: reviews/2026-08-26/continuation-prompt.md -->
 
@@ -516,7 +495,6 @@ outcomes, use exact evidence and avoid severity inflation.
 Do not merely restate the first critique. Continue it: challenge its
 assumptions, reproduce anything doubtful, and improve it where evidence
 supports doing so.
-
 
 <!-- FILE: reviews/2026-08-26/uon-video-helper-comprehensive-review-2026-08-26.md -->
 
@@ -1450,7 +1428,6 @@ They should then open `/acceptance.html` on the documented local server and comp
 
 No illustrative patch or suggested edit was applied. No branch, commit, remote, issue, pull request, deployment, database, credential, or external system was modified. The original repository remained on `main` at `66227e51dc0905c1853d79fb927d8f009be80ad4`, with no tracked or staged changes and the same pre-existing untracked review file.
 
-
 <!-- FILE: reviews/2026-08-26/uon-video-helper-comprehensive-review-2026-08-26.source.txt -->
 
 # UoN Video Helper — Read-Only Comprehensive Repository Review
@@ -2383,7 +2360,6 @@ They should then open `/acceptance.html` on the documented local server and comp
 
 No illustrative patch or suggested edit was applied. No branch, commit, remote, issue, pull request, deployment, database, credential, or external system was modified. The original repository remained on `main` at `66227e51dc0905c1853d79fb927d8f009be80ad4`, with no tracked or staged changes and the same pre-existing untracked review file.
 
-
 <!-- FILE: reviews/2026-08-26/uon-video-helper-internal-code-review-2026-08-26.md -->
 
 # Full code review — 2026-08-26
@@ -2645,7 +2621,6 @@ The memory checker reported five non-blocking warnings: backlog Active is over i
 6. **Then close P2/P3 gaps and existing compatibility/UI tickets**, rerun the full gate, and perform the named real-browser/manual checks on actual representative media.
 
 The next pilot decision should be based on a new end-to-end evidence run after items 1–5, not on the current green unit/build gate alone.
-
 
 <!-- FILE: reviews/2026-08-26/uon-video-helper-review-critique-2026-08-26.md -->
 
@@ -2969,7 +2944,6 @@ the scratch Vitest file used for the R-02 and LRA reproductions was removed and
 the suite re-run at 32 files / 355 passed / 1 skipped. Measurements from the
 real corpus were taken read-only with ffmpeg. Nothing was added to the backlog
 or the decision log.
-
 
 <!-- FILE: reviews/2026-08-26/uon-video-helper-updated-review-critique-2026-08-26.md -->
 
@@ -3808,4 +3782,3 @@ repository and removed. After explicit approval, the completed critique was
 copied into the existing untracked review bundle and its bundle index was
 updated. No product source, protected document, project memory or sample was
 changed by that durable-integration step.
-

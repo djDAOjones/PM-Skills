@@ -1,71 +1,34 @@
 <!-- field-report: project=uon-video-helper · date=2026-08-27 · type=export
      · pm-skills=4.9.2
-     · source=harvested from the maintainer's checkout by Claude Code -->
+     · source=tracked project memory at git commit 09702c2d8c749e72943678c94c558cf33ac1270f
+     · redacted=none needed after path, email, and credential-shape scans
+     · not-redacted=already-public personal names, public repository/account identifiers, commit hashes, workflow identifiers, and project facts -->
 
-# Project memory export — uon-video-helper
+# UoN Video Helper project-memory export
 
-Verbatim copy of `pm_skills/project/**` as it stood on disk.
-Source repository: https://github.com/djDAOjones/UoN-Video-Helper
-(public — every file below is already published there).
+Snapshot: `09702c2d8c749e72943678c94c558cf33ac1270f`. The inventory reports unredacted source bytes at that commit.
 
-Snapshot caveat. Both projects were under active development while
-this was taken — sessions were open and commits were landing during
-the harvest itself. This is a point-in-time copy, not a quiescent
-one. Content is read from the working tree, so anything in flight is
-captured as the maintainer actually had it, which is why the state
-line below reports paths differing from HEAD rather than asserting a
-clean tree.
-
-State at harvest: HEAD `a3c070a`, 108 commits, 6 path(s)
-differing from HEAD.
-
-Paths differing from HEAD at harvest:
-
-```text
-M  pm_skills/project/archive/INDEX.md
-A  pm_skills/project/archive/decision-log-0002-2026-08-25-to-2026-08-27.md
-A  pm_skills/project/archive/trajectory/trajectory-0003-review-remediation-and-band-1-close.md
-M  pm_skills/project/decision-log.md
-M  pm_skills/project/file-map.md
-M  pm_skills/project/trajectory.md
-```
-
-Redaction. Absolute checkout paths have been collapsed to
-`<checkout>`, and any other path under the maintainer's home
-directory to `<home>`; that is the only alteration, and the content
-is otherwise byte-verbatim. A scan of this set found no e-mail
-addresses, credentials, or account identifiers.
-
-No third-party personal names appear in this set.
-
-Files are separated by `<!-- FILE: <repo-relative path> -->`
-markers; content between markers is byte-verbatim after the
-path redaction described above.
-
-## Inventory at harvest
-
-| File | Bytes |
+| Source file | Bytes at snapshot |
 | --- | ---: |
-| `pm_skills/project/architecture.md` | 15039 |
-| `pm_skills/project/archive/INDEX.md` | 1948 |
-| `pm_skills/project/archive/decision-log-0001-2026-08-25.md` | 24011 |
-| `pm_skills/project/archive/decision-log-0002-2026-08-25-to-2026-08-27.md` | 50539 |
-| `pm_skills/project/archive/trajectory/trajectory-0001-band-0-mvp.md` | 4844 |
-| `pm_skills/project/archive/trajectory/trajectory-0002-real-material-and-band-1.md` | 12073 |
-| `pm_skills/project/archive/trajectory/trajectory-0003-review-remediation-and-band-1-close.md` | 11492 |
-| `pm_skills/project/backlog.md` | 15469 |
-| `pm_skills/project/brief.md` | 6878 |
-| `pm_skills/project/conventions.md` | 5290 |
-| `pm_skills/project/decision-log.md` | 33766 |
-| `pm_skills/project/doc-deltas.md` | 4295 |
-| `pm_skills/project/file-map.md` | 20497 |
-| `pm_skills/project/tickets/VH-26.md` | 3138 |
-| `pm_skills/project/tickets/VH-30.md` | 2519 |
-| `pm_skills/project/trajectory.md` | 8396 |
-| `pm_skills/project/wish-list.md` | 9201 |
-
-## Files
-
+| `pm_skills/project/architecture.md` | 15,039 |
+| `pm_skills/project/archive/INDEX.md` | 1,948 |
+| `pm_skills/project/archive/decision-log-0001-2026-08-25.md` | 24,011 |
+| `pm_skills/project/archive/decision-log-0002-2026-08-25-to-2026-08-27.md` | 50,539 |
+| `pm_skills/project/archive/trajectory/trajectory-0001-band-0-mvp.md` | 4,844 |
+| `pm_skills/project/archive/trajectory/trajectory-0002-real-material-and-band-1.md` | 12,073 |
+| `pm_skills/project/archive/trajectory/trajectory-0003-review-remediation-and-band-1-close.md` | 11,492 |
+| `pm_skills/project/backlog.md` | 21,111 |
+| `pm_skills/project/brief.md` | 6,878 |
+| `pm_skills/project/conventions.md` | 5,290 |
+| `pm_skills/project/decision-log.md` | 37,565 |
+| `pm_skills/project/doc-deltas.md` | 4,295 |
+| `pm_skills/project/file-map.md` | 20,627 |
+| `pm_skills/project/tickets/VH-26.md` | 3,138 |
+| `pm_skills/project/tickets/VH-30.md` | 2,519 |
+| `pm_skills/project/tickets/VH-71.md` | 8,302 |
+| `pm_skills/project/trajectory.md` | 8,629 |
+| `pm_skills/project/wish-list.md` | 9,201 |
+| **Total** | **247,501** |
 <!-- FILE: pm_skills/project/architecture.md -->
 
 # Architecture
@@ -308,7 +271,6 @@ Verified against Mediabunny 1.55.2, not assumed:
   bounded memory but needs `maximumPacketCount` up front, which CFR
   conform makes computable.
 
-
 <!-- FILE: pm_skills/project/archive/INDEX.md -->
 
 # Archive index
@@ -324,7 +286,6 @@ Verified against Mediabunny 1.55.2, not assumed:
 | [`trajectory/trajectory-0003-review-remediation-and-band-1-close.md`](trajectory/trajectory-0003-review-remediation-and-band-1-close.md) | trajectory | 2026-08-26 → 27 | 1719 | VH-50 and VH-54 closing the output contract on real material, the 2026-08-26 repository-review remediation run (VH-37..VH-53), and the overnight self-review VH-51. |
 | [`decision-log-0001-2026-08-25.md`](decision-log-0001-2026-08-25.md) | decision-log | 2026-08-25 | 12 entries | Band 0's MVP decisions through VH-33 — the stack, the doc-sync, Band 1's ordering, the branding masters, the VH-34 spike, and the first memory prune. |
 | [`decision-log-0002-2026-08-25-to-2026-08-27.md`](decision-log-0002-2026-08-25-to-2026-08-27.md) | decision-log | 2026-08-25 → 27 | 25 entries | Band 1's close on real material, the repository-review remediation decisions (VH-37..VH-68), VH-51's self-review, and the second memory prune. One 2026-08-27 entry (VH-52) sits out of date order, as it did live. |
-
 
 <!-- FILE: pm_skills/project/archive/decision-log-0001-2026-08-25.md -->
 
@@ -750,7 +711,6 @@ count and a real SharePoint upload to settle.
 person (VH-M1); published limits need real hardware (VH-M2). Three protected-doc
 deltas await sign-off in `doc-deltas.md`, of which spec §6.3's frame-rate
 rounding is the one that changes behaviour.
-
 
 <!-- FILE: pm_skills/project/archive/decision-log-0002-2026-08-25-to-2026-08-27.md -->
 
@@ -1654,7 +1614,6 @@ subject and deserves its own test.
 `src/media/inspect.ts`, `src/ui/preflight-panel.ts`.
 
 
-
 <!-- FILE: pm_skills/project/archive/trajectory/trajectory-0001-band-0-mvp.md -->
 
 # Trajectory archive 0001 — Band 0 MVP
@@ -1739,7 +1698,6 @@ Outcome: a static browser-only app that takes a recorded lecture and returns a
 branded, correctly-levelled, correctly-encoded MP4, with nothing leaving the
 device. Acceptance run: 5 pass, 0 fail, 4 need real material and a person.
 See decision-log 2026-08-25.
-
 
 <!-- FILE: pm_skills/project/archive/trajectory/trajectory-0002-real-material-and-band-1.md -->
 
@@ -1956,7 +1914,6 @@ The deployed site was also confirmed working on a University machine, so
   as this setting would take it" over outputs running at twice the source.
 
 
-
 <!-- FILE: pm_skills/project/archive/trajectory/trajectory-0003-review-remediation-and-band-1-close.md -->
 
 # Trajectory archive 0003 — the review remediation, and Band 1's close
@@ -2146,7 +2103,6 @@ The deployed site was also confirmed working on a University machine, so
   mechanism could not fail and is replaced; and VH-39's "stale claims" sweep
   wrote a fresh stale claim that VH-44 falsified four commits later.
 
-
 <!-- FILE: pm_skills/project/backlog.md -->
 
 # Backlog
@@ -2164,12 +2120,15 @@ The deployed site was also confirmed working on a University machine, so
      ordered; within a band, order is dependency-driven, not by ID, and each
      item says what it waits on. Maintainer work is never band-gated — see
      Standing. Why these bands: decision-log 2026-08-25 "Band 1".
+     Two provenance groups, and they cite different sources.
      VH-54..VH-68 came from an external repository review (2026-08-26) and its
-     two critiques. All three documents live in `reviews/2026-08-26/`, which is
-     the detail source for those items — cite the R-number rather than
-     restating the evidence here. Findings were re-verified against source
-     before banding; where the review's own remedy was shown unsafe, the item
-     says so. -->
+     two critiques, all three in `reviews/2026-08-26/` — cite the R-number
+     rather than restating the evidence here.
+     VH-71..VH-78 came from the 2026-08-27 cross-check of the archived
+     implementation branch; `tickets/VH-71.md` is their detail source and
+     VH-71 is their umbrella — cite the work package.
+     Both sets were re-verified against source before banding, and where a
+     review's own remedy was shown unsafe the item says so. -->
 
 ### Band 1a — The output is what we say it is (signed off 2026-08-25)
 
@@ -2178,8 +2137,10 @@ The deployed site was also confirmed working on a University machine, so
      output contract now holds on real material, and VH-56 shipped with it so
      a finished file survives the next click and VH-57 made every phase answer
      Cancel, VH-55 made its onset loss visible and VH-59 made track loss
-     visible. What remains of 1a is VH-55's second half, which waits on VH-62's
-     sync meter. -->
+     visible. What remains is VH-55's second half and its timeline sibling
+     VH-74, which are ONE piece of work: both re-time the same four timestamp
+     sites, and VH-74's fixtures are what would grade VH-55's change. Doing
+     either alone means touching A/V sync twice. -->
 
 - [~] **VH-55 Source onset can be replaced by encoder priming** (2026-08-27)
       Intent: R-03. `AudioTimelineShift.apply()` drops AAC samples landing
@@ -2197,17 +2158,110 @@ The deployed site was also confirmed working on a University machine, so
       grade the change even though players would honour it.
       Done when: no source sample is discarded, and a sync meter that measures
       both tracks on one clock says so.
+      Coupled 2026-08-27: execute with VH-74 — the P1-02 source-gap/offset fix
+      shares the same four timestamp sites, and its late-audio and
+      midstream-gap fixtures land first.
 
-### Band 1b — Decisions the maintainer owns (signed off 2026-08-25)
+- [ ] **VH-74 Preserve the source timeline** (2026-08-27)
+      Intent: P1-02, the one review P1 the remediation arc never covered —
+      `audio-plan.ts` timestamps audio from a contiguous frame counter and
+      never reads `AudioSample.timestamp`, so a late-starting audio track or a
+      midstream gap is silently collapsed while the video lane keeps offsets.
+      Order: criterion-5 late-audio and midstream-gap fixtures first (they
+      must go red on today's behaviour), then the shared-origin port, then
+      VH-55's video-delay change measured by the same fixtures.
+      Done when: one A/V origin; audio keeps its own start offset; real gaps
+      become explicit silence; the fixtures pass; nothing ships fixture-less.
+      Detail: [VH-71 WP2](tickets/VH-71.md).
 
-<!-- Committed work that cannot proceed without a product call. Listed apart
-     from 1a so agent work is never read as waiting on these. -->
+### Band 2 — The edges hold
+
+<!-- Not committed, and all of it is agent work. Ordered by dependency rather
+     than by ID. VH-76 shipped first, 2026-08-27, so everything below it is
+     now judged by a gate that does not rewrite `dist/`. VH-72 and VH-73
+     are independent one-visit fixes; VH-75 groups four verified holes of
+     one shape; VH-77 is the swept-up remainder. VH-62 is LAST because its
+     remaining half is harness work whose value depends on what Band 1a does
+     to the pipeline — and Band 1a is about to move it, so VH-62 earns
+     promotion the moment VH-55/VH-74 turn out large. -->
+
+- [ ] **VH-71 Reconcile the archived implementation branch** [detail](tickets/VH-71.md) (2026-08-27)
+      Intent: umbrella and detail source for the 2026-08-27 feature-by-feature
+      cross-check of tag `archive/repository-review-implementation` against
+      HEAD. Children: VH-74 (Band 1a, with VH-55), VH-72, VH-73, VH-75,
+      VH-76, VH-77 below, VH-78 (Icebox), VH-19's adoption note, and the
+      VH-62/VH-70 amendments. The ticket holds per-package detail, execution
+      order, and the decided-not-to-reconcile list.
+      Done when: every child is shipped or explicitly cut; then delete the
+      ticket.
+
+- [ ] **VH-72 One codec string for preflight and production** (2026-08-27)
+      Intent: P2-02 residual — production hands Mediabunny abstract
+      `codec: 'avc'` and gets a frame-rate-blind AVC level (4K60 → 5.1) while
+      preflight correctly derives 5.2. Pass the preflight-derived string
+      through Mediabunny's unused `fullCodecString` override so both validate
+      one string.
+      Done when: preflight and production provably share the string, with
+      4K60 and 1080p60 equality tests. Detail: [VH-71 WP1](tickets/VH-71.md).
+
+- [ ] **VH-73 Verify the finished file's picture** (2026-08-27)
+      Intent: `verifyOutputAudio` checks audio only — a finished file whose
+      video track yields no decodable sample still announces "Your video is
+      ready". Port the archived `output-integrity.ts` beside it.
+      Done when: a broken-video fixture turns the job red; one frame decoded
+      per job otherwise. Detail: [VH-71 WP1](tickets/VH-71.md).
+
+- [ ] **VH-75 Four lifecycle guards** (2026-08-27)
+      Intent: verified holes, VH-68's pattern — a superseded inspect/preflight
+      keeps running; Start re-arms before the worker acknowledges a watchdog
+      cancel; saves run without the wake lock; `finished.delete` precedes
+      `await dispose()`.
+      Done when: each has a regression and none reproduces.
+      Detail: [VH-71 WP3](tickets/VH-71.md).
+
+- [ ] **VH-77 Hygiene remainder from the cross-check** (2026-08-27)
+      Intent: four small debts — tuneables outside `src/config/` (P3-02);
+      diagnostics bundle without job context (P2-10); track
+      language/name/disposition not carried (P1-08 residual); the manual
+      rollback recipe undocumented in DEV-INFRASTRUCTURE.
+      Done when: each is fixed or explicitly cut; the diagnostics addition
+      carries a redaction test. Detail: [VH-71 WP6](tickets/VH-71.md).
+
+- [~] **VH-62 The acceptance harness has false-pass routes** (2026-08-27)
+      Intent: R-11. Criterion 2's missing-measurement and cropped-peak routes
+      closed 2026-08-27.
+      Done 2026-08-27: criterion 3 no longer claims a `pass` this page did not
+      run (`external`); the sync meter reads both tracks on one clock, which
+      unblocks VH-55; the worker's realm is watched and merged, so the branding
+      fetch is visible at all; and a negative control proves the egress
+      instrument fires on both body shapes.
+      Remaining: resource warnings still do not fail a run; a complete run
+      takes over an hour in a browser — four minutes per synthesised corpus
+      entry, in-process on the main thread — so nobody sits through it, which
+      is its own false-pass route (see wish-list).
+      Done when: the harness cannot report green on an unexecuted or unmeasured
+      invariant, an injected defect turns it red, and a run is short enough
+      that it is actually run.
+      Added 2026-08-27 (VH-71 cross-check): criterion 8 still cancels an
+      in-process pipeline helper, never the real worker protocol (P2-07), and
+      criterion 2's verdict checks neither content frame count nor gap/overlap
+      coverage — see [VH-71 WP4](tickets/VH-71.md).
+
+### Band 3 — Blocked on the maintainer
+
+<!-- Agent work that cannot start until something arrives from outside the
+     repository: a corpus, a test result, a sign-off. Listed apart from Band 2
+     so nothing here reads as available to pick up, and apart from Standing
+     because the WORK is mine — only the unblocking is not. This band replaces
+     the old Band 1b, which existed for maintainer DECISIONS and emptied on
+     2026-08-27 when VH-49, VH-46b, VH-31, VH-25 and VH-32 all closed. -->
 
 - [ ] **VH-19 Content-adaptive bitrate for the smaller preset**
       Intent: spec §6.2 sets ~1.5 Mbps for slides and ~2.5 Mbps for camera.
       `ContentClass` exists and `outputShapeFor` already takes it; nothing sets
       it, so every job uses the higher figure.
-      Blocked 2026-08-27 by a measurement, not by missing code. Mean absolute
+      Was blocked 2026-08-27 by a measurement; unblocked the same day by the
+      recovered implementation (note below). The evidence stands: mean absolute
       inter-frame difference on a 64x36 luma, four points through five real
       lectures:
 
@@ -2231,29 +2285,12 @@ The deployed site was also confirmed working on a University machine, so
       more than five files, and the chosen class is stated in plain language.
       Note: mis-classifying camera as screen costs picture quality; the reverse
       costs only file size. The threshold must be biased accordingly.
-
-### Band 2 — The edges hold
-
-<!-- Not committed. Known gaps not currently biting anyone, plus review
-     findings that are real but not user-facing today. VH-62 earns promotion
-     into Band 1a the moment Band 1a's pipeline changes turn out large: a
-     harness with false-pass routes matters far more when the pipeline moves. -->
-
-- [~] **VH-62 The acceptance harness has false-pass routes** (2026-08-27)
-      Intent: R-11. Criterion 2's missing-measurement and cropped-peak routes
-      closed 2026-08-27.
-      Done 2026-08-27: criterion 3 no longer claims a `pass` this page did not
-      run (`external`); the sync meter reads both tracks on one clock, which
-      unblocks VH-55; the worker's realm is watched and merged, so the branding
-      fetch is visible at all; and a negative control proves the egress
-      instrument fires on both body shapes.
-      Remaining: resource warnings still do not fail a run; a complete run
-      takes over an hour in a browser — four minutes per synthesised corpus
-      entry, in-process on the main thread — so nobody sits through it, which
-      is its own false-pass route (see wish-list).
-      Done when: the harness cannot report green on an unexecuted or unmeasured
-      invariant, an injected defect turns it red, and a run is short enough
-      that it is actually run.
+      Recovered 2026-08-27: the archived implementation branch built exactly
+      this — five spread windows in a separate pass, asymmetric thresholds
+      with a density guard, plain-language result (tag
+      `archive/repository-review-implementation`, evidence: 23 recordings).
+      Adopt via [VH-71 WP5](tickets/VH-71.md) and re-verify the thresholds on
+      our own corpus rather than redesign.
 
 - [ ] **VH-17 Evaluate `fastStart: 'reserve'` for the smaller preset**
       Intent: the "smaller file" preset goes to OneDrive and SharePoint, where
@@ -2271,11 +2308,6 @@ The deployed site was also confirmed working on a University machine, so
       no longer worth designing around before it.
       Note: it also means most jobs should be taking "Best quality", which is
       already the default and already what §6.1 names for EchoVideo.
-
-### Band 3 — New capability, or waiting on material
-
-<!-- Not committed. VH-26 waits on material; the other two wait on a scoping
-     pass. VH-23 went to the icebox 2026-08-27. -->
 
 - [ ] **VH-26 Mobile phone sources** [detail](tickets/VH-26.md) (2026-08-25)
       Intent: staff may upload phone footage and none was in the corpus.
@@ -2373,13 +2405,23 @@ The deployed site was also confirmed working on a University machine, so
       Revisit if staff report being stuck on Firefox, or if D11 opens for
       another reason.
 - [ ] **VH-70 The manual gates nobody has run** (2026-08-27) [maintainer]
-      Intent: four checks no automated harness can reach — a job running while
+      Intent: six checks no automated harness can reach — a job running while
       the device sleeps and wakes, the progress bar under a screen reader, a
-      throttled multi-gigabyte fallback download completing, and an output
-      accepted by EchoVideo's ingest. Each covers something already built and
-      believed to work; none has been confirmed by a person.
+      throttled multi-gigabyte fallback download completing, an output
+      accepted by EchoVideo's ingest, an independent external true-peak meter
+      run against one produced MP4 (VH-50's numbers come from our own meter),
+      and a multi-tab OPFS boot/start stress in real engines. Each covers
+      something already built and believed to work; none has been confirmed by
+      a person.
       Revisit when there is a real pilot user, or before VH-13's published
       limits go out.
+- [ ] **VH-78 Show the closing card being chosen** (2026-08-27) [maintainer]
+      Intent: the blue/white closing choice is made blind; the archived branch
+      has a small preview (`branding-preview.ts`, recoverable from the
+      archive tag). Post-VH-32 ("the simplicity is the design") this is a
+      deliberate-simplicity call, not default work.
+      Revisit when the maintainer wants the choice visible, or a pilot user
+      asks what the options look like.
 - [ ] **D12 Custom or per-department branding** — needs a governance answer
       for who approves a variant before it needs an implementation.
 - [ ] **D13 Batch processing** — the most likely first request from anyone
@@ -2410,7 +2452,6 @@ The deployed site was also confirmed working on a University machine, so
      Standing items — [maintainer], [sign-off], or [blocked] work that
      waits across sessions — carry their creation date (YYYY-MM-DD).
      Add optional Scope:/Risks: lines only for sign-off items. -->
-
 
 <!-- FILE: pm_skills/project/brief.md -->
 
@@ -2547,7 +2588,6 @@ Four block work and are being **built around**, not answered by guesswork:
 Real branding assets do not exist yet. Placeholder clips matching the
 §4.2 master format stand in, so the real renders drop in unchanged.
 
-
 <!-- FILE: pm_skills/project/conventions.md -->
 
 # Conventions
@@ -2664,7 +2704,6 @@ against EBU Tech 3341 cases 1-9`.
 The `check` command that composes these is defined in
 `DEV-INFRASTRUCTURE.md` → "Quality gate".
 
-
 <!-- FILE: pm_skills/project/decision-log.md -->
 
 # Decision Log
@@ -2679,6 +2718,73 @@ The `check` command that composes these is defined in
 <!-- This is the home of the WHY. The backlog/trajectory only point here;
      never paste an entry's prose into those files. -->
 <!-- Append-only: when archiving, move entries verbatim. Never rewrite. -->
+
+## 2026-08-27 — VH-76: a gate that overwrote its own evidence
+
+**Decision:** the quality gate builds to a temporary directory. `npm run build`
+keeps writing `dist/` for deploys; `npm run check` no longer writes anything.
+
+**Rationale:** `AGENTS.md` → "One-command quality gate" says check reports and
+never writes, and `DEV-INFRASTRUCTURE.md` repeated the claim under the heading
+"Non-mutating and CI-safe". It was not true: `check` ran `build`, which
+rewrites `dist/`.
+
+That is not a tidiness point. Every green run replaced the artifact it had just
+certified, so the gate could never vouch for what was on disk — and `dist/` is
+what a deploy publishes. Proven rather than argued: the fingerprint of `dist/`
+before a gate run and after it differ.
+
+Ported from the archived implementation branch (VH-71 WP4) rather than written
+fresh, with one addition — the original removed its temp directory in a
+`finally`, which does not run on SIGINT. A gate interrupted with Ctrl-C is an
+ordinary event, so the handlers are explicit.
+
+**Verified:** the `dist/` fingerprint is byte-identical either side of a green
+`check`, and no temp directory survives the run. The documented gate command in
+`DEV-INFRASTRUCTURE.md` matches `package.json` again, and says plainly that the
+non-mutating claim preceded the behaviour.
+
+**Link:** VH-76, VH-71 WP4; `scripts/check-build.mjs`, `package.json`,
+`DEV-INFRASTRUCTURE.md`.
+
+## 2026-08-27 — VH-71: the archived branch, cross-checked feature by feature
+
+**Decision:** before letting the archived branch rest, reconcile it against
+HEAD by evidence rather than memory: a module inventory (23 archive-only
+modules, each traced to its HEAD equivalent or absence), a 30-finding
+coverage audit of the 2026-08-26 internal review against HEAD code, and a
+read of the branch's own decision record. The remainders became
+`tickets/VH-71.md` — ordered work packages — and one-line amendments to
+VH-55, VH-19, VH-62 and VH-70 pointing there.
+
+**What the audit settled:** the mainline arc fixed 20 of 30 review findings
+outright and independently built equivalents for most of the branch's
+architecture (selection epochs, result leases, gain solve, save guard, OPFS
+lock atomicity, wake/unload, egress negative controls). What it never
+covered: P1-02's product-side collapse of source audio offsets and gaps —
+the one uncovered P1, which escaped because the arc remediated the R-numbered
+review and this is a P-number — plus the preflight/production encoder-config
+divergence (P2-02 residual), an acceptance cancellation that never drives the
+worker protocol (P2-07), a diagnostics bundle with no job context (P2-10),
+config strays (P3-02), four absent lifecycle guards, a `check` gate that
+rewrites `dist/`, and the branch's complete VH-19 classifier, which satisfies
+the open item's own acceptance conditions.
+
+**Rationale:** two agents remediated the same review in parallel; archiving
+the loser without a diff would have silently discarded the fixes and the one
+feature the winner never built. The two audit agents contradicted each other
+on one claim — whether the wake lock covers saves — and the code settled it
+(`setSaveInFlight` never touches `KeepAwake`), which is why the plan records
+file:line evidence, not survey conclusions.
+
+**Not reconciled, deliberately:** the conveyor UI (VH-32: the simplicity is
+the design), picture fades (VH-25: cut), the archived size-ceiling copy
+(mainline VH-31 shipped its own), the directory-save model, both authority
+modules, and the ~900-line protocol-level egress apparatus — each superseded
+by a recorded mainline decision, listed with reasons in the ticket.
+
+**Link:** `tickets/VH-71.md`, itemised as VH-72..VH-78 plus the VH-19/VH-55/
+VH-62/VH-70 amendments; tag `archive/repository-review-implementation`.
 
 ## 2026-08-27 — Stale branches archived as tags, not deleted
 
@@ -3269,7 +3375,6 @@ the file.
 
 ## Archived: 12 earlier entries — see archive/decision-log-0001-2026-08-25.md
 
-
 <!-- FILE: pm_skills/project/doc-deltas.md -->
 
 # Doc-deltas
@@ -3341,7 +3446,6 @@ the file.
       finished envelope, because the smoothing window is centred
       (source: VH-61)
 
-
 <!-- FILE: pm_skills/project/file-map.md -->
 
 # File Map
@@ -3361,14 +3465,14 @@ the file.
      pm_skills/memory-policy.md. -->
 
 <!-- file-map-index -->
-<!-- 157 file(s) across 9 section(s); regenerate with pm_skills/scaffold/gen-file-map.mjs -->
+<!-- 158 file(s) across 9 section(s); regenerate with pm_skills/scaffold/gen-file-map.mjs -->
 - `(root)` — 20 file(s)
 - `.claude` — 1 file(s)
 - `.github` — 1 file(s)
 - `docs` — 5 file(s)
 - `public` — 13 file(s)
 - `reviews` — 7 file(s)
-- `scripts` — 4 file(s)
+- `scripts` — 5 file(s)
 - `src` — 102 file(s)
 - `test` — 4 file(s)
 <!-- /file-map-index -->
@@ -3441,6 +3545,7 @@ the file.
 ## scripts
 
 - `scripts/build-branding.mjs` — Converts the UoN masters into the shipped onset/tail assets. Run by hand, not by `build`.
+- `scripts/check-build.mjs` — Builds the production bundle to a temp directory, so the gate can check it without writing dist/.
 - `scripts/check-placeholders.mjs` — Tier 0 of the gate: fails on stray template markers, reports key-shaped strings.
 - `scripts/gen-placeholder-branding.mjs` — Generates the placeholder masters with a local ffmpeg. Authoring tool only.
 - `scripts/run-in-engines.mjs` — Runs a spike page in Chrome, Firefox and Safari and prints all three. Maintainer tool; never part of `check`.
@@ -3557,7 +3662,6 @@ the file.
 - `test/ebu3341/tech3341.test.ts` — The compliance gate: Table 1 cases 1-23 against the meter, inside `npm run check`.
 - `test/helpers/signals.ts` — Synthesised tones and silence shared by the meter tests and the EBU harness.
 
-
 <!-- FILE: pm_skills/project/tickets/VH-26.md -->
 
 # VH-26 — Mobile phone sources
@@ -3622,7 +3726,6 @@ this ("Published labels are not a substitute for inspection"), and it was
 right. Every classification in the table above comes from `ffprobe`, not from
 a filename.
 
-
 <!-- FILE: pm_skills/project/tickets/VH-30.md -->
 
 # VH-30 — Trim the source
@@ -3677,6 +3780,153 @@ if it is bolted on rather than threaded through.
 - Does trim interact with D10 (the stream-copy fast path, iceboxed)? It would
   rule it out for trimmed jobs, since a cut mid-GOP cannot be copied.
 
+<!-- FILE: pm_skills/project/tickets/VH-71.md -->
+
+# VH-71 — Reconcile the archived implementation branch
+
+Created 2026-08-27. The 2026-08-26 internal review was remediated twice in
+parallel: HEAD's arc (VH-37..VH-68) and the branch now preserved at tag
+`archive/repository-review-implementation` (`d6c5edb`). A three-way cross-check
+on 2026-08-27 — module inventory (23 archive-only modules), a 30-finding
+coverage audit of the review against HEAD, and the branch's own decision
+record — found the mainline fixed 20 of 30 findings and independently built
+equivalents for most of the branch's architecture. This ticket is the
+executable remainder. Recover any archived file with
+`git show archive/repository-review-implementation:<path>`.
+
+## Work packages, in execution order
+
+Itemised 2026-08-27: WP1 = VH-72 + VH-73 · WP2 = VH-74 (with VH-55) ·
+WP3 = VH-75 · WP4 = VH-76 (rest folded into VH-62) · WP5 = VH-19 ·
+WP6 = VH-77 · WP7 = VH-78 (Icebox) + the VH-70 amendments. This ticket stays
+the shared detail source; the backlog items are the schedulable units.
+
+### WP1 — Output correctness (small, independent, first) — VH-72, VH-73
+
+- **Encoder config unification (P2-02 residual).** Production hands Mediabunny
+  the abstract `codec: 'avc'` (`src/media/encoding.ts:26`) and Mediabunny
+  derives the AVC level frame-rate-blind, so 4K60 is encoded as `avc1.640033`
+  (Level 5.1) while preflight correctly derives Level 5.2 via `avcLevelFor`
+  (`src/config/presets.ts:342-396`). Pass the preflight-derived full codec
+  string into the encoder config (Mediabunny's `fullCodecString` override,
+  currently unused) so preflight and production validate one string.
+  Test: preflight/production equality, plus 4K60 and 1080p60 cases.
+- **Finished-file video integrity.** `verifyOutputAudio` checks audio only; a
+  structurally broken video track ships as "Your video is ready". Port
+  `src/workers/output-integrity.ts` (~35 lines, abort-aware, closes its
+  sample) and call it beside the audio verification in `job.worker.ts`.
+  Test: a fixture whose video track cannot yield a sample turns the job red.
+
+### WP2 — Source timeline (the deep one; fixtures gate everything) — VH-74, with VH-55
+
+**P1-02 core, the one uncovered P1:** `src/media/audio-plan.ts:171-193`
+timestamps audio from a contiguous `emittedFrames` counter and never reads
+`AudioSample.timestamp` — a late-starting audio track or a midstream gap is
+silently collapsed while the video lane preserves offsets. Couple with VH-55's
+remaining half (delay video by encoder delay): same four timestamp sites.
+Order inside the package:
+
+1. Late-audio-start and midstream-gap fixtures in acceptance criterion 5
+   first — the meter is ready (VH-62 put both tracks on one clock).
+2. Port the shared-origin derivation (archive `src/media/source-timeline.ts`,
+   ~40 lines): one origin = min(first video, first audio) timestamp; audio
+   keeps its own start offset; real gaps become explicit silence.
+3. VH-55's video-delay change, measured by the same fixtures.
+
+Risk: this moves audio against picture. Nothing in this package ships without
+the fixtures going red on the old behaviour first.
+
+### WP3 — Job lifecycle holes (each verified in HEAD today) — VH-75
+
+- **Cancel a superseded inspect/preflight** (~15 lines in `src/main.ts`):
+  changing file or preset leaves the previous whole-file analysis and encode
+  probe running; post `cancel` for the superseded request id where
+  `beginSelection` bumps the epoch. Registry, message, and reply handling all
+  exist already.
+- **Process interlock:** the watchdog (`src/main.ts:331-346`) posts `cancel`
+  and rejects immediately; nothing awaits the worker's `cancelled`
+  acknowledgement before Start re-arms, so a new job can enter the worker
+  while the old one is still winding down. Hold job ownership until the
+  worker conclusively answers (reference design:
+  archive `src/core/process-interlock.ts`).
+- **Wake lock during save:** `setSaveInFlight` (`src/main.ts:741-745`) never
+  touches `KeepAwake` — a multi-gigabyte streaming save can sleep the machine.
+  Hold the lock while `jobInFlight || saveInFlight`.
+- **Dispose before delete:** `handleDiscard`/`releaseFinished` remove the
+  `finished` map entry before `await dispose()`, so a failed dispose is
+  unretryable (boot sweep mitigates). Swap the order.
+
+### WP4 — Gate and harness honesty — VH-76; VH-62 carries the rest
+
+- **Non-mutating gate:** `npm run check` runs `build`, which rewrites `dist/`
+  — against the hard rule that check reports and never writes. Port
+  `scripts/check-build.mjs` verbatim (31 lines: vite build to a temp dir,
+  removed on every exit path) and swap it into `check`; `build` stays for
+  deploys.
+- **P2-07 and the criterion-2 sliver** belong to VH-62 and are now named in
+  its backlog Remaining: criterion 8 must drive the real worker protocol
+  (post `cancel`, await `cancelled`, inspect OPFS), and criterion 2's verdict
+  should check content frame count and gap/overlap coverage
+  (reference: archive `src/acceptance/verdicts.ts`).
+
+### WP5 — VH-19 adoption (feature; after correctness) — VH-19
+
+Port archive `src/media/content-class.ts` + the `CONTENT_*` block for
+`src/config/thresholds.ts` + `formatContentClass` + the preflight-panel row,
+re-keying the accepted class to HEAD's `selectionEpoch`. The archived design
+satisfies VH-19's own Done-when: five one-second windows spread through the
+file in a pass separate from the timed probe (`samplesAtTimestamps`; cannot
+re-calibrate `videoFramesPerSecond`), asymmetric thresholds (screen ≤ 0.001
+mean luma difference **and** ≤ 0.08 bits/pixel/frame density; camera ≥ 0.003;
+everything else `unknown` → camera budget), result stated in plain language.
+Its evidence was 23 recordings, seven screen captures, no camera false
+positive — on *its* corpus. Before enabling: re-run classification over
+`samples/` and `samples/phone/` on the mainline build and record per-file
+class against eyeball truth. Adopt, verify, then let VH-19 close.
+
+### WP6 — Hygiene and docs — VH-77
+
+- **P3-02 strays into `src/config/`:** `MINIMUM_GAP_DEPTH_LU`
+  (`warnings.ts:24`), detector milliseconds (`compressor.ts:34`),
+  `ENVELOPE_STEP_SECONDS` (`macrolevel.ts:34`), and the 120 s/180 s
+  inspect/preflight deadlines (`main.ts:469,521`).
+- **P2-10 diagnostics context:** add redacted SourceReport shape, capability
+  result, current view, and JobSpec to the bundle; redaction test proves no
+  filename or media payload.
+- **Track metadata carriage** (P1-08 residual): language/name/disposition onto
+  output tracks.
+- **Rollback documentation:** DEV-INFRASTRUCTURE's deployment section gains
+  the manual rollback recipe (dispatch `deploy-pages.yml` from `main`, verify
+  the live BUILD_ID against that run's head SHA) — from the archived VH-M3
+  decision; the `workflow_dispatch` trigger already exists.
+
+### WP7 — Maintainer options — VH-78 (Icebox), VH-70 amendments
+
+- **Branding preview** (archive `src/ui/branding-preview.ts`): the blue/white
+  closing choice is currently made blind. Post-VH-32 ("simplicity is the
+  design") this is the maintainer's call, not default work.
+- **VH-70 additions** (made): independent external true-peak meter on one
+  produced MP4; multi-tab OPFS boot/start stress in real engines.
+
+## Decided NOT to reconcile — do not reopen without new cause
+
+Conveyor/workflow UI (VH-32: no redesign); picture-boundary fades (VH-25 cut);
+the "ceiling" size copy (mainline VH-31 shipped its own); gain solver
+(`src/audio/gain-solve.ts` is the equivalent); selection/result authorities
+(VH-60/VH-56 equivalents, verified); the directory-save model (mainline's
+picker + same-entry refusal shipped, P1-06 fixed); `public-inventory`
+(VH-65's git-tracked allow-list is broader); the ~900-line protocol-level
+egress apparatus (per-realm watch + negative controls cover a one-request
+app; revisit only if VH-62's Remaining proves insufficient); source
+`FileSystemFileHandle` acquisition (VH-56: deliberately deferred);
+cross-context OPFS lock proof (origin-wide locks argument stands).
+
+## Close-out
+
+Each child item closes through `end-of-task.md`; VH-74 and VH-19 warrant
+checkpoint mode. When every child is shipped or explicitly cut, delete this
+ticket. The archive tags stay regardless — they are the recovery point, not
+the plan.
 
 <!-- FILE: pm_skills/project/trajectory.md -->
 
@@ -3704,6 +3954,12 @@ if it is bolted on rather than threaded through.
 ## Archived: real material and Band 1's first half — see archive/trajectory/trajectory-0002-real-material-and-band-1.md
 
 ## Archived: the review remediation and Band 1's close — see archive/trajectory/trajectory-0003-review-remediation-and-band-1-close.md
+
+### VH-76 — the gate stopped writing
+
+- VH-76 — Shipped 2026-08-27. `check` builds to a temp directory, so a green
+  run leaves `dist/` byte-identical instead of replacing the artifact it had
+  just certified. See decision-log.
 
 ### VH-32, VH-61 — closed on the maintainer's judgement
 
@@ -3847,7 +4103,6 @@ if it is bolted on rather than threaded through.
   decision-log.
 
 
-
 <!-- FILE: pm_skills/project/wish-list.md -->
 
 # Wish-list
@@ -3984,4 +4239,3 @@ if it is bolted on rather than threaded through.
   branding asset did not appear in `allRequests` during a direct test. The
   body-wrapping instrument is unaffected; the passive timeline is not a
   complete census. (from: 2026-08-27 VH-62)
-

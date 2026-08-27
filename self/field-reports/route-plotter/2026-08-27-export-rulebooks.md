@@ -1,34 +1,12 @@
 <!-- field-report: project=route-plotter · date=2026-08-27 · type=export
      · pm-skills=4.7.0
-     · source=harvested from the maintainer's checkout by Claude Code -->
+     · source=root rulebooks at public snapshot 6f2ac154430be665a9cb1665a6f20d1b317990e0
+     · redaction=0 checkout path occurrence(s) and 0 other home-path occurrence(s) collapsed; 0 e-mail address(es) replaced; no credential-shaped values found
+     · retained=public names Joe Bell and Gary Priestnall and public GitHub identifier djDAOjones retained where present; no unpublished identity was intentionally added -->
 
-# Rulebook export — route-plotter
+# Rulebook export
 
-Verbatim copy of the project's rulebooks and README. These are
-the populated descendants of the framework's root templates;
-read against `pm_skills/templates/` they show how far a live
-project moves from what it was handed.
-
-State at harvest: HEAD `f1c14b9`, 85 commits, 0 path(s)
-differing from HEAD.
-
-Redaction. Absolute checkout paths have been collapsed to
-`<checkout>`, and any other path under the maintainer's home
-directory to `<home>`; that is the only alteration, and the content
-is otherwise byte-verbatim. A scan of this set found no e-mail
-addresses, credentials, or account identifiers.
-
-## Inventory at harvest
-
-| File | Bytes |
-| --- | ---: |
-| `AGENTS.md` | 7317 |
-| `UI-STANDARDS.md` | 9894 |
-| `DEV-INFRASTRUCTURE.md` | 11958 |
-| `CLAUDE.md` | 675 |
-| `README.md` | 22115 |
-
-## Files
+Snapshot: `6f2ac154430be665a9cb1665a6f20d1b317990e0`.
 
 <!-- FILE: AGENTS.md -->
 
@@ -186,7 +164,6 @@ Load only the tier the task needs so startup context stays useful.
 
 When a fact changes, update its owner and link to it elsewhere rather than
 restating it.
-
 
 <!-- FILE: UI-STANDARDS.md -->
 
@@ -419,7 +396,6 @@ Before sign-off on any UI-affecting change, verify:
 12. Critical submissions or destructive actions support validation,
     confirmation, undo, or reversal as appropriate.
 13. Any exception to the AAA-by-default rule is documented explicitly.
-
 
 <!-- FILE: DEV-INFRASTRUCTURE.md -->
 
@@ -692,7 +668,6 @@ The project root contains `.editorconfig`:
 - `version.json` — managed by the build script.
 - `node_modules/` — managed by npm.
 
-
 <!-- FILE: CLAUDE.md -->
 
 # Claude Code project entry point
@@ -710,7 +685,6 @@ The project root contains `.editorconfig`:
   cross-tool knowledge to the repository-owned document instead.
 - Use `/context` when you need to verify which memory files loaded in a Claude
   Code session.
-
 
 <!-- FILE: README.md -->
 
