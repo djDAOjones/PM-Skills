@@ -9,6 +9,10 @@ not an archaeology dig.
 
 Read-only by default. It diagnoses, maps, and proposes a punch list; it
 does not silently change the work. Approved fixes run as their own task.
+For a review that must *prove* it changed nothing — a whole-repository
+audit, an unattended pass, anyone else's tree — run it under
+`prompts/read-only.md`, which adds the command-isolation rules and the
+start-and-end integrity check.
 
 ## Inputs
 

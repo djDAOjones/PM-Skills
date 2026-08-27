@@ -36,6 +36,74 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.14.0 — 2026-08-27
+
+READ-ONLY-AUDIT: `prompts/read-only.md` ships the **no-write
+posture** — a hard read-only contract, isolation rules for commands
+that might write, and a start-and-end integrity check that makes
+"it changed nothing" verifiable instead of asserted.
+
+It is a posture, not a verb: workflows declare they run inside it.
+`review.md` points at it for a review that must prove it changed
+nothing, and spike mode points at it for a spike that must not write
+at all. The framework already had a findings-only *posture*; it had
+no no-write contract at the command level, and no way to check the
+claim afterwards.
+
+Three things it settles:
+
+- **Where the leak actually is.** A read-only pass that writes its
+  own report into the tree has already broken its contract, and that
+  is the commonest way it happens. The report goes outside the tree
+  or into the conversation.
+- **Builds and tests are the risk, not edits.** They emit coverage,
+  caches, snapshots and generated files as a matter of course. The
+  rule is redirect, else run on a disposable copy, else **do not
+  run it** and record the gap — a check you did not run is a stated
+  gap, a stray artefact is a broken guarantee.
+- **Never repair a difference.** If the integrity check fails, that
+  is the finding. Deleting the stray file destroys the only evidence
+  that something wrote to the tree — and it may not even have been
+  this run.
+
+**Why an autonomous, gateless pass is allowed in a gated framework.**
+The exemption is narrow and stated in the file: gates exist to stop
+irreversible change, and this posture cannot make any. A pass that
+provably writes nothing does not need permission to look. The moment
+a workflow inside the posture wants to change something, the posture
+ends and the normal gates apply to that change — the exemption does
+not travel with it.
+
+Every inference in the report carries its confidence in plain words
+(confident / likely / guess), because ungraded assertions in a long
+autonomous report are indistinguishable from findings.
+
+### Added
+
+- `pm_skills/prompts/read-only.md` (`framework` class) — the
+  contract, command isolation, integrity check, the autonomy
+  sanction, assumption grading, and the report additions the posture
+  imposes on whatever workflow runs inside it.
+
+### Changed
+
+- `pm_skills/prompts/review.md` — names the posture for a review
+  that must prove it changed nothing.
+- `pm_skills/integrations/task.md` — spike mode names it for a spike
+  that must not write at all.
+- `pm_skills/GUIDE.md` — the `prompts/` tree lists the new file.
+
+### Upgrade actions
+
+- Copy `pm_skills/prompts/read-only.md` into your project's
+  `pm_skills/prompts/` (`framework` class — new file, nothing
+  overwritten).
+- Replace `pm_skills/prompts/review.md`,
+  `pm_skills/integrations/task.md` and `pm_skills/GUIDE.md` with
+  this version's copies.
+- Nothing else changes. The posture is inert until a workflow
+  declares it.
+
 ## 4.13.0 — 2026-08-27
 
 UPGRADE-REFUSED: `prompts/upgrade.md` gains a **Reinstall path** —

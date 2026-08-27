@@ -12,6 +12,55 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-27 — READ-ONLY-AUDIT: the no-write posture ships (4.14.0)
+
+**Decision:** ship `pm_skills/prompts/read-only.md` as a **posture**
+workflows declare, not a seventh entry in `task.md`'s modes table
+and not a fourth deep verb. Every mode in that table is a way of
+making a change; this one never writes, so it belongs beside the
+workflows rather than inside their mode list. The 2026-08-27
+Re-assess had already settled the family this way — READ-ONLY-AUDIT
+is *how to run either safely*, a dependency of REVIEW-SUITE and
+ABSTRACTION-PLAN rather than their competitor.
+
+**The autonomy question, answered rather than dodged.** A gateless
+single-pass run cuts against a gated framework, and the ticket
+flagged it as a real tension. The exemption is narrow and stated in
+the file: gates exist to stop irreversible change, and this posture
+cannot make any, so a pass that provably writes nothing does not
+need permission to look. Crucially the exemption **does not travel**
+— the moment a workflow inside the posture wants to change
+something, the posture ends and normal gates apply to that change.
+This is the same line JANITOR-READ drew (read-only forever; writing
+verbs separately gated) and the same one EPIC-AUTOJAZZ drew this
+morning between delegation and automation.
+
+**Three things worth the file's existence:**
+
+1. **The leak is the report itself.** A read-only pass that writes
+   its findings into the tree has broken its own contract, and that
+   is the commonest way it happens. Report goes outside the tree.
+2. **Builds and tests are the risk, not edits.** They emit coverage,
+   caches, snapshots as a matter of course. Redirect, else run on a
+   disposable copy, else **do not run it** and record the gap.
+3. **Never repair an integrity failure.** If the tree changed, that
+   is the finding; deleting the stray file destroys the only
+   evidence — and it may not even have been this run.
+
+**Assumptions at skipped gates (auto-jazz):** minor release, new
+file, nothing overwritten; `review.md` and spike mode each gain one
+sentence pointing at it rather than restating the contract.
+
+**Alternatives:** a seventh `task.md` mode (rejected — that table is
+implementation modes); a full read-only *verb* with its own review
+curriculum (rejected — that is REVIEW-SUITE and ABSTRACTION-PLAN,
+and the family settlement says this is the shared mode they run
+inside).
+
+**Left open:** the posture is untested. This repository has no
+application to investigate deeply — Markdown and lint tooling, no
+runtime. A real consuming project is the test, as its ticket said.
+
 ## 2026-08-27 — UPGRADE-REFUSED: make reinstall safe, not argue against it (4.13.0)
 
 **Decision:** `upgrade.md` gains a **Reinstall path** section rather

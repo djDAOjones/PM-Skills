@@ -2,6 +2,13 @@
 
 ## Phase: Planning loop
 
+- READ-ONLY-AUDIT (2026-08-27) — the no-write posture ships as
+  `prompts/read-only.md`: hard contract, command-isolation rules
+  (redirect, else disposable copy, else do not run), and a
+  start-and-end integrity check that is never repaired. A posture
+  review.md and spike mode declare, not a fourth verb; the autonomy
+  exemption is narrow and does not travel (4.14.0) — see
+  decision-log.
 - UPGRADE-REFUSED (2026-08-27) — upgrade.md gains a Reinstall path:
   measured on a fixture, a naive reinstall silently blanks populated
   memory and (rm -rf variant) deletes tickets and archive outright,

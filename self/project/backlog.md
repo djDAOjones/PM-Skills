@@ -17,15 +17,6 @@
 
 <!-- Intent: refactored 2026-08-27 after the backlog-machinery pair shipped (BACKLOG-TABLE source-only, EPIC-AUTOJAZZ 4.12.0). UPGRADE-REFUSED leads: it is the one open item resting on evidence already gathered rather than on a shape still to be decided, and FIELD-EXPORT has since made upgraded-or-reinstalled a named field in every report a project files. READ-ONLY-AUDIT follows as the head of the read-only family and the dependency of both items now in Next. VOICE-INTAKE stays last, still blocked on maintainer inputs, and is now the only item that has been passed over at three consecutive refactors — if the inputs do not arrive, the honest move at the next Re-assess is to say so. -->
 
-- [ ] **READ-ONLY-AUDIT Read-only deep investigation verb**
-  [detail](tickets/READ-ONLY-AUDIT.md) (2026-08-27) — investigate a verb
-  that examines a whole application deeply in one autonomous run and
-  returns a comprehensive report, under a hard read-only guarantee — a
-  no-write contract, isolation for any command that might write, and a
-  start-and-end integrity check. Basis archived at
-  self/inputs/2026-08-27-read-only-repository-review-prompt.md. Third of
-  three overlapping read-only analysis items; settle the family before
-  building any. · High / High / Medium / Low
 - [ ] **VOICE-INTAKE Voice-memo transcript intake**
   [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
   more real raw transcripts plus the external preparation prompts (ticket

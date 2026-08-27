@@ -7,13 +7,13 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 78 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 79 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
-- `pm_skills` — 48 file(s)
+- `pm_skills` — 49 file(s)
 - `scripts` — 12 file(s)
 - `self` — 8 file(s)
 <!-- /file-map-index -->
@@ -79,6 +79,9 @@ see the root AGENTS.md "Before every task". -->
 - `pm_skills/prompts/implementation-plan.md` — stage prompt: step plan from the picked option
 - `pm_skills/prompts/memory-maintenance.md` — verbs: Diagnose/Prune/Refactor/Re-assess/Reconcile/Doc-sync + environment preflight
 - `pm_skills/prompts/quick-task.md` — single-stage scope-and-plan for small tasks
+- `pm_skills/prompts/read-only.md` — the no-write posture other
+  investigation workflows declare: hard contract, command isolation,
+  start-and-end integrity check.
 - `pm_skills/prompts/release.md` — framework release procedure (VERSION/CHANGELOG/MANIFEST discipline)
 - `pm_skills/prompts/review.md` — read-only audit of a diff range or feature area
 - `pm_skills/prompts/scoping.md` — stage prompt: smallest useful scope, no code

@@ -12,8 +12,7 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
-| **[READ-ONLY-AUDIT](tickets/READ-ONLY-AUDIT.md)** | Read-only deep investigation verb | Current #1 | Investigate a verb that examines a whole application deeply in one autonomous run and returns a comprehensive report, under a hard read-only… | Todo |
-| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Current #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs — one or more real raw transcripts plus… |
+| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Current #1 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs — one or more real raw transcripts plus… |
 | **[REVIEW-SUITE](tickets/REVIEW-SUITE.md)** | Deep code-review suite | Next #1 | Investigate a thorough code-review suite — engineering-depth dimensions (security, performance, dependencies, tests), a validation phase that runs… | Todo |
 | **[ABSTRACTION-PLAN](tickets/ABSTRACTION-PLAN.md)** | Abstraction and auditability planning | Next #2 | Investigate a read-only whole-repository planning function that turns evidence into a coverage-accounted programme of small, behaviour-preserving… | Todo |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
@@ -29,10 +28,11 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: Planning loop</strong> — 15 item(s)</summary>
+<summary><strong>Phase: Planning loop</strong> — 16 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
+| `READ-ONLY-AUDIT` | (2026-08-27) — the no-write posture ships as `prompts/read-only.md`: hard contract, command-isolation rules (redirect, else disposable copy, else do not run), and a start-and-end… |
 | `UPGRADE-REFUSED` | (2026-08-27) — upgrade.md gains a Reinstall path: measured on a fixture, a naive reinstall silently blanks populated memory and (rm -rf variant) deletes tickets and archive… |
 | `PRUNE-P4-INDEX` | (2026-08-27) — Prune P4 no longer sweeps the live file's own archive-index lines into the new chunk; found by running a mid-run prune (decision log 20 → 14 live, chunk 08d, both… |
 | `EPIC-AUTOJAZZ` | (2026-08-27) — continuous burn-down ships as `integrations/epic.md`, its own integration composing next.md per item; the one-item reversal rests on "invoked, never scheduled",… |

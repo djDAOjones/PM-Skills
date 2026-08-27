@@ -202,7 +202,9 @@ the user says "spike this".
 - **State the question and timebox up front** (e.g. "Can library X
   handle our volume? Timebox: this session.").
 - Investigation may write throwaway code in a scratch branch or
-  directory — never merge it to `main`.
+  directory — never merge it to `main`. A spike that must not write
+  **at all** (someone else's tree, an unattended run) declares
+  `prompts/read-only.md` instead and gains its integrity check.
 - At the timebox, **stop**. Inconclusive is a valid finding; report it
   as information with a retreat recommendation.
 - One session, one question. A second question is a second spike.
