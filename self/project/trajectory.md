@@ -1,5 +1,22 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: Reflection instrument (2026-08-28)
+
+- FIELD-STUDY (2026-08-28) — the reflection practice gains its
+  method: `self/FIELD-STUDY.md`, a read-only single-pass procedure
+  over the field-report tier. Twelve dimensions, a staleness pass
+  that dates every observation against the release it describes,
+  consistency grades that stop one project becoming a rule, and a
+  mandatory retirement. Source-only: it reads `self/` throughout, and
+  REFLECTION.md already defers distribution until two self-hosted
+  runs (source-only) — see decision-log.
+- FILEMAP-WRAP (2026-08-28) — the file-map generator was silently
+  truncating any hand-wrapped role to its first line; four roles in
+  this repo's own map had already decayed to half-sentences. Parser
+  now folds continuations back; roles restored verbatim from history
+  via `git log -S`. Fixed in both deliberate forks (4.16.1) — see
+  decision-log.
+
 ## Phase: Epic burn-down (2026-08-27)
 
 - ABSTRACTION-PLAN (2026-08-27) — the composition layer ships as

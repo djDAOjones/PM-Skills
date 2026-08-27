@@ -29,6 +29,11 @@ outweighs self-hosted. A reflection run purely on self-hosted
 material must declare that and discount its conclusions — the
 framework's fitness is measured in consuming projects shipping.
 
+**Instrument.** A run whose evidence is consuming-project reports is
+carried out by `self/FIELD-STUDY.md` — the read-only, single-pass
+procedure over `self/field-reports/`. This file stays the policy
+(triggers, gate, caps, governance); that one is the method.
+
 ## The three passes, with caps
 
 1. **Audit** (divergent) — the six probes against current scarce

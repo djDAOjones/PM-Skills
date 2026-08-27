@@ -12,6 +12,73 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-28 — FIELD-STUDY: the reflection practice gets a method
+
+**Decision:** `self/FIELD-STUDY.md` — the read-only, single-pass
+procedure that turns the field-report tier into an evidenced
+framework-improvement report. REFLECTION.md stays the policy
+(triggers, evidence gate, caps, governance); this is the method it
+calls. It runs under `prompts/read-only.md` rather than restating the
+no-write contract.
+
+**Source-only, deliberately.** Two things settled the placement, both
+hard: its substance is reading `self/field-reports/`, and no
+distributed file may reference `self/`; and REFLECTION.md already
+defers distribution of the practice until two self-hosted runs have
+happened, of which one has. Shipping it as a release now would have
+overridden a standing decision to get a worse file.
+
+**Rationale.** The tier has held real consuming-project evidence
+since 2026-08-23 and nothing has read it systematically. The prompt's
+load-bearing parts are the ones a generic reflection would omit: a
+staleness pass dating every observation against the `pm-skills=` join
+key and diffing forward through CHANGELOG, because field evidence is
+by construction older than the framework it describes; consistency
+grades, because three reports by one person in one week are not three
+witnesses; and a mandatory retirement, because the certain failure of
+a self-improvement prompt is that it only ever adds.
+
+**Alternatives.** A distributed verb (blocked, above). Folding it
+into REFLECTION.md (rejected — policy and method have different
+readers and different change rates). Reusing `prompts/findings.md`
+(rejected — that verifies findings about code against source; this
+produces them about the framework from filed evidence).
+
+**Resolved on the way:** `read-only.md` says the report is written
+outside the tree; the reflection governance says outputs are dated
+documents under `self/evaluations/`. Filing is a separate step that
+ends the posture, exactly as read-only.md provides.
+
+## 2026-08-28 — FILEMAP-WRAP: the generator was eating role text
+
+**Decision:** fix `existingRoles()` in both file-map generators to
+fold hand-wrapped continuation lines back into the role instead of
+truncating to the first line; restore the four damaged roles verbatim
+from git history. Released as **4.16.1**, patch — a fix, no new
+files, no migration; the shape of 4.10.1 (SCAFFOLD-GITPATH).
+
+**Rationale.** The bug falsified both of the script's own documented
+promises — role text "preserved verbatim", and "never silently
+drops". It was found by running the generator, watching it eat a role
+written by an earlier session, and checking whether that had happened
+before: three more roles were already half-sentences. That is the
+failure mode in full — the map still lints, still reads as prose, and
+quietly stops describing the file. `git log -S` on each role line
+recovered the original wording, so nothing was reinvented.
+
+**Alternatives.** Hard-fail on a wrapped role (rejected — nags where
+it can repair). Leave the source fork alone and fix only the scaffold
+(rejected — the fork rule runs both ways). Restore the roles without
+fixing the parser (rejected — the next regeneration eats them again).
+
+**Fork port.** `pm_skills/scaffold/gen-file-map.mjs` had the
+identical parser, so the fix moved across, not the file — the
+deliberate-fork rule. Upgrade actions state plainly that `scaffold`
+class means nothing is required of a consuming project, and give the
+one thing that is time-critical: check your map for roles ending
+mid-sentence *before* regenerating with an unfixed copy, because that
+regeneration is what destroys the evidence.
+
 ## 2026-08-27 — Third Prune; the P4 fix repays itself the same day
 
 **Decision:** decision log 21 → 14 live at the run's close;

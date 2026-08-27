@@ -25,7 +25,9 @@
  *   diffs stay clean and sync-conflict copies stay reviewable.
  * - Emits `` - `path` — <ROLE> `` lines. Role text is MERGED BY PATH
  *   from the existing map: an existing role is preserved verbatim; a new
- *   file gets `— (role needed)` for the agent to fill in.
+ *   file gets `— (role needed)` for the agent to fill in. A role
+ *   hand-wrapped over several lines is folded back onto one, never
+ *   truncated.
  * - Never silently drops a path: a file in the old map but no longer on
  *   disk is listed under a clearly-marked "no longer on disk" block for
  *   the agent to confirm and remove.
@@ -135,6 +137,8 @@ function stripIndexBlock(content) {
  * looks like `` - `path` — role `` (any dash variant); the role is
  * everything after the first dash following the closing backtick.
  * The generated index block is excluded first (see stripIndexBlock).
+ * A role a maintainer hard-wrapped over several lines is folded back
+ * onto one line rather than truncated to its first line.
  * @param {string} content the existing map file, or '' if none
  * @returns {Map<string, string>} path -> role text (may be empty)
  */
@@ -142,9 +146,23 @@ function existingRoles(content) {
   /** @type {Map<string, string>} */
   const roles = new Map();
   const lineRe = /^- `([^`]+)`(?:\s*[—–-]\s*(.*))?$/;
+  /** Path whose role line was last read, and may continue on the next. */
+  let open = null;
   for (const line of stripIndexBlock(content).split('\n')) {
     const m = line.trim().match(lineRe);
-    if (m) roles.set(m[1], (m[2] ?? '').trim());
+    if (m) {
+      open = m[1];
+      roles.set(open, (m[2] ?? '').trim());
+      continue;
+    }
+    // A hand-wrapped role continues as an indented lazy line. Fold it
+    // back onto one line instead of dropping it: the map's contract is
+    // one line per file, but a maintainer's words are never discarded.
+    if (open && /^\s+\S/.test(line)) {
+      roles.set(open, `${roles.get(open)} ${line.trim()}`.trim());
+      continue;
+    }
+    open = null;
   }
   return roles;
 }

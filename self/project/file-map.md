@@ -7,7 +7,7 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 81 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 82 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
@@ -15,7 +15,7 @@ see the root AGENTS.md "Before every task". -->
 - `.windsurf` — 1 file(s)
 - `pm_skills` — 51 file(s)
 - `scripts` — 12 file(s)
-- `self` — 8 file(s)
+- `self` — 9 file(s)
 <!-- /file-map-index -->
 
 ## (root)
@@ -75,15 +75,13 @@ see the root AGENTS.md "Before every task". -->
 - `pm_skills/prompts/deploy.md` — pre-flight, documented pipeline, live verification, rollback
 - `pm_skills/prompts/design-options.md` — stage prompt: 2–3 options with a recommendation
 - `pm_skills/prompts/end-of-task.md` — close protocol: gate, memory writes, size check, report
-- `pm_skills/prompts/field-report.md` — usage-report prompt a consuming
-- `pm_skills/prompts/findings.md` — verify review findings against
+- `pm_skills/prompts/field-report.md` — usage-report prompt a consuming project runs against itself; emits the field-reports header contract outside the project tree.
+- `pm_skills/prompts/findings.md` — verify review findings against source, spot what the review missed, disposition survivors into the backlog; source-agnostic.
 - `pm_skills/prompts/implementation-plan.md` — stage prompt: step plan from the picked option
-- `pm_skills/prompts/improvement-waves.md` — verified findings into a
-  staged programme of revertible waves with a pilot and a coverage
-  ledger; planning only.
+- `pm_skills/prompts/improvement-waves.md` — verified findings into a staged programme of revertible waves with a pilot and a coverage ledger; planning only.
 - `pm_skills/prompts/memory-maintenance.md` — verbs: Diagnose/Prune/Refactor/Re-assess/Reconcile/Doc-sync + environment preflight
 - `pm_skills/prompts/quick-task.md` — single-stage scope-and-plan for small tasks
-- `pm_skills/prompts/read-only.md` — the no-write posture other
+- `pm_skills/prompts/read-only.md` — the no-write posture other investigation workflows declare: hard contract, command isolation, start-and-end integrity check.
 - `pm_skills/prompts/release.md` — framework release procedure (VERSION/CHANGELOG/MANIFEST discipline)
 - `pm_skills/prompts/review.md` — read-only audit of a diff range or feature area
 - `pm_skills/prompts/scoping.md` — stage prompt: smallest useful scope, no code
@@ -117,6 +115,7 @@ see the root AGENTS.md "Before every task". -->
 ## self
 
 - `self/DEV-INFRASTRUCTURE.md` — this repo's Tier-0 capability surface: scripts, gate, version identity
+- `self/FIELD-STUDY.md` — read-only, single-pass procedure that turns consuming-project field reports into an evidenced framework-improvement report (the method REFLECTION.md's policy calls)
 - `self/REFLECTION.md` — standing reflection practice: triggers, evidence gate, three capped passes, run log
 - `self/field-reports/README.md` — cold evidence tier for consuming-project reports: what is filed, per-project layout, filename/header contract, lint status
 - `self/inputs/2026-08-26-code-abstraction-prompt.txt` — verbatim maintainer-supplied whole-repository abstraction and auditability planning prompt; candidate basis for ABSTRACTION-PLAN

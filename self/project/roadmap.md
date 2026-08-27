@@ -26,6 +26,16 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
+<summary><strong>Phase: Reflection instrument (2026-08-28)</strong> — 2 item(s)</summary>
+
+| Item | Outcome |
+| --- | --- |
+| `FIELD-STUDY` | (2026-08-28) — the reflection practice gains its method: `self/FIELD-STUDY.md`, a read-only single-pass procedure over the field-report tier. Twelve dimensions, a staleness pass… |
+| `FILEMAP-WRAP` | (2026-08-28) — the file-map generator was silently truncating any hand-wrapped role to its first line; four roles in this repo's own map had already decayed to half-sentences.… |
+
+</details>
+
+<details>
 <summary><strong>Phase: Epic burn-down (2026-08-27)</strong> — 10 item(s)</summary>
 
 | Item | Outcome |

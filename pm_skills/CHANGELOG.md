@@ -36,6 +36,57 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.16.1 — 2026-08-28
+
+FILEMAP-WRAP: the scaffold file-map generator no longer discards a
+role that was hard-wrapped across lines. `existingRoles()` matched
+role text with a single-line regular expression, so a role written as
+
+```text
+- `path` — first line of the role
+  the rest of the role
+```
+
+came back as "first line of the role" and the continuation was
+dropped entirely — silently, on a routine regeneration, in the file
+the agent is told to keep current. Both of the script's own documented
+promises were false for those entries: role text is "preserved
+verbatim", and the generator "never silently drops". Four roles in
+the framework repository's own map had already been truncated to
+half-sentences before anyone noticed, which is the failure mode
+exactly — the map still lints, still reads as prose, and quietly
+stops describing the file.
+
+The parser now folds continuation lines back into the role. One line
+per file remains the map's contract; a maintainer's words are no
+longer discarded to enforce it.
+
+Ported from the source-repo fork fixed the same day — the two are
+deliberate forks, so the parser moved across, not the file.
+
+### Fixed
+
+- `pm_skills/scaffold/gen-file-map.mjs` — `existingRoles()` now
+  tracks the path whose role line it last read and appends any
+  indented continuation line to that role, resetting on the next role
+  line, heading, or blank line. The header comment and the function
+  comment state the folding behaviour. Zero dependencies, interface
+  unchanged.
+
+### Upgrade actions
+
+- `pm_skills/scaffold/*` is `scaffold` class — **copied once at init
+  and never touched on upgrade** — so your project's copy is not
+  replaced by this release and nothing is required of you.
+- To adopt the fix, copy the current
+  `pm_skills/scaffold/gen-file-map.mjs` over your root copy, or port
+  `existingRoles()` into it if you have customised it.
+- Before your next regeneration with an unfixed copy, read
+  `pm_skills/project/file-map.md` for roles that end mid-sentence.
+  `git log -S` on the role line recovers the original wording; the
+  fixed generator folds it back onto one line instead of losing it
+  again.
+
 ## 4.16.0 — 2026-08-27
 
 ABSTRACTION-PLAN: `prompts/improvement-waves.md` turns verified
