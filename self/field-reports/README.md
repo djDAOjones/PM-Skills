@@ -130,6 +130,38 @@ tier — and the project directory itself stays tracked (a `.gitkeep`
 at its root) so the project is visible in the tree and its row in
 the Projects table says which lane its evidence uses.
 
+### Bulk evidence is archived, never mirrored
+
+**Never copy a directory tree into this lane. Archive it.** Raw
+session logs, memory snapshots, anything bulky arrives as a single
+compressed file plus a manifest beside it:
+
+```text
+<project-slug>/local/
+  YYYY-MM-DD-sessions.tar.gz          <- the tree, verbatim, inside
+  YYYY-MM-DD-sessions-manifest.md     <- what is in it, and how to extract
+```
+
+The reason is hard rather than stylistic. This repository lives on a
+OneDrive-synced path, and OneDrive refuses to sync any file whose
+full path runs past roughly 400 characters — it stops syncing that
+file and shows a dialogue naming it. Agent session logs are the
+worst case: `~/.claude/projects/` encodes each project's entire
+checkout path as one directory name, so a single slug can be 125
+characters before a session UUID, a `subagents/` level and a
+workflow directory are added underneath.
+
+That happened on 2026-08-27. The Route Plotter and UoN Video Helper
+harvests mirrored those trees in place; the deepest file reached 325
+characters repo-relative, roughly 426 with the sync-root prefix, and
+OneDrive rejected it. Consolidating each project's logs into one
+archive took the longest path in the repository down to 104
+characters and the lane from 989 MB to 179 MB — path length inside
+a tar is irrelevant, and JSON Lines compresses about six to one.
+
+Extract to a scratch directory outside the synced folder when
+analysis needs the files; never extract in place.
+
 An analysis that reads local evidence is still written as a public
 evaluation under `self/evaluations/`. The redaction judgement moves
 to that evaluation: cite the local report by path, carry over only
