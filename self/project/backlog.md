@@ -80,11 +80,11 @@
 - [ ] **ABSTRACTION-PLAN Abstraction and auditability planning**
   [detail](tickets/ABSTRACTION-PLAN.md) (2026-08-26) — investigate a
   read-only whole-repository planning function that turns evidence into a
-  coverage-accounted programme of small, behaviour-preserving
-  improvements, with appropriate abstraction and de-abstraction rules,
-  staged waves, a pilot, and measurable validation. Candidate basis
-  archived at self/inputs/2026-08-26-code-abstraction-prompt.txt. · High /
-  High / Medium / Low
+  coverage-accounted programme of small, behaviour-preserving improvements
+  — abstraction and de-abstraction rules, staged waves, a pilot,
+  measurable validation. Two revisions of the basis archived under
+  self/inputs/ (2026-08-26, superseded by 2026-08-27). · High / High /
+  Medium / Low
 - [ ] **READ-ONLY-AUDIT Read-only deep investigation verb**
   [detail](tickets/READ-ONLY-AUDIT.md) (2026-08-27) — investigate a verb
   that examines a whole application deeply in one autonomous run and

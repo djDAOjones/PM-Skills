@@ -7,7 +7,7 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 74 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 75 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
@@ -15,7 +15,7 @@ see the root AGENTS.md "Before every task". -->
 - `.windsurf` — 1 file(s)
 - `pm_skills` — 46 file(s)
 - `scripts` — 11 file(s)
-- `self` — 7 file(s)
+- `self` — 8 file(s)
 <!-- /file-map-index -->
 
 ## (root)
@@ -113,5 +113,6 @@ see the root AGENTS.md "Before every task". -->
 - `self/field-reports/README.md` — cold evidence tier for consuming-project reports: what is filed, per-project layout, filename/header contract, lint status
 - `self/inputs/2026-08-26-code-abstraction-prompt.txt` — verbatim maintainer-supplied whole-repository abstraction and auditability planning prompt; candidate basis for ABSTRACTION-PLAN
 - `self/inputs/2026-08-26-code-review-prompt.txt` — verbatim maintainer-supplied whole-repository review prompt; candidate basis for REVIEW-SUITE
+- `self/inputs/2026-08-27-code-abstraction-prompt-codex.md` — verbatim maintainer abstraction/auditability prompt, fuller revision superseding the 2026-08-26 copy; current basis for ABSTRACTION-PLAN
 - `self/inputs/2026-08-27-read-only-repository-review-prompt.md` — verbatim maintainer-supplied read-only whole-repository review prompt; candidate basis for READ-ONLY-AUDIT
 - `self/inputs/README.md` — cold tier for verbatim external source material: what is filed, naming, filing rule, lint status

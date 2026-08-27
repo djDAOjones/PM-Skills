@@ -61,6 +61,12 @@ line endings — and any redaction, which must be noted in the
 ticket that cites the file. Never edit the content to improve it:
 the point of the tier is that the original survives.
 
+When a newer revision of the same material arrives, file it
+alongside rather than over the old one, and mark the supersession
+in the Contents table below and in the ticket that cites it.
+Archive, never delete — the superseded copy is the record of what
+the earlier thinking was based on.
+
 ## Lint status
 
 Dated material here is cold — excluded from markdownlint, cspell,
@@ -99,4 +105,5 @@ when scoping or building the item that consumes it.
 | --- | --- | --- | --- |
 | `2026-08-26-code-review-prompt.txt` | 2026-08-26 | Maintainer, from outside the project | `REVIEW-SUITE` — candidate basis for a deep code-review suite |
 | `2026-08-27-read-only-repository-review-prompt.md` | 2026-08-27 | Maintainer, from outside the project | `READ-ONLY-AUDIT` — candidate basis for a read-only deep investigation verb; the larger sibling of the 2026-08-26 prompt |
-| `2026-08-26-code-abstraction-prompt.txt` | 2026-08-26 | Maintainer, from outside the project | `ABSTRACTION-PLAN` — candidate basis for an abstraction and auditability planning function |
+| `2026-08-26-code-abstraction-prompt.txt` | 2026-08-26 | Maintainer, from outside the project | `ABSTRACTION-PLAN` — first revision of the abstraction and auditability basis; **superseded** by the 2026-08-27 copy, kept for provenance |
+| `2026-08-27-code-abstraction-prompt-codex.md` | 2026-08-27 | Maintainer, from outside the project | `ABSTRACTION-PLAN` — current basis; supersedes the 2026-08-26 revision (longer self-review, plus completion criteria, context-limit handling, execution instruction, and a final-response contract) |
