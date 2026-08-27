@@ -11,8 +11,8 @@ summary: investigate a thorough code-review suite — engineering-depth dimensio
 ---
 # REVIEW-SUITE — deep code-review suite
 
-> **Status:** Icebox — investigation, unblocked (LAB-FIRST gates
-> the pick, not the filing). **Grades:** provisional at intake
+> **Status:** Icebox — investigation, unblocked.
+> **Last assessed:** 2026-08-27. **Grades:** provisional at intake
 > (2026-08-26): High / High / Medium / Low.
 
 ## Intent
@@ -91,6 +91,19 @@ per chunk, not repository coverage.**
 This repository cannot validate the suite on itself: Markdown and
 lint tooling, no runtime code, no interface, no deployment — the
 dimensions that matter have nothing to bite on. The real test is a
-consuming project with real code (the Hub, or the university
-video-helper app once the lab's R2 arc reaches it): treat that run
-as the evidence gate before distributing.
+consuming project with real code.
+
+Refreshed 2026-08-27: this gate used to wait on "the university
+video-helper app once the lab's R2 arc reaches it". R2 will not
+reach it (decision-log 2026-08-27), but the gate is now easier to
+meet, not harder: Route Plotter and UoN Video Helper are both
+consuming projects with real code, filed in `self/field-reports/`,
+and their own 2026-08-26 review rounds are prior art for this verb.
+Treat a run against either as the gate before distributing.
+
+## Family settled (2026-08-27 Re-assess)
+
+The three read-only whole-repository items are no longer an unsettled
+family. The division of labour, and this item's place in it, is
+recorded once in `READ-ONLY-AUDIT.md` → "Family settled". Nothing was
+merged and nothing cut.

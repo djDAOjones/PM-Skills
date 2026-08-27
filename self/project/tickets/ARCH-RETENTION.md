@@ -2,18 +2,18 @@
 id: ARCH-RETENTION
 name: Retaining history for later analysis
 status: todo
-milestone: icebox
+milestone: current
 flags: detail
 date: 2026-08-27
 grades: Medium / Medium / Low / Low
-order: 10
-summary: investigate how the decision log, trajectory, and other history are retained in the archive so they can be analysed later, not merely evicted and grepped for precedent. Retention sibling of ARCH-RECALL. Live pressure: trajectory sits 13 words under budget and archive/trajectory/ has never been created, so the first run defines the shape by accident unless decided first.
+order: 1
+summary: investigate how the decision log, trajectory, and other history are retained in the archive so they can be analysed later, not merely evicted and grepped for precedent. Retention sibling of ARCH-RECALL. Trigger FIRED 2026-08-27: the trajectory is now OVER budget at 2116/2000 and archive/trajectory/ has still never been created, so the next Prune defines the archive shape whether or not anyone decides it first.
 ---
 # ARCH-RETENTION — retaining history for later analysis
 
-> **Status:** Icebox — investigation, unblocked (LAB-FIRST gates
-> the pick). **Grades:** provisional at intake (2026-08-27):
-> Medium / Medium / Low / Low.
+> **Status:** Current — promoted 2026-08-27, trigger fired.
+> **Last assessed:** 2026-08-27. **Grades:** provisional at intake
+> (2026-08-27): Medium / Medium / Low / Low.
 
 ## Intent
 
@@ -65,6 +65,14 @@ blocked on a project reporting missed-precedent pain. This is
 **retention**: whether what is kept can support analysis at all.
 Complementary — poor retention caps recall — so a Re-assess may
 merge them.
+
+## Why it was promoted (2026-08-27)
+
+The trigger fired. The trajectory stands at **2116 words against a
+budget of 2000** and `archive/trajectory/` has still never been
+created in this repository, so the next Prune creates it. This
+ticket's own warning was that the first run "defines the shape by
+accident unless decided first" — that run is now the next one.
 
 ## Investigation questions
 

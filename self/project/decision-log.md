@@ -9,6 +9,73 @@
      and 2026-07 — see archive/INDEX.md for ranges. Grep the
      archive files directly; never re-inline them. -->
 
+## 2026-08-27 — Re-assess: queue refilled after the LAB-FIRST pause
+
+**Decision:** first Re-assess since the maintainer paused LAB-FIRST.
+Assessed 15 records: 3 promoted, 5 refreshed, 4 holds confirmed
+unchanged, 0 cut, and the read-only family settled. Signed off by the
+maintainer before applying.
+
+**Promoted to Current.** **ARCH-RETENTION** leads because its trigger
+genuinely fired: the trajectory is over budget at 2116/2000 words and
+`archive/trajectory/` has never been created in this repository, so
+the next Prune creates it. The ticket's own warning was that the first
+run "defines the shape by accident unless decided first" — that run is
+now the next one, which makes this the rare queue item with a real
+deadline. **SCAFFOLD-GITPATH**, promoted from the wish-list: the
+shipped `pm_skills/scaffold/check-links.mjs` still resolves link
+targets with `existsSync` (verified at line 102), so every scaffolded
+project inherits the local-passes/CI-fails gap GATE-PARITY closed
+here on 2026-08-24. Its recorded hold was "not taken with GATE-PARITY
+while LAB-FIRST holds the canon queue" — a reason that expired the
+same day the pause landed. Distributed, so a release when taken.
+VOICE-INTAKE drops to last in Current: still blocked, and a blocked
+item at the top of a milestone misreads as the next pick.
+
+**Promoted to Next.** **FIELD-EXPORT**, on the strongest evidence a
+proposed verb can have — performed by hand twice in one day during
+FIELD-HARVEST, once manually and once by an agent following a written
+prompt. Its open question is ownership, not feasibility: consuming
+projects gain little from reporting on themselves.
+
+**The read-only family is settled**, after three passes carrying it as
+"one unsettled family — do not build all three". Adopted the division
+READ-ONLY-AUDIT had already proposed: REVIEW-SUITE is *what is wrong*,
+ABSTRACTION-PLAN is *what to change*, and READ-ONLY-AUDIT is the
+shared no-write **mode** both would run inside — a dependency of the
+other two, not a competitor. Nothing merged, nothing cut; the overlap
+was in the framing, not the content. Deferring it a fourth time was
+the alternative and was rejected: the question had stopped generating
+new information.
+
+**Refreshed, not promoted.** REVIEW-SUITE's evidence gate named "the
+university video-helper app once the lab's R2 arc reaches it" — R2
+will not reach it, so the wording was replaced with the field-report
+evidence now filed, which meets the gate's substance more easily than
+its old wording did. PM-MCP's distribution leg has **fired**: it asked
+for more than one consuming project and three are now on record, so
+the hold stands on its prototype leg alone, which is lab work.
+EPIC-AUTOJAZZ, filed hours earlier, quoted the trajectory at 1987/2000
+and the log at 18/20 as a *risk of running long*; both were breached
+the same day by ordinary single-item work, so its central risk is
+realised rather than hypothetical. Four tickets carried stale
+"LAB-FIRST gates the pick" status lines and were cleared.
+
+**Holds confirmed, deliberately not re-stamped** (this entry carries
+the batch date, so unchanged records stay diff-quiet): DATA-MIG (42 d,
+age-by-design per ITEM-AGE; both new consuming projects are
+browser-only, so its trigger is unfired), ARCH-RECALL and
+JANITOR-WRITE. For the next pass: ARCH-RECALL waits on a project
+reporting missed-precedent pain, and the session logs that would
+evidence it are now filed and unread — the hold stands because nobody
+has looked, not because the evidence is absent.
+
+**Consequence:** the decision log now stands at 21 live entries
+against a budget of 20, and the trajectory remains over. A Prune is
+due — but it should wait for ARCH-RETENTION, which exists precisely
+to decide the archive shape that Prune would otherwise set by
+accident.
+
 ## 2026-08-27 — LAB-FIRST paused; UPGRADE-REFUSED filed
 
 **Decision:** the maintainer paused the LAB-FIRST standing order

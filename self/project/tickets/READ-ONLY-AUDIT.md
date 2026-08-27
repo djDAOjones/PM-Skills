@@ -11,8 +11,7 @@ summary: investigate a verb that examines a whole application deeply in one auto
 ---
 # READ-ONLY-AUDIT — read-only deep investigation verb
 
-> **Status:** Icebox — investigation, unblocked (LAB-FIRST gates
-> the pick, not the filing). **Grades:** provisional at intake
+> **Status:** Icebox — investigation, unblocked. **Grades:** provisional at intake
 > (2026-08-27): High / High / Medium / Low.
 
 ## Intent
@@ -26,20 +25,6 @@ and returns a comprehensive report. Not a review of one change.
 `self/inputs/2026-08-27-read-only-repository-review-prompt.md`:
 eight phases, thirteen dimension sections, a twenty-section report.
 The larger sibling of the prompt REVIEW-SUITE is built on.
-
-## Relationship to its siblings — settle this first
-
-Three maintainer prompts in two days produced three read-only
-whole-repository items. Proposed division of labour —
-
-- **REVIEW-SUITE:** *what is wrong* — dimensions, finding schema.
-- **ABSTRACTION-PLAN:** *what to change* — waves, pilot, metrics.
-- **This item:** *how to run any of them safely* — the no-write
-  contract, autonomous single-pass mode, integrity guarantee.
-
-On that reading this is not a fourth verb but the **shared mode**
-the other two would run inside. A Re-assess should confirm that,
-or merge. **Do not build all three.**
 
 ## What is genuinely new
 
@@ -87,3 +72,20 @@ or merge. **Do not build all three.**
 As with REVIEW-SUITE: this repository has no application to
 investigate deeply — Markdown and lint tooling, no runtime, no
 interface. A real consuming project is the test.
+
+## Family settled (2026-08-27 Re-assess)
+
+The three read-only whole-repository items were carried as "one
+unsettled family — do not build all three" across three passes. The
+2026-08-27 Re-assess adopted the division of labour READ-ONLY-AUDIT
+already proposed, rather than defer a fourth time:
+
+- **REVIEW-SUITE** — *what is wrong*: dimensions, finding schema.
+- **ABSTRACTION-PLAN** — *what to change*: waves, pilot, metrics.
+- **READ-ONLY-AUDIT** — *how to run either safely*: the no-write
+  contract, single-pass autonomous mode, integrity check. It is the
+  shared **mode**, not a third verb.
+
+Consequence: READ-ONLY-AUDIT is a dependency of the other two, not a
+competitor, and should be settled first. Nothing is merged and
+nothing is cut — the overlap was in the framing, not the content.

@@ -15,8 +15,25 @@
 
 ### Current milestone
 
-<!-- Intent: LAB-FIRST paused by the maintainer 2026-08-27 until further notice — the alert no longer gates the queue and the record moved to the Icebox, so canon work may be picked normally. That leaves VOICE-INTAKE alone in Current and still blocked on its maintainer inputs (real transcripts plus the external preparation prompts), so nothing here is runnable: the next Re-assess should refill Current from the Icebox, which now holds ten investigations. -->
+<!-- Intent: refilled at the 2026-08-27 Re-assess, the first pass since LAB-FIRST was paused. ARCH-RETENTION leads because its trigger has actually fired — the trajectory is over budget at 2116/2000 and archive/trajectory/ has never been created here, so the next Prune defines the archive shape whether or not anyone decides it. SCAFFOLD-GITPATH follows: a known bug with a known fix in a distributed file, deferred in the wish-list only because LAB-FIRST held the queue, and a release when taken. VOICE-INTAKE sits last and stays blocked on maintainer inputs (real transcripts plus the external preparation prompts). -->
 
+- [ ] **ARCH-RETENTION Retaining history for later analysis**
+  [detail](tickets/ARCH-RETENTION.md) (2026-08-27) — investigate how the
+  decision log, trajectory, and other history are retained in the archive
+  so they can be analysed later, not merely evicted and grepped for
+  precedent. Retention sibling of ARCH-RECALL. Trigger FIRED 2026-08-27:
+  the trajectory is now OVER budget at 2116/2000 and archive/trajectory/
+  has still never been created, so the next Prune defines the archive
+  shape whether or not anyone decides it first. · Medium / Medium / Low /
+  Low
+- [ ] **SCAFFOLD-GITPATH Carry the GATE-PARITY fix into the scaffold**
+  [detail](tickets/SCAFFOLD-GITPATH.md) (2026-08-24) — the shipped
+  pm_skills/scaffold/check-links.mjs still resolves link targets with
+  existsSync, so every project scaffolded from it inherits the
+  local-passes/CI-fails gap GATE-PARITY closed in this repo's own fork on
+  2026-08-24. Distributed, so a release. Promoted from the wish-list at
+  the 2026-08-27 Re-assess, when LAB-FIRST was paused and its stated hold
+  reason expired. · Medium / Low / Low / Low
 - [ ] **VOICE-INTAKE Voice-memo transcript intake**
   [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
   more real raw transcripts plus the external preparation prompts (ticket
@@ -29,11 +46,20 @@
 
 ### Next milestone
 
-<!-- Intent: empty — refill at the next Re-assess pass, which is now due: with LAB-FIRST paused and VOICE-INTAKE still blocked, Current has nothing runnable and the Icebox has grown to ten items, three of them an unsettled family. -->
+<!-- Intent: FIELD-EXPORT, promoted from the wish-list at the 2026-08-27 Re-assess on the strongest evidence a verb can have — the work was done by hand twice in one day during FIELD-HARVEST, once manually and once by an agent following a written prompt. The open question is whether it belongs to the product at all, since consuming projects gain little from reporting on themselves. -->
+
+- [ ] **FIELD-EXPORT Usage-report verb for consuming projects**
+  [detail](tickets/FIELD-EXPORT.md) (2026-08-23) — a framework verb that
+  emits a standard usage report from a consuming project — memory
+  counters, verbs fired, close fidelity, upgrade outcome, incidents —
+  already in the header shape the field-reports tier expects, so filing is
+  consistent rather than hand-copied. Promoted from the wish-list at the
+  2026-08-27 Re-assess after the work was done by hand twice in one day. ·
+  High / Medium / Low / Low
 
 ### Icebox
 
-<!-- Intent: LAB-FIRST landed here 2026-08-27 when the maintainer paused it — the standing order is intact and resumes on their word, it simply no longer gates the queue. UPGRADE-REFUSED filed the same day from the FIELD-HARVEST evidence: three deployments, zero upgrade.md walks, one explicit refusal — the declarative-upgrade machinery is untested in the field, which is not the same as broken. Older holds: four with explicit triggers (INTAKE-DEEP, 2026-08-17), confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired; ARCH-RETENTION's trajectory-archive trigger is close, and it may merge with ARCH-RECALL. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). BACKLOG-TABLE, REVIEW-SUITE and ABSTRACTION-PLAN filed unblocked 2026-08-26 (maintainer intake), READ-ONLY-AUDIT 2026-08-27: REVIEW-SUITE, ABSTRACTION-PLAN and READ-ONLY-AUDIT are one family from three maintainer prompts in two days (what is wrong / what to change / how to run it safely) — the next Re-assess settles the division of labour or merges them; do not build all three. EPIC-AUTOJAZZ filed 2026-08-27 (maintainer intake) — a continuous burn-down mode, which reopens the burn-down-until-stopped option NEXT-CMD weighed and rejected; it depends on BACKLOG-TABLE for its status table and inherits JANITOR-WRITE's autonomy-ladder question. -->
+<!-- Intent: the read-only family is SETTLED (2026-08-27) on the division READ-ONLY-AUDIT proposed — REVIEW-SUITE is what is wrong, ABSTRACTION-PLAN is what to change, READ-ONLY-AUDIT is the shared no-write mode both would run inside, so it is a dependency of the other two rather than a competitor; nothing merged, nothing cut. LAB-FIRST landed here when the maintainer paused it 2026-08-27 — intact, resumes on their word, no longer gates. UPGRADE-REFUSED and EPIC-AUTOJAZZ filed 2026-08-27; EPIC-AUTOJAZZ's memory-budget risk was realised the same day it was written, by ordinary single-item work. PM-MCP's distribution leg has fired (three consuming projects on record) and it now holds on the prototype leg alone, which is lab work. Older holds confirmed unchanged: DATA-MIG (42 d, age-by-design per ITEM-AGE; both new consuming projects are browser-only with no persistent user data), ARCH-RECALL (no missed-precedent report — though the session logs that would show one are now filed and unread), JANITOR-WRITE (per-verb sign-off). TEST-DOC stays cut. -->
 
 - [ ] **LAB-FIRST Work the lab before this repo** [maintainer]
   [detail](tickets/LAB-FIRST.md) (2026-08-23) — PAUSED by the maintainer
@@ -96,14 +122,6 @@
   self/inputs/2026-08-27-read-only-repository-review-prompt.md. Third of
   three overlapping read-only analysis items; settle the family before
   building any. · High / High / Medium / Low
-- [ ] **ARCH-RETENTION Retaining history for later analysis**
-  [detail](tickets/ARCH-RETENTION.md) (2026-08-27) — investigate how the
-  decision log, trajectory, and other history are retained in the archive
-  so they can be analysed later, not merely evicted and grepped for
-  precedent. Retention sibling of ARCH-RECALL. Live pressure: trajectory
-  sits 13 words under budget and archive/trajectory/ has never been
-  created, so the first run defines the shape by accident unless decided
-  first. · Medium / Medium / Low / Low
 - [ ] **UPGRADE-REFUSED Nobody walks the upgrade prompt**
   [detail](tickets/UPGRADE-REFUSED.md) (2026-08-27) — three deployments on
   record (Derry Lane, Route Plotter, UoN Video Helper) and none reached

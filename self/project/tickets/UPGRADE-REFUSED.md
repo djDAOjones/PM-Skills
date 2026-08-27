@@ -22,9 +22,9 @@ deployments, none of which reached its version via
 
 | Project | Path taken |
 | --- | --- |
-| Derry Lane | 4.4.0 installed 2026-08-17, fresh-reinstalled as 4.6.0 the same day |
-| UoN Video Helper | 4.6.0 installed 2026-08-24, reinstalled at 4.9.2 the same day |
-| Route Plotter v3 | 4.7.0 installed fresh 2026-08-17 with v2 memory ported; 4.9.2 then **declined** |
+| Derry Lane | 4.4.0 in 2026-08-17, reinstalled as 4.6.0 that day |
+| UoN Video Helper | 4.6.0 in 2026-08-24, reinstalled at 4.9.2 that day |
+| Route Plotter v3 | 4.7.0 fresh 2026-08-17, memory ported; 4.9.2 **declined** |
 
 Route Plotter is the sharp case: a refusal, not an omission. Its
 decision log records the owner call in as many words —

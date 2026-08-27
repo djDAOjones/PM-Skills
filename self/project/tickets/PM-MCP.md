@@ -47,11 +47,17 @@ code, an install step, a dependency surface — everything the
 zero-dependency product refuses — so it can only ever be an
 **optional adapter outside `pm_skills/`**, never the core.
 
-Last assessed 2026-08-17 (INTAKE-DEEP): hold — RQ5 GREEN
-(2026-08-17) advanced the prototype leg; the harness-client run
-stays a lab move (this record tracks the gate, not the lab's
-queue), and distribution stays blocked on more than one consuming
-project (external-evidence discipline).
+Last assessed 2026-08-27 (Re-assess): hold, but one leg has now
+fired. The **distribution** leg asked for more than one consuming
+project; three are now on record with evidence filed in
+`self/field-reports/` — Derry Lane, Route Plotter and UoN Video
+Helper. That leg is satisfied. The **prototype** leg is not: it
+needs the lab's harness-client run (RQ5-INTERFACE), which is a lab
+move, and the lab arc was paused by the maintainer on 2026-08-27.
+So the hold stands on the prototype leg alone, and the external-
+evidence discipline it was paired with has been met rather than
+waived. Prior assessment 2026-08-17 (INTAKE-DEEP): RQ5 GREEN
+advanced the prototype leg.
 
 ## Approach
 

@@ -11,7 +11,8 @@ summary: investigate an "epic" auto-jazz mode that keeps developing continuously
 ---
 # EPIC-AUTOJAZZ — continuous burn-down mode
 
-> **Status:** Icebox — investigation, unblocked. **Grades:**
+> **Status:** Icebox — investigation, unblocked. **Last assessed:**
+> 2026-08-27, the first Re-assess since filing. **Grades:**
 > provisional at intake (2026-08-27): High / High / High / Medium —
 > the risk grade is the point, not a formality.
 
@@ -60,9 +61,10 @@ already the repo's term for this direction (ICEBOX-DEEP, 2026-08-17).
 
 ## Risks specific to running long
 
-- **Memory budgets trip mid-run.** Trajectory sits at 1987 of 2000
-  words and the decision log at 18 of 20 entries; a few closes
-  breach both. Prune has to be interleaved, not deferred.
+- **Memory budgets trip mid-run — realised, not hypothetical.**
+  Filed quoting 1987/2000 trajectory words and 18/20 log entries.
+  Hours later both were breached — 2116/2000 and 21/20 — by ordinary
+  single-item work, no long run involved. Prune must be interleaved.
 - **Unattended pushes.** CLOSE-COMMIT made commit-and-push a
   standard close step, so a long run pushes repeatedly with nobody
   between.

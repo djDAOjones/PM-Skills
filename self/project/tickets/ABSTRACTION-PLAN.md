@@ -11,8 +11,7 @@ summary: investigate a read-only whole-repository planning function that turns e
 ---
 # ABSTRACTION-PLAN — abstraction and auditability planning
 
-> **Status:** Icebox — investigation, unblocked (LAB-FIRST gates
-> the pick, not the filing). **Grades:** provisional at intake
+> **Status:** Icebox — investigation, unblocked. **Grades:** provisional at intake
 > (2026-08-26): High / High / Medium / Low.
 
 ## Intent
@@ -103,3 +102,10 @@ pick the smallest product home.
 - Does the newer revision's autonomous, no-pausing execution mode
   belong in a gated framework? READ-ONLY-AUDIT raises the same
   tension — settle it once, for both.
+
+## Family settled (2026-08-27 Re-assess)
+
+The three read-only whole-repository items are no longer an unsettled
+family. The division of labour, and this item's place in it, is
+recorded once in `READ-ONLY-AUDIT.md` → "Family settled". Nothing was
+merged and nothing cut.
