@@ -122,6 +122,7 @@ const FILE_EXCLUDE = [
   /^self\/project\/reports\//,
   /^self\/project\/archive\//, // frozen history: pre-rename paths are not rot
   /^self\/field-reports\/[^/]+\//, // verbatim consuming-project exports; README stays checked
+  /^self\/inputs\/[0-9]/, // verbatim external source material; README stays checked
 ];
 
 /**

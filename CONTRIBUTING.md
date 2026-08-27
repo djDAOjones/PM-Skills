@@ -26,8 +26,10 @@ The framework is overwhelmingly Markdown. Two classes of file live here:
   self/AGENTS.md in 4.0.0), living project memory (`self/project/`),
   and cold storage (`self/archive/` pre-adoption history incl. the
   retired `user_crud` tree, `self/evaluations/`, `self/_transcripts/`,
-  and the per-project directories under `self/field-reports/` —
-  consuming-project reports filed verbatim; see that tier's README).
+  the per-project directories under `self/field-reports/` —
+  consuming-project reports filed verbatim; see that tier's README —
+  and the dated material under `self/inputs/`, external source
+  documents filed verbatim; see that tier's README).
   The living memory is inside the lint gate; only the cold storage is
   excluded.
 
@@ -101,8 +103,9 @@ Configuration:
   `gitignore: true` so the linter skips whatever `.gitignore` skips
   (`node_modules/`), plus an explicit `ignores` for the cold `self/`
   tiers (`self/archive/`, `self/evaluations/`, `self/_transcripts/`,
-  `self/field-reports/*/` — the tier README itself stays gated) — the
-  living memory in `self/` is gated. (markdownlint-cli2 does not
+  `self/field-reports/*/`, `self/inputs/[0-9]*` — both tier READMEs
+  stay gated; the inputs pattern keys on that tier's `YYYY-MM-DD-`
+  naming rule) — the living memory in `self/` is gated. (markdownlint-cli2 does not
   honour `.markdownlintignore`.)
 - `.markdownlintignore` exists **for the editor extension only**
   (vscode-markdownlint honours it; the CLI does not). It mirrors the
@@ -119,10 +122,14 @@ Configuration:
   `words` only a term of art the doc genuinely needs (`auto-jazz`,
   `Reconcile`-family jargon, stack names). Quoted external material in
   memory files takes a file-scoped `cspell:ignore` comment, and cold
-  storage is never the reason to grow the dictionary.
+  storage is never the reason to grow the dictionary — verbatim
+  material under `self/inputs/` is excluded for exactly that reason.
 - editorconfig-checker: `.editorconfig-checker.json`. Excludes `*.md`
   (markdownlint owns Markdown indentation), the generated lockfile, and
-  the cold `self/` tiers.
+  the cold `self/` tiers. `self/inputs/` is deliberately **not**
+  excluded: its filing rule permits mechanical normalisation (line
+  endings, a terminating newline), so that hygiene stays enforced even
+  though the content checks are waived.
 
 ### Running without a local install
 

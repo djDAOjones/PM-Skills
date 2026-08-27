@@ -10,3 +10,4 @@ self/evaluations/
 self/_transcripts/
 self/project/reports/
 self/field-reports/*/
+self/inputs/[0-9]*

@@ -39,7 +39,7 @@
 
 ### Icebox
 
-<!-- Intent: four held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired. GATE-PARITY was filed here 2026-08-24 and shipped the same day on the maintainer's direct pick, without waiting for its trigger. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). BACKLOG-TABLE, REVIEW-SUITE, and ABSTRACTION-PLAN filed unblocked 2026-08-26 (maintainer intake) — investigations awaiting a pick, held behind LAB-FIRST like everything else. -->
+<!-- Intent: four held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired. GATE-PARITY was filed here 2026-08-24 and shipped the same day on the maintainer's direct pick, without waiting for its trigger. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). BACKLOG-TABLE, REVIEW-SUITE, and ABSTRACTION-PLAN filed unblocked 2026-08-26 (maintainer intake), READ-ONLY-AUDIT 2026-08-27 — investigations awaiting a pick, held behind LAB-FIRST like everything else. REVIEW-SUITE, ABSTRACTION-PLAN, and READ-ONLY-AUDIT are one family from three maintainer prompts in two days (what is wrong / what to change / how to run it safely): the next Re-assess settles the division of labour or merges them — do not build all three. -->
 
 - [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
   project with persistent user data] (2026-07-16) — hard rule "no
@@ -85,5 +85,14 @@
   staged waves, a pilot, and measurable validation. Candidate basis
   archived at self/inputs/2026-08-26-code-abstraction-prompt.txt. · High /
   High / Medium / Low
+- [ ] **READ-ONLY-AUDIT Read-only deep investigation verb**
+  [detail](tickets/READ-ONLY-AUDIT.md) (2026-08-27) — investigate a verb
+  that examines a whole application deeply in one autonomous run and
+  returns a comprehensive report, under a hard read-only guarantee — a
+  no-write contract, isolation for any command that might write, and a
+  start-and-end integrity check. Basis archived at
+  self/inputs/2026-08-27-read-only-repository-review-prompt.md. Third of
+  three overlapping read-only analysis items; settle the family before
+  building any. · High / High / Medium / Low
 
 <!-- generated:records:end -->

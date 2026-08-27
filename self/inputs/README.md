@@ -63,18 +63,26 @@ the point of the tier is that the original survives.
 
 ## Lint status
 
-Material filed here is normally not Markdown, so the Markdown
-checks (markdownlint, cspell, docs integrity) do not see it and no
-configuration excludes it. Two consequences worth knowing:
+Dated material here is cold — excluded from markdownlint, cspell,
+and the docs-integrity checker, because material filed verbatim
+carries foreign headings, spellings, and paths the gate cannot
+check. The exclusions key on this tier's `YYYY-MM-DD-` naming
+rule (`self/inputs/[0-9]*`), so **material is exempt and this
+README stays gated**. Name files by the rule or they will be
+linted like ordinary repository prose.
 
-- A file filed here **as `.md`** would be linted like any other
-  Markdown, which conflicts with filing verbatim. Keep source
-  material in its original non-Markdown format, or add the tier to
-  the lint ignore lists in the same change
-  (`CONTRIBUTING.md` → "Configuration").
-- Every file here is checked by editorconfig-checker regardless of
-  extension, which is why a terminating newline is the one
-  normalisation the filing rule allows.
+The exclusion was added when the first Markdown input arrived
+(2026-08-27): it failed 14 markdownlint rules and 9 spellings, and
+correcting either would have broken the filing rule. Changing the
+tier's shape means updating `.markdownlint-cli2.jsonc`,
+`.markdownlintignore`, `cspell.json`, and
+`scripts/check-docs.mjs` in the same change
+(`CONTRIBUTING.md` → "Configuration").
+
+Every file here **is** checked by editorconfig-checker whatever
+its extension — deliberately, since the filing rule already
+permits mechanical normalisation. That is why a terminating
+newline is allowed, and why line endings may be corrected.
 
 This README is the tier's one gated file and is listed in
 `self/project/file-map.md`.
@@ -90,4 +98,5 @@ when scoping or building the item that consumes it.
 | File | Arrived | Supplied by | Consumed by |
 | --- | --- | --- | --- |
 | `2026-08-26-code-review-prompt.txt` | 2026-08-26 | Maintainer, from outside the project | `REVIEW-SUITE` — candidate basis for a deep code-review suite |
+| `2026-08-27-read-only-repository-review-prompt.md` | 2026-08-27 | Maintainer, from outside the project | `READ-ONLY-AUDIT` — candidate basis for a read-only deep investigation verb; the larger sibling of the 2026-08-26 prompt |
 | `2026-08-26-code-abstraction-prompt.txt` | 2026-08-26 | Maintainer, from outside the project | `ABSTRACTION-PLAN` — candidate basis for an abstraction and auditability planning function |

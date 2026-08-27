@@ -10,9 +10,11 @@
   // The repo's living memory (self/) IS gated (SELF-HOST 2026-07-16).
   // Only its cold storage stays out: the frozen pre-adoption archive,
   // evaluations/transcripts (working outputs with unchecked exported
-  // content), and the per-project field-report directories (verbatim
-  // consuming-project exports; the tier README stays gated). Keep in
-  // step with .markdownlintignore, cspell.json,
+  // content), the per-project field-report directories (verbatim
+  // consuming-project exports), and the dated source material under
+  // self/inputs/ (external documents filed verbatim). Both tier READMEs
+  // stay gated — the inputs pattern keys on the tier's YYYY-MM-DD-
+  // naming rule. Keep in step with .markdownlintignore, cspell.json,
   // .editorconfig-checker.json, and scripts/check-docs.mjs.
-  "ignores": ["self/archive/**", "self/evaluations/**", "self/_transcripts/**", "self/project/reports/**", "self/field-reports/*/**"]
+  "ignores": ["self/archive/**", "self/evaluations/**", "self/_transcripts/**", "self/project/reports/**", "self/field-reports/*/**", "self/inputs/[0-9]*"]
 }
