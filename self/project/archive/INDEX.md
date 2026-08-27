@@ -17,6 +17,9 @@
 
 ## Decision log
 
+- 2026-08-17 → 2026-08-23 (6 entries: Re-assess (scoped) — TEST-DOC
+  cut, RELEASE-TREE-GLOB, Prune (decision-log 21 → 10), PLAN-ORDER,
+  RECORDS-DIST, CL-440-WORDING) — `decision-log-2026-08d.md`
 - 2026-08-17 (7 entries: RELEASE-EVALS, PACE-POLICY, INTAKE-DEEP,
   DEV-PREP, PAR-DISPATCH ships, PAR-DISPATCH queued, VALIDATOR-QC) —
   `decision-log-2026-08c.md`

@@ -2,6 +2,11 @@
 
 ## Phase: Planning loop
 
+- PRUNE-P4-INDEX (2026-08-27) — Prune P4 no longer sweeps the live
+  file's own archive-index lines into the new chunk; found by running
+  a mid-run prune (decision log 20 → 14 live, chunk 08d, both slices
+  byte-identical) during the first epic burn-down (4.12.1) — see
+  decision-log.
 - EPIC-AUTOJAZZ (2026-08-27) — continuous burn-down ships as
   `integrations/epic.md`, its own integration composing next.md per
   item; the one-item reversal rests on "invoked, never scheduled",

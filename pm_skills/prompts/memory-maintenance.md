@@ -375,7 +375,13 @@ new files alongside the original, verify, then swap:
   Preserve append-only entries verbatim — never rewrite.
 - Build the trimmed live file into a temp (e.g. `"$SRC.tmp"`): the
   kept content plus, for `decision-log.md`, a one-line index entry
-  at the bottom for each archive file, in the form
+  at the bottom for each archive file — **including the ones already
+  there**. Those existing index lines sit at the foot of the live
+  file, which is exactly where the archived tail slice begins, so a
+  naive `tail -n +N` carries them into the new chunk and the live
+  file loses its pointers to every earlier archive. Strip them from
+  the archived slice and re-emit the full set on the live file, in
+  the form
   `## Archived: 2026-04 — see archive/decision-log-2026-04.md` (or
   `## Archived: 2026-05-02 → 2026-05-20 — see archive/…` for a
   date-range split).

@@ -36,6 +36,34 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.12.1 — 2026-08-27
+
+Prune P4 trap, found by running it: a decision-log split carried the
+live file's **own archive-index lines** into the new chunk. Those
+lines sit at the foot of the live file, which is precisely where the
+archived tail slice starts, so a straightforward `tail -n +N` takes
+them with it — and the live log silently loses its pointer to every
+earlier archive, which is the one thing that makes a cold archive
+findable. The step already said to write an index entry "for each
+archive file"; it did not warn that the existing ones are inside the
+slice you are moving.
+
+### Fixed
+
+- `pm_skills/prompts/memory-maintenance.md` — Prune P4 now says to
+  strip existing `## Archived:` index lines from the archived slice
+  and re-emit the full set on the live file, and explains why a naive
+  tail loses them.
+
+### Upgrade actions
+
+- Replace `pm_skills/prompts/memory-maintenance.md` with this
+  version's copy (`framework` class).
+- If a past prune already swallowed an index line, the fix is a
+  one-line re-add to the live file — check that every file in
+  `archive/` is named by an index line in the live log. The archived
+  entries themselves are unaffected.
+
 ## 4.12.0 — 2026-08-27
 
 EPIC-AUTOJAZZ: `integrations/epic.md` burns the backlog down

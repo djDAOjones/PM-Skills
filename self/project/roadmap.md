@@ -30,10 +30,11 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: Planning loop</strong> — 13 item(s)</summary>
+<summary><strong>Phase: Planning loop</strong> — 14 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
+| `PRUNE-P4-INDEX` | (2026-08-27) — Prune P4 no longer sweeps the live file's own archive-index lines into the new chunk; found by running a mid-run prune (decision log 20 → 14 live, chunk 08d, both… |
 | `EPIC-AUTOJAZZ` | (2026-08-27) — continuous burn-down ships as `integrations/epic.md`, its own integration composing next.md per item; the one-item reversal rests on "invoked, never scheduled",… |
 | `BACKLOG-TABLE` | (2026-08-27) — human-readable roadmap view ships source-only: `scripts/gen-roadmap.mjs` → tracked `self/project/roadmap.md`, gate-checked as `lint:roadmap`. Separate file (not in… |
 | `FIELD-EXPORT` | (2026-08-27) — the twice-run-by-hand harvest procedure ships as `prompts/field-report.md`: a prompt not a script, distributed not maintainer-side, because the work runs inside the… |
