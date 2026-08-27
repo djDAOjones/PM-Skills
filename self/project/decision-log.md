@@ -12,6 +12,34 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-27 — Second mid-run Prune; this session declared as its own phase
+
+**Decision:** trajectory hit 1909/2000 between items, so a second
+interleaved Prune ran before the next pick. 1909 → 1297 words; five
+whole phases moved to
+`archive/trajectory/trajectory-0002-2026-08-08-to-2026-08-18.md`
+(20 items, IDs in the INDEX row). Lossless: 43 items before, 43
+after, zero content lines dropped.
+
+**And a phase was declared, not just archived.** "Planning loop" had
+grown to 1077 words — over half the file — because this session's
+nine shipped items were accreting into the phase that preceded them.
+They are now `## Phase: Epic burn-down (2026-08-27)`, with Planning
+loop left holding what came before. ARCH-RETENTION made phases the
+load-bearing sequence unit this morning, so letting one phase absorb
+a distinct arc would have made the next prune choose between
+splitting a phase (forbidden) and archiving a live one.
+
+**Two prunes in one session is the mode working, not failing.**
+`epic.md` predicted exactly this and says to interleave; the ticket
+that became it predicted a mid-run trip from theory. Both prunes
+were needed, both were cheap, and neither blocked an item.
+
+**Alternatives:** archive a slice of Planning loop (rejected — that
+is splitting a phase, which the retention shape forbids); prune
+deeper to avoid a third pass (rejected — 70% is the policy, and
+interleaving is the sanctioned answer).
+
 ## 2026-08-27 — REVIEW-SUITE: the field evidence changed the answer (4.15.0)
 
 **Decision:** ship `pm_skills/prompts/findings.md` — verify a

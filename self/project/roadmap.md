@@ -27,7 +27,7 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: Planning loop</strong> — 17 item(s)</summary>
+<summary><strong>Phase: Epic burn-down (2026-08-27)</strong> — 9 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
@@ -40,6 +40,14 @@ trajectory's own level-2 headings; archived phases are listed from
 | `FIELD-EXPORT` | (2026-08-27) — the twice-run-by-hand harvest procedure ships as `prompts/field-report.md`: a prompt not a script, distributed not maintainer-side, because the work runs inside the… |
 | `SCAFFOLD-GITPATH` | (2026-08-27) — GATE-PARITY's Git-path resolution ported into the distributed `scaffold/check-links.mjs`; the local-passes/CI-fails gap every scaffolded project inherited is… |
 | `ARCH-RETENTION` | (2026-08-27) — the archive gains a retention shape: ID join key surfaced in every INDEX row, whole-sequence-unit chunking (whole phases for the trajectory), an INDEX row contract… |
+
+</details>
+
+<details>
+<summary><strong>Phase: Planning loop</strong> — 8 item(s)</summary>
+
+| Item | Outcome |
+| --- | --- |
 | `FIELD-HARVEST` | (2026-08-27) — two applied projects filed as consuming-project evidence (source-only): Route Plotter v3 (pm-skills 4.7.0) and UoN Video Helper (4.9.2) harvested into… |
 | `GATE-PARITY` | (2026-08-24) — the local gate made CI-faithful (source-only): `scripts/check-docs.mjs` resolves every reference against the paths Git knows about instead of calling `existsSync`,… |
 | `GATE-REPORTS` | (2026-08-24) — fresh-clone gate repair: check-docs now ignores the gitignored janitor report path (`self/project/reports/`), which the root contract names in prose. CI had been… |
@@ -82,70 +90,11 @@ trajectory's own level-2 headings; archived phases are listed from
 </details>
 
 <details>
-<summary><strong>Phase: Records arc</strong> — 3 item(s)</summary>
-
-| Item | Outcome |
-| --- | --- |
-| `VALIDATOR-QC` | probe-evidenced check-memory hardening (source-only): records-aware repair messages on both coherence FAILs, WARN on unknown record status values, dialect-tolerant trajectory… |
-| `PAR-BRANCH` | branch-per-session for records mode: verified live on both repos (records clean; view conflicts regenerate away); GUIDE + secondary-close updated (4.6.0) (2026-08-17) — see… |
-| `BACKLOG-STATE` | phase 1 shipped: canon backlog runs records mode (tickets = records, view generated, validator coherence FAILs divergence); phase 0 = lab RQ3 pass (2026-08-17) — see decision-log. |
-
-</details>
-
-<details>
-<summary><strong>Phase: Ticket sweep (post-wave incumbent development)</strong> — 5 item(s)</summary>
-
-| Item | Outcome |
-| --- | --- |
-| `CL-HORIZON` | changelog epochs archived behind an index; live file ~1.9k words from ~17.9k; upgrade walk spans the split (4.5.0) (2026-08-17) — see decision-log. |
-| `JANITOR-READ` | read-only janitor: report script + session-start read-when-fresh path with staleness contract; first report generated (4.5.0) (2026-08-17) — see decision-log. |
-| `BACKLOG-AUTH` | authoring cluster shipped: backlog-authoring prompt with canonical ticket skeleton and external contract, Start B promotion hook, `[detail]` links, legibility guidance (4.4.0)… |
-| `PROCESS-TPL` | optional PROCESS.md root template shipped, option A: phases + DoD, ADR closure protocol, always-4-stage triggers, demo/spike cadence, risk watch (4.4.0) (2026-08-17) — see… |
-| `DEPREC-SHIM` | deprecation shims on consolidation: upgrade workflow-dir sweep + tombstones, backup-invocation guard, release old→new map rule (4.4.0) (2026-08-17) — see decision-log. |
-
-</details>
-
-<details>
-<summary><strong>Phase: Machine-native Wave 2</strong> — 4 item(s)</summary>
-
-| Item | Outcome |
-| --- | --- |
-| `REFLECT-PRACTICE` | reflection protocol codified as a standing practice (`self/REFLECTION.md`) (2026-08-09) — see decision-log. |
-| `PRUNE-HYST` | + CTX-IMPORTS — prune hysteresis targets and measured rules-import guidance (4.3.0) (2026-08-09) — see decision-log. |
-| `MEM-CHECK-2` | attention counters (shipped/30d, commits per item) and token estimates in the validator (2026-08-09) — see decision-log. |
-| `EVAL-HARNESS` | harness v1 shipped (scripts/eval): upgrade scenario GREEN (first mechanical proof of the upgrade promise), trailer-key probe DETECTED (arbitrary-contract doctrine confirmed)… |
-
-</details>
-
-<details>
-<summary><strong>Phase: Machine-native Wave 1 (R0 instrumentation)</strong> — 5 item(s)</summary>
-
-| Item | Outcome |
-| --- | --- |
-| `CLOSE-COMMIT` | commit-and-push standard at close; propose-only restorable per project (4.2.0) (2026-08-09) — see decision-log. |
-| `RETIRE-COMP` | first measured prose retirement: imports-at-top dropped, plain-shell clause narrowed, bypass-hardening added (4.2.0) (2026-08-09) — see decision-log. |
-| `OPT-PROTO` | empirical option checks rule in design-options (4.2.0) (2026-08-09) — see decision-log. |
-| `TRANSCRIPT-SHA` | transcripts carry a Start SHA header; the archive becomes scenario seeds (4.2.0) (2026-08-09) — see decision-log. |
-| `MEM-CHECK` | memory validator shipped and wired into the gate as lint:memory; budgets machine-readable in memory-policy; end-of-task validator hook (4.1.0) (2026-08-09) — see decision-log. |
-
-</details>
-
-<details>
-<summary><strong>Phase: Source-only fixes (2026-08)</strong> — 3 item(s)</summary>
-
-| Item | Outcome |
-| --- | --- |
-| `INTAKE-DEEP` | (2026-08-17) — the whole intake pool (five icebox records, eight wish-list lines) deep-assessed against the day's evidence: RELEASE-EVALS and CL-440-WORDING promoted to Current,… |
-| `DEV-PREP` | (2026-08-17) — prep sweep before the next arc: the five loose July transcripts identified, renamed to convention, and committed after a redaction scan; npm audit 3 high → 0 via… |
-| `GATE-FRESH` | (2026-08-08) — fresh-clone gate repair: check-docs now ignores gitignored `node_modules/` path references (three doc refs failed every fresh clone), and the file-map dropped its… |
-
-</details>
-
-<details>
-<summary><strong>Archived phases</strong> — 1 chunk(s), cold storage</summary>
+<summary><strong>Archived phases</strong> — 2 chunk(s), cold storage</summary>
 
 | Range | Items | Chunk |
 | --- | --- | --- |
+| 2026-08-08 → 2026-08-18 | 20 items: VALIDATOR-QC, PAR-BRANCH, BACKLOG-STATE, CL-HORIZON, JANITOR-READ, BACKLOG-AUTH, PROCESS-TPL, DEPREC-SHIM, REFLECT-PRACTICE, PRUNE-HYST, MEM-CHECK-2, EVAL-HARNESS, CLOSE-COMMIT, RETIRE-COMP, OPT-PROTO,… | [trajectory/trajectory-0002-2026-08-08-to-2026-08-18.md](archive/trajectory/trajectory-0002-2026-08-08-to-2026-08-18.md) |
 | 2026-04-12 → 2026-07-17 | 24 items: DIST-BOUNDARY, CI-NODE, ARCH-INTEG, ITEM-AGE, NEXT-CMD, REPO-REVIEW, CODEBASE-AUDIT, ADOPT-FIXES, REVIEW-FIXES, SELF-HOST, COMMIT-STEP, MULTI-WRITER, MODEL-TIER, MEM-MAINT, ENV-PREFLIGHT, BUDGET-SCALE,… | [trajectory/trajectory-0001-2026-04-12-to-2026-07-17.md](archive/trajectory/trajectory-0001-2026-04-12-to-2026-07-17.md) |
 
 </details>
