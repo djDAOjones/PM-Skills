@@ -101,6 +101,7 @@ prompts/         Reusable per-task prompts (paste, or run as commands).
   review.md               Read-only audit of an autonomous run or feature area.
   memory-maintenance.md   Diagnose / Prune / Refactor / Re-assess / Reconcile / Doc-sync project memory.
   backlog-authoring.md    Ideas or a transcript → grammar-true backlog items + tickets; the ticket skeleton and external authoring contract.
+  field-report.md         Emit a usage report about this project's use of pm-skills, for whoever collects them upstream.
   upgrade.md              Move a project to a newer framework version.
   release.md              Maintainer release checklist (source repo only).
   deploy.md               Production deploy + live verification.

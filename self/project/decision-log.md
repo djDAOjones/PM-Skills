@@ -11,6 +11,48 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-27 — FIELD-EXPORT: the harvest procedure ships as a prompt (4.11.0)
+
+**Decision:** ship `pm_skills/prompts/field-report.md` — a prompt, not
+a script, and part of the product rather than maintainer tooling.
+Both answers rest on the same mechanical fact: the work runs **inside**
+the consuming project, so the instructions have to be there. A
+maintainer-side generator cannot reach into a project it does not
+have, and the mechanical parts (inventories, git-log formatting,
+redaction) are shell one-liners the agent composes — no generator,
+so `pm_skills/` gains no code outside the two scaffold scripts.
+
+**Rationale:** the ticket's honest objection — consuming projects gain
+little from reporting on themselves — is true and is now stated in
+the prompt's own first paragraph, rather than papered over with an
+invented local benefit. A project that knows it is reporting upstream
+runs the thing correctly; one told it is for its own good will skip
+the analysis note. That skip is not hypothetical: the first hand pass
+made the note optional and omitted it.
+
+**What the two hand passes fixed in the shape:** the analysis note is
+mandatory; redaction is reported as counts, not as the word
+"redacted"; the lane is decided per file by what is already public
+upstream, not by how private the project feels; and
+upgraded-or-reinstalled is called out as the most useful line and the
+one most often missing — all three deployments on record reinstalled
+(see UPGRADE-REFUSED, still open).
+
+**Output location:** a sibling directory outside the project, with a
+leave-nothing-behind check that pastes `git status --porcelain` from
+before and after. The first hand pass left artefacts inside the
+harvested project that had to be moved out by hand; that is the
+failure the check exists for.
+
+**Assumptions at skipped gates (auto-jazz):** minor release (new
+file, backward compatible, nothing overwritten); MANIFEST needed no
+row since `pm_skills/prompts/*` already globs to `framework`.
+
+**Alternatives:** a scaffold script (rejected — the judgement steps,
+lane and note, are the parts that failed by hand, and a script cannot
+make them); maintainer-only tooling in `scripts/` (rejected — it
+cannot run where the evidence is).
+
 ## 2026-08-27 — Refactor: the queue after the Current milestone cleared
 
 **Decision:** structural repair of the backlog after ARCH-RETENTION

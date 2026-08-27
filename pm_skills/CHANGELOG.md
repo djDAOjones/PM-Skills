@@ -36,6 +36,59 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.11.0 — 2026-08-27
+
+FIELD-EXPORT: a new prompt, `prompts/field-report.md`, has a project
+emit a usage report **about its own use of pm-skills** for whoever
+collects such reports upstream. It was written from a procedure that
+already existed outside the framework: the same work was done by hand
+twice in one day, the second time by an agent following a written
+prompt, across two real deployments. A procedure written down, handed
+to an agent, and run twice is a verb; this is that verb, shipped.
+
+Two questions the ticket left open are answered in the prompt itself.
+**A prompt, not a script** — the work runs inside the consuming
+project, so the instructions have to ship there; maintainer-side
+tooling cannot reach in, and the mechanical parts (inventories, git
+formatting, redaction) are shell one-liners, not a generator. **It
+belongs to the product even though the project gains little from it**
+— for the same reason, and the prompt says so in its first paragraph
+rather than implying a local benefit that is not there.
+
+What the two hand passes taught, now fixed in the prompt: the
+analysis note is mandatory (the first pass made it optional and
+skipped it); redaction is reported as **counts**, not as the word
+"redacted"; the tracked/private lane is decided per file by what is
+already public upstream, not by how private the project feels; and
+how a project reached its version — upgraded or reinstalled — is
+called out as the single most useful line and the one most often
+missing.
+
+### Added
+
+- `pm_skills/prompts/field-report.md` (`framework` class) — output
+  goes to a sibling directory **outside** the project; the header
+  contract carries `pm-skills=` as the join key plus `redaction=` /
+  `retained=` counts; evidence is split into what is countable from
+  the repository alone (deployment facts, upgrade-or-reinstall,
+  memory counters, archive rotations, close fidelity from commit
+  messages) and what needs session logs, with "logs unavailable"
+  stated as a valid report rather than a failure; a
+  leave-nothing-behind check closes it.
+
+### Changed
+
+- `pm_skills/GUIDE.md` — the `prompts/` tree lists the new file.
+
+### Upgrade actions
+
+- Copy `pm_skills/prompts/field-report.md` into your project's
+  `pm_skills/prompts/` (`framework` class — a new file, so nothing is
+  overwritten).
+- Replace `pm_skills/GUIDE.md` with this version's copy.
+- Nothing else changes: no memory file, no rulebook, no budget. The
+  prompt is invoked on request and is inert until then.
+
 ## 4.10.1 — 2026-08-27
 
 SCAFFOLD-GITPATH: the scaffold link checker now resolves link targets

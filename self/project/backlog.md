@@ -17,14 +17,6 @@
 
 <!-- Intent: refactored 2026-08-27 after the Current milestone cleared (ARCH-RETENTION 4.10.0, SCAFFOLD-GITPATH 4.10.1). FIELD-EXPORT promoted from Next because Current held nothing workable — VOICE-INTAKE, its only remaining item, is blocked on maintainer inputs and now sits behind it rather than heading a queue nobody can start. -->
 
-- [ ] **FIELD-EXPORT Usage-report verb for consuming projects**
-  [detail](tickets/FIELD-EXPORT.md) (2026-08-23) — a framework verb that
-  emits a standard usage report from a consuming project — memory
-  counters, verbs fired, close fidelity, upgrade outcome, incidents —
-  already in the header shape the field-reports tier expects, so filing is
-  consistent rather than hand-copied. Promoted from the wish-list at the
-  2026-08-27 Re-assess after the work was done by hand twice in one day. ·
-  High / Medium / Low / Low
 - [ ] **VOICE-INTAKE Voice-memo transcript intake**
   [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
   more real raw transcripts plus the external preparation prompts (ticket

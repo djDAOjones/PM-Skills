@@ -2,6 +2,13 @@
 
 ## Phase: Planning loop
 
+- FIELD-EXPORT (2026-08-27) — the twice-run-by-hand harvest
+  procedure ships as `prompts/field-report.md`: a prompt not a
+  script, distributed not maintainer-side, because the work runs
+  inside the consuming project. Analysis note mandatory, redaction
+  reported as counts, lane decided per file by what is already
+  public, output written outside the project with a
+  leave-nothing-behind check (4.11.0) — see decision-log.
 - SCAFFOLD-GITPATH (2026-08-27) — GATE-PARITY's Git-path resolution
   ported into the distributed `scaffold/check-links.mjs`; the
   local-passes/CI-fails gap every scaffolded project inherited is

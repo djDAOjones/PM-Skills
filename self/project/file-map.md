@@ -7,13 +7,13 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 75 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 76 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
-- `pm_skills` — 46 file(s)
+- `pm_skills` — 47 file(s)
 - `scripts` — 11 file(s)
 - `self` — 8 file(s)
 <!-- /file-map-index -->
@@ -74,6 +74,9 @@ see the root AGENTS.md "Before every task". -->
 - `pm_skills/prompts/deploy.md` — pre-flight, documented pipeline, live verification, rollback
 - `pm_skills/prompts/design-options.md` — stage prompt: 2–3 options with a recommendation
 - `pm_skills/prompts/end-of-task.md` — close protocol: gate, memory writes, size check, report
+- `pm_skills/prompts/field-report.md` — usage-report prompt a consuming
+  project runs against itself; emits the field-reports header contract
+  outside the project tree.
 - `pm_skills/prompts/implementation-plan.md` — stage prompt: step plan from the picked option
 - `pm_skills/prompts/memory-maintenance.md` — verbs: Diagnose/Prune/Refactor/Re-assess/Reconcile/Doc-sync + environment preflight
 - `pm_skills/prompts/quick-task.md` — single-stage scope-and-plan for small tasks
