@@ -19,6 +19,8 @@
 
 ## Decision log
 
+- 2026-08-23 → 2026-08-27 (7 entries: LAB-FIRST, FIELD-HARVEST, GATE-PARITY, GATE-REPORTS, LAB-FIRST, FIELD-REPORTS, FIELD-REPORTS) —
+  `decision-log-2026-08e.md`
 - 2026-08-17 → 2026-08-23 (6 entries: Re-assess (scoped) — TEST-DOC
   cut, RELEASE-TREE-GLOB, Prune (decision-log 21 → 10), PLAN-ORDER,
   RECORDS-DIST, CL-440-WORDING) — `decision-log-2026-08d.md`

@@ -15,7 +15,7 @@
 
 ### Current milestone
 
-<!-- Intent: refactored 2026-08-27 after UPGRADE-REFUSED (4.13.0) and READ-ONLY-AUDIT (4.14.0) shipped. The read-only pair moves up together now that the mode they both run inside exists — REVIEW-SUITE first (what is wrong; its finding schema is the narrower piece), ABSTRACTION-PLAN second (what to change; it consumes findings, so it reads better after the schema is fixed). Both carry archived basis material under self/inputs/, and both share the same honest limit: this repository has no application to investigate deeply, so neither can be validated here. -->
+<!-- Intent: the queue is EMPTY OF WORKABLE ITEMS as of 2026-08-27 — the first time in this repo's self-hosted history. Ten items shipped in one burn-down — nine releases (4.10.0 through 4.16.0) plus BACKLOG-TABLE source-only, and everything left is held on something only the maintainer or an outside event can supply. VOICE-INTAKE sits here alone because its block is the softest — real transcripts plus the external preparation prompts — but it has now been passed over at FIVE consecutive refactors, which is long enough that "still blocked" has stopped being informative. It needs the inputs or a decision to cut, not a sixth pass. -->
 
 - [ ] **VOICE-INTAKE Voice-memo transcript intake**
   [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
@@ -29,11 +29,11 @@
 
 ### Next milestone
 
-<!-- Intent: empty, deliberately. Everything left is held, and manufacturing a Next milestone from held items would misrepresent the queue. The next refill is a maintainer call — or a trigger firing. -->
+<!-- Intent: empty, deliberately, and it should stay empty until something changes. Refilling it from held items would misrepresent the queue; refilling it from the wish-list needs the maintainer, because wish-list promotion is never automatic (session-start Start B). Three items wait there: NEXT-FRAGMENTS (lab-side, paused with LAB-FIRST), ROADMAP-DIST (distribute the roadmap renderer once this repo has used it), and WAVES-PILOT (run findings.md + improvement-waves.md against a real consuming project — the one run that would close the unvalidated gap BOTH prompts shipped with). -->
 
 ### Icebox
 
-<!-- Intent: only held items remain, unchanged through four refactors. PM-MCP (prototype leg, lab work), JANITOR-WRITE (per-verb sign-off; 4.12.0 and 4.14.0 have now both drawn its line from the other side — delegation licences a verb where automation does not, and a read-only pass needs no gate at all), ARCH-RECALL (no missed-precedent report; ARCH-RETENTION lifted the retention cap, so only the evidence trigger is left), DATA-MIG (42 d, age-by-design per ITEM-AGE), LAB-FIRST (maintainer-paused, resumes on their word). VOICE-INTAKE sits in Current rather than here because its inputs are expected, not hypothetical — but it has now been passed over at four consecutive refactors and that should be said out loud at the next Re-assess. -->
+<!-- Intent: five held items, none of whose triggers fired during the burn-down. PM-MCP (prototype leg, lab work). JANITOR-WRITE (per-verb sign-off — and its line has now been drawn from both sides: 4.12.0 held that delegation licences a maintenance verb where automation does not, 4.14.0 that a read-only pass needs no gate at all; what remains is genuinely the write ladder). ARCH-RECALL (ARCH-RETENTION lifted the retention cap this morning, so only the missed-precedent evidence trigger is left — this item is now one report away). DATA-MIG (42 d, age-by-design per ITEM-AGE; still no consuming project with persistent user data). LAB-FIRST (maintainer-paused; resumes only on their word). -->
 
 - [ ] **PM-MCP Programmatic memory interface**
   [detail](tickets/PM-MCP.md) [blocked: harness-client run of the lab
