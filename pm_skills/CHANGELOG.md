@@ -36,6 +36,47 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.10.1 — 2026-08-27
+
+SCAFFOLD-GITPATH: the scaffold link checker now resolves link targets
+against the paths **Git** knows about, not the local filesystem. It
+already drew its *inputs* from Git (`git ls-files`) but checked
+targets with `existsSync`, and the two disagree: a working checkout
+carries gitignored generated files, a fresh clone — which is what CI
+lints — does not. A link to one therefore passed locally and failed in
+CI, on a reference the author could not see was broken. This
+repository lived that failure twice; the second time left the badge
+red for ten pushes over six days. Set membership makes local and CI
+agree by construction, and being exact-case it matches Linux rather
+than a case-insensitive macOS volume.
+
+Targeted port of the fix this repo took source-only on 2026-08-24
+(GATE-PARITY) into its distributed sibling — the two are deliberate
+forks, so the resolution logic moved across, not the file.
+
+### Fixed
+
+- `pm_skills/scaffold/check-links.mjs` — new `gitPaths()` (two Git
+  calls, no filesystem walk) builds the set of tracked files,
+  non-ignored new files, and every ancestor directory of both;
+  `resolvesInRepo()` replaces the `existsSync` call and refuses
+  out-of-tree targets (`../` past the root). Header gains a
+  "Resolution model" note. Zero dependencies, `node:fs` and
+  `node:path` only, as before.
+
+### Upgrade actions
+
+- `pm_skills/scaffold/*` is `scaffold` class — **copied once at init
+  and never touched on upgrade**, so your project's
+  `check-links.mjs` is not replaced by this release and nothing is
+  required of you.
+- To adopt the fix in an existing project, copy the current
+  `pm_skills/scaffold/check-links.mjs` over your root copy (or port
+  `gitPaths()` / `resolvesInRepo()` into it if you have customised
+  it). Expect newly-red links: each one is a reference CI could
+  already not resolve. Fix the reference — do not re-point the
+  checker at the filesystem.
+
 ## 4.10.0 — 2026-08-27
 
 ARCH-RETENTION: the archive gains a **retention shape** — the rules

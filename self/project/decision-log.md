@@ -11,6 +11,41 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-27 — SCAFFOLD-GITPATH: the fix crosses the fork (4.10.1)
+
+**Decision:** port GATE-PARITY's resolution model into
+`pm_skills/scaffold/check-links.mjs` — `gitPaths()` +
+`resolvesInRepo()` replace the `existsSync` call — as a targeted
+port, not a merge of the source fork. Released patch, with an
+**advisory** upgrade action: `scaffold` class is copied once at init
+and never touched on upgrade, so no consuming project's copy is
+replaced and the changelog says how to adopt it by hand.
+
+**Rationale:** the deliberate-fork rule (`CONTRIBUTING.md`) requires
+a bug fixed in one copy to be considered for the other; this one was
+considered on 2026-08-24, deferred with a stated reason (the change
+is distributed, so a release, while LAB-FIRST held the queue), and
+the reason expired when the maintainer paused LAB-FIRST. Every
+project scaffolded since inherited the gap, and it fails in the
+least useful direction — green locally, red in CI, on references
+the author cannot see are broken.
+
+**Assumption at skipped gates (auto-jazz):** patch, not minor — a
+behaviour fix to a shipped file, no new files, no migration.
+
+**Verified on a throwaway fixture**, not by inspection: a repo with
+`generated/` gitignored and a link to `generated/latest.md`. The
+shipped (HEAD) scaffold reported 0 broken links and exited 0 — the
+defect reproduced; the patched copy reported the link broken and
+exited 1. Positives re-checked in the same fixture: a tracked file, an
+untracked-but-not-ignored new file, and a directory target all still
+resolve.
+
+**Alternatives:** import the source fork wholesale (rejected — the
+scaffold copy is deliberately simpler and generic; the ticket asked
+for the resolution, not the file); leave it to the next scaffold
+consumer to hit (rejected — that is the failure mode being fixed).
+
 ## 2026-08-27 — ARCH-RETENTION: the archive gains a retention shape (4.10.0)
 
 **Decision:** four forward-only rules in

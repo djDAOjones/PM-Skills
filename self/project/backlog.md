@@ -17,14 +17,6 @@
 
 <!-- Intent: refilled at the 2026-08-27 Re-assess, the first pass since LAB-FIRST was paused. ARCH-RETENTION leads because its trigger has actually fired — the trajectory is over budget at 2116/2000 and archive/trajectory/ has never been created here, so the next Prune defines the archive shape whether or not anyone decides it. SCAFFOLD-GITPATH follows: a known bug with a known fix in a distributed file, deferred in the wish-list only because LAB-FIRST held the queue, and a release when taken. VOICE-INTAKE sits last and stays blocked on maintainer inputs (real transcripts plus the external preparation prompts). -->
 
-- [ ] **SCAFFOLD-GITPATH Carry the GATE-PARITY fix into the scaffold**
-  [detail](tickets/SCAFFOLD-GITPATH.md) (2026-08-24) — the shipped
-  pm_skills/scaffold/check-links.mjs still resolves link targets with
-  existsSync, so every project scaffolded from it inherits the
-  local-passes/CI-fails gap GATE-PARITY closed in this repo's own fork on
-  2026-08-24. Distributed, so a release. Promoted from the wish-list at
-  the 2026-08-27 Re-assess, when LAB-FIRST was paused and its stated hold
-  reason expired. · Medium / Low / Low / Low
 - [ ] **VOICE-INTAKE Voice-memo transcript intake**
   [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
   more real raw transcripts plus the external preparation prompts (ticket

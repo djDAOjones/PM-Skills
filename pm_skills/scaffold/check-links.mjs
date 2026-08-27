@@ -13,8 +13,17 @@
  * Why this exists: in a docs- and memory-heavy project the main source of
  * rot is broken internal cross-references (a file renamed, a path moved),
  * not dead external URLs. This proves every *local* Markdown link target
- * resolves to a real file on disk, with zero dependencies and no
- * full-tree walk (which stalls on cloud-synced / on-demand filesystems).
+ * resolves, with zero dependencies and no full-tree walk (which stalls on
+ * cloud-synced / on-demand filesystems).
+ *
+ * Resolution model: link targets resolve against the set of paths GIT
+ * knows about, never against the local filesystem. CI lints a fresh
+ * clone, which holds exactly those paths, while a working checkout also
+ * carries gitignored generated files — so an `existsSync` check passes
+ * locally on links CI cannot resolve, and you find out from a red badge.
+ * Set membership makes local and CI agree by construction, and being
+ * exact-case it matches Linux rather than a case-insensitive macOS
+ * volume.
  *
  * Scope and deliberate non-goals:
  * - Checks inline links only: `[text](target)`.
@@ -33,8 +42,8 @@
  */
 
 import { execSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { readFileSync } from 'node:fs';
+import { dirname, relative, resolve } from 'node:path';
 
 /** Matches inline Markdown links: the captured group 1 is the raw target. */
 const LINK_RE = /\[[^\]]*\]\(([^)]+)\)/g;
@@ -61,6 +70,51 @@ function markdownFiles() {
     .map((s) => s.trim())
     .filter(Boolean);
   return [...new Set(all)];
+}
+
+/**
+ * Every repo-relative path Git knows about: tracked files, new files Git
+ * does not ignore, and every ancestor directory of both. This is
+ * precisely what a fresh clone contains, so it is what CI can resolve.
+ * Built once with two Git calls — no filesystem walk.
+ * @returns {Set<string>} POSIX-separated, no trailing slash
+ */
+function gitPaths() {
+  const listed = [
+    execSync('git ls-files', { encoding: 'utf8' }),
+    execSync('git ls-files --others --exclude-standard', { encoding: 'utf8' }),
+  ].join('\n');
+  /** @type {Set<string>} */
+  const paths = new Set();
+  for (const line of listed.split('\n')) {
+    const file = line.trim();
+    if (!file) continue;
+    paths.add(file);
+    for (let dir = dirname(file); dir && dir !== '.'; dir = dirname(dir)) {
+      paths.add(dir);
+    }
+  }
+  return paths;
+}
+
+/** The repository's resolvable paths (see gitPaths). */
+const REPO_PATHS = gitPaths();
+
+/**
+ * Does a link target resolve to a path the repository actually holds?
+ * Deliberately NOT an `existsSync` call — see "Resolution model" in the
+ * header. Out-of-tree targets (`../` past the root) never resolve.
+ * @param {string} baseDir directory the target is written relative to
+ * @param {string} target cleaned target path
+ * @returns {boolean}
+ */
+function resolvesInRepo(baseDir, target) {
+  const rel = relative(process.cwd(), resolve(baseDir, target))
+    .split('\\')
+    .join('/')
+    .replace(/\/$/, '');
+  if (!rel || rel === '..' || rel.startsWith('../')) return false;
+  return REPO_PATHS.has(rel);
 }
 
 /**
@@ -98,8 +152,7 @@ function brokenLinksIn(file) {
   for (const match of content.matchAll(LINK_RE)) {
     const target = toCheckablePath(match[1]);
     if (target === null) continue;
-    const resolved = resolve(baseDir, target);
-    if (existsSync(resolved)) continue;
+    if (resolvesInRepo(baseDir, target)) continue;
     const line = content.slice(0, match.index).split('\n').length;
     broken.push({ file, line, target });
   }

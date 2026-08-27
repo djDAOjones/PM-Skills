@@ -2,6 +2,12 @@
 
 ## Phase: Planning loop
 
+- SCAFFOLD-GITPATH (2026-08-27) — GATE-PARITY's Git-path resolution
+  ported into the distributed `scaffold/check-links.mjs`; the
+  local-passes/CI-fails gap every scaffolded project inherited is
+  closed, proved on a throwaway fixture (old copy green, new copy
+  red on a gitignored target). Advisory upgrade action — `scaffold`
+  class is never touched on upgrade (4.10.1) — see decision-log.
 - ARCH-RETENTION (2026-08-27) — the archive gains a retention
   shape: ID join key surfaced in every INDEX row, whole-sequence-unit
   chunking (whole phases for the trajectory), an INDEX row contract
