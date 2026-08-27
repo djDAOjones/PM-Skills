@@ -33,7 +33,7 @@
 
 ### Icebox
 
-<!-- Intent: LAB-FIRST landed here 2026-08-27 when the maintainer paused it — the standing order is intact and resumes on their word, it simply no longer gates the queue. UPGRADE-REFUSED filed the same day from the FIELD-HARVEST evidence: three deployments, zero upgrade.md walks, one explicit refusal — the declarative-upgrade machinery is untested in the field, which is not the same as broken. Older holds: four with explicit triggers (INTAKE-DEEP, 2026-08-17), confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired; ARCH-RETENTION's trajectory-archive trigger is close, and it may merge with ARCH-RECALL. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). BACKLOG-TABLE, REVIEW-SUITE and ABSTRACTION-PLAN filed unblocked 2026-08-26 (maintainer intake), READ-ONLY-AUDIT 2026-08-27: REVIEW-SUITE, ABSTRACTION-PLAN and READ-ONLY-AUDIT are one family from three maintainer prompts in two days (what is wrong / what to change / how to run it safely) — the next Re-assess settles the division of labour or merges them; do not build all three. -->
+<!-- Intent: LAB-FIRST landed here 2026-08-27 when the maintainer paused it — the standing order is intact and resumes on their word, it simply no longer gates the queue. UPGRADE-REFUSED filed the same day from the FIELD-HARVEST evidence: three deployments, zero upgrade.md walks, one explicit refusal — the declarative-upgrade machinery is untested in the field, which is not the same as broken. Older holds: four with explicit triggers (INTAKE-DEEP, 2026-08-17), confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired; ARCH-RETENTION's trajectory-archive trigger is close, and it may merge with ARCH-RECALL. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). BACKLOG-TABLE, REVIEW-SUITE and ABSTRACTION-PLAN filed unblocked 2026-08-26 (maintainer intake), READ-ONLY-AUDIT 2026-08-27: REVIEW-SUITE, ABSTRACTION-PLAN and READ-ONLY-AUDIT are one family from three maintainer prompts in two days (what is wrong / what to change / how to run it safely) — the next Re-assess settles the division of labour or merges them; do not build all three. EPIC-AUTOJAZZ filed 2026-08-27 (maintainer intake) — a continuous burn-down mode, which reopens the burn-down-until-stopped option NEXT-CMD weighed and rejected; it depends on BACKLOG-TABLE for its status table and inherits JANITOR-WRITE's autonomy-ladder question. -->
 
 - [ ] **LAB-FIRST Work the lab before this repo** [maintainer]
   [detail](tickets/LAB-FIRST.md) (2026-08-23) — PAUSED by the maintainer
@@ -113,5 +113,13 @@
   on a procedure no consuming project has used. Investigate why, and what
   the machinery should be if reinstall is the real path. Evidence in
   self/field-reports/. · High / Medium / Low / Medium
+- [ ] **EPIC-AUTOJAZZ Continuous burn-down mode**
+  [detail](tickets/EPIC-AUTOJAZZ.md) (2026-08-27) — investigate an "epic"
+  auto-jazz mode that keeps developing continuously across the backlog —
+  re-assessing the queue before the run and after each milestone, printing
+  a status table as it goes — instead of stopping after one item. Reopens
+  the burn-down-until-stopped option NEXT-CMD weighed and rejected;
+  init-mvp already does this shape for greenfield. · High / High / High /
+  Medium
 
 <!-- generated:records:end -->
