@@ -15,14 +15,8 @@
 
 ### Current milestone
 
-<!-- Intent: LAB-FIRST alert gates the queue (maintainer order 2026-08-23) — the lab arc runs first. VOICE-INTAKE promoted at the 2026-08-18 Re-assess pass (first live run of the 4.9.0 verb) — the next arc, blocked on maintainer inputs (real transcripts plus the external preparation prompts). -->
+<!-- Intent: LAB-FIRST paused by the maintainer 2026-08-27 until further notice — the alert no longer gates the queue and the record moved to the Icebox, so canon work may be picked normally. That leaves VOICE-INTAKE alone in Current and still blocked on its maintainer inputs (real transcripts plus the external preparation prompts), so nothing here is runnable: the next Re-assess should refill Current from the Icebox, which now holds ten investigations. -->
 
-- [ ] **LAB-FIRST Work the lab before this repo** [ALERT] [maintainer]
-  [detail](tickets/LAB-FIRST.md) (2026-08-23) — maintainer standing order
-  (2026-08-23) — before picking any new work here, run the lab arc
-  (djDAOjones/PM-Skills-lab, checkout in CascadeProjects): UPSTREAM-ASSIM
-  first, then R2 parallel-run preparation for the two-arm test on the next
-  real project. Exceptions in the ticket. Cleared only by the maintainer.
 - [ ] **VOICE-INTAKE Voice-memo transcript intake**
   [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
   more real raw transcripts plus the external preparation prompts (ticket
@@ -35,12 +29,20 @@
 
 ### Next milestone
 
-<!-- Intent: empty — refill at the next Re-assess pass; nothing else is committed while VOICE-INTAKE waits on its inputs. -->
+<!-- Intent: empty — refill at the next Re-assess pass, which is now due: with LAB-FIRST paused and VOICE-INTAKE still blocked, Current has nothing runnable and the Icebox has grown to ten items, three of them an unsettled family. -->
 
 ### Icebox
 
-<!-- Intent: four held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired. GATE-PARITY was filed here 2026-08-24 and shipped the same day on the maintainer's direct pick, without waiting for its trigger. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). BACKLOG-TABLE, REVIEW-SUITE, and ABSTRACTION-PLAN filed unblocked 2026-08-26 (maintainer intake), READ-ONLY-AUDIT 2026-08-27 — investigations awaiting a pick, held behind LAB-FIRST like everything else. REVIEW-SUITE, ABSTRACTION-PLAN, and READ-ONLY-AUDIT are one family from three maintainer prompts in two days (what is wrong / what to change / how to run it safely): the next Re-assess settles the division of labour or merges them — do not build all three. ARCH-RETENTION filed 2026-08-27 — the retention sibling of ARCH-RECALL (what is kept and in what shape, versus finding it later); the two may merge, and its trajectory-archive trigger is close to firing. -->
+<!-- Intent: LAB-FIRST landed here 2026-08-27 when the maintainer paused it — the standing order is intact and resumes on their word, it simply no longer gates the queue. UPGRADE-REFUSED filed the same day from the FIELD-HARVEST evidence: three deployments, zero upgrade.md walks, one explicit refusal — the declarative-upgrade machinery is untested in the field, which is not the same as broken. Older holds: four with explicit triggers (INTAKE-DEEP, 2026-08-17), confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired; ARCH-RETENTION's trajectory-archive trigger is close, and it may merge with ARCH-RECALL. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). BACKLOG-TABLE, REVIEW-SUITE and ABSTRACTION-PLAN filed unblocked 2026-08-26 (maintainer intake), READ-ONLY-AUDIT 2026-08-27: REVIEW-SUITE, ABSTRACTION-PLAN and READ-ONLY-AUDIT are one family from three maintainer prompts in two days (what is wrong / what to change / how to run it safely) — the next Re-assess settles the division of labour or merges them; do not build all three. -->
 
+- [ ] **LAB-FIRST Work the lab before this repo** [maintainer]
+  [detail](tickets/LAB-FIRST.md) (2026-08-23) — PAUSED by the maintainer
+  2026-08-27, until further notice — the standing order no longer gates
+  the queue, and the ALERT flag is withdrawn. The order itself is
+  unchanged and resumes on the maintainer's word: run the lab arc
+  (djDAOjones/PM-Skills-lab, checkout in CascadeProjects) before picking
+  new work here. UPSTREAM-ASSIM shipped 2026-08-24; R2 is the open leg and
+  now needs a fresh project. Only the maintainer resumes or clears this.
 - [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
   project with persistent user data] (2026-07-16) — hard rule "no
   irreversible data change without a documented back-out" +
@@ -102,5 +104,14 @@
   sits 13 words under budget and archive/trajectory/ has never been
   created, so the first run defines the shape by accident unless decided
   first. · Medium / Medium / Low / Low
+- [ ] **UPGRADE-REFUSED Nobody walks the upgrade prompt**
+  [detail](tickets/UPGRADE-REFUSED.md) (2026-08-27) — three deployments on
+  record (Derry Lane, Route Plotter, UoN Video Helper) and none reached
+  its current version by walking upgrade.md — Route Plotter declined 4.9.2
+  outright and said so in its decision log. The declarative-upgrade
+  contract (MANIFEST classes, CHANGELOG Upgrade actions, upgrade.md) rests
+  on a procedure no consuming project has used. Investigate why, and what
+  the machinery should be if reinstall is the real path. Evidence in
+  self/field-reports/. · High / Medium / Low / Medium
 
 <!-- generated:records:end -->

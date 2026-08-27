@@ -2,16 +2,42 @@
 id: LAB-FIRST
 name: Work the lab before this repo
 status: todo
-milestone: current
-flags: ALERT, maintainer, detail
+milestone: icebox
+flags: maintainer, detail
 blocked-on: 
 date: 2026-08-23
 grades: 
 order: 0
-summary: maintainer standing order (2026-08-23) — before picking any new work here, run the lab arc (djDAOjones/PM-Skills-lab, checkout in CascadeProjects): UPSTREAM-ASSIM first, then R2 parallel-run preparation for the two-arm test on the next real project. Exceptions in the ticket. Cleared only by the maintainer.
+summary: PAUSED by the maintainer 2026-08-27, until further notice — the standing order no longer gates the queue, and the ALERT flag is withdrawn. The order itself is unchanged and resumes on the maintainer's word: run the lab arc (djDAOjones/PM-Skills-lab, checkout in CascadeProjects) before picking new work here. UPSTREAM-ASSIM shipped 2026-08-24; R2 is the open leg and now needs a fresh project. Only the maintainer resumes or clears this.
 ---
 
 # LAB-FIRST — work the lab before this repo
+
+## Paused (2026-08-27)
+
+The maintainer paused this order until further notice. It no longer
+gates the queue: the `ALERT` flag is withdrawn and the record has
+moved to the Icebox, so canon work may be picked normally. Nothing
+about the order's content is retracted — it resumes intact whenever
+the maintainer says so, and only the maintainer resumes or clears it.
+
+What changed underneath it while it stood:
+
+- **UPSTREAM-ASSIM shipped** 2026-08-24 (lab `cf4cef2`); upstream is
+  merged to 4.9.2 and pm-next is v0.2, installable.
+- **The R2 leg did not run.** It was planned as a two-arm test on the
+  University of Nottingham video-helper app. That app was built —
+  108 commits over four days — but on **canon 4.9.2**, not pm-next.
+  It was sourced from the lab fork, so its README links there, but
+  no `pm-next` artefact exists anywhere in its tree. It is therefore
+  a second incumbent run, like Derry Lane before it, and is spent as
+  an R2 subject. Evidence:
+  `self/field-reports/uon-video-helper/2026-08-27-note-deployment-snapshot.md`
+  → "Provenance, stated precisely"; recorded in decision-log
+  2026-08-27 (FIELD-HARVEST).
+- **R2 now needs a fresh project.** The lab's own memory still
+  records the video-helper as the planned subject; correcting that is
+  a lab-side task, not canon work.
 
 ## The order
 

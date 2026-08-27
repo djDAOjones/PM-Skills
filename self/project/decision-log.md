@@ -9,6 +9,50 @@
      and 2026-07 — see archive/INDEX.md for ranges. Grep the
      archive files directly; never re-inline them. -->
 
+## 2026-08-27 — LAB-FIRST paused; UPGRADE-REFUSED filed
+
+**Decision:** the maintainer paused the LAB-FIRST standing order
+until further notice. The `ALERT` flag is withdrawn and the record
+moves to the Icebox, so it no longer gates the queue and canon work
+may be picked normally. Nothing in the order is retracted — it
+resumes intact on the maintainer's word, and only the maintainer
+resumes or clears it. In the same pass, `UPGRADE-REFUSED` was filed
+to the Icebox from the FIELD-HARVEST evidence.
+
+**Rationale:** the order was written on 2026-08-23 to stop canon
+changes widening the delta the lab had to absorb. That reason has
+largely expired: UPSTREAM-ASSIM shipped on 2026-08-24 and the lab is
+merged to 4.9.2. The R2 leg it also protected has not run and cannot
+run on its intended subject — the University of Nottingham
+video-helper app was built on canon 4.9.2, not pm-next (FIELD-HARVEST,
+same day), so it is a second incumbent run and is spent as an R2
+subject. Holding the whole canon queue behind a leg that now needs a
+project nobody has picked was costing more than it protected.
+
+**Consequences:** Current holds only VOICE-INTAKE, still blocked on
+its maintainer inputs, so **nothing in Current is runnable** and a
+Re-assess is due to refill it from an Icebox that has grown to ten
+items — three of which (REVIEW-SUITE, ABSTRACTION-PLAN,
+READ-ONLY-AUDIT) remain one unsettled family. The lab's own memory
+still records the video-helper as R2's planned subject; correcting it
+is lab-side work and is not done here.
+
+**On UPGRADE-REFUSED:** three deployments on record and none reached
+its current version by walking `upgrade.md`; Route Plotter declined
+4.9.2 outright and said so in its decision log. The declarative
+upgrade machinery — MANIFEST classes, the CHANGELOG Upgrade actions
+every release must carry, `upgrade.md` itself — is untested in the
+field, which is not the same as broken, and the ticket says so. Filed
+as an investigation, not a verdict: all three deployments share one
+maintainer in one eight-week window, which is strong evidence about
+this user and weak evidence about consuming projects generally.
+
+**Alternatives:** clearing LAB-FIRST outright — rejected, the
+maintainer said pause, and the order's content still stands for
+whenever the lab arc resumes. Filing an `R2-ARM-CHECK` ticket here —
+rejected, R2 is lab work and does not belong in the canon backlog;
+the finding is recorded in this log and in the paused ticket instead.
+
 ## 2026-08-27 — FIELD-HARVEST: two applied projects filed as evidence
 
 **Decision:** harvested Route Plotter v3 and UoN Video Helper into
