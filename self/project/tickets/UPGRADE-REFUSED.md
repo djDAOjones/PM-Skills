@@ -2,7 +2,7 @@
 id: UPGRADE-REFUSED
 name: Nobody walks the upgrade prompt
 status: todo
-milestone: next
+milestone: current
 flags: detail
 date: 2026-08-27
 grades: High / Medium / Low / Medium

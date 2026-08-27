@@ -2,7 +2,7 @@
 id: REVIEW-SUITE
 name: Deep code-review suite
 status: todo
-milestone: icebox
+milestone: next
 flags: detail
 date: 2026-08-26
 grades: High / High / Medium / Low

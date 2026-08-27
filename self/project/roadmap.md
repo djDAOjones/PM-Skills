@@ -12,16 +12,16 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
-| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Current #1 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs — one or more real raw transcripts plus… |
-| **[UPGRADE-REFUSED](tickets/UPGRADE-REFUSED.md)** | Nobody walks the upgrade prompt | Next #1 | Three deployments on record (Derry Lane, Route Plotter, UoN Video Helper) and none reached its current version by walking upgrade.md — Route Plotter… | Todo |
-| **[READ-ONLY-AUDIT](tickets/READ-ONLY-AUDIT.md)** | Read-only deep investigation verb | Next #2 | Investigate a verb that examines a whole application deeply in one autonomous run and returns a comprehensive report, under a hard read-only… | Todo |
-| **[REVIEW-SUITE](tickets/REVIEW-SUITE.md)** | Deep code-review suite | Icebox #1 | Investigate a thorough code-review suite — engineering-depth dimensions (security, performance, dependencies, tests), a validation phase that runs… | Todo |
-| **[ABSTRACTION-PLAN](tickets/ABSTRACTION-PLAN.md)** | Abstraction and auditability planning | Icebox #2 | Investigate a read-only whole-repository planning function that turns evidence into a coverage-accounted programme of small, behaviour-preserving… | Todo |
-| **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #3 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
-| **[JANITOR-WRITE](tickets/JANITOR-WRITE.md)** | Auto-run maintenance verbs | Icebox #4 | Graduated autonomy, Reconcile rung first; a blanket sign-off does not open this gate. | Blocked — per-verb scenario green + explicit per-verb maintainer… |
-| **ARCH-RECALL** | Recall over cold storage | Icebox #5 | Richer archive INDEX summaries + a search-then-skim pass; embeddings only if evidence demands. · Medium / Medium / Low / Low | Blocked — a consuming project reports missed-precedent pain |
-| **DATA-MIG** | Data-migration guidance | Icebox #6 | Hard rule "no irreversible data change without a documented back-out" + DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose → execute →… | Blocked — first consuming project with persistent user data |
-| **[LAB-FIRST](tickets/LAB-FIRST.md)** | Work the lab before this repo | Icebox #7 | PAUSED by the maintainer 2026-08-27, until further notice — the standing order no longer gates the queue, and the ALERT flag is withdrawn. The order… | Maintainer — held |
+| **[UPGRADE-REFUSED](tickets/UPGRADE-REFUSED.md)** | Nobody walks the upgrade prompt | Current #1 | Three deployments on record (Derry Lane, Route Plotter, UoN Video Helper) and none reached its current version by walking upgrade.md — Route Plotter… | Todo |
+| **[READ-ONLY-AUDIT](tickets/READ-ONLY-AUDIT.md)** | Read-only deep investigation verb | Current #2 | Investigate a verb that examines a whole application deeply in one autonomous run and returns a comprehensive report, under a hard read-only… | Todo |
+| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Current #3 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs — one or more real raw transcripts plus… |
+| **[REVIEW-SUITE](tickets/REVIEW-SUITE.md)** | Deep code-review suite | Next #1 | Investigate a thorough code-review suite — engineering-depth dimensions (security, performance, dependencies, tests), a validation phase that runs… | Todo |
+| **[ABSTRACTION-PLAN](tickets/ABSTRACTION-PLAN.md)** | Abstraction and auditability planning | Next #2 | Investigate a read-only whole-repository planning function that turns evidence into a coverage-accounted programme of small, behaviour-preserving… | Todo |
+| **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
+| **[JANITOR-WRITE](tickets/JANITOR-WRITE.md)** | Auto-run maintenance verbs | Icebox #2 | Graduated autonomy, Reconcile rung first; a blanket sign-off does not open this gate. | Blocked — per-verb scenario green + explicit per-verb maintainer… |
+| **ARCH-RECALL** | Recall over cold storage | Icebox #3 | Richer archive INDEX summaries + a search-then-skim pass; embeddings only if evidence demands. · Medium / Medium / Low / Low | Blocked — a consuming project reports missed-precedent pain |
+| **DATA-MIG** | Data-migration guidance | Icebox #4 | Hard rule "no irreversible data change without a documented back-out" + DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose → execute →… | Blocked — first consuming project with persistent user data |
+| **[LAB-FIRST](tickets/LAB-FIRST.md)** | Work the lab before this repo | Icebox #5 | PAUSED by the maintainer 2026-08-27, until further notice — the standing order no longer gates the queue, and the ALERT flag is withdrawn. The order… | Maintainer — held |
 
 ## History
 

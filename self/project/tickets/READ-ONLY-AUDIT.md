@@ -2,7 +2,7 @@
 id: READ-ONLY-AUDIT
 name: Read-only deep investigation verb
 status: todo
-milestone: next
+milestone: current
 flags: detail
 date: 2026-08-27
 grades: High / High / Medium / Low
