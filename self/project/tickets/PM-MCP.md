@@ -7,7 +7,7 @@ flags: detail,blocked
 blocked-on: harness-client run of the lab prototype (RQ5 GREEN 2026-08-17); distribution additionally on more than one consuming project
 date: 2026-08-09
 grades: High / High / Medium / Medium
-order: 5
+order: 3
 summary: packaging-ladder rung 4; adapter outside the distributed tree, never core.
 ---
 # PM-MCP — Programmatic memory interface

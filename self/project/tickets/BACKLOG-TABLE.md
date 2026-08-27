@@ -2,7 +2,7 @@
 id: BACKLOG-TABLE
 name: Readable backlog table and phase history
 status: todo
-milestone: next
+milestone: current
 flags: detail
 date: 2026-08-26
 grades: Medium / Low / Low / Low

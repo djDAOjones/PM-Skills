@@ -15,21 +15,7 @@
 
 ### Current milestone
 
-<!-- Intent: refactored 2026-08-27 after the Current milestone cleared (ARCH-RETENTION 4.10.0, SCAFFOLD-GITPATH 4.10.1). FIELD-EXPORT promoted from Next because Current held nothing workable — VOICE-INTAKE, its only remaining item, is blocked on maintainer inputs and now sits behind it rather than heading a queue nobody can start. -->
-
-- [ ] **VOICE-INTAKE Voice-memo transcript intake**
-  [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
-  more real raw transcripts plus the external preparation prompts (ticket
-  → "Inputs needed at pick")] (2026-08-18) — investigate a
-  transcript-intake workflow — verb + raw transcript + triage: topic cues
-  gathered, the transcript rebuilt for quality, features / approach /
-  tasks derived, results factored into the roadmap or backlog. The
-  maintainer's current method, run today outside the framework; viability
-  and worth are the questions. · Medium / Medium / Low / Low
-
-### Next milestone
-
-<!-- Intent: the backlog-machinery pair, promoted from the Icebox at the same refactor. BACKLOG-TABLE leads on EPIC-AUTOJAZZ's own instruction — "sequence it first or this reimplements it", since both render the same columns over the same records. EPIC-AUTOJAZZ follows, and is being run live as an unratified mode while it is investigated, which is the evidence its own risk grade asked for. -->
+<!-- Intent: refactored 2026-08-27 after FIELD-EXPORT shipped (4.11.0) emptied Current of workable items again. The backlog-machinery pair moves up together: BACKLOG-TABLE first on EPIC-AUTOJAZZ's own instruction that sequencing it second reimplements it, then EPIC-AUTOJAZZ, which this session is executing unratified and whose evidence is therefore being generated as it waits. VOICE-INTAKE stays last, still blocked on maintainer inputs. -->
 
 - [ ] **BACKLOG-TABLE Readable backlog table and phase history**
   [detail](tickets/BACKLOG-TABLE.md) (2026-08-26) — investigate a readable
@@ -46,10 +32,19 @@
   the burn-down-until-stopped option NEXT-CMD weighed and rejected;
   init-mvp already does this shape for greenfield. · High / High / High /
   Medium
+- [ ] **VOICE-INTAKE Voice-memo transcript intake**
+  [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
+  more real raw transcripts plus the external preparation prompts (ticket
+  → "Inputs needed at pick")] (2026-08-18) — investigate a
+  transcript-intake workflow — verb + raw transcript + triage: topic cues
+  gathered, the transcript rebuilt for quality, features / approach /
+  tasks derived, results factored into the roadmap or backlog. The
+  maintainer's current method, run today outside the framework; viability
+  and worth are the questions. · Medium / Medium / Low / Low
 
-### Icebox
+### Next milestone
 
-<!-- Intent: re-ordered 2026-08-27 so the workable items sit above the held ones and the queue reads in the order things unblock. Workable: UPGRADE-REFUSED first (three deployments, none upgraded by walking the prompt), then the read-only family in its SETTLED dependency order — READ-ONLY-AUDIT is the shared no-write mode, REVIEW-SUITE is what is wrong, ABSTRACTION-PLAN is what to change. Held below, unchanged: PM-MCP (prototype leg, lab work), JANITOR-WRITE (per-verb sign-off), ARCH-RECALL (no missed-precedent report — and ARCH-RETENTION has now removed the retention cap on it), DATA-MIG (42 d, age-by-design per ITEM-AGE), LAB-FIRST (maintainer-paused, resumes on their word). -->
+<!-- Intent: the evidence pair. UPGRADE-REFUSED leads — three deployments on record, none reached its version by walking upgrade.md, and FIELD-EXPORT has just shipped a prompt that names upgraded-or-reinstalled as the most useful line a report carries, so the two are the same question from opposite ends. READ-ONLY-AUDIT follows as the head of the SETTLED read-only family and the dependency of the two items still in the Icebox. -->
 
 - [ ] **UPGRADE-REFUSED Nobody walks the upgrade prompt**
   [detail](tickets/UPGRADE-REFUSED.md) (2026-08-27) — three deployments on
@@ -69,6 +64,11 @@
   self/inputs/2026-08-27-read-only-repository-review-prompt.md. Third of
   three overlapping read-only analysis items; settle the family before
   building any. · High / High / Medium / Low
+
+### Icebox
+
+<!-- Intent: what remains after two refactors. REVIEW-SUITE (what is wrong) and ABSTRACTION-PLAN (what to change) both wait on READ-ONLY-AUDIT's no-write mode, so they sit below it by dependency, not by grade. Held below, unchanged: PM-MCP (prototype leg, lab work), JANITOR-WRITE (per-verb sign-off), ARCH-RECALL (no missed-precedent report — ARCH-RETENTION has now lifted the retention cap on it, so only the evidence trigger is left), DATA-MIG (42 d, age-by-design per ITEM-AGE), LAB-FIRST (maintainer-paused, resumes on their word). -->
+
 - [ ] **REVIEW-SUITE Deep code-review suite**
   [detail](tickets/REVIEW-SUITE.md) (2026-08-26) — investigate a thorough
   code-review suite — engineering-depth dimensions (security, performance,

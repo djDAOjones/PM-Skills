@@ -2,7 +2,7 @@
 id: EPIC-AUTOJAZZ
 name: Continuous burn-down mode
 status: todo
-milestone: next
+milestone: current
 flags: detail
 date: 2026-08-27
 grades: High / High / High / Medium

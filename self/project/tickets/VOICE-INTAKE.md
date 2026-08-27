@@ -7,7 +7,7 @@ flags: detail, blocked
 blocked-on: maintainer inputs — one or more real raw transcripts plus the external preparation prompts (ticket → "Inputs needed at pick")
 date: 2026-08-18
 grades: Medium / Medium / Low / Low
-order: 2
+order: 3
 summary: investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features / approach / tasks derived, results factored into the roadmap or backlog. The maintainer's current method, run today outside the framework; viability and worth are the questions.
 ---
 # VOICE-INTAKE — Voice-memo transcript intake
