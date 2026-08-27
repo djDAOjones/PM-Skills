@@ -11,6 +11,44 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-27 — Refactor: the queue after the Current milestone cleared
+
+**Decision:** structural repair of the backlog after ARCH-RETENTION
+and SCAFFOLD-GITPATH shipped, applied directly under the
+maintainer's delegated continuous run (Re-assess RA3's gateless
+clause). Assessed 13 / promoted 3 / re-ordered 9 / cut 0. No
+done-work, duplicates, stale sections, or orphan tickets were found
+— the two faults were both about **readability of the queue**:
+
+1. **Current's only remaining item was blocked.** VOICE-INTAKE has
+   been held on maintainer inputs since 2026-08-18, so the head of
+   the queue could not be started. FIELD-EXPORT promoted from Next above
+   it; VOICE-INTAKE unchanged behind it.
+2. **The Icebox interleaved workable and held items,** so the order
+   things unblock in was not readable — the exact R2 finding.
+   Re-ordered: workable first (UPGRADE-REFUSED, then the read-only
+   family in its SETTLED dependency order), held below in
+   unblock order.
+
+**Refill (a Re-assess judgement, recorded as such):** BACKLOG-TABLE
+and EPIC-AUTOJAZZ promoted Icebox → Next, in that order, on
+EPIC-AUTOJAZZ's own instruction that BACKLOG-TABLE is sequenced
+first "or this reimplements it". The maintainer's instruction was to
+burn down the whole backlog, so refilling the working milestones
+from the Icebox is the asked-for work, not scope creep.
+
+**Rationale:** Refactor repairs structure and stops; the promotions
+are substance and belong to Re-assess. Both ran in one pass because
+the milestone close is the moment the map and the judgement are both
+stale, and separating them here would have meant two entries
+describing one decision.
+
+**Alternatives:** leave Current holding only VOICE-INTAKE (rejected
+— session-start would fall through to Next every pick, and the
+milestone would be a fiction); refill Next from the wish-list
+(rejected — its one open item, NEXT-FRAGMENTS, is routed to the
+lab's queue, and LAB-FIRST is paused).
+
 ## 2026-08-27 — SCAFFOLD-GITPATH: the fix crosses the fork (4.10.1)
 
 **Decision:** port GATE-PARITY's resolution model into

@@ -7,7 +7,7 @@ flags: maintainer, detail
 blocked-on: 
 date: 2026-08-23
 grades: 
-order: 0
+order: 9
 summary: PAUSED by the maintainer 2026-08-27, until further notice — the standing order no longer gates the queue, and the ALERT flag is withdrawn. The order itself is unchanged and resumes on the maintainer's word: run the lab arc (djDAOjones/PM-Skills-lab, checkout in CascadeProjects) before picking new work here. UPSTREAM-ASSIM shipped 2026-08-24; R2 is the open leg and now needs a fresh project. Only the maintainer resumes or clears this.
 ---
 

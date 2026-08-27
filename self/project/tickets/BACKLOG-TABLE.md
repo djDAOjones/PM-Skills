@@ -2,11 +2,11 @@
 id: BACKLOG-TABLE
 name: Readable backlog table and phase history
 status: todo
-milestone: icebox
+milestone: next
 flags: detail
 date: 2026-08-26
 grades: Medium / Low / Low / Low
-order: 6
+order: 1
 summary: investigate a readable table view — at the top of the backlog, or as a generated human-readable file — showing outstanding tickets plus previous development grouped into collapsible phases since inception. A second renderer over records gen-backlog.mjs already parses; where it lives and what it costs the hot read are the questions.
 ---
 # BACKLOG-TABLE — readable backlog table and phase history

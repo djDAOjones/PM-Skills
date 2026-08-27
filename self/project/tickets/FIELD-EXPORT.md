@@ -2,7 +2,7 @@
 id: FIELD-EXPORT
 name: Usage-report verb for consuming projects
 status: todo
-milestone: next
+milestone: current
 flags: detail
 date: 2026-08-23
 grades: High / Medium / Low / Low

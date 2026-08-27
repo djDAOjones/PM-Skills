@@ -6,7 +6,7 @@ milestone: icebox
 flags: detail
 date: 2026-08-27
 grades: High / High / Medium / Low
-order: 9
+order: 2
 summary: investigate a verb that examines a whole application deeply in one autonomous run and returns a comprehensive report, under a hard read-only guarantee — a no-write contract, isolation for any command that might write, and a start-and-end integrity check. Basis archived at self/inputs/2026-08-27-read-only-repository-review-prompt.md. Third of three overlapping read-only analysis items; settle the family before building any.
 ---
 # READ-ONLY-AUDIT — read-only deep investigation verb

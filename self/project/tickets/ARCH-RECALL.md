@@ -6,7 +6,7 @@ milestone: icebox
 flags: blocked
 blocked-on: a consuming project reports missed-precedent pain
 date: 2026-08-09
-order: 3
+order: 7
 summary: richer archive INDEX summaries + a search-then-skim pass; embeddings only if evidence demands. · Medium / Medium / Low / Low
 ---
 # ARCH-RECALL — Recall over cold storage

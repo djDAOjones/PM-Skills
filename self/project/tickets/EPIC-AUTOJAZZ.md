@@ -2,11 +2,11 @@
 id: EPIC-AUTOJAZZ
 name: Continuous burn-down mode
 status: todo
-milestone: icebox
+milestone: next
 flags: detail
 date: 2026-08-27
 grades: High / High / High / Medium
-order: 12
+order: 2
 summary: investigate an "epic" auto-jazz mode that keeps developing continuously across the backlog — re-assessing the queue before the run and after each milestone, printing a status table as it goes — instead of stopping after one item. Reopens the burn-down-until-stopped option NEXT-CMD weighed and rejected; init-mvp already does this shape for greenfield.
 ---
 # EPIC-AUTOJAZZ — continuous burn-down mode

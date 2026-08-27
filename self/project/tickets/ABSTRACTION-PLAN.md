@@ -6,7 +6,7 @@ milestone: icebox
 flags: detail
 date: 2026-08-26
 grades: High / High / Medium / Low
-order: 8
+order: 4
 summary: investigate a read-only whole-repository planning function that turns evidence into a coverage-accounted programme of small, behaviour-preserving improvements — abstraction and de-abstraction rules, staged waves, a pilot, measurable validation. Two revisions of the basis archived under self/inputs/ (2026-08-26, superseded by 2026-08-27).
 ---
 # ABSTRACTION-PLAN — abstraction and auditability planning

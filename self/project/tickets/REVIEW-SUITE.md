@@ -6,7 +6,7 @@ milestone: icebox
 flags: detail
 date: 2026-08-26
 grades: High / High / Medium / Low
-order: 7
+order: 3
 summary: investigate a thorough code-review suite — engineering-depth dimensions (security, performance, dependencies, tests), a validation phase that runs the project's own tooling, and a severity-plus-confidence finding schema — layered on the whole-repo audit recipe CODEBASE-AUDIT shipped. Candidate basis archived at self/inputs/2026-08-26-code-review-prompt.txt.
 ---
 # REVIEW-SUITE — deep code-review suite

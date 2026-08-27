@@ -6,7 +6,7 @@ milestone: icebox
 flags: detail
 date: 2026-08-27
 grades: High / Medium / Low / Medium
-order: 11
+order: 1
 summary: three deployments on record (Derry Lane, Route Plotter, UoN Video Helper) and none reached its current version by walking upgrade.md — Route Plotter declined 4.9.2 outright and said so in its decision log. The declarative-upgrade contract (MANIFEST classes, CHANGELOG Upgrade actions, upgrade.md) rests on a procedure no consuming project has used. Investigate why, and what the machinery should be if reinstall is the real path. Evidence in self/field-reports/.
 ---
 # UPGRADE-REFUSED — nobody walks the upgrade prompt

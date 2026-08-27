@@ -15,8 +15,16 @@
 
 ### Current milestone
 
-<!-- Intent: refilled at the 2026-08-27 Re-assess, the first pass since LAB-FIRST was paused. ARCH-RETENTION leads because its trigger has actually fired — the trajectory is over budget at 2116/2000 and archive/trajectory/ has never been created here, so the next Prune defines the archive shape whether or not anyone decides it. SCAFFOLD-GITPATH follows: a known bug with a known fix in a distributed file, deferred in the wish-list only because LAB-FIRST held the queue, and a release when taken. VOICE-INTAKE sits last and stays blocked on maintainer inputs (real transcripts plus the external preparation prompts). -->
+<!-- Intent: refactored 2026-08-27 after the Current milestone cleared (ARCH-RETENTION 4.10.0, SCAFFOLD-GITPATH 4.10.1). FIELD-EXPORT promoted from Next because Current held nothing workable — VOICE-INTAKE, its only remaining item, is blocked on maintainer inputs and now sits behind it rather than heading a queue nobody can start. -->
 
+- [ ] **FIELD-EXPORT Usage-report verb for consuming projects**
+  [detail](tickets/FIELD-EXPORT.md) (2026-08-23) — a framework verb that
+  emits a standard usage report from a consuming project — memory
+  counters, verbs fired, close fidelity, upgrade outcome, incidents —
+  already in the header shape the field-reports tier expects, so filing is
+  consistent rather than hand-copied. Promoted from the wish-list at the
+  2026-08-27 Re-assess after the work was done by hand twice in one day. ·
+  High / Medium / Low / Low
 - [ ] **VOICE-INTAKE Voice-memo transcript intake**
   [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
   more real raw transcripts plus the external preparation prompts (ticket
@@ -29,50 +37,8 @@
 
 ### Next milestone
 
-<!-- Intent: FIELD-EXPORT, promoted from the wish-list at the 2026-08-27 Re-assess on the strongest evidence a verb can have — the work was done by hand twice in one day during FIELD-HARVEST, once manually and once by an agent following a written prompt. The open question is whether it belongs to the product at all, since consuming projects gain little from reporting on themselves. -->
+<!-- Intent: the backlog-machinery pair, promoted from the Icebox at the same refactor. BACKLOG-TABLE leads on EPIC-AUTOJAZZ's own instruction — "sequence it first or this reimplements it", since both render the same columns over the same records. EPIC-AUTOJAZZ follows, and is being run live as an unratified mode while it is investigated, which is the evidence its own risk grade asked for. -->
 
-- [ ] **FIELD-EXPORT Usage-report verb for consuming projects**
-  [detail](tickets/FIELD-EXPORT.md) (2026-08-23) — a framework verb that
-  emits a standard usage report from a consuming project — memory
-  counters, verbs fired, close fidelity, upgrade outcome, incidents —
-  already in the header shape the field-reports tier expects, so filing is
-  consistent rather than hand-copied. Promoted from the wish-list at the
-  2026-08-27 Re-assess after the work was done by hand twice in one day. ·
-  High / Medium / Low / Low
-
-### Icebox
-
-<!-- Intent: the read-only family is SETTLED (2026-08-27) on the division READ-ONLY-AUDIT proposed — REVIEW-SUITE is what is wrong, ABSTRACTION-PLAN is what to change, READ-ONLY-AUDIT is the shared no-write mode both would run inside, so it is a dependency of the other two rather than a competitor; nothing merged, nothing cut. LAB-FIRST landed here when the maintainer paused it 2026-08-27 — intact, resumes on their word, no longer gates. UPGRADE-REFUSED and EPIC-AUTOJAZZ filed 2026-08-27; EPIC-AUTOJAZZ's memory-budget risk was realised the same day it was written, by ordinary single-item work. PM-MCP's distribution leg has fired (three consuming projects on record) and it now holds on the prototype leg alone, which is lab work. Older holds confirmed unchanged: DATA-MIG (42 d, age-by-design per ITEM-AGE; both new consuming projects are browser-only with no persistent user data), ARCH-RECALL (no missed-precedent report — though the session logs that would show one are now filed and unread), JANITOR-WRITE (per-verb sign-off). TEST-DOC stays cut. -->
-
-- [ ] **LAB-FIRST Work the lab before this repo** [maintainer]
-  [detail](tickets/LAB-FIRST.md) (2026-08-23) — PAUSED by the maintainer
-  2026-08-27, until further notice — the standing order no longer gates
-  the queue, and the ALERT flag is withdrawn. The order itself is
-  unchanged and resumes on the maintainer's word: run the lab arc
-  (djDAOjones/PM-Skills-lab, checkout in CascadeProjects) before picking
-  new work here. UPSTREAM-ASSIM shipped 2026-08-24; R2 is the open leg and
-  now needs a fresh project. Only the maintainer resumes or clears this.
-- [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
-  project with persistent user data] (2026-07-16) — hard rule "no
-  irreversible data change without a documented back-out" +
-  DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose →
-  execute → reconcile shape. Grades when triggered: High / Medium / Low /
-  Low.
-- [ ] **ARCH-RECALL Recall over cold storage** [blocked: a consuming
-  project reports missed-precedent pain] (2026-08-09) — richer archive
-  INDEX summaries + a search-then-skim pass; embeddings only if evidence
-  demands. · Medium / Medium / Low / Low
-- [ ] **JANITOR-WRITE Auto-run maintenance verbs**
-  [detail](tickets/JANITOR-WRITE.md) [blocked: per-verb scenario green +
-  explicit per-verb maintainer sign-off] (2026-08-09) — graduated
-  autonomy, Reconcile rung first; a blanket sign-off does not open this
-  gate. · Medium / Medium / Medium / Medium
-- [ ] **PM-MCP Programmatic memory interface**
-  [detail](tickets/PM-MCP.md) [blocked: harness-client run of the lab
-  prototype (RQ5 GREEN 2026-08-17); distribution additionally on more than
-  one consuming project] (2026-08-09) — packaging-ladder rung 4; adapter
-  outside the distributed tree, never core. · High / High / Medium /
-  Medium
 - [ ] **BACKLOG-TABLE Readable backlog table and phase history**
   [detail](tickets/BACKLOG-TABLE.md) (2026-08-26) — investigate a readable
   table view — at the top of the backlog, or as a generated human-readable
@@ -80,6 +46,37 @@
   into collapsible phases since inception. A second renderer over records
   gen-backlog.mjs already parses; where it lives and what it costs the hot
   read are the questions. · Medium / Low / Low / Low
+- [ ] **EPIC-AUTOJAZZ Continuous burn-down mode**
+  [detail](tickets/EPIC-AUTOJAZZ.md) (2026-08-27) — investigate an "epic"
+  auto-jazz mode that keeps developing continuously across the backlog —
+  re-assessing the queue before the run and after each milestone, printing
+  a status table as it goes — instead of stopping after one item. Reopens
+  the burn-down-until-stopped option NEXT-CMD weighed and rejected;
+  init-mvp already does this shape for greenfield. · High / High / High /
+  Medium
+
+### Icebox
+
+<!-- Intent: re-ordered 2026-08-27 so the workable items sit above the held ones and the queue reads in the order things unblock. Workable: UPGRADE-REFUSED first (three deployments, none upgraded by walking the prompt), then the read-only family in its SETTLED dependency order — READ-ONLY-AUDIT is the shared no-write mode, REVIEW-SUITE is what is wrong, ABSTRACTION-PLAN is what to change. Held below, unchanged: PM-MCP (prototype leg, lab work), JANITOR-WRITE (per-verb sign-off), ARCH-RECALL (no missed-precedent report — and ARCH-RETENTION has now removed the retention cap on it), DATA-MIG (42 d, age-by-design per ITEM-AGE), LAB-FIRST (maintainer-paused, resumes on their word). -->
+
+- [ ] **UPGRADE-REFUSED Nobody walks the upgrade prompt**
+  [detail](tickets/UPGRADE-REFUSED.md) (2026-08-27) — three deployments on
+  record (Derry Lane, Route Plotter, UoN Video Helper) and none reached
+  its current version by walking upgrade.md — Route Plotter declined 4.9.2
+  outright and said so in its decision log. The declarative-upgrade
+  contract (MANIFEST classes, CHANGELOG Upgrade actions, upgrade.md) rests
+  on a procedure no consuming project has used. Investigate why, and what
+  the machinery should be if reinstall is the real path. Evidence in
+  self/field-reports/. · High / Medium / Low / Medium
+- [ ] **READ-ONLY-AUDIT Read-only deep investigation verb**
+  [detail](tickets/READ-ONLY-AUDIT.md) (2026-08-27) — investigate a verb
+  that examines a whole application deeply in one autonomous run and
+  returns a comprehensive report, under a hard read-only guarantee — a
+  no-write contract, isolation for any command that might write, and a
+  start-and-end integrity check. Basis archived at
+  self/inputs/2026-08-27-read-only-repository-review-prompt.md. Third of
+  three overlapping read-only analysis items; settle the family before
+  building any. · High / High / Medium / Low
 - [ ] **REVIEW-SUITE Deep code-review suite**
   [detail](tickets/REVIEW-SUITE.md) (2026-08-26) — investigate a thorough
   code-review suite — engineering-depth dimensions (security, performance,
@@ -96,31 +93,34 @@
   measurable validation. Two revisions of the basis archived under
   self/inputs/ (2026-08-26, superseded by 2026-08-27). · High / High /
   Medium / Low
-- [ ] **READ-ONLY-AUDIT Read-only deep investigation verb**
-  [detail](tickets/READ-ONLY-AUDIT.md) (2026-08-27) — investigate a verb
-  that examines a whole application deeply in one autonomous run and
-  returns a comprehensive report, under a hard read-only guarantee — a
-  no-write contract, isolation for any command that might write, and a
-  start-and-end integrity check. Basis archived at
-  self/inputs/2026-08-27-read-only-repository-review-prompt.md. Third of
-  three overlapping read-only analysis items; settle the family before
-  building any. · High / High / Medium / Low
-- [ ] **UPGRADE-REFUSED Nobody walks the upgrade prompt**
-  [detail](tickets/UPGRADE-REFUSED.md) (2026-08-27) — three deployments on
-  record (Derry Lane, Route Plotter, UoN Video Helper) and none reached
-  its current version by walking upgrade.md — Route Plotter declined 4.9.2
-  outright and said so in its decision log. The declarative-upgrade
-  contract (MANIFEST classes, CHANGELOG Upgrade actions, upgrade.md) rests
-  on a procedure no consuming project has used. Investigate why, and what
-  the machinery should be if reinstall is the real path. Evidence in
-  self/field-reports/. · High / Medium / Low / Medium
-- [ ] **EPIC-AUTOJAZZ Continuous burn-down mode**
-  [detail](tickets/EPIC-AUTOJAZZ.md) (2026-08-27) — investigate an "epic"
-  auto-jazz mode that keeps developing continuously across the backlog —
-  re-assessing the queue before the run and after each milestone, printing
-  a status table as it goes — instead of stopping after one item. Reopens
-  the burn-down-until-stopped option NEXT-CMD weighed and rejected;
-  init-mvp already does this shape for greenfield. · High / High / High /
+- [ ] **PM-MCP Programmatic memory interface**
+  [detail](tickets/PM-MCP.md) [blocked: harness-client run of the lab
+  prototype (RQ5 GREEN 2026-08-17); distribution additionally on more than
+  one consuming project] (2026-08-09) — packaging-ladder rung 4; adapter
+  outside the distributed tree, never core. · High / High / Medium /
   Medium
+- [ ] **JANITOR-WRITE Auto-run maintenance verbs**
+  [detail](tickets/JANITOR-WRITE.md) [blocked: per-verb scenario green +
+  explicit per-verb maintainer sign-off] (2026-08-09) — graduated
+  autonomy, Reconcile rung first; a blanket sign-off does not open this
+  gate. · Medium / Medium / Medium / Medium
+- [ ] **ARCH-RECALL Recall over cold storage** [blocked: a consuming
+  project reports missed-precedent pain] (2026-08-09) — richer archive
+  INDEX summaries + a search-then-skim pass; embeddings only if evidence
+  demands. · Medium / Medium / Low / Low
+- [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
+  project with persistent user data] (2026-07-16) — hard rule "no
+  irreversible data change without a documented back-out" +
+  DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose →
+  execute → reconcile shape. Grades when triggered: High / Medium / Low /
+  Low.
+- [ ] **LAB-FIRST Work the lab before this repo** [maintainer]
+  [detail](tickets/LAB-FIRST.md) (2026-08-23) — PAUSED by the maintainer
+  2026-08-27, until further notice — the standing order no longer gates
+  the queue, and the ALERT flag is withdrawn. The order itself is
+  unchanged and resumes on the maintainer's word: run the lab arc
+  (djDAOjones/PM-Skills-lab, checkout in CascadeProjects) before picking
+  new work here. UPSTREAM-ASSIM shipped 2026-08-24; R2 is the open leg and
+  now needs a fresh project. Only the maintainer resumes or clears this.
 
 <!-- generated:records:end -->
