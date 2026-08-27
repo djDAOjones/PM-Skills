@@ -12,6 +12,61 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-27 — UPGRADE-REFUSED: make reinstall safe, not argue against it (4.13.0)
+
+**Decision:** `upgrade.md` gains a **Reinstall path** section rather
+than the framework trying harder to get projects to walk the
+procedure. Three deployments, three reinstalls, one explicit
+refusal — persuasion has failed 3/3, and making the observed
+behaviour safe had not been tried.
+
+**The measurement decided it, not the field reports.** The reports
+give a weak claim (one maintainer, one window, one machine — said so
+at intake). The fixture gives a mechanical one that holds for
+anyone. On pm-skills 4.7.0 with populated memory:
+
+- `cp -R` new over old → populated `brief.md` and `decision-log.md`
+  **silently replaced by the blank templates**. No error, no prompt.
+- `rm -rf pm_skills` then copy → that, **plus** `project/tickets/`
+  and `project/archive/` deleted outright.
+- Replace everything except `pm_skills/project/` → all preserved,
+  and files added since (field-report.md, epic.md) simply arrive.
+
+Both failing methods break the rule `upgrade.md` already states and
+the `project-memory` class MANIFEST exists to enforce.
+
+**The uncomfortable finding:** the field reports say the two
+reinstalls preserved memory, and that is true — because the clobber
+showed in `git status` and somebody looked. Reinstall's field safety
+record is code review's record, not the method's. A project outside
+version control loses its memory and finds out later.
+
+**What this settles about the release tax.** The Upgrade-actions
+block is justified, but not as the input to a walk nobody runs: it
+is the record of which **root-template and memory-template** sections
+changed, which is exactly what copying cannot infer. That is also
+the only part reinstall leaves undone, so the walk after a reinstall
+shrinks to Steps 7–8 for the entries in the gap.
+
+**Verified, not asserted:** the published recipe was run verbatim
+from the section text against the same fixture and preserved every
+project-owned file.
+
+**Assumptions at skipped gates (auto-jazz):** minor release (new
+section, backward compatible, no new files); analysis filed to
+`self/evaluations/2026-08-27-upgrade-refused.md` per the ticket's
+own constraint, citing the reports rather than restating them.
+
+**Alternatives:** deprecate `upgrade.md` in favour of reinstall
+(rejected — reinstall cannot merge root templates or delete removed
+files, and a major bump needs both); leave the procedure alone and
+treat the refusals as user error (rejected — 3/3 is a design signal,
+not three mistakes).
+
+**Left open:** *why* Route Plotter refused. The decision is
+recorded, the reasoning is not; it needs the maintainer or the
+session log in the local lane.
+
 ## 2026-08-27 — Mid-run Prune, and the P4 trap it exposed (4.12.1)
 
 **Decision:** the decision log hit 20/20 between items, so a Prune

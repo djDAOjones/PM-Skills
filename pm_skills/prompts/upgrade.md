@@ -289,6 +289,82 @@ Output a final upgrade report:
 - Backup location (if taken), with the recovery-not-invocation
   reminder; workflow-dir sweep and tombstones left (or "none").
 
+## Reinstall path (what projects actually do)
+
+Field evidence says most projects do not walk the steps above. They
+reinstall: fetch the current `pm_skills/` and copy it in. That is
+cheaper and better understood, and it is what the record shows real
+deployments doing — so this section makes it safe rather than
+pretending it does not happen.
+
+**Reinstalling is not safe by construction.** Measured on a
+populated fixture:
+
+- Copying the new `pm_skills/` over the old (`cp -R`) silently
+  replaces populated `project/brief.md`, `project/decision-log.md`
+  and every other memory file with the **blank templates**. No
+  error, no prompt.
+- Deleting `pm_skills/` first and re-copying does that *and*
+  removes `project/tickets/` and `project/archive/` entirely —
+  every ticket record and the whole cold archive, gone.
+
+Projects that have reinstalled without loss got away with it
+because the clobber showed up in `git status` and somebody looked.
+That is a review catching it, not the method being safe.
+
+### The safe recipe
+
+One rule: **never let a reinstall touch `pm_skills/project/`.**
+Start from a clean working tree (so anything unexpected is
+visible), then replace only what the project does not own:
+
+```sh
+SRC=<path to the fresh pm_skills source>
+rm -rf pm_skills/prompts pm_skills/integrations \
+       pm_skills/templates pm_skills/scaffold
+cp -R "$SRC"/prompts "$SRC"/integrations \
+      "$SRC"/templates "$SRC"/scaffold pm_skills/
+cp "$SRC"/VERSION "$SRC"/CHANGELOG*.md "$SRC"/MANIFEST.md \
+   "$SRC"/GUIDE.md "$SRC"/init.md "$SRC"/memory-policy.md pm_skills/
+git status   # review before committing — this is the safety net
+```
+
+`pm_skills/project/` is never named, so it cannot be touched. Root
+copies of the rulebooks and the scaffold live outside `pm_skills/`
+and are likewise untouched.
+
+### What the reinstall path cannot do
+
+It is complete for `framework`-class files — including files added
+since the project's version, which simply arrive. It leaves exactly
+two things undone, and these are why the steps above still exist:
+
+1. **Root-template merges.** New sections added to
+   `templates/AGENTS.md`, `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`
+   or `PROCESS.md` never reach the project's populated root copies.
+   The reinstall replaces the shipped template and stops there.
+2. **Memory-template reconciliation** (Step 8) — new sections in
+   `project/*.md` templates, and any renamed or restructured memory
+   file.
+
+Both are `root-template` / `project-memory` class, and both are
+described in the **Upgrade actions** of the entries the project
+skipped. So after a reinstall, read the changelog entries between
+the old and new version and apply **only** their root-template and
+project-memory actions — Steps 7 and 8. That is a much shorter walk
+than the full procedure, and it is the part that cannot be
+automated by copying.
+
+### When to use which
+
+- **Version gap with no root-template or memory-template changes in
+  between** — reinstall, review the diff, done.
+- **Any gap that includes them** — reinstall, then Steps 7–8 for
+  those entries only.
+- **Renames, removals, or a restructured memory contract** (a major
+  bump) — walk the full procedure. Copying cannot delete a file
+  that should no longer exist, and a reinstall leaves it behind.
+
 ## Legacy path (project has no `VERSION` file)
 
 A pre-1.0.0 project carries no metadata, so reconstruct it once:
@@ -312,7 +388,8 @@ A pre-1.0.0 project carries no metadata, so reconstruct it once:
   or `pm_skills/project/`, and never overwrite an unexplained local
   change to a framework file without asking (Step 4).
 - Never delete files in `pm_skills/project/` or
-  `pm_skills/project/archive/`.
+  `pm_skills/project/archive/`. This is the rule a reinstall breaks
+  by default — see "Reinstall path".
 - Append-only files (`decision-log.md`, `CHANGELOG.md`) are never
   rewritten — only appended to.
 - All non-trivial changes batched and shown before write.

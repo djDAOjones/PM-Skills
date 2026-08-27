@@ -36,6 +36,65 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.13.0 — 2026-08-27
+
+UPGRADE-REFUSED: `prompts/upgrade.md` gains a **Reinstall path** —
+the route projects actually take, made safe instead of ignored.
+
+Three deployments are on record and none reached its version by
+walking the upgrade procedure; one declined an upgrade outright and
+wrote the refusal into its decision log. Arguing people into a
+twelve-step changelog walk has now failed three times out of three.
+Making what they already do safe had not been tried.
+
+Because it is not safe. Measured on a populated fixture: copying a
+new `pm_skills/` over the old silently replaces populated
+`project/brief.md`, `project/decision-log.md` and every other memory
+file with the **blank templates** — no error, no prompt. Deleting
+`pm_skills/` first and re-copying does that *and* removes
+`project/tickets/` and `project/archive/` entirely: every ticket
+record and the whole cold archive. Both break the rule this file
+already states and the `project-memory` class the manifest exists to
+enforce. Projects that reinstalled without loss got away with it
+because the clobber appeared in `git status` and somebody looked —
+that is review catching it, not the method being safe.
+
+The new section carries the safe recipe (one rule: never let a
+reinstall touch `pm_skills/project/`), verified by running it
+verbatim from the published text. It is complete for
+`framework`-class files, including files added since the project's
+version, which simply arrive. It leaves exactly two things undone —
+root-template merges and memory-template reconciliation — so after a
+reinstall the walk shrinks to Steps 7–8 for the entries in the gap
+only. A major bump still needs the full procedure, because copying
+cannot delete a file that should no longer exist.
+
+This also settles what the **Upgrade actions** block is for. Not the
+automated walk nobody runs: it is the record of which root-template
+and memory-template sections changed, which is exactly what a
+reinstall cannot infer by copying. The release tax stands.
+
+### Added
+
+- `pm_skills/prompts/upgrade.md` — "Reinstall path (what projects
+  actually do)": the measurement, the safe recipe, what it cannot
+  do, and a when-to-use-which for the three cases (clean gap,
+  gap containing template changes, major bump).
+
+### Changed
+
+- `pm_skills/prompts/upgrade.md` → "Rules" — the never-delete rule
+  now names reinstall as the thing that breaks it by default.
+
+### Upgrade actions
+
+- Replace `pm_skills/prompts/upgrade.md` with this version's copy
+  (`framework` class).
+- If your project has ever been reinstalled rather than upgraded,
+  check `pm_skills/project/` against your history now: a memory file
+  reset to its template is the failure mode, and it is silent.
+- Nothing else changes. No new files, no memory or rulebook edits.
+
 ## 4.12.1 — 2026-08-27
 
 Prune P4 trap, found by running it: a decision-log split carried the

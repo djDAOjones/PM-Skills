@@ -57,8 +57,6 @@ see the root AGENTS.md "Before every task". -->
 - `pm_skills/integrations/bugfix.md` — diagnosis-before-fix bug workflow with approval gates
 - `pm_skills/integrations/dispatch.md` — parallel-work initiation: disjoint pick, lane briefs, primary integrates and releases once
 - `pm_skills/integrations/epic.md` — continuous backlog burn-down:
-  next.md per item, queue repair + status table per milestone; invoked
-  only, never scheduled.
 - `pm_skills/integrations/init-mvp.md` — idea-to-MVP build run with a signed-off foundation + ceiling
 - `pm_skills/integrations/next.md` — one-word next-item trigger: Start B pick → auto-jazz build → close, one item per invocation
 - `pm_skills/integrations/task.md` — the task workflow: modes (checkpoint/full/auto-jazz/spike/refactor), prohibitions, commit step

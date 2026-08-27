@@ -17,15 +17,6 @@
 
 <!-- Intent: refactored 2026-08-27 after the backlog-machinery pair shipped (BACKLOG-TABLE source-only, EPIC-AUTOJAZZ 4.12.0). UPGRADE-REFUSED leads: it is the one open item resting on evidence already gathered rather than on a shape still to be decided, and FIELD-EXPORT has since made upgraded-or-reinstalled a named field in every report a project files. READ-ONLY-AUDIT follows as the head of the read-only family and the dependency of both items now in Next. VOICE-INTAKE stays last, still blocked on maintainer inputs, and is now the only item that has been passed over at three consecutive refactors — if the inputs do not arrive, the honest move at the next Re-assess is to say so. -->
 
-- [ ] **UPGRADE-REFUSED Nobody walks the upgrade prompt**
-  [detail](tickets/UPGRADE-REFUSED.md) (2026-08-27) — three deployments on
-  record (Derry Lane, Route Plotter, UoN Video Helper) and none reached
-  its current version by walking upgrade.md — Route Plotter declined 4.9.2
-  outright and said so in its decision log. The declarative-upgrade
-  contract (MANIFEST classes, CHANGELOG Upgrade actions, upgrade.md) rests
-  on a procedure no consuming project has used. Investigate why, and what
-  the machinery should be if reinstall is the real path. Evidence in
-  self/field-reports/. · High / Medium / Low / Medium
 - [ ] **READ-ONLY-AUDIT Read-only deep investigation verb**
   [detail](tickets/READ-ONLY-AUDIT.md) (2026-08-27) — investigate a verb
   that examines a whole application deeply in one autonomous run and

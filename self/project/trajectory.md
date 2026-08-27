@@ -2,6 +2,13 @@
 
 ## Phase: Planning loop
 
+- UPGRADE-REFUSED (2026-08-27) — upgrade.md gains a Reinstall path:
+  measured on a fixture, a naive reinstall silently blanks populated
+  memory and (rm -rf variant) deletes tickets and archive outright,
+  so the safe recipe ships alongside what it cannot do. Settles the
+  Upgrade-actions tax as the record of template changes, not the
+  input to an unused walk. Evaluation filed (4.13.0) — see
+  decision-log.
 - PRUNE-P4-INDEX (2026-08-27) — Prune P4 no longer sweeps the live
   file's own archive-index lines into the new chunk; found by running
   a mid-run prune (decision log 20 → 14 live, chunk 08d, both slices
