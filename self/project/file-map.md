@@ -7,13 +7,13 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 77 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 78 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
 - `.github` — 1 file(s)
 - `.windsurf` — 1 file(s)
-- `pm_skills` — 47 file(s)
+- `pm_skills` — 48 file(s)
 - `scripts` — 12 file(s)
 - `self` — 8 file(s)
 <!-- /file-map-index -->
@@ -56,6 +56,9 @@ see the root AGENTS.md "Before every task". -->
 - `pm_skills/integrations/adopt.md` — existing-codebase adoption: reverse-engineer memory, interview for gaps
 - `pm_skills/integrations/bugfix.md` — diagnosis-before-fix bug workflow with approval gates
 - `pm_skills/integrations/dispatch.md` — parallel-work initiation: disjoint pick, lane briefs, primary integrates and releases once
+- `pm_skills/integrations/epic.md` — continuous backlog burn-down:
+  next.md per item, queue repair + status table per milestone; invoked
+  only, never scheduled.
 - `pm_skills/integrations/init-mvp.md` — idea-to-MVP build run with a signed-off foundation + ceiling
 - `pm_skills/integrations/next.md` — one-word next-item trigger: Start B pick → auto-jazz build → close, one item per invocation
 - `pm_skills/integrations/task.md` — the task workflow: modes (checkpoint/full/auto-jazz/spike/refactor), prohibitions, commit step
@@ -105,8 +108,6 @@ see the root AGENTS.md "Before every task". -->
 - `scripts/gen-backlog.mjs` — backlog view generator (records mode): tickets frontmatter → Active section between markers
 - `scripts/gen-file-map.mjs` — this repo's file-map generator: maps pm_skills/ as source, excludes self/ memory
 - `scripts/gen-roadmap.mjs` — second renderer over the ticket records:
-  emits the human-readable `self/project/roadmap.md` (outstanding table +
-  collapsible shipped phases); gate-checked as `lint:roadmap`.
 - `scripts/janitor-read.mjs` — read-only janitor: validator + environment line into the reports file (JANITOR-READ)
 - `scripts/package.mjs` — distribution-boundary tool: manifest-verifies pm_skills/ and exports exactly that set (lint:boundary + npm run package)
 

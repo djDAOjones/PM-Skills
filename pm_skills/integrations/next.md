@@ -26,6 +26,12 @@ To run two or three genuinely disjoint items at once in parallel
 chats, use `integrations/dispatch.md` — it assigns lanes and briefs
 and integrates the results; this trigger stays strictly one-item.
 
+To burn the queue down continuously instead — item after item, with
+a queue repair and a status table at each milestone — use
+`integrations/epic.md`. It composes this file per item and leaves
+every guardrail below unchanged; it is **invoked only**, never
+scheduled or wired into automation. This trigger stays one-item.
+
 ## Guardrails (never weakened)
 
 This trigger normalises gateless runs, so the guardrails that make

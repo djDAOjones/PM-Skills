@@ -17,14 +17,6 @@
 
 <!-- Intent: refactored 2026-08-27 after FIELD-EXPORT shipped (4.11.0) emptied Current of workable items again. The backlog-machinery pair moves up together: BACKLOG-TABLE first on EPIC-AUTOJAZZ's own instruction that sequencing it second reimplements it, then EPIC-AUTOJAZZ, which this session is executing unratified and whose evidence is therefore being generated as it waits. VOICE-INTAKE stays last, still blocked on maintainer inputs. -->
 
-- [ ] **EPIC-AUTOJAZZ Continuous burn-down mode**
-  [detail](tickets/EPIC-AUTOJAZZ.md) (2026-08-27) — investigate an "epic"
-  auto-jazz mode that keeps developing continuously across the backlog —
-  re-assessing the queue before the run and after each milestone, printing
-  a status table as it goes — instead of stopping after one item. Reopens
-  the burn-down-until-stopped option NEXT-CMD weighed and rejected;
-  init-mvp already does this shape for greenfield. · High / High / High /
-  Medium
 - [ ] **VOICE-INTAKE Voice-memo transcript intake**
   [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
   more real raw transcripts plus the external preparation prompts (ticket

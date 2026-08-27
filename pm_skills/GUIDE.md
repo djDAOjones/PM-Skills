@@ -109,6 +109,7 @@ prompts/         Reusable per-task prompts (paste, or run as commands).
 integrations/    Tool-workflow files (copy to your AI tool's workflow dir).
   task.md      The task workflow — modes: full / checkpoint (default) / auto-jazz / auto-jazz-lite / spike / refactor.
   next.md      One-word "run the next backlog item": Start B pick → auto-jazz build → close. One item per invocation.
+  epic.md      Continuous burn-down: next.md per item, queue repair + status table per milestone. Invoked only, never scheduled.
   dispatch.md  Initiate parallel chats: disjoint pick, lane briefs; the dispatching chat integrates.
   bugfix.md    Diagnosis-before-fix workflow for bugs.
   init-mvp.md  Sign off foundation + scope band, then autonomous build (and optional deploy).

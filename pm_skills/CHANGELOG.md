@@ -36,6 +36,69 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.12.0 — 2026-08-27
+
+EPIC-AUTOJAZZ: `integrations/epic.md` burns the backlog down
+continuously — build, close, and at each milestone boundary repair
+the queue, re-judge it, and print a status table — where `next.md`
+ships one item and stops. It composes `next.md` per item and adds no
+new mechanism.
+
+This reverses a decision `next.md` states outright ("it never burns
+down the whole backlog unattended"), and the reversal rests entirely
+on one distinction: **invoked, never scheduled**. A person asking for
+a burn-down in this session is a delegation, and delegation is what
+lets the maintenance verbs run. Automation is not: Re-assess already
+says automation may surface that a pass is due but never run one, and
+write-ladder items hold that a blanket sign-off opens no gate. Both
+stay true. The file says so in its own terms, because the reversal
+does not survive without it.
+
+Written from a live exercise of the mode rather than from theory, and
+three of its rules exist because that run hit them:
+
+- **Budgets are checked before the first pick, not at close.** Two
+  memory budgets were already over when that run began, so its first
+  act had to be a Prune. A long run writes memory per item; starting
+  one on full memory guarantees a mid-run trip.
+- **The staged-set echo becomes a stop, not a print.** Over a long
+  run a working tree accumulates files the run did not create — in
+  the exercise, a concurrent session's output — and `git add -A`
+  swept them into a commit. The echo caught it, but only after the
+  commit, because echo and commit ran in one breath.
+- **"Milestone" means the backlog's own milestones** — not
+  `init-mvp.md` bands, not trajectory phases. The status table needs
+  one vocabulary and the queue is already written in that one.
+
+### Added
+
+- `pm_skills/integrations/epic.md` (`framework` class) —
+  admissibility rule (invoked, never scheduled), the pre-pick budget
+  check, the per-milestone Refactor → Re-assess → table → checkpoint
+  loop, the status-table column contract, six stop conditions
+  (including a `[sign-off]` item reaching the front, and the same
+  failure twice), and the three risks specific to running long.
+
+### Changed
+
+- `pm_skills/integrations/next.md` — points at `epic.md` for
+  continuous burn-down, exactly as it already points at
+  `dispatch.md` for parallel lanes. Its own one-item scope and its
+  guardrails are unchanged.
+- `pm_skills/GUIDE.md` — the `integrations/` tree lists the new file.
+
+### Upgrade actions
+
+- Copy `pm_skills/integrations/epic.md` into your project's
+  `pm_skills/integrations/` (`framework` class — new file, nothing
+  overwritten). If you copy integration files into your AI tool's
+  workflow directory, copy it there too.
+- Replace `pm_skills/integrations/next.md` and `pm_skills/GUIDE.md`
+  with this version's copies.
+- **Do not** wire `epic.md` into a scheduler, cron entry, or
+  automated maintenance ladder. Its reversal of the one-item rule is
+  conditional on being invoked by a person.
+
 ## 4.11.0 — 2026-08-27
 
 FIELD-EXPORT: a new prompt, `prompts/field-report.md`, has a project

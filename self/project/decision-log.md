@@ -11,6 +11,60 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-27 — EPIC-AUTOJAZZ: continuous burn-down ships as its own integration (4.12.0)
+
+**Decision:** ship `pm_skills/integrations/epic.md` — its own
+integration composing `next.md` per item, **not** a mode inside
+`next.md`. Putting it inside would weaken that file's own guarantee
+("never burns down the whole backlog unattended") in the same file
+that makes it; keeping it separate is the pattern `dispatch.md`
+already set, and `next.md` gains a pointer, not a caveat.
+
+**The reversal's whole basis: invoked, never scheduled.** The
+investigation's hardest question was blanket versus graduated
+authorisation, and the answer is that neither framing fits.
+JANITOR-WRITE holds that a blanket sign-off opens no gate, and
+Re-assess says automation may surface that a pass is due but never
+run one — yet this run legitimately ran Prune, Refactor and
+Re-assess under a single maintainer instruction. The line is not
+how broad the sign-off is; it is whether a person asked, in this
+session, now. Delegation licences the verbs; automation does not.
+`epic.md` states that as its admissibility rule and says plainly
+that the reversal does not survive being put behind a timer.
+
+**Written from the exercise, not from theory.** This session ran the
+mode before the file existed, and three rules exist because it hit
+them:
+
+1. **Budgets are checked before the first pick.** Two were already
+   over when the run began (trajectory 2116/2000, log 21/20), so the
+   run's first act was a Prune. The ticket predicted a mid-run trip;
+   the reality was worse — it had already happened.
+2. **The staged-set echo is a stop, not a print.** `git add -A self`
+   swept eight files from a concurrent Codex session into a commit.
+   The echo caught it — but after the commit, because echo and
+   commit ran in one shell pipeline. Backed out with a soft reset
+   and re-committed on explicit paths.
+3. **"Minor milestone" means the backlog's milestones** — not
+   init-mvp bands, not trajectory phases. Chosen at the run's start
+   and it held; the table needs one vocabulary.
+
+**Also decided:** stop conditions are six, and two are new to this
+file — a `[sign-off]` item reaching the front (it needs a person, so
+the burn-down ends there rather than running it gateless), and the
+same failure twice (systemic, not two incidents).
+
+**Assumptions at skipped gates (auto-jazz):** minor release, new
+file, nothing overwritten; BACKLOG-TABLE sequenced first as its own
+ticket instructed, so `epic.md` states the table's columns and
+defers to a project's generated view rather than reimplementing one.
+
+**Alternatives:** a mode flag inside `next.md` (rejected — it would
+contradict that file's stated scope where the scope is stated);
+graduated authorisation on the JANITOR-WRITE ladder (rejected — the
+ladder gates automation, and this is not automation; conflating them
+would either block a delegated run or licence a scheduled one).
+
 ## 2026-08-27 — BACKLOG-TABLE: a second renderer, source-only for now
 
 **Decision:** build `scripts/gen-roadmap.mjs` → tracked

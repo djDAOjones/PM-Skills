@@ -12,8 +12,7 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
-| **[EPIC-AUTOJAZZ](tickets/EPIC-AUTOJAZZ.md)** | Continuous burn-down mode | Current #1 | Investigate an "epic" auto-jazz mode that keeps developing continuously across the backlog — re-assessing the queue before the run and after each… | Todo |
-| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Current #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs — one or more real raw transcripts plus… |
+| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Current #1 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs — one or more real raw transcripts plus… |
 | **[UPGRADE-REFUSED](tickets/UPGRADE-REFUSED.md)** | Nobody walks the upgrade prompt | Next #1 | Three deployments on record (Derry Lane, Route Plotter, UoN Video Helper) and none reached its current version by walking upgrade.md — Route Plotter… | Todo |
 | **[READ-ONLY-AUDIT](tickets/READ-ONLY-AUDIT.md)** | Read-only deep investigation verb | Next #2 | Investigate a verb that examines a whole application deeply in one autonomous run and returns a comprehensive report, under a hard read-only… | Todo |
 | **[REVIEW-SUITE](tickets/REVIEW-SUITE.md)** | Deep code-review suite | Icebox #1 | Investigate a thorough code-review suite — engineering-depth dimensions (security, performance, dependencies, tests), a validation phase that runs… | Todo |
@@ -31,10 +30,11 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: Planning loop</strong> — 12 item(s)</summary>
+<summary><strong>Phase: Planning loop</strong> — 13 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
+| `EPIC-AUTOJAZZ` | (2026-08-27) — continuous burn-down ships as `integrations/epic.md`, its own integration composing next.md per item; the one-item reversal rests on "invoked, never scheduled",… |
 | `BACKLOG-TABLE` | (2026-08-27) — human-readable roadmap view ships source-only: `scripts/gen-roadmap.mjs` → tracked `self/project/roadmap.md`, gate-checked as `lint:roadmap`. Separate file (not in… |
 | `FIELD-EXPORT` | (2026-08-27) — the twice-run-by-hand harvest procedure ships as `prompts/field-report.md`: a prompt not a script, distributed not maintainer-side, because the work runs inside the… |
 | `SCAFFOLD-GITPATH` | (2026-08-27) — GATE-PARITY's Git-path resolution ported into the distributed `scaffold/check-links.mjs`; the local-passes/CI-fails gap every scaffolded project inherited is… |

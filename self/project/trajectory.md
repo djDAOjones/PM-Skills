@@ -2,6 +2,14 @@
 
 ## Phase: Planning loop
 
+- EPIC-AUTOJAZZ (2026-08-27) — continuous burn-down ships as
+  `integrations/epic.md`, its own integration composing next.md per
+  item; the one-item reversal rests on "invoked, never scheduled",
+  which is the line Re-assess and the write ladders already draw.
+  Written from a live exercise: pre-pick budget check, staged-set
+  echo as a stop not a print, and backlog milestones as the table's
+  vocabulary all come from what that run hit (4.12.0) — see
+  decision-log.
 - BACKLOG-TABLE (2026-08-27) — human-readable roadmap view ships
   source-only: `scripts/gen-roadmap.mjs` → tracked
   `self/project/roadmap.md`, gate-checked as `lint:roadmap`. Separate
