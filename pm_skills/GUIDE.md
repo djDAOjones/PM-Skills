@@ -100,6 +100,7 @@ prompts/         Reusable per-task prompts (paste, or run as commands).
   end-of-task.md          The closing ritual: quality gate + memory updates.
   review.md               Read-only audit of an autonomous run or feature area.
   read-only.md            The no-write posture: hard contract, command isolation, start-and-end integrity check.
+  findings.md             Verify a review's findings against source, spot what it missed, disposition them into the backlog.
   memory-maintenance.md   Diagnose / Prune / Refactor / Re-assess / Reconcile / Doc-sync project memory.
   backlog-authoring.md    Ideas or a transcript → grammar-true backlog items + tickets; the ticket skeleton and external authoring contract.
   field-report.md         Emit a usage report about this project's use of pm-skills, for whoever collects them upstream.

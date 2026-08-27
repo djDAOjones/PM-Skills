@@ -36,6 +36,76 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.15.0 — 2026-08-27
+
+REVIEW-SUITE: `prompts/findings.md` — verify a review's findings
+against the source, notice what the review missed, and disposition
+the survivors into the backlog. Findings from any reviewer,
+including tools.
+
+**This is not the suite the ticket asked for, and the field evidence
+is why.** The plan was engineering-depth dimensions — security,
+performance, dependencies, tests — layered onto the whole-repository
+audit recipe. Two consuming projects had by then each run a deep
+review and kept the artefacts, and what they show is that the
+dimensions were never the missing piece: both got a competent
+multi-dimension review from an external tool, and **both then wrote
+a critique of that review before acting on it.** Neither was told
+to. Across the two rounds the critiques found findings that were
+real but materially over-rated, a finding already fixed and
+re-reported stale, several the review had omitted entirely, and — the
+expensive one — a **prescribed remedy that would have introduced a
+different defect**, where the fix was more dangerous than the bug.
+
+So the framework's contribution is the half nobody's review tool
+does: deciding what is *true*, and what happens *next*. Producing
+findings is increasingly commodity; verifying them and routing
+them into a queue is not.
+
+- **Five verdicts** — confirmed / over-rated / stale / not
+  reproduced / wrong — because "agree or disagree" cannot express
+  "real, but a third as bad as claimed".
+- **Verify the remedy, not just the defect.** A correct finding with
+  a wrong fix passes review and ships.
+- **Check staleness first** — cheapest check, commonest false
+  positive, especially when the review ran against an older commit.
+- **Do not discard executable evidence without refuting it.** An
+  opinion does not outrank a reproduction.
+- **Every survivor gets a disposition** — fixed, backlogged in the
+  project's own ticket grammar, wish-listed, or declined with the
+  reason in the decision log. Stale and wrong findings are recorded
+  as such, never silently deleted, so the next reviewer does not
+  re-find them. A crosswalk keeps every original finding ID
+  answerable.
+- **Severity and confidence stay separate**; one combined number
+  hides the case that needs the most care.
+
+### Added
+
+- `pm_skills/prompts/findings.md` (`framework` class) — the three
+  stages (verify / what was missed / disposition), the verdict
+  table, the finding shape, and the honesty rules. It proposes and
+  never edits; declare `prompts/read-only.md` to run the
+  verification without touching the tree.
+
+### Changed
+
+- `pm_skills/prompts/review.md` — new "Handing findings on" section
+  pointing at it.
+- `pm_skills/GUIDE.md` — the `prompts/` tree lists the new file.
+
+### Upgrade actions
+
+- Copy `pm_skills/prompts/findings.md` into your project's
+  `pm_skills/prompts/` (`framework` class — new file, nothing
+  overwritten).
+- Replace `pm_skills/prompts/review.md` and `pm_skills/GUIDE.md`
+  with this version's copies.
+- If you have a review whose findings were acted on without a
+  verification pass, the cheap retrospective check is staleness and
+  remedies: which findings were already fixed, and which fixes
+  introduced something.
+
 ## 4.14.0 — 2026-08-27
 
 READ-ONLY-AUDIT: `prompts/read-only.md` ships the **no-write

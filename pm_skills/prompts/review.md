@@ -118,6 +118,16 @@ recurring agent mistake → an `AGENTS.md` anti-pattern; a settled
 convention → `conventions.md`; an out-of-scope idea → one line in
 `wish-list.md`. Apply only what the user confirms.
 
+## Handing findings on
+
+This prompt reviews a change set and produces a punch list. When the
+findings are many, came from somewhere else (an external review tool,
+a whole-repository audit), or are about to drive real work, run them
+through `prompts/findings.md` first: it verifies each against the
+source, asks what the review missed, and dispositions the survivors
+into the backlog. A deep review's raw output is a draft, not a
+verdict.
+
 ## Rules
 
 - Read-only. Review diagnoses and proposes; it does not rewrite the

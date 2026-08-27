@@ -2,6 +2,13 @@
 
 ## Phase: Planning loop
 
+- REVIEW-SUITE (2026-08-27) — shipped as `prompts/findings.md`, not
+  the dimension suite scoped: field evidence showed both consuming
+  projects got competent multi-dimension reviews from tools and then
+  wrote critiques of them, catching over-rated findings, a stale one,
+  six omissions and a remedy that would have caused a new defect. Five
+  verdicts, verify-the-remedy, staleness first, and a disposition for
+  every survivor (4.15.0) — see decision-log.
 - READ-ONLY-AUDIT (2026-08-27) — the no-write posture ships as
   `prompts/read-only.md`: hard contract, command-isolation rules
   (redirect, else disposable copy, else do not run), and a

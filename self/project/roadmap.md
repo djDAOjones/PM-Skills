@@ -12,9 +12,8 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
-| **[REVIEW-SUITE](tickets/REVIEW-SUITE.md)** | Deep code-review suite | Current #1 | Investigate a thorough code-review suite — engineering-depth dimensions (security, performance, dependencies, tests), a validation phase that runs… | Todo |
-| **[ABSTRACTION-PLAN](tickets/ABSTRACTION-PLAN.md)** | Abstraction and auditability planning | Current #2 | Investigate a read-only whole-repository planning function that turns evidence into a coverage-accounted programme of small, behaviour-preserving… | Todo |
-| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Current #3 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs — one or more real raw transcripts plus… |
+| **[ABSTRACTION-PLAN](tickets/ABSTRACTION-PLAN.md)** | Abstraction and auditability planning | Current #1 | Investigate a read-only whole-repository planning function that turns evidence into a coverage-accounted programme of small, behaviour-preserving… | Todo |
+| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Current #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs — one or more real raw transcripts plus… |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
 | **[JANITOR-WRITE](tickets/JANITOR-WRITE.md)** | Auto-run maintenance verbs | Icebox #2 | Graduated autonomy, Reconcile rung first; a blanket sign-off does not open this gate. | Blocked — per-verb scenario green + explicit per-verb maintainer… |
 | **ARCH-RECALL** | Recall over cold storage | Icebox #3 | Richer archive INDEX summaries + a search-then-skim pass; embeddings only if evidence demands. · Medium / Medium / Low / Low | Blocked — a consuming project reports missed-precedent pain |
@@ -28,10 +27,11 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: Planning loop</strong> — 16 item(s)</summary>
+<summary><strong>Phase: Planning loop</strong> — 17 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
+| `REVIEW-SUITE` | (2026-08-27) — shipped as `prompts/findings.md`, not the dimension suite scoped: field evidence showed both consuming projects got competent multi-dimension reviews from tools and… |
 | `READ-ONLY-AUDIT` | (2026-08-27) — the no-write posture ships as `prompts/read-only.md`: hard contract, command-isolation rules (redirect, else disposable copy, else do not run), and a start-and-end… |
 | `UPGRADE-REFUSED` | (2026-08-27) — upgrade.md gains a Reinstall path: measured on a fixture, a naive reinstall silently blanks populated memory and (rm -rf variant) deletes tickets and archive… |
 | `PRUNE-P4-INDEX` | (2026-08-27) — Prune P4 no longer sweeps the live file's own archive-index lines into the new chunk; found by running a mid-run prune (decision log 20 → 14 live, chunk 08d, both… |

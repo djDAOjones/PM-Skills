@@ -17,14 +17,6 @@
 
 <!-- Intent: refactored 2026-08-27 after UPGRADE-REFUSED (4.13.0) and READ-ONLY-AUDIT (4.14.0) shipped. The read-only pair moves up together now that the mode they both run inside exists — REVIEW-SUITE first (what is wrong; its finding schema is the narrower piece), ABSTRACTION-PLAN second (what to change; it consumes findings, so it reads better after the schema is fixed). Both carry archived basis material under self/inputs/, and both share the same honest limit: this repository has no application to investigate deeply, so neither can be validated here. -->
 
-- [ ] **REVIEW-SUITE Deep code-review suite**
-  [detail](tickets/REVIEW-SUITE.md) (2026-08-26) — investigate a thorough
-  code-review suite — engineering-depth dimensions (security, performance,
-  dependencies, tests), a validation phase that runs the project's own
-  tooling, and a severity-plus-confidence finding schema — layered on the
-  whole-repo audit recipe CODEBASE-AUDIT shipped. Candidate basis archived
-  at self/inputs/2026-08-26-code-review-prompt.txt. · High / High / Medium
-  / Low
 - [ ] **ABSTRACTION-PLAN Abstraction and auditability planning**
   [detail](tickets/ABSTRACTION-PLAN.md) (2026-08-26) — investigate a
   read-only whole-repository planning function that turns evidence into a

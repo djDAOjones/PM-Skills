@@ -12,6 +12,57 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-27 — REVIEW-SUITE: the field evidence changed the answer (4.15.0)
+
+**Decision:** ship `pm_skills/prompts/findings.md` — verify a
+review's findings against the source, ask what the review missed,
+disposition the survivors — instead of the engineering-depth
+dimension suite the ticket scoped.
+
+**Why the answer changed.** The ticket assumed the gap was depth per
+chunk: security, performance, dependencies, tests. The two consuming
+projects whose review artefacts are filed in `self/field-reports/`
+say otherwise. Both had already obtained a competent
+multi-dimension review from an external tool — and **both then wrote
+a critique of that review before acting on it**, unprompted. Route
+Plotter produced a finding crosswalk mapping RP-01–RP-18 to
+implemented work plus residual tickets; UoN Video Helper produced
+two rounds of critique with source-verified R-01–R-16 verdicts.
+Across them the critiques found: findings real but materially
+over-rated, one already fixed and re-reported stale, six omitted
+entirely, and a **prescribed remedy that would have introduced a
+different defect** (blind zero-padding that would have triggered
+macro-levelling on room tone).
+
+Producing findings is commodity. Deciding which are true, and what
+happens next, is not — and it is the half both projects had to build
+by hand. That answers the ticket's own third question ("does the
+framework's value become the triage half?") with evidence rather
+than a guess: yes.
+
+**On the evidence gate.** The ticket gated *distribution* on running
+the suite against a consuming project, because "this repository has
+no application to investigate deeply — the dimensions that matter
+have nothing to bite on". That rationale is about **dimensions**,
+and this ships none: the verification stage is source-agnostic and
+its evidence is that two projects independently invented it. The
+gate is met for the conclusion, not bypassed. What remains
+unvalidated is the prompt's own wording in use — the next real
+review round is that test, and it is stated in the entry rather than
+implied.
+
+**Assumptions at skipped gates (auto-jazz):** minor release, new
+file; a separate prompt rather than a section in `review.md`,
+because the findings it handles usually did not come from
+`review.md`.
+
+**Alternatives:** the nine-dimension suite as scoped (rejected —
+harnesses already do dimensions well, a prose curriculum does them
+badly, and the evidence says that was never the gap); a dedicated
+`audit.md` (rejected — CODEBASE-AUDIT already ships the outer loop
+and deferred this file for want of evidence that the recipe
+under-specified; the evidence that arrived pointed elsewhere).
+
 ## 2026-08-27 — READ-ONLY-AUDIT: the no-write posture ships (4.14.0)
 
 **Decision:** ship `pm_skills/prompts/read-only.md` as a **posture**
