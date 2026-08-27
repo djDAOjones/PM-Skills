@@ -39,7 +39,7 @@
 
 ### Icebox
 
-<!-- Intent: four held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired. GATE-PARITY was filed here 2026-08-24 and shipped the same day on the maintainer's direct pick, without waiting for its trigger. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). BACKLOG-TABLE, REVIEW-SUITE, and ABSTRACTION-PLAN filed unblocked 2026-08-26 (maintainer intake), READ-ONLY-AUDIT 2026-08-27 — investigations awaiting a pick, held behind LAB-FIRST like everything else. REVIEW-SUITE, ABSTRACTION-PLAN, and READ-ONLY-AUDIT are one family from three maintainer prompts in two days (what is wrong / what to change / how to run it safely): the next Re-assess settles the division of labour or merges them — do not build all three. -->
+<!-- Intent: four held with explicit triggers (INTAKE-DEEP, 2026-08-17); holds confirmed at the 2026-08-18 and 2026-08-23 Re-assess passes — no trigger has fired. GATE-PARITY was filed here 2026-08-24 and shipped the same day on the maintainer's direct pick, without waiting for its trigger. TEST-DOC cut 2026-08-23 (re-add only if a consuming project reports testing-doctrine confusion). BACKLOG-TABLE, REVIEW-SUITE, and ABSTRACTION-PLAN filed unblocked 2026-08-26 (maintainer intake), READ-ONLY-AUDIT 2026-08-27 — investigations awaiting a pick, held behind LAB-FIRST like everything else. REVIEW-SUITE, ABSTRACTION-PLAN, and READ-ONLY-AUDIT are one family from three maintainer prompts in two days (what is wrong / what to change / how to run it safely): the next Re-assess settles the division of labour or merges them — do not build all three. ARCH-RETENTION filed 2026-08-27 — the retention sibling of ARCH-RECALL (what is kept and in what shape, versus finding it later); the two may merge, and its trajectory-archive trigger is close to firing. -->
 
 - [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
   project with persistent user data] (2026-07-16) — hard rule "no
@@ -94,5 +94,13 @@
   self/inputs/2026-08-27-read-only-repository-review-prompt.md. Third of
   three overlapping read-only analysis items; settle the family before
   building any. · High / High / Medium / Low
+- [ ] **ARCH-RETENTION Retaining history for later analysis**
+  [detail](tickets/ARCH-RETENTION.md) (2026-08-27) — investigate how the
+  decision log, trajectory, and other history are retained in the archive
+  so they can be analysed later, not merely evicted and grepped for
+  precedent. Retention sibling of ARCH-RECALL. Live pressure: trajectory
+  sits 13 words under budget and archive/trajectory/ has never been
+  created, so the first run defines the shape by accident unless decided
+  first. · Medium / Medium / Low / Low
 
 <!-- generated:records:end -->
