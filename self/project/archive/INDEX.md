@@ -19,6 +19,10 @@
 
 ## Decision log
 
+- 2026-08-27 (8 entries: Mid-run Prune + P4 trap, EPIC-AUTOJAZZ,
+  BACKLOG-TABLE, FIELD-EXPORT, Refactor (queue after Current
+  cleared), SCAFFOLD-GITPATH, ARCH-RETENTION, Re-assess (queue
+  refilled after the LAB-FIRST pause)) — `decision-log-2026-08f.md`
 - 2026-08-23 → 2026-08-27 (7 entries: LAB-FIRST, FIELD-HARVEST, GATE-PARITY, GATE-REPORTS, LAB-FIRST, FIELD-REPORTS, FIELD-REPORTS) —
   `decision-log-2026-08e.md`
 - 2026-08-17 → 2026-08-23 (6 entries: Re-assess (scoped) — TEST-DOC
