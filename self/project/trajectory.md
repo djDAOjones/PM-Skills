@@ -2,6 +2,12 @@
 
 ## Phase: Reflection instrument (2026-08-28)
 
+- FLAGS-EMDASH (2026-08-28) — an em-dash inside a flag body silently
+  killed flag parsing, the standing-age check and the date; the
+  validator reported 0 warnings on records carrying a 43-day standing
+  item. Head now delimited at bracket depth zero, both forks; live
+  records restored to natural punctuation as the witness (4.18.1) —
+  see decision-log.
 - BUDGET-TRUTH (2026-08-28) — the policy's last fixed word cap
   retired: backlog Active moves to item count + a ~200-word per-item
   guard (derived from the field corpus, ~2× observed ceiling); the

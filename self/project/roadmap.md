@@ -12,13 +12,12 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
-| **[FLAGS-EMDASH](tickets/FLAGS-EMDASH.md)** | Validator flag parsing dies on an em-dash | Current #1 | Check-memory splits the backlog view line on the first em-dash before matching bracketed flags, so an em-dash inside a flag body silently defeats… | Todo |
 | **[WAVES-PILOT](tickets/WAVES-PILOT.md)** | Pilot the findings-to-waves pipeline | Next #1 | Run findings.md + improvement-waves.md end-to-end in a real consuming project and file the result as a field report — both prompts shipped 2026-08-27… | Maintainer — held |
-| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Next #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs, or the decision to cut; one or more real… |
+| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Next #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs, or the decision to cut — one or more… |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
 | **[JANITOR-WRITE](tickets/JANITOR-WRITE.md)** | Auto-run maintenance verbs | Icebox #2 | Graduated autonomy, Reconcile rung first; a blanket sign-off does not open this gate. | Blocked — per-verb scenario green + explicit per-verb maintainer… |
 | **ARCH-RECALL** | Recall over cold storage | Icebox #3 | Richer archive INDEX summaries + a search-then-skim pass; embeddings only if evidence demands. · Medium / Medium / Low / Low | Blocked — a consuming project reports missed-precedent pain |
-| **DATA-MIG** | Data-migration guidance | Icebox #4 | Hard rule "no irreversible data change without a documented back-out" + DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose → execute →… | Blocked — maintainer confirms the trigger fired; the Derry Lane… |
+| **DATA-MIG** | Data-migration guidance | Icebox #4 | Hard rule "no irreversible data change without a documented back-out" + DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose → execute →… | Blocked — maintainer confirms the trigger fired — the Derry Lane… |
 | **[LAB-FIRST](tickets/LAB-FIRST.md)** | Work the lab before this repo | Icebox #5 | PAUSED by the maintainer 2026-08-27, until further notice — the standing order no longer gates the queue, and the ALERT flag is withdrawn. The order… | Maintainer — held |
 
 ## History
@@ -28,10 +27,11 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: Reflection instrument (2026-08-28)</strong> — 6 item(s)</summary>
+<summary><strong>Phase: Reflection instrument (2026-08-28)</strong> — 7 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
+| `FLAGS-EMDASH` | (2026-08-28) — an em-dash inside a flag body silently killed flag parsing, the standing-age check and the date; the validator reported 0 warnings on records carrying a 43-day… |
 | `BUDGET-TRUTH` | (2026-08-28) — the policy's last fixed word cap retired: backlog Active moves to item count + a ~200-word per-item guard (derived from the field corpus, ~2× observed ceiling); the… |
 | `CLOUD-TRUTH-SWEEP` | (2026-08-28) — the retired cloud-sync claim removed from the three distributed files 4.17.0 left it standing in; two become pointers to the AGENTS rule, dispatch's stricter… |
 | `CLOUD-TRUTH` | (2026-08-28) — the hostile-filesystem guard's "unsupported" claim retired: cloud-synced paths named hazardous and common, with the observed failure modes and the mitigations that… |

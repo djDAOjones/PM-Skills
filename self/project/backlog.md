@@ -17,15 +17,6 @@
 
 <!-- Intent: the run-two wave — the field study's surviving candidates, interrogated same-day and merged where they shared files (see the 2026-08-28 addendum in self/evaluations/2026-08-28-field-study-2.md), plus one bug the refactor itself surfaced. All three scoped, all releases: CLOUD-TRUTH retires the one shipped rule every deployment contradicts; BUDGET-TRUTH finishes the policy's own de-fixed-cap design where the field showed it still bites; FLAGS-EMDASH fixes the validator parser that an em-dash inside a flag body silently defeats. The queue stopped being empty-of-workable on 2026-08-28, by maintainer-directed triage. -->
 
-- [ ] **FLAGS-EMDASH Validator flag parsing dies on an em-dash**
-  [detail](tickets/FLAGS-EMDASH.md) (2026-08-28) — check-memory splits the
-  backlog view line on the first em-dash before matching bracketed flags,
-  so an em-dash inside a flag body silently defeats flag parsing, the
-  standing-age check, and date extraction; gen-backlog happily emits such
-  lines, so the two tools disagree about the grammar. Fix the parser in
-  both forks (patch release); the FILEMAP-WRAP shape again. · Medium / Low
-  / Low / Low
-
 ### Next milestone
 
 <!-- Intent: what needs the maintainer before it runs. WAVES-PILOT (promoted from the wish-list on the maintainer's direction) validates findings.md + improvement-waves.md in a real consuming project — Route Plotter's filed review round is a ready corpus — and its report carries the run-two observables. VOICE-INTAKE moved here from Current at its sixth pass: still blocked on the transcripts-plus-prompts inputs, or the decision to cut; a blocked item should not headline the workable wave. -->
@@ -40,7 +31,7 @@
   High / Medium / Low / Low
 - [ ] **VOICE-INTAKE Voice-memo transcript intake**
   [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs, or the
-  decision to cut; one or more real raw transcripts plus the external
+  decision to cut — one or more real raw transcripts plus the external
   preparation prompts (ticket section "Inputs needed at pick"); passed
   over at six refactors now] (2026-08-18) — investigate a
   transcript-intake workflow — verb + raw transcript + triage: topic cues
@@ -69,7 +60,7 @@
   INDEX summaries + a search-then-skim pass; embeddings only if evidence
   demands. · Medium / Medium / Low / Low
 - [ ] **DATA-MIG Data-migration guidance** [blocked: maintainer confirms
-  the trigger fired; the Derry Lane Notion register, with live states
+  the trigger fired — the Derry Lane Notion register, with live states
   added and hand-run propose/confirm/execute migrations, is a plausible
   first claimant] (2026-07-16) — hard rule "no irreversible data change
   without a documented back-out" + DEV-INFRASTRUCTURE section reusing the

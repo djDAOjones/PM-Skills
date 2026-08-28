@@ -107,6 +107,31 @@ function parseBacklog(/** @type {string} */ content) {
   return { items, sectionWords: words(section) };
 }
 
+/**
+ * Split a backlog view line at the first em-dash that separates the
+ * item head (`**ID Title** [flags] (date)`) from its summary.
+ *
+ * The separator is the first em-dash at bracket depth zero: a flag body
+ * (`[blocked: waiting on X — or the decision to cut]`) and a
+ * parenthetical may both contain one. A naive `split('—')[0]` truncates
+ * the head mid-bracket, after which no flag parses, the item stops
+ * counting as standing, and its date is lost — silently, with no error
+ * (FLAGS-EMDASH). `gen-backlog.mjs` renders `blocked-on` verbatim into
+ * the bracket, so the generator emitted exactly what this could not read.
+ */
+function itemHead(/** @type {string} */ rest) {
+  let square = 0, round = 0;
+  for (let i = 0; i < rest.length; i++) {
+    const c = rest[i];
+    if (c === '[') square++;
+    else if (c === ']') square = Math.max(0, square - 1);
+    else if (c === '(') round++;
+    else if (c === ')') round = Math.max(0, round - 1);
+    else if (c === '\u2014' && !square && !round) return rest.slice(0, i);
+  }
+  return rest;
+}
+
 function backlogCheck(/** @type {any} */ B) {
   const path = join(projectDir, 'backlog.md');
   const content = read(path);
@@ -139,7 +164,7 @@ function backlogCheck(/** @type {any} */ B) {
     ids.set(id, true);
     if (it.status !== 'x') openStatuses.set(id, it.status);
     if (it.status !== 'x') verbose.push({ id, words: words(it.text) });
-    const head = bold[3].split('—')[0] ?? '';
+    const head = itemHead(bold[3]);
     const flags = [...head.matchAll(/\[([^\]]+)\]/g)].map((f) => f[1]);
     for (const f of flags)
       if (!KNOWN_FLAGS.test(f) && !extraFlags.has(f))

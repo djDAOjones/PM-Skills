@@ -4,7 +4,7 @@ name: Voice-memo transcript intake
 status: todo
 milestone: next
 flags: detail, blocked
-blocked-on: maintainer inputs, or the decision to cut; one or more real raw transcripts plus the external preparation prompts (ticket section "Inputs needed at pick"); passed over at six refactors now
+blocked-on: maintainer inputs, or the decision to cut — one or more real raw transcripts plus the external preparation prompts (ticket section "Inputs needed at pick"); passed over at six refactors now
 date: 2026-08-18
 grades: Medium / Medium / Low / Low
 order: 2

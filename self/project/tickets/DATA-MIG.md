@@ -4,7 +4,7 @@ name: Data-migration guidance
 status: todo
 milestone: icebox
 flags: blocked
-blocked-on: maintainer confirms the trigger fired; the Derry Lane Notion register, with live states added and hand-run propose/confirm/execute migrations, is a plausible first claimant
+blocked-on: maintainer confirms the trigger fired — the Derry Lane Notion register, with live states added and hand-run propose/confirm/execute migrations, is a plausible first claimant
 date: 2026-07-16
 order: 4
 summary: hard rule "no irreversible data change without a documented back-out" + DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose → execute → reconcile shape. Grades when triggered: High / Medium / Low / Low.

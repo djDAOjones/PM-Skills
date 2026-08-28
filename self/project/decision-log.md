@@ -12,6 +12,50 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-28 — FLAGS-EMDASH: the second silent-loss parser this week
+
+**Decision:** shipped 4.18.1. `check-memory`'s item head is now
+delimited by the first em-dash at **bracket depth zero** (`itemHead()`)
+instead of the first em-dash anywhere, so a flag body or a
+parenthetical may contain one. Fixed in both deliberate forks in one
+change. The two live records that had been reworded em-dash-free as
+the immediate mitigation are restored to natural punctuation, and
+now serve as the live regression witness.
+
+**Rationale:** `gen-backlog` renders `blocked-on` verbatim into the
+flag bracket, so the generator emitted exactly what the validator
+could not parse — the two halves of records mode disagreed about a
+grammar that never forbade the punctuation. Only the parser did.
+Fixing the parser rather than the grammar keeps the constraint where
+it belongs: a maintainer writing a blocking reason should not have
+to know which characters a script splits on.
+
+**Verification (the numbers are the point).** Against this
+repository's own records, with em-dashes restored: the pre-fix
+validator reports **0 warnings**; the post-fix validator reports the
+43-day standing item that was there the whole time. A synthetic
+two-item fixture isolates it further — the control item counts as
+standing under both parsers, the em-dash item only under the fixed
+one. No behaviour change on any well-formed line.
+
+**The pattern is worth naming.** This is FILEMAP-WRAP's shape
+(4.16.1) in the sibling script, five days later: a single-line
+assumption inside a generated-file utility that discards real content
+while the output still looks well-formed. Both were found by
+accident, both by someone reading output for another purpose. The
+family — `gen-*.mjs` and `check-*.mjs` — parses text the project
+itself authors, and its failure mode is silence rather than error.
+That is a standing reason to distrust one-line splits and regexes in
+these scripts specifically, and it is now on the record twice.
+
+**Assumptions (auto-jazz):** depth counted for `()` as well as `[]`,
+since a `[detail]` flag carries its `tickets/` link target on the
+same line
+and a parenthetical is as likely to carry an em-dash as a flag body;
+unbalanced closers clamp at zero rather than going negative, so
+prose cannot drive the scanner into a wrong state. No grammar
+document changed — the grammar always permitted this.
+
 ## 2026-08-28 — BUDGET-TRUTH: the last fixed word cap, and two omissions
 
 **Decision:** shipped 4.18.0 in three parts. (1) Backlog Active's

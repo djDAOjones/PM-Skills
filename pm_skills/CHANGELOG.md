@@ -36,6 +36,65 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.18.1 — 2026-08-28
+
+FLAGS-EMDASH: the memory validator no longer loses an entire backlog
+item to an em-dash inside a flag body.
+
+`check-memory.mjs` read an item as `**ID Title** [flags] (date) —
+summary` by taking `text.split('—')[0]` and then matching bracketed
+flags and the date inside that head. A flag body containing an
+em-dash — `[blocked: maintainer inputs, or the decision to cut — one
+or more raw transcripts]` — truncates the head mid-bracket. After
+that, no flag parses, the item stops counting as standing, its
+creation date is lost, and the standing-age warning disappears. No
+error, no diagnostic: the item simply becomes uninteresting to the
+check that exists to notice it.
+
+`gen-backlog.mjs` renders a record's `blocked-on` verbatim into that
+bracket, so the generator emitted precisely what the validator could
+not read. The two halves of records mode disagreed about their own
+grammar, and the grammar never forbade the punctuation — only the
+parser did.
+
+This is the FILEMAP-WRAP shape again, in the sibling tool: a
+single-line assumption inside a generated-file utility, discarding
+real content quietly enough that the output still looks well-formed.
+Worth stating plainly, because it is the second one found in a week
+in the same family of scripts. Measured on this framework's own
+records: with the old parser the validator reported **zero**
+warnings; with the fix it reports the 43-day standing item that had
+been there all along.
+
+The separator is now the first em-dash at **bracket depth zero**,
+so a flag body or a parenthetical may contain one. Behaviour on
+every well-formed line is unchanged.
+
+### Fixed
+
+- `pm_skills/scaffold/check-memory.mjs` — new `itemHead()` scans for
+  the first em-dash outside `[]` and `()` instead of splitting on the
+  first one anywhere; flag parsing, the standing-age check and date
+  extraction all read the correct head. Zero dependencies, interface
+  unchanged. Ported from the source-repo fork fixed the same day
+  (deliberate forks — the parser moved across, not the file).
+
+### Upgrade actions
+
+- `pm_skills/scaffold/*` is `scaffold` class — **copied once at init
+  and never touched on upgrade** — so your copy is not replaced by
+  this release and nothing is required of you.
+- To adopt the fix, copy the current
+  `pm_skills/scaffold/check-memory.mjs` over your root copy, or port
+  `itemHead()` into it if you have customised it.
+- Before adopting, look at your backlog for any item whose flag body
+  contains an em-dash — most often a `[blocked: …]` reason. Those
+  items have not been counted as standing, and their age has not
+  been checked, for as long as they have been worded that way. They
+  will start reporting once the fix is in; expect the standing-age
+  warning to grow rather than shrink, and read that as the check
+  waking up, not as new drift.
+
 ## 4.18.0 — 2026-08-28
 
 BUDGET-TRUTH: the size checks catch up with what the field actually
