@@ -2,6 +2,11 @@
 
 ## Phase: Reflection instrument (2026-08-28)
 
+- CLOUD-TRUTH-SWEEP (2026-08-28) — the retired cloud-sync claim
+  removed from the three distributed files 4.17.0 left it standing in;
+  two become pointers to the AGENTS rule, dispatch's stricter lane-tree
+  rule keeps its "never" and gains its reason. Found by the framework's
+  own preflight an hour after the release (4.17.1) — see decision-log.
 - CLOUD-TRUTH (2026-08-28) — the hostile-filesystem guard's
   "unsupported" claim retired: cloud-synced paths named hazardous and
   common, with the observed failure modes and the mitigations that

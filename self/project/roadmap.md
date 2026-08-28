@@ -29,10 +29,11 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: Reflection instrument (2026-08-28)</strong> — 4 item(s)</summary>
+<summary><strong>Phase: Reflection instrument (2026-08-28)</strong> — 5 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
+| `CLOUD-TRUTH-SWEEP` | (2026-08-28) — the retired cloud-sync claim removed from the three distributed files 4.17.0 left it standing in; two become pointers to the AGENTS rule, dispatch's stricter… |
 | `CLOUD-TRUTH` | (2026-08-28) — the hostile-filesystem guard's "unsupported" claim retired: cloud-synced paths named hazardous and common, with the observed failure modes and the mitigations that… |
 | `FIELD-STUDY-2` | (2026-08-28) — reflection run two, the instrument's first run and the first with no self-hosted discount: four projects, twelve dimensions, read-only posture proven clean. Six… |
 | `FIELD-STUDY` | (2026-08-28) — the reflection practice gains its method: `self/FIELD-STUDY.md`, a read-only single-pass procedure over the field-report tier. Twelve dimensions, a staleness pass… |

@@ -124,10 +124,15 @@ becomes visible rather than repeatedly re-improvised.
 
 ### Standing advice
 
-Cloud-synced repo paths are **unsupported** for project memory. If the
-location is unavoidable, pause syncing during sessions or exclude
-`.git` from sync. Session start repeats this warning every time
-precisely so the advice cannot silently lapse.
+Cloud-synced repo paths are hazardous, and common — most checkouts sit
+on one. The hazard, the observed failure modes and the standing
+mitigations are the hard rule in `AGENTS.md` → "Hostile-filesystem
+guard"; this prompt points at it rather than restating it. What is
+local to here: session start repeats the warn-only detect every time
+precisely so the advice cannot silently lapse, and the file-surgery
+flows (Prune P3, Upgrade Step 5) **block** on a finding rather than
+warn — moving files on top of sync corruption is how the good copy
+gets lost.
 
 ---
 

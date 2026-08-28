@@ -595,13 +595,18 @@ point it here — the evidence lives in `_transcripts/`.
 - **Will upgrading break my memory?** No. `MANIFEST.md` classes every
   file; project memory is never overwritten on upgrade, and populated
   rulebook sections are preserved verbatim.
-- **My repo lives in OneDrive / Dropbox / iCloud — is that OK?** It's
-  unsupported for project memory: sync folders silently revert tracked
-  files and spawn conflict copies. Session start runs a cheap
-  warn-only environment preflight, and prune/upgrade block on it before
-  moving files, with a sync-conflict repair playbook in
-  `prompts/memory-maintenance.md`. If the location is unavoidable, pause
-  syncing during sessions or exclude `.git`.
+- **My repo lives in OneDrive / Dropbox / iCloud — is that OK?** Yes,
+  with care — most checkouts do, this framework's own included. Sync
+  folders silently revert tracked files, spawn conflict copies, drop
+  executable bits and leave `node_modules/` half-synced, so the
+  framework manages the hazard rather than assuming you will move:
+  session start runs a cheap warn-only environment preflight,
+  prune/upgrade **block** on it before moving files, and
+  `prompts/memory-maintenance.md` carries a sync-conflict repair
+  playbook. Pause syncing during sessions or exclude the checkout where
+  you can, commit early and push, and record the project-specific
+  detail under `DEV-INFRASTRUCTURE.md` → "Cloud-synced checkouts". The
+  rule itself is `AGENTS.md` → "Hostile-filesystem guard".
 - **What does a task cost me in attention?** Checkpoint mode: two
   decisions (scope, design pick) plus reading the closing report.
   Everything else is the agent's job.

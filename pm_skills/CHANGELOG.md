@@ -36,6 +36,62 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.17.1 — 2026-08-28
+
+CLOUD-TRUTH-SWEEP: 4.17.0 retired the "unsupported" cloud-sync claim
+from the AGENTS template and left it standing in three other
+distributed files. This finishes the retirement.
+
+The residue was found within the hour, by the framework running its
+own environment preflight before a prune — reading
+`prompts/memory-maintenance.md` → "Standing advice" and hitting the
+sentence the release had just repudiated. A retirement that lands in
+one file and not its restatements does not retire anything; it just
+moves the contradiction somewhere a reader is less likely to check
+against.
+
+Two of the three were straight restatements and are now pointers —
+canonical-copy discipline, which is what should have carried the
+claim in the first place: had `AGENTS.md` been the only site, 4.17.0
+would have been complete. The third is a genuinely stricter rule for
+a riskier situation, and it survives with its scope made visible: a
+single synced checkout is a managed hazard, but two parallel lane
+trees writing under one sync client make conflict copies routine
+rather than possible. That distinction was implicit before, which is
+how it read as another blanket prohibition.
+
+`GUIDE.md` → "Parallel and multi-machine work" is deliberately left
+alone: "don't let a sync folder carry a working tree between
+machines" is a claim about sync-as-transport, not about where a
+checkout may live, and it remains true.
+
+### Changed
+
+- `pm_skills/prompts/memory-maintenance.md` — "Standing advice" no
+  longer restates the guard (or its retired claim); it points at
+  `AGENTS.md` → "Hostile-filesystem guard" and keeps only what is
+  local to the prompt: why session start repeats the detect, and why
+  the file-surgery flows block rather than warn.
+- `pm_skills/GUIDE.md` — the "My repo lives in OneDrive / Dropbox /
+  iCloud" quick answer now answers "yes, with care", naming the
+  failure modes, what the framework does about them, and where the
+  per-project detail belongs.
+- `pm_skills/integrations/dispatch.md` — the lane-tree rule keeps its
+  "never" but states the reason that makes it stricter than the
+  general guard.
+
+### Upgrade actions
+
+- All three are `framework` class — replaced wholesale on upgrade.
+  Nothing is required of you beyond taking the files.
+- If you adopted 4.17.0 and copied its `AGENTS.md` guard into your
+  root rulebook, you are already consistent; this release only
+  removes the contradiction from the framework's own copies.
+- If your project wrote its own note repeating "cloud-synced paths
+  are unsupported", that note is now the last place the claim
+  survives. Delete it, or replace it with the operational detail
+  under `DEV-INFRASTRUCTURE.md` → "Cloud-synced checkouts" (4.17.0).
+
 ## 4.17.0 — 2026-08-28
 
 CLOUD-TRUTH: the hostile-filesystem guard stops claiming that

@@ -63,8 +63,11 @@ at integration anyway.
    base commit), a mode (auto-jazz default; `full` for
    `[sign-off]`), and a **working tree of its own** — a second
    clone or a git worktree. Never point two live sessions at one
-   checkout, and never put a working tree inside a cloud-synced
-   folder (`GUIDE.md` → "Parallel and multi-machine work"). Create
+   checkout, and keep the lane trees **out** of a cloud-synced
+   folder: one synced checkout is a managed hazard (`AGENTS.md` →
+   "Hostile-filesystem guard"), but two trees writing concurrently
+   under one sync client turns conflict copies from a risk into a
+   routine (`GUIDE.md` → "Parallel and multi-machine work"). Create
    the trees and branches now if tooling allows; otherwise the
    brief carries the setup line.
 

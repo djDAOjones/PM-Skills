@@ -12,6 +12,46 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-28 — CLOUD-TRUTH-SWEEP: a retirement that landed in one file
+
+**Decision:** shipped 4.17.1 an hour after 4.17.0, removing the
+retired "unsupported" cloud-sync claim from the three distributed
+files 4.17.0 left it in — `prompts/memory-maintenance.md` ("Standing
+advice"), `GUIDE.md` (the OneDrive quick answer), and
+`integrations/dispatch.md` (the lane-tree rule). The first two become
+pointers to `AGENTS.md` → "Hostile-filesystem guard"; the third keeps
+its stricter "never" and gains the reason that justifies it — two
+parallel lane trees under one sync client make conflict copies
+routine, not merely possible. `GUIDE.md` → "Parallel and
+multi-machine work" was deliberately left: it is a claim about
+sync-as-transport between machines, not about where a checkout may
+live, and it is still true.
+
+**Rationale:** found by the framework running its own environment
+preflight before the Prune, and reading the sentence 4.17.0 had just
+repudiated. CLOUD-TRUTH's "Done when" named two template files; the
+item's actual intent was to retire a claim, and a claim is retired
+only where it is asserted. The ticket was under-scoped and its close
+did not catch it, because the release-consistency check only looks at
+files the release *changed* — it cannot see a file that should have
+changed and did not.
+
+**The real lesson is upstream of the bug:** the claim was restated in
+four places, so retiring it took a sweep. Two of those restatements
+existed in violation of canonical-copy discipline, which this repo's
+own conventions state plainly. Had the rule lived in one place with
+pointers to it, 4.17.0 would have been complete on the first pass.
+A grep for the retired wording across the distributed tree is now
+part of how a retirement gets closed — cheap, and it would have
+caught this before the first push.
+
+**Assumptions (auto-jazz):** shipped as a patch under a new ID rather
+than reopening CLOUD-TRUTH (already closed and pushed); no ticket
+record created, following the FILEMAP-WRAP precedent for a defect
+found and shipped in the same session; `dispatch.md`'s rule kept
+rather than relaxed, on the grounds that its risk profile genuinely
+differs.
+
 ## 2026-08-28 — Fourth Prune, taken at the budget rather than past it
 
 **Decision:** pruned the decision log 20 → 12 live entries, the
