@@ -15,7 +15,16 @@
 
 ### Current milestone
 
-<!-- Intent: one item, from the burn-down's own findings. The run-two wave shipped in full on 2026-08-28 (CLOUD-TRUTH 4.17.0 and its same-hour sweep 4.17.1, BUDGET-TRUTH 4.18.0, FLAGS-EMDASH 4.18.1); nothing in the study's queue remains. SILENT-LOSS-SWEEP is what that run surfaced: two defects of identical shape in five days, both a parser in a gen-/check- script discarding real content with no error, both found by accident. One deliberate pass over the family beats a third accident. Workable now, no maintainer needed. -->
+<!-- Intent: one item, again from the run's own findings — the burn-down's second refill. SILENT-LOSS-SWEEP shipped 4.18.2 and closed the parser class with an audit list. RETIRE-SWEEP closes the process gap that let CLOUD-TRUTH ship incomplete this morning: release.md verifies that every changed file is named in the changelog, and nothing verifies the opposite — a file that should have changed and did not. That gap cost the 4.17.1 sweep release the same day. Workable now, no maintainer needed. -->
+
+- [ ] **RETIRE-SWEEP A retirement must be swept, not asserted once**
+  [detail](tickets/RETIRE-SWEEP.md) (2026-08-28) — release.md's verify
+  step checks that every changed distributed file is named in the
+  changelog entry, but nothing checks the opposite — a file that should
+  have changed and did not. A release that retires a claim or a rule
+  leaves the framework contradicting itself wherever the claim is
+  restated. Add the sweep; it costs one grep and it has already cost one
+  release. · Medium / Low / Low / Low
 
 ### Next milestone
 
