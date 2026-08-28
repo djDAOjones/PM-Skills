@@ -12,6 +12,58 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-28 — Refactor + Re-assess at the run-two milestone boundary
+
+**Decision:** the Current milestone emptied when FLAGS-EMDASH shipped
+— the whole run-two wave is gone (CLOUD-TRUTH 4.17.0, CLOUD-TRUTH-SWEEP
+4.17.1, BUDGET-TRUTH 4.18.0, FLAGS-EMDASH 4.18.1, plus a Prune). All
+three milestone intent lines were stale and are rewritten. Assessed
+7 open items, promoted 1, held 7, cut 0.
+
+**Refill: SILENT-LOSS-SWEEP → Current, sole item.** Not from the
+study's queue, which is now empty, but from this run's own findings:
+two defects of identical shape in five days — FILEMAP-WRAP (4.16.1)
+and FLAGS-EMDASH (4.18.1) — each a parser in a `gen-*`/`check-*`
+script discarding real content with no error, each in both deliberate
+forks, each found by accident while reading output for something
+else. Two instances make a class; the detection mechanism so far has
+been luck. One deliberate pass over the family is cheap, needs no
+maintainer, and either finds the third or retires the worry with a
+list. A nil result is an acceptable close.
+
+**Holds — all seven re-checked, all seven still hold.** WAVES-PILOT
+and VOICE-INTAKE (Next) both need the maintainer: the first for the
+target project and the run, the second for inputs or the decision to
+cut. PM-MCP waits on the lab prototype's harness-client run, which
+LAB-FIRST's pause makes unreachable. JANITOR-WRITE's scenario half
+now shares CLOSE-SCENARIO-DEBT's blocker — a blinded runner the
+shipping session cannot be. ARCH-RECALL's trigger stayed unfired
+through run two (no missed-precedent pain reported). DATA-MIG and
+LAB-FIRST are maintainer calls. No hold wording needed refreshing,
+so no record was re-stamped — the batch date is this entry.
+
+**VOICE-INTAKE's seventh pass is worth naming.** It has now been
+passed over at seven consecutive refactors on the same blocker. The
+live question has quietly stopped being "when do the inputs arrive"
+and become "is this a cut" — the Next intent line says so now rather
+than carrying the item forward silently for an eighth time.
+
+**Wish-list:** five parked, none promotable. Three are standing
+observables that explicitly call for no edit; NEXT-FRAGMENTS is lab
+queue behind a paused order; ROADMAP-DIST's deliberate hold stands,
+its line refreshed with the usage evidence this run generated (the
+renderer ran at every close and its `--check` caught a real
+divergence) so the next assessment inherits the clock rather than
+re-deriving it.
+
+**Assumptions (delegated run, RA3 gateless clause):** promotion of
+SILENT-LOSS-SWEEP to Current applied directly rather than proposed —
+it is evidence-backed by two shipped fixes and needs nothing from the
+maintainer. Grades Medium / Medium / Low / Low: medium impact
+(correctness in tools everything else trusts), medium difficulty
+(eleven small scripts, no redesign), low risk (audit, behaviour
+preserved), low OpΔ.
+
 ## 2026-08-28 — FLAGS-EMDASH: the second silent-loss parser this week
 
 **Decision:** shipped 4.18.1. `check-memory`'s item head is now

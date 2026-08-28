@@ -35,7 +35,11 @@
   once this repo has actually used the source-only copy for a while.
   Held deliberately at BACKLOG-TABLE's close (2026-08-27): shipping it
   now doubles the maintenance under the deliberate-fork rule for a
-  shape with no usage evidence.
+  shape with no usage evidence. Re-assessed 2026-08-28 — hold stands,
+  but the clock is running: the renderer was regenerated at every
+  close of the run-two burn-down and its `--check` caught a real
+  divergence mid-run. Re-judge once the usage spans more than a
+  single session.
 - NEXT-FRAGMENTS: pm-next v0.2 — per-item decision/trajectory
   fragments folded at integration, closing the successor's last
   shared-append residue. (source: reflection run one; PACE-POLICY
