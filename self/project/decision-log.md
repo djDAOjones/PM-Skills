@@ -12,6 +12,39 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-28 — Reflection run two: the field runs a different framework
+
+**Decision:** reflection run two executed as the first field study
+(`self/FIELD-STUDY.md` under the read-only posture) over the full
+consuming-project tier — four projects, two harvesting witnesses,
+integrity check clean at both ends. Six findings within the caps,
+five candidates filed to wish-list triage (CLOUD-TRUTH marked
+promotion-ready), one retirement named: the hostile-filesystem
+guard's "unsupported" claim, which every deployment on record —
+this repository included — permanently contradicts. No policy
+adopted; nothing applied; every change stays gated as ordinary
+work. Report: `self/evaluations/2026-08-28-field-study-2.md`.
+
+**Rationale:** the run-one log entry held run two for external
+evidence, and the tier now carries it — including a session-log
+verb-firing analysis, the single most valuable input the study
+found. The headline result is a repeated shape: where a rule's
+arithmetic met owner judgement, judgement won and was written
+down (word budgets, prune-to targets, the upgrade walk), and the
+framework's best recent releases (4.13.0, 4.15.0) are exactly the
+ones that made the field's judgement the rule. The evidence
+population stays one person's projects; every grade in the report
+is capped accordingly, and the report names the evidence run
+three most needs — a project not built by the maintainer.
+
+**Alternatives:** run the three-pass reflection directly on the
+reports (rejected — the instrument exists precisely so the
+evidence run is method-governed); push CLOUD-TRUTH straight to
+the backlog (rejected — the queue was declared empty-of-workable
+on 2026-08-27 and promotion is the maintainer's pick, so it is
+flagged, not forced); file candidates as one composite item
+(rejected — they touch disjoint files and need no wave).
+
 ## 2026-08-28 — FIELD-STUDY: the reflection practice gets a method
 
 **Decision:** `self/FIELD-STUDY.md` — the read-only, single-pass

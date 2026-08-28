@@ -2,6 +2,14 @@
 
 ## Phase: Reflection instrument (2026-08-28)
 
+- FIELD-STUDY-2 (2026-08-28) — reflection run two, the instrument's
+  first run and the first with no self-hosted discount: four
+  projects, twelve dimensions, read-only posture proven clean. Six
+  findings, five wish-list candidates (CLOUD-TRUTH promotion-ready),
+  retirement named — the hostile-filesystem "unsupported" claim.
+  Report at `self/evaluations/2026-08-28-field-study-2.md`; Codex
+  second-witness bundles filed to the tier the same session — see
+  decision-log.
 - FIELD-STUDY (2026-08-28) — the reflection practice gains its
   method: `self/FIELD-STUDY.md`, a read-only single-pass procedure
   over the field-report tier. Twelve dimensions, a staleness pass

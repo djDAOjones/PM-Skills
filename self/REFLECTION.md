@@ -72,3 +72,14 @@ maintainer-owned and are never advanced by a reflection.
   five candidates, one retirement named (the transcript nag). See
   the dated run-one document under `self/evaluations/`. Run two
   fires on external evidence, not volume.
+- Run two — 2026-08-28 (external-evidence trigger: the first
+  consuming-project tranche — Route Plotter, UoN Video Helper,
+  Derry Lane, two harvesting witnesses — plus maintainer call;
+  carried out by `self/FIELD-STUDY.md`, the first run with no
+  self-hosted discount). Six findings, five candidates to
+  wish-list triage, one retirement named: the hostile-filesystem
+  guard's "unsupported" claim, contradicted by every deployment on
+  record. Filed as the dated field-study-2 document under
+  `self/evaluations/`. Run three fires per the standing triggers;
+  the report names the evidence it most needs — a project not
+  built by the maintainer.
