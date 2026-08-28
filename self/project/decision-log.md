@@ -12,6 +12,50 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-28 — CLOUD-TRUTH: the guard stops lying, the gate stays hard
+
+**Decision:** the AGENTS template's hostile-filesystem guard no
+longer claims cloud-synced paths are "unsupported for project
+memory" (4.17.0). The rule now states the hazard as standing and
+common, names the failure modes the field actually produced (silent
+mid-session reverts, conflict copies, dropped executable bits,
+watcher churn, half-synced `node_modules/`, deep paths truncated by
+the client's path limit) and the mitigations that work (preflight,
+pause-or-exclude, commit early and push, archive bulk evidence as
+single files). The memory-surgery block is kept **hard** and stated
+more sharply than before — the softening is of the claim, never the
+gate. The operational half gets a template home: a new **Cloud-synced
+checkouts** section in the DEV-INFRASTRUCTURE template, plus the
+matching `init.md` Step 8 list item and Appendix B worked shape, so a
+fresh init populates it instead of each project reinventing it.
+
+**Rationale:** four of four deployments on record — this repository
+included — live on OneDrive, and none relocated; they hand-wrote the
+operational defences the templates lacked (FS2-06, confirmed by the
+same-day addendum). A hard rule that every deployment permanently
+violates is not harmless fiction: it is the template's worked example
+of a rule you may ignore, sitting in a list whose whole authority is
+that its rules are not negotiable. The credibility of the rules
+beside it is worth more than the three words.
+
+**Alternatives:** delete the "unsupported" sentence alone (the
+study's lighter option) — rejected because it leaves the operational
+knowledge homeless, which is what produced the per-project
+reinvention in the first place. Leave it and rely on the guard's
+working half — rejected on the corrosion argument above. Adding the
+DEV-INFRASTRUCTURE section without the `init.md` wiring was
+considered and rejected in-flight: the template's CUSTOMISE comments
+defer to Step 8 for shapes, so a section absent from that list is a
+section a fresh init skips — the FS2-04 drift shape, avoided for the
+cost of one list item.
+
+**Assumptions (auto-jazz, skipped gates):** placed the new section
+after Package management, on the grounds that the dependency tree is
+the loudest victim and an environmental caveat should be read early;
+scoped the change to four distributed files (the ticket said two —
+`init.md` was added for the wiring reason above); left `README.md`
+untouched, as neither quick start nor upgrading changed.
+
 ## 2026-08-28 — Run-two interrogation, and the queue refills
 
 **Decision:** on the maintainer's direction, the study's conclusions

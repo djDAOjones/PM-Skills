@@ -36,6 +36,87 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.17.0 — 2026-08-28
+
+CLOUD-TRUTH: the hostile-filesystem guard stops claiming that
+cloud-synced paths are "unsupported for project memory", and the
+operational knowledge that claim displaced gets a template home.
+
+Four of four deployments on record — and this framework's own
+repository — live on OneDrive. None relocated. What they did instead
+was hand-write the operational defences the templates never carried:
+one project warns against workers on the synced path and logs
+sync-caused incidents; another documents Files-On-Demand symptoms and
+an `npm ci` recovery, its owner having explicitly rejected excluding
+the repo from sync. The distributed `DEV-INFRASTRUCTURE.md` template,
+the operational rulebook where both wrote that material, had no
+cloud-sync section at all.
+
+A hard rule that every deployment permanently violates is not a
+harmless fiction. It is the template's worked example of a rule you
+may ignore, and it sits in a list of rules whose whole authority
+rests on being non-negotiable. Retiring it costs three words of
+honesty; leaving it costs the credibility of everything beside it.
+
+What is retired is the **claim**, not the guard. The preflight still
+runs warn-only at session start, and it still **blocks** before any
+memory-file surgery — moving files on top of sync corruption is how
+the good copy gets lost, and that gate is stated more sharply here
+than it was before. The rule now names what the field actually
+observed (silent mid-session reverts, conflict copies, dropped
+executable bits, watcher churn, a half-synced `node_modules/`, deep
+paths truncated by the client's path limit) and the mitigations that
+actually work (preflight, pause-or-exclude, commit early and push,
+archive bulk evidence as single files).
+
+Canonical-copy discipline holds across the two files: `AGENTS.md`
+carries the hard rule and its standing mitigations, the new
+`DEV-INFRASTRUCTURE.md` section carries only what varies per project
+— which client, which symptoms, which recovery, what must never run
+on the synced path — and its CUSTOMISE guidance says outright not to
+restate the rule.
+
+### Added
+
+- `pm_skills/templates/DEV-INFRASTRUCTURE.md` — new **Cloud-synced
+  checkouts** section (after Package management), a CUSTOMISE
+  placeholder for the per-project operational detail: sync client and
+  on-demand setting, symptoms seen, recovery path, and what must
+  never run on the synced path.
+- `pm_skills/init.md` — Step 8's population list gains the section as
+  item 2 (subsequent items renumbered), and Appendix B gains a
+  **Cloud-synced checkouts example** worked shape.
+
+### Changed
+
+- `pm_skills/templates/AGENTS.md` — "Hostile-filesystem guard"
+  rewritten: cloud-synced paths are hazardous and common rather than
+  unsupported; observed failure modes and standing mitigations named;
+  the memory-surgery block restated as hard, with its reason; pointer
+  added to `DEV-INFRASTRUCTURE.md` → "Cloud-synced checkouts".
+
+### Upgrade actions
+
+- `pm_skills/templates/*` is `root-template` class: the shipped
+  template files are replaced like framework files, and your
+  populated root copies are **3-way merged** — take the new
+  structure, preserve every populated section verbatim.
+- In your root `AGENTS.md`, replace the "Hostile-filesystem guard"
+  bullet with the new one from `pm_skills/templates/AGENTS.md`. If
+  you had softened, deleted, or annotated the old bullet because your
+  checkout is on a synced path, that annotation is now redundant —
+  the rule says it.
+- In your root `DEV-INFRASTRUCTURE.md`, add the **Cloud-synced
+  checkouts** section after Package management. If your project
+  already hand-wrote cloud-sync guidance elsewhere in that file (or
+  in `README.md`), move it under the new heading rather than
+  duplicating it, and delete anything that merely restates the
+  `AGENTS.md` rule.
+- If your checkout is **not** on a synced path and cannot be, delete
+  the new section. Nothing else in this release applies to you.
+- No memory migration, no `pm_skills/project/` change, nothing
+  required per session.
+
 ## 4.16.1 — 2026-08-28
 
 FILEMAP-WRAP: the scaffold file-map generator no longer discards a

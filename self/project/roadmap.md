@@ -12,9 +12,8 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
-| **[CLOUD-TRUTH](tickets/CLOUD-TRUTH.md)** | Retire the cloud-sync fiction | Current #1 | Retire the "unsupported" claim in the AGENTS template's hostile-filesystem guard — every deployment on record, this repository included, lives on a… | Todo |
-| **[BUDGET-TRUTH](tickets/BUDGET-TRUTH.md)** | Make the size checks tell the truth | Current #2 | The budget system catches up with field evidence, three parts, one release — backlog Active loses the last fixed word cap (re-derived per the… | Todo |
-| **[FLAGS-EMDASH](tickets/FLAGS-EMDASH.md)** | Validator flag parsing dies on an em-dash | Current #3 | Check-memory splits the backlog view line on the first em-dash before matching bracketed flags, so an em-dash inside a flag body silently defeats… | Todo |
+| **[BUDGET-TRUTH](tickets/BUDGET-TRUTH.md)** | Make the size checks tell the truth | Current #1 | The budget system catches up with field evidence, three parts, one release — backlog Active loses the last fixed word cap (re-derived per the… | Todo |
+| **[FLAGS-EMDASH](tickets/FLAGS-EMDASH.md)** | Validator flag parsing dies on an em-dash | Current #2 | Check-memory splits the backlog view line on the first em-dash before matching bracketed flags, so an em-dash inside a flag body silently defeats… | Todo |
 | **[WAVES-PILOT](tickets/WAVES-PILOT.md)** | Pilot the findings-to-waves pipeline | Next #1 | Run findings.md + improvement-waves.md end-to-end in a real consuming project and file the result as a field report — both prompts shipped 2026-08-27… | Maintainer — held |
 | **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Next #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs, or the decision to cut; one or more real… |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
@@ -30,10 +29,11 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: Reflection instrument (2026-08-28)</strong> — 3 item(s)</summary>
+<summary><strong>Phase: Reflection instrument (2026-08-28)</strong> — 4 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
+| `CLOUD-TRUTH` | (2026-08-28) — the hostile-filesystem guard's "unsupported" claim retired: cloud-synced paths named hazardous and common, with the observed failure modes and the mitigations that… |
 | `FIELD-STUDY-2` | (2026-08-28) — reflection run two, the instrument's first run and the first with no self-hosted discount: four projects, twelve dimensions, read-only posture proven clean. Six… |
 | `FIELD-STUDY` | (2026-08-28) — the reflection practice gains its method: `self/FIELD-STUDY.md`, a read-only single-pass procedure over the field-report tier. Twelve dimensions, a staleness pass… |
 | `FILEMAP-WRAP` | (2026-08-28) — the file-map generator was silently truncating any hand-wrapped role to its first line; four roles in this repo's own map had already decayed to half-sentences.… |

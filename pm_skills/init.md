@@ -343,42 +343,48 @@ DEV-INFRASTRUCTURE.md has <!-- CUSTOMISE --> placeholder sections.
 Using the brief and architecture, populate every applicable placeholder:
 
 1. **Package management** — package manager, dependency policy.
-2. **Canonical scripts** — table of every script in package.json.
-3. **Dev server** — canonical URL, port, how to start, what it serves.
-4. **Runtime lifecycle** — the boot/reboot/status/recovery command
+2. **Cloud-synced checkouts** — if the checkout can sit on a synced
+   path (OneDrive, Dropbox, Google Drive, iCloud): which client,
+   whether on-demand files are enabled, the symptoms seen here, the
+   recovery path, and what must never run on the synced path. Do not
+   restate the hard rule in `AGENTS.md` — record what is specific to
+   this project (see Appendix B).
+3. **Canonical scripts** — table of every script in package.json.
+4. **Dev server** — canonical URL, port, how to start, what it serves.
+5. **Runtime lifecycle** — the boot/reboot/status/recovery command
    surface, process ownership, env workflow, generated-output cleanup,
    health/readiness checks, exposure flags, and protected paths. Scale
    it to the project (see Appendix B); even a static site documents how
    to run it.
-5. **Maintainer diagnostics** — the structured logger, log record
+6. **Maintainer diagnostics** — the structured logger, log record
    shape, bounded buffer, global error/rejection capture, the redacted
    copy-diagnostics bundle, and dev-only gating. Scale it to the project
    (see Appendix B); even a static page makes uncaught errors legible.
-6. **Quality gate** — the one-command `check` (non-mutating, CI-safe),
+7. **Quality gate** — the one-command `check` (non-mutating, CI-safe),
    what it runs, and what it omits. Scale it to the project (see
    Appendix B); even a docs project runs a placeholder scan + link
    check. For tool choices use the per-stack defaults in
    `project/conventions.md` → Tooling; the Markdown lint + link-check
    baseline ships in `pm_skills/scaffold/` (copied in Step 9).
-7. **Security baseline** — where secrets live, the `.env` /
+8. **Security baseline** — where secrets live, the `.env` /
    `.gitignore` placeholder discipline, the report-only key-shape scan
    folded into `check`, the dependency-audit cadence, and the
    leaked-credential response playbook (rotation-first). Scale it to the
    project (see Appendix B); even a static site keeps env files
    gitignored and templates placeholder-only.
-8. **Build system** — bundler, entry point, output directory, source
+9. **Build system** — bundler, entry point, output directory, source
    maps, minification, static file handling.
-9. **Version management** — the two-part version identity from
-   `AGENTS.md` → "Traceable version identity": the product version
-   (release name) and build identity (commit/date trace), their sources,
-   how the build identity is injected, and the bump rule. Scale it to the
-   project (see Appendix B).
-10. **Deployment** — target, pipeline, post-deploy verification.
-11. **Utility scripts** — any helper scripts beyond dev/build/test.
-12. **Configuration strategy** — where constants, design tokens, and
+10. **Version management** — the two-part version identity from
+    `AGENTS.md` → "Traceable version identity": the product version
+    (release name) and build identity (commit/date trace), their sources,
+    how the build identity is injected, and the bump rule. Scale it to the
+    project (see Appendix B).
+11. **Deployment** — target, pipeline, post-deploy verification.
+12. **Utility scripts** — any helper scripts beyond dev/build/test.
+13. **Configuration strategy** — where constants, design tokens, and
     user-facing config live.
-13. **Editor config** — describe the .editorconfig if one exists.
-14. **Files agents must not hand-edit** — concrete paths.
+14. **Editor config** — describe the .editorconfig if one exists.
+15. **Files agents must not hand-edit** — concrete paths.
 
 Only fill in sections where the architecture provides enough
 information. Leave remaining placeholders for later. Do not invent
@@ -712,6 +718,27 @@ Package manager: **npm**
 - **Dev dependencies** (bundler, test runner, linter) can be added
   when justified by the architecture.
 - Run `npm install` after cloning. Do not commit `node_modules/`.
+```
+
+### Cloud-synced checkouts example
+
+```markdown
+This checkout commonly lives on OneDrive (Files-On-Demand **on**).
+The hard rule and its standing mitigations are in `AGENTS.md` →
+"Hostile-filesystem guard"; what follows is specific to this project.
+
+**Symptoms seen here:** placeholder files that read as empty until
+hydrated; a half-synced `node_modules/` that fails a build with a
+missing-module error minutes after a green one; occasional
+`<name>-<hostname>.ext` conflict copies after a session that ran
+while offline.
+
+**Recovery:** `rm -rf node_modules && npm ci`. Never hand-repair a
+conflict copy — take the git version, then re-sync.
+
+**Never run on the synced path:** file watchers, background workers,
+or a long-lived dev server left running between sessions. Use CI, or
+a local clone outside the sync root, for authoritative runs.
 ```
 
 ### Canonical scripts example

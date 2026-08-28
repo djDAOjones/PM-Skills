@@ -2,6 +2,12 @@
 
 ## Phase: Reflection instrument (2026-08-28)
 
+- CLOUD-TRUTH (2026-08-28) — the hostile-filesystem guard's
+  "unsupported" claim retired: cloud-synced paths named hazardous and
+  common, with the observed failure modes and the mitigations that
+  work; memory-surgery block kept hard. Operational half homed in a
+  new DEV-INFRASTRUCTURE template section, wired into init Step 8 +
+  Appendix B (4.17.0) — see decision-log.
 - FIELD-STUDY-2 (2026-08-28) — reflection run two, the instrument's
   first run and the first with no self-hosted discount: four
   projects, twelve dimensions, read-only posture proven clean. Six

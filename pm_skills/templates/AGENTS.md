@@ -253,13 +253,23 @@ asks — capturing the one line is the whole interaction.
   "Self-explaining runtime". See `DEV-INFRASTRUCTURE.md` → "Security
   baseline".
 - **Hostile-filesystem guard.** Cloud-synced repo paths (OneDrive,
-  Dropbox, Google Drive, iCloud) are unsupported for project memory —
-  they silently revert tracked files mid-session and spawn conflict
-  copies. Run the environment preflight at session start (warn-only) and
-  block on it before any memory-file surgery (prune, upgrade); if a
-  synced location is unavoidable, pause syncing during sessions or
-  exclude `.git`. See `pm_skills/prompts/memory-maintenance.md` →
-  "Environment preflight (shared)".
+  Dropbox, Google Drive, iCloud) are hazardous, and common — most
+  checkouts end up on one. Treat the hazard as a standing condition
+  to manage, not a location to forbid. Observed failure modes:
+  tracked files silently reverted mid-session, conflict copies,
+  dropped executable bits, watcher and re-index churn, a stale or
+  half-synced `node_modules/`, and deep paths truncated by the sync
+  client's path limit. Standing mitigations: run the environment
+  preflight at session start (warn-only); **block on it before any
+  memory-file surgery** (prune, upgrade) — that gate stays hard,
+  because moving files on top of sync corruption is how the good
+  copy is lost; pause syncing during sessions, or exclude the
+  checkout, where the project can; commit early and push, so the
+  remote is the authority rather than the synced copy; and archive
+  bulk evidence as single files rather than deep trees. See
+  `pm_skills/prompts/memory-maintenance.md` → "Environment preflight
+  (shared)" for the checks, and `DEV-INFRASTRUCTURE.md` →
+  "Cloud-synced checkouts" for this project's operational detail.
 
 <!-- CUSTOMISE: Add project-specific invariants below. See init.md Step 6 for example shapes. -->
 

@@ -20,6 +20,24 @@ scripts, configuration, or deployment.
 
 ---
 
+## Cloud-synced checkouts
+
+<!-- CUSTOMISE: Delete this section only if the checkout can never sit
+     on a synced path (OneDrive, Dropbox, Google Drive, iCloud). Most
+     do, so this is usually a section to fill in rather than remove.
+     Record the operational detail the hard rule in AGENTS.md →
+     "Hostile-filesystem guard" deliberately does not carry: which
+     sync client is in play and whether on-demand / placeholder files
+     are enabled, the symptoms seen on THIS project, the recovery
+     path (usually a clean dependency reinstall), and what must never
+     run on the synced path — watchers, workers, long-lived build
+     daemons, or anything that rewrites files in a tight loop. State
+     the hard rule's mitigations only where this project varies from
+     them; do not restate them. See init.md Step 8 for example
+     shape. -->
+
+---
+
 ## Canonical scripts
 
 <!-- CUSTOMISE: List every script in package.json as a table.
