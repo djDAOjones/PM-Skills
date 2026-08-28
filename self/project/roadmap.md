@@ -12,7 +12,6 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
-| **[SILENT-LOSS-SWEEP](tickets/SILENT-LOSS-SWEEP.md)** | Audit the generator/validator family for silent loss | Current #1 | Two defects of identical shape in five days — a parser in a gen-/check- script discarding real content with no error, in both deliberate forks — say… | Todo |
 | **[WAVES-PILOT](tickets/WAVES-PILOT.md)** | Pilot the findings-to-waves pipeline | Next #1 | Run findings.md + improvement-waves.md end-to-end in a real consuming project and file the result as a field report — both prompts shipped 2026-08-27… | Maintainer — held |
 | **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Next #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs, or the decision to cut — one or more… |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
@@ -28,10 +27,11 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: Reflection instrument (2026-08-28)</strong> — 7 item(s)</summary>
+<summary><strong>Phase: Reflection instrument (2026-08-28)</strong> — 8 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
+| `SILENT-LOSS-SWEEP` | (2026-08-28) — the family audited deliberately after two accidental catches: nine parsing assumptions listed, four fixed. The flat-frontmatter reader was dropping hard-wrapped… |
 | `FLAGS-EMDASH` | (2026-08-28) — an em-dash inside a flag body silently killed flag parsing, the standing-age check and the date; the validator reported 0 warnings on records carrying a 43-day… |
 | `BUDGET-TRUTH` | (2026-08-28) — the policy's last fixed word cap retired: backlog Active moves to item count + a ~200-word per-item guard (derived from the field corpus, ~2× observed ceiling); the… |
 | `CLOUD-TRUTH-SWEEP` | (2026-08-28) — the retired cloud-sync claim removed from the three distributed files 4.17.0 left it standing in; two become pointers to the AGENTS rule, dispatch's stricter… |

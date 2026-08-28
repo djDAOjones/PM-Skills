@@ -67,9 +67,18 @@ function parseRecord(p) {
   if (!m) throw new Error(`no frontmatter: ${p}`);
   /** @type {Record<string,string>} */
   const fm = {};
+  /** Key whose value was last read, and may continue on the next line. */
+  let open = null;
   for (const line of m[1].split('\n')) {
     const kv = line.match(/^([a-z-]+):\s*(.*)$/);
-    if (kv) fm[kv[1]] = kv[2].trim();
+    if (kv) { open = kv[1]; fm[open] = kv[2].trim(); continue; }
+    // A hand-wrapped value continues as an indented line. Fold it back
+    // instead of dropping it (SILENT-LOSS-SWEEP): this project hard-wraps
+    // prose, so a long `summary:` is exactly what a maintainer will wrap,
+    // and the old parser discarded everything after the first line with
+    // no error while the generated view still read as well-formed.
+    if (open && /^\s+\S/.test(line)) { fm[open] = `${fm[open]} ${line.trim()}`.trim(); continue; }
+    open = null;
   }
   return { fm, body: m[2].trim() };
 }
@@ -144,7 +153,10 @@ function livePhases() {
     if (line.startsWith('## ')) phases.push({ title: line.slice(3).trim(), items: [] });
     else if (line.startsWith('- ') && phases.length) {
       phases[phases.length - 1].items.push(line.slice(2).trim());
-    } else if (/^ {2}\S/.test(line) && phases.length) {
+    } else if (/^\s+\S/.test(line) && phases.length) {
+      // Any indent, not exactly two spaces: a maintainer's wrap width is
+      // not a parsing contract (SILENT-LOSS-SWEEP; cf. existingRoles()).
+
       const cur = phases[phases.length - 1].items;
       if (cur.length) cur[cur.length - 1] += ` ${line.trim()}`;
     }

@@ -2,6 +2,12 @@
 
 ## Phase: Reflection instrument (2026-08-28)
 
+- SILENT-LOSS-SWEEP (2026-08-28) — the family audited deliberately
+  after two accidental catches: nine parsing assumptions listed, four
+  fixed. The flat-frontmatter reader was dropping hard-wrapped values
+  in five copies, and check-memory reported green zeros over a backlog
+  whose section it could not find. Audit list kept in the decision log
+  (4.18.2) — see decision-log.
 - FLAGS-EMDASH (2026-08-28) — an em-dash inside a flag body silently
   killed flag parsing, the standing-age check and the date; the
   validator reported 0 warnings on records carrying a 43-day standing

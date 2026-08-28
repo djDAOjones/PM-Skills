@@ -17,15 +17,6 @@
 
 <!-- Intent: one item, from the burn-down's own findings. The run-two wave shipped in full on 2026-08-28 (CLOUD-TRUTH 4.17.0 and its same-hour sweep 4.17.1, BUDGET-TRUTH 4.18.0, FLAGS-EMDASH 4.18.1); nothing in the study's queue remains. SILENT-LOSS-SWEEP is what that run surfaced: two defects of identical shape in five days, both a parser in a gen-/check- script discarding real content with no error, both found by accident. One deliberate pass over the family beats a third accident. Workable now, no maintainer needed. -->
 
-- [ ] **SILENT-LOSS-SWEEP Audit the generator/validator family for
-  silent loss** [detail](tickets/SILENT-LOSS-SWEEP.md) (2026-08-28) — two
-  defects of identical shape in five days — a parser in a gen-/check-
-  script discarding real content with no error, in both deliberate forks —
-  say the class is worth one deliberate pass rather than a third accident.
-  Audit every parsing assumption in the family, fix what silently drops
-  content, and make deliberate leniency explicit where a parser must
-  tolerate variation. · Medium / Medium / Low / Low
-
 ### Next milestone
 
 <!-- Intent: what needs the maintainer before it runs, unchanged at this pass. WAVES-PILOT validates findings.md + improvement-waves.md in a real consuming project — Route Plotter's filed review round is a ready corpus — and the maintainer picks the target and drives the run there. VOICE-INTAKE reaches its seventh pass still blocked on the transcripts-plus-prompts inputs, or the decision to cut; at this point the cut is the live question, not the inputs. -->

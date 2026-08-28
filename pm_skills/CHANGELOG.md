@@ -36,6 +36,81 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.18.2 — 2026-08-28
+
+SILENT-LOSS-SWEEP: a deliberate pass over the generator/validator
+family after two of its parsers were caught discarding real content
+in the same week. It found two more, one of them worse than either
+original.
+
+The class is specific and worth naming: these scripts parse text the
+project itself authors, and when an assumption is defeated they do
+not error — they produce output that still looks well-formed with
+something missing from it. Detection to date had been luck, twice.
+
+**The flat-frontmatter parser dropped hard-wrapped values.** Records
+mode reads `key: value` frontmatter one line at a time; a value
+wrapped onto continuation lines lost everything after the first. The
+generated backlog view then rendered a truncated summary, correctly
+formatted, with no diagnostic. Five copies of that parser existed
+across the two forks. The framework's own records had all been
+written as single long lines, so the trap had never sprung — in a
+project whose conventions hard-wrap prose at ~72 characters, that is
+luck rather than design.
+
+**The validator reported green over a backlog it had not read.**
+`check-memory` located the queue by splitting on a literal `## Active`
+heading and defaulted to an empty string when it found none. A
+backlog whose section is named anything else produced `0 open items`
+— a passing line from a check that parsed nothing, in the tool whose
+entire job is noticing. The wish-list count had the same shape.
+Both now say so.
+
+Two further assumptions were examined and left as they are, with the
+reasoning recorded rather than the code changed: the archive-INDEX
+row parser degrades to a visible `—` rather than silently, and the
+link checkers' stripping of titles, fragments and queries is a
+deliberate tolerance that was already documented. One was
+documented rather than fixed: the record scan is flat `*.md` only,
+so a record with another extension is invisible to the generator
+**and** the validator at once — deliberate, but worth stating where
+someone will read it.
+
+### Fixed
+
+- `pm_skills/scaffold/gen-backlog.mjs`,
+  `pm_skills/scaffold/check-memory.mjs` — the flat-frontmatter
+  reader folds an indented continuation line back into the preceding
+  key's value instead of discarding it. Ported from the source forks
+  fixed in the same change (deliberate forks).
+- `pm_skills/scaffold/check-memory.mjs` — a `backlog.md` with no
+  `## Active` section, or a `wish-list.md` with no `## Open`
+  section, now emits a WARN naming what went unchecked, instead of
+  reporting a green zero.
+
+### Changed
+
+- `pm_skills/scaffold/gen-backlog.mjs` — header documents the
+  scanned set (flat `tickets/*.md`) and that anything outside it is
+  invisible to both tools.
+
+### Upgrade actions
+
+- `pm_skills/scaffold/*` is `scaffold` class — **copied once at init
+  and never touched on upgrade** — so your copies are not replaced
+  and nothing is required of you.
+- To adopt, copy the current `pm_skills/scaffold/gen-backlog.mjs`
+  and `pm_skills/scaffold/check-memory.mjs` over your root copies,
+  or port the two changes if you have customised them.
+- **Before adopting, check for damage already done.** If any record's
+  frontmatter value is hard-wrapped — most likely a long `summary:` —
+  the generated backlog view has been showing it truncated. Regenerate
+  after adopting and read the diff: restored text is content that was
+  being dropped, not new content.
+- If your validator has been reporting `0 open items` over a
+  populated backlog, that is this bug, not an empty queue. The new
+  WARN names it.
+
 ## 4.18.1 — 2026-08-28
 
 FLAGS-EMDASH: the memory validator no longer loses an entire backlog

@@ -34,6 +34,12 @@
  * Runs in place from pm_skills/scaffold/; copy it out only to
  * customise.
  *
+ * Scanned set: `<project>/tickets/*.md`, non-recursive, `_`-prefixed
+ * files reserved for meta. This is deliberate, not an oversight — but
+ * it means a record with any other extension, or in a subdirectory, is
+ * invisible to BOTH this generator and `check-memory.mjs`, so it is
+ * lost without a diagnostic. Keep records flat and `.md`.
+ *
  * Usage: node pm_skills/scaffold/gen-backlog.mjs
  *          [--project-dir pm_skills/project] [--check]
  */
@@ -58,9 +64,18 @@ function parseRecord(p) {
   if (!m) throw new Error(`no frontmatter: ${p}`);
   /** @type {Record<string,string>} */
   const fm = {};
+  /** Key whose value was last read, and may continue on the next line. */
+  let open = null;
   for (const line of m[1].split('\n')) {
     const kv = line.match(/^([a-z-]+):\s*(.*)$/);
-    if (kv) fm[kv[1]] = kv[2].trim();
+    if (kv) { open = kv[1]; fm[open] = kv[2].trim(); continue; }
+    // A hand-wrapped value continues as an indented line. Fold it back
+    // instead of dropping it (SILENT-LOSS-SWEEP): this project hard-wraps
+    // prose, so a long `summary:` is exactly what a maintainer will wrap,
+    // and the old parser discarded everything after the first line with
+    // no error while the generated view still read as well-formed.
+    if (open && /^\s+\S/.test(line)) { fm[open] = `${fm[open]} ${line.trim()}`.trim(); continue; }
+    open = null;
   }
   return { fm, body: m[2].trim() };
 }

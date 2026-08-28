@@ -12,6 +12,52 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-28 — SILENT-LOSS-SWEEP: the audit list, and what it found
+
+**Decision:** shipped 4.18.2. Audited every parsing assumption in the
+`gen-*.mjs` / `check-*.mjs` family, both forks. Nine found: two fixed
+as new defects, one as an inconsistency, one documented as a
+deliberate blind spot, two accepted as loud enough, three already
+fixed this week. **The table is the deliverable** — a fourth instance
+gets checked against it rather than re-derived.
+
+| # | Site | Assumption | Defeated by | Failure | Disposition |
+| --- | --- | --- | --- | --- | --- |
+| A1 | flat frontmatter reader (5 copies) | one key per line | a hard-wrapped value | **silent** — continuation dropped, view still well-formed | **Fixed** 4.18.2 |
+| A2 | `check-memory` backlog section (2) | heading is literally `## Active` | any other name, or none | **silent** — green "0 open items" over a full queue | **Fixed** 4.18.2 (WARN) |
+| A3 | `check-memory` wish-list section (2) | heading is literally `## Open` | as A2 | **silent** — green zero | **Fixed** 4.18.2 (WARN) |
+| A4 | `gen-roadmap` `livePhases()` | continuation is exactly two spaces | a three-space wrap | **silent** — line dropped | **Fixed** 4.18.2 (any indent) |
+| A5 | `gen-backlog` record scan | records are flat `tickets/*.md` | another extension, a subdirectory | **silent** — invisible to generator and validator at once | **Documented** (deliberate) |
+| A6 | `gen-roadmap` `archivedPhases()` | chunk file is last on the INDEX row | trailing text | visible `—` in the table | Accepted |
+| A7 | `check-docs` / `check-links` targets | title, fragment and query can be stripped | — | deliberate, already commented | Accepted |
+| A8 | `check-memory` `itemHead()` | separator is an em-dash at depth 0 | — | fixed 4.18.1 | — |
+| A9 | `gen-file-map` `existingRoles()` | a role continues on indented lines | — | fixed 4.16.1 | — |
+
+**Rationale:** two instances in five days, both found by accident
+while reading output for something else, made luck the detection
+mechanism; the sweep replaced it with a list. It paid immediately.
+A1 is a fourth instance of the identical shape, in five copies, and
+had not fired here only because every record in this repository
+happens to carry a single-line `summary:` — in a project whose
+conventions hard-wrap prose at ~72 characters. A2 is worse than any
+of them: a passing line from a check that read nothing, in the tool
+the whole close protocol trusts to notice.
+
+**The class, stated once.** These scripts parse text the project
+authors, so their inputs drift with house style rather than a schema,
+and every defect here is the same mistake — treating a formatting
+convention as a parsing contract. A2/A3 are its sharp form: treating
+a *heading name* as one and defaulting to empty when it does not
+match, which converts "I could not read this" into "there is nothing
+here". **Defaulting to empty on a failed parse** is the pattern to
+distrust, more than any particular regular expression.
+
+**Assumptions (auto-jazz):** A6 accepted, not fixed — its degradation
+is already visible in the rendered table. A5 documented, not fixed —
+changing the scanned set changes what counts as a record, a design
+call rather than a bug fix. Behaviour on well-formed input is
+unchanged throughout.
+
 ## 2026-08-28 — Refactor + Re-assess at the run-two milestone boundary
 
 **Decision:** the Current milestone emptied when FLAGS-EMDASH shipped

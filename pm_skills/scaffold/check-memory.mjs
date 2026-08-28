@@ -92,6 +92,7 @@ function dialectFlags() {
  * lines so multi-line flags and descriptions parse whole.
  */
 function parseBacklog(/** @type {string} */ content) {
+  const hasActive = /^## Active\s*$/m.test(content);
   const active = content.split(/^## Active\s*$/m)[1] ?? '';
   const section = active.split(/^## /m)[0];
   const raw = section.split('\n');
@@ -108,7 +109,7 @@ function parseBacklog(/** @type {string} */ content) {
     }
     items.push({ status: m[1], text, line: i + 1 });
   }
-  return { items, sectionWords: words(section) };
+  return { items, sectionWords: words(section), hasActive };
 }
 
 /**
@@ -145,7 +146,12 @@ function backlogCheck(/** @type {any} */ B) {
   const recordsMode = content.includes('<!-- generated:records:start')
     || existsSync(join(projectDir, 'tickets', '_meta.md'));
   const extraFlags = recordsMode ? dialectFlags() : new Set();
-  const { items, sectionWords } = parseBacklog(content);
+  const { items, sectionWords, hasActive } = parseBacklog(content);
+  // A named section the parser cannot find must be said out loud. Reporting
+  // "0 open items" over a backlog full of work is the worst failure this
+  // tool has: a green line from a check that read nothing (SILENT-LOSS-SWEEP).
+  if (!hasActive)
+    say('WARN', 'backlog.md: no "## Active" section found — the item, budget and grammar checks below read nothing; rename the section or point --project-dir at the right file');
   const ids = new Map();
   const detailIds = new Set();
   /** @type {Map<string,string>} */
@@ -207,9 +213,18 @@ function recordFm(/** @type {string} */ p) {
   if (!m) return null;
   /** @type {Record<string,string>} */
   const fm = {};
+  /** Key whose value was last read, and may continue on the next line. */
+  let open = null;
   for (const line of m[1].split('\n')) {
     const kv = line.match(/^([a-z-]+):\s*(.*)$/);
-    if (kv) fm[kv[1]] = kv[2].trim();
+    if (kv) { open = kv[1]; fm[open] = kv[2].trim(); continue; }
+    // A hand-wrapped value continues as an indented line. Fold it back
+    // instead of dropping it (SILENT-LOSS-SWEEP): this project hard-wraps
+    // prose, so a long `summary:` is exactly what a maintainer will wrap,
+    // and the old parser discarded everything after the first line with
+    // no error while the generated view still read as well-formed.
+    if (open && /^\s+\S/.test(line)) { fm[open] = `${fm[open]} ${line.trim()}`.trim(); continue; }
+    open = null;
   }
   return fm;
 }
@@ -364,6 +379,8 @@ function budgetsReport(/** @type {any} */ B) {
 
   const wl = read(join(projectDir, 'wish-list.md'));
   if (wl) {
+    if (!/^## Open\s*$/m.test(wl))
+      say('WARN', 'wish-list.md: no "## Open" section found — the count below read nothing');
     const openSec = wl.split(/^## Open\s*$/m)[1] ?? '';
     const n = (openSec.match(/^- /gm) ?? []).length;
     say(n > B.wishListMaxOpen ? 'WARN' : 'OK',
