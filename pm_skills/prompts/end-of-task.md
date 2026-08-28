@@ -217,14 +217,20 @@ Full sweep:
   **derived from the mapped-file count** (see `memory-policy.md` →
   "Deriving the file-map budget"); print the derivation, not just the
   verdict. Word-count each reference doc (`README.md`, `brief.md`,
-  `architecture.md`, `conventions.md`, + any project-added
-  standards/process/infra docs) against its soft guideline. Do not sum
-  them into an aggregate hot-set cap — there isn't one. The conditional
-  reads (`UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md`) are not part of the
-  every-task check (step 1 reads only the Quality gate section, not the
-  whole file).
-- Count the backlog **Active** section's words and open items, and
-  confirm **no `[x]` list items remain** in `backlog.md`
+  `architecture.md`, `conventions.md`, the **root rulebooks** —
+  `AGENTS.md`, plus `UI-STANDARDS.md` / `DEV-INFRASTRUCTURE.md` /
+  `PROCESS.md` where the project keeps them — and any other
+  project-added standards/process/infra doc) against its soft
+  guideline. Do not sum them into an aggregate hot-set cap — there
+  isn't one. The conditional rulebooks are size-checked here like any
+  other reference doc; what they sit outside is the every-task **read
+  load** (step 1 reads only the Quality gate section, not the whole
+  file), which is a different question from whether the file has
+  bloated.
+- Count the backlog **Active** section's open items against its budget
+  and each item against the per-item verbosity guard — there is no
+  fixed section-word cap — and confirm **no `[x]` list items remain**
+  in `backlog.md`
   (`grep -cE '^\s*[-*] \[x\]'`, so the status-legend line is not a false
   positive) — shipped work belongs in `trajectory.md`.
 - Word-count `trajectory.md`.

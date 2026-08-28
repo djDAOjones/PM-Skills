@@ -26,7 +26,7 @@ tools parse.
   "$comment": "Canonical machine-readable budgets. Keep in step with the table below. Units: words unless the key says otherwise.",
   "referenceDocSoftWords": 3500,
   "fileMap": { "wordsPerFile": 35, "floorWords": 2000 },
-  "backlogActive": { "softWords": 1500, "maxOpenItems": 40 },
+  "backlogActive": { "maxOpenItems": 40, "itemGuardWords": 200 },
   "trajectoryWords": 2000,
   "decisionLog": {
     "maxLiveEntries": 20,
@@ -62,12 +62,26 @@ more than the words it moves. The 30% gap makes the re-fire period
 roughly a third of the budget divided by the file's accretion rate;
 tune the fraction per project if velocity demands.
 
+**A recorded quality stop is compliant.** A prune that stops _above_
+the 70% target because the material still there is feeding open work
+has applied the rule, not overrun it — provided the stop is
+**recorded**: one line in that prune's decision-log entry naming what
+was kept and why. Two consuming projects wrote this doctrine
+themselves, in their own words, before the policy said it
+("pruning must never harm development quality… budget targets yield
+to that bar"; "the inline detail is doing real work"), which is the
+signal that it belongs here rather than in each project's log.
+Unrecorded, a stop above target is simply an overrun. **Count
+budgets do not yield this way** — entry counts, item counts and the
+lite-close cap stay hard; they are the half the field obeys, and
+they are what keeps a soft stop from becoming a habit.
+
 | Scope | Soft limit | Action when exceeded |
 | --- | --- | --- |
-| Reference doc (`README`, `brief.md`, `architecture.md`, `conventions.md`, + project standards/process/infra docs) | soft ~3,500 words each | Not a prune target — reference docs don't accrete. If one is genuinely bloated, tighten it or split detail into a permanent contract file; never strip to hit a number. |
+| Reference doc (`README`, `brief.md`, `architecture.md`, `conventions.md`, the **root rulebooks** — `AGENTS.md` always, plus `UI-STANDARDS.md` / `DEV-INFRASTRUCTURE.md` / `PROCESS.md` where the project keeps them — and any other project standards/process/infra doc) | soft ~3,500 words each | Not a prune target — reference docs don't accrete. If one is genuinely bloated, tighten it or split detail into a permanent contract file; never strip to hit a number. |
 | `file-map.md` (accreting) | **derived: ~35 words × mapped files, floor 2,000** (see "Deriving the file-map budget" below) | Propose Prune: strip accreted history (task tags, dates, test counts) to `archive/file-map-*-historical.md`, keep current roles. The derived budget measures **noise, not size** — a large healthy map reads green at its current-role floor; only history accretion (tags, dates, counts) pushes it over. Floor = the irreducible current-role list. |
 | Every-task read load | structural (no aggregate word cap) | A fixed sum fires permanently on a mature project (each hot file's budget scales with the project), so there is none. Healthy = each file within its own row above. If the always-read set keeps growing, review whether a hot read should move to _conditional_ or _warm_, or whether a reference doc has bloated. |
-| `backlog.md` Active | 1,500 words **or** ~40 open items (whichever trips first) | Propose Refactor: restructure by lifecycle, evict done-work, dedupe stale rounds. A low item count with high words means items are too verbose — tighten them. |
+| `backlog.md` Active | ~40 open items (primary) **or** any single item > ~200 words (verbosity guard) | Propose Refactor: restructure by lifecycle, evict done-work, dedupe stale rounds. Item count is the primary trigger; the per-item guard catches an item that has grown into an essay — a healthy item runs ~40–115 words, so the guard sits at roughly twice the observed ceiling. Move real detail to the item's `tickets/<ID>.md` rather than tightening it away. This replaces the old fixed 1,500-word section cap, which tripped on healthy density: a mature queue of tight items is not bloat, and a cap that stands over for a project's whole life trains everyone to ignore it. |
 | `backlog.md` shipped work | 0 — done `[x]` items do not live here | Move each to `trajectory.md` (one line) + `decision-log.md` (the why). Flagged by `end-of-task.md` and the Diagnose verb. |
 | `trajectory.md` | 2,000 words | Propose archiving the oldest phases to `archive/trajectory/`, keeping `archive/INDEX.md` current. |
 | `decision-log.md` live log | 20 entries (primary) **or** any single entry > ~600 words (runaway-entry guard) | Propose an archive split to `archive/decision-log-*.md` (by whole month; by date-range when one month alone exceeds a budget). Entry count is the primary trigger; the per-entry guard catches a single runaway entry — a healthy entry is ~150–300 words (Decision, Rationale, Alternatives, Link), not an essay. This replaces the old file-level word budget, which tripped on healthy accumulated density (many tight entries) rather than the bloat it was meant to catch. Keep at least the read-tier latest 10 live. |

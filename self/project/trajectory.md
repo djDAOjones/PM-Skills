@@ -2,6 +2,12 @@
 
 ## Phase: Reflection instrument (2026-08-28)
 
+- BUDGET-TRUTH (2026-08-28) — the policy's last fixed word cap
+  retired: backlog Active moves to item count + a ~200-word per-item
+  guard (derived from the field corpus, ~2× observed ceiling); the
+  recorded quality stop both consuming projects invented becomes
+  policy; the reference-doc sweep gains the root rulebooks, both
+  validator forks (4.18.0) — see decision-log.
 - CLOUD-TRUTH-SWEEP (2026-08-28) — the retired cloud-sync claim
   removed from the three distributed files 4.17.0 left it standing in;
   two become pointers to the AGENTS rule, dispatch's stricter lane-tree

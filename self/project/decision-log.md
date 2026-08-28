@@ -12,6 +12,57 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-28 — BUDGET-TRUTH: the last fixed word cap, and two omissions
+
+**Decision:** shipped 4.18.0 in three parts. (1) Backlog Active's
+fixed 1,500-word cap is replaced by a **per-item verbosity guard** at
+~200 words, item count (~40) staying primary — the decision log's
+entry-guard design applied to the policy's last fixed word cap. (2)
+The **recorded quality stop** becomes policy: a prune that stops
+above the 70% target because the material still there feeds open work
+has applied the rule, provided the stop is recorded in that prune's
+decision-log entry; count budgets explicitly do **not** yield this
+way. (3) The reference-doc sweep gains the **root rulebooks**
+(`AGENTS.md` always, plus UI-STANDARDS / DEV-INFRASTRUCTURE / PROCESS
+where kept), implemented in both validator forks.
+
+**Rationale:** the policy had already retired fixed word caps three
+times — file-map (derived, "noise not size"), decision log
+(entry-count primary), read load (no aggregate cap) — each time
+naming the pathology the field then demonstrated: the Active warning
+stood, read and overridden, in 10 of 12 traces in one project and for
+that project's whole life. A permanently red check is not a check.
+The quality-stop clause has the strongest evidence shape available:
+two owners wrote the same doctrine into their own logs, unprompted
+and in their own words, before the policy said it — when that
+happens, the omission is the policy's. And the rulebook sweep closes
+a hole the policy row had already described but no tool implemented:
+a fresh-init AGENTS.md reached 4,502 words in four days with nothing
+anywhere positioned to notice.
+
+**The guard number is derived, not chosen.** Field corpus: 26 items
+across 2,479–3,004 words (~95–115/item), held deliberately and called
+load-bearing; this repo's own queue runs 40–96/item. 200 is ~2× the
+observed ceiling — the same guard-to-healthy ratio the decision log
+uses (600 against 150–300). Recorded here because a guessed budget
+becomes archaeology within two releases.
+
+**Assumptions (auto-jazz, skipped gates):** the guard is per single
+item, not a mean — a mean lets one runaway hide behind nine terse
+items, and the decision-log precedent it mirrors is per-entry.
+Scope grew by two prompts beyond the ticket's named files
+(`end-of-task.md`, `memory-maintenance.md`): both restate the budget
+shape, and leaving them would have shipped the same
+retire-in-one-place-only defect as CLOUD-TRUTH did an hour earlier.
+`end-of-task.md`'s conditional-rulebook carve-out was corrected
+rather than deleted — its parenthetical always gave read load as the
+reason, so scoping it to read load is what it meant.
+
+**Verification:** guard confirmed firing on a synthetic 250-word item
+(named, WARN not FAIL) and silent on a terse one; both forks run
+identically against this repo's records; AGENTS.md now reports at
+971/3,500. Gate green.
+
 ## 2026-08-28 — CLOUD-TRUTH-SWEEP: a retirement that landed in one file
 
 **Decision:** shipped 4.17.1 an hour after 4.17.0, removing the

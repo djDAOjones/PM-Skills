@@ -6,6 +6,13 @@
 
 ## Open
 
+- CLOSE-SCENARIO-DEBT: the close-control scenario has not been run
+  against 4.18.0, which changed `prompts/end-of-task.md` (step-4 size
+  check only — no property the scenario asserts). Advisory per
+  release.md step 7; the harness needs a blinded sub-agent, which the
+  shipping session may not be. Fold into the next blinded run rather
+  than scheduling one for this. (source: BUDGET-TRUTH close,
+  2026-08-28)
 - REVIEW-ACCEPTANCE-WATCH: standing observable, no edit — does the
   run-acceptance review verb (`prompts/review.md`) ever fire? Zero
   invocations across two projects while ordinary review sessions

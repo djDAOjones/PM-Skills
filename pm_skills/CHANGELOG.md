@@ -36,6 +36,105 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.18.0 — 2026-08-28
+
+BUDGET-TRUTH: the size checks catch up with what the field actually
+does. Three parts — the last fixed word cap is re-derived, the
+quality stop both consuming projects invented becomes policy, and
+the reference-doc sweep finally includes the rulebooks.
+
+**The backlog's fixed 1,500-word cap is retired.** The policy had
+already removed fixed word caps in three places, each time naming
+the same pathology: a check that is permanently red trains agent and
+maintainer to ignore it. The file-map budget became derived ("noise,
+not size"); the decision log moved to entry count plus a
+runaway-entry guard, because the old file-level word budget tripped
+on healthy density; the every-task read load lost its aggregate cap
+outright. Backlog Active was the straggler — and it is precisely the
+budget that stood over, read and overridden, in ten of twelve
+sessions in one project's traces, and for effectively that project's
+whole life. Item count (~40) stays the primary trigger. The section
+cap is replaced by a **per-item verbosity guard**, mirroring the
+decision log's entry-guard design, which is what the table's own
+"a low item count with high words means items are too verbose" was
+reaching for.
+
+The guard is **~200 words per item**, derived rather than guessed:
+one project ran 26 items across 2,479–3,004 words (~95–115 per item)
+and called the density load-bearing; this framework's own queue runs
+40–96 per item. 200 sits at roughly twice the observed ceiling — the
+same guard-to-healthy ratio the decision log uses (600 against a
+healthy 150–300). Over the guard, the remedy is not to compress the
+item but to move its detail into `tickets/<ID>.md`, which is what
+that file is for.
+
+**A recorded quality stop is compliant.** Two consuming projects
+independently wrote the same doctrine into their own decision logs —
+"pruning must never harm development quality… budget targets yield
+to that bar", "the inline detail is doing real work" — before the
+policy said it anywhere. When two owners invent the same rule
+unprompted, that is the policy's omission, not their deviation. A
+prune that stops above the 70% target because the material still
+there is feeding open work has now *applied* the rule, provided the
+stop is recorded in the prune's decision-log entry. Unrecorded, it
+is still an overrun. Count budgets do not yield this way: they are
+the half the field obeys, and they are what stops a soft stop
+becoming a habit.
+
+**Rulebooks are reference docs.** The policy row already said
+"project standards/process/infra docs"; no validator implemented it,
+so nothing anywhere watched a rulebook's size. A fresh-init
+`AGENTS.md` was measured at 4,502 words in four days, against
+another project running the same framework on 993 — a file read in
+full at every session start, growing unobserved because a fresh init
+only ever adds. The row now names the root rulebooks explicitly and
+both validator forks sweep them.
+
+### Changed
+
+- `pm_skills/memory-policy.md` — `backlogActive` becomes
+  `{ maxOpenItems, itemGuardWords }`; the Active row and the
+  reference-doc row rewritten; "Prune-to targets (hysteresis)" gains
+  the recorded-quality-stop clause. Block and table updated together,
+  as that section requires.
+- `scripts/check-memory.mjs` **and**
+  `pm_skills/scaffold/check-memory.mjs` (deliberate forks, changed
+  together) — the Active check reports open items and the longest
+  item against the guard instead of a section-word cap, naming any
+  item that trips it; the reference-doc sweep gains `AGENTS.md`,
+  `UI-STANDARDS.md`, `DEV-INFRASTRUCTURE.md` and `PROCESS.md`,
+  skipping those a project does not keep.
+- `pm_skills/prompts/end-of-task.md` — the step-4 full sweep matches:
+  rulebooks counted, backlog counted by items and the guard. The
+  conditional-rulebook carve-out is corrected — those files sit
+  outside the every-task **read load**, which was always the
+  parenthetical's actual reason, not outside the size check.
+- `pm_skills/prompts/memory-maintenance.md` — Diagnose check 1 and
+  Prune P1 restated to match.
+
+### Upgrade actions
+
+- Replace `pm_skills/memory-policy.md`,
+  `pm_skills/prompts/end-of-task.md` and
+  `pm_skills/prompts/memory-maintenance.md` (all `framework` class).
+- **If you copied `check-memory.mjs` out of `scaffold/`** (`scaffold`
+  class — never replaced on upgrade), port the two changes above by
+  hand, or re-copy the current file if you have not customised it.
+  Both directions degrade safely in the meantime: an old validator
+  against the new policy reads `softWords` as undefined and simply
+  stops applying a section cap; a new validator against an old policy
+  finds no `itemGuardWords` and runs no guard. Neither errors.
+- **Expect the backlog warning to change shape**, not disappear. If
+  your Active section stood over the old word cap, that line is gone;
+  if any single item is over ~200 words, a new line names it. Move
+  that item's detail into `pm_skills/project/tickets/<ID>.md` rather
+  than compressing it away.
+- **Expect a new line per root rulebook.** If one is over ~3,500
+  words, it is not a prune target — tighten it, or split durable
+  detail into a permanent contract file. Nothing is required at this
+  release; it is a guideline that was previously unmeasured.
+- No memory migration. No change to `pm_skills/project/`.
+
 ## 4.17.1 — 2026-08-28
 
 CLOUD-TRUTH-SWEEP: 4.17.0 retired the "unsupported" cloud-sync claim

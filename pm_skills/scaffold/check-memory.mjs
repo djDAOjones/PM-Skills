@@ -126,6 +126,8 @@ function backlogCheck(/** @type {any} */ B) {
   /** @type {Map<string,string>} */
   const openStatuses = new Map();
   const ageing = [];
+  /** @type {{id:string,words:number}[]} */
+  const verbose = [];
   let open = 0, unparsed = 0;
 
   for (const it of items) {
@@ -140,6 +142,7 @@ function backlogCheck(/** @type {any} */ B) {
     if (ids.has(id)) say('FAIL', `backlog: duplicate item ID ${id}`);
     ids.set(id, true);
     if (it.status !== 'x') openStatuses.set(id, it.status);
+    if (it.status !== 'x') verbose.push({ id, words: words(it.text) });
     const head = bold[3].split('—')[0] ?? '';
     const flags = [...head.matchAll(/\[([^\]]+)\]/g)].map((f) => f[1]);
     for (const f of flags)
@@ -159,10 +162,17 @@ function backlogCheck(/** @type {any} */ B) {
     say('WARN', `backlog: ${unparsed} item line(s) do not parse as "**ID Title** [flags] — …" (template placeholders count)`);
   if (ageing.length)
     say('WARN', `backlog: standing items past ${B.standingItemWarnDays} d — ${ageing.slice(0, 3).join(', ')}`);
-  if (sectionWords > B.backlogActive.softWords || open > B.backlogActive.maxOpenItems)
-    say('WARN', `backlog Active over budget: ${sectionWords} words / ${open} open (budget ${B.backlogActive.softWords} words / ${B.backlogActive.maxOpenItems} items) — propose Refactor`);
-  else
-    say('OK', `backlog Active: ${sectionWords} words, ${open} open items (budget ${B.backlogActive.softWords} / ${B.backlogActive.maxOpenItems})`);
+  // Item count is the primary trigger; the per-item guard catches an item
+  // that has grown into an essay. There is no fixed section-word cap — a
+  // mature queue of tight items is density, not bloat (memory-policy.md).
+  const longest = verbose.reduce((a, b) => (b.words > a.words ? b : a), { id: '—', words: 0 });
+  if (open > B.backlogActive.maxOpenItems)
+    say('WARN', `backlog Active over budget: ${open} open items (budget ${B.backlogActive.maxOpenItems}) — propose Refactor`);
+  const over = verbose.filter((v) => v.words > B.backlogActive.itemGuardWords);
+  if (over.length)
+    say('WARN', `backlog: ${over.length} item(s) over the ~${B.backlogActive.itemGuardWords}-word verbosity guard — ${over.slice(0, 3).map((v) => `${v.id} (${v.words} w)`).join(', ')} — tighten, or move detail to tickets/`);
+  if (open <= B.backlogActive.maxOpenItems && !over.length)
+    say('OK', `backlog Active: ${open} open items (budget ${B.backlogActive.maxOpenItems}), longest item ${longest.words} w (guard ${B.backlogActive.itemGuardWords}); ${sectionWords} words total`);
   return { detailIds, openStatuses };
 }
 
@@ -280,11 +290,19 @@ function budgetsReport(/** @type {any} */ B) {
       `file-map budget: ${n} files × ${B.fileMap.wordsPerFile} = ${n * B.fileMap.wordsPerFile}, floor ${B.fileMap.floorWords} → ${budget} words; measured ${w}${w > budget ? ' — propose Prune (strip accreted history)' : ''}`);
   } else say('note', 'file-map.md: absent — skipped');
 
+  // Root rulebooks accrete like any reference doc and nothing else
+  // notices: a fresh-init AGENTS.md was measured at 4,502 words in four
+  // days with no budget anywhere to see it (memory-policy.md, the
+  // reference-doc row). Absent files are skipped by the loop below.
   const refs = [
     join(repoRoot, 'README.md'),
     join(projectDir, 'brief.md'),
     join(projectDir, 'architecture.md'),
     join(projectDir, 'conventions.md'),
+    join(repoRoot, 'AGENTS.md'),
+    join(repoRoot, 'UI-STANDARDS.md'),
+    join(repoRoot, 'DEV-INFRASTRUCTURE.md'),
+    join(repoRoot, 'PROCESS.md'),
   ];
   for (const p of refs) {
     const w = words(read(p));

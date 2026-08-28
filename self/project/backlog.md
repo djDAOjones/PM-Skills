@@ -17,15 +17,6 @@
 
 <!-- Intent: the run-two wave — the field study's surviving candidates, interrogated same-day and merged where they shared files (see the 2026-08-28 addendum in self/evaluations/2026-08-28-field-study-2.md), plus one bug the refactor itself surfaced. All three scoped, all releases: CLOUD-TRUTH retires the one shipped rule every deployment contradicts; BUDGET-TRUTH finishes the policy's own de-fixed-cap design where the field showed it still bites; FLAGS-EMDASH fixes the validator parser that an em-dash inside a flag body silently defeats. The queue stopped being empty-of-workable on 2026-08-28, by maintainer-directed triage. -->
 
-- [ ] **BUDGET-TRUTH Make the size checks tell the truth**
-  [detail](tickets/BUDGET-TRUTH.md) (2026-08-28) — the budget system
-  catches up with field evidence, three parts, one release — backlog
-  Active loses the last fixed word cap (re-derived per the policy's own
-  noise-not-size principle), prune-to targets gain the recorded
-  quality-stop clause both projects invented, and the validator's
-  reference-doc sweep gains the root rulebooks the policy row already
-  names (AGENTS.md included, both check-memory forks). · High / Medium /
-  Medium / Low
 - [ ] **FLAGS-EMDASH Validator flag parsing dies on an em-dash**
   [detail](tickets/FLAGS-EMDASH.md) (2026-08-28) — check-memory splits the
   backlog view line on the first em-dash before matching bracketed flags,

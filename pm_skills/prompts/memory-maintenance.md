@@ -147,8 +147,9 @@ Detail | Proposed action**.
 
 1. **Budgets** — word-count `file-map.md` against its accreting budget
    (derived from the mapped-file count — show the derivation) and each
-   reference doc (soft per-doc guideline); count backlog Active
-   words and open items; count decision-log entries, flag any single
+   reference doc, root rulebooks included (soft per-doc guideline);
+   count backlog Active open items and flag any single item over the
+   per-item verbosity guard; count decision-log entries, flag any single
    entry over the per-entry guard, and note oldest-entry age; count
    trajectory words; count wish-list open items.
    Compare against `memory-policy.md` — there is no aggregate hot-set
@@ -260,13 +261,16 @@ budget, or when the user requests a memory prune.
 Word-count each hot whole-file read listed in `AGENTS.md` →
 "Read tiers" against the budgets in `pm_skills/memory-policy.md`: the
 reference docs (`README.md`, `brief.md`, `architecture.md`,
-`conventions.md`, + any project-added standards / process / infra
-docs) against their soft per-doc guideline, and `file-map.md` against
+`conventions.md`, the root rulebooks — `AGENTS.md`, plus
+`UI-STANDARDS.md` / `DEV-INFRASTRUCTURE.md` / `PROCESS.md` where the
+project keeps them — and any other project-added standards / process /
+infra doc) against their soft per-doc guideline, and `file-map.md` against
 its accreting budget (**derived from the mapped-file count** — see
 `memory-policy.md` → "Deriving the file-map budget"; show the
 derivation). Do **not** sum them into a single hot-set
 cap — there is no aggregate word budget. Count the backlog **Active**
-words and open items, and any shipped `[x]` items still in
+open items, flag any single item over the per-item verbosity guard
+(there is no fixed section-word cap), and note any shipped `[x]` items still in
 `backlog.md` — anchor the count to list items
 (`grep -cE '^\s*[-*] \[x\]'`) so the status-legend line is not a false
 positive. Word-count `trajectory.md`. Count entries in
