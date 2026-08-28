@@ -130,7 +130,10 @@ closing report:
 - [ ] `npm run check` green AFTER the last edit (including the memory
   updates themselves).
 - [ ] Release consistency: every changed distributed file is named in
-  the top CHANGELOG entry; VERSION == top entry.
+  the top CHANGELOG entry; VERSION == top entry. If the release
+  **retires** anything — a rule, a claim, a recommendation — also run
+  the retirement sweep (`pm_skills/prompts/release.md` step 6): grep
+  the distributed tree for the retired wording and resolve every hit.
 - [ ] Shipped item removed from `self/project/backlog.md`; one line
   added to `self/project/trajectory.md`; the why recorded in
   `self/project/decision-log.md`; its ticket file moved to

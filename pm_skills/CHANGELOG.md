@@ -36,6 +36,60 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.19.0 — 2026-08-28
+
+RETIRE-SWEEP: `release.md` step 6 gains the check that the coverage
+check structurally cannot perform — the one for a file that should
+have changed and did not.
+
+Coverage looks at the files a release touched and asks whether the
+changelog names them, which catches an undocumented change. It is
+blind by construction to the opposite failure, and that failure has
+exactly one common cause: a **retirement**. A rule withdrawn from one
+file stays asserted in every file that restates it, and the prompts
+restate each other freely. The framework then asserts both halves of
+a contradiction, and a consuming project's 3-way merge picks whichever
+half its own copy happens to hold — which is to say, at random.
+
+This is not hypothetical and not old. 4.17.0 retired the claim that
+cloud-synced paths are "unsupported for project memory" from the
+AGENTS template this morning and left it standing in three other
+distributed files. Step 6 passed. The contradiction was found about
+an hour later, by the framework's own environment preflight reading
+one of the stale copies, and cost the 4.17.1 sweep release to clear.
+
+The new sub-step is deliberately narrow: **the trigger is the
+retirement, not the release.** Nothing withdrawn, nothing to run. When
+something is withdrawn, grep the distributed tree for two or three
+distinctive words of the retired wording and resolve every hit —
+change it, or state in the entry why that site legitimately differs
+(a stricter rule for a riskier situation is a real answer; 4.17.1 had
+one). One grep against an hour of self-contradiction is not a close
+call.
+
+The deeper fix is upstream and stays a judgement: two of those three
+sites were restatements that canonical-copy discipline should never
+have allowed. Had the rule lived in one place with pointers to it,
+there would have been nothing to sweep. This check is what you run
+because that discipline is imperfectly kept.
+
+### Changed
+
+- `pm_skills/prompts/release.md` — step 6 gains a **Retirement
+  sweep** sub-step, conditional on the release retiring something,
+  with the grep and the reasoning for why coverage cannot substitute
+  for it.
+
+### Upgrade actions
+
+- Replace `pm_skills/prompts/release.md` (`framework` class).
+- Nothing else changes; no memory migration, nothing per session.
+  The sweep runs only when a release withdraws a rule, claim, or
+  recommendation, which for most releases is never.
+- If your project keeps a release checklist of its own (a root
+  `AGENTS.md` extension, a PR template), add the conditional line
+  there too so the check is where the releaser actually reads.
+
 ## 4.18.2 — 2026-08-28
 
 SILENT-LOSS-SWEEP: a deliberate pass over the generator/validator

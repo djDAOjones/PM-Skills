@@ -12,6 +12,43 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-28 — RETIRE-SWEEP: the check coverage cannot perform
+
+**Decision:** shipped 4.19.0. `release.md` step 6 gains a
+**Retirement sweep**: when a release withdraws a rule, claim or
+recommendation, grep the distributed tree for the retired wording
+and resolve every hit — change it, or state in the entry why that
+site legitimately differs. Conditional on the retirement, not the
+release. This repo's own release checklist in the root `AGENTS.md`
+gains the matching conditional line (source-only).
+
+**Rationale:** the existing coverage check inspects the files a
+release *touched* and asks whether the entry names them. It is blind
+by construction to the opposite failure — a file that should have
+changed and did not — and that failure has one common cause. It fired
+this morning: CLOUD-TRUTH (4.17.0) retired the "unsupported"
+cloud-sync claim from the AGENTS template and left it in three other
+distributed files; step 6 passed; the contradiction stood about an
+hour until the framework's own preflight read a stale copy, and cost
+the 4.17.1 sweep release. One grep against that is not a close call.
+
+**Scoped narrowly on purpose.** Widening step 6 into a general audit
+would make it a step people skip, which is how a check stops working.
+The trigger is the retirement; most releases retire nothing and run
+nothing.
+
+**The honest caveat, recorded rather than fixed:** two of the three
+stale sites were restatements that canonical-copy discipline should
+have prevented. With the rule in one place and pointers to it, there
+would have been nothing to sweep. This check exists because that
+discipline is imperfectly kept, not instead of keeping it — worth
+saying plainly so the sweep is not mistaken for permission to
+restate.
+
+**First live application:** 4.19.0 itself retires nothing, so the new
+sub-step correctly does not fire. Recorded because a check whose first
+run is a no-op is easy to believe untested.
+
 ## 2026-08-28 — SILENT-LOSS-SWEEP: the audit list, and what it found
 
 **Decision:** shipped 4.18.2. Audited every parsing assumption in the

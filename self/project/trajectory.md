@@ -2,6 +2,11 @@
 
 ## Phase: Reflection instrument (2026-08-28)
 
+- RETIRE-SWEEP (2026-08-28) — release.md step 6 gains the check
+  coverage structurally cannot perform: when a release retires a rule
+  or claim, grep the distributed tree for its wording and resolve every
+  hit. Written from CLOUD-TRUTH shipping incomplete the same morning
+  and costing a sweep release (4.19.0) — see decision-log.
 - SILENT-LOSS-SWEEP (2026-08-28) — the family audited deliberately
   after two accidental catches: nine parsing assumptions listed, four
   fixed. The flat-frontmatter reader was dropping hard-wrapped values

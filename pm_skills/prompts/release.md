@@ -94,6 +94,27 @@ update `pm_skills/MANIFEST.md`:
   root-template path appears in the top changelog entry — a changed
   framework file the entry does not name will silently downgrade on a
   consuming project's next upgrade.
+- **Retirement sweep** — only when this release **retires** something:
+  a rule withdrawn, a claim reversed, a recommendation dropped, a file
+  or verb removed. Coverage above checks one direction (a file changed
+  but not named); this checks the other, which coverage structurally
+  cannot see — a file that should have changed and did not. Grep the
+  distributed tree for the retired wording and resolve every hit:
+  change it, or say in the entry why that site legitimately differs.
+  A claim is retired only where it is asserted, and the prompts
+  restate each other freely; a retirement that lands in one file
+  leaves the framework asserting both halves of a contradiction, and
+  a consuming project's 3-way merge then picks whichever half its
+  copy happens to hold.
+
+  ```sh
+  # Two or three distinctive words of the retired wording.
+  grep -rn "unsupported for project memory" pm_skills/ *.md \
+    | grep -v CHANGELOG
+  ```
+
+  This is not a general audit — the trigger is the retirement, not
+  the release. Nothing to retire, nothing to run.
 - `MANIFEST.md` lists every shipped path (no orphans, no missing new
   files).
 - `GUIDE.md` file tree matches the actual `pm_skills/` contents.

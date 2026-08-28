@@ -12,7 +12,6 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
-| **[RETIRE-SWEEP](tickets/RETIRE-SWEEP.md)** | A retirement must be swept, not asserted once | Current #1 | Release.md's verify step checks that every changed distributed file is named in the changelog entry, but nothing checks the opposite — a file that… | Todo |
 | **[WAVES-PILOT](tickets/WAVES-PILOT.md)** | Pilot the findings-to-waves pipeline | Next #1 | Run findings.md + improvement-waves.md end-to-end in a real consuming project and file the result as a field report — both prompts shipped 2026-08-27… | Maintainer — held |
 | **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Next #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs, or the decision to cut — one or more… |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
@@ -28,10 +27,11 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: Reflection instrument (2026-08-28)</strong> — 8 item(s)</summary>
+<summary><strong>Phase: Reflection instrument (2026-08-28)</strong> — 9 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
+| `RETIRE-SWEEP` | (2026-08-28) — release.md step 6 gains the check coverage structurally cannot perform: when a release retires a rule or claim, grep the distributed tree for its wording and… |
 | `SILENT-LOSS-SWEEP` | (2026-08-28) — the family audited deliberately after two accidental catches: nine parsing assumptions listed, four fixed. The flat-frontmatter reader was dropping hard-wrapped… |
 | `FLAGS-EMDASH` | (2026-08-28) — an em-dash inside a flag body silently killed flag parsing, the standing-age check and the date; the validator reported 0 warnings on records carrying a 43-day… |
 | `BUDGET-TRUTH` | (2026-08-28) — the policy's last fixed word cap retired: backlog Active moves to item count + a ~200-word per-item guard (derived from the field corpus, ~2× observed ceiling); the… |

@@ -17,15 +17,6 @@
 
 <!-- Intent: one item, again from the run's own findings — the burn-down's second refill. SILENT-LOSS-SWEEP shipped 4.18.2 and closed the parser class with an audit list. RETIRE-SWEEP closes the process gap that let CLOUD-TRUTH ship incomplete this morning: release.md verifies that every changed file is named in the changelog, and nothing verifies the opposite — a file that should have changed and did not. That gap cost the 4.17.1 sweep release the same day. Workable now, no maintainer needed. -->
 
-- [ ] **RETIRE-SWEEP A retirement must be swept, not asserted once**
-  [detail](tickets/RETIRE-SWEEP.md) (2026-08-28) — release.md's verify
-  step checks that every changed distributed file is named in the
-  changelog entry, but nothing checks the opposite — a file that should
-  have changed and did not. A release that retires a claim or a rule
-  leaves the framework contradicting itself wherever the claim is
-  restated. Add the sweep; it costs one grep and it has already cost one
-  release. · Medium / Low / Low / Low
-
 ### Next milestone
 
 <!-- Intent: what needs the maintainer before it runs, unchanged at this pass. WAVES-PILOT validates findings.md + improvement-waves.md in a real consuming project — Route Plotter's filed review round is a ready corpus — and the maintainer picks the target and drives the run there. VOICE-INTAKE reaches its seventh pass still blocked on the transcripts-plus-prompts inputs, or the decision to cut; at this point the cut is the live question, not the inputs. -->
