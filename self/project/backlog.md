@@ -15,7 +15,7 @@
 
 ### Current milestone
 
-<!-- Intent: one item, again from the run's own findings — the burn-down's second refill. SILENT-LOSS-SWEEP shipped 4.18.2 and closed the parser class with an audit list. RETIRE-SWEEP closes the process gap that let CLOUD-TRUTH ship incomplete this morning: release.md verifies that every changed file is named in the changelog, and nothing verifies the opposite — a file that should have changed and did not. That gap cost the 4.17.1 sweep release the same day. Workable now, no maintainer needed. -->
+<!-- Intent: EMPTY — and empty of workable, not merely empty. The 2026-08-28 burn-down cleared the whole run-two wave (4.17.0, 4.17.1, 4.18.0, 4.18.1) and then twice refilled Current from its own findings (SILENT-LOSS-SWEEP 4.18.2, RETIRE-SWEEP 4.19.0) before stopping here. Every remaining item across Next and Icebox needs the maintainer: inputs, a target project, a trigger confirmation, or a paused order resumed. The wish-list holds five, three of them standing observables that explicitly call for no edit. A next session should not hunt for work in this file — it should ask which of the seven holds the maintainer wants to lift. -->
 
 ### Next milestone
 

@@ -12,6 +12,29 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-28 — Burn-down stop: the queue is maintainer-blocked
+
+**Decision:** the epic burn-down stops on `epic.md`'s normal
+condition — no workable items left. Six releases shipped (4.17.0
+through 4.19.0), plus one Prune and two mid-run refactors. Current is
+empty of *workable*, not merely empty: all seven open items need the
+maintainer (inputs, a target project, a trigger confirmation, or the
+paused LAB-FIRST order resumed), and the five wish-list entries are
+three no-edit observables, one deliberate hold, and one lab item
+behind that pause.
+
+**Rationale for stopping here rather than refilling a third time:**
+the run already refilled Current twice from its own findings, and
+both refills cleared the evidence bar — SILENT-LOSS-SWEEP on two
+confirmed defects of one shape, RETIRE-SWEEP on a defect that had
+already cost a release the same morning. A third would not. The line
+between refilling from findings and manufacturing work is whether the
+evidence exists independently of wanting something to do, and past
+this point it does not.
+
+**Budget note for the next session:** the decision log stands at
+20/20 live entries. The next close trips it; run a Prune first.
+
 ## 2026-08-28 — RETIRE-SWEEP: the check coverage cannot perform
 
 **Decision:** shipped 4.19.0. `release.md` step 6 gains a
