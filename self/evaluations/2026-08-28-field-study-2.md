@@ -704,3 +704,97 @@ applied.** No prompt, template, memory file or gate changed in this
 run; the candidates go to normal triage and every change remains
 gated as ordinary work — a distributed change is a release with
 VERSION, CHANGELOG upgrade actions, and MANIFEST/GUIDE sync.
+
+---
+
+## Addendum — same-day interrogation (2026-08-28, maintainer-directed)
+
+The maintainer directed a reflection on the study's conclusions
+before triage. This pass read the four distributed files the
+remedies had targeted without reading — `prompts/review.md`,
+`memory-policy.md`, `prompts/end-of-task.md`, and both
+`check-memory` forks — plus the six held ticket records. Outcomes,
+finding by finding:
+
+**FS2-01 (upgrades) — confirmed unchanged.** No new machinery;
+the 4.13.0 observable stands.
+
+**FS2-02 (review silence) — corrected.** The study mischaracterised
+`review.md`: it is a **run-acceptance** review (accept an autonomous
+run's change set against its stated intent), not the whole-repo
+defect-production verb the projects substituted external tools for
+— for whole-repo work it already delegates to the GUIDE audit
+recipe. The observation stands (verb silent; machinery built), but
+the proposed remedy ("shrink review.md to an entry point routing to
+findings.md") would have deleted a distinct function. Re-aimed: the
+watch now asks whether **run-acceptance as a named verb** ever
+fires — UVH's "ordinary code-review sessions" are its observed
+substitute — and the retirement question, if silence persists, is
+the verb, not a merge into `findings.md`.
+
+**FS2-03 (word budgets) — confirmed and strengthened.** The policy
+has already retired fixed word caps in three places — file-map
+(derived, "noise, not size"), decision-log (entry-count primary;
+the old file-level word budget removed for tripping on healthy
+density), and the every-task read load (no aggregate cap) — each
+time naming the exact pathology the field showed: a permanently red
+check "training agent and maintainer to ignore the size check".
+**Backlog Active's fixed 1,500-word cap is the straggler**, and it
+is precisely the budget that stood over in 10/12 Video Helper
+sessions. The remedy sharpens from "add a quality-bar doctrine" to
+"apply the policy's own established design to its last fixed word
+cap", plus the recorded quality-stop clause for prune-to targets.
+
+**FS2-04 (rulebook accretion) — qualified, remedy reshaped.** The
+993-vs-4,502 comparison overstated: Route Plotter's weight sits in
+its 22 KB README (hot, and already budgeted), so total hot surface
+is comparable across the projects. What survives exactly as found:
+`AGENTS.md` — the heaviest always-loaded file in two of three
+projects — is outside the budget system, and the validator
+implements only the four reference docs although both
+`memory-policy.md` and `end-of-task.md` name "project
+standards/process/infra docs" in the same row. The remedy is now a
+completeness fix: name the root rulebooks (AGENTS.md included) in
+the policy row and implement them in **both** check-memory forks.
+
+**FS2-05 (session closes) — half withdrawn.** `end-of-task.md`
+already ships everything the SESSION-CHECKPOINT candidate proposed:
+the lite close with its trailer grammar, and a **secondary-session
+close** that ends in a handoff block by design. Re-read against
+that, part of the "unclosed" evidence is the designed mechanism
+operating (the autojazz batch "ended in a handoff"; the maintainer's
+chat coordination is the advisory-claim protocol `memory-policy.md`
+→ "One writer at a time" prescribes). What survives: at least two
+genuinely untidy endings (uncommitted memory edits at stop), and
+`Close: lite` at zero firings despite being referenced in the
+Video Helper's own rulebooks — reachable and unused. **The
+SESSION-CHECKPOINT candidate is withdrawn**; the residue becomes a
+lite-close watch. The substitution-register line "dispatch
+substitute: hand coordination" is likewise corrected — that hand
+coordination is a shipped framework mechanism, not an ad-hoc
+replacement.
+
+**FS2-06 (cloud-sync claim) — confirmed unchanged.** The
+retirement stands as written.
+
+**Section 14 (sequencing) — error acknowledged.** The claim that
+the five candidates "touch disjoint files" was wrong on its own
+listing: BUDGET-QUALITY-BAR and RULEBOOK-BUDGET both edit
+`memory-policy.md` and both validator forks. They are merged into
+one candidate (BUDGET-TRUTH) at triage.
+
+**Section 6 caveat.** The validator natural experiment is stated
+one notch too strongly: both projects overshoot budgets *between*
+maintenance events (UVH reached 39/20 entries before its third
+rotation). The validator's demonstrated effect is a shorter
+response window, not prevented overshoot.
+
+**Net position after interrogation.** Six findings → five effective
+(FS2-05 demoted to a watch); five candidates → two workable repo
+items (CLOUD-TRUTH; BUDGET-TRUTH, merged), one maintainer-driven
+pilot already on the wish-list (WAVES-PILOT — its run would also
+produce the FS2-01/FS2-02 observables), and two watches
+(review-acceptance firing; lite-close firing). SESSION-CHECKPOINT
+withdrawn. The retirement is unaffected. Queue changes from this
+triage are recorded in the decision log and the backlog records,
+not here.

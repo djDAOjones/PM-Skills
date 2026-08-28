@@ -12,6 +12,59 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-28 — Run-two interrogation, and the queue refills
+
+**Decision:** on the maintainer's direction, the study's conclusions
+were interrogated against the four distributed files its remedies
+had targeted without reading, corrections filed as a same-day
+addendum to `self/evaluations/2026-08-28-field-study-2.md`, and the
+backlog refactored for the next wave. Corrections that changed the
+triage: FS2-02's remedy was aimed at the wrong object (`review.md`
+is run-acceptance, not whole-repo production — the watch is re-aimed
+at the verb itself); FS2-05 half-withdrew (end-of-task already
+ships the lite close and the secondary-session handoff, and part of
+the "unclosed sessions" evidence is that machinery operating —
+SESSION-CHECKPOINT is withdrawn); the study's "disjoint files"
+sequencing claim was wrong, so BUDGET-QUALITY-BAR and
+RULEBOOK-BUDGET merged into one item. The refactor also
+surfaced a live validator bug: rewording DATA-MIG's `blocked-on`
+with an em-dash made its by-design ITEM-AGE warning vanish —
+`check-memory` splits the view line on the first em-dash before
+matching flags, so flag parsing, standing-age, and the date die
+silently, and VOICE-INTAKE's original wording shows the defect
+predates today. Both records were reworded em-dash-free as
+mitigation and the fix is ticketed (FLAGS-EMDASH, both forks, the
+FILEMAP-WRAP shape again). Queue after the refactor —
+Current: CLOUD-TRUTH, BUDGET-TRUTH, FLAGS-EMDASH (all workable
+today).
+Next: WAVES-PILOT (promoted from the wish-list, maintainer-driven;
+Route Plotter's filed review round is the ready corpus),
+VOICE-INTAKE (moved out of Current at its sixth pass — a blocked
+item should not headline the wave; inputs-or-cut stands with the
+maintainer). Icebox: unchanged except DATA-MIG, whose hold is
+re-worded from "trigger unfired" to "maintainer confirms" — the
+Derry Lane register is a plausible claimant, and the record had
+not been re-judged since that evidence arrived. Wish-list: two
+watches (review-acceptance, lite-close), ROADMAP-DIST,
+NEXT-FRAGMENTS.
+
+**Rationale:** an adversarial pass over one's own findings is the
+study's Phase 6 applied to the study itself, and it earned out —
+three of six findings changed shape on contact with the current
+files, which is exactly the re-finds-what-is-fixed failure the
+instrument warns about, caught before any edit shipped. The
+refactor is maintainer-directed triage, which is what licenses
+wish-list promotion (promotion is never automatic).
+
+**Alternatives:** leave the candidates on the wish-list awaiting a
+separate Start B pick (rejected — the maintainer's "refactor the
+backlog ready for the next wave" is that pick); promote DATA-MIG
+to Next on the Derry Lane evidence (rejected — the confirm is the
+maintainer's, and `brief.md` still carries the matching deferral);
+keep VOICE-INTAKE in Current (rejected — six passes of "still
+blocked" in the headline slot stopped being informative a pass
+ago).
+
 ## 2026-08-28 — Reflection run two: the field runs a different framework
 
 **Decision:** reflection run two executed as the first field study

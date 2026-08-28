@@ -2,22 +2,24 @@
 id: VOICE-INTAKE
 name: Voice-memo transcript intake
 status: todo
-milestone: current
+milestone: next
 flags: detail, blocked
-blocked-on: maintainer inputs — one or more real raw transcripts plus the external preparation prompts (ticket → "Inputs needed at pick")
+blocked-on: maintainer inputs, or the decision to cut; one or more real raw transcripts plus the external preparation prompts (ticket section "Inputs needed at pick"); passed over at six refactors now
 date: 2026-08-18
 grades: Medium / Medium / Low / Low
-order: 1
+order: 2
 summary: investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features / approach / tasks derived, results factored into the roadmap or backlog. The maintainer's current method, run today outside the framework; viability and worth are the questions.
 ---
 # VOICE-INTAKE — Voice-memo transcript intake
 
-> **Status:** Current — the next arc, blocked on maintainer inputs
-> (real raw transcripts plus the external preparation prompts).
-> **Grades:** Medium / Medium / Low / Low — the investigation
-> re-grades. **Last assessed:** 2026-08-18 — promoted from the
-> Icebox at the first Re-assess pass (4.9.0); runnable the moment
-> the inputs land.
+> **Status:** Next — blocked on maintainer inputs (real raw
+> transcripts plus the external preparation prompts), or the
+> decision to cut. **Grades:** Medium / Medium / Low / Low — the
+> investigation re-grades. **Last assessed:** 2026-08-28 — moved
+> from Current at the run-two triage (its sixth pass): Current now
+> holds the field-study wave, and a blocked item should not
+> headline it. Still runnable the moment the inputs land; the
+> inputs-or-cut decision stands with the maintainer.
 
 ## Intent
 

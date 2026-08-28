@@ -12,11 +12,15 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
-| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Current #1 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs — one or more real raw transcripts plus… |
+| **[CLOUD-TRUTH](tickets/CLOUD-TRUTH.md)** | Retire the cloud-sync fiction | Current #1 | Retire the "unsupported" claim in the AGENTS template's hostile-filesystem guard — every deployment on record, this repository included, lives on a… | Todo |
+| **[BUDGET-TRUTH](tickets/BUDGET-TRUTH.md)** | Make the size checks tell the truth | Current #2 | The budget system catches up with field evidence, three parts, one release — backlog Active loses the last fixed word cap (re-derived per the… | Todo |
+| **[FLAGS-EMDASH](tickets/FLAGS-EMDASH.md)** | Validator flag parsing dies on an em-dash | Current #3 | Check-memory splits the backlog view line on the first em-dash before matching bracketed flags, so an em-dash inside a flag body silently defeats… | Todo |
+| **[WAVES-PILOT](tickets/WAVES-PILOT.md)** | Pilot the findings-to-waves pipeline | Next #1 | Run findings.md + improvement-waves.md end-to-end in a real consuming project and file the result as a field report — both prompts shipped 2026-08-27… | Maintainer — held |
+| **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Next #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs, or the decision to cut; one or more real… |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
 | **[JANITOR-WRITE](tickets/JANITOR-WRITE.md)** | Auto-run maintenance verbs | Icebox #2 | Graduated autonomy, Reconcile rung first; a blanket sign-off does not open this gate. | Blocked — per-verb scenario green + explicit per-verb maintainer… |
 | **ARCH-RECALL** | Recall over cold storage | Icebox #3 | Richer archive INDEX summaries + a search-then-skim pass; embeddings only if evidence demands. · Medium / Medium / Low / Low | Blocked — a consuming project reports missed-precedent pain |
-| **DATA-MIG** | Data-migration guidance | Icebox #4 | Hard rule "no irreversible data change without a documented back-out" + DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose → execute →… | Blocked — first consuming project with persistent user data |
+| **DATA-MIG** | Data-migration guidance | Icebox #4 | Hard rule "no irreversible data change without a documented back-out" + DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose → execute →… | Blocked — maintainer confirms the trigger fired; the Derry Lane… |
 | **[LAB-FIRST](tickets/LAB-FIRST.md)** | Work the lab before this repo | Icebox #5 | PAUSED by the maintainer 2026-08-27, until further notice — the standing order no longer gates the queue, and the ALERT flag is withdrawn. The order… | Maintainer — held |
 
 ## History

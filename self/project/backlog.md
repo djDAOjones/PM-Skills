@@ -15,25 +15,60 @@
 
 ### Current milestone
 
-<!-- Intent: the queue is EMPTY OF WORKABLE ITEMS as of 2026-08-27 — the first time in this repo's self-hosted history. Ten items shipped in one burn-down — nine releases (4.10.0 through 4.16.0) plus BACKLOG-TABLE source-only, and everything left is held on something only the maintainer or an outside event can supply. VOICE-INTAKE sits here alone because its block is the softest — real transcripts plus the external preparation prompts — but it has now been passed over at FIVE consecutive refactors, which is long enough that "still blocked" has stopped being informative. It needs the inputs or a decision to cut, not a sixth pass. -->
+<!-- Intent: the run-two wave — the field study's surviving candidates, interrogated same-day and merged where they shared files (see the 2026-08-28 addendum in self/evaluations/2026-08-28-field-study-2.md), plus one bug the refactor itself surfaced. All three scoped, all releases: CLOUD-TRUTH retires the one shipped rule every deployment contradicts; BUDGET-TRUTH finishes the policy's own de-fixed-cap design where the field showed it still bites; FLAGS-EMDASH fixes the validator parser that an em-dash inside a flag body silently defeats. The queue stopped being empty-of-workable on 2026-08-28, by maintainer-directed triage. -->
 
+- [ ] **CLOUD-TRUTH Retire the cloud-sync fiction**
+  [detail](tickets/CLOUD-TRUTH.md) (2026-08-28) — retire the "unsupported"
+  claim in the AGENTS template's hostile-filesystem guard — every
+  deployment on record, this repository included, lives on a cloud-synced
+  path — and add the operational cloud-sync section to the
+  DEV-INFRASTRUCTURE template, where both coding projects independently
+  hand-wrote theirs. One release, two template files. · Medium / Low / Low
+  / Low
+- [ ] **BUDGET-TRUTH Make the size checks tell the truth**
+  [detail](tickets/BUDGET-TRUTH.md) (2026-08-28) — the budget system
+  catches up with field evidence, three parts, one release — backlog
+  Active loses the last fixed word cap (re-derived per the policy's own
+  noise-not-size principle), prune-to targets gain the recorded
+  quality-stop clause both projects invented, and the validator's
+  reference-doc sweep gains the root rulebooks the policy row already
+  names (AGENTS.md included, both check-memory forks). · High / Medium /
+  Medium / Low
+- [ ] **FLAGS-EMDASH Validator flag parsing dies on an em-dash**
+  [detail](tickets/FLAGS-EMDASH.md) (2026-08-28) — check-memory splits the
+  backlog view line on the first em-dash before matching bracketed flags,
+  so an em-dash inside a flag body silently defeats flag parsing, the
+  standing-age check, and date extraction; gen-backlog happily emits such
+  lines, so the two tools disagree about the grammar. Fix the parser in
+  both forks (patch release); the FILEMAP-WRAP shape again. · Medium / Low
+  / Low / Low
+
+### Next milestone
+
+<!-- Intent: what needs the maintainer before it runs. WAVES-PILOT (promoted from the wish-list on the maintainer's direction) validates findings.md + improvement-waves.md in a real consuming project — Route Plotter's filed review round is a ready corpus — and its report carries the run-two observables. VOICE-INTAKE moved here from Current at its sixth pass: still blocked on the transcripts-plus-prompts inputs, or the decision to cut; a blocked item should not headline the workable wave. -->
+
+- [ ] **WAVES-PILOT Pilot the findings-to-waves pipeline**
+  [detail](tickets/WAVES-PILOT.md) [maintainer] (2026-08-28) — run
+  findings.md + improvement-waves.md end-to-end in a real consuming
+  project and file the result as a field report — both prompts shipped
+  2026-08-27 unvalidated in use. Route Plotter is the natural target: its
+  filed 2026-08-26 review round is a ready-made findings corpus, and the
+  run doubles as the next field report carrying the run-two observables. ·
+  High / Medium / Low / Low
 - [ ] **VOICE-INTAKE Voice-memo transcript intake**
-  [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs — one or
-  more real raw transcripts plus the external preparation prompts (ticket
-  → "Inputs needed at pick")] (2026-08-18) — investigate a
+  [detail](tickets/VOICE-INTAKE.md) [blocked: maintainer inputs, or the
+  decision to cut; one or more real raw transcripts plus the external
+  preparation prompts (ticket section "Inputs needed at pick"); passed
+  over at six refactors now] (2026-08-18) — investigate a
   transcript-intake workflow — verb + raw transcript + triage: topic cues
   gathered, the transcript rebuilt for quality, features / approach /
   tasks derived, results factored into the roadmap or backlog. The
   maintainer's current method, run today outside the framework; viability
   and worth are the questions. · Medium / Medium / Low / Low
 
-### Next milestone
-
-<!-- Intent: empty, deliberately, and it should stay empty until something changes. Refilling it from held items would misrepresent the queue; refilling it from the wish-list needs the maintainer, because wish-list promotion is never automatic (session-start Start B). Three items wait there: NEXT-FRAGMENTS (lab-side, paused with LAB-FIRST), ROADMAP-DIST (distribute the roadmap renderer once this repo has used it), and WAVES-PILOT (run findings.md + improvement-waves.md against a real consuming project — the one run that would close the unvalidated gap BOTH prompts shipped with). -->
-
 ### Icebox
 
-<!-- Intent: five held items, none of whose triggers fired during the burn-down. PM-MCP (prototype leg, lab work). JANITOR-WRITE (per-verb sign-off — and its line has now been drawn from both sides: 4.12.0 held that delegation licences a maintenance verb where automation does not, 4.14.0 that a read-only pass needs no gate at all; what remains is genuinely the write ladder). ARCH-RECALL (ARCH-RETENTION lifted the retention cap this morning, so only the missed-precedent evidence trigger is left — this item is now one report away). DATA-MIG (42 d, age-by-design per ITEM-AGE; still no consuming project with persistent user data). LAB-FIRST (maintainer-paused; resumes only on their word). -->
+<!-- Intent: five held items. PM-MCP (prototype leg, lab work). JANITOR-WRITE (per-verb sign-off; the write ladder is what remains). ARCH-RECALL (still one report away — run two surfaced no missed-precedent pain, so its trigger stays unfired). DATA-MIG (re-assessed 2026-08-28: the Derry Lane register is a plausible trigger claimant, so the hold is now a maintainer confirm, not an unfired trigger). LAB-FIRST (maintainer-paused; resumes only on their word). -->
 
 - [ ] **PM-MCP Programmatic memory interface**
   [detail](tickets/PM-MCP.md) [blocked: harness-client run of the lab
@@ -50,12 +85,13 @@
   project reports missed-precedent pain] (2026-08-09) — richer archive
   INDEX summaries + a search-then-skim pass; embeddings only if evidence
   demands. · Medium / Medium / Low / Low
-- [ ] **DATA-MIG Data-migration guidance** [blocked: first consuming
-  project with persistent user data] (2026-07-16) — hard rule "no
-  irreversible data change without a documented back-out" +
-  DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose →
-  execute → reconcile shape. Grades when triggered: High / Medium / Low /
-  Low.
+- [ ] **DATA-MIG Data-migration guidance** [blocked: maintainer confirms
+  the trigger fired; the Derry Lane Notion register, with live states
+  added and hand-run propose/confirm/execute migrations, is a plausible
+  first claimant] (2026-07-16) — hard rule "no irreversible data change
+  without a documented back-out" + DEV-INFRASTRUCTURE section reusing the
+  upgrade snapshot → propose → execute → reconcile shape. Grades when
+  triggered: High / Medium / Low / Low.
 - [ ] **LAB-FIRST Work the lab before this repo** [maintainer]
   [detail](tickets/LAB-FIRST.md) (2026-08-23) — PAUSED by the maintainer
   2026-08-27, until further notice — the standing order no longer gates
