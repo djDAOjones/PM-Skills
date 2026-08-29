@@ -12,6 +12,36 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-08-30 — MEM-BUDGETS: budgets recalibrated by read-cost tier
+
+**Decision:** shipped 4.20.0. Memory budgets raised — Active items
+40→60 (per-item guard 200→250 words), decision-log live entries
+20→45 (oldest-entry age 90→120 days), wish-list 25→60, trajectory
+2,000→4,000 words, tickets soft ~600→~900 words. Held deliberately:
+reference-doc 3,500 (hot whole-file), the per-entry guards, the
+derived file-map budget, doc-deltas, lite-close, standing-item and
+`pruneToFraction`. The lab received the same raise as a lab-owned
+`lab/project/memory-policy.md` override — its frozen `pm_skills/`
+baseline copy stays untouched, because that copy is comparison
+apparatus for experiments, not live policy.
+
+**Rationale:** maintainer order 2026-08-30 ("raise the limits of
+current release and labs between 1 and 2.5, wherever seems
+worthwhile"), backed by field evidence: the lab ran 34–35 live
+decision entries against 20 with no quality loss, and two external
+critiques misread that overrun as hygiene drift when it was
+calibration. Tiering rule (generous where reads are cold or
+sectional, tight where every session pays) now stated in the policy
+file.
+
+Supersedes: 2026-08-28 — Burn-down stop (budget note only) — the
+prune required at 20/20 is resolved by recalibration; this entry
+stands at 21/45.
+
+**Alternatives:** a uniform 2.5× (rejected — hot-surface budgets
+price session reads, not storage); per-project tuning only
+(rejected — the defaults themselves were the reported pressure).
+
 ## 2026-08-28 — Burn-down stop: the queue is maintainer-blocked
 
 **Decision:** the epic burn-down stops on `epic.md`'s normal

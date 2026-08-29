@@ -27,6 +27,15 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
+<summary><strong>Phase: Field calibration (2026-08-30)</strong> — 1 item(s)</summary>
+
+| Item | Outcome |
+| --- | --- |
+| `MEM-BUDGETS` | (2026-08-30) — memory budgets recalibrated upward by read-cost tier (cold/warm surfaces ~1.5–2.4×; hot Active moderate; quality guards held), on maintainer field evidence — the… |
+
+</details>
+
+<details>
 <summary><strong>Phase: Reflection instrument (2026-08-28)</strong> — 9 item(s)</summary>
 
 | Item | Outcome |

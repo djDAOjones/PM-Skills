@@ -36,6 +36,57 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.20.0 — 2026-08-30
+
+MEM-BUDGETS: the memory budgets are recalibrated upward — the first
+value recalibration since they were set.
+
+The maintainer reported the wish-list, backlog and decision-log
+limits had felt too tight for some time, and the field record
+agrees: the framework's own deployments ran 34–35 live decision-log
+entries against the budget of 20 with no observed quality loss, and
+two external reviews then cited the overrun as hygiene drift when
+it was calibration. A budget that sits permanently red trains every
+reader to ignore the size check — the same pathology that retired
+the fixed hot-set cap and the 1,500-word Active cap in earlier
+releases.
+
+The raise is tiered by read cost, not uniform:
+
+| Budget | Old | New |
+| --- | ---: | ---: |
+| `backlog.md` Active open items | 40 | 60 |
+| `backlog.md` Active per-item guard | ~200 words | ~250 words |
+| `decision-log.md` live entries | 20 | 45 |
+| `decision-log.md` oldest-entry age | 90 days | 120 days |
+| `wish-list.md` open items | 25 | 60 |
+| `trajectory.md` | 2,000 words | 4,000 words |
+| `tickets/<ID>.md` per item | soft ~600 words | soft ~900 words |
+
+Cold and warm surfaces take the generous end (raising them costs a
+session nothing — the decision log's hot read stays "latest 10
+headings" at any live-log length); the hot-sectional Active list
+takes a moderate raise because every session reads it. Held at
+current values deliberately: the reference-doc guideline (3,500
+words — hot whole-file reads), the per-entry and per-item quality
+guards' word shapes beyond the small Active-guard adjustment, the
+derived file-map budget (already scales with the project),
+doc-deltas, lite-close and standing-item caps (discipline caps,
+not capacity), and `pruneToFraction`. The tiering rule is now
+stated in the policy file so future recalibrations keep the shape.
+
+Changed distributed files: `pm_skills/memory-policy.md` only (the
+machine block and the human table together, per that file's own
+rule). No budget-block keys changed — values only.
+
+Upgrade actions:
+
+1. Replace `pm_skills/memory-policy.md` with the 4.20.0 copy.
+2. If your project recorded its own tuned numbers (a file-map
+   coefficient in `conventions.md`, a local budget decision), keep
+   your tunings — these are new defaults, not an override of
+   recorded local decisions.
+
 ## 4.19.0 — 2026-08-28
 
 RETIRE-SWEEP: `release.md` step 6 gains the check that the coverage

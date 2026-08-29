@@ -1,5 +1,13 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: Field calibration (2026-08-30)
+
+- MEM-BUDGETS (2026-08-30) — memory budgets recalibrated upward by
+  read-cost tier (cold/warm surfaces ~1.5–2.4×; hot Active moderate;
+  quality guards held), on maintainer field evidence — the first
+  value recalibration since the budgets were set; lab got the same
+  raise as a lab-owned policy override (4.20.0) — see decision-log.
+
 ## Phase: Reflection instrument (2026-08-28)
 
 - RETIRE-SWEEP (2026-08-28) — release.md step 6 gains the check
