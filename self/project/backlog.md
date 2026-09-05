@@ -42,7 +42,7 @@
 
 ### Icebox
 
-<!-- Intent: five held items, every hold re-checked 2026-08-28 and every one still holding. PM-MCP (needs the lab prototype's harness-client run; LAB-FIRST is paused, so the leg cannot move). JANITOR-WRITE (per-verb scenario green plus per-verb sign-off; the scenario half now shares CLOSE-SCENARIO-DEBT's dependency on a blinded runner). ARCH-RECALL (run two surfaced no missed-precedent pain — trigger unfired). DATA-MIG (maintainer confirms the trigger; the Derry Lane register remains the plausible claimant). LAB-FIRST (maintainer-paused; resumes only on their word). -->
+<!-- Intent: six held items — the five re-checked 2026-08-28 all still holding, plus WCAG-3 filed 2026-08-30. PM-MCP (needs the lab prototype's harness-client run; LAB-FIRST is paused, so the leg cannot move). JANITOR-WRITE (per-verb scenario green plus per-verb sign-off; the scenario half now shares CLOSE-SCENARIO-DEBT's dependency on a blinded runner). ARCH-RECALL (run two surfaced no missed-precedent pain — trigger unfired). DATA-MIG (maintainer confirms the trigger; the Derry Lane register remains the plausible claimant). LAB-FIRST (maintainer-paused; resumes only on their word). WCAG-3 (the assessment is queued, not the change; the trigger is WCAG 3.0 reaching Candidate Recommendation or a consuming project's compliance regime requiring it, and the draft's status was NOT verified at filing — re-check w3.org before judging the hold). -->
 
 - [ ] **PM-MCP Programmatic memory interface**
   [detail](tickets/PM-MCP.md) [blocked: harness-client run of the lab
@@ -74,5 +74,15 @@
   (djDAOjones/PM-Skills-lab, checkout in CascadeProjects) before picking
   new work here. UPSTREAM-ASSIM shipped 2026-08-24; R2 is the open leg and
   now needs a fresh project. Only the maintainer resumes or clears this.
+- [ ] **WCAG-3 WCAG 3.0 — assess the implications for the default UI
+  bar** [detail](tickets/WCAG-3.md) [blocked: WCAG 3.0 reaches W3C
+  Candidate Recommendation, or a consuming project's own compliance regime
+  requires it — whichever fires first; maintainer confirms the trigger]
+  (2026-08-30) — decide what pm-skills changes when WCAG 3.0 matures. The
+  framework ships "WCAG 2.2 AAA by default" to every consuming project,
+  restated across seven distributed sites, and 3.0 replaces the A/AA/AAA
+  conformance model outright — so the default has no direct translation
+  and a partial change would ship a contradiction. Assessment only; no
+  adoption before the standard is stable. · High / Medium / Medium / Low
 
 <!-- generated:records:end -->

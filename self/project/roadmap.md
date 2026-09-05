@@ -19,6 +19,7 @@
 | **ARCH-RECALL** | Recall over cold storage | Icebox #3 | Richer archive INDEX summaries + a search-then-skim pass; embeddings only if evidence demands. · Medium / Medium / Low / Low | Blocked — a consuming project reports missed-precedent pain |
 | **DATA-MIG** | Data-migration guidance | Icebox #4 | Hard rule "no irreversible data change without a documented back-out" + DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose → execute →… | Blocked — maintainer confirms the trigger fired — the Derry Lane… |
 | **[LAB-FIRST](tickets/LAB-FIRST.md)** | Work the lab before this repo | Icebox #5 | PAUSED by the maintainer 2026-08-27, until further notice — the standing order no longer gates the queue, and the ALERT flag is withdrawn. The order… | Maintainer — held |
+| **[WCAG-3](tickets/WCAG-3.md)** | WCAG 3.0 — assess the implications for the default UI bar | Icebox #6 | Decide what pm-skills changes when WCAG 3.0 matures. The framework ships "WCAG 2.2 AAA by default" to every consuming project, restated across seven… | Blocked — WCAG 3.0 reaches W3C Candidate Recommendation, or a… |
 
 ## History
 
