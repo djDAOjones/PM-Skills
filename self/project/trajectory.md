@@ -7,7 +7,7 @@
   evidence (source-only): `vinyl-sorting` (pm-next v0.2 on Claude
   Code, 115 commits over three days, public source, tracked lane)
   and `ebay-tool` (pm-next v0.2 on Codex, 15 commits in a day,
-  private source, local lane plus a tracked snapshot note). Fourteen
+  private source, local lane plus a tracked snapshot note). Nine
   tracked reports and two session archives (13 Claude Code sessions,
   134 Codex rollouts), with the maintainer's prompts, the agent's own
   memory, validator runs on clean exports, and snapshot notes that
