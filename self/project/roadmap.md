@@ -28,6 +28,15 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
+<summary><strong>Phase: pm-next field evidence (2026-09-09)</strong> — 1 item(s)</summary>
+
+| Item | Outcome |
+| --- | --- |
+| `FIELD-HARVEST-NEXT` | (2026-09-09) — the first two real-project runs of the lab's successor prototype filed as consuming-project evidence (source-only): `vinyl-sorting` (pm-next v0.2 on Claude Code,… |
+
+</details>
+
+<details>
 <summary><strong>Phase: Field calibration (2026-08-30)</strong> — 1 item(s)</summary>
 
 | Item | Outcome |

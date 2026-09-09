@@ -1,5 +1,23 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: pm-next field evidence (2026-09-09)
+
+- FIELD-HARVEST-NEXT (2026-09-09) — the first two real-project runs
+  of the lab's successor prototype filed as consuming-project
+  evidence (source-only): `vinyl-sorting` (pm-next v0.2 on Claude
+  Code, 115 commits over three days, public source, tracked lane)
+  and `ebay-tool` (pm-next v0.2 on Codex, 15 commits in a day,
+  private source, local lane plus a tracked snapshot note). Fourteen
+  tracked reports and two session archives (13 Claude Code sessions,
+  134 Codex rollouts), with the maintainer's prompts, the agent's own
+  memory, validator runs on clean exports, and snapshot notes that
+  record the wrong-framework install, the shared-worktree race, and
+  deleted records surviving as cloud-only placeholders that hang the
+  validator. Found by sweeping every checkout on the machine for the
+  pm-next signature; a 2026-09-02 attempt to file this from the vinyl
+  session had been blocked by the harness. The tier README now states
+  the pm-next join key. No release. See decision-log 2026-09-09.
+
 ## Phase: Field calibration (2026-08-30)
 
 - MEM-BUDGETS (2026-08-30) — memory budgets recalibrated upward by

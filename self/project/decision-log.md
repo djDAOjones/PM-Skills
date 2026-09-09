@@ -12,6 +12,42 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-09 — FIELD-HARVEST-NEXT: pm-next runs file in this tier, by lane
+
+**Decision:** the two real-project runs of the lab's successor
+prototype — `vinyl-sorting` and `ebay-tool`, both pm-next v0.2
+vendored from the lab at `530637a` on 2026-08-30 — are filed in
+`self/field-reports/`, not in the lab, under the tier's existing
+lane rule: vinyl's public repository puts its memory, rulebooks, git
+log, prompts, agent memory and validator run in the tracked lane
+with only the session logs local; the eBay Tool's private repository
+puts everything local except a snapshot note that names no product
+detail beyond one paragraph. The join key for a pm-next project
+names the prototype version and the lab commit, and the tier README
+now says so.
+
+**Rationale:** the maintainer asked for pm-next instances to be
+found and archived "in the pm-skills repo", and the lab's own
+evidence policy (`lab/RAW-EVIDENCE.md`) keeps raw material out of
+its history anyway, so this tier's gitignored local lane is the only
+place the verbatim logs can live; the lab can cite them by path when
+it writes the R2 finding. The vinyl session that was asked to file
+this on 2026-09-02 could not write into this checkout (the harness
+blocks a consuming-project session from doing so) and its staged
+output was lost — so harvests run from a session opened here, from
+source, with the generator kept beside the evidence. Deleted-record
+placeholders on the eBay checkout hang both pm-next validators, so
+validator evidence is taken from a clean `git archive` outside the
+synced path, and the notes say why.
+
+**Alternatives:** filing in the lab's `lab/raw-evidence/` lane
+(rejected — the maintainer named this repository, and the lab's lane
+is for experiment output rather than consuming-project reports);
+tracking the eBay exports after redaction (rejected — the lane rule
+is what is already public upstream, and a private repository is
+not); reusing the 2026-09-02 harvest shape (moot — it did not
+survive).
+
 ## 2026-08-30 — MEM-BUDGETS: budgets recalibrated by read-cost tier
 
 **Decision:** shipped 4.20.0. Memory budgets raised — Active items
