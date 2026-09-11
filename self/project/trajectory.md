@@ -1,5 +1,14 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: evidence closes (2026-09-12)
+
+- READ-TIER-BEFORE-CHANGE (2026-09-12) — the read tier timed as
+  agents keep it (4.20.1): `session-start.md` and the root `AGENTS.md`
+  template now say the hot reads are due before the task's first
+  change to the tree, not as the first act — the behaviour three
+  studies measured at 90–100% (before the first change) versus 0–25%
+  (first thing). Tier contents unchanged — see decision-log.
+
 ## Phase: field grading (2026-09-11)
 
 - FIELD-PM-GRADING (2026-09-11) — the framework's project-management

@@ -12,6 +12,26 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-12 — READ-TIER-BEFORE-CHANGE: the read tier's letter matches its substance
+
+**Decision:** shipped 4.20.1. The hot reads are due before the
+task's first change to the tree; the tier's contents are unchanged.
+
+**Rationale:** the field grading (47 conversations, two harnesses),
+the clean-room ablation and the dependent-item stream all measured
+memory consulted before the first change 90–100% of the time and as
+the first act 0–25%. "Read every task" as a first act was a ritual
+nobody kept while its substance was kept everywhere; a rule broken
+in letter trains readers to discount the rulebook. Patch, not minor:
+wording only, no new files. Evidence recorded in the prompt's own
+comment and in the CHANGELOG entry.
+
+**Alternatives:** leave the wording (rejected — the gap between
+letter and practice is itself a finding of the field study, D7
+rulebook divergence); demand the reads first thing (rejected — no
+evidence that first-act reading buys anything the before-change
+reading does not, and it fights how every harness orients).
+
 ## 2026-09-11 — EVIDENCE-PLAN: what three studies commission, and in what order
 
 **Decision (maintainer, on the session's recommendation):** three

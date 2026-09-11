@@ -36,6 +36,42 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.20.1 — 2026-09-12
+
+READ-TIER-BEFORE-CHANGE: the read tier is timed as agents keep it —
+the hot reads are due before the task's first change to the tree,
+not as the session's first act.
+
+Three studies measured the same thing: the field grading of three
+real projects (47 substantive conversations, two harnesses), the
+clean-room ablation (32 sessions) and the dependent-item stream (37
+sessions, two models). Shipped sessions consulted project memory
+before their first code change 90–100% of the time, and did so as
+their first act 0–25% of the time; they orient in the code first,
+then read the record, then edit. The contract's letter ("read every
+task", under "Before every task") described a ritual nobody kept,
+while its substance was kept everywhere. A rule that is broken in
+letter and kept in substance trains readers to discount the rest of
+the rulebook, so the letter now says what holds: the tier's contents
+are unchanged; its timing is "before the first change".
+
+Changed distributed files: `pm_skills/prompts/session-start.md`
+(timing paragraph and a one-line comment recording the evidence;
+Hot whole-file line), `pm_skills/templates/AGENTS.md` ("Read tiers"
+intro and the Hot whole-file line).
+
+Upgrade actions:
+
+1. Replace `pm_skills/prompts/session-start.md` with the 4.20.1
+   copy.
+2. In your root `AGENTS.md` → "Before every task" → "Read tiers",
+   append to the intro sentence: "The hot reads are due **before the
+   task's first change to the tree**, not necessarily as the
+   session's first act: orienting in the code first is fine; editing
+   before the record has been read is not." — and change the Hot
+   whole-file line's "read every task" to "read every task, before
+   the first change". No file moves; no other wording changes.
+
 ## 4.20.0 — 2026-08-30
 
 MEM-BUDGETS: the memory budgets are recalibrated upward — the first

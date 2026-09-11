@@ -30,9 +30,13 @@ explain concepts back unless asked.
 ### Read tiers
 
 Project memory has four read tiers. Load only what each tier
-prescribes — this keeps session context bounded.
+prescribes — this keeps session context bounded. The hot reads are
+due **before the task's first change to the tree**, not necessarily
+as the session's first act: orienting in the code first is fine;
+editing before the record has been read is not.
 
-**Hot whole-file** — read every task. Reference docs, written once to a
+**Hot whole-file** — read every task, before the first change.
+Reference docs, written once to a
 natural size; they do not accrete, so each carries only a soft size
 guideline, **not** a prune target:
 

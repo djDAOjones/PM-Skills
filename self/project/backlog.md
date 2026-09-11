@@ -17,14 +17,6 @@
 
 <!-- Intent: three evidence-driven closes commissioned 2026-09-11 from the clean-room, field-grading and dependent-item studies — reword the read tier to what agents keep (READ-TIER-BEFORE-CHANGE, patch), tell projects what their harness exposes (HARNESS-ISOLATION-NOTE, minor), and require a blind second scorer on judged measures (DOUBLE-SCORE, source-only). Cheap, no usage; the long-stream experiment that would move R2 is the lab's. -->
 
-- [ ] **READ-TIER-BEFORE-CHANGE Read tier is "before your first change",
-  as agents actually do it** [detail](tickets/READ-TIER-BEFORE-CHANGE.md)
-  (2026-09-11) — reword the session-start read tier (session-start.md,
-  templates/AGENTS.md) to require the hot reads before the first code
-  change rather than as the first act, matching what every measured
-  session did — 90–100% read memory before editing, 0–25% first thing
-  (FIELD-PM-GRADING; CLEANROOM-AB Amendment 3). Patch release. · High /
-  High / Low / Low
 - [ ] **HARNESS-ISOLATION-NOTE Tell consuming projects what their
   harness exposes by default** [detail](tickets/HARNESS-ISOLATION-NOTE.md)
   (2026-09-11) — add a "Harness surface" subsection to the

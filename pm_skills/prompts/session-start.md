@@ -4,6 +4,17 @@ Read these files at the start of each task session. `AGENTS.md`
 may already be loaded as a global rule; the other files must be
 read explicitly.
 
+The hot reads are due **before the task's first change to the
+tree**, not necessarily as the session's first act: orienting in
+the code first is fine; editing before the record has been read is
+not.
+
+<!-- Why "before the first change": measured on real projects and in
+     the clean-room (2026-09-11), shipped sessions on two harnesses
+     read memory before their first change 90–100% of the time and as
+     their first act 0–25%. The tier is timed to the behaviour that
+     holds. -->
+
 If pasting manually, paste only what you need: the context list plus
 one Start block (A or B). The drift corrections are one-liners to
 paste individually, mid-session, as needed.
@@ -19,7 +30,7 @@ If any pasted or referenced workflow path resolves inside
 copy instead — backups hold superseded instructions and are for
 recovery, never invocation.
 
-**Hot whole-file** (read every task):
+**Hot whole-file** (read every task, before the first change):
 
 - `README.md`
 - `AGENTS.md` (skip if already loaded as a global rule)
