@@ -28,6 +28,15 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
+<summary><strong>Phase: field grading (2026-09-11)</strong> — 1 item(s)</summary>
+
+| Item | Outcome |
+| --- | --- |
+| `FIELD-PM-GRADING` | (2026-09-11) — the framework's project-management benefits graded from real projects (source-only): the clean-room's signal definitions applied to the field-reports session… |
+
+</details>
+
+<details>
 <summary><strong>Phase: pm-next field evidence (2026-09-09)</strong> — 1 item(s)</summary>
 
 | Item | Outcome |

@@ -12,6 +12,28 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-11 — FIELD-PM-GRADING: the long-horizon benefits are read from the field, the counterfactual from the clean-room
+
+**Decision (maintainer commission, in session):** the framework's
+project-management benefits — context intake, process adherence,
+decision retention, deferral discipline, progress legibility, close
+ritual, cross-session carry, long-horizon planning, drift resistance
+— are assessed from the field-reports tier with the clean-room's own
+signal definitions, and filed as an evaluation. Real projects supply
+the horizon; the clean-room's bare arms remain the only evidence of
+the substrate's absence. The two are read together, never pooled.
+
+**Rationale:** the clean-room ablation (lab, 2026-09-10) showed the
+substrate buys the record, not the code, but its independent items
+could not show the record being used later. The field archives can:
+shipped sessions consult memory before changing code 90–100% of the
+time, two thirds to nine tenths of commits maintain it, and decision
+logs cross-reference and supersede earlier entries with dated
+reasons. Limits are stated in the evaluation: no counterfactual,
+lower-bound rates, days-long streams, heuristic classification, and
+one project (eBay Tool) cannot be graded because its working threads are
+not in the tier. Detail: `self/evaluations/2026-09-11-field-pm-grading.md`.
+
 ## 2026-09-09 — FIELD-HARVEST-NEXT: pm-next runs file in this tier, by lane
 
 **Decision:** the two real-project runs of the lab's successor

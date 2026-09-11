@@ -1,5 +1,19 @@
 # Trajectory — pm-skills framework repository
 
+## Phase: field grading (2026-09-11)
+
+- FIELD-PM-GRADING (2026-09-11) — the framework's project-management
+  benefits graded from real projects (source-only): the clean-room's
+  signal definitions applied to the field-reports session archives,
+  memory exports and git logs of Route Plotter, vinyl-sorting and the
+  UoN video-helper (47 substantive conversations, two harnesses).
+  Shipped sessions read memory before their first code change
+  90–100% of the time and wrote it back 70–88%; two thirds to nine
+  tenths of commits touch memory; decision logs cite and supersede
+  earlier entries; Route Plotter's record doubled its cross-reference
+  rate after install. Evaluation:
+  `self/evaluations/2026-09-11-field-pm-grading.md`.
+
 ## Phase: pm-next field evidence (2026-09-09)
 
 - FIELD-HARVEST-NEXT (2026-09-09) — the first two real-project runs
