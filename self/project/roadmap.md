@@ -12,6 +12,9 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
+| **[READ-TIER-BEFORE-CHANGE](tickets/READ-TIER-BEFORE-CHANGE.md)** | Read tier is "before your first change", as agents actually do it | Current #1 | Reword the session-start read tier (session-start.md, templates/AGENTS.md) to require the hot reads before the first code change rather than as the… | Todo |
+| **[HARNESS-ISOLATION-NOTE](tickets/HARNESS-ISOLATION-NOTE.md)** | Tell consuming projects what their harness exposes by default | Current #2 | Add a "Harness surface" subsection to the DEV-INFRASTRUCTURE template's security baseline — what Codex (connector apps on by default, 126 tools incl.… | Todo |
+| **[DOUBLE-SCORE](tickets/DOUBLE-SCORE.md)** | Judged measures get a blind second scorer | Current #3 | Add to the field-study instrument (self/FIELD-STUDY.md, Phase 4) a rule that any judged dimension is scored twice — the second pass by a fresh… | Todo |
 | **[WAVES-PILOT](tickets/WAVES-PILOT.md)** | Pilot the findings-to-waves pipeline | Next #1 | Run findings.md + improvement-waves.md end-to-end in a real consuming project and file the result as a field report — both prompts shipped 2026-08-27… | Maintainer — held |
 | **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Next #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs, or the decision to cut — one or more… |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |

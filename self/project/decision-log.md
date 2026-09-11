@@ -12,6 +12,26 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-11 — EVIDENCE-PLAN: what three studies commission, and in what order
+
+**Decision (maintainer, on the session's recommendation):** three
+closes queued in the current milestone — READ-TIER-BEFORE-CHANGE
+(patch), HARNESS-ISOLATION-NOTE (minor), DOUBLE-SCORE (source-only) —
+executed in that order; the long-stream experiment that could move the
+lab's R2 gate is recorded lab-side (LONG-STREAM) and runs after them.
+
+**Rationale:** the ablation, the field grading and the dependent-item
+stream agree on three actionable facts: agents keep the read tier
+before their first change, not first thing (so the contract's letter
+should say that); harnesses expose surfaces a project would not expect
+(so the template should say what and how to close it); and judged
+measures need a blind second pass (one changed a findings table). Each
+is an afternoon and spends no model usage. Trimming the canon toward
+the 8-rule contract is *not* queued: the evidence covers single items
+and short streams, and only a long stream with maintenance obligations
+can say whether a minimal contract sustains the record. Detail: the
+three tickets; lab record LONG-STREAM.
+
 ## 2026-09-11 — CLAIM-RECORD: the product claim is sharpened to "a durable project record the harness will not keep for you"
 
 **Decision (maintainer, on the session's recommendation):** the

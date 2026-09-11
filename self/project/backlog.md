@@ -15,7 +15,31 @@
 
 ### Current milestone
 
-<!-- Intent: EMPTY — and empty of workable, not merely empty. The 2026-08-28 burn-down cleared the whole run-two wave (4.17.0, 4.17.1, 4.18.0, 4.18.1) and then twice refilled Current from its own findings (SILENT-LOSS-SWEEP 4.18.2, RETIRE-SWEEP 4.19.0) before stopping here. Every remaining item across Next and Icebox needs the maintainer: inputs, a target project, a trigger confirmation, or a paused order resumed. The wish-list holds five, three of them standing observables that explicitly call for no edit. A next session should not hunt for work in this file — it should ask which of the seven holds the maintainer wants to lift. -->
+<!-- Intent: three evidence-driven closes commissioned 2026-09-11 from the clean-room, field-grading and dependent-item studies — reword the read tier to what agents keep (READ-TIER-BEFORE-CHANGE, patch), tell projects what their harness exposes (HARNESS-ISOLATION-NOTE, minor), and require a blind second scorer on judged measures (DOUBLE-SCORE, source-only). Cheap, no usage; the long-stream experiment that would move R2 is the lab's. -->
+
+- [ ] **READ-TIER-BEFORE-CHANGE Read tier is "before your first change",
+  as agents actually do it** [detail](tickets/READ-TIER-BEFORE-CHANGE.md)
+  (2026-09-11) — reword the session-start read tier (session-start.md,
+  templates/AGENTS.md) to require the hot reads before the first code
+  change rather than as the first act, matching what every measured
+  session did — 90–100% read memory before editing, 0–25% first thing
+  (FIELD-PM-GRADING; CLEANROOM-AB Amendment 3). Patch release. · High /
+  High / Low / Low
+- [ ] **HARNESS-ISOLATION-NOTE Tell consuming projects what their
+  harness exposes by default** [detail](tickets/HARNESS-ISOLATION-NOTE.md)
+  (2026-09-11) — add a "Harness surface" subsection to the
+  DEV-INFRASTRUCTURE template's security baseline — what Codex (connector
+  apps on by default, 126 tools incl. GitHub write), Claude Code (Task,
+  cloud-session trigger, WebFetch) and Devin Local (web tools not
+  deniable) expose, and the three settings that close it — from the
+  clean-room hardening record. Minor release. · High / Medium / Low / Low
+- [ ] **DOUBLE-SCORE Judged measures get a blind second scorer**
+  [detail](tickets/DOUBLE-SCORE.md) (2026-09-11) — add to the field-study
+  instrument (self/FIELD-STUDY.md, Phase 4) a rule that any judged
+  dimension is scored twice — the second pass by a fresh tool-less session
+  with the rubric and the artefacts and no answer key — with agreement
+  reported and disagreements adjudicated by reading the artefact.
+  Source-only. · Medium / High / Low / Low
 
 ### Next milestone
 
