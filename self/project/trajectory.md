@@ -15,6 +15,11 @@
   settings that close each, and sibling checkouts readable on all
   three; template item 7, init Step 8 + example, GUIDE paragraph —
   see decision-log.
+- DOUBLE-SCORE (2026-09-12) — the field-study instrument requires a
+  blind second scorer on judged dimensions (source-only): a tool-less
+  session with the rubric and the artefacts only, agreement reported,
+  disagreements adjudicated by re-reading the artefact; single-scored
+  judged grades cap at Hypothesis — see decision-log.
 
 ## Phase: field grading (2026-09-11)
 

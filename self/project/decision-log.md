@@ -12,6 +12,25 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-12 — DOUBLE-SCORE: judged measures get a blind second scorer
+
+**Decision:** source-only. `self/FIELD-STUDY.md` Phase 4 now
+requires a blind second pass on any judged dimension — a fresh,
+tool-less session with the rubric and the artefacts and no key —
+with agreement reported, disagreements adjudicated by re-reading the
+artefact, and single-scored judged grades capped at *Hypothesis*.
+
+**Rationale:** in the clean-room ablation the blind scorer disagreed
+on 6 of 48 cells and was right on 2; one changed a findings table
+(the first pass missed a parked deferral in the minimal contract's
+wish-list). A judged measure with one scorer is an opinion with a
+number on it. The cost is one tool-less session per cell, once.
+
+**Alternatives:** two full passes by tool-using sessions (rejected —
+the second scorer's value is that it cannot go looking for what the
+first pass found); majority of three (rejected — adjudication by
+reading is cheaper and leaves a reason on the record).
+
 ## 2026-09-12 — HARNESS-ISOLATION-NOTE: reach out of the repo is a security-baseline item
 
 **Decision:** shipped 4.21.0. The DEV-INFRASTRUCTURE template's

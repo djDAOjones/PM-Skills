@@ -174,6 +174,22 @@ question, what to count, and how the count lies. Cover all twelve
 explicitly — a dimension with no evidence is recorded as *no
 evidence*, never omitted, because omission reads as a clean result.
 
+**Judged measures are scored twice.** Wherever a dimension's grade
+rests on judgement rather than a count (D4 always; D6, D10 and D11
+usually), a second pass scores it blind: a fresh session with no
+tools, given the rubric and the artefacts and nothing else — no
+answer key, no first-pass grades, no conversation history. Report
+agreement as a fraction of cells. Every disagreement is adjudicated
+by re-reading the artefact, never by majority or by deferring to the
+first pass; the adjudication and its reason are recorded beside the
+cell. The clean-room study (2026-09-11) is the reason: the second
+pass disagreed on 6 of 48 cells and was right on 2, one of which
+changed a findings table — the first pass had read the decision log,
+the trajectory and the records for a parked deferral and missed the
+wish-list. Cost: one tool-less session per cell, paid once per
+study; a judged grade with a single scorer is reported as
+*single-scored* and graded no higher than *Hypothesis* in Phase 5.
+
 ### D1 Arrival
 
 **Question.** How did the framework get into the project, and how
@@ -499,7 +515,9 @@ Sections with no evidence are retained and marked *no evidence*.
 6. **What is working** — framework behaviour the evidence shows is
    load-bearing and must be preserved. A study that is entirely
    negative will be read as an opinion rather than a measurement.
-7. **Findings** — prioritised, in the shape above, within the caps.
+7. **Findings** — prioritised, in the shape above, within the caps;
+   judged dimensions carry their scorer agreement and adjudications
+   (Phase 4 → "Judged measures are scored twice").
 8. **Root-cause themes** — the two or three causes behind them.
 9. **Silence and substitution register** — every verb that never
    fired, and what was used instead.

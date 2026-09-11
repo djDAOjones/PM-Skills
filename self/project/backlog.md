@@ -15,15 +15,7 @@
 
 ### Current milestone
 
-<!-- Intent: three evidence-driven closes commissioned 2026-09-11 from the clean-room, field-grading and dependent-item studies — reword the read tier to what agents keep (READ-TIER-BEFORE-CHANGE, patch), tell projects what their harness exposes (HARNESS-ISOLATION-NOTE, minor), and require a blind second scorer on judged measures (DOUBLE-SCORE, source-only). Cheap, no usage; the long-stream experiment that would move R2 is the lab's. -->
-
-- [ ] **DOUBLE-SCORE Judged measures get a blind second scorer**
-  [detail](tickets/DOUBLE-SCORE.md) (2026-09-11) — add to the field-study
-  instrument (self/FIELD-STUDY.md, Phase 4) a rule that any judged
-  dimension is scored twice — the second pass by a fresh tool-less session
-  with the rubric and the artefacts and no answer key — with agreement
-  reported and disagreements adjudicated by reading the artefact.
-  Source-only. · Medium / High / Low / Low
+<!-- Intent: the three evidence-driven closes commissioned 2026-09-11 all shipped 2026-09-12 (READ-TIER-BEFORE-CHANGE 4.20.1, HARNESS-ISOLATION-NOTE 4.21.0, DOUBLE-SCORE source-only). The lab's LONG-STREAM experiment is what could move canon next — a trim toward the 8-rule contract waits on its evidence, not on a hunch. -->
 
 ### Next milestone
 
