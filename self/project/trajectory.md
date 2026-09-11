@@ -13,6 +13,10 @@
   earlier entries; Route Plotter's record doubled its cross-reference
   rate after install. Evaluation:
   `self/evaluations/2026-09-11-field-pm-grading.md`.
+- CLAIM-RECORD (2026-09-11) — the README's opening claim sharpened to
+  what three studies support: a durable, used project record, not
+  better code on single items; the brief gains a claims constraint
+  (source-only; README is not a framework file per the MANIFEST).
 
 ## Phase: pm-next field evidence (2026-09-09)
 

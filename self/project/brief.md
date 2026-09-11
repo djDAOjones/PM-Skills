@@ -48,6 +48,10 @@ copying `pm_skills/` + the root templates, then tracking releases via
   actions; consuming projects must upgrade declaratively.
 - Checkout often lives on a cloud-synced path (OneDrive) — tooling
   must not depend on `node_modules/` being present or fresh.
+- Claims about the framework's benefit are made only for what the
+  evidence base shows — a durable, used project record — never for
+  code quality or correctness on single items (CLEANROOM-AB
+  2026-09-10/11; FIELD-PM-GRADING; CLAIM-RECORD).
 
 ## Out of scope (for now)
 

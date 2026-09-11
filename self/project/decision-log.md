@@ -12,6 +12,29 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-11 — CLAIM-RECORD: the product claim is sharpened to "a durable project record the harness will not keep for you"
+
+**Decision (maintainer, on the session's recommendation):** the
+README's opening no longer promises better code; it states what the
+substrate buys — a record of decisions, deferrals and progress that
+every session reads and extends — and says plainly that bare and
+framework sessions ship the same correct work on single items. The
+brief gains a constraint that benefit claims track the evidence base.
+
+**Rationale:** three studies agree. The clean-room ablation (four
+substrates, two full harness legs, 32 sessions) found every arm
+correct and the substrate's effect confined to retrievability. The
+field grading (three real projects, 47 conversations) found the
+record read before code changes 90–100% of the time and maintained
+by two thirds of commits. The dependent-item stream (three items that
+lean on an earlier decision or deferral, 25 Fable and 12 Opus 5 cells)
+found every arm, bare included, correct on every cell — the bare arm
+recovering what it needed from code and git history — while only the
+framework arms read and extended the record, and only they retrieved
+the parked deferrals on the probe. Detail: the lab's clean-room findings of 2026-09-10 (Amendments
+1–3a),
+`self/evaluations/2026-09-11-field-pm-grading.md`.
+
 ## 2026-09-11 — FIELD-PM-GRADING: the long-horizon benefits are read from the field, the counterfactual from the clean-room
 
 **Decision (maintainer commission, in session):** the framework's

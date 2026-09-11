@@ -3,15 +3,25 @@
 [![Lint](https://github.com/djDAOjones/PM-Skills/actions/workflows/lint.yml/badge.svg)](https://github.com/djDAOjones/PM-Skills/actions/workflows/lint.yml)
 
 A project-management layer for AI-assisted coding. It gives your AI
-agent a **memory** (files that carry your project's context between
-chat sessions), a **rulebook** (standards the agent must follow), and
-**workflows** (step-by-step procedures for building, fixing, and
-shipping). The result: every new chat starts already knowing your
-project, and the agent designs before it codes instead of improvising.
+agent a **memory** (files that carry your project's decisions,
+deferrals and progress between chat sessions), a **rulebook**
+(standards the agent must follow), and **workflows** (step-by-step
+procedures for building, fixing, and shipping). What it buys is a
+durable project record the harness will not keep for you: every new
+chat starts already knowing what was decided and why, what was parked
+and where, and what shipped — and keeps that record up to date as it
+works.
+
+It does not make a capable agent write better code on a single task.
+Measured on the same items, bare and framework sessions ship the same
+correct work; the difference is what the next session can build on.
+The evidence is filed in this repository (`self/evaluations/`) and in
+the research fork's findings.
 
 Built for solo and small-team builders who own the product direction
-but want the AI to handle implementation — without losing context,
-drifting off-plan, or wasting tokens.
+but want the AI to handle implementation across many sessions —
+without losing decisions, re-litigating them, or letting parked work
+disappear.
 
 Defaults: Carbon Design System, WCAG 2.2 AAA accessibility, Nielsen
 usability heuristics, JSDoc, and a lean invariant-led testing
