@@ -12,6 +12,28 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-12 — HARNESS-ISOLATION-NOTE: reach out of the repo is a security-baseline item
+
+**Decision:** shipped 4.21.0. The DEV-INFRASTRUCTURE template's
+"Security baseline" gains item 7, harness surface — one line per
+harness in use, what it exposes beyond the tree and the setting that
+closes it, re-verified at each harness upgrade — seeded with the
+clean-room hardening findings for Codex, Claude Code and Devin.
+
+**Rationale:** the baseline covered secrets coming into the repo but
+not the agent reaching out of it; the 2026-09-10 hardening found
+Codex serving 126 account-connector tools (GitHub write, deploys)
+by default, Claude Code's tool set moving between versions, Devin
+ignoring tool-name denies for web tools, and all three reading
+sibling checkouts. Minor, not patch: a new template section item
+with new guidance. Facts are dated and marked "verify against your
+version" because they will rot.
+
+**Alternatives:** a hard rule in the AGENTS template (rejected —
+the closing settings are harness- and version-specific, which is
+DEV-INFRASTRUCTURE's register); a separate HARNESS.md (rejected —
+one more every-task file for a paragraph of content).
+
 ## 2026-09-12 — READ-TIER-BEFORE-CHANGE: the read tier's letter matches its substance
 
 **Decision:** shipped 4.20.1. The hot reads are due before the

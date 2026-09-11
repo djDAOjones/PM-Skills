@@ -496,6 +496,13 @@ When a tool memory contradicts a memory file, the file wins;
 periodically reconcile anything durable a tool memory holds into
 the files, or deliberately ignore it. Never let the two fork.
 
+**Harness surface.** A harness exposes more than the tree by default
+— connector tools wired to your accounts, web reach, cloud-session
+triggers, neighbouring checkouts — and the set moves between
+versions. `DEV-INFRASTRUCTURE.md` → "Security baseline" records one
+line per harness in use: what it exposes and the setting that closes
+it, re-verified at each harness upgrade.
+
 **Authoring a backlog from raw material.** "Draft a backlog from
 these notes" runs `prompts/backlog-authoring.md`: it extracts
 candidate items from loose ideas or a transcript, writes them in

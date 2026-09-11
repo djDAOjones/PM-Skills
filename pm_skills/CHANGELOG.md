@@ -36,6 +36,54 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.21.0 — 2026-09-12
+
+HARNESS-ISOLATION-NOTE: the security baseline gains a **harness
+surface** item — what the AI harness exposes beyond the tree by
+default, and the setting that closes it.
+
+Hardening the clean-room ablation (2026-09-10) found surfaces a
+consuming project would not expect and the template did not
+mention. Codex CLI / Desktop enable "apps" by default, which served
+the account's ChatGPT connector tools to the agent — 126 of them on
+the account measured, including GitHub create-commit, merge-PR and
+update-file, and site deploys — with web search on and the built-in
+sandbox profile leaving the home directory readable. Claude Code
+offers subagents, a cloud-session trigger, web fetch and search,
+worktree and scheduling tools unless each is denied, and a tool
+(`RemoteTrigger`) appeared between a dry run and the launch, so the
+set moves between versions. Devin's tool-name denies for web tools
+are ignored (only read / edit / grep / glob / exec are deniable by
+name). All three read sibling checkouts unless the paths are denied;
+an agent was observed searching the parent folder for `AGENTS.md`
+files across neighbouring projects. None of this is a secret in the
+repo, so the secret-storage items did not cover it; it is reach out
+of the repo, which is the same threat from the other side.
+
+The template's "Security baseline" comment gains item 7, one line
+per harness in use at every tier, with the 2026-09-10 findings and
+the closing settings for the three harnesses as a starting point to
+verify against the project's own versions. `init.md` Step 8, its
+checklist and the Appendix B example carry the item; the GUIDE gains
+a "Harness surface" paragraph beside "Harness auto-memories".
+
+Changed distributed files: `pm_skills/templates/DEV-INFRASTRUCTURE.md`
+("Security baseline" → item 7), `pm_skills/init.md` (Step 8, the
+Step 8 checklist, Appendix B "Security baseline example"),
+`pm_skills/GUIDE.md` ("Harness surface").
+
+Upgrade actions:
+
+1. Replace `pm_skills/init.md` and `pm_skills/GUIDE.md` with the
+   4.21.0 copies.
+2. In your root `DEV-INFRASTRUCTURE.md` → "Security baseline", add
+   one **Harness surface** line per AI harness in use: what it
+   exposes beyond the tree by default and the setting that closes it
+   (copy item 7 from `pm_skills/templates/DEV-INFRASTRUCTURE.md` for
+   the three harnesses' known surfaces), and note that it is
+   re-verified at each harness upgrade. If the file is collapsed to
+   one line, add the harness line to it.
+
 ## 4.20.1 — 2026-09-12
 
 READ-TIER-BEFORE-CHANGE: the read tier is timed as agents keep it —

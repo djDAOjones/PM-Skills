@@ -12,8 +12,7 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
-| **[HARNESS-ISOLATION-NOTE](tickets/HARNESS-ISOLATION-NOTE.md)** | Tell consuming projects what their harness exposes by default | Current #1 | Add a "Harness surface" subsection to the DEV-INFRASTRUCTURE template's security baseline — what Codex (connector apps on by default, 126 tools incl.… | Todo |
-| **[DOUBLE-SCORE](tickets/DOUBLE-SCORE.md)** | Judged measures get a blind second scorer | Current #2 | Add to the field-study instrument (self/FIELD-STUDY.md, Phase 4) a rule that any judged dimension is scored twice — the second pass by a fresh… | Todo |
+| **[DOUBLE-SCORE](tickets/DOUBLE-SCORE.md)** | Judged measures get a blind second scorer | Current #1 | Add to the field-study instrument (self/FIELD-STUDY.md, Phase 4) a rule that any judged dimension is scored twice — the second pass by a fresh… | Todo |
 | **[WAVES-PILOT](tickets/WAVES-PILOT.md)** | Pilot the findings-to-waves pipeline | Next #1 | Run findings.md + improvement-waves.md end-to-end in a real consuming project and file the result as a field report — both prompts shipped 2026-08-27… | Maintainer — held |
 | **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Next #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs, or the decision to cut — one or more… |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
@@ -30,11 +29,12 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: evidence closes (2026-09-12)</strong> — 1 item(s)</summary>
+<summary><strong>Phase: evidence closes (2026-09-12)</strong> — 2 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
 | `READ-TIER-BEFORE-CHANGE` | (2026-09-12) — the read tier timed as agents keep it (4.20.1): `session-start.md` and the root `AGENTS.md` template now say the hot reads are due before the task's first change to… |
+| `HARNESS-ISOLATION-NOTE` | (2026-09-12) — the security baseline gains a harness-surface item (4.21.0): what Codex (connector apps on by default), Claude Code (subagents, cloud trigger, web tools) and Devin… |
 
 </details>
 

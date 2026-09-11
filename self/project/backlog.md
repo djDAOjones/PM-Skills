@@ -17,14 +17,6 @@
 
 <!-- Intent: three evidence-driven closes commissioned 2026-09-11 from the clean-room, field-grading and dependent-item studies — reword the read tier to what agents keep (READ-TIER-BEFORE-CHANGE, patch), tell projects what their harness exposes (HARNESS-ISOLATION-NOTE, minor), and require a blind second scorer on judged measures (DOUBLE-SCORE, source-only). Cheap, no usage; the long-stream experiment that would move R2 is the lab's. -->
 
-- [ ] **HARNESS-ISOLATION-NOTE Tell consuming projects what their
-  harness exposes by default** [detail](tickets/HARNESS-ISOLATION-NOTE.md)
-  (2026-09-11) — add a "Harness surface" subsection to the
-  DEV-INFRASTRUCTURE template's security baseline — what Codex (connector
-  apps on by default, 126 tools incl. GitHub write), Claude Code (Task,
-  cloud-session trigger, WebFetch) and Devin Local (web tools not
-  deniable) expose, and the three settings that close it — from the
-  clean-room hardening record. Minor release. · High / Medium / Low / Low
 - [ ] **DOUBLE-SCORE Judged measures get a blind second scorer**
   [detail](tickets/DOUBLE-SCORE.md) (2026-09-11) — add to the field-study
   instrument (self/FIELD-STUDY.md, Phase 4) a rule that any judged

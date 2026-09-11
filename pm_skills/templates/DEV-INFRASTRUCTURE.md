@@ -239,6 +239,38 @@ scripts, configuration, or deployment.
         on every upgrade); how an approved pin is protected (dependency
         overrides, not a blanket `--force`).
      6. Leaked-credential response playbook — rotation-first (below).
+     7. Harness surface — which AI harness(es) run against this checkout,
+        what each exposes BEYOND the tree by default, and the setting
+        that closes it. One line per harness in use, at every tier; the
+        surfaces move between harness versions, so re-verify at each
+        harness upgrade (list the tools a fresh session reports). What a
+        hardening pass found on 2026-09-10 — verify against your version:
+        - Codex CLI / Desktop: the `apps` feature is ON by default and
+          serves the account's ChatGPT connector tools to the agent (one
+          account showed 126: GitHub create-commit / merge-PR / update-
+          file, site deploys, plugin and safety settings); web search on;
+          the built-in `:workspace` sandbox profile leaves the home
+          directory readable. Close: `[features] apps = false` (likewise
+          `browser_use`, `computer_use`, `in_app_browser`), `web_search =
+          "disabled"`, a `default_permissions` profile that extends
+          `:workspace` with OS-level denies of paths outside the checkout,
+          and a rules file forbidding command prefixes (`curl`, `wget`,
+          `gh`, `git push`).
+        - Claude Code: subagents (`Task`), a cloud-session trigger
+          (`RemoteTrigger`), `WebFetch` / `WebSearch`, worktree and
+          scheduling tools; reads `CLAUDE.md`, not `AGENTS.md`. Close:
+          `permissions.deny` (tool names, Bash prefixes, paths), the
+          sandbox's `filesystem.denyRead` / `denyWrite`,
+          `network.allowedDomains` with `strictAllowlist`, and
+          `credentials.envVars` so sandboxed commands never see a key.
+        - Devin (local): user-level Read / Exec deny rules hold even in
+          bypass mode, but denies by tool name for web search, web
+          fetch, browser and `mcp_*` are ignored — only read / edit / grep /
+          glob / exec are deniable by name. Declare web reach as a
+          residual; deny paths, not tools.
+        - All three read sibling checkouts unless their paths are
+          denied — an agent has been observed searching the parent
+          folder for `AGENTS.md` files across neighbouring projects.
 
      Response playbook (rotation-first, never history-rewrite-first):
      1. Rotate the credential at the provider immediately — assume it is

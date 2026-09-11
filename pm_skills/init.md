@@ -368,10 +368,12 @@ Using the brief and architecture, populate every applicable placeholder:
    baseline ships in `pm_skills/scaffold/` (copied in Step 9).
 8. **Security baseline** — where secrets live, the `.env` /
    `.gitignore` placeholder discipline, the report-only key-shape scan
-   folded into `check`, the dependency-audit cadence, and the
-   leaked-credential response playbook (rotation-first). Scale it to the
-   project (see Appendix B); even a static site keeps env files
-   gitignored and templates placeholder-only.
+   folded into `check`, the dependency-audit cadence, the
+   leaked-credential response playbook (rotation-first), and the
+   harness surface — what the AI harness exposes beyond the tree by
+   default and the setting that closes it. Scale it to the project
+   (see Appendix B); even a static site keeps env files gitignored,
+   templates placeholder-only, and one harness-surface line.
 9. **Build system** — bundler, entry point, output directory, source
    maps, minification, static file handling.
 10. **Version management** — the two-part version identity from
@@ -461,10 +463,11 @@ Before starting your first task, confirm:
   deferred for a pre-deploy MVP.
 - [ ] Security baseline is defined: `DEV-INFRASTRUCTURE.md` → "Security
   baseline" records where secrets live, the `.gitignore` / `.env.example`
-  placeholder discipline, and the leaked-credential response playbook per
-  `AGENTS.md` → "Security baseline"; the report-only secret scan is
-  folded into `check` — or deliberately collapsed to one line for a
-  project with no secrets and no third-party dependencies.
+  placeholder discipline, the leaked-credential response playbook per
+  `AGENTS.md` → "Security baseline", and one harness-surface line per
+  AI harness in use; the report-only secret scan is folded into
+  `check` — or deliberately collapsed to one line for a project with
+  no secrets and no third-party dependencies.
 
 Then run a placeholder lint:
 
@@ -891,6 +894,10 @@ Tier 1 (typical dev-server app):
 - **Leak response:** rotate at the provider first, replace in the
   sidecar, verify, then decide on history rewrite (usually skip once the
   key is dead). Record the decision in decision-log.md.
+- **Harness surface:** Claude Code 2.1.x — `permissions.deny` for
+  `WebFetch`, `WebSearch`, `RemoteTrigger`; sandbox `denyRead` for the
+  sibling checkouts under `~/projects/`; re-verified at each CLI
+  upgrade (tool list of a fresh session recorded in decision-log.md).
 ```
 
 Tier 0 collapses to the `.gitignore` + `.env.example` placeholder

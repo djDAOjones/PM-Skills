@@ -8,6 +8,13 @@
   change to the tree, not as the first act — the behaviour three
   studies measured at 90–100% (before the first change) versus 0–25%
   (first thing). Tier contents unchanged — see decision-log.
+- HARNESS-ISOLATION-NOTE (2026-09-12) — the security baseline gains
+  a harness-surface item (4.21.0): what Codex (connector apps on by
+  default), Claude Code (subagents, cloud trigger, web tools) and
+  Devin (web tools not deniable by name) expose beyond the tree, the
+  settings that close each, and sibling checkouts readable on all
+  three; template item 7, init Step 8 + example, GUIDE paragraph —
+  see decision-log.
 
 ## Phase: field grading (2026-09-11)
 
