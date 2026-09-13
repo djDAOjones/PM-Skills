@@ -12,6 +12,8 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
+| **[DEFERRAL-LINE](tickets/DEFERRAL-LINE.md)** | A deferral named in an entry is also a line in the open list | Current #1 | Seven of the ten open-list misses in the twelve-item long stream (two harnesses, three framework substrates) were a deferral the session named in its… | Todo |
+| **[CODEX-NETWORK-NOTE](tickets/CODEX-NETWORK-NOTE.md)** | A Codex prefix rule is not a network control | Current #2 | The harness-surface item shipped in 4.21.0 lists "a rules file forbidding command prefixes (curl, wget, gh, git push)" among the Codex closing… | Todo |
 | **[WAVES-PILOT](tickets/WAVES-PILOT.md)** | Pilot the findings-to-waves pipeline | Next #1 | Run findings.md + improvement-waves.md end-to-end in a real consuming project and file the result as a field report — both prompts shipped 2026-08-27… | Maintainer — held |
 | **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Next #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs, or the decision to cut — one or more… |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |

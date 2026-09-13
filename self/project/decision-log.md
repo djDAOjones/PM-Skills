@@ -12,6 +12,23 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-13 — LONG-STREAM-EVIDENCE: two patches commissioned; the trim is the maintainer's call
+
+**Decision (maintainer's plan, executed):** DEFERRAL-LINE and
+CODEX-NETWORK-NOTE queued in the current milestone as patches. Not
+queued: a minimal tier. The lab's long stream (120 sessions, Opus 5
+and Codex GPT-5.6-Sol) found the eight-rule contract keeping the
+record as well as canon over twelve items with maintenance
+obligations; that licenses a trim, and shipping one is a product
+decision recorded here as open for the maintainer.
+
+**Rationale:** seven of ten open-list misses were a deferral named in
+prose and never listed — a one-line fix in the close ritual; and the
+harness-surface note shipped in 4.21.0 names a Codex prefix rule
+among the closing settings when a compound command walked past it in
+the study. Detail: the two tickets; lab findings 2026-09-10,
+Amendment 4 results.
+
 ## 2026-09-12 — DOUBLE-SCORE: judged measures get a blind second scorer
 
 **Decision:** source-only. `self/FIELD-STUDY.md` Phase 4 now
