@@ -12,8 +12,6 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
-| **[DEFERRAL-LINE](tickets/DEFERRAL-LINE.md)** | A deferral named in an entry is also a line in the open list | Current #1 | Seven of the ten open-list misses in the twelve-item long stream (two harnesses, three framework substrates) were a deferral the session named in its… | Todo |
-| **[CODEX-NETWORK-NOTE](tickets/CODEX-NETWORK-NOTE.md)** | A Codex prefix rule is not a network control | Current #2 | The harness-surface item shipped in 4.21.0 lists "a rules file forbidding command prefixes (curl, wget, gh, git push)" among the Codex closing… | Todo |
 | **[WAVES-PILOT](tickets/WAVES-PILOT.md)** | Pilot the findings-to-waves pipeline | Next #1 | Run findings.md + improvement-waves.md end-to-end in a real consuming project and file the result as a field report — both prompts shipped 2026-08-27… | Maintainer — held |
 | **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Next #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs, or the decision to cut — one or more… |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
@@ -30,10 +28,12 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: evidence closes (2026-09-12)</strong> — 3 item(s)</summary>
+<summary><strong>Phase: evidence closes (2026-09-12)</strong> — 5 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
+| `DEFERRAL-LINE` | (2026-09-14) — a deferral named is a deferral listed (4.21.1): `end-of-task.md` step 3 now makes work the decision entry, the trajectory line or the commit message calls deferred… |
+| `CODEX-NETWORK-NOTE` | (2026-09-14) — only the sandbox switch closes the Codex network (4.21.1): item 7's Codex line now names `network` off in the permissions profile as the control and marks the… |
 | `READ-TIER-BEFORE-CHANGE` | (2026-09-12) — the read tier timed as agents keep it (4.20.1): `session-start.md` and the root `AGENTS.md` template now say the hot reads are due before the task's first change to… |
 | `HARNESS-ISOLATION-NOTE` | (2026-09-12) — the security baseline gains a harness-surface item (4.21.0): what Codex (connector apps on by default), Claude Code (subagents, cloud trigger, web tools) and Devin… |
 | `DOUBLE-SCORE` | (2026-09-12) — the field-study instrument requires a blind second scorer on judged dimensions (source-only): a tool-less session with the rubric and the artefacts only, agreement… |

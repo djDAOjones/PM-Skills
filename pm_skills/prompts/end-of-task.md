@@ -46,7 +46,8 @@ Close: lite
 
 Wish-list capture (`AGENTS.md` → "Capturing deferred ideas") still
 applies during a lite close — appending one line is cheap and is not
-deferred.
+deferred. So does step 3's deferral rule: if the trailer's `Decision:`
+line names deferred work, that work is also a line in the open list.
 
 ## Secondary-session close (parallel work)
 
@@ -148,7 +149,12 @@ Update each of the following if relevant to this task:
   decision-log`. Compress on ship: outcome here, why in the log, file
   roles in file-map. Never paste the decision-log prose.
 - `pm_skills/project/wish-list.md` — append any out-of-scope ideas
-  surfaced this task, one line each.
+  surfaced this task, one line each. **A deferral named is a deferral
+  listed:** work the decision entry, the trajectory line or the commit
+  message calls deferred, a follow-up or a "later item" is also one
+  line here (or an item in `backlog.md`) — the sentence in the entry
+  is not the capture. Re-read both before leaving this step and
+  confirm every deferral you named has its line.
 - `pm_skills/project/doc-deltas.md` — if this task changed behaviour a
   **protected doc** (SPEC, ADR, or its kin — edit-on-request only)
   describes, append one capture line

@@ -2,6 +2,19 @@
 
 ## Phase: evidence closes (2026-09-12)
 
+- DEFERRAL-LINE (2026-09-14) — a deferral named is a deferral listed
+  (4.21.1): `end-of-task.md` step 3 now makes work the decision entry,
+  the trajectory line or the commit message calls deferred also one
+  line in the open list, read against each other before the step
+  closes; the lite path carries it for the `Decision:` trailer. Seven
+  of ten open-list misses in the long stream were this — see
+  decision-log.
+- CODEX-NETWORK-NOTE (2026-09-14) — only the sandbox switch closes the
+  Codex network (4.21.1): item 7's Codex line now names `network` off
+  in the permissions profile as the control and marks the prefix rules
+  file advisory, after a compound command walked past it and cloned a
+  real upstream; `git ls-remote` and `git clone` added to the advisory
+  list — see decision-log.
 - READ-TIER-BEFORE-CHANGE (2026-09-12) — the read tier timed as
   agents keep it (4.20.1): `session-start.md` and the root `AGENTS.md`
   template now say the hot reads are due before the task's first

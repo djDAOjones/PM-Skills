@@ -17,23 +17,6 @@
 
 <!-- Intent: two patches commissioned 2026-09-13 by the long stream — DEFERRAL-LINE (a deferral named in an entry is also an open-list line; seven of ten misses) and CODEX-NETWORK-NOTE (a Codex prefix rule is not a network control; one real breach). The eight-rule contract held the record as well as canon over twelve items on two harnesses: whether to ship a minimal tier is the maintainer's call, not queued. -->
 
-- [ ] **DEFERRAL-LINE A deferral named in an entry is also a line in the
-  open list** [detail](tickets/DEFERRAL-LINE.md) (2026-09-13) — seven of
-  the ten open-list misses in the twelve-item long stream (two harnesses,
-  three framework substrates) were a deferral the session named in its
-  decision entry or trajectory line that never became a wish-list or
-  backlog line; the capture rule exists and agents narrate past it — make
-  the close ritual say it in one line. Patch. · High / High / Low / Low
-- [ ] **CODEX-NETWORK-NOTE A Codex prefix rule is not a network
-  control** [detail](tickets/CODEX-NETWORK-NOTE.md) (2026-09-13) — the
-  harness-surface item shipped in 4.21.0 lists "a rules file forbidding
-  command prefixes (curl, wget, gh, git push)" among the Codex closing
-  settings; the long stream showed a compound command (a variable
-  assignment followed by the clone) walk straight past the prefix rule and
-  clone a real upstream repository — only the sandbox's network switch is
-  the control, the prefix rules are advisory. Patch. · High / Medium / Low
-  / Low
-
 ### Next milestone
 
 <!-- Intent: what needs the maintainer before it runs, unchanged at this pass. WAVES-PILOT validates findings.md + improvement-waves.md in a real consuming project — Route Plotter's filed review round is a ready corpus — and the maintainer picks the target and drives the run there. VOICE-INTAKE reaches its seventh pass still blocked on the transcripts-plus-prompts inputs, or the decision to cut; at this point the cut is the live question, not the inputs. -->

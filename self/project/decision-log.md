@@ -12,6 +12,40 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-14 — DEFERRAL-LINE + CODEX-NETWORK-NOTE ship as one patch release (4.21.1)
+
+**Decision:** both commissioned patches ship together as 4.21.1
+rather than as 4.21.1 and 4.21.2. DEFERRAL-LINE puts the rule in
+`end-of-task.md` step 3's wish-list bullet — the place the capture
+actually happens — plus one sentence in the lite-close paragraph,
+because lite skips step 3 and would otherwise miss the rule. The
+template `AGENTS.md` capture bullet is left alone: it governs an
+out-of-scope idea surfacing mid-task, not a deferral named in a
+close artefact, so it does not restate the rule and the ticket's
+conditional does not fire. CODEX-NETWORK-NOTE rewrites only item 7's
+Codex line.
+
+**Rationale:** the two changes touch disjoint files with no ordering
+dependency, so the `order:` fields sequence the work, not the
+releases. One entry carries two numbered upgrade actions, and
+`upgrade.md` executes actions, not versions — a project that runs no
+Codex harness skips action 2 and is no worse served than by a
+separate version. Splitting would mint a 4.21.1 that exists for
+minutes, cost every consuming project an extra version hop, and buy
+a per-change traceability that git already provides. Canonical-copy
+discipline decided both placements: one home per rule, pointers
+elsewhere. The retirement sweep for the prefix-rule-as-control claim
+found no other distributed hit — `init.md` Step 8 and Appendix B
+point at the template rather than restating it. Claude Code's
+`permissions.deny` Bash prefixes were left as they are: that is a
+harness-enforced check, not a model-facing rules file, and its
+network control (`network.allowedDomains` with `strictAllowlist`) is
+already named correctly.
+
+**Alternatives:** two patch releases (rejected above); putting the
+deferral rule in step 5's report instead of step 3 (rejected — the
+report describes what happened, the writes happen in step 3).
+
 ## 2026-09-13 — LONG-STREAM-EVIDENCE: two patches commissioned; the trim is the maintainer's call
 
 **Decision (maintainer's plan, executed):** DEFERRAL-LINE and

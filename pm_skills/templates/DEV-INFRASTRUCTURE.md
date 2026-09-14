@@ -254,8 +254,14 @@ scripts, configuration, or deployment.
           `browser_use`, `computer_use`, `in_app_browser`), `web_search =
           "disabled"`, a `default_permissions` profile that extends
           `:workspace` with OS-level denies of paths outside the checkout,
-          and a rules file forbidding command prefixes (`curl`, `wget`,
-          `gh`, `git push`).
+          and `network` off in that profile — the sandbox's network
+          switch is the only network control here. A rules file
+          forbidding command prefixes (`curl`, `wget`, `gh`,
+          `git ls-remote`, `git clone`, `git push`) is **advisory**:
+          it matches what a command *starts with*, so a compound
+          command — an assignment, then the clone — walks straight
+          past it (observed 2026-09-13, a session with the rules file
+          loaded cloned a real upstream repository).
         - Claude Code: subagents (`Task`), a cloud-session trigger
           (`RemoteTrigger`), `WebFetch` / `WebSearch`, worktree and
           scheduling tools; reads `CLAUDE.md`, not `AGENTS.md`. Close:

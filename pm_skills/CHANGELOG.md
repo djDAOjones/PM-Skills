@@ -36,6 +36,55 @@ oldest file its version gap touches:
 - 3.x — `CHANGELOG-3x.md` (3.17.1, the final 3.x entry, stays
   below so a one-gap upgrade never opens the archive)
 
+## 4.21.1 — 2026-09-14
+
+Two corrections the twelve-item long stream commissioned: a deferral
+named in a close artefact is also a line in the open list, and on
+Codex only the sandbox network switch closes the network.
+
+**DEFERRAL-LINE.** Across the long stream (twelve sequential items,
+two harnesses, three framework substrates) every arm wrote a decision
+entry with a why for all twelve items and still lost open-list
+currency the same way seven times out of ten: the deferral was named
+in the entry — "exporters honouring the flag stays a later item" —
+and never became a wish-list or backlog line. The capture rule already
+existed; the miss is that a session treats the sentence in the entry
+as the capture. Step 3's wish-list bullet now says a deferral named in
+the decision entry, the trajectory line or the commit message is also
+one line in the open list, and asks for the two to be read against
+each other before leaving the step. The lite-close paragraph carries
+the same rule for the `Decision:` trailer, since lite skips step 3.
+
+**CODEX-NETWORK-NOTE.** Item 7's Codex line (4.21.0) listed a rules
+file forbidding command prefixes among the closing settings. On
+2026-09-13 a session with that rules file loaded ran `git ls-remote`
+(not listed) and then a compound command — a temporary-directory
+assignment followed by the clone — and read a real upstream
+repository, because a prefix rule matches what a command *starts
+with*. The line now says the permissions profile's `network` setting
+is the only network control and the rules file is advisory;
+`git ls-remote` and `git clone` join the advisory list.
+
+Evidence for both: the clean-room ablation findings, 2026-09-10,
+Amendment 4 (the long stream), including the declared isolation
+breach.
+
+Changed distributed files: `pm_skills/prompts/end-of-task.md`
+(step 3 wish-list bullet, the lite-close paragraph),
+`pm_skills/templates/DEV-INFRASTRUCTURE.md` ("Security baseline"
+→ item 7, the Codex line).
+
+Upgrade actions:
+
+1. Replace `pm_skills/prompts/end-of-task.md` with the 4.21.1 copy.
+2. In your root `DEV-INFRASTRUCTURE.md` → "Security baseline", if you
+   carry item 7's Codex line, correct it: `network` off in the
+   permissions profile is the network control; the prefix rules file
+   is advisory only (it matches what a command starts with, so a
+   compound command walks past it). Add `git ls-remote` and
+   `git clone` to the advisory prefix list. If you run no Codex
+   harness, no action.
+
 ## 4.21.0 — 2026-09-12
 
 HARNESS-ISOLATION-NOTE: the security baseline gains a **harness
