@@ -27,7 +27,7 @@ oracle.
 
 | Scenario | Kind | Status |
 | --- | --- | --- |
-| `close-control` | close correctness (control) | first blinded run GREEN 2026-08-17 (4.8.0 close; see `self/evaluations/`) |
+| `close-control` | close correctness (control) | GREEN 2026-09-14 (4.21.1 close, blinded); first blinded run GREEN 2026-08-17 (4.8.0 close; see `self/evaluations/`) |
 | `upgrade` | byte-level upgrade | asserted by `assert-upgrade.mjs`; first run 2026-08-09 (procedure operated in-role; blinded agent run pending) |
 | `trailer-key` | arbitrary-contract calibration | first blinded run 2026-08-09 |
 
