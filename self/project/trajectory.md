@@ -2,6 +2,21 @@
 
 ## Phase: evidence closes (2026-09-12)
 
+- FIELD-BASELINE-V2 (2026-09-16) — pre-adoption baselines filed for
+  the two projects the maintainer scheduled for pm-next v2 intake
+  (source-only): `video-pedagogy-research` (private repo, no
+  framework; a verified git bundle, rulebook, state and git-log
+  exports, blob inventory, verbatim prompts, agent memory, 3 Claude
+  Code sessions and 8 Codex rollouts) and `personal-finance` (no
+  repo; its three release archives verbatim, a SHA-256 inventory of
+  every file, history and validator exports, verbatim prompts, agent
+  memory, the Claude Code session and the producing Codex thread's 23
+  rollouts selected by parent-thread linkage). Everything local-lane
+  bar one snapshot note each, which says what to compare after the
+  intake. The tier README now defines the pre-adoption baseline and
+  its join key. Generator kept beside the evidence. No release. See
+  decision-log 2026-09-16.
+
 - DEFERRAL-LINE (2026-09-14) — a deferral named is a deferral listed
   (4.21.1): `end-of-task.md` step 3 now makes work the decision entry,
   the trajectory line or the commit message calls deferred also one

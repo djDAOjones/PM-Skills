@@ -12,6 +12,40 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-16 — FIELD-BASELINE-V2: a project files its baseline before the intake
+
+**Decision:** the two projects the maintainer scheduled for pm-next
+v2 on 2026-09-15 — `video-pedagogy-research` and `personal-finance`
+— are filed in `self/field-reports/` now, before either intake runs,
+as **pre-adoption baselines**: their history (a verified git bundle
+where there is git, the release archives verbatim where there is
+not), a hash inventory of every file, the contract and state files,
+the maintainer's prompts, the agent's own memory and both harnesses'
+session logs. Both projects are private, so everything sits in the
+local lane except one snapshot note each, and the personal-finance
+note carries no household figure. The tier README defines the
+baseline and its join key, `pm-skills=none (pre-adoption baseline;
+…)`.
+
+**Rationale:** the maintainer asked for the history and trajectory
+of these two projects to be archived "ahead of these being upgraded
+to labs-v2" for later comparison. An intake rewrites what it reads —
+the v2 verb reads existing docs and memory first and records what it
+carried over in one decision — so the only way to measure its effect
+is a snapshot taken before it, and the projects' own state-keeping
+(a hand-kept "Current state" paragraph in one, three dated archives
+in the other) is exactly what would be lost. The Codex thread that
+produced the finance corpus ran from another project's folder, so
+its rollouts were selected by parent-thread linkage rather than by
+working directory, and the manifest says so.
+
+**Alternatives:** waiting and diffing after the intake (rejected —
+nothing preserves the pre-state once the intake has rewritten it);
+filing only the git-backed project (rejected — the folder-shaped one
+is the harder case for the intake and the more informative baseline);
+archiving the copyrighted source corpus (rejected — third-party
+material, text that can be regenerated, and not framework evidence).
+
 ## 2026-09-14 — DEFERRAL-LINE + CODEX-NETWORK-NOTE ship as one patch release (4.21.1)
 
 **Decision:** both commissioned patches ship together as 4.21.1

@@ -28,10 +28,11 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: evidence closes (2026-09-12)</strong> — 5 item(s)</summary>
+<summary><strong>Phase: evidence closes (2026-09-12)</strong> — 6 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
+| `FIELD-BASELINE-V2` | (2026-09-16) — pre-adoption baselines filed for the two projects the maintainer scheduled for pm-next v2 intake (source-only): `video-pedagogy-research` (private repo, no… |
 | `DEFERRAL-LINE` | (2026-09-14) — a deferral named is a deferral listed (4.21.1): `end-of-task.md` step 3 now makes work the decision entry, the trajectory line or the commit message calls deferred… |
 | `CODEX-NETWORK-NOTE` | (2026-09-14) — only the sandbox switch closes the Codex network (4.21.1): item 7's Codex line now names `network` off in the permissions profile as the control and marks the… |
 | `READ-TIER-BEFORE-CHANGE` | (2026-09-12) — the read tier timed as agents keep it (4.20.1): `session-start.md` and the root `AGENTS.md` template now say the hot reads are due before the task's first change to… |
