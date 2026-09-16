@@ -2,6 +2,21 @@
 
 ## Phase: evidence closes (2026-09-12)
 
+- FIELD-BASELINE-WAVE-2 (2026-09-16) — the second baseline wave, on
+  the maintainer's "execute all" after an assessment of six projects
+  in or near their pm-next v2 intake (source-only): `pattern-mapper`
+  taken from a fresh clone before its history mapping (canon 4.0.0,
+  216 commits, 802 KB of memory, tracked lane; 75 Claude Code
+  sessions across its two names and 55 Codex rollouts local — and the
+  tier's first recorded upgrade walk, 3.17.1 to 4.0.0 on install
+  day); `storage-tidy` from git as the third pm-next v0.2 run plus its
+  intake commit filed as the first v0.2-to-v2 `upgrade` report;
+  `derry-lane-development-system` delta (no memory delta, one session,
+  the 08-26 review round, all raw logs); `marketing-skills` after
+  hydrating 162 cloud-only files, with the intake already in flight.
+  eBay Tool and the lab needed nothing. Harvest tools and inputs moved
+  to the local lane because the harness scratch directory is cleared
+  between sessions. No release. See decision-log 2026-09-16.
 - FIELD-BASELINE-V2 (2026-09-16) — pre-adoption baselines filed for
   the two projects the maintainer scheduled for pm-next v2 intake
   (source-only): `video-pedagogy-research` (private repo, no

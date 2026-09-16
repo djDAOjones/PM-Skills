@@ -12,6 +12,42 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-16 — FIELD-BASELINE-WAVE-2: take two, keep three, one after the fact
+
+**Decision:** of the six projects the maintainer listed as upgrading
+to pm-next v2, two trajectories were taken now — `pattern-mapper`
+before its history mapping, and `storage-tidy` whose intake had
+already been committed, filed as the v0.2 run at its last commit plus
+the intake as an `upgrade` report — one was completed with a delta
+(`derry-lane-development-system`: sessions and agent memory, no
+memory delta), one was taken after hydrating its cloud-only folder
+(`marketing-skills`, with the intake in flight and the note saying
+so), and two needed nothing (`ebay-tool`, whose 2026-09-09 harvest
+still matches HEAD; the lab, which preserved its own pre-v2 ledger
+and wrote its migration record). Pattern Mapper's memory, rulebooks
+and git log go to the tracked lane because its repository is public;
+its agent memory and prompts stay local.
+
+**Rationale:** the assessment ranked by perishability and size.
+Claude Code deletes transcripts thirty days after last activity by
+default and Pattern Mapper's earliest logs are from July, so its 75
+sessions were the most at risk and the most valuable — 216 commits of
+canon 4.0.0 under one name and then another, the richest canon memory
+on record, and the only upgrade walk the tier has ever seen, which
+corrects field study two's "zero walks" count. Storage Tidy's
+pre-state survived in git and in the intake's own `archive/pre-v2/`,
+so it could be taken after the fact without loss. Marketing could not
+be hashed until hydrated; hydration is a read, not a write, and it
+also removed the intake's "content verification" blocker. Pattern
+Mapper's `.git` holds 825 cloud-only objects, so its exports came
+from a fresh clone of the public remote at the identical HEAD.
+
+**Alternatives:** waiting for the intakes to finish and diffing
+afterwards (rejected — the pre-state is what the intakes rewrite);
+tracking Storage Tidy's or Marketing's exports (rejected — private);
+raising the transcript-retention setting (left to the maintainer; it
+is a global harness setting, and the archives now hold the logs).
+
 ## 2026-09-16 — FIELD-BASELINE-V2: a project files its baseline before the intake
 
 **Decision:** the two projects the maintainer scheduled for pm-next
