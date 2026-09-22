@@ -45,21 +45,19 @@
   shared-append residue. (source: reflection run one; PACE-POLICY
   adopted 2026-08-17 — paused until the Hub leg lands, then route
   to the lab's own queue)
-- MAX-PROGRESS: flip the default posture to maximum progress —
-  making changes live (`prompts/deploy.md`, where the project's
-  `DEV-INFRASTRUCTURE.md` → "Deployment" defines a pipeline),
-  committing and pushing, and the other close steps happen
-  automatically without asking. One named switch (e.g. "cautious")
-  restores the gated behaviour: `checkpoint` gating, propose-only
-  commits, no automatic deploy. Today the default runs the other
-  way: `integrations/task.md` defaults to `checkpoint` (two gates),
-  deploy is a separate verb run on request rather than a close step,
-  and only commit-and-push is automatic (4.2.0, with a propose-only
-  opt-out in `AGENTS.md`). Triage
-  questions: does the task.md hard-prohibitions list survive
-  unchanged under the new default (it should — irreversible change
-  still stops)? Where does the switch live — one line in root
-  `AGENTS.md`, a per-invocation word, or both? Does "design before
-  code" survive a zero-gate default, and how does this sit with
-  JANITOR-WRITE's per-verb sign-off? (source: maintainer,
-  2026-09-22)
+- AUTO-DEPLOY: make changes live automatically by default — once a
+  task closes committed, pushed and green, run `prompts/deploy.md`
+  as part of the close (where the project's `DEV-INFRASTRUCTURE.md`
+  → "Deployment" defines a pipeline) instead of waiting to be asked.
+  One named switch (e.g. "cautious") restores deploy-on-request.
+  The switch is for the deploy side only: commit-and-push is already
+  automatic (4.2.0) and task gating is out of scope. Triage
+  questions: which of deploy.md's own stops survive the new default
+  (a red or dirty tree never ships; a destructive or irreversible
+  command — a prod migration, a backfill — still flags and confirms
+  before running; post-deploy verification still runs)? Where does
+  the switch live — one line in root `AGENTS.md`, a per-invocation
+  word, or both? When verification fails after an unattended
+  deploy, roll back automatically or stop and report? (source:
+  maintainer, 2026-09-22; narrowed the same day from a broader
+  "max progress everywhere" capture)
