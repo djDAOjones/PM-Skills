@@ -46,15 +46,16 @@
   adopted 2026-08-17 — paused until the Hub leg lands, then route
   to the lab's own queue)
 - MAX-PROGRESS: flip the default posture to maximum progress —
-  making changes live (the project's deploy verb, where
-  `DEV-INFRASTRUCTURE.md` → "Deployment" defines one), committing
-  and pushing, and the other close steps happen automatically
-  without asking. One named switch (e.g. "cautious") restores the
-  gated behaviour: `checkpoint` gating, propose-only commits, no
-  automatic deploy. Today the default runs the other way:
-  `integrations/task.md` defaults to `checkpoint` (two gates),
-  deploy is not a close step, and only commit-and-push is automatic
-  (4.2.0, with a propose-only opt-out in `AGENTS.md`). Triage
+  making changes live (`prompts/deploy.md`, where the project's
+  `DEV-INFRASTRUCTURE.md` → "Deployment" defines a pipeline),
+  committing and pushing, and the other close steps happen
+  automatically without asking. One named switch (e.g. "cautious")
+  restores the gated behaviour: `checkpoint` gating, propose-only
+  commits, no automatic deploy. Today the default runs the other
+  way: `integrations/task.md` defaults to `checkpoint` (two gates),
+  deploy is a separate verb run on request rather than a close step,
+  and only commit-and-push is automatic (4.2.0, with a propose-only
+  opt-out in `AGENTS.md`). Triage
   questions: does the task.md hard-prohibitions list survive
   unchanged under the new default (it should — irreversible change
   still stops)? Where does the switch live — one line in root
