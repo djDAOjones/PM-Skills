@@ -87,3 +87,16 @@ maintainer-owned and are never advanced by a reflection.
   `self/evaluations/`. Run three fires per the standing triggers;
   the report names the evidence it most needs — a project not
   built by the maintainer.
+- Run three — 2026-09-24 (maintainer call, eight days into v2's first
+  field use; carried out by `self/V2-FIELD-STUDY.md` over the tier as
+  the first full harvest filed it, with Codex as second witness at
+  three checkpoints and first scorer on two studies). Twenty-two
+  projects and the lab's own ledger; one exposed v2 project. Six
+  findings, eight design decisions handed to the decision session
+  with the V2-FIELD-1 and R2 choices, five candidates to canon
+  triage; retirements named — in v2 the profile's auto-memory claim
+  and the README's never-as-chat line, in canon the design review
+  gate and lite close. Filed as the dated v2-field-study document
+  under `self/evaluations/`, with its Codex account under
+  `self/_transcripts/`. The next run still needs a project not built
+  by the maintainer, and a v2 project past its first month.
