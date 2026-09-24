@@ -117,6 +117,7 @@ see the root AGENTS.md "Before every task". -->
 - `self/DEV-INFRASTRUCTURE.md` — this repo's Tier-0 capability surface: scripts, gate, version identity
 - `self/FIELD-HARVEST.md` — the archival instrument (push side of field-report.md): find every visible project, read its pm-skills version, take or refresh its field-report archive with Codex as second witness; archival only, never analysis
 - `self/FIELD-STUDY.md` — read-only, single-pass procedure that turns consuming-project field reports into an evidenced framework-improvement report (the method REFLECTION.md's policy calls)
+- `self/V2-FIELD-STUDY.md` — the analysis instrument aimed at the successor branch: nine read-only studies over the field-report tier and the lab's next-v2, Codex as witness and scorer, output a decision package for a separate decision session (2026-09-24)
 - `self/REFLECTION.md` — standing reflection practice: triggers, evidence gate, three capped passes, run log
 - `self/field-reports/README.md` — cold evidence tier for consuming-project reports: what is filed, per-project layout, filename/header contract, lint status
 - `self/inputs/2026-08-26-code-abstraction-prompt.txt` — verbatim maintainer-supplied whole-repository abstraction and auditability planning prompt; candidate basis for ABSTRACTION-PLAN

@@ -12,6 +12,41 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-24 — V2-FIELD-STUDY: the tier gets an analysis instrument aimed at the successor branch, with Codex as second witness and scorer
+
+**Decision (maintainer commission, in session):** source-only.
+`self/V2-FIELD-STUDY.md` codifies the analysis side the harvest left
+open: nine ordered studies over the tier and the lab's `next-v2/`,
+read-only under `self/FIELD-STUDY.md`'s posture, producing a
+decision package for a separate Claude Fable session with the
+maintainer rather than findings for triage. Three rules are new: the
+three-party pipeline (Opus runs, Codex Astra witnesses at three
+checkpoints, Fable records the maintainer's decisions; nobody
+advances a gate); Codex as a third scorer on the two highest-stakes
+judged studies, ordered before the Claude passes so that no grade
+exists for a tool-bearing session to find — an addition to
+DOUBLE-SCORE, never a replacement; and a prediction register sealed
+by both witnesses before any count, kept as a bias check with no
+evidential weight.
+
+**Rationale:** the tier now holds before/after pairs, the Hub's whole
+history, a week of v2 use and every owner directive, and v2's own
+documents name what it has not tested — cold start, cross-harness
+handoff, two-week outcomes, the digest layer, the twelve-rule budget
+as a cost proxy, R2's missing hypothesis. Codex on `gpt-6-astra` gave
+a blind design opinion first (six studies in common, three
+sharpened, the field-study-2 addendum and an exposure table added, an
+R2 hypothesis proposed) and then reviewed the draft: one blocker —
+the distribution templates moved to `pm_skills/templates/` at 4.0.0,
+so a rulebook census must diff against the right file — and thirteen
+findings, all adopted. Alternatives: extending `self/FIELD-STUDY.md`
+with a v2 section (rejected — its twelve dimensions grade the current
+framework and its output is triage candidates, not decisions);
+running the analysis in the lab (rejected — the evidence and the
+evaluations tier are here; the lab records the v2 decisions).
+Detail: the instrument's "Provenance"; the verbatim Codex exchanges
+in the unsynced `~/scratch/pm-analysis/2026-09-24/`.
+
 ## 2026-09-24 — FIELD-HARVEST-RUN-1: the first full harvest, and the filing rules it changed
 
 **Decision:** source-only. The first run of `self/FIELD-HARVEST.md`

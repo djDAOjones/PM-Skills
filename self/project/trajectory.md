@@ -2,6 +2,15 @@
 
 ## Phase: evidence closes (2026-09-12)
 
+- V2-FIELD-STUDY (2026-09-24) — the analysis instrument the harvest
+  left "still to be devised": `self/V2-FIELD-STUDY.md`, nine studies
+  over the tier aimed at pm-next v2 (intake fidelity, the first week
+  on v2, handoff, promises over months, a recall probe over all 22
+  records, attention cost, the rulebook census onto the profile,
+  owner directives, upgrades), run by Opus with Codex as witness and
+  scorer, producing a decision package for a Fable session with the
+  maintainer; Codex gave a blind design opinion and a review of the
+  draft (one blocker, thirteen findings, all adopted). Source-only.
 - FIELD-HARVEST-RUN-1 (2026-09-24) — the instrument's first run
   (source-only; capture cut-off 11:40 UTC): nine archives refreshed
   (the six 2026-09-16 v2 intakes, each with its intake thread and an

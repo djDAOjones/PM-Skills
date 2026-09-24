@@ -32,7 +32,11 @@ framework's fitness is measured in consuming projects shipping.
 **Instrument.** A run whose evidence is consuming-project reports is
 carried out by `self/FIELD-STUDY.md` — the read-only, single-pass
 procedure over `self/field-reports/`. This file stays the policy
-(triggers, gate, caps, governance); that one is the method.
+(triggers, gate, caps, governance); that one is the method. A run
+aimed at the successor branch — what the same evidence tells pm-next
+v2 — is carried out by `self/V2-FIELD-STUDY.md` (2026-09-24), which
+reuses that method's posture and grading and hands a decision
+package to a separate session instead of candidates to triage.
 
 ## The three passes, with caps
 
