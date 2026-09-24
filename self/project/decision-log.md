@@ -12,6 +12,40 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-24 — FIELD-HARVEST-RUN-1: the first full harvest, and the filing rules it changed
+
+**Decision:** source-only. The first run of `self/FIELD-HARVEST.md`
+refreshed nine archives, filed the Hub for the first time, took
+pre-adoption baselines of two scheduled projects and filed nine
+Windsurf-era deployments the tier had never seen. Three filing rules
+changed with it. A deployment of the framework tree from before
+version numbers files as `pm-skills=unversioned (pre-1.0.0 framework
+tree …)` (tier README) and has its own row in the instrument's class
+table. An in-tree folder is taken as session evidence only after its
+`.gitignore` and a sample show agent exchanges. Git objects are read
+through a scratch clone with per-ref fetches from the checkout, and
+validators run under `sandbox-exec`. Six hazards were added.
+
+**Rationale:** each change answers something the run met. Three of
+the new deployments carry a `pm_skills/` tree with project memory and
+no `VERSION`, which the class table could not name; the second
+witness read them as contract-only. The Hub's `archive_sessions/`,
+the instrument's own example of an in-tree transcript folder, is the
+application's runtime show archive and carries audience content. Git
+failed on cloud-only objects in two checkouts, once as a memory-map
+timeout and once as a fetch that could not complete. And Codex had
+rewritten every rollout in its store since the previous harvests,
+which made byte counts misleading and left three filed rollouts as
+the only full copies.
+
+**Alternatives:** filing the unversioned trees as pre-adoption
+(rejected — they carry framework memory and prompts); taking
+`archive_sessions/` as the example said (rejected — runtime data,
+third parties' words); reading objects from the checkouts with
+retries (rejected — the timeouts repeat, and hydration through Git
+cannot be bounded); labelling every grown session "resumed"
+(rejected — 40 of the 46 grown or shrunk sessions were rewrites).
+
 ## 2026-09-24 — FIELD-HARVEST: the tier gets a standing harvest instrument, with Codex as second witness
 
 **Decision:** source-only. The archival side of the field-report

@@ -2,6 +2,18 @@
 
 ## Phase: evidence closes (2026-09-12)
 
+- FIELD-HARVEST-RUN-1 (2026-09-24) — the instrument's first run
+  (source-only; capture cut-off 11:40 UTC): nine archives refreshed
+  (the six 2026-09-16 v2 intakes, each with its intake thread and an
+  `upgrade` report, plus Route Plotter, vinyl and the Video Helper),
+  the Hub filed for the first time with its eight upgrade commits,
+  pre-adoption baselines of ADHD Research and Parenting Research, and
+  nine Windsurf-era deployments filed first — five canon, three on
+  the unversioned pre-1.0.0 tree, one the Route Plotter v2 line
+  inside its project; the Windsurf stores archived once. Codex as
+  second witness at three checkpoints; the run added a join key, a
+  class, two Posture rules and six hazards to the instrument (see the
+  decision log). About 2.1 GB, nearly all of it local.
 - FIELD-HARVEST-PROMPT (2026-09-24) — the tier gains its standing
   archival instrument, `self/FIELD-HARVEST.md` (source-only): one
   run finds every project the machine can see (Claude Code, Codex

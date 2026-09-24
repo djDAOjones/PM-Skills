@@ -61,7 +61,14 @@ every checkout touched, and it is proved, not asserted:
   copy of the scripts that has been read first for absolute paths
   and symlink-following that could reach back into the checkout,
   with the checkout's path absent from the environment and every
-  write confined to the disposable scratch directory.
+  write confined to the disposable scratch directory. On this
+  machine the confinement is `sandbox-exec` with a profile that
+  denies file writes outside the extraction directory and a scratch
+  home, and denies the network (first used 2026-09-24).
+- Git objects are read through a scratch clone, never straight from
+  a checkout whose `.git` holds cloud-only objects: clone the remote,
+  fetch the checkout's own refs into the clone one at a time, and set
+  every ref to its value at the cut-off (see "Known hazards").
 
 **Writes land in exactly two places.** This repository's tier
 (`self/field-reports/<slug>/`, tracked lane) and its local lane
@@ -219,14 +226,18 @@ first.
 1. **The filesystem walk** of the project roots for canon and
    pm-next markers, started in the background before anything else
    and reconciled before the inventory is called complete: over the
-   cloud-synced roots it took more than five minutes on 2026-09-23
-   (macOS has no `timeout` and no GNU port of it; run `find -maxdepth
-   5` per root, each in the background). It is the only source that
-   finds deployments no session store names — seven on 2026-09-23,
-   Windsurf-era projects on versions 2.2.0 to 3.1.1. If a root has
-   not returned by the time Phase 2's table is final, the table says
-   so and the report calls coverage partial for that root. Roots at
-   the time of writing: the `4_Work` and `2_Personal` folders of the
+   cloud-synced roots it took more than five minutes on 2026-09-23,
+   and three seconds on 2026-09-24 with `node_modules`, `.git` and
+   virtual environments pruned (macOS has no `timeout` and no GNU
+   port of it; run `find -maxdepth 5` per root, each in the
+   background). Look for the `pm_skills/` directory itself, not only
+   its `VERSION`: the framework tree from before version numbers has
+   none. The walk is the only source that finds deployments no
+   session store names — ten on 2026-09-24, Windsurf-era projects on
+   versions from the unversioned tree to 3.1.1. If a root has not
+   returned by the time Phase 2's table is final, the table says so
+   and the report calls coverage partial for that root. Roots at the
+   time of writing: the `4_Work` and `2_Personal` folders of the
    OurWiltonTrust OneDrive, its `Jen and Jones` folder, the
    University OneDrive's `2_Projects`, and `~/CascadeProjects`.
 2. **The Projects table** in the tier README — what has been filed.
@@ -271,6 +282,7 @@ For every candidate checkout, classify by what is in the tree:
 | Class | Marker | Version and how it was reached |
 | --- | --- | --- |
 | canon | `<checkout>/pm_skills/VERSION` | the file's value; `git log` on that path gives every install and upgrade commit, so the report can say "upgraded" or "reinstalled" with the commit that proves it |
+| canon, unversioned | `<checkout>/pm_skills/` with project memory and no `VERSION` — the framework tree of April and May 2026, before version numbers | `unversioned (pre-1.0.0 framework tree …)`, per the README; the first commit that adds `pm_skills/` gives the install date |
 | pm-next v0.2 | `<checkout>/curricula.md` beside `<checkout>/project/records/_meta.md` | tools compared byte-for-byte with the lab's frozen `lab/next/` at a named commit |
 | pm-next v2 | `<checkout>/project/profile.md` with `<checkout>/project/decisions.md` and a `verbs/` directory | the intake leaves a provenance record naming the lab commit the package came from — under `<checkout>/project/adoption/` or `<checkout>/project/migration/` in the intakes seen so far; find it rather than assume its path, and when none exists record the provenance as unknown and use the intake commit's date as the "reached" date |
 | pre-adoption | a contract file only, or nothing, and a scheduled intake | `none (pre-adoption baseline; …)` naming what it is scheduled for, per the README |
@@ -398,8 +410,12 @@ sessions). Rollouts that embed photographs make large archives
 (279 MB for the vinyl sorter); take them anyway and say the size.
 
 **A project's own records** — an in-tree transcript convention
-(`_transcripts/`, an `archive_sessions/` directory) is session
-evidence and is archived the same way, tracked or not.
+(`_transcripts/`, a sessions folder that holds agent exchanges) is
+session evidence and is archived the same way, tracked or not. Read
+the project's `.gitignore` and a sample before taking one: the Hub's
+`archive_sessions/` turned out to be the application's runtime show
+archive (event logs written by its reset script, with audience
+content), not agent sessions, and was left out.
 
 **Upgrade reports** (`upgrade`) — whenever Phase 2 found the
 framework changed: version from and to, the commit, what the walk
@@ -585,6 +601,37 @@ before it could. They are not advice.
 - **A verbatim Codex reply can quote private evidence.** The tracked
   transcript is a redacted account; the originals stay in the run
   directory.
+- **Codex rewrites its session store in place.** Between the
+  harvests of 2026-08-27 and 2026-09-24 every rollout gained a
+  per-line `ordinal` field, with modification times kept, and some
+  rewritten rollouts came back far smaller than their filed copies.
+  A changed byte count is not a resumed thread: compare the session
+  with its filed copy (a byte prefix means extended, anything else
+  rewritten) and label it so. Never replace a filed archive — it may
+  hold the only full version.
+- **Cloud-only objects inside `.git` break Git itself** (a memory-map
+  read that times out), not only bundles. Clone the remote
+  into scratch and fetch the checkout's refs into it one at a time;
+  where the remote lacks the history, read the cloud-only object
+  files first so the sync client downloads them, and say so.
+- **Filed archives use several layouts** — `claude/<dir>/<id>.jsonl`,
+  `sessions/claude/projects/<dir>/<id>.jsonl`, `sessions/<id>.jsonl`.
+  A filed-set match that knows fewer re-takes sessions already filed.
+- **Codex's GitHub integration writes bearer tokens into rollouts**
+  (`http.extraHeader=Authorization: Bearer …` on `git push`). Expect
+  secrets-scan hits wherever Codex pushed, and name the files.
+- **A crash mid-run leaves partial output in scratch.** The run
+  directory survives; before resuming, check every staged archive
+  against its manifest's SHA-256 and rebuild only what has no exit
+  record.
+<!-- cspell:ignore COPYFILE — macOS tar's environment switch -->
+
+- **macOS `tar` adds AppleDouble `._*` members** for extended
+  attributes and its own `tar -tzf` does not list them, so an
+  inventory checked that way looks complete when it is not. Archive
+  with `COPYFILE_DISABLE=1` set, and enumerate members with a tar
+  library rather than `tar -t` (the 2026-09-24 archives carry them;
+  their manifests list them in a correction).
 - **Two Claude Code directories for one project** after a rename,
   plus worktree directories; the earliest logged prompt may still
   post-date the real initialisation — say so rather than guess.
@@ -613,6 +660,13 @@ rows of Phase 1, the content-based freshness of Phase 2, the member
 inventory, secrets scan and ref-map comparison of Phase 3, the
 staging order of Phases 4 and 5, and the redacted-account rule for
 its own replies.
+
+The first run (2026-09-24, the transcript beside that one) added the
+unversioned class and its join key, the scratch-clone and sandbox
+rules of the Posture, the correction to the in-tree records example,
+and six hazards — the store rewrite, Git failing on cloud-only
+objects, archive layouts, bearer tokens, resuming after a crash and
+the AppleDouble members macOS `tar` hides.
 
 Distribution of a harvest verb is deferred with the reflection
 practice's own deferral (`self/REFLECTION.md`); the framework's

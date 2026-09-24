@@ -28,10 +28,11 @@ trajectory's own level-2 headings; archived phases are listed from
 `archive/INDEX.md` rows without opening the cold chunks.
 
 <details>
-<summary><strong>Phase: evidence closes (2026-09-12)</strong> — 8 item(s)</summary>
+<summary><strong>Phase: evidence closes (2026-09-12)</strong> — 9 item(s)</summary>
 
 | Item | Outcome |
 | --- | --- |
+| `FIELD-HARVEST-RUN-1` | (2026-09-24) — the instrument's first run (source-only; capture cut-off 11:40 UTC): nine archives refreshed (the six 2026-09-16 v2 intakes, each with its intake thread and an… |
 | `FIELD-HARVEST-PROMPT` | (2026-09-24) — the tier gains its standing archival instrument, `self/FIELD-HARVEST.md` (source-only): one run finds every project the machine can see (Claude Code, Codex live and… |
 | `FIELD-BASELINE-WAVE-2` | (2026-09-16) — the second baseline wave, on the maintainer's "execute all" after an assessment of six projects in or near their pm-next v2 intake (source-only): `pattern-mapper`… |
 | `FIELD-BASELINE-V2` | (2026-09-16) — pre-adoption baselines filed for the two projects the maintainer scheduled for pm-next v2 intake (source-only): `video-pedagogy-research` (private repo, no… |
