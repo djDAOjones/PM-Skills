@@ -7,7 +7,7 @@ path and only new files need a role written. Hot read is sectional —
 see the root AGENTS.md "Before every task". -->
 
 <!-- file-map-index -->
-<!-- 82 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
+<!-- 83 file(s) across 8 section(s); regenerate with scripts/gen-file-map.mjs -->
 - `(root)` — 6 file(s)
 - `.devin` — 1 file(s)
 - `.githooks` — 1 file(s)
@@ -15,7 +15,7 @@ see the root AGENTS.md "Before every task". -->
 - `.windsurf` — 1 file(s)
 - `pm_skills` — 51 file(s)
 - `scripts` — 12 file(s)
-- `self` — 9 file(s)
+- `self` — 10 file(s)
 <!-- /file-map-index -->
 
 ## (root)
@@ -115,6 +115,7 @@ see the root AGENTS.md "Before every task". -->
 ## self
 
 - `self/DEV-INFRASTRUCTURE.md` — this repo's Tier-0 capability surface: scripts, gate, version identity
+- `self/FIELD-HARVEST.md` — the archival instrument (push side of field-report.md): find every visible project, read its pm-skills version, take or refresh its field-report archive with Codex as second witness; archival only, never analysis
 - `self/FIELD-STUDY.md` — read-only, single-pass procedure that turns consuming-project field reports into an evidenced framework-improvement report (the method REFLECTION.md's policy calls)
 - `self/REFLECTION.md` — standing reflection practice: triggers, evidence gate, three capped passes, run log
 - `self/field-reports/README.md` — cold evidence tier for consuming-project reports: what is filed, per-project layout, filename/header contract, lint status

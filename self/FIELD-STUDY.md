@@ -19,6 +19,9 @@ governance" below.
 
 - `pm_skills/prompts/field-report.md` — what a **consuming project**
   runs to produce evidence and hand it upstream.
+- `self/FIELD-HARVEST.md` — what the **maintainer** runs from here
+  to find every visible project and take or refresh its archive. A
+  harvest fills the tier; this study reads it.
 - `self/field-reports/README.md` — where that evidence is filed, in
   what shape, under which lane.
 - **This** — what the maintainer runs over the collection. A field

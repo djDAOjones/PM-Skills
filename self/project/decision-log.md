@@ -12,6 +12,66 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-24 — FIELD-HARVEST: the tier gets a standing harvest instrument, with Codex as second witness
+
+**Decision:** source-only. The archival side of the field-report
+tier is codified as `self/FIELD-HARVEST.md`, a sibling of
+`self/FIELD-STUDY.md`: one run inventories every project the machine
+can see, reads which framework and version each runs and how it got
+there, judges each archive current, stale or unarchived against the
+tier's own cut-offs, ranks the due work by Claude Code's thirty-day
+retention, takes or refreshes the archive under the README's
+contract, and verifies it. Three rules are new: discovery takes the
+union of the harness stores (Claude Code, Codex live and archived,
+Windsurf) and a background walk of the roots, never a foreground
+walk; the Windsurf stores, opaque and un-attributable, are archived
+once, in the local lane of the first harvested project that
+Windsurf's own workspace list names, with attribution declared
+unknown and cited from the rest; and Codex on `gpt-6-astra` gives an
+independent opinion at three checkpoints (inventory, plan,
+verification), disagreements resolved by evidence, a redacted
+account of each exchange filed as this repository's transcript and
+the verbatim originals kept in the unsynced run directory. Archival
+only; analysis stays with the study or a prompt still to be devised.
+
+The draft went through its own protocol before filing: Codex on
+`gpt-6-astra` reviewed it blind against the machine and returned
+seventeen findings with the verdict "not ready". Sixteen were
+verified against the evidence and taken, two in modified form —
+lossy Claude Code directory names, an unverified Windsurf retention
+claim, name-based freshness that would miss a resumed session or
+uncommitted memory, session tables mistaken for member lists,
+`git status` taking optional locks, remote-only bundles dropping
+never-pushed refs, no secrets scan of raw archives, verification before
+staging, and a verbatim transcript of Codex's replies in a tracked
+tier that could have republished local-lane evidence.
+
+**Rationale:** the maintainer asked (2026-09-23) for a prompt that
+inspects all visible projects, reads their pm-skills version and
+brings the "real-world application archive" up to date — archival
+only — with Codex Astra as a project partner. Writing it against the
+live state showed why a standing instrument beats another one-off
+wave: the Hub, the first deployment with six upgrade commits from
+1.0.0 to 4.6.0, has never been harvested and its session records are
+untracked files on one checkout; seven Windsurf-era canon
+deployments (2.2.0 to 3.1.1) sit outside the tier and only a
+filesystem walk finds them; seven pm-next v2 intakes have landed
+since the 2026-09-16 baselines, so each of those archives is stale;
+Codex's archived-sessions store was never read by any harvest; and
+Route Plotter v3's Claude Code directory was already empty —
+retention is a deadline, not a risk. Codex as a second witness
+follows the 2026-08-28 precedent (the `-codex` bundles) and is
+cheap: a smoke test answered in eight seconds.
+
+**Alternatives:** a distributed harvest verb (rejected — it reads
+`self/` and names this machine's stores; the distributed half stays
+`field-report.md`); asking the maintainer per project (rejected —
+the README already decides lanes and exclusions, and the task was
+set as autonomous); a Claude sub-agent as the second reader
+(rejected — a differential opinion needs a different model); filing
+Codex's replies in the tier (rejected — evidence about a harvest,
+not about a consuming project).
+
 ## 2026-09-16 — FIELD-BASELINE-WAVE-2: take two, keep three, one after the fact
 
 **Decision:** of the six projects the maintainer listed as upgrading

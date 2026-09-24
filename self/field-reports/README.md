@@ -20,6 +20,13 @@ Until this tier existed the only such evidence — the Hub case study
 — sat in the frozen pre-adoption archive, and every reflection run
 had to declare itself pure self-hosted. Reports filed here end that.
 
+Evidence arrives two ways. A consuming project runs
+`pm_skills/prompts/field-report.md` on itself and hands the output
+upstream; or the maintainer runs `self/FIELD-HARVEST.md` from this
+repository, which finds every project the machine can see, reads
+which framework and version each runs, and takes or refreshes its
+archive. Either way this file decides what is filed, where, and how.
+
 ## What goes here
 
 Anything produced *by or about* a consuming project that bears on

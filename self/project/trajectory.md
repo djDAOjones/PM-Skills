@@ -2,6 +2,26 @@
 
 ## Phase: evidence closes (2026-09-12)
 
+- FIELD-HARVEST-PROMPT (2026-09-24) — the tier gains its standing
+  archival instrument, `self/FIELD-HARVEST.md` (source-only): one
+  run finds every project the machine can see (Claude Code, Codex
+  live and archived, Windsurf, a background walk of the roots),
+  classifies each as canon, pm-next v0.2, pm-next v2, pre-adoption
+  or framework tree with its version and how it was reached, judges
+  the archive current, stale or unarchived, ranks the due work by
+  the thirty-day retention clock, takes or refreshes the archive and
+  verifies it — with Codex on `gpt-6-astra` as an independent second
+  witness at three checkpoints. Archival only; analysis stays with
+  FIELD-STUDY.md. Written against the state of 2026-09-23: the Hub
+  never harvested, seven Windsurf-era canon deployments outside the
+  tier, seven pm-next v2 intakes landed since the 09-16 baselines,
+  Codex's archived-sessions store never read. Codex Astra reviewed
+  the draft blind before filing — seventeen findings, verdict "not
+  ready" — and the revision took sixteen (lossy directory names,
+  unknown Windsurf retention, content-based freshness, member
+  inventories, no-optional-locks reads, never-pushed refs, a secrets
+  scan, staging order, redacted transcripts); the account is in
+  `self/_transcripts/`.
 - FIELD-BASELINE-WAVE-2 (2026-09-16) — the second baseline wave, on
   the maintainer's "execute all" after an assessment of six projects
   in or near their pm-next v2 intake (source-only): `pattern-mapper`
