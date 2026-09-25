@@ -2,6 +2,13 @@
 
 ## Phase: evidence closes (2026-09-12)
 
+- V3-SPEC-PROMPT (2026-09-25) — the session prompt for the step
+  after the V2 field study: `self/V3-SPEC-SESSION.md`, for a fresh
+  Claude Fable chat opened in the lab with the maintainer, which walks
+  the decision package's rulings, records them in the lab's ledger,
+  writes a DRAFT pm-next v3 specification and hands canon matters back;
+  Codex gave a blind design opinion and a review of the draft ("ready
+  after fixes", ten points, all adopted). Source-only.
 - V2-FIELD-STUDY (2026-09-24) — the analysis instrument the harvest
   left "still to be devised": `self/V2-FIELD-STUDY.md`, nine studies
   over the tier aimed at pm-next v2 (intake fidelity, the first week

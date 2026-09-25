@@ -118,6 +118,7 @@ see the root AGENTS.md "Before every task". -->
 - `self/FIELD-HARVEST.md` — the archival instrument (push side of field-report.md): find every visible project, read its pm-skills version, take or refresh its field-report archive with Codex as second witness; archival only, never analysis
 - `self/FIELD-STUDY.md` — read-only, single-pass procedure that turns consuming-project field reports into an evidenced framework-improvement report (the method REFLECTION.md's policy calls)
 - `self/V2-FIELD-STUDY.md` — the analysis instrument aimed at the successor branch: nine read-only studies over the field-report tier and the lab's next-v2, Codex as witness and scorer, output a decision package for a separate decision session (2026-09-24)
+- `self/V3-SPEC-SESSION.md` — the session prompt for the step after the V2 field study: a Claude Fable chat in the lab, with the maintainer, takes rulings on the package and writes a DRAFT pm-next v3 specification; Codex as second witness (2026-09-25)
 - `self/REFLECTION.md` — standing reflection practice: triggers, evidence gate, three capped passes, run log
 - `self/field-reports/README.md` — cold evidence tier for consuming-project reports: what is filed, per-project layout, filename/header contract, lint status
 - `self/inputs/2026-08-26-code-abstraction-prompt.txt` — verbatim maintainer-supplied whole-repository abstraction and auditability planning prompt; candidate basis for ABSTRACTION-PLAN

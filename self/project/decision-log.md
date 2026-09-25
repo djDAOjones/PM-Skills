@@ -12,6 +12,40 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-09-25 — V3-SPEC-PROMPT: the decision session gets a versioned prompt that goes on to specify pm-next v3
+
+**Decision (maintainer request, in session):** source-only.
+`self/V3-SPEC-SESSION.md` is the prompt for the Claude Fable session
+the V2 field study names, widened at the maintainer's request from
+recording decisions to specifying v3. It runs in the lab with the
+maintainer present, walks the package's rulings in its handover order,
+reads the ruling table back before recording anything, records each
+ruling in the lab's installed ledger under `V3-SPEC`, and writes a
+DRAFT specification in the lab that only the maintainer's rulings
+shape. It changes no v2 file, advances no gate, never pushes, and
+hands canon matters back as a list instead of writing across
+checkouts. `self/V2-FIELD-STUDY.md` now points to it.
+
+**Rationale:** the package decides nothing, and a v3 specification
+written before the maintainer's rulings would be the run deciding for
+the maintainer by drafting. Codex on `gpt-6-astra` gave a blind design opinion
+first — the same decisions-first, lab-only shape, plus the read-back,
+the obligations that hide outside the twelve numbered rules,
+per-project migration rows, a pinned trial treatment and the caveat
+that the reshaped R2 wording allows parity where the gate says
+"beats" — and then reviewed the draft ("ready after fixes"; ten
+points, all adopted: a bounded exception to installed rule 2, the
+installed close and phase-close steps, the evidence manifest,
+specification sections conditional on rulings, a priority-ordered
+timebox). Two lab facts shaped it: the lab's own `self/` is the
+fork-time copy without the package, and the lab's docs check fails a
+backticked canon path, so tracked lab files cite the package by its
+commit-pinned public URL. Alternatives: filing the prompt in the lab
+(rejected — the lab's commit check needs an item already in its
+ledger, and opening `V3-SPEC` is the session's first step, with the
+maintainer); keeping it unversioned in scratch (rejected — the
+maintainer asked for it to be versioned).
+
 ## 2026-09-24 — V2-FIELD-STUDY: the tier gets an analysis instrument aimed at the successor branch, with Codex as second witness and scorer
 
 **Decision (maintainer commission, in session):** source-only.

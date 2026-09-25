@@ -854,7 +854,9 @@ R2 hypothesis, once adopted, replaces `R2-SUPERIORITY`'s blocker
 line. Neither analyst advances a gate; the decision session does not
 either — it records the maintainer's word. Every recorded decision
 names the finding and the study it rests on, and the acceptance
-test, so the next harvest knows what to look for.
+test, so the next harvest knows what to look for. The session prompt
+for that step, which goes on to specify pm-next v3 in the lab, is
+`self/V3-SPEC-SESSION.md` (2026-09-25).
 
 ## How this study goes wrong
 
