@@ -61,3 +61,24 @@
   deploy, roll back automatically or stop and report? (source:
   maintainer, 2026-09-22; narrowed the same day from a broader
   "max progress everywhere" capture)
+- V2-FIELD-STUDY-ERRATA: two defects in the filed package
+  (`self/evaluations/2026-09-24-v2-field-study-1.md`), both missed by
+  the Codex review. (1) Section 9 says the Video Helper pairing holds
+  on both clauses, but by the R2 field form's own falsification rule
+  (v2 lower by 1 point or more) v2's 6/8 against its 7/8 fails the
+  score clause: each early pairing fails one clause (Route Plotter on
+  size, the Video Helper on score). The verdict — unmatched age, not
+  settled — stands; the early signal is weaker than stated. (2)
+  Section 8's two icebox rows leave `V2-ICEBOX` rows unread, two of
+  them with field evidence: archive splits and memory maintenance
+  (V2F-5, D7) and the folded standards templates (standards overflow
+  the profile, D1). Correcting a filed package needs the
+  maintainer's word; both bear on the V3-SPEC session's R2 and icebox
+  rulings. (source: package Q&A session, 2026-09-25)
+- V3-SPEC-LAB-PATH: `self/V3-SPEC-SESSION.md` defines `<lab>` as the
+  lab checkout's root, but everything it names under `<lab>` (the
+  installed v2 ledger, the next-v2 and findings folders,
+  RAW-EVIDENCE.md) lives one level down, in the checkout's lab folder. Read literally, the spec
+  lands at the checkout root instead of beside next-v2. One-line fix
+  to the definition before any rerun. (source: package Q&A session,
+  2026-09-25)
