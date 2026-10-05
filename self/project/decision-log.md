@@ -12,6 +12,40 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-10-05 — LAB-FIRST: resumed and reworded — the lab is the one workspace until R3
+
+**Decision (maintainer, in session):** the paused standing order is
+resumed as an ALERT record at the top of Current (order 0, the
+`ALERT` flag registered again in `_meta.md`), reworded. The lab
+checkout is the one workspace for pm-skills and v3 work until the R3
+migration decision, and no session is opened here. This repository is
+written only by lab sessions filing field evidence and evaluations
+under its rules, and by the weekly session-log archive task into the
+ignored lanes. Gate-forced fixes still run; no new canon work. Only
+the maintainer clears or rewords it.
+
+**Supersedes:** 2026-08-27 — LAB-FIRST paused; UPGRADE-REFUSED filed
+(the pause only; UPGRADE-REFUSED stands).
+
+**Rationale:** the maintainer asked for one workspace, either one, not
+both; the session recommended the lab and the maintainer chose it. By
+its contract the lab is the quarantined fork where the successor is
+decided, and changes reach canon only when R2 and R3 are granted; the
+trial deciding them runs to 2026-10-23 and the first-month evaluation.
+The v3 product, its ledger, the migration tools and the rollout plan
+are already there, and this repository's last six commits all served
+v3. It is also private and outside cloud sync, where this repository is
+public and on the OneDrive account that failed in early October. The
+field-report tier and the evaluations stay here. Lab sessions already
+file into them, and the archive task writes here without a session.
+
+**Alternatives:** this repository as the workspace (rejected — it
+breaks the lab's quarantine before R2 and R3, and moving the private
+trial record here would make it public); clearing LAB-FIRST and
+recording the choice elsewhere (rejected — the record at the top of
+Current is the surface session start reads, which is why the 08-23
+order put it there).
+
 ## 2026-10-05 — FIELD-NOTES-V3: the v3 field projects' first new-Mac day, filed as notes
 
 **Decision (maintainer request, in session):** source-only. Two

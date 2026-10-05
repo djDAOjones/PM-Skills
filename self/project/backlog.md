@@ -15,7 +15,16 @@
 
 ### Current milestone
 
-<!-- Intent: two patches commissioned 2026-09-13 by the long stream — DEFERRAL-LINE (a deferral named in an entry is also an open-list line; seven of ten misses) and CODEX-NETWORK-NOTE (a Codex prefix rule is not a network control; one real breach). The eight-rule contract held the record as well as canon over twelve items on two harnesses: whether to ship a minimal tier is the maintainer's call, not queued. -->
+<!-- Intent: LAB-FIRST, resumed and reworded by the maintainer 2026-10-05 — the lab is the one workspace until R3; sessions open there, and this repository takes only lab-filed evidence and evaluations, the weekly archive and gate-forced fixes. The two long-stream patches commissioned 2026-09-13 (DEFERRAL-LINE, CODEX-NETWORK-NOTE) shipped as 4.21.1; whether to ship a minimal tier stays the maintainer's call, not queued. -->
+
+- [ ] **LAB-FIRST The lab is the one workspace until R3** [ALERT]
+  [maintainer] [detail](tickets/LAB-FIRST.md) (2026-08-23) — RESUMED by
+  the maintainer 2026-10-05, reworded — the lab (djDAOjones/PM-Skills-lab,
+  checkout in CascadeProjects) is the one workspace for pm-skills and v3
+  work until the R3 migration decision. Open sessions there, not here.
+  This repository is written only by lab sessions, for field evidence and
+  evaluations, and by the weekly session-log archive task; no new canon
+  work. Gate-forced fixes still run. Only the maintainer clears this.
 
 ### Next milestone
 
@@ -42,7 +51,7 @@
 
 ### Icebox
 
-<!-- Intent: six held items — the five re-checked 2026-08-28 all still holding, plus WCAG-3 filed 2026-08-30. PM-MCP (needs the lab prototype's harness-client run; LAB-FIRST is paused, so the leg cannot move). JANITOR-WRITE (per-verb scenario green plus per-verb sign-off; the scenario half now shares CLOSE-SCENARIO-DEBT's dependency on a blinded runner). ARCH-RECALL (run two surfaced no missed-precedent pain — trigger unfired). DATA-MIG (maintainer confirms the trigger; the Derry Lane register remains the plausible claimant). LAB-FIRST (maintainer-paused; resumes only on their word). WCAG-3 (the assessment is queued, not the change; the trigger is WCAG 3.0 reaching Candidate Recommendation or a consuming project's compliance regime requiring it, and the draft's status was NOT verified at filing — re-check w3.org before judging the hold). -->
+<!-- Intent: five held items — four re-checked 2026-08-28 all still holding, plus WCAG-3 filed 2026-08-30; LAB-FIRST left for Current on 2026-10-05. PM-MCP (needs the lab prototype's harness-client run, a lab-side leg). JANITOR-WRITE (per-verb scenario green plus per-verb sign-off; the scenario half now shares CLOSE-SCENARIO-DEBT's dependency on a blinded runner). ARCH-RECALL (run two surfaced no missed-precedent pain — trigger unfired). DATA-MIG (maintainer confirms the trigger; the Derry Lane register remains the plausible claimant). WCAG-3 (the assessment is queued, not the change; the trigger is WCAG 3.0 reaching Candidate Recommendation or a consuming project's compliance regime requiring it, and the draft's status was NOT verified at filing — re-check w3.org before judging the hold). -->
 
 - [ ] **PM-MCP Programmatic memory interface**
   [detail](tickets/PM-MCP.md) [blocked: harness-client run of the lab
@@ -66,14 +75,6 @@
   without a documented back-out" + DEV-INFRASTRUCTURE section reusing the
   upgrade snapshot → propose → execute → reconcile shape. Grades when
   triggered: High / Medium / Low / Low.
-- [ ] **LAB-FIRST Work the lab before this repo** [maintainer]
-  [detail](tickets/LAB-FIRST.md) (2026-08-23) — PAUSED by the maintainer
-  2026-08-27, until further notice — the standing order no longer gates
-  the queue, and the ALERT flag is withdrawn. The order itself is
-  unchanged and resumes on the maintainer's word: run the lab arc
-  (djDAOjones/PM-Skills-lab, checkout in CascadeProjects) before picking
-  new work here. UPSTREAM-ASSIM shipped 2026-08-24; R2 is the open leg and
-  now needs a fresh project. Only the maintainer resumes or clears this.
 - [ ] **WCAG-3 WCAG 3.0 — assess the implications for the default UI
   bar** [detail](tickets/WCAG-3.md) [blocked: WCAG 3.0 reaches W3C
   Candidate Recommendation, or a consuming project's own compliance regime

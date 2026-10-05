@@ -1,17 +1,46 @@
 ---
 id: LAB-FIRST
-name: Work the lab before this repo
+name: The lab is the one workspace until R3
 status: todo
-milestone: icebox
-flags: maintainer, detail
+milestone: current
+flags: ALERT, maintainer, detail
 blocked-on: 
 date: 2026-08-23
 grades: 
-order: 5
-summary: PAUSED by the maintainer 2026-08-27, until further notice — the standing order no longer gates the queue, and the ALERT flag is withdrawn. The order itself is unchanged and resumes on the maintainer's word: run the lab arc (djDAOjones/PM-Skills-lab, checkout in CascadeProjects) before picking new work here. UPSTREAM-ASSIM shipped 2026-08-24; R2 is the open leg and now needs a fresh project. Only the maintainer resumes or clears this.
+order: 0
+summary: RESUMED by the maintainer 2026-10-05, reworded — the lab (djDAOjones/PM-Skills-lab, checkout in CascadeProjects) is the one workspace for pm-skills and v3 work until the R3 migration decision. Open sessions there, not here. This repository is written only by lab sessions, for field evidence and evaluations, and by the weekly session-log archive task; no new canon work. Gate-forced fixes still run. Only the maintainer clears this.
 ---
 
-# LAB-FIRST — work the lab before this repo
+# LAB-FIRST — the lab is the one workspace until R3
+
+## Resumed and reworded (2026-10-05)
+
+The maintainer resumed this order on 2026-10-05 and reworded it, after
+asking whether the lab or this repository should be the one place
+where work happens ("either is fine … use one or the other, not
+both"). The answer: the lab. This section governs; the sections below
+are the order's history.
+
+- **Where sessions open:** the lab checkout under `CascadeProjects`,
+  for every pm-skills and pm-next v3 task — specification, the field
+  trial, the rollout, harvests and evaluations. No session is opened
+  in this repository.
+- **What still writes here:** lab sessions, filing into
+  `self/field-reports/` and `self/evaluations/` under this
+  repository's rules (the V3-SPEC-PROMPT and FIELD-NOTES-V3
+  precedents), and the weekly session-log archive task, which writes
+  only into the ignored local lanes. Gate-forced fixes (a red
+  `npm run check`) still run.
+- **What does not:** new canon work. Consuming projects still on
+  canon move to v3 through the lab's rollout, not through canon
+  releases.
+- **Why the lab:** its contract makes it the quarantined fork where
+  the successor is decided. Changes travel here only when R2 and R3
+  are granted, and the trial deciding them is under way. It is
+  private and outside cloud sync. The v3 product, its ledger, the
+  migration tools and the rollout plan already live there.
+- **Cleared when:** the maintainer decides R3, or says so sooner.
+  Only the maintainer clears or rewords this record.
 
 ## Paused (2026-08-27)
 

@@ -12,14 +12,14 @@
 
 | Ticket ID | Name | Milestone | Description | Status |
 | --- | --- | --- | --- | --- |
+| **[LAB-FIRST](tickets/LAB-FIRST.md)** | The lab is the one workspace until R3 | Current #1 | RESUMED by the maintainer 2026-10-05, reworded — the lab (djDAOjones/PM-Skills-lab, checkout in CascadeProjects) is the one workspace for pm-skills… | Maintainer — held |
 | **[WAVES-PILOT](tickets/WAVES-PILOT.md)** | Pilot the findings-to-waves pipeline | Next #1 | Run findings.md + improvement-waves.md end-to-end in a real consuming project and file the result as a field report — both prompts shipped 2026-08-27… | Maintainer — held |
 | **[VOICE-INTAKE](tickets/VOICE-INTAKE.md)** | Voice-memo transcript intake | Next #2 | Investigate a transcript-intake workflow — verb + raw transcript + triage: topic cues gathered, the transcript rebuilt for quality, features /… | Blocked — maintainer inputs, or the decision to cut — one or more… |
 | **[PM-MCP](tickets/PM-MCP.md)** | Programmatic memory interface | Icebox #1 | Packaging-ladder rung 4; adapter outside the distributed tree, never core. | Blocked — harness-client run of the lab prototype (RQ5 GREEN… |
 | **[JANITOR-WRITE](tickets/JANITOR-WRITE.md)** | Auto-run maintenance verbs | Icebox #2 | Graduated autonomy, Reconcile rung first; a blanket sign-off does not open this gate. | Blocked — per-verb scenario green + explicit per-verb maintainer… |
 | **ARCH-RECALL** | Recall over cold storage | Icebox #3 | Richer archive INDEX summaries + a search-then-skim pass; embeddings only if evidence demands. · Medium / Medium / Low / Low | Blocked — a consuming project reports missed-precedent pain |
 | **DATA-MIG** | Data-migration guidance | Icebox #4 | Hard rule "no irreversible data change without a documented back-out" + DEV-INFRASTRUCTURE section reusing the upgrade snapshot → propose → execute →… | Blocked — maintainer confirms the trigger fired — the Derry Lane… |
-| **[LAB-FIRST](tickets/LAB-FIRST.md)** | Work the lab before this repo | Icebox #5 | PAUSED by the maintainer 2026-08-27, until further notice — the standing order no longer gates the queue, and the ALERT flag is withdrawn. The order… | Maintainer — held |
-| **[WCAG-3](tickets/WCAG-3.md)** | WCAG 3.0 — assess the implications for the default UI bar | Icebox #6 | Decide what pm-skills changes when WCAG 3.0 matures. The framework ships "WCAG 2.2 AAA by default" to every consuming project, restated across seven… | Blocked — WCAG 3.0 reaches W3C Candidate Recommendation, or a… |
+| **[WCAG-3](tickets/WCAG-3.md)** | WCAG 3.0 — assess the implications for the default UI bar | Icebox #5 | Decide what pm-skills changes when WCAG 3.0 matures. The framework ships "WCAG 2.2 AAA by default" to every consuming project, restated across seven… | Blocked — WCAG 3.0 reaches W3C Candidate Recommendation, or a… |
 
 ## History
 
