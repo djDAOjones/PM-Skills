@@ -2,6 +2,12 @@
 
 ## Phase: evidence closes (2026-09-12)
 
+- FIELD-NOTES-V3 (2026-10-05) — two maintainer notes, tracked lane,
+  on the v3 field projects' first day on the new Mac: the Video
+  Helper's working-copy confirmation and the Codex check that caught a
+  dropped guard; Route Plotter's 23 defects that lived only in a
+  handoff file, and a cross-session relay. The tier's Projects table
+  now records both projects' move to pm-next v3. Source-only.
 - V3-SPEC-PROMPT (2026-09-25) — the session prompt for the step
   after the V2 field study: `self/V3-SPEC-SESSION.md`, for a fresh
   Claude Fable chat opened in the lab with the maintainer, which walks

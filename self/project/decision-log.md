@@ -12,6 +12,33 @@
      them. Reversing a decision? Mark it forward with a
      `Supersedes:` line (memory-policy -> "Retention shape"). -->
 
+## 2026-10-05 — FIELD-NOTES-V3: the v3 field projects' first new-Mac day, filed as notes
+
+**Decision (maintainer request, in session):** source-only. Two
+maintainer notes go in the tracked lane:
+`uon-video-helper/2026-10-05-note-new-mac-first-session.md` and
+`route-plotter/2026-10-05-note-handoff-only-defects.md`. Their join key
+names the prototype version and the lab commit, as the tier's rule for
+the lab's successor says. The tier's Projects table now records both
+projects' move to pm-next v3 on 2026-10-02, which it had not.
+
+**Rationale:** both projects are public, and the notes quote nothing
+private: they describe events, commits and tool behaviour, and point
+to local evidence by kind only. They are the first notes on projects
+running v3, and they carry four findings the R2 reading may want:
+
+- a second model briefed from the record found a real defect in a
+  record-only change;
+- a census row lost force at confirmation, not at migration;
+- the session-end sensor works per folder, so a cross-folder session
+  runs without it;
+- found work kept outside the repository is invisible under v3's
+  rule 2.
+
+Alternatives: filing in the lab (rejected — the tier, and its
+FIELD-HARVEST-NEXT precedent, file programme projects here); an
+evaluation (rejected — these are inputs, not analysis).
+
 ## 2026-09-25 — V3-SPEC-PROMPT: the decision session gets a versioned prompt that goes on to specify pm-next v3
 
 **Decision (maintainer request, in session):** source-only.
